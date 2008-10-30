@@ -1,0 +1,15 @@
+# The line starting with THECOPULA= is followed by the name of the copula
+# and this name is loaded into the $cop variable of the 3dcopula.pl script
+# The rest of the lines are concatenated together as R code of the parameter
+# list structure for that copula that the named copula expects
+moreRLIBRARIES=
+THECOPULA=W
+# End of parameters, now the next line is a trigger to start concatenating 
+# the caption to be placed in a \renewcommand{\mycaption}{} in file
+# 3dcopula_ancillary.tex
+CAPTION
+Level curves (lines of increasing thickness), 
+sections (lines originating at $u{=}0$ or $v{=}0$), 
+and diagonal (light grey, $[0,0,0]{\rightarrow}[1,1,1]$) 
+of the $\mathbf{W}(u,v)$ (Fr\'echet-Hoeffding lower bounds) copula
+# END OF FILE

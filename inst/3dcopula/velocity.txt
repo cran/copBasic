@@ -1,0 +1,19 @@
+# The line starting with THECOPULA= is followed by the name of the copula
+# and this name is loaded into the $cop variable of the 3dcopula.pl script
+# The rest of the lines are concatenated together as R code of the parameter
+# list structure for that copula that the named copula expects
+THECOPULA=composite2COP
+list(cop1=PLACKETTcop, cop2=PLACKETTcop,
+     alpha=0.487744, beta=0.051609,
+     para1=c(7.5e-5), para2=c(10.22382))
+# End of parameters, now the next line is a trigger to start concatenating 
+# the caption to be placed in a \renewcommand{\mycaption}{} in file
+# 3dcopula_ancillary.tex
+CAPTION
+Level curves (lines of increasing thickness), 
+sections (lines originating at $u=0$ or $v=0$), 
+and diagonal (light grey, $[0,0,0]{\rightarrow}[1,1,1]$) 
+of Composite Plackett-Plackett Copula 
+$\{\alpha{=}0.488, \beta{=}0.052, 
+\Theta_1{=}7.5\times 10^{-5}, \Theta_2{=}10.22\}$
+# END OF FILE

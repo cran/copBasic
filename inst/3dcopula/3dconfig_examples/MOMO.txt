@@ -1,0 +1,19 @@
+# The line starting with THECOPULA= is followed by the name of the copula
+# and this name is loaded into the $cop variable of the 3dcopula.pl script
+# The rest of the lines are concatenated together as R code of the parameter
+# list structure for that copula that the named copula expects
+moreRLIBRARIES=library(copMarOlk);
+THECOPULA=composite2COP
+list(cop1=MOcop, cop2=MOcop,
+     alpha=0.4,  beta=0.4,
+     para1=c(0.5,0.9), para2=c(0.08,0.1))
+# End of parameters, now the next line is a trigger to start concatenating 
+# the caption to be placed in a \renewcommand{\mycaption}{} in file
+# 3dcopula_ancillary.tex
+CAPTION
+Level curves (lines of increasing thickness), 
+sections (lines originating at $u{=}0$ or $v{=}0$), 
+and diagonal (light grey, $[0,0,0]{\rightarrow}[1,1,1]$) 
+of composite Marshall-Olkin/Marshall-Olkin copula 
+$\{\alpha{=}0.8, \beta{=}0.3, \alpha_1{=}0.5, \beta_1{=}0.9, \alpha_2{=}0.08, \beta_2{=}0.1\}$
+# END OF FILE

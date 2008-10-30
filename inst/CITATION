@@ -1,0 +1,16 @@
+citHeader("To cite package 'copBasic' in publications use:")
+
+desc <- packageDescription("copBasic") 
+year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", desc$Date) 
+vers <- paste("R package version", desc$Version) 
+
+citEntry(entry="Manual", 
+         title = "copBasic: Basic Copula Functions", 
+         author = personList(as.person("William H. Asquith")), 
+         year = year, 
+         note = vers,
+         textVersion =
+         paste("Asquith, W.H.,", year, 
+               ", copBasic---Basic Copula Functions. ",
+               vers, ", Lubbock, Texas.",
+               sep=""))

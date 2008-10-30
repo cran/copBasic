@@ -1,0 +1,22 @@
+# The line starting with THECOPULA= is followed by the name of the copula
+# and this name is loaded into the $cop variable of the 3dcopula.pl script
+# The rest of the lines are concatenated together as R code of the parameter
+# list structure for that copula that the named copula expects
+THECOPULA=composite2COP
+list(cop1=PLACKETTcop, cop2=PLACKETTcop,
+     alpha=0.1039, beta=0.0431,
+     para1=c(0.00991), para2=c(78316.66))
+# End of parameters, now the next line is a trigger to start concatenating 
+# the caption to be placed in a \renewcommand{\mycaption}{} in file
+# 3dcopula_ancillary.tex
+CAPTION
+Level curves (lines of increasing thickness), 
+sections (lines originating at $u{=}0$ or $v{=}0$), 
+and diagonal (light grey, $[0,0,0]{\rightarrow}[1,1,1]$) 
+of Composite Plackett-Plackett Copula 
+$\{\alpha{=}0.1039, \beta{=}0.0431, 
+\Theta_1{=}0.00991, \Theta_2{=}78316.66\}$ 
+of daily mean mean streamflow for 
+U.S.~Geological Survey streamflow-gaging station 
+08148500 North Llano River near Junction, Texas (station 1) and 08150000 Llano River at Junction, Texas (station 2)
+# END OF FILE

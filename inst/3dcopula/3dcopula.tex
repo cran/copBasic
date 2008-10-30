@@ -1,0 +1,209 @@
+\documentclass[11pt]{article}
+\usepackage{pstricks,pst-3dplot,pst-3d,pstricks-add}
+
+
+\readdata{\dataUi}{./TMP0.1.txt}
+\readdata{\dataUii}{./TMP0.2.txt}
+\readdata{\dataUiii}{./TMP0.3.txt}
+\readdata{\dataUiv}{./TMP0.4.txt}
+\readdata{\dataUv}{./TMP0.5.txt}
+\readdata{\dataUvi}{./TMP0.6.txt}
+\readdata{\dataUvii}{./TMP0.7.txt}
+\readdata{\dataUviii}{./TMP0.8.txt}
+\readdata{\dataUix}{./TMP0.9.txt}
+
+\readdata{\dataUdiag}{./TMPdiag.txt}
+\readdata{\dataUsimxo}{./TMPsimxo.txt}
+\readdata{\dataUsimxz}{./TMPsimxz.txt}
+
+
+\readdata{\dataUsecUz}{./TMPsecU0.txt}
+\readdata{\dataUsecUi}{./TMPsecU0.1.txt}
+\readdata{\dataUsecUii}{./TMPsecU0.2.txt}
+\readdata{\dataUsecUiii}{./TMPsecU0.3.txt}
+\readdata{\dataUsecUiv}{./TMPsecU0.4.txt}
+\readdata{\dataUsecUv}{./TMPsecU0.5.txt}
+\readdata{\dataUsecUvi}{./TMPsecU0.6.txt}
+\readdata{\dataUsecUvii}{./TMPsecU0.7.txt}
+\readdata{\dataUsecUviii}{./TMPsecU0.8.txt}
+\readdata{\dataUsecUix}{./TMPsecU0.9.txt}
+\readdata{\dataUsecUI}{./TMPsecU1.txt}
+
+\readdata{\dataUsecVz}{./TMPsecV0.txt}
+\readdata{\dataUsecVi}{./TMPsecV0.1.txt}
+\readdata{\dataUsecVii}{./TMPsecV0.2.txt}
+\readdata{\dataUsecViii}{./TMPsecV0.3.txt}
+\readdata{\dataUsecViv}{./TMPsecV0.4.txt}
+\readdata{\dataUsecVv}{./TMPsecV0.5.txt}
+\readdata{\dataUsecVvi}{./TMPsecV0.6.txt}
+\readdata{\dataUsecVvii}{./TMPsecV0.7.txt}
+\readdata{\dataUsecVviii}{./TMPsecV0.8.txt}
+\readdata{\dataUsecVix}{./TMPsecV0.9.txt}
+\readdata{\dataUsecVI}{./TMPsecV1.txt}
+
+
+\readdata{\dataUderUz}{./TMPderU0.txt}
+\readdata{\dataUderUi}{./TMPderU0.1.txt}
+\readdata{\dataUderUii}{./TMPderU0.2.txt}
+\readdata{\dataUderUiii}{./TMPderU0.3.txt}
+\readdata{\dataUderUiv}{./TMPderU0.4.txt}
+\readdata{\dataUderUv}{./TMPderU0.5.txt}
+\readdata{\dataUderUvi}{./TMPderU0.6.txt}
+\readdata{\dataUderUvii}{./TMPderU0.7.txt}
+\readdata{\dataUderUviii}{./TMPderU0.8.txt}
+\readdata{\dataUderUix}{./TMPderU0.9.txt}
+\readdata{\dataUderUI}{./TMPderU1.txt}
+
+\readdata{\dataUderVz}{./TMPderV0.txt}
+\readdata{\dataUderVi}{./TMPderV0.1.txt}
+\readdata{\dataUderVii}{./TMPderV0.2.txt}
+\readdata{\dataUderViii}{./TMPderV0.3.txt}
+\readdata{\dataUderViv}{./TMPderV0.4.txt}
+\readdata{\dataUderVv}{./TMPderV0.5.txt}
+\readdata{\dataUderVvi}{./TMPderV0.6.txt}
+\readdata{\dataUderVvii}{./TMPderV0.7.txt}
+\readdata{\dataUderVviii}{./TMPderV0.8.txt}
+\readdata{\dataUderVix}{./TMPderV0.9.txt}
+\readdata{\dataUderVI}{./TMPderV1.txt}
+
+
+\psset{unit=2in}
+
+
+\newcommand{\copulaShadow}{
+\dataplotThreeD[plotstyle=dots,dotscale=0.7,linecolor=green!30]{\dataUsimxo}
+}
+
+
+\newcommand{\mycaption}{INSERT HERE}
+\include{3dcopula_fromperl}
+% for redefinition of \mycaption
+\include{3dcopula_ancillary}
+
+
+
+\begin{document}
+
+\begin{figure}
+
+\begin{center}
+
+\begin{pspicture}(-.2,0)(1.06,0)
+\psset{Alpha=-170, Beta=25,linecolor=black,%
+xMin=0, yMin=0, zMin=0, xMax=1.1, yMax=1.1, zMax=1.1}
+
+
+% Draw the lines "behind" first
+\psset{linecolor=black, linestyle=dashed, linewidth=0.4pt}
+\pstThreeDLine(1,1,1)(1,1,0)
+\pstThreeDLine(1,0,0)(1,1,0)
+\pstThreeDLine(0,1,0)(1,1,0)
+
+\psset{linestyle=solid, linewidth=0.1pt}
+\dataplotThreeD[plotstyle=line, linewidth=0.5pt,
+                linecolor=black!30]{\dataUdiag}
+
+\copulaShadow
+
+%\pstPlanePut[plane=xy,origin=c](0.5,0.5,0.0){\dataplotThreeD[plotstyle=dots,dotscale=0.7,linecolor=red!30]{\dataUsimxo}}
+
+\dataplotThreeD[plotstyle=line,linewidth=0.5pt]{\dataUsecUz}
+\dataplotThreeD[plotstyle=line]{\dataUsecUi}
+\dataplotThreeD[plotstyle=line]{\dataUsecUii}
+\dataplotThreeD[plotstyle=line]{\dataUsecUiii}
+\dataplotThreeD[plotstyle=line]{\dataUsecUiv}
+\dataplotThreeD[plotstyle=line]{\dataUsecUv}
+\dataplotThreeD[plotstyle=line]{\dataUsecUvi}
+\dataplotThreeD[plotstyle=line]{\dataUsecUvii}
+\dataplotThreeD[plotstyle=line]{\dataUsecUviii}
+\dataplotThreeD[plotstyle=line]{\dataUsecUix}
+\dataplotThreeD[plotstyle=line,linewidth=0.5pt]{\dataUsecUI}
+
+\dataplotThreeD[plotstyle=line,linewidth=0.5pt]{\dataUsecVz}
+\dataplotThreeD[plotstyle=line]{\dataUsecVi}
+\dataplotThreeD[plotstyle=line]{\dataUsecVii}
+\dataplotThreeD[plotstyle=line]{\dataUsecViii}
+\dataplotThreeD[plotstyle=line]{\dataUsecViv}
+\dataplotThreeD[plotstyle=line]{\dataUsecVv}
+\dataplotThreeD[plotstyle=line]{\dataUsecVvi}
+\dataplotThreeD[plotstyle=line]{\dataUsecVvii}
+\dataplotThreeD[plotstyle=line]{\dataUsecVviii}
+\dataplotThreeD[plotstyle=line]{\dataUsecVix}
+\dataplotThreeD[plotstyle=line,linewidth=0.5pt]{\dataUsecVI}
+
+% NOW PLOT THE DERIVATIVES OF THE SECTIONS---DISTRIBUTION FUNCTIONS!
+\psset{linecolor=blue}
+%%\dataplotThreeD[plotstyle=line,linewidth=0.5pt]{\dataUderUz}
+%\dataplotThreeD[plotstyle=line]{\dataUderUi}
+%\dataplotThreeD[plotstyle=line]{\dataUderUii}
+%\dataplotThreeD[plotstyle=line]{\dataUderUiii}
+%\dataplotThreeD[plotstyle=line]{\dataUderUiv}
+%\dataplotThreeD[plotstyle=line]{\dataUderUv}
+%\dataplotThreeD[plotstyle=line]{\dataUderUvi}
+%\dataplotThreeD[plotstyle=line]{\dataUderUvii}
+%\dataplotThreeD[plotstyle=line]{\dataUderUviii}
+%\dataplotThreeD[plotstyle=line]{\dataUderUix}
+%%%\dataplotThreeD[plotstyle=line,linewidth=0.5pt]{\dataUderUI}
+
+%\psset{linecolor=green}
+%%%\dataplotThreeD[plotstyle=line,linewidth=0.5pt]{\dataUderVz}
+%\dataplotThreeD[plotstyle=line]{\dataUderVi}
+%\dataplotThreeD[plotstyle=line]{\dataUderVii}
+%\dataplotThreeD[plotstyle=line]{\dataUderViii}
+%\dataplotThreeD[plotstyle=line]{\dataUderViv}
+%\dataplotThreeD[plotstyle=line]{\dataUderVv}
+%\dataplotThreeD[plotstyle=line]{\dataUderVvi}
+%\dataplotThreeD[plotstyle=line]{\dataUderVvii}
+%\dataplotThreeD[plotstyle=line]{\dataUderVviii}
+%\dataplotThreeD[plotstyle=line]{\dataUderVix}
+%\dataplotThreeD[plotstyle=line,linewidth=0.5pt]{\dataUderVI}
+
+
+
+\psset{linecolor=black}
+\dataplotThreeD[plotstyle=line, linewidth=0.6pt]{\dataUi}
+\dataplotThreeD[plotstyle=line, linewidth=0.7pt]{\dataUii}
+\dataplotThreeD[plotstyle=line, linewidth=0.8pt]{\dataUiii}
+\dataplotThreeD[plotstyle=line, linewidth=0.9pt]{\dataUiv}
+\dataplotThreeD[plotstyle=line, linewidth=1.0pt]{\dataUv}
+\dataplotThreeD[plotstyle=line, linewidth=1.1pt]{\dataUvi}
+\dataplotThreeD[plotstyle=line, linewidth=1.2pt]{\dataUvii}
+\dataplotThreeD[plotstyle=line, linewidth=1.3pt]{\dataUviii}
+\dataplotThreeD[plotstyle=line, linewidth=1.4pt]{\dataUix}
+
+
+\dataplotThreeD[plotstyle=dots,dotscale=0.8,linecolor=red]{\dataUsimxz}
+
+% Now actually draw in the rest of the box
+
+
+
+\psset{linecolor=black, linestyle=dashed, linewidth=0.6pt}
+\pstThreeDLine(1,0,0)(1,0,1)
+\pstThreeDLine(1,1,1)(1,0,1)
+\pstThreeDLine(0,1,0)(0,1,1)
+\pstThreeDLine(0,0,1)(0,1,1)
+\pstThreeDLine(0,0,1)(1,0,1)
+\pstThreeDLine(1,1,1)(0,1,1)
+
+
+\psset{linecolor=black, linestyle=solid, linewidth=1.1pt}
+\pstThreeDLine[arrowscale=1.5, arrows=<->, linejoin=1](0,1.3,0)(0,0,0)(1.1,0,0)
+%\pstThreeDLine[arrows=->, linejoin=1](0,0,0)
+\pstThreeDLine[arrowscale=1.5, arrows=->, linejoin=1](0,0,0)(0,0,1.15)
+
+
+\pstThreeDPut(0.5,-0.09,-0.01){\large $u$}
+\pstThreeDPut(-0.06,0.5,0){\large $v$}
+\pstThreeDPut(-0.03,0,1.2){\large \makebox[0pt][l]{$\mathbf{C}(u,v)$}}
+
+\end{pspicture}
+
+\end{center}
+
+\bigskip
+
+\caption{\mycaption}
+\end{figure}
+
+\end{document}
