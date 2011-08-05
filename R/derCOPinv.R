@@ -8,9 +8,13 @@ function(cop=NULL, u, t,
             #print(LHS - dc)
             return(LHS - dc)
             }
+    rt <- NULL;
     try(rt <- uniroot(func,interval=c(0,1),
                       u=u, LHS=t, cop=cop,
                       delu=delu, para=para, ...))
+
+    if(is.null(rt)) return(NA);
+
     if(length(rt$root) != 0) {
       v <- rt$root
       return(v)
@@ -18,4 +22,5 @@ function(cop=NULL, u, t,
     else {
       return(NA)
     }
+
 }

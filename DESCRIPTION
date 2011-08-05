@@ -1,7 +1,7 @@
 Package: copBasic
 Title: Basic Copula Functions
-Version: 1.4
-Date: 2008-10-30
+Version: 1.4.2
+Date: 2011-08-05
 Author: William H. Asquith
 Description: This package implements basic functions for copula
         computations and is used by several other packages by the
@@ -54,8 +54,8 @@ Description: This package implements basic functions for copula
         respect to U instead of U with respect to V. The regressions
         can be plotted by (qua.regressCOP.draw).
 Maintainer: William H. Asquith <william.asquith@ttu.edu>
-Depends: lmomco
+Depends: R (>= 2.10), lmomco
 License: GPL
-Packaged: 2011-02-18 19:19:05 UTC; wasquith
+Packaged: 2011-08-05 20:50:09 UTC; williamasquith
 Repository: CRAN
-Date/Publication: 2011-02-19 09:06:54
+Date/Publication: 2011-08-06 07:43:53
