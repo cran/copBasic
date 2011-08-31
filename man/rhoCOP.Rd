@@ -25,10 +25,10 @@ rhoCOP(cop=NULL, para=NULL, byloops=FALSE, delta=0.002, ...)
   The value for \eqn{\rho_\mathbf{C}} is returned.
 }
 \note{
-See pp.~167--170, 189, 208 of the reference. Technically, Nelson (2006) also shows that these definitions are a form of call to a \dQuote{concordance} function of two copulas \eqn{Q(\mathbf{C}_1,\mathbf{C}_2)} that involve \eqn{\mathbf{C}_1{=}\mathbf{C}(u,v)} and \eqn{\mathbf{C}_2{=}\mathbf{\Pi}}. As such, in order to keep \code{rhoCOP} a small function, \eqn{\rho_\mathbf{C}} is computed here by a special call to \code{\link{tauCOP}}, which itself, although titled for computation of Kendall's Tau, is equivalent to the concordance function \eqn{Q} (see p.~158--159 of the reference).
+See pp. 167--170, 189, 208 of the reference. Technically, Nelson (2006) also shows that these definitions are a form of call to a \dQuote{concordance} function of two copulas \eqn{Q(\mathbf{C}_1,\mathbf{C}_2)} that involve \eqn{\mathbf{C}_1{=}\mathbf{C}(u,v)} and \eqn{\mathbf{C}_2{=}\mathbf{\Pi}}. As such, in order to keep \code{rhoCOP} a small function, \eqn{\rho_\mathbf{C}} is computed here by a special call to \code{\link{tauCOP}}, which itself, although titled for computation of Kendall's Tau, is equivalent to the concordance function \eqn{Q} (see pp. 158--159 of the reference).
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269~p.
+Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{tauCOP}}

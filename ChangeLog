@@ -4,7 +4,17 @@ ChangeLog for R Package "copBasic" by W.H. Asquith
 
 Version 1.4---October 30, 2008 Initial Release
 
-Version 1.4.2---August 5, 2011
+Version 1.5.0---August 31, 2011
 1.  Enhancement on derCOPinv.R when a solution is unbounded in uniroot()
       to return NA as needed. This was discovered in massive simulation
       from simcompositeCOP()---massive means 500k simulation counts.
+2. Added Nelson's copula in equation 4.2.12 as the N4.2.12cop() function. 
+3. Removed and restructured the tabulated L-comoment solutions to the
+     Plackett-Plackett copula to clean up some loose ends and set up the
+     ability to load much much larger solutions sets that are too big
+     for CRAN distribution.
+4. Major construction of the data subdirectory and changes to documentation.
+     Removed comp2lcomsPlackettPlackett.Rd, comp2lcomsPlackettPlackett2.Rd,
+     lcom2PLACKETTPLACKETTcop.R/Rd
+5. Added lcomoms2.cop2parameter.R/Rd (replaces lcom2PLACKETTPLACKETTcop.R/Rd)
+6. Added data/PlackettPlackettNP.RData and man/PlackettPlackettNP.Rd

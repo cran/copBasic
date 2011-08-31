@@ -24,10 +24,10 @@ sectionCOP(f, cop=NULL, para=NULL, wrtV=FALSE, ratcop=FALSE,
   A \code{list} of the .
 }
 \note{
-See p.~13--14 of the reference.
+See pp. 13--14 of the reference.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269~p.
+Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{COP}}, \code{\link{diagCOP}}}

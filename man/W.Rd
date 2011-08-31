@@ -17,10 +17,10 @@ W(u, v, ...)
   The value for the copula is returned.
 }
 \note{
-See p.~11 of the reference.
+See p. 11 of the reference.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269~p.
+Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{M}}, \code{\link{P}}}

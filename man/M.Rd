@@ -3,7 +3,7 @@
 \title{ The Frechet-Hoeffding Upper Bound }
 \description{
 Compute the Frechet-Hoeffding upper bound copula
-\deqn{\mathbf{M}(u,v) = \mathrm{min}(u,v)} 
+\deqn{\mathbf{M}(u,v) = \mathrm{min}(u,v)}
 }
 \usage{
 M(u, v, ...)
@@ -17,10 +17,10 @@ M(u, v, ...)
   The value for the copula is returned.
 }
 \note{
-See p.~11 of the reference.
+See p. 11 of the reference.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269~p.
+Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{W}}, \code{\link{P}}}

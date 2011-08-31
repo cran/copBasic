@@ -31,10 +31,10 @@ qua.regressCOP2(F=0.5,
   A data frame of the simulated values is returned.
 }
 \note{
-See p.~217--218 of the reference.
+See pp. 217--218 of the reference.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269~p.
+Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{med.regressCOP2}}, \code{\link{derCOPinv2}}}
@@ -59,7 +59,7 @@ lines(R$U,R$V, col=2, lty=2)
 para <- list(cop1=PLACKETTcop,  cop2=PLACKETTcop,
              para1=c(0.14),    para2=c(21),
              alpha=0.04,        beta=0.68)
-# Initial a plot 
+# Initial a plot
 plot(c(0,1),c(0,1), type="n", lwd=3,
      xlab="U, NONEXCEEDANCE PROBABILITY",
      ylab="V, NONEXCEEDANCE PROBABILITY")

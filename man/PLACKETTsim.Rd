@@ -16,12 +16,12 @@ PLACKETTsim(n, para=NULL, ...)
   A data frame of the values are returned.
 }
 \note{
-See p.~247 of Salvadori and others (2007).
+See pp. 247 of Salvadori and others (2007).
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269~p.
+Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 
-Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in nature---An approach using copulas: Dordrecht, Netherlands, Springer, Water Science and Technology Library 56, 292~p.
+Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in nature---An approach using copulas: Dordrecht, Netherlands, Springer, Water Science and Technology Library 56, 292 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{M}}, \code{\link{W}}, \code{\link{P}}}

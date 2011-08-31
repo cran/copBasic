@@ -27,10 +27,10 @@ isCOP.RTI(cop=NULL, para=NULL, wrtV=FALSE, verbose=FALSE,
   A logical \code{TRUE} or \code{FALSE} is returned.
 }
 \note{
-See p.~222 of the reference.
+See p. 222 of the reference.
 }
 \references{
-Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in nature---An approach using copulas: Dordrecht, Netherlands, Springer, Water Science and Technology Library 56, 292~p.
+Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in nature---An approach using copulas: Dordrecht, Netherlands, Springer, Water Science and Technology Library 56, 292 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{isCOP.LTD}}}

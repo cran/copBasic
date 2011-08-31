@@ -19,10 +19,10 @@ med.regressCOP2(V=seq(  .Machine$double.eps^0.5,
   A data frame of the regressed probabilities of \eqn{U} and provided \eqn{V} values is returned.
 }
 \note{
-See p.~217--218 of the reference.
+See pp. 217--218 of the reference.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269~p.
+Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{qua.regressCOP2}}}

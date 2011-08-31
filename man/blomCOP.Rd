@@ -23,7 +23,7 @@ blomCOP(cop=NULL, para=NULL, ...)
 See p.~182 of the reference.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269~p.
+Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{rhoCOP}}, \code{\link{tauCOP}}

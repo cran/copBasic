@@ -28,12 +28,12 @@ taildepCOP(cop=NULL, para=NULL, plotem=FALSE,
   A list with \eqn{\lambda^U_\mathbf{C}} and \eqn{\lambda^L_\mathbf{C}} is returned.
 }
 \note{
-See pp.~214--215 of the reference. The algorithm implemented in \code{taildepCOP} is based on halves. Starting from the median or \eqn{t=0.5}, the limit is computed by successive halving of the distance to wards 0 and 1 and checking the change in computed value against the tolerance \code{tol} argument. After the change becomes less than the the tolerance, convergence is assumed. Other tests are made for \code{NaN} with the \code{is.nan()} function to aid in breaking the halvings.
+See pp. 214--215 of the reference. The algorithm implemented in \code{taildepCOP} is based on halves. Starting from the median or \eqn{t=0.5}, the limit is computed by successive halving of the distance to wards 0 and 1 and checking the change in computed value against the tolerance \code{tol} argument. After the change becomes less than the the tolerance, convergence is assumed. Other tests are made for \code{NaN} with the \code{is.nan()} function to aid in breaking the halvings.
 
 Users are encouraged to plot the results and see whether the convergence makes sense. The plot produced when \code{plotem=TRUE} shows the probability \eqn{t} transformed into standard normal deviates by the \code{qnorm()} function so that the distal reaches of each limit are seen. The terminal points of each limit computation are shown by a small dot and the letter \dQuote{L} and \dQuote{U} also plotted at the same point.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269~p.
+Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{COP}}}

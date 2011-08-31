@@ -2,15 +2,15 @@
 \alias{tauCOP}
 \title{ The Kendall's Tau of a Copula }
 \description{
-Compute the Kendall's Tau \eqn{\tau_\mathbf{C}} of a copula according to Nelson (2006) by 
-\deqn{\tau_\mathbf{C} = 4\int_0^1 \int_0^1 
+Compute the Kendall's Tau \eqn{\tau_\mathbf{C}} of a copula according to Nelson (2006) by
+\deqn{\tau_\mathbf{C} = 4\int_0^1 \int_0^1
                          \mathbf{C}(u,v)
                          \frac{\delta\mathbf{C}(u,v)}{\delta u}
                          \frac{\delta\mathbf{C}(u,v)}{\delta v}
                          \mathrm{d}u\mathrm{d}v\mbox{.}}
 
-However, Nelson (2006, p.~164) reports that this form is often not amenable to computation and that the expression
-\deqn{\tau_\mathbf{C} = 1 - 4\int_0^1 \int_0^1 
+However, Nelson (2006, p. 164) reports that this form is often not amenable to computation and that the expression
+\deqn{\tau_\mathbf{C} = 1 - 4\int_0^1 \int_0^1
                          \frac{\delta\mathbf{C}(u,v)}{\delta u}
                          \frac{\delta\mathbf{C}(u,v)}{\delta v}
                          \mathrm{d}u\mathrm{d}v\mbox{.}}
@@ -37,7 +37,7 @@ See pp.~158--162, 164 of the reference.
 The function is used in a special call by \code{\link{rhoCOP}} to compute Spearman's Rho of a copula. In this case, \code{cop2=P} of the \eqn{\mathbf{\Pi}} copula and the \code{cop} is set to the copula of interest.  Technically, Nelson (2006) shows that \eqn{\tau_\mathbf{C} = Q(\mathbf{C}_1,\mathbf{C}_2)}, where \eqn{Q} is a \dQuote{concordance} function of two copulas \eqn{Q(\mathbf{C}_1,\mathbf{C}_2)}. Although, titled to reflect \eqn{\tau_\mathbf{C}}, the \code{tauCOP} function when provided the \code{cop2} and \code{para2} arguments functions as the concordance function \eqn{Q} (see p.~158--159 of the reference).
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269~p.
+Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{rhoCOP}}, \code{\link{derCOP}}, \code{\link{derCOP2}}}

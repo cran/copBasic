@@ -2,7 +2,7 @@
 \alias{surCOP}
 \title{ The Survival Copula }
 \description{
-Compute the survival copula from a copula 
+Compute the survival copula from a copula
 
 \deqn{\mathrm{Pr}[U > u, V > v] = \hat{\mathbf{C}}(u,v) = u + v - 1 + \mathbf{C}(1-u,1-v)}
 
@@ -24,10 +24,10 @@ surCOP(cop=NULL, u, v, exceedance=TRUE, ...)
   The value for the survival copula is returned.
 }
 \note{
-See pp.~32--34 of the reference. The author (Asquith) finds the use of exceedance probabilities confusing having grown up in a strictly nonexceedance world. This function and \code{coCOP} have the \code{exceedance} argument to serve as a reminder that survival copula as usually defined uses exceedance probabilities.
+See pp. 32--34 of the reference. The author (Asquith) finds the use of exceedance probabilities confusing having grown up in a strictly nonexceedance world. This function and \code{coCOP} have the \code{exceedance} argument to serve as a reminder that survival copula as usually defined uses exceedance probabilities.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269~p.
+Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{COP}}, \code{\link{coCOP}}, \code{\link{duCOP}}, \code{\link{W}}, \code{\link{P}}, \code{\link{M}}, \code{\link{PSP}}}

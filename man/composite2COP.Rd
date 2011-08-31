@@ -1,10 +1,10 @@
 \name{composite2COP}
 \alias{composite2COP}
-\title{ Composition of an Asymmetric Copula from Two Copulas }
+\title{ Composition of Two Copulas }
 \description{
-The construction of an asymmetric copula from composition two copulas provide for more sophisticated structures of dependence between variables. Let \eqn{\mathbf{A}} and \eqn{\mathbf{B}} be copulas. Then
+The composition of two two copulas provides for more sophisticated structures of dependence between variables than many single parameter copula can provide. Further, asymmetrical copulas are readily obtained. Let \eqn{\mathbf{A}} and \eqn{\mathbf{B}} be copulas. Then
 
-\deqn{\mathbf{C}_{\alpha,\beta}(u,v) = \mathbf{A}(u^\alpha,    v^\beta) \cdot 
+\deqn{\mathbf{C}_{\alpha,\beta}(u,v) = \mathbf{A}(u^\alpha,    v^\beta) \cdot
                               \mathbf{B}(u^{1-\alpha},v^{1-\beta})\mbox{,}}
 
 defines a family of copulas \eqn{\mathbf{C}_{\alpha,\beta}}, with parameters \eqn{\alpha,\beta \in \mathcal{I}:[0,1]}. In particular, if \eqn{\alpha = \beta = 1}, then \eqn{\mathbf{C}_{1,1} = \mathbf{A}}, and, if \eqn{\alpha = \beta = 0}, then \eqn{\mathbf{C}_{0,0} = \mathbf{B}}. For \eqn{\alpha \ne \beta}, the \eqn{\mathbf{C}_{\alpha,\beta}} is, in general, asymmetric, that is \eqn{\mathbf{C}(u,v) \ne \mathbf{C}(v,u)} for some \eqn{(u,v) \in \mathcal{I}^2}.
@@ -30,7 +30,7 @@ composite2COP(u,v,para,...)
   A value for the composited copula is returned.
 }
 \note{
-See p.~266 of the reference and Proposition~C.2 for complete discussion.
+See p. 266 of the reference and Proposition C.2 for complete discussion.
 
 The following descriptions list in detail the structure and content of the \samp{para} argument:
 \describe{
@@ -46,7 +46,7 @@ The \samp{para} argument of this function also can be passed to \code{\link{comp
 }
 \references{
 Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007,
-Extremes in Nature---An approach using copulas: Springer, 289~p.
+Extremes in Nature---An approach using copulas: Springer, 289 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{COP}}, \code{\link{composite1COP}}}
@@ -60,6 +60,13 @@ Theta1 <- NA; Theta2 <- NA
 para   <- list(alpha=alpha,      beta=beta,
                 cop1=W,          cop2=PSP,
                 para1=c(Theta1), para2=c(Theta2))
+t <- composite2COP(0.4,0.6,para)
+print(t)
+
+
+para   <- list(alpha=alpha,      beta=beta,
+                cop1=W,          cop2=N4.2.12cop,
+                para1=c(Theta1), para2=3)
 t <- composite2COP(0.4,0.6,para)
 print(t)
 }

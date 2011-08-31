@@ -2,7 +2,7 @@
 \alias{P}
 \title{ The Product (Independence) Copula }
 \description{
-Compute the product copula 
+Compute the product copula
 \deqn{\Pi(u,v) = uv}
 }
 \usage{
@@ -20,7 +20,7 @@ P(u, v, ...)
 See p. 12 of the reference.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269~p.
+Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{M}}, \code{\link{W}}}

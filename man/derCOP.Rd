@@ -25,10 +25,10 @@ derCOP(cop=NULL, u, v, delu=.Machine$double.eps^0.50,
   The value for the copula is returned.
 }
 \note{
-See pp.~13 and 40--41 of the reference. A known weakness of the current implementation of the Copula derivative is that this is a small probability that the \eqn{\Delta u} will span a singularity or discontinuous portion of a copula shown it have that property. The \code{delu} is chosen small to the probability is mitigated to a small value. It is not known whether a derivative from the positive side (\code{dir="left"}), when failing should switch over to a computation from the negative side (\code{dir="right"}). The distinction is important for the computation of the inverse of the derivative \code{\link{derCOPinv}} because the solution finder needs a sign reversal.
+See pp. 13 and 40--41 of the reference. A known weakness of the current implementation of the Copula derivative is that this is a small probability that the \eqn{\Delta u} will span a singularity or discontinuous portion of a copula shown it have that property. The \code{delu} is chosen small to the probability is mitigated to a small value. It is not known whether a derivative from the positive side (\code{dir="left"}), when failing should switch over to a computation from the negative side (\code{dir="right"}). The distinction is important for the computation of the inverse of the derivative \code{\link{derCOPinv}} because the solution finder needs a sign reversal.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269~p.
+Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{derCOPinv}}, \code{\link{W}}, \code{\link{P}}, \code{\link{M}}, \code{\link{PSP}}}

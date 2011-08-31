@@ -2,7 +2,7 @@
 \alias{duCOP}
 \title{ The Dual of a Copula }
 \description{
-Compute the dual of a copula from a copula 
+Compute the dual of a copula from a copula
 
 \deqn{\mathrm{Pr}[U \le v\mid V \le v] = \tilde{\mathbf{C}}(u,v) = u + v - \mathbf{C}(u,v)}
 
@@ -21,10 +21,10 @@ duCOP(cop=NULL, u, v, ...)
   The value for the dual of a copula is returned.
 }
 \note{
-See p.~33--34 of the reference.
+See pp. 33--34 of the reference.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269~p.
+Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{COP}}, \code{\link{coCOP}}, \code{\link{surCOP}}, \code{\link{W}}, \code{\link{P}}, \code{\link{M}}, \code{\link{PSP}}}

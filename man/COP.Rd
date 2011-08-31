@@ -2,7 +2,7 @@
 \alias{COP}
 \title{ The Copula }
 \description{
-Compute the copula from a copula 
+Compute the copula from a copula
 
 \deqn{\mathrm{Pr}[U \le u, V \le v] = \mathbf{C}(u,v)}
 
@@ -24,7 +24,7 @@ COP(cop=NULL, u, v, ...)
 See p.~18 of the reference.  \code{COP} + \code{coCOP} equal unity and \code{surCOP} + \code{duCOP} equal unity.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269~p.
+Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{coCOP}}, \code{\link{surCOP}}, \code{\link{duCOP}}, \code{\link{W}}, \code{\link{P}}, \code{\link{M}}, \code{\link{PSP}}}

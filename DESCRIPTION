@@ -1,7 +1,7 @@
 Package: copBasic
 Title: Basic Copula Functions
-Version: 1.4.2
-Date: 2011-08-05
+Version: 1.5.0
+Date: 2011-08-31
 Author: William H. Asquith
 Description: This package implements basic functions for copula
         computations and is used by several other packages by the
@@ -56,6 +56,6 @@ Description: This package implements basic functions for copula
 Maintainer: William H. Asquith <william.asquith@ttu.edu>
 Depends: R (>= 2.10), lmomco
 License: GPL
-Packaged: 2011-08-05 20:50:09 UTC; williamasquith
+Packaged: 2011-08-31 17:58:00 UTC; williamasquith
 Repository: CRAN
-Date/Publication: 2011-08-06 07:43:53
+Date/Publication: 2011-09-01 06:24:49

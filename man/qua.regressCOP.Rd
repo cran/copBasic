@@ -31,10 +31,10 @@ qua.regressCOP(F=0.5,
   A data frame of the regressed probabilities of \eqn{V} and provided \eqn{U} values is returned.
 }
 \note{
-See p.~217--218 of the reference.
+See pp. 217--218 of the reference.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269~p.
+Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{med.regressCOP}}, \code{\link{derCOPinv}}, \code{\link{qua.regressCOP.draw}}}

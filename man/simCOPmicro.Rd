@@ -20,7 +20,7 @@ simCOPmicro(u, cop=NULL, para=NULL, ...)
 The function is a micro version of \code{simCOP}.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269~p.
+Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{simCOP}}}
@@ -31,7 +31,7 @@ simCOPmicro(runif(1), cop=M)   # Frechet upper bound
 simCOPmicro(runif(1), cop=PSP) # The PSP copula
 
 # Now let us get more complicated and mix two Plackett copulas
-# together using the composite2COP as a "compositor." The 
+# together using the composite2COP as a "compositor." The
 # parameter argument becomes more complex, but is passed as
 # shown into composite2COP.
 para <- list(cop1=PLACKETTcop, cop2=PLACKETTcop,

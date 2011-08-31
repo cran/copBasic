@@ -27,7 +27,7 @@ level.curvesCOP(cop=NULL, para=NULL, ploton=TRUE, lines=TRUE,
   No values are returned. This function is used for its side effects.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269~p.
+Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{W.H. Asquith}
 \seealso{\code{\link{COP}},

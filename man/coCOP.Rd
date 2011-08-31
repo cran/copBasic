@@ -2,7 +2,7 @@
 \alias{coCOP}
 \title{ The Co-Copula }
 \description{
-Compute the co-copula from a copula 
+Compute the co-copula from a copula
 
 \deqn{\mathrm{Pr}[U > u\mid V > v] = \mathbf{C}^{\star}(u,v) = 1 - \mathbf{C(1-u,1-v)}}
 
@@ -24,10 +24,10 @@ coCOP(cop=NULL, u, v, exceedance=TRUE, ...)
   The value for the dual of a copula is returned.
 }
 \note{
-See pp.~33--34 of the reference. The author (Asquith) finds the use of exceedance probabilities confusing having grown up in a strictly nonexceedance world. This this function and \code{surCOP} have the \code{exceedance} argument to serve as a reminder that co-copula as usually defined uses exceedance probabilities.
+See pp. 33--34 of the reference. The author (Asquith) finds the use of exceedance probabilities confusing having grown up in a strictly nonexceedance world. This this function and \code{surCOP} have the \code{exceedance} argument to serve as a reminder that co-copula as usually defined uses exceedance probabilities.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269~p.
+Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{COP}}, \code{\link{surCOP}}, \code{\link{duCOP}}, \code{\link{W}}, \code{\link{P}}, \code{\link{M}}, \code{\link{PSP}}}

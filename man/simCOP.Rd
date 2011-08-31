@@ -19,10 +19,10 @@ simCOP(n=100, cop=NULL, para=NULL, ploton=TRUE, points=TRUE, ...)
   A data frame of the simulated values is returned.
 }
 \note{
-See p.~32 of the reference.
+See p. 32 of the reference.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269~p.
+Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{derCOPinv}}}
@@ -33,7 +33,7 @@ simCOP(cop=M, col=2)           # Frechet upper bound
 simCOP(cop=PSP)                # The PSP copula
 simCOP(cop=P, cex=0.5, pch=16) # Independence copula
 
-# Now simulate the PSP copula, add the level curves of the 
+# Now simulate the PSP copula, add the level curves of the
 # copula, and demonstrated the uniform distribution of the
 # marginals on the correct axes (top for U and bottom for V).
 D <- simCOP(n=400, cop=PSP) # store simulated values in D
@@ -42,7 +42,7 @@ rug(D$U, side=3, col=2); rug(D$V, side=4, col=2)
 
 
 # Now let us get more complicated and mix two Plackett copulas
-# together using the composite2COP as a "compositor." The 
+# together using the composite2COP as a "compositor." The
 # parameter argument becomes more complex, but is passed as
 # shown into composite2COP.
 para <- list(cop1=PLACKETTcop, cop2=PLACKETTcop,

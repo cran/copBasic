@@ -22,10 +22,10 @@ derCOPinv2(cop=NULL, v, t, delv=.Machine$double.eps^0.50,
   The value for the copula is returned.
 }
 \note{
-See p.~13,~40--41 of the reference.
+See pp. 13 and 40--41 of the reference.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269~p.
+Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{derCOP2}}, \code{\link{W}}, \code{\link{P}}, \code{\link{M}}, \code{\link{PSP}}}

@@ -25,10 +25,10 @@ diagCOP(cop=NULL, para=NULL, secondary=FALSE,
   A \code{list} of the \eqn{\mathbf{\delta}_\mathbf{C}(t,t)} (primary diagonal) or \eqn{\mathbf{\delta}_\mathbf{C}(t,1-t)} (secondary diagonal) for the \code{t} values are returned.
 }
 \note{
-See p.~12 and 16 of the reference.
+See pp. 12 and 16 of the reference.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269~p.
+Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{COP}}, \code{\link{sectionCOP}}}

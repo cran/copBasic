@@ -1,8 +1,8 @@
 \name{composite1COP}
 \alias{composite1COP}
-\title{ Composition of an Asymmetric Copula from a Single Symmetric Copula }
+\title{ Composition of a Single Symmetric Copula }
 \description{
-An asymmetric copula for a single copula is created by the following result related to \dQuote{composition of copulas} in the reference. Let \eqn{\mathbf{C}(u,v)} by a symmetric copula, \eqn{\mathbf{C} \ne \Pi} (for \eqn{\Pi} see \code{\link{P}}). A family of asymmetric copulas \eqn{\mathbf{C}_{\alpha,\beta}}, with parameters \eqn{0 < \alpha,\beta < 1, \alpha \ne \beta}, that includes \eqn{\mathbf{C}(u,v)} as a limiting case, is given by
+The composition of a single copula is created by the following result related to \dQuote{composition of copulas} in the reference. Let \eqn{\mathbf{C}(u,v)} by a symmetric copula, \eqn{\mathbf{C} \ne \Pi} (for \eqn{\Pi} see \code{\link{P}}). A family of asymmetric copulas \eqn{\mathbf{C}_{\alpha,\beta}}, with parameters \eqn{0 < \alpha,\beta < 1, \alpha \ne \beta}, that includes \eqn{\mathbf{C}(u,v)} as a limiting case, is given by
 
 \deqn{\mathbf{C}_{\alpha,\beta}(u,v) = u^\alpha v^\beta \cdot \mathbf{C}(u^{1-\alpha},v^{1-\beta})\mbox{.}}
 
@@ -21,7 +21,7 @@ composite1COP(u,v,para,...)
   A value for the composited copula is returned.
 }
 \note{
-See p.~266 of the reference and Proposition~C.3 for complete discussion.
+See p. 266 of the reference and Proposition C.3 for complete discussion.
 
 The following descriptions list in detail the structure and content of the \code{para} argument:
 \describe{
@@ -30,11 +30,11 @@ The following descriptions list in detail the structure and content of the \code
   \item{\samp{cop1}}{Function of the first copula, and}
   \item{\samp{para1}}{Vector of parameters for the first copula.}
 }
-For the \samp{para} argument of this function the same nomenclature as used for \code{\link{composite2COP}} is used, but \samp{cop2} and \samp{para2} have been dropped. The \samp{cop1} and \samp{para1} names rename enumerated so that the \code{para} argument of the more general \code{\link{composite2COP}} function could be used directly in \code{\link{composite1COP}}. Albeit, the second copula and its parameters would of course not be used.
+For the \samp{para} argument of this function, the same nomenclature as used for \code{\link{composite2COP}} is used, but \samp{cop2} and \samp{para2} have been dropped. The \samp{cop1} and \samp{para1} names remain enumerated so that the \code{para} argument of the more general \code{\link{composite2COP}} function could be used directly in \code{\link{composite1COP}}. Albeit, the second copula and its parameters would of course not be used.
 }
 \references{
 Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007,
-Extremes in Nature---An approach using copulas: Springer, 289~p.
+Extremes in Nature---An approach using copulas: Springer, 289 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{COP}}, \code{\link{composite2COP}}}
@@ -49,6 +49,7 @@ para   <- list(alpha=alpha,      beta=beta,
                 cop1=W,          para1=c(Theta1))
 t <- composite1COP(0.4,0.6,para)
 print(t)
+print(W(0.4,0.6))
 }
 \keyword{distribution}
 \keyword{multivariate}

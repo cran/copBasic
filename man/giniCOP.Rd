@@ -12,7 +12,7 @@ Nelson reports that \dQuote{Gini's Gamma measures a concordance relation of 'dis
 
 The simpler method of computation and the default for the function here, is to compute Gini's \eqn{\gamma_\mathbf{C}} by
 
-\deqn{\gamma_\mathbf{C}  = 4\biggl[\int_0^1 \mathbf{C}(u,u) \mathrm{d}u +  
+\deqn{\gamma_\mathbf{C}  = 4\biggl[\int_0^1 \mathbf{C}(u,u) \mathrm{d}u +
                              \int_0^1 \mathbf{C}(u,1-u) \mathrm{d}u\biggr] -
                            2\mbox{.}}
 This second method is simpler because the single integration is readily deployed (and fast) using two separate calls to the \code{integrate()} function of \R.
@@ -31,10 +31,10 @@ giniCOP(cop=NULL, para=NULL, byQ=FALSE, delta=0.002, ...)
   The value for \eqn{\gamma_\mathbf{C}} is returned.
 }
 \note{
-See p.~180--182 of the reference.
+See pp. 180--182 of the reference.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269~p.
+Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{tauCOP}}

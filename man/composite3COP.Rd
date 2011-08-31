@@ -1,21 +1,14 @@
 \name{composite3COP}
 \alias{composite3COP}
-\title{ Composition of an Asymmetric Copula from Two Copulas }
+\title{ Extended Composition of Two Copulas }
 \description{
-The construction of an asymmetric copula from composition two copulas provide for more sophisticated structures of dependence between variables. Let \eqn{\mathbf{A}} and \eqn{\mathbf{B}} be copulas. Then
+The construction of an asymmetric copula from composition two copulas provide for more sophisticated structures of dependence between variables. Let \eqn{\mathbf{A}} and \eqn{\mathbf{B}} be copulas with their own parameter sets. Then
 
-\deqn{\mathbf{C}_{\alpha,\beta}(u,v) = \mathbf{A}(u^\alpha,    v^\beta) \cdot
-                              \mathbf{B}(u^{1-\alpha},v^{1-\beta})\mbox{,}}
+\deqn{\mathbf{C}_{\alpha,\beta,\kappa,\gamma}(u,v) = u^\kappa v^\gamma
+                              \mathbf{A}([u^{1-\kappa}]^\alpha,    [v^{1-\gamma}]^\beta) \cdot
+                              \mathbf{B}([u^{1-\kappa}]^{1-\alpha},[v^{1-\gamma}]^{1-\beta})\mbox{,}}
 
-defines a family of copulas \eqn{\mathbf{C}_{\alpha,\beta}}, with parameters \eqn{\alpha,\beta \in \mathcal{I}:[0,1]}. In particular, if \eqn{\alpha = \beta = 1}, then \eqn{\mathbf{C}_{1,1} = \mathbf{A}}, and, if \eqn{\alpha = \beta = 0}, then \eqn{\mathbf{C}_{0,0} = \mathbf{B}}. For \eqn{\alpha \ne \beta}, the \eqn{\mathbf{C}_{\alpha,\beta}} is, in general, asymmetric, that is \eqn{\mathbf{C}(u,v) \ne \mathbf{C}(v,u)} for some \eqn{(u,v) \in \mathcal{I}^2}.
-
-It is important to stress that copulas \eqn{\mathbf{A}_{\Theta_A}} and \eqn{\mathbf{B}_{\Theta_B}} can be of different families and each parameterized accordingly by the values \eqn{\Theta_A} and \eqn{\Theta_B}. This is an interesting observation in the context of building complex copulitic structures in pursuit of fitting asymmetric measures of dependency such as the L-comoments available in the \pkg{lmomco} package.  The author does not know whether the copulas \eqn{\mathbf{A}} and \eqn{\mathbf{B}} need be symmetric as the reference makes no stated restriction to that effect. (Symmetry of the copula \eqn{\mathbf{C}} is required for the situation that follows.)
-
-It is possible to simplify the construction of an asymmetric copula for a single copula by the following. Let \eqn{\mathbf{C}(u,v)} by a symmetric copula, \eqn{\mathbf{C} \ne \Pi} (for \eqn{\Pi} see \code{\link{P}}). A family of asymmetric copulas \eqn{\mathbf{C}_{\alpha,\beta}}, with parameters \eqn{0 < \alpha,\beta < 1, \alpha \ne \beta}, that includes \eqn{\mathbf{C}(u,v)} as a limiting case, is given by
-
-\deqn{\mathbf{C}_{\alpha,\beta}(u,v) = u^\alpha v^\beta \cdot \mathbf{C}(u^{1-\alpha},v^{1-\beta})\mbox{.}}
-
-The \code{\link{composite2COP}} function is based on the more general result given in the former to provide maximum flexibility. For simpler case given in the later, the \code{\link{composite1COP}} is available.
+defines a family of copulas \eqn{\mathbf{C}_{\alpha,\beta,\kappa,\gamma}}, with parameters \eqn{\alpha,\beta,\kappa,\gamma \in \mathcal{I}:[0,1]}.
 }
 \usage{
 composite3COP(u,v,para,...)
@@ -30,7 +23,7 @@ composite3COP(u,v,para,...)
   A value for the composited copula is returned.
 }
 \note{
-See p.~266 of the reference and Proposition~C.2 for complete discussion.
+See p. 266 of the reference and Proposition C.2 for complete discussion.
 
 The following descriptions list in detail the structure and content of the \code{para} argument:
 \describe{
@@ -43,21 +36,19 @@ The following descriptions list in detail the structure and content of the \code
   \item{\samp{para1}}{Vector of parameters for the first copula, and}
   \item{\samp{para2}}{Vector of parameters for the second copula.}
 }
-
-The \samp{para} argument of this function also can be passed to \code{\link{composite1COP}}. Albeit, the second copula and its parameters would of course not be used.
 }
 \references{
 Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007,
-Extremes in Nature---An approach using copulas: Springer, 289~p.
+Extremes in Nature---An approach using copulas: Springer, 289 p.
 }
 \author{ W.H. Asquith}
-\seealso{\code{\link{COP}}, \code{\link{composite1COP}}}
+\seealso{\code{\link{simCOP}}, \code{\link{composite1COP}}, \code{\link{composite2COP}}, \code{\link{simcomposite3COP}}}
 \examples{
 \dontrun{
 para <- list(cop1=PLACKETTcop,
-             cop2=Nelsoncop.4.2.12,
+             cop2=N4.2.12cop,
              para1=10^(runif(1,min=-5,max=5)),
-             para2=10^(runif(1,min=0,max=2)),
+             para2=runif(1,min=1,max=100),
              alpha=runif(1), beta=runif(1),
              kappa=runif(1), gamma=runif(1))
 txts <- c("Alpha=",    round(para$alpha, digits=4),
@@ -67,7 +58,7 @@ txts <- c("Alpha=",    round(para$alpha, digits=4),
           "; Theta1=", round(para$para1[1], digits=5),
           "; Theta2=", round(para$para2[1], digits=2))
 layout(matrix(1:2,byrow=TRUE))
-D <- simCOP(n=3000, cop=composite3COP, para=para,
+D <- simCOP(n=300, cop=composite3COP, para=para,
             cex=0.5, col=rgb(0,0,0,0.2), pch=16)
 mtext(paste(txts,collapse=""))
 
