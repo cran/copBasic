@@ -65,7 +65,7 @@ print(t)
 
 
 para   <- list(alpha=alpha,      beta=beta,
-                cop1=W,          cop2=N4.2.12cop,
+                cop1=W,          cop2=N4212cop,
                 para1=c(Theta1), para2=3)
 t <- composite2COP(0.4,0.6,para)
 print(t)

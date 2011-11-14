@@ -4,8 +4,8 @@
 \description{
 Compute the numeric derivative of a copula according to Nelson (2006), but with respect to \eqn{v} and not \eqn{u}
 \deqn{\mathrm{Pr}[U \le u\mid V=v] = \lim_{\Delta v \rightarrow 0}\frac{\mathbf{C}(u, v+\Delta v) - \mathbf{C}(u,v)}{\Delta v}}
-which is to read at the probability that \eqn{U \le u} given that \eqn{V = v} and corresponds to the \\ \samp{derdir="left"} mode of the function. For \code{derdir="right"}, we have
-\deqn{\mathrm{Pr}[U \le u\mid V=v] = \lim_{\Delta v \rightarrow 0}\frac{\mathbf{C}(u,v) - \mathbf{C}(u, v-\Delta v)}{\Delta u}}
+which is to read at the probability that \eqn{U \le u} given that \eqn{V = v} and corresponds to the \cr \samp{derdir="left"} mode of the function. For \code{derdir="right"}, we have
+\deqn{\mathrm{Pr}[U \le u\mid V=v] = \lim_{\Delta v \rightarrow 0}\frac{\mathbf{C}(u,v) - \mathbf{C}(u, v-\Delta v)}{\Delta v}}
 and for \code{derdir="center"} (the usual method of computing a derivative), we have
 \deqn{\mathrm{Pr}[U \le u\mid V=v] = \lim_{\Delta v \rightarrow 0}\frac{\mathbf{C}(u,v+\Delta v) - \mathbf{C}(u, v-\Delta v)}{2 \Delta v}}
 }

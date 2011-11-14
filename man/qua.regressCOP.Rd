@@ -2,7 +2,7 @@
 \alias{qua.regressCOP}
 \title{ Perform Quantile Regression using a Copula by Numerical Derivative Method for V with respect to U}
 \description{
-Perform \dQuote{quantile regression} using a copula by numerical derivatives of the copula. If \eqn{X} and \eqn{Y} are random variables having quantile functions \eqn{x(F)} and \eqn{y(G)} and letting \eqn{y=\tilde{y}(x)} denote a solution to \eqn{\mathrm{Pr}[Y \le y\mid X = x] = F}, where \eqn{F} is a nonexceedance probability. The the curve \eqn{y=\tilde{y}(x)} is the quantile regression curve of \eqn{V} or \eqn{Y} with respect to \eqn{U} or \eqn{X}, respectively. If \eqn{F=1/2}, then \dQuote{median regression} is performed (\code{\link{med.regressCOP}}). Using copulas, the quantile regression is expressed as
+Perform \dQuote{quantile regression} using a copula by numerical derivatives of the copula. If \eqn{X} and \eqn{Y} are random variables having quantile functions \eqn{x(F)} and \eqn{y(G)} and letting \eqn{y=\tilde{y}(x)} denote a solution to \eqn{\mathrm{Pr}[Y \le y\mid X = x] = F}, where \eqn{F} is a nonexceedance probability. Then the curve \eqn{y=\tilde{y}(x)} is the quantile regression curve of \eqn{V} or \eqn{Y} with respect to \eqn{U} or \eqn{X}, respectively. If \eqn{F=1/2}, then \dQuote{median regression} is performed (\code{\link{med.regressCOP}}). Using copulas, the quantile regression is expressed as
 \deqn{\mathrm{Pr}[Y \le y\mid X = x] = \mathrm{Pr}[V \le G(y) \mid U = F(x)] = \mathrm{Pr}[V \le v\mid U = v] = \frac{\delta \mathbf{C}(u,v)}{\delta u}\mbox{,}}
 where \eqn{v = G(y)} and \eqn{u = F(x)}. The general algorithm is
 \enumerate{

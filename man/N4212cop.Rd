@@ -1,14 +1,14 @@
-\name{N4.2.12cop}
-\alias{N4.2.12cop}
+\name{N4212cop}
+\alias{N4212cop}
 \title{ The Copula of Equation 4.2.12 of Nelson's Book }
 \description{
-The N4.2.12 Copula is
+The N4212 Copula is
 \deqn{\mathbf{C}_{\Theta}(u,v) = (1 + [(u^{-1} -1)^\Theta + (v^{-1} -1)^\Theta]^{1/\Theta})^{-1}}
 
-The N4.2.12 Copula is not comprehensive because \eqn{\Theta = 0} the copula becomes \eqn{\mathbf{PSP}(u,v)}(\code{\link{PSP}}), as \eqn{\Theta \rightarrow \infty} the copula becomes \eqn{\mathbf{M}(u,v)} (\code{\link{M}}). The copula is undefined for \eqn{\Theta < 1}. The N4.2.12 Copula  has respective lower and upper tail dependency and the \code{\link{simCOP}} examples in this documentation will show.
+The N4212 Copula is not comprehensive because \eqn{\Theta = 0} the copula becomes \eqn{\mathbf{PSP}(u,v)}(\code{\link{PSP}}), as \eqn{\Theta \rightarrow \infty} the copula becomes \eqn{\mathbf{M}(u,v)} (\code{\link{M}}). The copula is undefined for \eqn{\Theta < 1}. The N4212 Copula  has respective lower and upper tail dependency and the \code{\link{simCOP}} examples in this documentation will show.
 }
 \usage{
-N4.2.12cop(u, v, para=NULL, infis=100, ...)
+N4212cop(u, v, para=NULL, infis=100, ...)
 }
 \arguments{
   \item{u}{A nonexceedance probability in X direction,}
@@ -28,16 +28,16 @@ Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \examples{
-N4.2.12cop(0.4,0.6,para=1)
+N4212cop(0.4,0.6,para=1)
 PSP(0.4,0.6) # same two values
 
 
-N4.2.12cop(0.4,0.6,para=10)
+N4212cop(0.4,0.6,para=10)
 
 \dontrun{
-D <- simCOP(n=400, cop=N4.2.12cop, para=2)
-D <- simCOP(n=400, cop=N4.2.12cop, para=10)
-D <- simCOP(n=400, cop=N4.2.12cop, para=100)
+D <- simCOP(n=400, cop=N4212cop, para=2)
+D <- simCOP(n=400, cop=N4212cop, para=10)
+D <- simCOP(n=400, cop=N4212cop, para=100)
 }
 }
 \keyword{distribution}

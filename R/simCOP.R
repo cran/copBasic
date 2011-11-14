@@ -13,7 +13,7 @@ function(n=100, cop=NULL, para=NULL,
     v <- derCOPinv(cop=cop,u,t,para=para)
     if(is.na(v)) {
        warning("could not uniroot in derCOPinv, skipping sample")
-       warning(para)
+       warning(paste(para, collapse=" "))
        next
     }
     U[i] <- u; V[i] <- v

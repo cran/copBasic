@@ -4,6 +4,9 @@ function(cop=NULL, u, v,
          derdir=c("left", "right", "center"), ...) {
 
     derdir <- match.arg(derdir)
+
+    if(u - delu < 0) derdir <- "left"
+    if(u + delu > 1) derdir <- "right"
     #str(cop)
     if(derdir == "left") {
       return((cop(u+delu,v,...) - cop(u,v,...))/delu)
@@ -13,3 +16,5 @@ function(cop=NULL, u, v,
       return((cop(u+delu,v,...) - cop(u-delu,v,...))/(2*delu))
     }
 }
+
+

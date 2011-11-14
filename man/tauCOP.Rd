@@ -33,8 +33,8 @@ tauCOP( cop=NULL,  para=NULL,
   The value for \eqn{\tau_\mathbf{C}} is returned.
 }
 \note{
-See pp.~158--162, 164 of the reference.
-The function is used in a special call by \code{\link{rhoCOP}} to compute Spearman's Rho of a copula. In this case, \code{cop2=P} of the \eqn{\mathbf{\Pi}} copula and the \code{cop} is set to the copula of interest.  Technically, Nelson (2006) shows that \eqn{\tau_\mathbf{C} = Q(\mathbf{C}_1,\mathbf{C}_2)}, where \eqn{Q} is a \dQuote{concordance} function of two copulas \eqn{Q(\mathbf{C}_1,\mathbf{C}_2)}. Although, titled to reflect \eqn{\tau_\mathbf{C}}, the \code{tauCOP} function when provided the \code{cop2} and \code{para2} arguments functions as the concordance function \eqn{Q} (see p.~158--159 of the reference).
+See pp. 158--162, and 164 of the reference.
+The function is used in a special call by \code{\link{rhoCOP}} to compute Spearman's Rho of a copula. In this case, \code{cop2=P} of the \eqn{\mathbf{\Pi}} copula and the \code{cop} is set to the copula of interest.  Technically, Nelson (2006) shows that \eqn{\tau_\mathbf{C} = Q(\mathbf{C}_1,\mathbf{C}_2)}, where \eqn{Q} is a \dQuote{concordance} function of two copulas \eqn{Q(\mathbf{C}_1,\mathbf{C}_2)}. Although, titled to reflect \eqn{\tau_\mathbf{C}}, the \code{tauCOP} function when provided the \code{cop2} and \code{para2} arguments functions as the concordance function \eqn{Q} (see p. 158--159 of the reference).
 }
 \references{
 Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.

@@ -1,4 +1,4 @@
-"N4.2.12cop" <-
+"N4212cop" <-
 function(u, v, para=NULL, infis=100, ...) {
     T <- para[1]
 

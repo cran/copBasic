@@ -8,15 +8,15 @@ function(cop=NULL, u, t,
             #print(LHS - dc)
             return(LHS - dc)
             }
-    rt <- NULL;
-    try(rt <- uniroot(func,interval=c(0,1),
-                      u=u, LHS=t, cop=cop,
-                      delu=delu, para=para, ...))
+    my.rt <- NULL;
+    try(my.rt <- uniroot(func,interval=c(0,1),
+                         u=u, LHS=t, cop=cop,
+                         delu=delu, para=para, ...))
 
-    if(is.null(rt)) return(NA);
+    if(is.null(my.rt)) return(NA);
 
-    if(length(rt$root) != 0) {
-      v <- rt$root
+    if(length(my.rt$root) != 0) {
+      v <- my.rt$root
       return(v)
     }
     else {

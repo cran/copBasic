@@ -8,13 +8,56 @@ Version 1.5.0---August 31, 2011
 1.  Enhancement on derCOPinv.R when a solution is unbounded in uniroot()
       to return NA as needed. This was discovered in massive simulation
       from simcompositeCOP()---massive means 500k simulation counts.
-2. Added Nelson's copula in equation 4.2.12 as the N4.2.12cop() function. 
+2. Added Nelson's copula in equation 4.2.12 as the N4212cop() function.
 3. Removed and restructured the tabulated L-comoment solutions to the
      Plackett-Plackett copula to clean up some loose ends and set up the
      ability to load much much larger solutions sets that are too big
      for CRAN distribution.
 4. Major construction of the data subdirectory and changes to documentation.
      Removed comp2lcomsPlackettPlackett.Rd, comp2lcomsPlackettPlackett2.Rd,
-     lcom2PLACKETTPLACKETTcop.R/Rd
-5. Added lcomoms2.cop2parameter.R/Rd (replaces lcom2PLACKETTPLACKETTcop.R/Rd)
-6. Added data/PlackettPlackettNP.RData and man/PlackettPlackettNP.Rd
+     lcom2PLACKETTPLACKETTcop.R/Rd.
+5. Added lcomoms2.cop2parameter.R/Rd (replaces lcom2PLACKETTPLACKETTcop.R/Rd).
+6. Added data/PlackettPlackettNP.RData and man/PlackettPlackettNP.Rd.
+
+
+Version 1.5.1---November 14, 2011
+1. Added data/PlackettPlackettABKGtest.RData and
+     man/PlackettPlackettABKGtest.Rd.
+2. Removed lcomoms2.cop2parameter.R/Rd.
+3. Added lcomoms2.ABcop2parameter.R/Rd (replaces lcomoms2.cop2parameter.R/Rd).
+4. Added lcomoms2.ABKGcop2parameter.R/Rd.
+5. BUG FIX: Labeling inconsistency when sectionCOP() called
+     with dercop=FALSE.
+6. Added the EMPIRcop() function for estimation of the empirical copula.
+7. Added the EMPIRcopdf() function to compute the entire data.frame() of
+     the empirical copula---the copula for each coordinate is computed.
+8. Added the EMPIRgrid() function for computation of a regular grid of
+     the empirical copula---this grid will form the basis of other copula
+     operations on the empirical copula.
+9. Added the EMPIRgridder() and EMPIRgridder2() functions for
+     computation of the sectional derivatives of the empirical copula from
+     EMPIRgrid().
+10. Added the EMPIRgridderinv() and EMPIRgridderinv2() functions for
+     computation of the sectional derivatives of the empirical copula from
+     EMPIRgrid().
+11. Added the EMPIRqua.regress() and EMPIRqua.regress2() functions for
+     quantile regression from grid emanating from EMPIRgridderinv() and
+     EMPIRgridderinv2().
+12. Added the EMPIRmed.regress() and EMPIRmed.regress2() functions for
+     median regression from grid emanating from EMPIRgridderinv() and
+     EMPIRgridderinv2().
+13. Added the EMPIRsim() function for simulation of V given U from the
+     empirical copula.
+14. Added the EMPIRsimv() function for simulation of V given U (by 
+     argument) from the empirical copula.
+15. Documentation fixes in derCOP2.Rd, lcomoms2.ABcop2parameters.Rd,
+     lcomoms2.ABKGcop2parameter.Rd, PlackettPlackettNP.Rd, and
+     qua.regressCOP.Rd.
+16. Enhanced error handling with COPinv(), COPinv2(), derCOPinv(), and
+     derCOPinv2().
+17. Enhancement to derCOP() and derCOP2() by changing derivative direction
+     if near the 0 or 1 boundaries.
+
+
+
+

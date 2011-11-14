@@ -21,7 +21,7 @@ COP(cop=NULL, u, v, ...)
   The value for the copula is returned.
 }
 \note{
-See p.~18 of the reference.  \code{COP} + \code{coCOP} equal unity and \code{surCOP} + \code{duCOP} equal unity.
+See p. 18 of the reference.  \code{COP} + \code{coCOP} equal unity and \code{surCOP} + \code{duCOP} equal unity.
 }
 \references{
 Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.

@@ -6,7 +6,7 @@ Compute the Gini's Gamma \eqn{\gamma_\mathbf{C}} of a copula according to Nelson
 
 \deqn{\gamma_\mathbf{C} = Q(\mathbf{C},\mathbf{M}) + Q(\mathbf{C},\mathbf{W})\mbox{,}}
 
-where \eqn{\mathbf{C}(u,v)} is the copula, \eqn{\mathbf{M}(u,v)} is \code{\link{M}}, and \eqn{\mathbf{W}(u,v)} is \code{\link{W}}. The function \eqn{Q(a,b)} is a \dQuote{concordance function} (Nelson, 2006, p.~158), which is implemented by a special call to \code{\link{tauCOP}}.
+where \eqn{\mathbf{C}(u,v)} is the copula, \eqn{\mathbf{M}(u,v)} is \code{\link{M}}, and \eqn{\mathbf{W}(u,v)} is \code{\link{W}}. The function \eqn{Q(a,b)} is a \dQuote{concordance function} (Nelson, 2006, p. 158), which is implemented by a special call to \code{\link{tauCOP}}.
 
 Nelson reports that \dQuote{Gini's Gamma measures a concordance relation of 'distance' between \eqn{\mathbf{C}(u,v)} and monotone dependence, as represented by the copulas \eqn{\mathbf{M}(u,v)} and \eqn{\mathbf{W}(u,v)}.}
 
@@ -23,7 +23,7 @@ giniCOP(cop=NULL, para=NULL, byQ=FALSE, delta=0.002, ...)
 \arguments{
   \item{cop}{A copula function;}
   \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula;}
-  \item{byQ}{Instead of using the single integrals (p.~181~and~182) and the \code{integrate()} function to compute \eqn{\gamma_\mathbf{C}}, use the concordance function method implemented through \code{\link{tauCOP}};}
+  \item{byQ}{Instead of using the single integrals (p. 181 and 182) and the \code{integrate()} function to compute \eqn{\gamma_\mathbf{C}}, use the concordance function method implemented through \code{\link{tauCOP}};}
   \item{delta}{The \eqn{\mathrm{d}u} and \eqn{\mathrm{d}v} for the double integration performed by \code{\link{tauCOP}}; and}
   \item{...}{Additional arguments to pass, which are dispatched to the copula function \code{cop} and possibly \code{\link{tauCOP}} if \code{byQ=TRUE}.}
 }

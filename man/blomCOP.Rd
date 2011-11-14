@@ -20,7 +20,7 @@ blomCOP(cop=NULL, para=NULL, ...)
   The value for \eqn{\beta_\mathbf{C}} is returned.
 }
 \note{
-See p.~182 of the reference.
+See p. 182 of the reference.
 }
 \references{
 Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.

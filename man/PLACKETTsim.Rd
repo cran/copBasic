@@ -16,7 +16,7 @@ PLACKETTsim(n, para=NULL, ...)
   A data frame of the values are returned.
 }
 \note{
-See pp. 247 of Salvadori and others (2007).
+See p. 247 of Salvadori and others (2007).
 }
 \references{
 Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.

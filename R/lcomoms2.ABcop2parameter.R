@@ -1,4 +1,4 @@
-"lcomoms2.cop2parameter" <-
+"lcomoms2.ABcop2parameter" <-
 function(solutionenvir=NULL,
          T2.12=NULL, T2.21=NULL,
          T3.12=NULL, T3.21=NULL,
@@ -102,7 +102,7 @@ function(solutionenvir=NULL,
     t4err <- t4erruv + t4errvu
     t4errmin <- min(t4err) # capture the minimum for filtering
 
-    # now create sub index of only those small errors in Tau3
+    # now create sub index of only those small errors in Tau4
     ixt4 <- ixt3[abs(t4err - t4errmin) < t4eps]
     ixt4n <- length(ixt4)
     if(ixt4n == 0) {
@@ -192,19 +192,19 @@ function(solutionenvir=NULL,
   # other nearby solutions with the ith index used in the next line
   z <- as.list(S[i,1:nc]) # preparing the list object for the return()
 
-  # Create a table for attachment to the return'ed list of real biases
+  # Create a table for attachment to the return'ed list of real residuals
   # ** not rescaled units **
-  bias <- data.frame(biasT2.12=z$T2.12 - T2.12,
-                     biasT2.21=z$T2.12 - T2.12,
-                     biasT3.12=z$T3.12 - T3.12,
-                     biasT3.21=z$T3.21 - T3.21,
-                     biasT4.12=z$T4.12 - T4.12,
-                     biasT4.21=z$T4.21 - T4.21)
-  my.names <- names(bias)
-  bias[1,7] <- sum(abs(bias[1,1:nb])) # compute the true native unit
+  resid <- data.frame(resT2.12=z$T2.12 - T2.12,
+                      resT2.21=z$T2.12 - T2.12,
+                      resT3.12=z$T3.12 - T3.12,
+                      resT3.21=z$T3.21 - T3.21,
+                      resT4.12=z$T4.12 - T4.12,
+                      resT4.21=z$T4.21 - T4.21)
+  my.names <- names(resid)
+  resid[1,7] <- sum(abs(resid[1,1:nb])) # compute the true native unit
   # error of the L-comoments to the fitted copula
-  names(bias) <- c(my.names, "SUM_ABS_USED_BIASES")
-  z$bias <- bias
+  names(resid) <- c(my.names, "SUM_ABS_USED_RESIDUALS")
+  z$residuals <- resid
 
   z$solutions <- new.env() # the environment to house ALL of the
   # potential solutions meeting the *eps requirements

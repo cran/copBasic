@@ -4,7 +4,7 @@
 \description{
 Compute the numeric derivative of a copula according to Nelson (2006)
 \deqn{\mathrm{Pr}[V \le v\mid U=u] = \lim_{\Delta u \rightarrow 0}\frac{\mathbf{C}(u+\Delta u, v) - \mathbf{C}(u,v)}{\Delta u}}
-which is to read at the probability that \eqn{V \le v} given that \eqn{U = u} and corresponds to the \\ \code{derdir="left"} mode of the function. For \samp{derdir="right"}, we have
+which is to read at the probability that \eqn{V \le v} given that \eqn{U = u} and corresponds to the \cr \code{derdir="left"} mode of the function. For \samp{derdir="right"}, we have
 \deqn{\mathrm{Pr}[V \le v\mid U=u] = \lim_{\Delta u \rightarrow 0}\frac{\mathbf{C}(u,v) - \mathbf{C}(u-\Delta u, v)}{\Delta u}}
 and for \code{derdir="center"} (the usual method of computing a derivative), we have
 \deqn{\mathrm{Pr}[V \le v\mid U=u] = \lim_{\Delta u \rightarrow 0}\frac{\mathbf{C}(u+\Delta u,v) - \mathbf{C}(u-\Delta u, v)}{2 \Delta u}}

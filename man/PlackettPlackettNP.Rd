@@ -80,7 +80,8 @@ plot.complcom.space <- function(text=NULL) {
   abline(v=0); abline(h=0) # cross lines
   mtext(text)
 }
-my.text <- "L-COMOMENTS OF COMPOSITED PLACKETT(negative)-PLACKETT(postive) COPULA"
+my.text <-
+"L-COMOMENTS OF PLACKETT(negative)-PLACKETT(postive) COPULA"
 plot.complcom.space(text=my.text) # plot the parameter space
 
 
@@ -101,7 +102,8 @@ plot.complcom.space2 <- function(text=NULL) {
   abline(v=0); abline(h=0) # cross lines
   mtext(text)
 }
-my.text <- "L-COMOMENTS OF COMPOSITED PLACKETT(negative)-PLACKETT(postive) COPULA"
+my.text <-
+"L-COMOMENTS OF PLACKETT(negative)-PLACKETT(postive) COPULA"
 plot.complcom.space2(text=my.text) # plot the parameter space
 
 }

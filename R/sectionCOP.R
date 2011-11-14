@@ -4,17 +4,28 @@ function(f, cop=NULL,  para=NULL,    wrtV=FALSE,
          lines=TRUE,   delt=0.005, ...) {
   if(wrtV) {
     txtxlab <- "V, NONEXCEEDANCE PROBABILTIY"
-    txtylab <- "H, NONEXCEEDANCE PROBABILITY"
     txt <- "with respect to V"
+    if(dercop) {
+      txtylab <- "H, NONEXCEEDANCE PROBABILITY"
+    } else {
+      txtylab <- paste(c("C(" ,f, ",v)"),collapse="")
+    }
   } else {
     txtxlab <- "U, NONEXCEEDANCE PROBABILTIY"
-    txtylab <- "H, NONEXCEEDANCE PROBABILITY"
     txt <- "with respect to U"
+    if(dercop) {
+      txtylab <- "H, NONEXCEEDANCE PROBABILITY"
+    } else {
+      txtylab <- paste(c("C(u," ,f, ")"),collapse="")
+    }
   }
+
+
 
   if(ploton) {
     plot(c(0,1), c(0,1), type="n", xlab=txtxlab,  ylab=txtylab)
   }
+
   T <- seq(0+delt,1-delt,delt)
   C <- vector(mode="numeric")
   if(dercop) {

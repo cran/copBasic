@@ -7,10 +7,14 @@ function(cop=NULL, u, t, para=NULL, ...) {
             #cat(c(x,u,(LHS - dc),"\n"))
             return(LHS - dc)
     }
-    try(rt <- uniroot(func,interval=c(0,1),
-                      u=u, LHS=t, cop=cop, para=para, ...))
-    if(length(rt$root) != 0) {
-      v <- rt$root
+    my.rt <- NULL
+    try(my.rt <- uniroot(func,interval=c(0,1),
+                         u=u, LHS=t, cop=cop, para=para, ...))
+    
+    if(is.null(my.rt)) return(NA);
+
+    if(length(my.rt$root) != 0) {
+      v <- my.rt$root
       return(v)
     }
     else {
