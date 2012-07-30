@@ -5,8 +5,7 @@
 Perform median regression of a copula by numerical derivatives of the copula. See the documentation for \code{\link{qua.regressCOP}} for mathematical details.
 }
 \usage{
-med.regressCOP(U=seq(  .Machine$double.eps^0.5,
-                     1-.Machine$double.eps^0.5, by=0.01),
+med.regressCOP(U=seq(0.01,0.99, by=0.01),
                cop=NULL, para=NULL, ...)
 }
 \arguments{

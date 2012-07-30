@@ -12,6 +12,7 @@ function(F=0.5,
                       V[i]), collapse="")
        warning(txt)
        warning(para)
+       U[i] <- NA
        next
     }
     U[i] <- u

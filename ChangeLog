@@ -48,7 +48,7 @@ Version 1.5.1---November 14, 2011
      EMPIRgridderinv2().
 13. Added the EMPIRsim() function for simulation of V given U from the
      empirical copula.
-14. Added the EMPIRsimv() function for simulation of V given U (by 
+14. Added the EMPIRsimv() function for simulation of V given U (by
      argument) from the empirical copula.
 15. Documentation fixes in derCOP2.Rd, lcomoms2.ABcop2parameters.Rd,
      lcomoms2.ABKGcop2parameter.Rd, PlackettPlackettNP.Rd, and
@@ -59,5 +59,13 @@ Version 1.5.1---November 14, 2011
      if near the 0 or 1 boundaries.
 
 
-
+Version 1.5.2---July 30, 2012
+1. med.regressCOP() and med.regressCOP() had arguments changed to match
+     the qua.regressCOP() and qua.regressCOP2() functions.
+2. med.regressCOP.Rd and med.regressCOP2.Rd changed in argument to match
+     code.
+3. qua.regressCOP(), qua.regressCOP2(), med.regressCOP(), and med.regressCOP2()
+     all now insert an NA in case a root solution could not be found.
+4. Spelling corrections in DESCRIPTION: derivative and empirical.
+     Thanks to CRAN team for the automated spell checkers.
 

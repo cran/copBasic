@@ -1,5 +1,5 @@
-1853ea40cca8631a0425306065b481ad *ChangeLog
-d0bbbb20f122c0455f0c65037980c52b *DESCRIPTION
+80ff46150aaecdbeff2b4d3c54ae6e23 *ChangeLog
+bc9d22676c3ded349b7a29260809b503 *DESCRIPTION
 fa9107839500243f38c749102b215fc1 *NAMESPACE
 58b8d8fef3d0ada62654b69c6d578eeb *R/COP.R
 311add67e59016fed04b99d98e379178 *R/COPinv.R
@@ -42,11 +42,11 @@ cd235e8c3076f010ea469758ea4ddbfa *R/isCOP.RTI.R
 04c959fb10ccdd4fd37ae15986cf3e73 *R/lcomoms2.ABKGcop2parameter.R
 33f632cdf40cc5e9306507e1d46b4cc5 *R/lcomoms2.ABcop2parameter.R
 9dd85d3be934167dff635057a44cd09a *R/level.curvesCOP.R
-c851c996c3857ae91239c95fcf356367 *R/med.regressCOP.R
-2232c8c8223448cfb9223fd04358bcf4 *R/med.regressCOP2.R
-da0de7373d42b591adf9a4324bdac0aa *R/qua.regressCOP.R
+bf615d40d75b8133c1cdac00fbf2226a *R/med.regressCOP.R
+0e1f0bbc9fddb528e1ff3ee2d227c59e *R/med.regressCOP2.R
+1ae32e72fd7919cda1058db44f4d0f50 *R/qua.regressCOP.R
 c934b5bb0bcda8ecbf42e26a2323abf2 *R/qua.regressCOP.draw.R
-6e6d63385e0d69aa8798fa49d938a43f *R/qua.regressCOP2.R
+3e38909fa132883b7e655b4ed9d729ae *R/qua.regressCOP2.R
 7aa6dbb1fc20861a56df6bf847ec8901 *R/rhoCOP.R
 59656f375469ca45bf047edc158c729d *R/sectionCOP.R
 40b9552f9844d66d7fc7be9620ab22ba *R/simCOP.R
@@ -126,8 +126,8 @@ d2c01945ddae1bd4ab9d708bcf0a0709 *man/isCOP.RTI.Rd
 cd015054211b5a6dab09ac5678a42dfd *man/lcomoms2.ABKGcop2parameter.Rd
 a10016b039dc6a9b2c162752a257afd1 *man/lcomoms2.ABcop2parameter.Rd
 ba63c2f93b11ebf3cbce07310bd380bc *man/level.curvesCOP.Rd
-841cad7dcb784db91b08a9fceceeae38 *man/med.regressCOP.Rd
-c91ce4a4ec382e5b9577b1904674e963 *man/med.regressCOP2.Rd
+8718d02b553105957076c1c65587dcc3 *man/med.regressCOP.Rd
+dfdecf31baf0dc9ffccfde9090ebd2e8 *man/med.regressCOP2.Rd
 c4694667225f7c20f9f575c8f787438d *man/qua.regressCOP.Rd
 f217c31b857661da1cceb8ce1cb15a7a *man/qua.regressCOP.draw.Rd
 fc72e50daf558828a0273e3566b4aa1a *man/qua.regressCOP2.Rd
