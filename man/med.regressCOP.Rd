@@ -27,6 +27,7 @@ Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 \seealso{\code{\link{qua.regressCOP}}}
 \examples{
 
+\dontrun{
 theta <- 10
 R <- med.regressCOP(cop=PLACKETTcop, para=c(theta))
 plot(R$U,R$V, type="l", lwd=5, lty=2, xlim=c(0,1), ylim=c(0,1))
@@ -36,27 +37,28 @@ theta <- 0.02
 R <- med.regressCOP(cop=PLACKETTcop, para=c(theta))
 lines(R$U,R$V, lwd=5, lty=2)
 lines(R$U,(1+(theta-1)*R$U)/(theta+1), col=2)
+}
 
-
-
+\dontrun{
 plot(c(0,1),c(0,1), type="n", lwd=3,
      xlab="U, NONEXCEEDANCE PROBABILITY",
      ylab="V, NONEXCEEDANCE PROBABILITY")
 # Draw the regression of V on U and then U on V (swap=TRUE)
-qua.regressCOP.draw(F=seq(.1,.9,by=.1), cop=P, para=NA)
-qua.regressCOP.draw(F=seq(.1,.9,by=.1), cop=P, para=NA,
+qua.regressCOP.draw(F=seq(.1,.9,by=.1), cop=P, para=NA, ploton=FALSE)
+qua.regressCOP.draw(F=seq(.1,.9,by=.1), cop=P, para=NA, ploton=FALSE,
                     swap=TRUE, lty=2)
+}
 
-
-
+\dontrun{
 theta <- 0.5
 plot(c(0,1),c(0,1), type="n", lwd=3,
      xlab="U, NONEXCEEDANCE PROBABILITY",
      ylab="V, NONEXCEEDANCE PROBABILITY")
 # Draw the regression of V on U and then U on V (swap=TRUE)
-qua.regressCOP.draw(F=seq(.1,.9,by=.1), cop=PLACKETTcop, para=c(theta))
-qua.regressCOP.draw(F=seq(.1,.9,by=.1), cop=PLACKETTcop, para=c(theta),
+qua.regressCOP.draw(F=seq(.1,.9,by=.1), cop=PLACKETTcop, ploton=FALSE, para=c(theta))
+qua.regressCOP.draw(F=seq(.1,.9,by=.1), cop=PLACKETTcop, ploton=FALSE, para=c(theta),
                     swap=TRUE, lty=2)
+}
 
 }
 \keyword{distribution}

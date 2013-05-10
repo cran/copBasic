@@ -40,6 +40,7 @@ Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 \seealso{\code{\link{med.regressCOP}}, \code{\link{derCOPinv}}, \code{\link{qua.regressCOP.draw}}}
 \examples{
 
+\dontrun{
 # Specify a positively associated Plackett copula and perform the
 # regression using the defaults. Plot the regression---median
 # in this case
@@ -54,10 +55,9 @@ lines(R$U,R$V, col=2, lwd=2)
 # and then 10th-percentile regression
 R <- qua.regressCOP(F=0.10,cop=PLACKETTcop, para=c(theta))
 lines(R$U,R$V, col=3, lty=2)
+}
 
-
-
-
+\dontrun{
 # Specify a composite copula as two Placketts with respective
 # parameters and then the mixing parameters alpha and beta.
 para <- list(cop1=PLACKETTcop,  cop2=PLACKETTcop,
@@ -71,7 +71,7 @@ plot(c(0,1),c(0,1), type="n", lwd=3,
 qua.regressCOP.draw(cop=composite2COP, para=para, ploton=FALSE)
 qua.regressCOP.draw(cop=composite2COP, para=para, swap=TRUE,
 lty=2, ploton=FALSE)
-
+}
 
 \dontrun{
 # Specify a composite copula as two Placketts with respective
@@ -115,6 +115,7 @@ for(i in seq(1,10)) {
 
   Sys.sleep(3)
 }
+
 
 }
 }

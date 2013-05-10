@@ -35,12 +35,16 @@ Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
          \code{\link{level.curvesCOP}}
 }
 \examples{
+
+\dontrun{
 level.curvesCOP(cop=M, para=NULL, delt=.02) # Upper bounds copula
+}
 
-
+\dontrun{
 D <- level.curvesCOP(cop=P, getlevel=0.56)
 str(D) # empty
 D <- level.curvesCOP(cop=P, getlevel=0.5)
 str(D) # contains stuff
+}
 }
 \keyword{misc}

@@ -29,6 +29,7 @@ Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \examples{
 
+\dontrun{
 level.curvesCOP(cop=P, para=NULL, delt=.02) # Product copula
 
 level.curvesCOP(cop=PSP, para=NULL) # PSP copula
@@ -50,7 +51,7 @@ para <- list(cop1=PLACKETTcop,  cop2=PSP,
              para1=c(0.4),    para2=NULL,
              alpha=0.6,        beta=0.09)
 level.curvesCOP(cop=composite2COP, para=para, delt=.1)
-
+}
 
 }
 \keyword{distribution}

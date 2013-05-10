@@ -40,6 +40,7 @@ Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 \seealso{\code{\link{med.regressCOP2}}, \code{\link{derCOPinv2}}}
 \examples{
 
+\dontrun{
 # Specify a negatively associated Plackett copula and perform the
 # regression using the defaults. Plot the regression---median
 # in this case
@@ -53,7 +54,9 @@ lines(R$U,R$V, col=2, lwd=2)
 
 R <- qua.regressCOP2(F=0.10,cop=PLACKETTcop, para=c(theta))
 lines(R$U,R$V, col=2, lty=2)
+}
 
+\dontrun{
 # Specify a composite copula as two Placketts with respective
 # parameters and then the mixing parameters alpha and beta.
 para <- list(cop1=PLACKETTcop,  cop2=PLACKETTcop,
@@ -64,8 +67,10 @@ plot(c(0,1),c(0,1), type="n", lwd=3,
      xlab="U, NONEXCEEDANCE PROBABILITY",
      ylab="V, NONEXCEEDANCE PROBABILITY")
 # Draw the regression of V on U and then U on V (swap=TRUE)
-qua.regressCOP.draw(cop=composite2COP, para=para)
-qua.regressCOP.draw(cop=composite2COP, para=para, swap=TRUE, lty=2)
+qua.regressCOP.draw(cop=composite2COP, para=para, ploton=FALSE)
+qua.regressCOP.draw(cop=composite2COP, para=para, ploton=FALSE, swap=TRUE, lty=2)
+}
+
 }
 \keyword{distribution}
 \keyword{multivariate}

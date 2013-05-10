@@ -18,6 +18,7 @@ Version 1.5.0---August 31, 2011
      lcom2PLACKETTPLACKETTcop.R/Rd.
 5. Added lcomoms2.cop2parameter.R/Rd (replaces lcom2PLACKETTPLACKETTcop.R/Rd).
 6. Added data/PlackettPlackettNP.RData and man/PlackettPlackettNP.Rd.
+7. Changes to the CITATION file.
 
 
 Version 1.5.1---November 14, 2011
@@ -68,4 +69,23 @@ Version 1.5.2---July 30, 2012
      all now insert an NA in case a root solution could not be found.
 4. Spelling corrections in DESCRIPTION: derivative and empirical.
      Thanks to CRAN team for the automated spell checkers.
+
+
+Version 1.5.3---April 20, 2013
+1. Added the ReineckeWells.RData and ReineckeWell266.RData.
+  ** This version failed --timings checks by CRAN, never released **
+
+
+Version 1.5.4--May 10, 2013
+1. Prof. Ripley remarked that the DESCRIPTION of copBasic was too long.
+     This is a reasonably critique. The DESCRIPTION has been radically
+     shortened. The original (with new edits and organization) is now located
+     in the inst/doc/Extented_DESCRIPTION.txt file. WHA will use this file
+     as needed to provide further guidance into the package.
+2. Contraction of --timings made to the following: tauCOP.Rd wolfCOP.Rd 
+     level.curvesCOP.Rd med.regressCOP.Rd qua.regressCOP.Rd qua.regressCOP2.Rd.
+     Also some minor tweaks to the median and quantile regression examples
+     were made.
+
+TODO: tauCOP(cop=P) is kicking off warnings. Investigate!
 

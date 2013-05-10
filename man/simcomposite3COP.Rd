@@ -12,7 +12,7 @@ simcomposite3COP(n=1000, nsim=100, compositor=composite3COP,
 \arguments{
   \item{n}{Sample size per simulation,}
   \item{nsim}{Number of simulations to perform,}
-  \item{compositor}{The compositing function, could be \code{\link{composite1COP}}, \code{\link{composite2COP}}, \code{\link{composite3COP}},}
+  \item{compositor}{The compositing function, could be either of \code{\link{composite1COP}}, \code{\link{composite2COP}}, and \code{\link{composite3COP}},}
   \item{parents}{A special parameter \code{list()} (see Note),}
   \item{ploton}{A logical to toggle on intermediate plotting,}
   \item{points}{A logical to actually draw the simulations on the \samp{ploton} by \code{points()},}

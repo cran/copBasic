@@ -43,9 +43,12 @@ Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 \seealso{\code{\link{rhoCOP}}, \code{\link{derCOP}}, \code{\link{derCOP2}}}
 \examples{
 
+\dontrun{
+
 Tau <- tauCOP(cop=P, cop2=P)
 print(Tau)
 
+}
 \dontrun{
 
 Tau <- tauCOP(cop=M, cop2=M, byloops=TRUE)
@@ -53,8 +56,12 @@ print(Tau)
 
 }
 
+\dontrun{
+
 Tau <- tauCOP(cop=W, byloops=TRUE)
 print(Tau)
+
+}
 
 \dontrun{
 
@@ -75,7 +82,9 @@ print(Tau)
 
 Tau <- tauCOP(cop=P, cop2=M)
 print(Tau)
+}
 
+\dontrun{
 
 para <- list(cop1=PLACKETTcop,  cop2=PLACKETTcop,
              para1=c(0.00395),  para2=c(4.67),

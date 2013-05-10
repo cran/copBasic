@@ -4,7 +4,7 @@
 \description{
 The parameter \eqn{\Theta} of the Plackett Copula is related to Spearman's Rho (\eqn{\rho_S \ne 1})
 \deqn{\rho_S(\Theta) = \frac{\Theta + 1}{\Theta - 1} - \frac{2\Theta\log(\Theta)}{(\Theta - 1)^2}}
-and a median split estimator best shown in code. First, compute the two medians \code{medx <- median(x); medy <- median(y)}. Second, compute the number of occurrences where both values are less than their medians \code{k <- length(x[x < medx & y < medy])}. Third, express this as a probability \code{m <- k/length(x)}, and finally compute the \eqn{\Theta} by
+and a median split estimator best shown in code. First, compute the two medians \code{medx <- median(x)} and \code{medy <- median(y)}. Second, compute the number of occurrences where both values are less than their medians \code{k <- length(x[x < medx & y < medy])}. Third, express this as a probability \code{m <- k/length(x)}, and finally compute the \eqn{\Theta} by
 \deqn{\Theta = \frac{4m^2}{(1-2m)^2}}
 }
 \usage{

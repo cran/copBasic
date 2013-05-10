@@ -27,9 +27,11 @@ Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 \seealso{\code{\link{rhoCOP}}
 }
 \examples{
+\dontrun{
 wolf <- wolfCOP(cop=PSP)
 print(wolf)
 rho <- rhoCOP(cop=PSP)
 print(rho)
+}
 }
 \keyword{multivariate}
