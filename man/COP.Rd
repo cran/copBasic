@@ -2,44 +2,37 @@
 \alias{COP}
 \title{ The Copula }
 \description{
-Compute the copula from a copula
+Compute the \emph{copula} or \emph{joint distribution function} from a copula function and as shown by Nelson (2006, p. 18) is the joint probability
 
-\deqn{\mathrm{Pr}[U \le u, V \le v] = \mathbf{C}(u,v)}
+\deqn{\mathrm{Pr}[U \le u, V \le v] = \mathbf{C}(u,v)\mbox{.}}
 
-The copula is an expression of the probability that both \eqn{U \le u} and \eqn{V \le v}.
+The copula is an expression of the joint probability that both \eqn{U \le u} and \eqn{V \le v}. A \emph{symmetric copula} is one such that \eqn{\mathbf{C}(u,v) = \mathbf{C}(v,u)} otherwise the copula is \emph{asymmetric}. The copula \emph{inversions} \eqn{t = \mathbf{C}(u=U, v)} or \eqn{t = \mathbf{C}(u, v=V)} are provided by \code{\link{COPinv}} and \code{\link{COPinv2}}, respectively. Perhaps this function is singularly the most important in \pkg{copBasic}.
 }
 \usage{
-COP(cop=NULL, u, v, ...)
+COP(u, v, cop=NULL, para=NULL, ...)
 }
 \arguments{
-  \item{cop}{A copula function,}
-  \item{u}{An nonexceedance probability in X direction,}
-  \item{v}{An nonexceedance probability in Y direction, and}
-  \item{...}{Additional arguments to pass (such as parameters, if needed, for the copula in the form of a list).}
+  \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction;}
+  \item{v}{Nonexceedance probability \eqn{v} in the \eqn{Y} direction;}
+  \item{cop}{A copula function with vectorization as in \code{asCOP};}
+  \item{para}{Vector of parameters or other data structures, if needed, to pass to the copula; and}
+  \item{...}{Additional arguments to pass to the copula.}
 }
 \value{
-  The value for the copula is returned.
-}
-\note{
-See p. 18 of the reference.  \code{COP} + \code{coCOP} equal unity and \code{surCOP} + \code{duCOP} equal unity.
+  Value(s) for the copula are returned.
 }
 \references{
 Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
-\seealso{\code{\link{coCOP}}, \code{\link{surCOP}}, \code{\link{duCOP}}, \code{\link{W}}, \code{\link{P}}, \code{\link{M}}, \code{\link{PSP}}}
+\seealso{\code{\link{coCOP}}, \code{\link{duCOP}}, \code{\link{surCOP}}, \code{\link{surfuncCOP}} }
 \examples{
-u <- runif(1)
-v <- runif(1)
-COP(cop=W,u,v)
-COP(cop=P,u,v)
-COP(cop=M,u,v)
-COP(cop=PSP,u,v)
+u <- runif(1); v <- runif(1)
+COP(cop=W,u,v); COP(cop=P,u,v); COP(cop=M,u,v); COP(cop=PSP,u,v)
 
 F <- 0.75 # 75th percentile, nonexceedance
 G <- 0.20 # 25th percentile, nonexceedance
-bF <- 1 - F # nonexceedance
-bG <- 1 - G # nonexceedance
+bF <- 1 - F; bG <- 1 - G  # exceedance
 
 # What is the probability that both X and Y are less than
 # 75th and 20th percentiles, respectively?
@@ -56,7 +49,6 @@ duCOP(cop=P,F,G)
 # What is the probability that either X or Y are greater than
 # the 75th and 20th percentiles, respectively?
 coCOP(cop=P,bF,bG)
-
 
 # Repeat for the PSP copula:
 # What is the probability that both X and Y are less than
@@ -79,8 +71,6 @@ coCOP(cop=PSP,bF,bG)
 COP(cop=PSP,F,G)      + coCOP(cop=PSP,bF,bG)
 surCOP(cop=PSP,bF,bG) + duCOP(cop=PSP,F,G)
 
-
-
 F <- 0.99 # 99th percentile, nonexceedance
 G <- 0.50 # 50th percentile, nonexceedance
 bF <- 1 - F # nonexceedance
@@ -102,5 +92,6 @@ duCOP(cop=P,F,G)
 # the 99th and 50th percentiles, respectively?
 coCOP(cop=P,bF,bG)
 }
-\keyword{distribution}
-\keyword{multivariate}
+\keyword{copula (formulas)}
+\keyword{copula operator}
+

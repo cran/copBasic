@@ -1,55 +1,48 @@
 \name{composite1COP}
 \alias{composite1COP}
-\title{ Composition of a Single Symmetric Copula }
+\title{ Composition of a Single Symmetric Copula with Two Compositing Parameters }
 \description{
-The composition of a single copula is created by the following result related to \dQuote{composition of copulas} in the reference. Let \eqn{\mathbf{C}(u,v)} by a symmetric copula, \eqn{\mathbf{C} \ne \Pi} (for \eqn{\Pi} see \code{\link{P}}). A family of asymmetric copulas \eqn{\mathbf{C}_{\alpha,\beta}}, with parameters \eqn{0 < \alpha,\beta < 1, \alpha \ne \beta}, that includes \eqn{\mathbf{C}(u,v)} as a limiting case, is given by
+The \emph{composition of a single copula} (Salvadori et al., 2006, p. 266, Prop. C.3) is created by the following result related to \dQuote{composition of copulas} in that reference. Suppose \eqn{\mathbf{C}(u,v)} is a \emph{symmetric copula} (see \code{\link{COP}}) with parameters \eqn{\Theta}, \eqn{\mathbf{C} \ne \mathbf{\Pi}} (for \eqn{\mathbf{\Pi}} see \code{\link{P}}) then a family of generally \emph{asymmetric copulas} \eqn{\mathbf{C}_{\alpha,\beta; \Theta}} with \bold{two} \emph{compositing parameters} \eqn{0 < \alpha,\beta < 1, \alpha \ne \beta} that also includes just the copula \eqn{\mathbf{C}(u,v)} as a limiting case for \eqn{\alpha = \beta = 0} and is given by
 
 \deqn{\mathbf{C}_{\alpha,\beta}(u,v) = u^\alpha v^\beta \cdot \mathbf{C}(u^{1-\alpha},v^{1-\beta})\mbox{.}}
 
-The \code{\link{composite2COP}} function is based on a more general result (see \code{\link{composite2COP}} for full details of compositing copulas.
+The \code{\link{composite2COP}} function is based on a slighty more general result (see \code{\link{composite2COP}} for more details of copula composition).
 }
 \usage{
-composite1COP(u,v,para,...)
+composite1COP(u,v, para, ...)
 }
 \arguments{
-  \item{u}{A nonexceedance probability in X direction,}
-  \item{v}{A nonexceedance probability in Y direction,}
-  \item{para}{A special parameter \code{list()} (see Note), and}
+  \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction;}
+  \item{v}{Nonexceedance probability \eqn{v} in the \eqn{Y} direction;}
+  \item{para}{A special parameter \code{list} (see Note); and}
   \item{...}{Additional arguments to pass.}
 }
 \value{
-  A value for the composited copula is returned.
+  Value(s) for the composited copula are returned.
 }
 \note{
-See p. 266 of the reference and Proposition C.3 for complete discussion.
-
 The following descriptions list in detail the structure and content of the \code{para} argument:
 \describe{
-  \item{\samp{alpha}}{The \eqn{\alpha} parameter,}
-  \item{\samp{beta}}{The \eqn{\beta} parameter,}
-  \item{\samp{cop1}}{Function of the first copula, and}
-  \item{\samp{para1}}{Vector of parameters for the first copula.}
+  \item{\code{alpha}}{--- The \eqn{\alpha} compositing parameter;}
+  \item{\code{beta}}{--- The \eqn{\beta} compositing parameter;}
+  \item{\code{cop1}}{--- Function of the copula \eqn{\mathbf{C}(u,v)}; and}
+  \item{\code{para1}}{--- Vector of parameters \eqn{\Theta_\mathbf{C}} for \eqn{\mathbf{C}(u,v)}.}
 }
-For the \samp{para} argument of this function, the same nomenclature as used for \code{\link{composite2COP}} is used, but \samp{cop2} and \samp{para2} have been dropped. The \samp{cop1} and \samp{para1} names remain enumerated so that the \code{para} argument of the more general \code{\link{composite2COP}} function could be used directly in \code{\link{composite1COP}}. Albeit, the second copula and its parameters would of course not be used.
+For the \code{para} argument of this function, the same nomenclature as used for \code{\link{composite2COP}} is used with \code{cop2} and \code{para2} being dropped. The \code{cop1} and \code{para1} names remain enumerated for \code{composite1COP} so that the \code{para} argument of the more general \code{\link{composite2COP}} function could be used directly in \code{\link{composite1COP}}. Albeit, the second copula and its parameters would not be used. A more complex (extended) composition in \code{\link{composite3COP}} extends this basic parameter structure.
 }
 \references{
 Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007,
 Extremes in Nature---An approach using copulas: Springer, 289 p.
 }
 \author{ W.H. Asquith}
-\seealso{\code{\link{COP}}, \code{\link{composite2COP}}}
+\seealso{\code{\link{COP}}, \code{\link{composite2COP}}, \code{\link{composite3COP}}}
 \examples{
-alpha <- 0.24; beta <- 0.23
-Theta1 <- NA;
-
-# The W() and PSP() copulas do not take parameters, but show how
-# the parameters (ThetaX) would be set should either or both of the
-# copulas require parameters.
-para   <- list(alpha=alpha,      beta=beta,
-                cop1=W,          para1=c(Theta1))
+alpha <- 0.24; beta <- 0.23; Theta1 <- NA;
+# W() does not use a parameter, but show how a parameter would be set if be needed.
+para   <- list(alpha=alpha, beta=beta, cop1=W, para1=Theta1)
 t <- composite1COP(0.4,0.6,para)
-print(t)
-print(W(0.4,0.6))
+if( t != W(0.4,0.6)) message("Not equal as expected")
 }
-\keyword{distribution}
-\keyword{multivariate}
+\keyword{copula composition}
+\keyword{copula composition (two compositing parameters)}
+

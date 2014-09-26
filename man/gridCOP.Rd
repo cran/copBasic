@@ -1,0 +1,27 @@
+\name{gridCOP}
+\alias{gridCOP}
+\title{ Compute a Copula on a Grid }
+\description{
+Compute a grid of copula values. This function has the primary intention of supporting 3-D renderings or 2-D images of the \emph{copulatic surface}. Users should be aware of the origin convention of various plotting mechanisms available to them. By convention copulatic surface start in lower left corner for \eqn{u = v = 0} but matrix conventions (or at least how some functions plot matrices) start with the origin in the upper left.
+}
+\usage{
+gridCOP(cop=NULL, para=NULL, delta=0.05, transpose=TRUE, ...)
+}
+\arguments{
+  \item{cop}{A copula function;}
+  \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula;}
+  \item{delta}{The \eqn{\Delta u = \Delta v} of the grid edges;}
+  \item{transpose}{A logical to transpose the returned grid. This is needed if functions such as \code{image()} in \R are to be used for visualization (see last Example with \cr \code{\link{composite2COP}}); and}
+  \item{...}{Additional arguments to pass.}
+}
+\value{
+  The values for \eqn{\mathbf{C}(u,v)} are returned as a grid.
+}
+\author{ W.H. Asquith}
+\seealso{\code{\link{EMPIRcopdf}}
+}
+\examples{
+image(gridCOP(cop=PSP))
+}
+\keyword{copula utility}
+\keyword{copulatic surface}

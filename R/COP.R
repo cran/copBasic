@@ -1,5 +1,5 @@
 "COP" <-
-function(cop=NULL, u, v, ...) {
+function(u, v, cop=NULL, para=NULL, ...) {
    #str(cop)
-   return(cop(u,v,...))
+   return(cop(u,v, para=para, ...))
 }

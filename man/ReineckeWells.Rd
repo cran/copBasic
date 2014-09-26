@@ -3,18 +3,18 @@
 \alias{ReineckeWells}
 \title{Porosity and Permeability Data for the Reinecke Oil Field, Horseshoe Atoll, Texas}
 \description{
-These data represent porosity and permeability data from laboratory analysis for the Reinecke Oil Field, Horseshoe Atoll, Texas as used for the outstanding article by Saller and Dickson (2011). Information pertaining to depth and well number have been removed out of curtosy to Dr. Art Saller, who shared a CSV file with the author of the \pkg{copBasic} package sometime in 2011.
+These data represent porosity and permeability data from laboratory analysis for the Reinecke Oil Field, Horseshoe Atoll, Texas as used for the outstanding article by Saller and Dickson (2011). Dr. Art Saller shared a CSV file with the author of the \pkg{copBasic} package sometime in 2011.  These data are included in this package because of the instruction potential of the bivariate relation between permeability and porosity.
 }
 \usage{
 data(ReineckeWells)
 }
 \format{
-A data frame with
+An \R \code{data.frame} with
 \describe{
-  \item{DOLOMITE}{The fraction of the core sample that is dolomite, 0 is 100 percent limestone.}
-  \item{Kmax}{The maximum permeability without respect to orientation in millidarcies.}
-  \item{K90}{The horizontal (with respect to 90 degrees of the borehole) permeability in millidarcies.}
-  \item{Kvert}{The vertical permeability in millidarcies.}
+  \item{DOLOMITE}{The fraction of the core sample that is dolomite, 0 is 100 percent limestone;}
+  \item{Kmax}{The maximum permeability without respect to orientation in millidarcies;}
+  \item{K90}{The horizontal (with respect to 90 degrees of the borehole) permeability in millidarcies;}
+  \item{Kvert}{The vertical permeability in millidarcies; and}
   \item{POROSITY}{The porosity of the core sample.}
 }
 }

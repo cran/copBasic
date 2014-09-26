@@ -1,53 +1,15 @@
 Package: copBasic
 Title: Basic Theoretical Copula, Empirical Copula, and Various Utility
         Functions
-Version: 1.5.4
-Date: 2013-05-10
-Author: William H. Asquith
-Description: This package implements extensive, but select, functions
-        for copula computations and is used by several other packages
-        by the author. This particular package provides the lower,
-        upper, product, "PSP," and Plackett copulas. Plackett parameter
-        estimation is provided. Expressions available for an arbitrary
-        copula include the diagonal of a copula, the survival copula,
-        the dual of a copula, and co-copula. Levels curves, such as for
-        drawing, are available, through inverses of copulas. Sections
-        (horizontal and vertical) and derivatives of these sections are
-        supported. The numerical derivative for the derivative of a
-        copula is provided as are inverses of these the numerical
-        derivatives. Inverses of copula derivatives are important for
-        random variate generation, which is provided using the
-        conditional distribution method and the derivative of a copula.
-        Composition of a single copula for two external parameters,
-        composition of two copulas through use of two external
-        parameters, and the composition of two copulas through the use
-        of four external parameters is provided.  Composite copula
-        random variates can be generated---compositions generally yield
-        asymmetric copulas. A data set is provided that contains darts
-        thrown at the L-comoment space of a Plackett-Plackett
-        composited copula; these data might be used for experimental
-        copula estimation by the method of L-comoments. Measures of
-        association through concordance include Kendall Tau, Spearman
-        Rho, Gini Gamma, and Blomqvist Beta. Schweizer-Wolff Sigma is
-        provided as a measure of dependency in contrast to the
-        concordance measures. Upper- and lower-tail dependence is
-        computed by numerical limit convergence. Whether a copula is
-        left-tail decreasing or right-tail increasing also is provided.
-        Quantile and median regression for V with respect to U and U
-        with respect to V is available. Empirical copulas (EC) are
-        supported and the computation of a data frame for each sample
-        value also is provided. ECs are heavily dependent on a simple
-        grid or matrix structure for which generation capability is
-        provided. The derivatives of the EC grid, which are the
-        conditional CDFs of copula sections, are computable. Also, the
-        inverses of the derivatives, which are the conditional QDFs of
-        copula sections are computable. Median and quantile regression
-        of an EC is supported. Lastly, support for EC simulation of V
-        conditional on U is provided.
-Maintainer: William H. Asquith <william.asquith@ttu.edu>
-Depends: R (>= 2.10), lmomco
-License: GPL
-Packaged: 2013-05-10 15:48:46 UTC; wasquith
-NeedsCompilation: no
+Version: 1.6.0
+Date: 2014-09-26
+Author: William Asquith
+Description: The package implements extensive functions for copula computations and related mathematical operations oriented around the oft cited and fundamental copula theory described by Nelson (2006). The lower (W), upper (M), product (P), PSP, and Plackett (with parameter estimation) copulas are provided. Individual copula functional support is intentionally limited to keep the package focused on an API to general copula theory. Expressions available for an arbitrary copula include the diagonal of a copula, the survival copula, the dual of a copula, and co-copula. Level curves (sets) are available. Horizontal and vertical copula sections and derivatives of such sections also are supported. The numerical derivatives of a copula are provided as well as inverses, and thus functions for copula simulation also are supported. Composition of copulas is provided: (1) composition of a single copula using two composition parameters, (2) composition of two copulas using two composition parameters, (3) composition of two copulas using four composition parameters, and (4) composite copula random variates.  Characteristics of copulas include Kendall Tau, Spearman Rho, Gini Gamma, Blomqvist Beta, and Schweizer-Wolff Sigma. Logical evaluators of positively/negatively quadrant dependency, left-tail decreasing, and right-tail increasing also are available. Quantile and median regression for V with respect to U and U with respect to V is available. Empirical copulas (EC) are supported. ECs are dependent on gridded data structures for which generation capability is provided. The derivatives of the EC grid are computable. Also, the inverses of the derivatives, which are the conditional QDFs of copula sections also are computable. Median and quantile regression of an EC also is supported along with support for EC simulation of V conditional on U.
+Maintainer: William Asquith <william.asquith@ttu.edu>
 Repository: CRAN
-Date/Publication: 2013-05-10 18:40:05
+Depends: R (>= 2.10)
+Imports: lmomco
+License: GPL-2
+NeedsCompilation: no
+Packaged: 2014-09-26 12:27:20 UTC; wasquith
+Date/Publication: 2014-09-26 16:53:11

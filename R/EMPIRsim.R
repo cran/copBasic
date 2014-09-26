@@ -6,10 +6,8 @@ function(n=100, empgrid=NULL, kumaraswamy=FALSE,
   rows <- as.numeric(attributes(empinv)$rownames)
   ix <- 1:length(rows)
   if(ploton) {
-    plot(c(0,1), c(0,1),
-         type="n",
-         xlab="U, NONEXCEEDANCE PROBABILITY",
-         ylab="V, NONEXCEEDANCE PROBABILITY")
+    plot(c(0,1), c(0,1), type="n",
+         xlab="U, NONEXCEEDANCE PROBABILITY", ylab="V, NONEXCEEDANCE PROBABILITY")
   }
   cols <- attributes(empinv)$colnames
   U <- vector(mode="numeric", length=n); V <- U

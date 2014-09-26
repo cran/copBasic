@@ -1,51 +1,29 @@
 "sectionCOP" <-
-function(f, cop=NULL,  para=NULL,    wrtV=FALSE,
-         ratcop=FALSE, dercop=FALSE, ploton=TRUE,
-         lines=TRUE,   delt=0.005, ...) {
+function(f, cop=NULL,  para=NULL, wrtV=FALSE, dercop=FALSE, delt=0.005,
+              ploton=TRUE, lines=TRUE,  xlab="NONEXCEEDANCE PROBABILITY", ...) {
+
   if(wrtV) {
-    txtxlab <- "V, NONEXCEEDANCE PROBABILTIY"
-    txt <- "with respect to V"
-    if(dercop) {
-      txtylab <- "H, NONEXCEEDANCE PROBABILITY"
-    } else {
-      txtylab <- paste(c("C(" ,f, ",v)"),collapse="")
-    }
+     message("Triggering Horizontal Section logic: v = constant")
+     txt <- "horizontal section"
   } else {
-    txtxlab <- "U, NONEXCEEDANCE PROBABILTIY"
-    txt <- "with respect to U"
-    if(dercop) {
-      txtylab <- "H, NONEXCEEDANCE PROBABILITY"
-    } else {
-      txtylab <- paste(c("C(u," ,f, ")"),collapse="")
-    }
+     message("Triggering Vertical Section logic: u = constant")
+     txt <- "vertical section"
   }
 
-
-
-  if(ploton) {
-    plot(c(0,1), c(0,1), type="n", xlab=txtxlab,  ylab=txtylab)
-  }
+  if(ploton) plot(c(0,1), c(0,1), type="n", xlab=xlab, ...)
 
   T <- seq(0+delt,1-delt,delt)
-  C <- vector(mode="numeric")
+  C <- vector(mode="numeric", length=length(T))
   if(dercop) {
-    if(wrtV) {
-      C <- sapply(T, function(x) {
-                     return( derCOP2(x,f, cop=cop,
-                                     para=para)) } )
-    }
-    else {
-      C <- sapply(T, function(x) {
-                     return( derCOP(f,x, cop=cop, para=para)) } )
-    }
+    C <- sapply(T, function(x) {
+                     ifelse(wrtV, return( derCOP2(x,f, cop=cop, para=para) ),
+                                  return(  derCOP(f,x, cop=cop, para=para) )) } )
   } else {
-    C <- sapply(T, function(x) { v <- x; u <- f
-                      if(wrtV) { u <- x; v <- f }
-                         return( cop(u,v, para=para)) } )
-    if(ratcop) C <- C/T
+    C <- sapply(T, function(x) {
+                      ifelse(wrtV, return( cop(x,f, para=para) ),
+                                   return( cop(f,x, para=para) )) } )
   }
   if(lines & ! is.null(dev.list())) lines(T,C, ...)
-  return(list(t=T, seccop=C,
-              wrt=txt, fvalue=f, isderivative=dercop))
+  return(list(t=T, seccop=C, wrt=txt, fvalue=f, isderivative=dercop))
 }
 

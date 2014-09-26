@@ -2,33 +2,28 @@
 \alias{PLACKETTsim}
 \title{ Direct Simulation of a Plackett Copula }
 \description{
-Simulation of the Plackett Copula is made by this function.
+Simulation of the \emph{Plackett copula} (Nelson, 2006, pp. 89--92) is made by this function. The documentation for \code{\link{PLACKETTcop}} provides the mathematical formula of the copula.
 }
 \usage{
 PLACKETTsim(n, para=NULL, ...)
 }
 \arguments{
-  \item{n}{Sample size,}
-  \item{para}{A vector (single element) of parameters---the \eqn{\Theta} parameter, and}
+  \item{n}{Sample size;}
+  \item{para}{The \eqn{\Theta} parameter of the Plackett copula; and}
   \item{...}{Additional arguments to pass.}
 }
 \value{
-  A data frame of the values are returned.
-}
-\note{
-See p. 247 of Salvadori and others (2007).
+  An \R \code{data.frame} of the values \eqn{U} and \eqn{V} for the nonexceedance probabilities is returned.
 }
 \references{
 Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
-
-Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in nature---An approach using copulas: Dordrecht, Netherlands, Springer, Water Science and Technology Library 56, 292 p.
 }
 \author{ W.H. Asquith}
-\seealso{\code{\link{M}}, \code{\link{W}}, \code{\link{P}}}
+\seealso{\code{\link{PLACKETTcop}}, \code{\link{PLACKETTpar}} }
 \examples{
-PLACKETTsim(10,para=c(1)) # simulate P copula through a Plackett
-PLACKETTsim(10,para=c(20)) # simulate strong positive Plackett
-
+PLACKETTsim(10, para= 1  ) # simulate P (independence) copula through a Plackett
+PLACKETTsim(10, para=20.3) # simulate strong positive Plackett
 }
-\keyword{distribution}
-\keyword{multivariate}
+\keyword{copula (simulation)}
+\keyword{Plackett copula}
+

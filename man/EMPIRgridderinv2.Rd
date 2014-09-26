@@ -1,24 +1,24 @@
 \name{EMPIRgridderinv2}
 \alias{EMPIRgridderinv2}
-\title{ Derivatives of the Grid of the Bivariate Emprical Copula }
+\title{ Derivative Inverses of the Grid of the Bivariate Emprical Copula for U with respect to V}
 \description{
-Generate a gridded representation of the bivariate empirical copula.
+Generate a gridded representation of the inverse of the derivatives bivariate empirical copula of \eqn{U} with respect to \eqn{V}.
 }
 \usage{
 EMPIRgridderinv2(empgrid=NULL, kumaraswamy=FALSE, ...)
 }
 \arguments{
-  \item{empgrid}{The grid from \code{\link{EMPIRgrid}}, and}
-  \item{kumaraswamy}{A logical to trigger Kumaraswamy smoothing of the conditional quantile function;}
+  \item{empgrid}{The grid from \code{\link{EMPIRgrid}}; }
+  \item{kumaraswamy}{A logical to trigger Kumaraswamy smoothing of the conditional quantile function; and}
   \item{...}{Additional arguments to pass.}
 }
 \value{
-  The gridded values of
+  The gridded values of the inverse of the derivative of \eqn{U} with respect to \eqn{V}.
 }
 \author{ W.H. Asquith }
 \seealso{ \code{\link{EMPIRcop}}, \code{\link{EMPIRcopdf}}, \code{\link{EMPIRgrid}}, \code{\link{EMPIRgridder2}}, \code{\link{EMPIRgridderinv}}, \code{\link{EMPIRgridderinv2}} }
 \examples{
 # See examples under EMPIRgridderinv
 }
-\keyword{distribution}
-\keyword{multivariate}
+\keyword{empirical copula}
+\keyword{empirical copula (derivative inverses)}

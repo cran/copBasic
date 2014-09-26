@@ -1,61 +1,63 @@
 \name{derCOP2}
 \alias{derCOP2}
-\title{ The Numeric Derivative of a Copula }
+\title{ Numerical Derivative of a Copula for U with respect to V }
 \description{
-Compute the numeric derivative of a copula according to Nelson (2006), but with respect to \eqn{v} and not \eqn{u}
-\deqn{\mathrm{Pr}[U \le u\mid V=v] = \lim_{\Delta v \rightarrow 0}\frac{\mathbf{C}(u, v+\Delta v) - \mathbf{C}(u,v)}{\Delta v}}
-which is to read at the probability that \eqn{U \le u} given that \eqn{V = v} and corresponds to the \cr \samp{derdir="left"} mode of the function. For \code{derdir="right"}, we have
-\deqn{\mathrm{Pr}[U \le u\mid V=v] = \lim_{\Delta v \rightarrow 0}\frac{\mathbf{C}(u,v) - \mathbf{C}(u, v-\Delta v)}{\Delta v}}
-and for \code{derdir="center"} (the usual method of computing a derivative), we have
-\deqn{\mathrm{Pr}[U \le u\mid V=v] = \lim_{\Delta v \rightarrow 0}\frac{\mathbf{C}(u,v+\Delta v) - \mathbf{C}(u, v-\Delta v)}{2 \Delta v}}
+Compute the numerical partial derivative of a copula according to Nelson (2006, pp. 13, 40--41) with respect to \eqn{v}:
+
+\deqn{0 \le \frac{\delta}{\delta v} \mathbf{C}(u,v) \le 1\mbox{,}}
+
+or
+
+\deqn{\mathrm{Pr}[U \le u\mid V=v] = \lim_{\Delta v \rightarrow 0}\frac{\mathbf{C}(u, v+\Delta v) - \mathbf{C}(u,v)}{\Delta v}\mbox{,}}
+
+which is to read as the probability that \eqn{U \le u} given that \eqn{V = v} and corresponds to the \cr \code{derdir="left"} mode of the function. For \code{derdir="right"}, the following results
+\deqn{\mathrm{Pr}[U \le u\mid V=v] = \lim_{\Delta v \rightarrow 0}\frac{\mathbf{C}(u,v) - \mathbf{C}(u, v-\Delta v)}{\Delta v}\mbox{,}}
+and for \code{derdir="center"} (the usual method of computing a derivative), the following results
+\deqn{\mathrm{Pr}[U \le u\mid V=v] = \lim_{\Delta v \rightarrow 0}\frac{\mathbf{C}(u,v+\Delta v) - \mathbf{C}(u, v-\Delta v)}{2 \Delta v}\mbox{.}}
+The \dQuote{with respect to \eqn{U}} versions are seen under \code{\link{derCOP}}.
 }
 \usage{
 derCOP2(cop=NULL, u, v, delv=.Machine$double.eps^0.50,
-        derdir=c("left","right","center"), ...)
+        derdir=c("left", "right", "center"), ...)
 }
 \arguments{
-  \item{cop}{A copula function,}
-  \item{u}{A nonexceedance probability in X direction,}
-  \item{v}{A nonexceedance probability in Y direction,}
-  \item{delv}{The delta v interval for the derivative,}
-  \item{derdir}{The direction of the derivative as described above. Default is left, and}
-  \item{...}{Additional arguments to pass.}
+  \item{cop}{A copula function;}
+  \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction. If the length of \code{u} is unity, then the length of \code{v} can be arbitrarily long. If the length of \code{u} is not unity, then the length of \code{v} should be the same and if not only the first value in \code{v} will be silently used;}
+  \item{v}{Nonexceedance probability \eqn{v} in the \eqn{Y} direction (see previous comment on \code{u});}
+  \item{delv}{The \eqn{\Delta v} interval for the derivative;}
+  \item{derdir}{The direction of the derivative as described above. Default is \code{left} but internally any setting can be temporarily suspended to avoid improper computations (see source code); and}
+  \item{...}{Additional arguments to pass such as the parameters often described in \code{para} arguments of other copula functions. (The lack of \code{para=NULL} for \code{derCOP} and \code{\link{derCOP2}} was either design oversight or design foresight but too late to enforce consistency in the package on this matter.)}
 }
 \value{
-  The value for the copula is returned.
+  Value(s) for the partial derivative are returned.
 }
 \note{
-See pp. 13 and 40--41 of the reference. A known weakness of the current implementation of the Copula derivative is that this is a small probability that the \eqn{\Delta v} will span a singularity or discontinuous portion of a copula shown it have that property. The \code{delv} is chosen small to the probability is mitigated to a small value. It is not known whether a derivative from the positive side (\code{dir="left"}), when failing should switch over to a computation from the negative side (\code{dir="right"}). The distinction is important for the computation of the inverse of the derivative \code{\link{derCOPinv2}} because the solution finder needs a sign reversal.
+A known caveat of the current implementation of the copula derivative is that there is a chance that the \eqn{\Delta v} will span a singularity or discontinuous portion of a copula should it have a property of singularity. The \code{delv} is chosen small so the chance is mitigated to a small value. It is not decided whether a derivative from the positive side (\code{dir="left"}), when failing should switch over to a computation from the negative side (\code{dir="right"}). The distinction is important for the computation of the inverse of the derivative \code{\link{derCOPinv2}} because the solution finder needs a sign reversal to work.
 }
 \references{
 Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
-\seealso{\code{\link{derCOPinv2}}, \code{\link{W}}, \code{\link{P}}, \code{\link{M}}, \code{\link{PSP}}}
+\seealso{\code{\link{derCOPinv2}}, \code{\link{derCOP}}}
 \examples{
-derCOP2(cop=W,0.4,0.6)
-derCOP2(cop=P,0.4,0.6)
-derCOP2(cop=M,0.4,0.6)
-derCOP2(cop=PSP,0.4,0.6)
+derCOP2(cop=W,0.4,0.6); derCOP2(cop=P,0.4,0.6); derCOP2(cop=M,0.4,0.6)
 
 lft <- derCOP2(cop=P,0.4,0.6, derdir="left")
 rgt <- derCOP2(cop=P,0.4,0.6, derdir="right")
 cnt <- derCOP2(cop=P,0.4,0.6, derdir="center")
-\dontrun{stopifnot(all.equal(lft,rgt), all.equal(lft,cnt))}
-
-
-# Let us contrive a singularity though this NOT A COPULA
-# in the function "afunc"
-"afunc" <- function(u,v, ...) {
-  if(u <= 0.5) return(sqrt(u^2+v^2))
-  return(P(u,v,...)) # The product copula
-}
-lft <- derCOP2(cop=afunc,0.5,runif(1),derdir="left")
-# The following is correct for given v.
-rgt <- derCOP2(cop=afunc,0.5,runif(1),derdir="right")
-cnt <- derCOP2(cop=afunc,0.5,runif(1),derdir="center")
 cat(c(lft,rgt,cnt,"\n"))
+# stopifnot(all.equal(lft,rgt), all.equal(lft,cnt))
 
+# Let us contrive a singularity though this NOT A COPULA in the function "afunc".
+"afunc" <- function(u,v, ...) return(ifelse(u <= 0.5, sqrt(u^2+v^2), P(u,v,...)))
+lft <- derCOP2(cop=afunc,0.67, 0.5, derdir="left")
+rgt <- derCOP2(cop=afunc,0.67, 0.5, derdir="right")
+cnt <- derCOP2(cop=afunc,0.67, 0.5, derdir="center")
+cat(c(lft,rgt,cnt,"\n")) # For this example, all are correct (see derCOP examples)
 }
-\keyword{distribution}
-\keyword{multivariate}
+\keyword{copula (utility)}
+\keyword{copula (derivative)}
+\keyword{conditional cumulative distribution function}
+\keyword{copula operator}
+
+

@@ -46,12 +46,10 @@ function(n=1000, nsim=100, compositor=composite2COP,
     #              "Beta = ",  round(beta,digits=3)), sep="", collapse=" "))
     #cat(c("Sleeping to continue\n"))
 
-    z <- lcomoms2(S, nmom=4, opdiag=TRUE)
+    z <- lmomco::lcomoms2(S, nmom=4, opdiag=TRUE)
 
-    results <- c(alpha, beta, z$T2, z$T3, z$T4,
-                 Theta1, Theta2)
-    if(showresults) cat(c(round(results,
-                                digits=digits), "\n"))
+    results <- c(alpha, beta, z$T2, z$T3, z$T4, Theta1, Theta2)
+    if(showresults) cat(c(round(results, digits=digits), "\n"))
 
     i <- i + 1
     vals[i,] <- results

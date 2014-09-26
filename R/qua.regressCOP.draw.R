@@ -1,21 +1,19 @@
 "qua.regressCOP.draw" <-
-function(F=c(seq(0.1, 0.9, by=0.1)),
-         Fs=0.5, cop=NULL, para=NULL, ploton=TRUE, 
+function(f=seq(0.1, 0.9, by=0.1),
+         fs=0.5, cop=NULL, para=NULL, ploton=TRUE,
          swap=FALSE, col=c(4,2), lwd=c(1,2), lty=1, ...) {
   if(ploton) {
     plot(c(0,1),c(0,1), type="n", lwd=3,
-         xlab="U, NONEXCEEDANCE PROBABILITY",
-         ylab="V, NONEXCEEDANCE PROBABILITY")
+         xlab="U, NONEXCEEDANCE PROBABILITY", ylab="V, NONEXCEEDANCE PROBABILITY")
   }
-  for(f in c(F,Fs)) {
+  Fs <- sort(c(f,fs))
+  for(af in Fs) {
     mycol <- col[1]; mylwd <- lwd[1]
-    if(f == Fs) { mycol <- col[2]; mylwd <- lwd[2] }
+    if(af == fs) { mycol <- col[2]; mylwd <- lwd[2] }
     if(swap == FALSE) {
-      R <- qua.regressCOP(F=f, cop=cop,
-                          para=para, swap=swap)    
+      R <- qua.regressCOP(f=af, cop=cop, para=para, swap=swap)
     } else {
-      R <- qua.regressCOP2(F=f, cop=cop,
-                           para=para, swap=swap)
+      R <- qua.regressCOP2(f=af, cop=cop, para=para, swap=swap)
     }
     lines(R$U,R$V, col=mycol, lty=lty, lwd=mylwd)
   }

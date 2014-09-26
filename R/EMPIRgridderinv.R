@@ -32,9 +32,9 @@ function(empgrid=NULL, kumaraswamy=FALSE, ...) {
       beta0 <- sum(inv*delF) # first PWM (mean)
       beta1 <- sum(inv*F*delF) # second PWM (no name)
 
-      lmr <- vec2lmom(c(beta0, 2*beta1 - beta0)) # L-moments
-      par.of.kur <- parkur(lmr)
-      X <- quakur(F, par.of.kur) # Kumuraswamy distribution
+      lmr <- lmomco::vec2lmom(c(beta0, 2*beta1 - beta0)) # L-moments
+      par.of.kur <- lmomco::parkur(lmr)
+      X <- lmomco::quakur(F, par.of.kur) # Kumuraswamy distribution
 
       the.inverse[i,] <- X
       Alphas[i] <- par.of.kur$para[1]

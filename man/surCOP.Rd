@@ -2,53 +2,54 @@
 \alias{surCOP}
 \title{ The Survival Copula }
 \description{
-Compute the survival copula from a copula
+Compute the \emph{survival copula} from a copula (Nelson, 2006, pp. 32--34), which is defined as
 
-\deqn{\mathrm{Pr}[U > u, V > v] = \hat{\mathbf{C}}(u,v) = u + v - 1 + \mathbf{C}(1-u,1-v)}
+\deqn{\hat{\mathbf{C}}(1-u,1-v) = \hat{\mathbf{C}}(u',v') = \mathrm{Pr}[U > u, V > v] = u' + v' - 1 + \mathbf{C}(1-u',1-v')\mbox{,}}
+where \eqn{u'} and \eqn{v'} are exceedance probabilities and \eqn{\mathbf{C}(u,v)} is the copula.
 
-The survival copula is an expression of the probability that both \eqn{U > v} and \eqn{U > v} when the arguments to \eqn{\hat{\mathbf{C}}(u,v)} are exceedance probabilities, which is obviously unlike a copula that has \eqn{U \le u} and \eqn{V \le v}.
-
-Alternatively, the probability that both \eqn{U > u} and \eqn{V > v} can be solved using just a copula: \eqn{1 - u - v + \mathbf{C}(u,v)} when the arguments to \eqn{\mathbf{C}(u,v)} are nonexceedance probabilities.
+The survival copula is an expression of the joint probability that both \eqn{U > v} and \eqn{U > v} when the arguments \eqn{a} and \eqn{b} to \eqn{\hat{\mathbf{C}}(a,b)} are exceedance probabilities as shown. This is unlike a copula that has \eqn{U \le u} and \eqn{V \le v} for nonexceedance probabilities \eqn{u} and \eqn{v}. Alternatively, the joint probability that both \eqn{U > u} and \eqn{V > v} can be solved using just the copula \eqn{1 - u - v + \mathbf{C}(u,v),} as shown below where the arguments to \eqn{\mathbf{C}(u,v)} are nonexceedance probabilities. The later formula is the \emph{joint survival function} \eqn{\overline{\mathbf{C}}(u,v)} defined as (Nelson, 2006, p. 33)
+\deqn{\overline{\mathbf{C}}(u,v) = \mathrm{Pr}[U > u, V > v] = 1 - u - v + \mathbf{C}(u,v)\mbox{.}}
 }
 \usage{
-surCOP(cop=NULL, u, v, exceedance=TRUE, ...)
+surCOP(u, v, cop=NULL, para=NULL, exceedance=TRUE, ...)
 }
 \arguments{
-  \item{cop}{A copula function,}
-  \item{u}{An exceedance probability in X direction,}
-  \item{v}{An exceedance probability in Y direction,}
-  \item{exceedance}{Are \code{u} and \code{v} really in exceedance probability? If \code{FALSE}, then the complements of the two are made internally and the nonexceedances can thus be passed, and}
+  \item{u}{Exceedance probability \eqn{u' = 1 - u} (\eqn{u} nonexceedance based on \code{exceedance}) in the \eqn{X} direction;}
+  \item{v}{Exceedance probability \eqn{v' = 1 - v} (\eqn{v} nonexceedance based on \code{exceedance}) in the \eqn{Y} direction;}
+  \item{cop}{A copula function;}
+  \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula;}
+  \item{exceedance}{A logical affirming whether \code{u} and \code{v} are really in exceedance probability or not? If \code{FALSE}, then the complements of the two are made internally and the nonexceedances can thus be passed; and}
   \item{...}{Additional arguments to pass (such as parameters, if needed, for the copula in the form of a list.}
 }
 \value{
-  The value for the survival copula is returned.
+  Value(s) for the survival copula are returned.
 }
 \note{
-See pp. 32--34 of the reference. The author (Asquith) finds the use of exceedance probabilities confusing having grown up in a strictly nonexceedance world. This function and \code{coCOP} have the \code{exceedance} argument to serve as a reminder that survival copula as usually defined uses exceedance probabilities.
+The author (Asquith) finds the use of exceedance probabilities delicate in regards to Nelson's notation having grown up in a strictly nonexceedance world. This function and \code{\link{coCOP}} have the \code{exceedance} argument to serve as a reminder that the survival copula as usually defined uses exceedance probabilities as its arguments.
 }
 \references{
 Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
-\seealso{\code{\link{COP}}, \code{\link{coCOP}}, \code{\link{duCOP}}, \code{\link{W}}, \code{\link{P}}, \code{\link{M}}, \code{\link{PSP}}}
+\seealso{\code{\link{COP}}, \code{\link{coCOP}}, \code{\link{duCOP}}, \code{\link{surfuncCOP}} }
 \examples{
-u <- 1 - runif(1) # make exceedance
-v <- 1 - runif(1) # make exceedance
-cat(c("u and v are",
-      round(u,digits=4),"and",
-      round(v,digits=4),"exceedance probabilities\n"))
+u  <-  0.26; v  <- 0.55   # nonexceedance probabilities
+up <- 1 - u; vp <- 1 - v  #    exceedance probabilities
+surCOP(up, vp,   cop=PSP, exceedance=TRUE)  # 0.4043928
+surCOP(u, v,     cop=PSP, exceedance=FALSE) # 0.4043928
+surfuncCOP(u, v, cop=PSP)                   # 0.4043928
+# All three examples show joint prob. that U > u and V > v.
 
-surCOP(cop=W,u,v)
-surCOP(cop=P,u,v)
-surCOP(cop=M,u,v)
-surCOP(cop=PSP,u,v)
-
-# computation using manual manipulation to nonexceedance probability
-1 - (1-u) - (1-v) + COP(cop=PSP,(1-u),(1-v))
-
-# computation using manual manipulation to nonexceedance probability
-surCOP(cop=PSP,u,v, exceedance=FALSE)
-
+\dontrun{
+# A survival copula is a copula so it increases to the upper right with increasing
+# exceedance probabilities. Let us show that by hacking the surCOP function into
+# a copula for feeding back into the algorithmic framework of copBasic.
+UsersCop <- function(u,v, para=NULL) {
+     afunc <- function(u,v, theta=para) { surCOP(u, v, cop=N4212cop, para=theta)}
+     return(asCOP(u,v, f=afunc)) }
+image(gridCOP(cop=UsersCop, para=1.15), col=terrain.colors(20),
+      xlab="U, EXCEEDANCE PROBABILITY", ylab="V, EXCEEDANCE PROBABILITY")
 }
-\keyword{distribution}
-\keyword{multivariate}
+}
+\keyword{copula operator}
+

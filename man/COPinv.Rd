@@ -2,22 +2,22 @@
 \alias{COPinv}
 \title{ The Inverse of a Copula for V with respect to U }
 \description{
-Compute the inverse of a copula for \eqn{V} with respect to \eqn{U} or
+Compute the \emph{inverse of a copula} for \eqn{V} with respect to \eqn{U} or
 \deqn{t = \mathbf{C}(u=U,v)\mbox{,}}
-and solving for \eqn{v}.
+and solving for \eqn{v}.  Nelson (2006, p. 12) does not so name this function as an \dQuote{inverse}. The \code{COPinv} function is internally used by \code{\link{level.curvesCOP}}.
 }
 \usage{
 COPinv(cop=NULL, u, t, para=NULL, ...)
 }
 \arguments{
-  \item{cop}{A copula function,}
-  \item{u}{A nonexceedance probability in \eqn{X} direction,}
-  \item{t}{A nonexceedance probability in \eqn{t} direction,}
-  \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula, and}
+  \item{cop}{A copula function;}
+  \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction;}
+  \item{t}{Nonexceedance probability level \eqn{t};}
+  \item{para}{Vector of parameters or other data structures, if needed, to pass to the copula, and}
   \item{...}{Additional arguments to pass.}
 }
 \value{
-  The value for \eqn{v} is returned.
+  Value(s) for \eqn{v} are returned.
 }
 \references{
 Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
@@ -28,31 +28,10 @@ Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
          \code{\link{level.curvesCOP}}
 }
 \examples{
-
-\dontrun{
-level.curvesCOP(cop=P, para=NULL, delt=.02) # Product copula
-
-level.curvesCOP(cop=PSP, para=NULL) # PSP copula
-
-
-# Produce the level curves for the Plackett copula for
-# a theta parameter < 0 (positive association)
-para  <- c(0.0001)
-level.curvesCOP(cop=PLACKETTcop, para=para)
-
-
-# Produce the level curves for the Plackett copula for
-# a theta parameter > 0 (positive association)
-para  <- c(10)
-level.curvesCOP(cop=PLACKETTcop, para=para)
-
-# Now create a composite copula
-para <- list(cop1=PLACKETTcop,  cop2=PSP,
-             para1=c(0.4),    para2=NULL,
-             alpha=0.6,        beta=0.09)
-level.curvesCOP(cop=composite2COP, para=para, delt=.1)
+COPinv(cop=N4212cop, para=2, u=0.5, t=0.2)
 }
+\keyword{copula (utility)}
+\keyword{copula (inverse)}
+\keyword{copula operator}
 
-}
-\keyword{distribution}
-\keyword{multivariate}
+

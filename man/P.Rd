@@ -2,22 +2,20 @@
 \alias{P}
 \title{ The Product (Independence) Copula }
 \description{
-Compute the product copula
-\deqn{\Pi(u,v) = uv}
+Compute the \emph{product copula} (Nelson, 2006, p. 12), which is defined as
+\deqn{\mathbf{\Pi}(u,v) = uv\mbox{.}}
+This is the copula of statistical independence between \eqn{U} and \eqn{V} and is sometimes referred to as the \emph{independence copula}.
 }
 \usage{
 P(u, v, ...)
 }
 \arguments{
-  \item{u}{A nonexceedance probability in X direction,}
-  \item{v}{A nonexceedance probability in Y direction, and}
+  \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction;}
+  \item{v}{Nonexceedance probability \eqn{v} in the \eqn{Y} direction; and}
   \item{...}{Additional arguments to pass.}
 }
 \value{
   The value for the copula is returned.
-}
-\note{
-See p. 12 of the reference.
 }
 \references{
 Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
@@ -29,5 +27,8 @@ P(0.4,0.6)
 P(0,0)
 P(1,1)
 }
-\keyword{distribution}
-\keyword{multivariate}
+\keyword{copula (formulas)}
+\concept{independence copula}
+\concept{product copula}
+\keyword{copula}
+

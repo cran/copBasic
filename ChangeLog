@@ -1,8 +1,8 @@
-----------------------------------------------------------
+-----------------------------------------------------------------------------
 ChangeLog for R Package "copBasic" by W.H. Asquith
-----------------------------------------------------------
+-----------------------------------------------------------------------------
 
-Version 1.4---October 30, 2008 Initial Release
+Version 1.4---October 30, 2008 Initial Release (class project)
 
 Version 1.5.0---August 31, 2011
 1.  Enhancement on derCOPinv.R when a solution is unbounded in uniroot()
@@ -19,6 +19,18 @@ Version 1.5.0---August 31, 2011
 5. Added lcomoms2.cop2parameter.R/Rd (replaces lcom2PLACKETTPLACKETTcop.R/Rd).
 6. Added data/PlackettPlackettNP.RData and man/PlackettPlackettNP.Rd.
 7. Changes to the CITATION file.
+8. Removed capitalization of arguments in the empricial quantile regression
+     (including f --> f.lowess): EMPIRqua.regress.R, EMPIRqua.regress2.R.
+9. Removed capitalization of arguments in the median regression:
+     med.regressCOP(), med.regressCOP2(), and
+     qua.regressCOP(), qua.regressCOP2(), qua.regressCOP.draw()
+10. Added level.setCOP() and level.setCOP2() that are dispatchers to special
+     features of level.curvesCOP() and level.curvesCOP2(), respectively. The
+     level curves functions required some extensive reorganization and
+     further error trapping to support the single level set return.
+11. Added surfuncCOP() as the joint survival function. This function is
+     closely related to surCOP() but with subtle argument differences. This
+     new function included to be ever more consistent with Nelson's book.
 
 
 Version 1.5.1---November 14, 2011
@@ -68,7 +80,7 @@ Version 1.5.2---July 30, 2012
 3. qua.regressCOP(), qua.regressCOP2(), med.regressCOP(), and med.regressCOP2()
      all now insert an NA in case a root solution could not be found.
 4. Spelling corrections in DESCRIPTION: derivative and empirical.
-     Thanks to CRAN team for the automated spell checkers.
+     Thanks CRAN team for the automated spell checkers.
 
 
 Version 1.5.3---April 20, 2013
@@ -80,12 +92,41 @@ Version 1.5.4--May 10, 2013
 1. Prof. Ripley remarked that the DESCRIPTION of copBasic was too long.
      This is a reasonably critique. The DESCRIPTION has been radically
      shortened. The original (with new edits and organization) is now located
-     in the inst/doc/Extented_DESCRIPTION.txt file. WHA will use this file
+     in the inst/doc/Extended_DESCRIPTION.txt file. WHA will use this file
      as needed to provide further guidance into the package.
-2. Contraction of --timings made to the following: tauCOP.Rd wolfCOP.Rd 
+2. Contraction of --timings made to the following: tauCOP.Rd wolfCOP.Rd
      level.curvesCOP.Rd med.regressCOP.Rd qua.regressCOP.Rd qua.regressCOP2.Rd.
      Also some minor tweaks to the median and quantile regression examples
      were made.
 
-TODO: tauCOP(cop=P) is kicking off warnings. Investigate!
+
+Version 1.6.0--September 26, 2014 (Quasi-closure to class project of 2008)
+1. Added the Bernstein copula extension to EMPIRcop().
+2. Changes to derCOP() and derCOP2() of accommodate vectorization yet still
+      retain the dynamic suspension of requested derivative direction should
+      need to be changed (overrided) [but only when needed]. Thus, tauCOP()
+      now does not kick off warnings.
+3. Added isCOP.radsym to numerically determine a logical on radially symmetry
+      of a copula.
+4. Added asCOP() to help build copulas with operational similarity to the
+      expected implementation style for the package.
+5. Added isCOP.PQD() for testing postively quadrant dependency of a copula.
+6. Added gridCOP() for supporting 3-D or 2-D image renderings of a copula.
+7. Enchanced simCOP() for more speed and reporting features and vectorized
+      simCOPmicro().
+8. Added the surfuncCOP() for the joint survival function of a copula, which
+      is subtly different from the survivial copula in surCOP.
+9. Removed the ratcop argument from sectionCOP(). That feature is too much
+      like what isCOP.LTD() or isCOP.RTI() was already doing.
+10. Comprehensive Rd auditing including the Examples and example expansion.
+11. Removed the capital "F" for quantile regression level and replaced with
+      lower case "f" in qua.regress(), qua.regress2(), and updated all
+      examples. If I have broken code for a few users, I am sorry but the
+      refrain from capitals in function arguments should have been kept
+      consistent with version 1.5.0.
+12. Added Hoeffding's Phi in hoefCOP().
+13. Adjustments to the features of sectionCOP().
+14. Enhanced indexing by suggestion of Amaranthe R. Biessen.
+15. Adjusted DESCRIPTION and NAMESPACE to only partially grab those few
+      functions needed from the lmomco package.
 

@@ -1,17 +1,17 @@
 \name{EMPIRmed.regress}
 \alias{EMPIRmed.regress}
-\title{ Derivatives of the Grid of the Bivariate Emprical Copula }
+\title{ Median Regression of the Grid of the Bivariate Emprical Copula for V with respect to U }
 \description{
-Generate median regression from the gridded inversion of the bivariate empirical copula.
+Perform \emph{median regression} from the gridded inversion of the bivariate empirical copula of \eqn{V} with respect to \eqn{U}.
 }
 \usage{
 EMPIRmed.regress(...)
 }
 \arguments{
-  \item{...}{Arguments to pass to \code{\link{EMPIRqua.regress2}}.}
+  \item{...}{Arguments to pass to \code{\link{EMPIRqua.regress}}.}
 }
 \value{
-  The gridded values of
+  The gridded values of the median regression of \eqn{V} with respect to \eqn{U}.
 }
 \author{ W.H. Asquith }
 \seealso{ \code{\link{EMPIRgridderinv}}, \code{\link{EMPIRqua.regress}}, \code{\link{EMPIRmed.regress2}}, \code{\link{EMPIRmed.regress2}}
@@ -19,5 +19,6 @@ EMPIRmed.regress(...)
 \examples{
 # See examples under EMPIRqua.regress
 }
-\keyword{distribution}
-\keyword{multivariate}
+\keyword{empirical copula}
+\keyword{empirical copula (median regression)}
+\keyword{empirical copula (quantile regression)}

@@ -2,9 +2,9 @@
 \alias{level.curvesCOP}
 \title{ Compute and Plot Level Curves of a Copula V with respect to U }
 \description{
-Compute and plot level curves of a copula for \eqn{V} with respect to \eqn{U}. The level curves at \eqn{t} are defined for \eqn{U \in [0,1]} by
-\deqn{t = \mathbf{C}(u=U,v)\mbox{,}}
-and solving for \eqn{v}.
+Compute and plot \emph{level curves} or \emph{level sets} of a copula for \eqn{V} with respect to \eqn{U} (Nelson, 2006, pp. 12--13). The level curves at levels \eqn{t \mapsto [0+\Delta t, 1-\Delta t, \Delta t]} are defined for \eqn{U \mapsto [0+\Delta u, 1-\Delta u, \Delta u]} by
+\deqn{t \mapsto \mathbf{C}(u=U, v)\mbox{,}}
+and solving for \eqn{v}. Plotting is provided by this function because level curves are such an important visual attribute of a copula. The above equation is implemented as the \emph{inverse of a copula} by \code{\link{COPinv}}.
 }
 \usage{
 level.curvesCOP(cop=NULL, para=NULL, ploton=TRUE, lines=TRUE,
@@ -18,28 +18,25 @@ level.curvesCOP(cop=NULL, para=NULL, ploton=TRUE, lines=TRUE,
   \item{lines}{A logical to toggle calls to the \code{lines} function to draw the lines;}
   \item{plotMW}{A logical to toggle to use \code{abline} to plot cross lines for the \code{\link{M}} and \code{\link{W}} copulas;}
   \item{ramp}{A logical to toggle whether the level curves are ramped in thickness according to the probability of the line;}
-  \item{delu}{The increment for \eqn{U \in [0,1]};}
-  \item{delt}{The increment of the level curves to plot, defaults to 10-percent intervals;}
-  \item{getlevel}{If defined and level exists upon stepping through using \code{delt}, then the level curve at the \code{getlevel} is returned in a \code{list} data structure; and}
-  \item{...}{Additional arguments to pass to the \code{lines} function.}
+  \item{delu}{The increment for \eqn{\Delta u}. The default is 1 part in 1,000, which should often provide enough smoothness for many copulas in practice;}
+  \item{delt}{The increment \eqn{\Delta t} for the level curves to plot, defaults to 10-percent intervals. If \code{delt=0.5}, then only the median plus the consequences of a defined \code{getlevel} is used. If \code{NULL}, then a sequence of \eqn{t} values is not made and only \code{getlevel} is used (if available);}
+  \item{getlevel}{If defined, then it is inserted into the sequence of levels \eqn{t} and that level \eqn{t} \eqn{=} \code{getlevel} is returned in a \code{list} data structure; and}
+  \item{...}{Additional arguments to pass to the \code{lines()} function of \R.}
 }
 \value{
-  No values are returned. This function is used for its side effects.
+  Typically no values are returned because this function is used for its side effects. But the arguments can be such that the \eqn{\{u, v\}} for \eqn{\mathbf{C}(u,v) = t} are returned within an \R \code{list}.
 }
 \references{
 Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{W.H. Asquith}
-\seealso{\code{\link{COP}},
-         \code{\link{COPinv}},
-         \code{\link{level.curvesCOP}}
+\seealso{\code{\link{COPinv}},
+         \code{\link{level.curvesCOP2}}, \code{\link{level.setCOP}}
 }
 \examples{
-
 \dontrun{
 level.curvesCOP(cop=M, para=NULL, delt=.02) # Upper bounds copula
 }
-
 \dontrun{
 D <- level.curvesCOP(cop=P, getlevel=0.56)
 str(D) # empty
@@ -47,4 +44,11 @@ D <- level.curvesCOP(cop=P, getlevel=0.5)
 str(D) # contains stuff
 }
 }
-\keyword{misc}
+\keyword{visualization}
+\keyword{diagnostics}
+\concept{level curves}
+\concept{level curve}
+\concept{level sets}
+\concept{level set}
+\concept{level contours}
+\concept{level contour}
