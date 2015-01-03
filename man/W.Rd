@@ -1,8 +1,9 @@
+\encoding{utf8}
 \name{W}
 \alias{W}
-\title{ The Frechet-Hoeffding Lower Bound Copula }
+\title{ The \enc{Fréchet}{Frechet}-Hoeffding Lower Bound Copula }
 \description{
-Compute the \emph{Frechet-Hoeffding lower bound copula} (Nelson, 2006, p. 11), which is defined as
+Compute the \emph{\enc{Fréchet}{Frechet}-Hoeffding lower bound copula} (Nelsen, 2006, p. 11), which is defined as
 \deqn{\mathbf{W}(u,v) = \mathrm{max}(u+v-1,0)\mbox{.}}
 }
 \usage{
@@ -17,7 +18,7 @@ W(u, v, ...)
   The value for the copula is returned.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{M}}, \code{\link{P}}}

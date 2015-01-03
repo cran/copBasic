@@ -27,20 +27,20 @@ EMPIRsim(n=100, empgrid=NULL, kumaraswamy=FALSE, ploton=TRUE, points=TRUE, ...)
 \examples{
 \dontrun{
 pdf("EMPIRsim_experiment.pdf")
-nsim <- 5000
-para <- list(alpha=0.15, beta=0.65,
-             cop1=PLACKETTcop, cop2=PLACKETTcop, para1=0.005, para2=1000)
-set.seed(1)
-uv <- simCOP(n=nsim, cop=composite2COP, para=para, pch=16, col=rgb(0,0,0,.2))
-mtext("A highly complex simulated bivariate relation")
-# set.seed(1) # try not resetting the seed
-uv.grid <- EMPIRgrid(para=uv, deluv=0.025)
+  nsim <- 5000
+  para <- list(alpha=0.15, beta=0.65,
+               cop1=PLACKETTcop, cop2=PLACKETTcop, para1=0.005, para2=1000)
+  set.seed(1)
+  uv <- simCOP(n=nsim, cop=composite2COP, para=para, pch=16, col=rgb(0,0,0,.2))
+  mtext("A highly complex simulated bivariate relation")
+  # set.seed(1) # try not resetting the seed
+  uv.grid <- EMPIRgrid(para=uv, deluv=0.025)
 
-tmp <- EMPIRsim(n=nsim, empgrid=uv.grid, kumaraswamy=FALSE, col=rgb(1,0,0,0.1),pch=16)
-mtext("Resimulation without Kumaraswamy smoothing")
+  tmp <- EMPIRsim(n=nsim, empgrid=uv.grid, kumaraswamy=FALSE, col=rgb(1,0,0,0.1),pch=16)
+  mtext("Resimulation without Kumaraswamy smoothing")
 
-tmp <- EMPIRsim(n=nsim, empgrid=uv.grid, kumaraswamy=TRUE,  col=rgb(1,0,0,0.1),pch=16)
-mtext("Resimulation but using the Kumaraswamy Distribution for smoothing")
+  tmp <- EMPIRsim(n=nsim, empgrid=uv.grid, kumaraswamy=TRUE,  col=rgb(1,0,0,0.1),pch=16)
+  mtext("Resimulation but using the Kumaraswamy Distribution for smoothing")
 dev.off()
 }
 # See other examples under EMPIRsimv

@@ -4,7 +4,7 @@
 \description{
 Compute the inverse of a numerical partial derivative for \eqn{V} with respect to \eqn{U} of a copula or
 \deqn{t = c_u(v) = \frac{\delta \mathbf{C}(u,v)}{\delta u}\mbox{,}}
-and solving for \eqn{v}. Nelson (2006, pp. 13, 40--41) shows that this inverse is quite important for random variable generation. This function is not vectorized.
+and solving for \eqn{v}. Nelsen (2006, pp. 13, 40--41) shows that this inverse is quite important for random variable generation. This function is not vectorized.
 }
 \usage{
 derCOPinv(cop=NULL, u, t, delu=.Machine$double.eps^0.50, para=NULL, ...)
@@ -21,7 +21,7 @@ derCOPinv(cop=NULL, u, t, delu=.Machine$double.eps^0.50, para=NULL, ...)
   Value(s) for the derivative inverse are returned.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{derCOP}}}
@@ -49,5 +49,6 @@ for(i in 1:1000) {
 \keyword{copula (derivative inverse)}
 \keyword{conditional quantile function}
 \keyword{copula operator}
+\keyword{derivative}
 
 

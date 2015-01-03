@@ -73,11 +73,10 @@ lines(pp(Vblend), sort(Vblend), col=4, lwd=2) # BLUE LINE
 # Notice how the grey line and the blue diverge for about F < 0.1 and F > 0.9.
 # These are the limits of the grid spacing and linear interpolation within the
 # grid intervals is being used and not direct simulation from the Kumaraswamy.
-
-
-
-
 }
+
+
+
 }
 \keyword{empirical copula}
 \keyword{empirical copula (simulation)}

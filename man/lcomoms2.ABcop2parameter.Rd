@@ -44,8 +44,7 @@ lcomoms2.ABcop2parameter(solutionenvir=NULL,
 \references{
 Asquith, W.H., 2011, Distributional analysis with L-moment statistics using the R environment for statistical computing: Createspace Independent Publishing Platform, ISBN 978--146350841--8.
 
-Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007,
-Extremes in Nature---An approach using copulas: Springer, 289 p.
+Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in Nature---An approach using copulas: Springer, 289 p.
 }
 \author{ W.H. Asquith }
 \seealso{\code{\link{simCOP}}, \code{\link{simcompositeCOP}}, \code{\link{composite2COP}}}
@@ -101,6 +100,15 @@ image(gridCOP(cop=composite2COP, para=para), col=terrain.colors(20))
 #        abs(S$t3.12res) < 0.02 & abs(S$t3.21res) < 0.02, ]
 #print(B)
 }
+
+
+
+
+
+
+
+
+
 }
 \keyword{L-comoments}
 \keyword{copula composition}

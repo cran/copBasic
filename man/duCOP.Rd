@@ -2,7 +2,7 @@
 \alias{duCOP}
 \title{ The Dual of a Copula Function }
 \description{
-Compute the \emph{dual of a copula (function)} from a copula (Nelson, 2006, pp. 33--34), which is defined as
+Compute the \emph{dual of a copula (function)} from a copula (Nelsen, 2006, pp. 33--34), which is defined as
 
 \deqn{\mathrm{Pr}[U \le v \mathrm{\ or\ } V \le v] = \tilde{\mathbf{C}}(u,v) = u + v - \mathbf{C}(u,v)\mbox{,}}
 
@@ -10,7 +10,7 @@ where \eqn{\tilde{\mathbf{C}}(u,v)} is the dual of a copula and \eqn{u} and \eqn
 
 \deqn{\hat\mathbf{C}(u',v') + \tilde{\mathbf{C}}(u,v) \equiv 1\mbox{,}}
 
-where \eqn{\hat\mathbf{C}(u',v')} is the \emph{survival copula} in terms of exceedance probabilities \eqn{u'} and \eqn{v'} or in \pkg{copBasic} code that the functions \code{surCOP} + \code{duCOP} equal unity.
+where \eqn{\hat\mathbf{C}(u',v')} is the \emph{survival copula} in terms of exceedance probabilities \eqn{u'} and \eqn{v'} or in \pkg{copBasic} code that the functions \code{\link{surCOP}} + \code{duCOP} equal unity.
 }
 \usage{
 duCOP(u, v, cop=NULL, para=NULL, ...)
@@ -26,7 +26,7 @@ duCOP(u, v, cop=NULL, para=NULL, ...)
   Value(s) for the dual of a copula are returned.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{COP}}, \code{\link{coCOP}}, \code{\link{surCOP}} }
@@ -41,6 +41,10 @@ duCOP(cop=W,u,t); duCOP(cop=P,u,t); duCOP(cop=M,u,t); duCOP(cop=PSP,u,t)
 "MOcop" <- function(u,v, ...) { asCOP(u,v, f=MOcop.formula, ...) }
 u <- 0.2; v <- 0.75; ab <- c(1.5, 0.3)
 surCOP(1-u,1-v, cop=MOcop, para=ab) + duCOP(u,v, cop=MOcop, para=ab) # UNITY
+
+
+
+
 }
 \keyword{copula operator}
 

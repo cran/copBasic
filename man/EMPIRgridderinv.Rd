@@ -112,3 +112,4 @@ lines(qua.wrtv, col=4, lwd=2, lty=4)
 }
 \keyword{empirical copula}
 \keyword{empirical copula (derivative inverses)}
+\keyword{derivative}

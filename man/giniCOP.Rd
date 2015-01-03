@@ -2,19 +2,19 @@
 \alias{giniCOP}
 \title{ The Gini's Gamma of a Copula }
 \description{
-Compute the measure of association known as \emph{Gini's Gamma} \eqn{\gamma_\mathbf{C}} (Nelson, 2006, pp. 180--182), which is defined as
+Compute the measure of association known as \emph{Gini's Gamma} \eqn{\gamma_\mathbf{C}} (Nelsen, 2006, pp. 180--182), which is defined as
 \deqn{\gamma_\mathbf{C} = Q(\mathbf{C},\mathbf{M}) + Q(\mathbf{C},\mathbf{W})\mbox{,}}
 
-where \eqn{\mathbf{C}(u,v)} is the copula, \eqn{\mathbf{M}(u,v)} is the \code{\link{M}} function, and \eqn{\mathbf{W}(u,v)} is the \code{\link{W}} function. The function \eqn{Q(a,b)} is a \dQuote{concordance function} (Nelson, 2006, p. 158), which is implemented by a specially formed call to \code{\link{tauCOP}}. Nelson also reports that \dQuote{Gini's Gamma measures a concordance relation of \dQuote{distance} between \eqn{\mathbf{C}(u,v)} and monotone dependence, as represented by the copulas \eqn{\mathbf{M}(u,v)} and \eqn{\mathbf{W}(u,v)}.}
+where \eqn{\mathbf{C}(u,v)} is the copula, \eqn{\mathbf{M}(u,v)} is the \code{\link{M}} function, and \eqn{\mathbf{W}(u,v)} is the \code{\link{W}} function. The function \eqn{Q(a,b)} is a \dQuote{concordance function} (Nelsen, 2006, p. 158), which is implemented by a specially formed call to \code{\link{tauCOP}}. Nelsen also reports that \dQuote{Gini's Gamma measures a concordance relation of \dQuote{distance} between \eqn{\mathbf{C}(u,v)} and monotone dependence, as represented by the copulas \eqn{\mathbf{M}(u,v)} and \eqn{\mathbf{W}(u,v)}.}
 
 A simpler method of computation and the default for \code{giniCOP} is to compute Gini's \eqn{\gamma_\mathbf{C}} by
 
-\deqn{\gamma_\mathbf{C}  = 4\biggl[\int_0^1 \mathbf{C}(u,u)\,\mathrm{d}u +
-                             \int_0^1 \mathbf{C}(u,1-u)\,\mathrm{d}u\biggr] -
+\deqn{\gamma_\mathbf{C}  = 4\biggl[\int_\mathcal{I} \mathbf{C}(u,u)\,\mathrm{d}u +
+                             \int_\mathcal{I} \mathbf{C}(u,1-u)\,\mathrm{d}u\biggr] -
                            2\mbox{,}}
 or in terms of the primary \eqn{\delta(t)} and secondary \eqn{\delta^\star(t)} diagonals (see \code{\link{diagCOP}}) by
-\deqn{\gamma_\mathbf{C}  = 4\biggl[\int_0^1 \mathbf{\delta}(t)\,\mathrm{d}t +
-                             \int_0^1 \mathbf{\delta^\star
+\deqn{\gamma_\mathbf{C}  = 4\biggl[\int_\mathcal{I} \mathbf{\delta}(t)\,\mathrm{d}t +
+                             \int_\mathcal{I} \mathbf{\delta^\star
                              }(t)\,\mathrm{d}t\biggr] -
                            2\mbox{.}}
 
@@ -27,14 +27,14 @@ giniCOP(cop=NULL, para=NULL, by.concordance=FALSE, ...)
 \arguments{
   \item{cop}{A copula function;}
   \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula;}
-  \item{by.concordance}{Instead of using the single integrals (Nelson, 2006, pp. 181--182) to compute \eqn{\gamma_\mathbf{C}}, use the concordance function method implemented through \code{\link{tauCOP}}; and}
+  \item{by.concordance}{Instead of using the single integrals (Nelsen, 2006, pp. 181--182) to compute \eqn{\gamma_\mathbf{C}}, use the concordance function method implemented through \code{\link{tauCOP}}; and}
   \item{...}{Additional arguments to pass, which are dispatched to the copula function \code{cop} and possibly \code{\link{tauCOP}} if \code{by.concordance=TRUE}, such as \code{delta} used by that function.}
 }
 \value{
   The value for \eqn{\gamma_\mathbf{C}} is returned.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{blomCOP}}, \code{\link{rhoCOP}}, \code{\link{tauCOP}}

@@ -2,7 +2,7 @@
 \alias{level.setCOP2}
 \title{ Compute a Level Set of a Copula U with respect to V }
 \description{
-Compute a \emph{level curve} or \emph{level set} of a copula for \eqn{U} with respect to \eqn{V} (Nelson, 2006, pp. 12--13). The level curve at level \eqn{t} is defined for \eqn{V \mapsto [0+\Delta v, 1-\Delta v, \Delta v]} by
+Compute a \emph{level curve} or \emph{level set} of a copula for \eqn{U} with respect to \eqn{V} (Nelsen, 2006, pp. 12--13). The level curve at level \eqn{t} is defined for \eqn{V \mapsto [0+\Delta v, 1-\Delta v, \Delta v]} by
 \deqn{t = \mathbf{C}(u, v=V)\mbox{,}}
 and solving for \eqn{u}. The function is largely a dispatcher to features implemented in \code{\link{level.curvesCOP2}}.
 }
@@ -21,7 +21,7 @@ level.setCOP2(cop=NULL, para=NULL, getlevel=NULL, delv=0.001, lines=FALSE, ...)
   The level set for \eqn{t} \eqn{=} \code{getlevel} is returned.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{W.H. Asquith}
 \seealso{\code{\link{level.setCOP}}, \code{\link{level.curvesCOP2}}

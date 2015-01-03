@@ -2,7 +2,7 @@
 \alias{composite2COP}
 \title{ Composition of Two Copulas with Two Compositing Parameters }
 \description{
-The \emph{composition of two copulas} (Salvadori et al., 2007, p. 266, Prop. C.3) provides for more sophisticated structures of dependence between variables than many single parameter copula can provide. Further, asymmetrical copulas are readily obtained from symmetrical copulas. Let \eqn{\mathbf{A}} and \eqn{\mathbf{B}} be copulas with respective parameters \eqn{\Theta_\mathbf{A}} and \eqn{\Theta_\mathbf{B}}, then
+The \emph{composition of two copulas} (Salvadori \emph{et al.}, 2007, p. 266, Prop. C.3) provides for more sophisticated structures of dependence between variables than many single parameter copula can provide. Further, asymmetrical copulas are readily obtained from symmetrical copulas. Let \eqn{\mathbf{A}} and \eqn{\mathbf{B}} be copulas with respective parameters \eqn{\Theta_\mathbf{A}} and \eqn{\Theta_\mathbf{B}}, then
 
 \deqn{\mathbf{C}_{\alpha,\beta}(u,v) = \mathbf{A}(u^\alpha,    v^\beta) \cdot
                               \mathbf{B}(u^{1-\alpha},v^{1-\beta})\mbox{,}}
@@ -43,8 +43,7 @@ The following descriptions list in detail the structure and content of the \code
 The \code{para} argument of this function also can be passed to \code{\link{composite1COP}}. Albeit, the second copula and its parameters would not be used.  A more complex (extended) composition in \code{\link{composite3COP}} extends this basic parameter structure.
 }
 \references{
-Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007,
-Extremes in Nature---An approach using copulas: Springer, 289 p.
+Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in Nature---An approach using copulas: Springer, 289 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{COP}}, \code{\link{composite1COP}}, \code{\link{composite3COP}}}
@@ -56,16 +55,16 @@ para <- list(alpha=alpha, beta=beta, cop1=W, cop2=PSP, para1=Theta1, para2=Theta
 t <- composite2COP(0.4,0.6,para)
 print(t)
 
+
 # In this example, the N4212cop uses "3" as its parameter value.
 para <- list(alpha=alpha, beta=beta, cop1=W, cop2=N4212cop, para1=Theta1, para2=3)
 t <- composite2COP(0.4,0.6,para)
 print(t)
-
 \dontrun{
 # This example does a great job of showing a composited copula with a near singularity,
 # but with leakage of chance to the upper left. The example is also critical because
 # it shows that gridCOP is returning a matrix in the proper orientation relative to
-# the level.curvesCOP and simCOP functions. Eexample is x-ref'ed from gridCOP() docs.
+# the level.curvesCOP and simCOP functions. Example is cross-ref'ed from gridCOP() docs.
 layout(matrix(1:2,byrow=TRUE))
 para <- list(alpha=0.5, beta=0.90, cop1=M, cop2=N4212cop, para1=NA, para2=1.4)
 image(gridCOP(cop=composite2COP, para=para, delta=0.01), col=terrain.colors(30),

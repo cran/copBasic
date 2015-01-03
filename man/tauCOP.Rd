@@ -2,18 +2,18 @@
 \alias{tauCOP}
 \title{ The Kendall's Tau of a Copula }
 \description{
-Compute the measure of association known as \emph{Kendall's Tau} \eqn{\tau_\mathbf{C}} of a copula according to Nelson (2006, sec. 5.1.1 and p. 161) by
+Compute the measure of association known as \emph{Kendall's Tau} (\eqn{\tau_K}) of a copula (\eqn{\tau_\mathbf{C}}) according to Nelsen (2006, sec. 5.1.1 and p. 161) by
 \deqn{\tau_\mathbf{C} = Q(\mathbf{C}, \mathbf{C}) = 4\int_0^1 \int_0^1
                          \mathbf{C}(u,v)\,\mathrm{d}\mathbf{C}(u,v) - 1\mbox{,}}
-where \eqn{Q(\mathbf{C}, \mathbf{C})} is a concordance function of a copula with itself. However, Nelson (2006, p. 164) reports that this form is often not amenable to computation when a copula when there is a singular component to the copula and that the expression
-\deqn{\tau_\mathbf{C} = 1 - 4\int_0^1 \int_0^1
+where \eqn{Q(\mathbf{C}, \mathbf{C})} is a concordance function of a copula with itself. However, Nelsen (2006, p. 164) reports that this form is often not amenable to computation when a copula when there is a singular component to the copula and that the expression
+\deqn{\tau_\mathbf{C} = 1 - 4\int\!\!\int_{\mathcal{I}^2}
                          \frac{\delta\mathbf{C}(u,v)}{\delta u}
                          \frac{\delta\mathbf{C}(u,v)}{\delta v}\,
                          \mathrm{d}u\mathrm{d}v}
-is to be preferred. Such an expression hence relies on the partial numerical derivatives of the copula provided by \code{\link{derCOP}} and \code{\link{derCOP2}}. Nelson's preferred expression is used by the \code{tauCOP} function.  Nelson (2006, pp. 175--176) reports that the following relation between \eqn{\tau_\mathbf{C}} and \eqn{\rho_\mathbf{C}} (\code{\link{rhoCOP}}) exists
+is to be preferred. Such an expression hence relies on the partial numerical derivatives of the copula provided by \code{\link{derCOP}} and \code{\link{derCOP2}}. Nelsen's preferred expression is used by the \code{tauCOP} function.  Nelsen (2006, pp. 175--176) reports that the following relation between \eqn{\tau_\mathbf{C}} and \eqn{\rho_\mathbf{C}} (\code{\link{rhoCOP}}) exists
 \eqn{-1 \le 3\tau - 2\rho \le 1} (see \code{\link{rhoCOP}} for more details).
 
-Nelson (2006, pp. 160--161) lists some special identities involving the concordance function \eqn{Q(a,b)}:
+Nelsen (2006, pp. 160--161) lists some special identities involving the concordance function \eqn{Q(a,b)}:
 \deqn{Q(\mathbf{M}, \mathbf{M}) = 4\int_0^1 u\,\mathrm{d}u - 1 = 1\mbox{,}}
 \deqn{Q(\mathbf{M}, \mathbf{\Pi}) = 4\int_0^1 u^2\,\mathrm{d}u - 1 = 1/3\mbox{,}}
 \deqn{Q(\mathbf{M}, \mathbf{W}) = 4\int_{1/2}^1 (2u-1)\,\mathrm{d}u - 1 = 0\mbox{,}}
@@ -38,13 +38,13 @@ tauCOP( cop=NULL,  para=NULL,
   The value for \eqn{\tau_\mathbf{C}} is returned.
 }
 \note{
-Although titled for computation of Kendall's Tau, this function can trigger the concordance function \eqn{Q(\mathbf{C}_1, \mathbf{C}_2)} (see Nelson (2006, pp. 158--159) when given two different copulas and respective parameters as arguments. A useful relation is
-\deqn{\int_0^1\int_0^1 \mathbf{C}_1(u,v)\,\mathrm{d}\mathbf{C}_2(u,v) =
-      \frac{1}{2} - \int_0^1\int_0^1 \frac{\delta}{\delta u}\mathbf{C}_1(u,v)\,\frac{\delta}{\delta v}\mathbf{C}_2(u,v)\,\mathrm{d}u\mathrm{d}v\mbox{,} }
+Although titled for computation of Kendall's Tau, this function can trigger the concordance function \eqn{Q(\mathbf{C}_1, \mathbf{C}_2)} (see Nelsen (2006, pp. 158--159) when given two different copulas and respective parameters as arguments. A useful relation is
+\deqn{\int\!\!\int_{\mathcal{I}^2} \mathbf{C}_1(u,v)\,\mathrm{d}\mathbf{C}_2(u,v) =
+      \frac{1}{2} - \int\!\!\int_{\mathcal{I}^2} \frac{\delta}{\delta u}\mathbf{C}_1(u,v)\,\frac{\delta}{\delta v}\mathbf{C}_2(u,v)\,\mathrm{d}u\mathrm{d}v\mbox{,} }
 where \eqn{\mathbf{C}_1(u,v)} is the first copula and \eqn{\mathbf{C}_2(u,v)} is the second copula.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{blomCOP}}, \code{\link{giniCOP}}, \code{\link{rhoCOP}}, \code{\link{derCOP}}, \code{\link{derCOP2}}}
@@ -62,7 +62,8 @@ taus <- replicate(100, dotau(1000))
 tau.sample <- mean(taus); print(tau.sample) # 0.3333763
 }
 \dontrun{
-# The rational values or integers may be derived analytically
+# Nelsen (2006, pp. 160-161, numeric results shown thereine)
+# The rational values or integers may be derived analytically.
 tauCOP(cop=M, cop2=M) #   1, correct
 tauCOP(cop=M, cop2=P) # 1/3, correct
 tauCOP(cop=P, cop2=M) # 1/3, correct
@@ -92,4 +93,4 @@ tauCOP(cop=composite2COP, para=para, brute=TRUE) # about 0.95
 }
 \keyword{copula (characteristics)}
 \keyword{copula (properties)}
-
+\keyword{Nelsen (2006) Examples and Exercises}

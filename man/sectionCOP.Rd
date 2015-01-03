@@ -2,7 +2,7 @@
 \alias{sectionCOP}
 \title{ The Sections or Derivative of the Sections of a Copula }
 \description{
-Compute the \emph{copula sections} or the \emph{(partial) derivatives of copula sections} of a copula (Nelson, 2006, pp. 12--14). The \emph{horizontal section} at \eqn{V=a} (a constant) is
+Compute the \emph{copula sections} or the \emph{(partial) derivatives of copula sections} of a copula (Nelsen, 2006, pp. 12--14). The \emph{horizontal section} at \eqn{V=a} (a constant) is
 \deqn{t \mapsto \mathbf{C}(t,a)\mbox{, and}}
 the \emph{vertical  section} at \eqn{U=a} (a constant, with respect to \eqn{V} or \code{wrtV=TRUE}) is
 \deqn{t \mapsto \mathbf{C}(a,t)\mbox{.}}
@@ -29,14 +29,14 @@ sectionCOP(f, cop=NULL,  para=NULL, wrtV=FALSE, dercop=FALSE, delt=0.005,
 }
 \value{
   An \R \code{list} is returned.
-  \item{t}{The nonexceedance probability along the section. The nomenclature \eqn{t} mimics Nelson (2006) and is \emph{not} the same as the \eqn{u} or \eqn{v};}
+  \item{t}{The nonexceedance probability along the section. The nomenclature \eqn{t} mimics Nelsen (2006) and is \emph{not} the same as the \eqn{u} or \eqn{v};}
   \item{seccop}{The section of the copula or its derivative;}
   \item{wrt}{A text string declaring what the setting for \code{wrtV} was;}
   \item{fvalue}{The provided value of nonexceedance probability; and}
   \item{isderivative}{A logical stating whether the derivative of the section is \code{seccop}.}
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{COP}}, \code{\link{diagCOP}}}
@@ -48,12 +48,13 @@ tmp <- sectionCOP(0.55, cop=PSP, wrtV=TRUE, ploton=FALSE, lwd=2, col=3)
 # now add the v=0.85 section and the u=0.85, again overlay each other
 tmp <- sectionCOP(0.85, cop=PSP, ploton=FALSE,             lwd=5, col=2, lty=2)
 tmp <- sectionCOP(0.85, cop=PSP, wrtV=TRUE, ploton=FALSE,  lwd=2, col=3, lty=2)
-
+\dontrun{
 # EXAMPLE 2, v=0.35 section and derivative (the conditional distribution) function
 tmp <- sectionCOP(0.35, cop=PSP, ylab="COPULA SECTIONS OR DERIV.", lwd=5, col=3)
 tmp <- sectionCOP(0.35, cop=PSP, dercop=TRUE, ploton=FALSE,               col=3)
 # The thin green line represents the cumulative distribution function conditional
 # on u = 0.35 from the derCOP function.  Then see Example 3
+}
 \dontrun{
 # EXAMPLE 3 (random selection commented out)
 #para <- list(cop1=PLACKETTcop,  cop2=PLACKETTcop, alpha=runif(1), beta=runif(1),

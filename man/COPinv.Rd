@@ -4,7 +4,7 @@
 \description{
 Compute the \emph{inverse of a copula} for \eqn{V} with respect to \eqn{U} or
 \deqn{t = \mathbf{C}(u=U,v)\mbox{,}}
-and solving for \eqn{v}.  Nelson (2006, p. 12) does not so name this function as an \dQuote{inverse}. The \code{COPinv} function is internally used by \code{\link{level.curvesCOP}}.
+and solving for \eqn{v}.  Nelsen (2006, p. 12) does not so name this function as an \dQuote{inverse.} The \code{COPinv} function is internally used by \code{\link{level.curvesCOP}}.
 }
 \usage{
 COPinv(cop=NULL, u, t, para=NULL, ...)
@@ -20,7 +20,7 @@ COPinv(cop=NULL, u, t, para=NULL, ...)
   Value(s) for \eqn{v} are returned.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{W.H. Asquith}
 \seealso{\code{\link{COP}},

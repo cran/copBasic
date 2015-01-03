@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{PlackettPlackettABKGtest}
 \docType{data}
 \alias{PlackettPlackettABKGtest}
@@ -16,7 +17,7 @@ The construction of an asymmetric copula from (extended) composition two copulas
                               \mathbf{B}([u^{1-\kappa}]^{1-\alpha},[v^{1-\gamma}]^{1-\beta})\mbox{,}}
 defines a family of copulas \eqn{\mathbf{C}_{\alpha,\beta,\kappa,\gamma}}, with compositing parameters \eqn{\alpha,\beta,\kappa,\gamma \in \mathcal{I}:[0,1]}.
 
-The first Plackett copula named \eqn{\mathbf{A}} (\code{\link{PLACKETTcop}}) was randomly generated between the \emph{Frechet-Hoeffding lower bound copula} \eqn{\mathbf{W}(u,v)} (see \code{\link{W}}) and the \emph{Frechet-Hoeffding upper bound copula} \eqn{\mathbf{M}(u,v)} (see \code{\link{M}}). The second Plackett copula named \eqn{\mathbf{B}} (\code{\link{PLACKETTcop}}) was randomly generated in a similar fashion as the copula in \eqn{\mathbf{A}}.
+The first Plackett copula named \eqn{\mathbf{A}} (\code{\link{PLACKETTcop}}) was randomly generated between the \emph{\enc{Fréchet}{Frechet}-Hoeffding lower bound copula} \eqn{\mathbf{W}(u,v)} (see \code{\link{W}}) and the \emph{\enc{Fréchet}{Frechet}-Hoeffding upper bound copula} \eqn{\mathbf{M}(u,v)} (see \code{\link{M}}). The second Plackett copula named \eqn{\mathbf{B}} (\code{\link{PLACKETTcop}}) was randomly generated in a similar fashion as the copula in \eqn{\mathbf{A}}.
 
 To further clarify, \eqn{\mathbf{A}_\Theta} parameter is on the interval \eqn{[0,\infty]} and the \eqn{\mathbf{B}_\Theta} parameter is on the inteval \eqn{[0,\infty]}. In reality, the \eqn{\Theta} parameters were generated uniformly in log-space and then transformed. The base-10 log of \eqn{\mathbf{A}_\Theta} was on the interval \eqn{[-5,5]}, and the log of \eqn{\mathbf{B}_\Theta} was on the interval \eqn{[-5,5]}. (See such limits of generation in the Source section of this documentation.)
 }
@@ -55,8 +56,7 @@ save(PlackettPlackettABKGtest, file="PlackettPlackettABKG.RData", compress="xz")
 For the generation process, the \code{mainpara} list specifies the two copulas to use in the composite, and two generation functions for the parameters of the respective copulas are housed in \code{para1gen} and \code{para2gen}. For each of 20,500 simulations of size \eqn{n=1{,}000} of the stochastically generated Plackett-Plackett composited copulas, the L-correlation, L-coskew, and L-cokurtosis matrices were computed. The opposing diagonals of the L-correlation and L-coskew of the matrices were requested internally by \code{\link{simcompositeCOP}} and are shown. The L-comoment matrices were computed by the \code{lcomoms2(nmom=4)} function of the \pkg{lmomco} package.
 }
 \references{
-Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007,
-Extremes in Nature---An approach using copulas: Springer, 289 p.
+Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in Nature---An approach using copulas: Springer, 289 p.
 
 Serfling, R., and Xiao, P., 2007, A contribution to multivariate L-moments---L-comoment matrices: Journal of Multivariate Analysis, v. 98, pp. 1765--1781.
 }

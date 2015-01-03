@@ -22,6 +22,13 @@ gridCOP(cop=NULL, para=NULL, delta=0.05, transpose=TRUE, ...)
 }
 \examples{
 image(gridCOP(cop=PSP))
+\dontrun{
+# See this composite copula also used in densityCOPplot().
+para <- list(alpha=0.15, beta=0.90, kappa=0.06, gamma=0.96,
+             cop1=GHcop, cop2=PLACKETTcop, para1=5.5, para2=0.07)
+GR <- gridCOP(cop=composite2COP, para=para, delta=0.005)
+image(GR, col=terrain.colors(20))
+}
 }
 \keyword{copula utility}
 \keyword{copulatic surface}

@@ -2,7 +2,7 @@
 \alias{simCOPmicro}
 \title{ Simulate V from U through a Copula by Numerical Derivative Method }
 \description{
-Perform simulation of uniform random but coupled variables \eqn{V} from \eqn{U} through a copula (Nelson, 2006, p. 32) by numerical derivatives of the copula. A more elaborate implementation is available in \code{\link{simCOP}}. The \code{simCOPmicro} function is intended to be an minimalist version for copula simulation---a minimalist version is useful for pedagogic purposes.
+Perform simulation of uniform random but coupled variables \eqn{V} from \eqn{U} through a copula (Nelsen, 2006, p. 32) by numerical derivatives of the copula. A more elaborate implementation is available in \code{\link{simCOP}}. The \code{simCOPmicro} function is intended to be an minimalist version for copula simulation---a minimalist version is useful for pedagogic purposes.
 }
 \usage{
 simCOPmicro(u, cop=NULL, para=NULL, ...)
@@ -17,7 +17,7 @@ simCOPmicro(u, cop=NULL, para=NULL, ...)
   Simulated value(s) of nonexceedance probability \eqn{v} are returned based on the nonexceedance probabilities \eqn{u} in argument \code{u}.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{simCOP}}}

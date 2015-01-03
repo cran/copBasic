@@ -2,7 +2,7 @@
 \alias{composite3COP}
 \title{ (Extended) Composition of Two Copulas with Four Compositing Parameters }
 \description{
-The \emph{(extended) composition of two copulas}  (Salvadori et al., 2006, p. 266, Prop. C.4) provides for even more sophisticated structures of dependence between variables than two-copula composition in \code{\link{composite2COP}}. Let \eqn{\mathbf{A}} and \eqn{\mathbf{B}} be copulas with respective parameters \eqn{\Theta_\mathbf{A}} and \eqn{\Theta_\mathbf{B}}, then
+The \emph{(extended) composition of two copulas}  (Salvadori \emph{et al.}, 2006, p. 266, Prop. C.4) provides for even more sophisticated structures of dependence between variables than two-copula composition in \code{\link{composite2COP}}. Let \eqn{\mathbf{A}} and \eqn{\mathbf{B}} be copulas with respective parameters \eqn{\Theta_\mathbf{A}} and \eqn{\Theta_\mathbf{B}}, then
 
 \deqn{\mathbf{C}_{\alpha,\beta,\kappa,\gamma}(u,v) = u^\kappa v^\gamma \cdot
                               \mathbf{A}([u^{1-\kappa}]^\alpha,    [v^{1-\gamma}]^\beta) \cdot
@@ -36,14 +36,13 @@ The following descriptions list in detail the structure and content of the \code
   \item{\code{para1}}{--- Vector of parameters \eqn{\Theta_\mathbf{A}} for \eqn{\mathbf{A}}; and}
   \item{\code{para2}}{--- Vector of parameters \eqn{\Theta_\mathbf{B}} for \eqn{\mathbf{B}}.}
 
-The first example produces two plots. These are extremely informative for nuances of copula theory. Whereas it is difficult in prose to describe. Users are strongly encouraged that once full understanding of connection of red and green between the easier to understand bivariate plot and the plot showing the sections and derivatives of the sections is achieved that much of copula theory will be mastered---get a copy of Nelson (2006) and (or) Salvadori and others (2007).
+The first example produces two plots. These are extremely informative for nuances of copula theory. Whereas it is difficult in prose to describe. Users are strongly encouraged that once full understanding of connection of red and green between the easier to understand bivariate plot and the plot showing the sections and derivatives of the sections is achieved that much of copula theory will be mastered---get a copy of Nelsen (2006) and (or) Salvadori and others (2007).
 }
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 
-Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007,
-Extremes in Nature---An approach using copulas: Springer, 289 p.
+Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in Nature---An approach using copulas: Springer, 289 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{simCOP}}, \code{\link{composite1COP}}, \code{\link{composite2COP}}, \code{\link{simcomposite3COP}}}

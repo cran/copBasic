@@ -2,17 +2,13 @@
 \alias{coCOP}
 \title{ The Co-Copula Function }
 \description{
-Compute the \emph{co-copula (function)} from a copula (Nelson, 2006, pp. 33--34), which is defined as
+Compute the \emph{co-copula (function)} from a copula (Nelsen, 2006, pp. 33--34), which is defined as
 
 \deqn{\mathrm{Pr}[U > u \mathrm{\ or\ } V > v] = \mathbf{C}^{\star}(u',v') = 1 - \mathbf{C}(u',v')\mbox{,}}
 
 where \eqn{\mathbf{C}^{\star}(u',v')} is the co-copula and \eqn{u'} and \eqn{v'} are exceedance probabilities, which are equivalent to \eqn{1-u} and \eqn{1-v} respectively. The co-copula is the expression for the probability that either \eqn{U > u} or \eqn{V > v} when the arguments to \eqn{\mathbf{C}^{\star}(u',v')} are exceedance probabilities, which is unlike the \emph{dual of a copula function} (see \code{\link{duCOP}}) that provides \eqn{\mathrm{Pr}[U \le u \mathrm{\ or\ } V \le v]}.
 
-The co-copula is a function and not in itself a copula. Some rules of copulas mean that
-
-\eqn{\mathbf{C}(u,v) + \mathbf{C}^{\star}(u',v') \equiv 1}
-
-or in \pkg{copBasic} code that the functions \code{COP} + \code{coCOP} equal unity.
+The co-copula is a function and not in itself a copula. Some rules of copulas mean that \eqn{\mathbf{C}(u,v) + \mathbf{C}^{\star}(u',v') \equiv 1} or in \pkg{copBasic} code that the functions \code{\link{COP}} + \code{coCOP} equal unity.
 }
 \usage{
 coCOP(u, v, cop=NULL, para=NULL, exceedance=TRUE, ...)
@@ -29,10 +25,10 @@ coCOP(u, v, cop=NULL, para=NULL, exceedance=TRUE, ...)
   The value(s) for the co-copula are returned.
 }
 \note{
-The author (Asquith) finds the use of exceedance probabilities delicate in regards to Nelson's notation having grown up in a strictly nonexceedance world. The \code{coCOP} function and \code{surCOP} have the \code{exceedance} argument to serve as a reminder that the co-copula as usually defined uses exceedance probabilities as its arguments. Although the arguments as code \code{u} and \code{v} do not mimic the overline nomenclature of the exceedance probabilities.
+The author (Asquith) finds the use of exceedance probabilities delicate in regards to Nelsen's notation having grown up in a strictly nonexceedance world. The \code{coCOP} function and \code{\link{surCOP}} have the \code{exceedance} argument to serve as a reminder that the co-copula as usually defined uses exceedance probabilities as its arguments. Although the arguments as code \code{u} and \code{v} do not mimic the overline nomenclature of the exceedance probabilities.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{COP}}, \code{\link{surCOP}}, \code{\link{duCOP}} }

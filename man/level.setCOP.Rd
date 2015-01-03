@@ -2,7 +2,7 @@
 \alias{level.setCOP}
 \title{ Compute a Level Set of a Copula V with respect to U }
 \description{
-Compute a \emph{level curve} or \emph{level set} of a copula for \eqn{V} with respect to \eqn{U} (Nelson, 2006, pp. 12--13). The level curve at level \eqn{t} is defined for \eqn{U \mapsto [0+\Delta u, 1-\Delta u, \Delta u]} by
+Compute a \emph{level curve} or \emph{level set} of a copula for \eqn{V} with respect to \eqn{U} (Nelsen, 2006, pp. 12--13). The level curve at level \eqn{t} is defined for \eqn{U \mapsto [0+\Delta u, 1-\Delta u, \Delta u]} by
 \deqn{t = \mathbf{C}(u=U, v)\mbox{,}}
 and solving for \eqn{v}. The function is largely a dispatcher to features implemented in \code{\link{level.curvesCOP}}.
 }
@@ -21,15 +21,15 @@ level.setCOP(cop=NULL, para=NULL, getlevel=NULL, delu=0.001, lines=FALSE, ...)
   The level set for \eqn{t} \eqn{=} \code{getlevel} is returned.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{W.H. Asquith}
 \seealso{\code{\link{level.setCOP2}}, \code{\link{level.curvesCOP}}
 }
 \examples{
-set <- level.setCOP(cop=PSP, getlevel=0.23) # then continue on with the ## Not Run:
+set <- level.setCOP(cop=PSP, getlevel=0.23, delu=0.01) # then continue on with the ## Not Run:
 \dontrun{
-level.curvesCOP(cop=PSP, delu=0.01) # 0.01 for R CMD check --timings speed
+level.curvesCOP(cop=PSP) # The previously used delu=0.01 is for --timings, use delu=0.001
 lines(set$U, set$V, col=2, lwd=2) # manually draw the 23rd percentile
 set <- level.setCOP(cop=PSP, para=3.1, getlevel=0.67, lines=TRUE, col=4, lwd=4)
 # Notice the change in the lines argument and using levelsetCOP2 to draw.

@@ -2,7 +2,7 @@
 \alias{qua.regressCOP2}
 \title{ Perform Quantile Regression using a Copula by Numerical Derivative Method for U with respect to V}
 \description{
-Perform \emph{quantile regression} (Nelson, 2006, pp. 217--218) using a copula by numerical derivatives of the copula. If \eqn{X} and \eqn{Y} are random variables having quantile functions \eqn{x(F)} and \eqn{y(G)} and letting \eqn{x=\tilde{x}(y)} denote a solution to \eqn{\mathrm{Pr}[X \le x\mid Y = y] = F}, where \eqn{F} is a nonexceedance probability. Then the curve \eqn{x=\tilde{x}(y)} is the quantile regression curve of \eqn{U} or \eqn{X} with respect to  \eqn{V} or \eqn{Y}, respectively. If \eqn{F=1/2}, then \emph{median regression} is performed (\code{\link{med.regressCOP2}}). Using copulas, the quantile regression is expressed as
+Perform \emph{quantile regression} (Nelsen, 2006, pp. 217--218) using a copula by numerical derivatives of the copula. If \eqn{X} and \eqn{Y} are random variables having quantile functions \eqn{x(F)} and \eqn{y(G)} and letting \eqn{x=\tilde{x}(y)} denote a solution to \eqn{\mathrm{Pr}[X \le x\mid Y = y] = F}, where \eqn{F} is a nonexceedance probability. Then the curve \eqn{x=\tilde{x}(y)} is the quantile regression curve of \eqn{U} or \eqn{X} with respect to  \eqn{V} or \eqn{Y}, respectively. If \eqn{F=1/2}, then \emph{median regression} is performed (\code{\link{med.regressCOP2}}). Using copulas, the quantile regression is expressed as
 \deqn{\mathrm{Pr}[X \le x\mid Y = y] = \mathrm{Pr}[U \le F(x) \mid V = F] = \mathrm{Pr}[U \le u\mid V = F] = \frac{\delta \mathbf{C}(u,v)}{\delta v}\mbox{,}}
 where \eqn{v = G(y)} and \eqn{u = F(x)}. The general algorithm is
 \enumerate{
@@ -29,7 +29,7 @@ qua.regressCOP2(f=0.5, v=seq(0.01,0.99, by=0.01), cop=NULL, para=NULL, ...)
   An \R \code{data.frame} of the regressed probabilities of \eqn{U} and \eqn{V=v} is returned.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{med.regressCOP2}}, \code{\link{derCOPinv2}}}

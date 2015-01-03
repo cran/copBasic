@@ -2,11 +2,11 @@
 \alias{wolfCOP}
 \title{ The Schweizer and Wolff's Sigma of a Copula }
 \description{
-Compute the measure of association known as \emph{Schweizer and Wolff's Sigma} \eqn{\sigma_\mathbf{C}} of a copula according to Nelson (2006, p. 209) by
-\deqn{\sigma_\mathbf{C} = 12\int_0^1 \int_0^1 |\mathbf{C}(u,v) - uv|\,\mathrm{d}u\mathrm{d}v\mbox{.}}
+Compute the measure of association known as \emph{Schweizer and Wolff's Sigma} \eqn{\sigma_\mathbf{C}} of a copula according to Nelsen (2006, p. 209) by
+\deqn{\sigma_\mathbf{C} = 12\int\!\!\int_{\mathcal{I}^2} |\mathbf{C}(u,v) - uv|\,\mathrm{d}u\mathrm{d}v\mbox{.}}
 It is obvious that this measure of association is similar to the following form of Spearman's Rho
-\deqn{\rho_\mathbf{C} = 12\int_0^1 \int_0^1 [\mathbf{C}(u,v) - uv]\,\mathrm{d}u\mathrm{d}v\mbox{,\ and}}
-if a copula is positively quadrant dependent (PQD, see \code{\link{isCOP.PQD}}) then \eqn{\sigma_\mathbf{C} = \rho_\mathbf{C}} and conversely if a copula is negatively quadrant dependent (NQD) then \eqn{\sigma_\mathbf{C} = -\rho_\mathbf{C}}. However, a feature that makes \eqn{\sigma_\mathbf{C}} especially attractive is that random variables \eqn{X} and \eqn{Y} that are not PQD or NQD---that is copulas that are neither larger nor smaller than \eqn{\mathbf{\Pi}}---is that \dQuote{\eqn{\sigma_\mathbf{C}} is often a better measure of [dependency] than \eqn{\rho_\mathbf{C}}} (Nelson, 2006, p. 209).
+\deqn{\rho_\mathbf{C} = 12\int\!\!\int_{\mathcal{I}^2} [\mathbf{C}(u,v) - uv]\,\mathrm{d}u\mathrm{d}v\mbox{,\ and}}
+if a copula is positively quadrant dependent (PQD, see \code{\link{isCOP.PQD}}) then \eqn{\sigma_\mathbf{C} = \rho_\mathbf{C}} and conversely if a copula is negatively quadrant dependent (NQD) then \eqn{\sigma_\mathbf{C} = -\rho_\mathbf{C}}. However, a feature that makes \eqn{\sigma_\mathbf{C}} especially attractive is that random variables \eqn{X} and \eqn{Y} that are not PQD or NQD---that is copulas that are neither larger nor smaller than \eqn{\mathbf{\Pi}}---is that \dQuote{\eqn{\sigma_\mathbf{C}} is often a better measure of [dependency] than \eqn{\rho_\mathbf{C}}} (Nelsen, 2006, p. 209).
 }
 \usage{
 wolfCOP(cop=NULL, para=NULL, brute=FALSE, delta=0.002, ...)
@@ -22,7 +22,7 @@ wolfCOP(cop=NULL, para=NULL, brute=FALSE, delta=0.002, ...)
   The value for \eqn{\sigma_\mathbf{C}} is returned.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{hoefCOP}}, \code{\link{rhoCOP}}
@@ -35,12 +35,11 @@ para <- list(cop1=PLACKETTcop, cop2=PLACKETTcop, para1=0.145, para2=21.9,
              alpha=0.81,       beta=0.22)
 D <- simCOP(n=250, cop=composite2COP, para=para,
             cex=0.5, col=rgb(0,0,0,0.2), pch=16)
-# Globally PQD but here is a significant local NQD part of IxI space.
+# Globally PQD but there is a significant local NQD part of IxI space that is
 PQD <- isCOP.PQD(cop=composite2COP, para=para, uv=D)
 points(D, col=PQD$local.PQD+2, lwd=2)
-# that is clearly NQD, so this copula interacts through the P copula.
-# Hence seemingly by the logical of Nelson (2006), then Schweizer-
-# Wolff Sigma should be larger than Spearman Rho.
+# clearly NQD, so this copula interacts through the P copula. Hence by the logic
+# of Nelsen (2006), then Schweizer-Wolff Sigma should be larger than Spearman Rho.
 wolfCOP(cop=composite2COP, para=para) # 0.08373378
  rhoCOP(cop=composite2COP, para=para) # 0.02845131
 hoefCOP(cop=composite2COP, para=para) # 0.08563823

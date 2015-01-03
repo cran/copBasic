@@ -2,7 +2,7 @@
 \alias{EMPIRgrid}
 \title{ Grid of the Bivariate Emprical Copula }
 \description{
-Generate a gridded representation of the bivariate empirical copula (see \code{\link{EMPIRcop}}, Salvadori et al., 2007, p. 140).  This function has the primary intention of supporting 3-D renderings or 2-D images of the \emph{copulatic surface}, but many empirical copula functions in \pkg{copBasic} rely on the grid of the empirical copula---unlike the functions support parametric copulas.
+Generate a gridded representation of the bivariate empirical copula (see \code{\link{EMPIRcop}}, Salvadori \emph{et al.}, 2007, p. 140).  This function has the primary intention of supporting 3-D renderings or 2-D images of the \emph{copulatic surface}, but many empirical copula functions in \pkg{copBasic} rely on the grid of the empirical copula---unlike the functions support parametric copulas.
 }
 \usage{
 EMPIRgrid(para=NULL, deluv=0.05, verbose=FALSE, ...)
@@ -20,8 +20,7 @@ EMPIRgrid(para=NULL, deluv=0.05, verbose=FALSE, ...)
 The extensive suite of examples is included here because the various ways that algorithms involving empirical copulas can be tested. The figures also provide excellent tools for education on copulas.
 }
 \references{
-Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007,
-Extremes in Nature---An approach using copulas: Springer, 289 p.
+Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in Nature---An approach using copulas: Springer, 289 p.
 }
 \author{ W.H. Asquith }
 \seealso{ \code{\link{EMPIRcop}}, \code{\link{EMPIRcopdf}} }
@@ -48,7 +47,7 @@ empcop   <- EMPIRcopdf(para=uv) # data.frame of all points
 
 # EXAMPLE 1: PLOT NUMBER 1
 the.persp <- persp(the.grid$empcop, theta=-25, phi=20,
-              xlab="U VARIABLE", ylab="V VARIABLE", zlab="COPULA C(u,v)")
+                   xlab="U VARIABLE", ylab="V VARIABLE", zlab="COPULA C(u,v)")
 
 # EXAMPLE 1: PLOT NUMBER 2 (see change in interaction with variable 'the.grid')
 the.persp <- persp(x=the.grid$u, y=the.grid$v, z=the.grid$empcop, theta=-25, phi=20,
@@ -84,7 +83,7 @@ lines(thelines, lwd=4, col=6)
 # An asymmetric example to demonstrate that the grid is populated with the
 # correct orientation---meaning U is the horizontal and V is the vertical.
 "MOcop" <- function(u,v, para=NULL) { # Marshall-Olkin copula
-  alpha <- para[1]; beta  <- para[2]; return(min(v*u^(1-alpha), u*v^(1-beta)))
+   alpha <- para[1]; beta  <- para[2]; return(min(v*u^(1-alpha), u*v^(1-beta)))
 }
 # EXAMPLE 2: PLOT NUMBER 1 # Note the asymmetry!
 uv <- simCOP(1000, cop=MOcop, para=c(0.4,0.9)) # The parameters cause asymmetry.

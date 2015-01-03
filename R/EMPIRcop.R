@@ -1,9 +1,11 @@
 "EMPIRcop" <-
-function(u,v, para=NULL, bernstein=FALSE, bernsteinprogress=TRUE, ...) {
+function(u,v, para=NULL, weibull=FALSE, bernstein=FALSE, bernsteinprogress=TRUE, ...) {
+
+  uobs <- vobs <- NA
   if(exists("para", para)) {
-     uobs <- para$para[,1];
-     vobs <- para$para[,2];
-     if(exists("bernstein", para))         bernstein         <- para$bernstein
+     uobs <- para$para[,1]
+     vobs <- para$para[,2]
+     if(exists("bernstein",         para)) bernstein         <- para$bernstein
      if(exists("bernsteinprogress", para)) bernsteinprogress <- para$bernsteinprogress
      para <- para$para # now reset the para to ONLY have the uobs and vobs because if
      # bernstein is triggered the a secondary call to this function is made and bernstein
@@ -14,9 +16,9 @@ function(u,v, para=NULL, bernstein=FALSE, bernsteinprogress=TRUE, ...) {
     return(NULL)
   }
 
-  uobs <- para[,1];
-  vobs <- para[,2];
-  nobs <- length(uobs);
+  uobs <- para[,1]
+  vobs <- para[,2]
+  nobs <- length(uobs); nobs1 <- nobs + 1
 
   nu <- length(u); nv <- length(v)
   if(nu > 1 & nv > 1 & nu != nv) {
@@ -49,10 +51,17 @@ function(u,v, para=NULL, bernstein=FALSE, bernsteinprogress=TRUE, ...) {
      if(bernsteinprogress) message("\n", appendLF=FALSE);
      return(ber);
   } else {
-     return(sapply(1:nu, function(k) {
-           empcop <- sapply(1:nobs, function(i) {
-                        return(as.numeric(uobs[i] <= u[k] & vobs[i] <= v[k])) });
-           return(sum(empcop)/nobs); }))
+     if(weibull) {
+        empcop <- sapply(1:nu, function(i) {
+                           return(sum(as.numeric(rank(uobs)/(nobs1) <= u[i] &
+                                                 rank(vobs)/(nobs1) <= v[i]))/nobs) });
+        return(empcop)
+     } else {
+        return(sapply(1:nu, function(k) {
+              empcop <- sapply(1:nobs, function(i) {
+                           return(as.numeric(uobs[i] <= u[k] & vobs[i] <= v[k])) });
+              return(sum(empcop)/nobs); }))
+     }
   }
 }
 

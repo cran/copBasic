@@ -4,15 +4,15 @@
 \alias{copBasic-package}
 \title{Basic Theoretical Copula, Empirical Copula, and Various Utility Functions}
 \description{
-   The \pkg{copBasic} package is heavily oriented around copula theory and mathematical operations of copulas closely following one of the standard texts in the field by Nelson (2006). Another good text is by Salvadori et al. (2007) and is cited herein, but about half of that excellent book is on univariate applications. The primal objective of \pkg{copBasic} is to provide an application programming inferface into numerous results shown by Nelson (2006) and others. It is hoped in part that the package will help new inductees to copulas in their self study or potential course work.
+The \pkg{copBasic} package is heavily oriented around copula theory and mathematical operations of copulas closely following one of the standard texts in the field by Nelsen (2006) and from 2015\eqn{+} increasely Joe (2015) as well. Another good text is by Salvadori \emph{et al.} (2007) and is cited herein, but about half of that excellent book is on univariate applications. The primal objective of \pkg{copBasic} is to provide a basic application programming inferface (API) into numerous results shown by authoritative texts on copulas. It is hoped in part that the package will help new inductees to copulas in their self study or potential course work.
 
-A few comments on notation are needed. A bold math typeface is used to represent a copula such as \eqn{\mathbf{\Pi}} (see \code{\link{P}}) for the independence copula. The syntax \eqn{\mathcal{R}\times\mathcal{R} \equiv \mathcal{R}^2} denotes the orthogonal domain of two real numbers, and \eqn{\mathcal{I}\times\mathcal{I} \equiv \mathcal{I}^2} denotes the orthogonal domain on the unit square of probabilities.
+A few comments on notation are needed. A bold math typeface is used to represent a copula such as \eqn{\mathbf{\Pi}} (see \code{\link{P}}) for the independence copula. The syntax \eqn{\mathcal{R}\times\mathcal{R} \equiv \mathcal{R}^2} denotes the orthogonal domain of two real numbers, and \eqn{\mathcal{I}\times\mathcal{I} \equiv \mathcal{I}^2} denotes the orthogonal domain on the unit square of probabilities. Thus, limits of integration \eqn{[0,1]} or \eqn{[0,1]^2} are shown as \eqn{\mathcal{I}} and \eqn{\mathcal{I}^2}, respectively.
 
-The random variables \eqn{X} and \eqn{Y} respectively denote the horizontal and vertical directions in \eqn{\mathcal{R}^2}. Their probabilistic counterparts are uniformly distributed random variables on  \eqn{[0,1]}, are respectively denoted as \eqn{U} and \eqn{V}, and necessarily also are the directions in \eqn{\mathcal{I}^2}. Often realizations of these random variables are respectively \eqn{x} and \eqn{y} for \eqn{X} and \eqn{Y} and \eqn{u} and \eqn{v} for \eqn{U} and \eqn{V}.
+The random variables \eqn{X} and \eqn{Y} respectively denote the horizontal and vertical directions in \eqn{\mathcal{R}^2}. Their probabilistic counterparts are uniformly distributed random variables on \eqn{[0,1]}, are respectively denoted as \eqn{U} and \eqn{V}, and necessarily also are the directions in \eqn{\mathcal{I}^2}. Often realizations of these random variables are respectively \eqn{x} and \eqn{y} for \eqn{X} and \eqn{Y} and \eqn{u} and \eqn{v} for \eqn{U} and \eqn{V}.
 
 There is a distinction between nonexceedance probability \eqn{F} and exceedance probability \eqn{1-F}. Both \eqn{u} and \eqn{v} are measures in nonexceedance (cumulative probability). Arguments to many functions herein are \code{u} \eqn{= u} and \code{v} \eqn{= v} and are almost \emph{exclusively nonexceedance} but there are instances for which \code{u} \eqn{= 1 - u = u'} and \code{v} \eqn{= 1 - v = v'}. The \dQuote{prime} notation on the exceedance probabilities differs from the traditional \eqn{\overline{t}} (overbar) notation that is used for survival distributions (e.g. \eqn{\overline{F}(x)}) because of a need to refer to these probabilities from time to time in the Examples sections---and thus nonmathematical typeface (e.g. \samp{v'}).
 
-Italic typeface is used extensively and usually near the opening of function-by-function documentation to identify vocabulary words, such as \emph{survival copula} (see \code{\link{surCOP}}). This syntax tries to mimic and accentuate Nelson's word usage by Nelson (2006). The italics then is used to highlight this vocabulary in order to draw connections between concepts.\cr
+Italic typeface is used extensively and usually near the opening of function-by-function documentation to identify vocabulary words, such as \emph{survival copula} (see \code{\link{surCOP}}). This syntax tries to mimic and accentuate Roger B. Nelsen's word usage in Nelsen (2006) and to a lesser extent Joe (2015). The italics then is used to highlight this vocabulary in order to draw connections between concepts.\cr
 
 \bold{Helpful Navigation of the copBasic Package}
 
@@ -26,24 +26,32 @@ Co-copula \tab \eqn{\mathbf{C}^\star(u',v')} \tab \code{\link{coCOP}} \tab copul
 Dual of a copula \tab \eqn{\tilde\mathbf{C}(u,v)} \tab \code{\link{duCOP}} \tab copula theory\cr
 Primary copula diagonal  \tab \eqn{\delta(t)} \tab \code{\link{diagCOP}} \tab copula theory\cr
 Secondary copula diagonal  \tab \eqn{\delta^\star(t)} \tab \code{\link{diagCOP}} \tab copula theory\cr
+Inverse copula diagonal \tab \eqn{\delta^{(-1)}(f)} \tab \code{\link{diagCOPatf}} \tab copula theory\cr
 Blomqvist’s Beta \tab \eqn{\beta_\mathbf{C}} \tab \code{\link{blomCOP}} \tab bivariate association\cr
 Gini's Gamma \tab \eqn{\gamma_\mathbf{C}} \tab \code{\link{giniCOP}} \tab bivariate association\cr
 Hoeffding's Phi \tab \eqn{\phi_\mathbf{C}} \tab \code{\link{hoefCOP}} \tab bivariate association\cr
+Lp distance \tab  \eqn{\phi_\mathbf{C} \rightarrow L_p} \tab \code{\link{LpCOP}} \tab bivariate association\cr
 Kendall's Tau \tab \eqn{\tau_\mathbf{C}} \tab \code{\link{tauCOP}} \tab bivariate association\cr
+Semi-correlations \tab \eqn{\rho_N^{-}(a)} \tab \code{\link{semicorCOP}} \tab bivariate tail association\cr
+Semi-correlations \tab \eqn{\rho_N^{+}(a)} \tab \code{\link{semicorCOP}} \tab bivariate tail association\cr
 Spearman's Rho \tab \eqn{\rho_\mathbf{C}} \tab \code{\link{rhoCOP}} \tab bivariate association\cr
 Schweizer and Wolff's Sigma \tab \eqn{\sigma_\mathbf{C}} \tab \code{\link{wolfCOP}} \tab bivariate association\cr
 Lower-bounds copula \tab \eqn{\mathbf{W}(u,v)} \tab \code{\link{W}} \tab copula\cr
 Independence copula \tab \eqn{\mathbf{\Pi}(u,v)} \tab \code{\link{P}} \tab copula\cr
 Upper-bounds copula \tab \eqn{\mathbf{M}(u,v)} \tab \code{\link{M}} \tab copula\cr
-Plackett copula \tab \eqn{{-}{-}} \tab \code{\link{PLACKETTcop}} \tab copula\cr
-PSP copula \tab \eqn{\mathbf{PSP(u,v)}} \tab \code{\link{PSP}} \tab copula\cr
-Empirical copula \tab \eqn{{-}{-}} \tab \code{\link{EMPIRcop}} \tab copula\cr
+\enc{Fréchet}{Frechet} Family copula \tab \eqn{\mathbf{FF}(u,v)} \tab \code{\link{FRECHETcop}} \tab copula\cr
+Gumbel-Hougaard copula \tab \eqn{\mathbf{GH}(u,v)} \tab \code{\link{GHcop}} \tab copula\cr
+Plackett copula \tab \eqn{\mathbf{PL}(u,v)} \tab \code{\link{PLACKETTcop}} \tab copula\cr
+PSP copula \tab \eqn{\mathbf{PSP}(u,v)} \tab \code{\link{PSP}} \tab copula\cr
+Empirical copula \tab \eqn{\mathbf{C}_n(u,v)} \tab \code{\link{EMPIRcop}} \tab copula\cr
 Parametric simulation \tab \eqn{{-}{-}} \tab \code{\link{simCOP}} \tab copula simulation\cr
 Parametric simulation \tab \eqn{{-}{-}} \tab \code{\link{simCOPmicro}} \tab copula simulation\cr
 Empirical simulation \tab \eqn{{-}{-}} \tab \code{\link{EMPIRsim}} \tab copula simulation\cr
 Empirical simulation \tab \eqn{{-}{-}} \tab \code{\link{EMPIRsimv}} \tab copula simulation\cr
 Parametric copulatic surface \tab \eqn{{-}{-}} \tab \code{\link{gridCOP}} \tab copulatic surface\cr
 Empirical copulatic surface \tab \eqn{{-}{-}} \tab \code{\link{EMPIRgrid}} \tab copulatic surface\cr
+Density \tab \eqn{c(u,v)} \tab \code{\link{densityCOP}} \tab copula density\cr
+Density visualization \tab \eqn{{-}{-}} \tab \code{\link{densityCOPplot}} \tab copula density\cr
 }
 
 Many functions in the package make the distinction between \eqn{V} with respect to (\emph{wrt}) \eqn{U} and \eqn{U} \emph{wrt} \eqn{V}, and a guide through the nomenclature involving \emph{wrt} distinctions is listed in the following table:
@@ -70,19 +78,26 @@ Copula section \tab \eqn{t \mapsto \mathbf{C}(a,t)} \tab \code{\link{sectionCOP}
 The two tables do not include all of the myriad of special functions to support similar operations on empirical copulas. All empirical copula operators and utilites are prepended with \code{EMPIR} in the function name. An additional note concerning package nomenclature is that an appended \code{2} to a function name uniquely indicates
 \eqn{U} \emph{wrt} \eqn{V} (e.g. \code{\link{EMPIRgridderinv2}} for an inversion of the partial derivatives \eqn{\delta \mathbf{C}/\delta v} across the grid of the empirical copula).
 
-Some additional functions that compute often salient features of a copula include those listed in the  following table:
+Some additional functions that compute often salient features or characteristics of a copulas include those listed in the following table:
 \tabular{lclr}{
 \bold{Name} \tab \bold{Symbol} \tab \bold{Function} \tab \bold{Concept} \cr
 Left-tail decreasing \tab \eqn{V} \emph{wrt} \eqn{U}  \tab \code{\link{isCOP.LTD}} \tab bivariate association\cr
 Left-tail decreasing \tab \eqn{U} \emph{wrt} \eqn{V}  \tab \code{\link{isCOP.LTD}} \tab bivariate association\cr
 Right-tail increasing \tab \eqn{V} \emph{wrt} \eqn{U}  \tab \code{\link{isCOP.RTI}} \tab bivariate association\cr
 Right-tail increasing \tab \eqn{U} \emph{wrt} \eqn{V}  \tab \code{\link{isCOP.RTI}} \tab bivariate association\cr
-Tail (lower) dependency \tab \eqn{\lambda_L^\mathbf{C}} \tab \code{\link{taildepCOP}} \tab bivariate association\cr
-Tail (upper) dependency \tab \eqn{\lambda_U^\mathbf{C}} \tab \code{\link{taildepCOP}} \tab bivariate association\cr
-Negatively quadrant dependency \tab \eqn{{-}{-}} \tab \code{\link{isCOP.PQD}} \tab bivariate association\cr
-Positively quadrant dependency \tab \eqn{{-}{-}} \tab \code{\link{isCOP.PQD}} \tab bivariate association\cr
-Radially symmetry \tab \eqn{{-}{-}} \tab \code{\link{isCOP.radsym}} \tab bivariate association\cr
-L-comoments\tab \eqn{{-}{-}} \tab \code{lcomoms2} \tab see \pkg{lmomco} package\cr
+Tail (lower) dependency \tab \eqn{\lambda^L_\mathbf{C}} \tab \code{\link{taildepCOP}} \tab bivariate tail association\cr
+Tail (upper) dependency \tab \eqn{\lambda^U_\mathbf{C}} \tab \code{\link{taildepCOP}} \tab bivariate tail association\cr
+Tail (lower) order \tab \eqn{\kappa^L_\mathbf{C}} \tab \code{\link{tailordCOP}} \tab bivariate tail association\cr
+Tail (upper) order \tab \eqn{\kappa^U_\mathbf{C}} \tab \code{\link{tailordCOP}} \tab bivariate tail association\cr
+Negatively quadrant dependency \tab NQD \tab \code{\link{isCOP.PQD}} \tab bivariate association\cr
+Positively quadrant dependency \tab PQD \tab \code{\link{isCOP.PQD}} \tab bivariate association\cr
+Permutation symmetry \tab \eqn{\mathrm{permsym}} \tab \code{\link{isCOP.permsym}} \tab copula symmetry\cr
+Radial symmetry \tab \eqn{\mathrm{radsym}} \tab \code{\link{isCOP.radsym}} \tab copula symmetry\cr
+Skewness (Joe, 2015) \tab \eqn{\eta(p; \psi)} \tab \code{\link{uvskewness}} \tab bivariate skewness\cr
+Kullback-Leibler divergence \tab \eqn{\mathrm{KL}(f|g)} \tab \code{\link{kullCOP}} \tab bivariate inference\cr
+K-L sample size \tab \eqn{n_{fg}} \tab \code{\link{kullCOP}} \tab bivariate inference\cr
+Vuong's Procedure \tab \eqn{{-}{-}} \tab \code{\link{vuongCOP}} \tab bivariate inference\cr
+L-comoments (samp. distr.) \tab \eqn{{-}{-}} \tab \code{\link{lcomCOPpv}} \tab experimental bivariate inference\cr
 }
 
 The following table lists some important relations between various joint probability concepts, the copula, nonexceedance probabilities \eqn{u} and \eqn{v}, and exceedance probabilities \eqn{u'} and \eqn{v'}. A compact summary of these probability relations has obvious usefulness.
@@ -115,14 +130,16 @@ Cherubini, U., Luciano, E., and Vecchiato, W., 2004, Copula methods in finance: 
 
 \enc{Hernández-Maldonado}{Hernandez-Maldonado}, V., \enc{Díaz-Viera}{Diaz-Viera}, M., and Erdely, A., 2012, A joint stochastic simulation method using the Berstein copula as a flexible tool for modeling nonlinear dependence structures between petrophysical properties: Journal of Petroleum Science and Engineering, v. 90--91, pp. 112--123.
 
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+Joe, H., 2015, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
+
+Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 
 Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in nature---An approach using copulas: Dordrecht, Netherlands, Springer, Water Science and Technology Library 56, 292 p.
 }
 \author{William Asquith \email{william.asquith@ttu.edu} }
 \examples{
 \dontrun{
-# Nelson (2006, p. 75, ex. 3.15.b) provides for an nice test of copBasic features.
+# Nelsen (2006, p. 75, exer. 3.15b) provides for a nice test of copBasic features.
 "mcdurv" <- function(u,v, theta) {
    ifelse(u > theta & u < 1-theta & v > theta & v < 1 - theta,
              return(M(u,v) - theta), # Upper bounds copula with a shift
@@ -138,12 +155,12 @@ Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in
 }
 set.seed(6234)
 print(uniroot(afunc, c(0,0.5))) # result by simulation = 0.1023742
-# Nelson reports that if theta appox. 0.103 then covariance of U and V is zero.
+# Nelsen reports that if theta appox. 0.103 then covariance of U and V is zero.
 # So one will have mutually completely dependent uncorrelated uniform variables!
 rhoCOP(cop=MCDURV,  para=0.1023742) # Spearman Rho = 0.005854481 (near zero)
 tauCOP(cop=MCDURV,  para=0.1023742) # Kendall Tau  = 0.2648521
 wolfCOP(cop=MCDURV, para=0.1023742) # S & W Sigma  = 0.4690174
-D <- simCOP(n=1000, cop=MCDURV, para=0.1023742) # Plot mimics Nelson (2006, fig. 3.15)
+D <- simCOP(n=1000, cop=MCDURV, para=0.1023742) # Plot mimics Nelsen (2006, fig. 3.11)
 # Lastly, open research problem. L-comoments (matrices) measure high dimension of
 # variable comovements (see lmomco package)---"method of L-comoments" for estimation?
 lmomco::lcomoms2(simCOP(n=1000, cop=MCDURV, para=0),   nmom=5) # Perfect neg. corr.
@@ -155,7 +172,28 @@ lmomco::lcomoms2(simCOP(n=1000, cop=MCDURV, para=0.5), nmom=5) # Perfect pos. co
 # in T2 near zero. But then see that T4 offdiags are quite different from those for
 # Theta 0.1024 relative to 0 or 0.5. Thus, T4 has captured a unique property of U vs V.
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 \keyword{multivariate}
 \concept{copula theory}
 \keyword{L-comoments}
+\keyword{Nelsen (2006) Examples and Exercises}

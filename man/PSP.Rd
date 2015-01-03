@@ -2,7 +2,7 @@
 \alias{PSP}
 \title{ The ratio of the Product Copula to Summation minus Product Copula }
 \description{
-Compute \emph{PSP copula} (Nelson, 2006, p. 23) is named by the author (Asquith) for the \pkg{copBasic} package and is
+Compute \emph{PSP copula} (Nelsen, 2006, p. 23) is named by the author (Asquith) for the \pkg{copBasic} package and is
 \deqn{\mathbf{PSP}(u,v) = \frac{\mathbf{\Pi}}{\Sigma - \mathbf{\Pi}}\mbox{,}}
 where \eqn{\mathbf{\Pi}} is the \emph{product copula} (\code{\link{P}}) and \eqn{\Sigma} is the sum \eqn{\Sigma = u + v}. The \eqn{\mathbf{PSP}(u,v)} copula is a special case of the \code{\link{N4212cop}} copula. This copula is included in \pkg{copBasic} because of its simplicity and for pedagogic purposes. The name PSP comes from Product, Summation, Product to loosely reflect the mathematical formula shown.
 }
@@ -18,7 +18,7 @@ PSP(u, v, ...)
   The value for the copula is returned.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{P}}, \code{\link{N4212cop}} }

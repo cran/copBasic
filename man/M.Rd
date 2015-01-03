@@ -1,8 +1,9 @@
+\encoding{utf8}
 \name{M}
 \alias{M}
-\title{ The Frechet-Hoeffding Upper Bound Copula }
+\title{ The \enc{Fréchet}{Frechet}-Hoeffding Upper Bound Copula }
 \description{
-Compute the \emph{Frechet-Hoeffding upper bound copula} (Nelson, 2006, p. 11), which is defined as
+Compute the \emph{\enc{Fréchet}{Frechet}-Hoeffding upper bound copula} (Nelsen, 2006, p. 11), which is defined as
 \deqn{\mathbf{M}(u,v) = \mathrm{min}(u,v)\mbox{.}}
 }
 \usage{
@@ -17,7 +18,7 @@ M(u, v, ...)
   The value for the copula is returned.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{W}}, \code{\link{P}}}

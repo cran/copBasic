@@ -2,7 +2,7 @@
 \alias{P}
 \title{ The Product (Independence) Copula }
 \description{
-Compute the \emph{product copula} (Nelson, 2006, p. 12), which is defined as
+Compute the \emph{product copula} (Nelsen, 2006, p. 12), which is defined as
 \deqn{\mathbf{\Pi}(u,v) = uv\mbox{.}}
 This is the copula of statistical independence between \eqn{U} and \eqn{V} and is sometimes referred to as the \emph{independence copula}.
 }
@@ -18,14 +18,32 @@ P(u, v, ...)
   The value for the copula is returned.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{M}}, \code{\link{W}}}
 \examples{
-P(0.4,0.6)
-P(0,0)
-P(1,1)
+P(c(0.4,0,1),c(0,0.6,1))
+\dontrun{
+n <- 100000 # giant sample size, L-comoments are zero
+# PERFECT INDEPENDENCE
+UV <- simCOP(n=n, cop=P, graphics=FALSE)
+lmomco::lcomoms2(UV, nmom=4)
+# The following are Taus_r^{12} and Taus_r^{21}
+# L-corr:        0.00265 and  0.00264 ---> ZERO
+# L-coskew:     -0.00121 and  0.00359 ---> ZERO
+# L-cokurtosis:  0.00123 and  0.00262 ---> ZERO
+
+# MODEST POSITIVE CORRELATION
+rho <- 0.5; # Spearman's Rho
+theta <- PLACKETTpar(rho=0.5) # Theta = 5.115658
+UV <- simCOP(n=n, cop=PLACKETTcop, para=theta, graphics=FALSE)
+lmomco::lcomoms2(UV, nmom=4)
+# The following are Taus_r^{12} and Taus_r^{21}
+# L-corr        0.50136 and  0.50138 ---> Pearson R = Spearman Rho
+# L-coskews    -0.00641 and -0.00347 ---> ZERO
+# L-cokurtosis -0.00153 and  0.00046 ---> ZERO
+}
 }
 \keyword{copula (formulas)}
 \concept{independence copula}

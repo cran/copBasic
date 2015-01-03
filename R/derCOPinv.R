@@ -8,19 +8,9 @@ function(cop=NULL, u, t,
             #print(LHS - dc)
             return(LHS - dc)
             }
-    my.rt <- NULL;
-    try(my.rt <- uniroot(func,interval=c(0,1),
-                         u=u, LHS=t, cop=cop,
-                         delu=delu, para=para, ...))
-
-    if(is.null(my.rt)) return(NA);
-
-    if(length(my.rt$root) != 0) {
-      v <- my.rt$root
-      return(v)
-    }
-    else {
-      return(NA)
-    }
-
+    my.rt <- NULL
+    try(my.rt <- uniroot(func,interval=c(0,1), u=u, LHS=t,
+                              cop=cop, delu=delu, para=para, ...))
+    if(is.null(my.rt)) return(NA) # Now the returned root is "v"
+    ifelse(length(my.rt$root) != 0, return(my.rt$root), return(NA))
 }

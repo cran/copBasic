@@ -2,7 +2,7 @@
 \alias{derCOP}
 \title{ Numerical Derivative of a Copula for V with respect to U }
 \description{
-Compute the numerical partial derivative of a copula according to Nelson (2006, pp. 13, 40--41) with respect to \eqn{u}:
+Compute the numerical partial derivative of a copula according to Nelsen (2006, pp. 13, 40--41) with respect to \eqn{u}:
 
 \deqn{0 \le \frac{\delta}{\delta u} \mathbf{C}(u,v) \le 1\mbox{,}}
 
@@ -35,7 +35,7 @@ derCOP(cop=NULL, u, v, delu=.Machine$double.eps^0.50,
 A known caveat of the current implementation of the copula derivative is that there is a chance that the \eqn{\Delta u} will span a singularity or discontinuous portion of a copula should it have a property of singularity. The \code{delu} is chosen small so the chance is mitigated to a small value. It is not decided whether a derivative from the positive side (\code{dir="left"}), when failing should switch over to a computation from the negative side (\code{dir="right"}). The distinction is important for the computation of the inverse of the derivative \code{\link{derCOPinv}} because the solution finder needs a sign reversal to work.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{derCOPinv}}, \code{\link{derCOP2}}}
@@ -59,3 +59,6 @@ cat(c(lft,rgt,cnt,"\n")) # The "right" version is correct.
 \keyword{copula (derivative)}
 \keyword{conditional cumulative distribution function}
 \keyword{copula operator}
+\keyword{derivative}
+
+

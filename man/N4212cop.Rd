@@ -1,8 +1,8 @@
 \name{N4212cop}
 \alias{N4212cop}
-\title{ The Copula of Equation 4.2.12 of Nelson's Book }
+\title{ The Copula of Equation 4.2.12 of Nelsen's Book }
 \description{
-The \emph{N4212 copula} (Nelson, 2006, p. 91) is named by the author for the \pkg{copBasic} package and is defined as
+The \emph{N4212 copula} (Nelsen, 2006, p. 91) is named by the author for the \pkg{copBasic} package and is defined as
 \deqn{\mathbf{C}_{\Theta}(u,v) = (1 + [(u^{-1} -1)^\Theta + (v^{-1} -1)^\Theta]^{1/\Theta})^{-1}\mbox{.}}
 
 The N4212 copula is \emph{not comprehensive} because for \eqn{\Theta = 1} the copula becomes the so-called \eqn{\mathbf{PSP}(u,v)} copula (see \code{\link{PSP}}) and as \eqn{\Theta \rightarrow \infty} the copula becomes \eqn{\mathbf{M}(u,v)} (see \code{\link{M}}). The copula is undefined for \eqn{\Theta < 1}. The N4212 copula  has respective \emph{lower-} and \emph{upper-tail dependency} (see \code{\link{taildepCOP}}).
@@ -23,7 +23,7 @@ N4212cop(u, v, para=NULL, infis=100, ...)
   The value for the copula is returned.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \examples{

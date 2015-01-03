@@ -32,7 +32,7 @@ function(cop=NULL,  para=NULL,
                          0, 1)$value
              })}, 0, 1))
     if(is.null(myint)) {
-        warning("error on integration encountered, swapping copulas, Nelson corollary 5.1.2")
+        warning("error on integration encountered (some copula singularity?), swapping copulas, Nelson corollary 5.1.2")
         try(myint <- integrate(function(u) {
                sapply(u,function(u) {
                  integrate(function(v) {
@@ -41,7 +41,7 @@ function(cop=NULL,  para=NULL,
                          0, 1)$value
              })}, 0, 1))
         if(is.null(myint)) {
-           warning("another error on integration encountered, returning NA")
+           warning("another error on integration encountered (some copula singularity?), returning NULL")
            return(NULL)
         }
     }

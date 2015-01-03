@@ -1,17 +1,17 @@
+\encoding{utf8}
 \name{taildepCOP}
 \alias{taildepCOP}
 \title{ The Lower- and Upper-Tail Dependency Parameters of a Copula }
 \description{
-Compute the \emph{lower- and upper-tail dependency parameters} (if they exist), respectively, of a copula according to Nelson (2006, p. 214--215). The dependency parameters are expressions of conditional probabilitythat \eqn{Y} is greater than the \eqn{100\times t}-th percentile of its distribution \eqn{G} given that \eqn{X} is greater than the \eqn{100\times t}-th percentile of its distribution \eqn{F} as \eqn{t} approaches unity. Specifics in terms of quantile functions \eqn{G^{(-1)}(t) = y(t)} and \eqn{F^{(-1)}(t) = x(t)} follow.
-
+Compute the \emph{lower- and upper-tail dependency parameters} (if they exist), respectively, of a copula according to Nelsen (2006, p. 214--215). The dependency parameters are expressions of conditional probability that \eqn{Y} is greater than the \eqn{100{\times}t}-th percentile of its distribution \eqn{G} given that \eqn{X} is greater than the \eqn{100{\times}t}-th percentile of its distribution \eqn{F} as \eqn{t} approaches unity. Specifics in terms of quantile functions \eqn{G^{(-1)}(t) = y(t)} and \eqn{F^{(-1)}(t) = x(t)} follow.
 
 The \emph{lower-tail dependence parameter} \eqn{\lambda^L_\mathbf{C}} is defined as
 \deqn{\lambda^L_\mathbf{C} = \lim_{t{\rightarrow 0^{+}}} \mathrm{Pr}[Y \le y(t)\mid X \le x(t)]\mbox{, and}}
-the \emph{upper-tail dependence parameter} \eqn{\lambda^U_\mathbf{C}} with reversed inequalitiesis defined as
+the \emph{upper-tail dependence parameter} \eqn{\lambda^U_\mathbf{C}} with reversed inequalities is defined as
 \deqn{\lambda^U_\mathbf{C} = \lim_{t{\rightarrow 1^{-}}} \mathrm{Pr}[Y > y(t)\mid X > x(t)]\mbox{.}}
 
 
-Nelson (2006) also notes that both \eqn{\lambda^L_\mathbf{C}} and \eqn{\lambda^U_\mathbf{C}} are nonparametric and depend only on the copula of \eqn{X} and \eqn{Y} and shows that each can be computed if the above limits exist as follows:
+Nelsen (2006) also notes that both \eqn{\lambda^L_\mathbf{C}} and \eqn{\lambda^U_\mathbf{C}} are nonparametric and depend only on the copula of \eqn{X} and \eqn{Y} and shows that each can be computed if the above limits exist as follows:
 \deqn{\lambda^L_\mathbf{C} = \lim_{t{\rightarrow 0^{+}}} \frac{\mathbf{C}(t,t)}{t} = \delta_\mathbf{C}'(0^{+})\mbox{\ and}}
 \deqn{\lambda^U_\mathbf{C} = 2 - \lim_{t{\rightarrow 1^{-}}} \frac{1 - \mathbf{C}(t,t)}{1-t} = 2 - \delta_\mathbf{C}'(1^{-})\mbox{,}}
 where \eqn{\delta_\mathbf{C}'(t)} is the derivative of the diagonal of the copula.
@@ -19,13 +19,16 @@ where \eqn{\delta_\mathbf{C}'(t)} is the derivative of the diagonal of the copul
 If \eqn{\lambda^L_\mathbf{C} \in (0,1]}, then \eqn{\mathbf{C}} has lower-tail dependence but if \eqn{\lambda^L_\mathbf{C} = 0}, then \eqn{\mathbf{C}} has \emph{no} lower-tail dependence. Likewise, if \eqn{\lambda^U_\mathbf{C} \in (0,1]}, then \eqn{\mathbf{C}} has upper-tail dependence but if \eqn{\lambda^U_\mathbf{C} = 0}, then \eqn{\mathbf{C}} has \emph{no} upper-tail dependence.
 }
 \usage{
-taildepCOP(cop=NULL, para=NULL, tol=1e-6, plot=FALSE, verbose=FALSE, ...)
+taildepCOP(cop=NULL, para=NULL, tol=1e-6, divisor=2, plot=FALSE, ylim=NULL,
+                                verbose=FALSE, ...)
 }
 \arguments{
   \item{cop}{A copula function;}
   \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula;}
   \item{tol}{A tolerance on convergence;}
+  \item{divisor}{The divisor on the incremental reductions towards \eqn{0^+} and \eqn{0^-} by the algorithm;}
   \item{plot}{A logical plotting a diagnostic plot of the diagonal derivatives and label the limits;}
+  \item{ylim}{Optional vertical limits if the plot is turned on. Although the dependence parameters are bounded as described above numerical stability can be a problem and especially if an empirical copula is being used, so the bounds of the plot left open unless the user locks them down with this argument;}
   \item{verbose}{Show incremental progress; and}
   \item{...}{Additional arguments to pass to the copula function.}
 }
@@ -36,35 +39,54 @@ taildepCOP(cop=NULL, para=NULL, tol=1e-6, plot=FALSE, verbose=FALSE, ...)
   \item{source}{An attribute identifying the computational source: \dQuote{taildepCOP}.}
 }
 \note{
-The algorithm implemented for \code{taildepCOP} is based on halves and uses the copula function (not an analytical or even numeric derivative of the diagonal, \eqn{\delta_\mathbf{C}'(t)}). Starting from the median or \eqn{t = 0.5}, each limit is respectively computed by successive halving of the distance towards \eqn{0^{+}} and \eqn{1^{-}} and checking the change in computed value against the tolerance \code{tol} argument. After the change becomes less than the the \code{tol}erance, convergence is assumed. Other tests are made for \code{NaN} to aid in breaking the successive halvings. The rounding for the numerical results for \eqn{\lambda^U_\mathbf{C}} and \eqn{\lambda^L_\mathbf{C}} is an order of magnitude larger than the tolerance.
+The algorithm implemented for \code{taildepCOP} is based on halves (or the setting of argument \code{divisor}) and uses the copula function (not an analytical or even numeric derivative of the diagonal, \eqn{\delta_\mathbf{C}'(t)}). Starting from the median or \eqn{t = 0.5}, each limit is respectively computed by successive halving (or the setting of argument \code{divisor})) of the distance towards \eqn{0^{+}} and \eqn{1^{-}} and checking the change in computed value against the tolerance \code{tol} argument. After the change becomes less than the the \code{tol}erance, convergence is assumed. Other tests are made for \code{NaN} to aid in breaking the successive halvings. The rounding for the numerical results for \eqn{\lambda^U_\mathbf{C}} and \eqn{\lambda^L_\mathbf{C}} is an order of magnitude larger than the tolerance.
 
-Users are encouraged to plot the results and further verify whether the convergence makes sense. The plot produced when \code{plotem=TRUE} shows the probability \eqn{t} transformed into standard normal variates by the \code{qnorm()} function in \R so that the distal reaches of each tail and thus limit are readily seen. The terminal points of each limit computation are shown by a small dot and the letter \dQuote{L} and \dQuote{U} also are plotted at the terminal points.
+Users are encouraged to plot the results and further verify whether the convergence makes sense. The plot produced when \code{plot=TRUE} shows the probability \eqn{t} transformed into standard normal variates by the \code{qnorm()} function in \R so that the distal reaches of each tail and thus limit are readily seen. The terminal points of each limit computation are shown by a small dot and the letter \dQuote{L} and \dQuote{U} also are plotted at the terminal points.
+
+
+Joe (2015, p. 63) reports that \dQuote{the empirical measure of tail dependence [\eqn{\hat\lambda_\mathbf{C}^L} or \eqn{\hat\lambda_\mathbf{C}^U}] for data does not really exist because of the limit.}  Joe (2015) suggests that other sources in the literature are the \dQuote{best that can be done} (\enc{Dobrić}{Dobric} and Schmid, 2005; Frahm \emph{et. al}, 2005). Another source discussion is by Schmidt and \enc{Stadtmüller}{Stadtmuller} (2006). These are not yet followed up for the \pkg{copBasic} package. Picking up the simulation dealt with extensively in the Note section of \code{\link{vuongCOP}}, a user might try this:
+\preformatted{
+set.seed(385); n <- 390
+UV <- simCOP(cop=PSP, n=n, col=8, pch=16, graphics=FALSE)
+taildepCOP(cop=EMPIRcop, para=UV, plot=TRUE, divisor=8, ylim=c(0,1))
+}
+The returned tail dependency parameters are numerically of little importance and in strict terms likely misleading. What should be of interest is the trajectory of the lower and upper lines when plotted. Note how vaguely the lower tail wobbles by seems to show stability towards near \eqn{\hat\lambda_\mathbf{C}^L = 0.5} and upper-tail line wobbles downward towards \eqn{\hat\lambda_\mathbf{C}^U = 0}. Try increasing the sample size by an order of magnitude and rerunning the above code. Lastly, Salvadori \emph{et. al} (2006, pp. 173--175) caution on the difficulties of nonparametric tail dependency estimation. Therefore, given the objective of the \pkg{copBasic} package, estimation of \eqn{\hat\lambda_\mathbf{C}^L} and \eqn{\hat\lambda_\mathbf{C}^U} is an open development opportunity.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+\enc{Dobrić}{Dobric}, J. and Schmid, F., 2005, Nonparametric estimation of the lower tail dependence \eqn{\lambda_L} in bivariate copulas: Journal of Applied Statistics, v. 32, no. 4, pp. 387--407.
+
+Frahm, G., Junker, M., and Schmidt, R., 2005, Estimating the tail-dependence coefficient---Properties and pitfalls: Insurance---Mathematics and Economics, v. 37, no. 1, pp. 80--100.
+
+Joe, H., 2015, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
+
+Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+
+Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in Nature---An approach using copulas: Springer, 289 p.
+
+Schmidt, R., \enc{Stadtmüller}{Stadtmuller}, U., 2006, Nonparametric estimation of tail dependence: The Scandinavian Journal of Statistics 33, 307--335.
 }
 \author{ W.H. Asquith}
-\seealso{\code{\link{COP}}}
+\seealso{\code{\link{COP}}, \code{\link{tailordCOP}}}
 \examples{
 # Plot the tail dependencies by nonexceedance probability for a
 # for a positive association Plackett copula and see that both are zero.
 taildepCOP(cop=PLACKETTcop, para=3, plotem=TRUE)
-# So Plackett has no tail dependency, as Nelson (2006, p. 215) shows.
+# So Plackett has no tail dependency, as Nelsen (2006, p. 215) shows.
 \dontrun{
 "MOcop" <- function(u,v, para=NULL) { # Marshall-Olkin copula
   alpha <- para[1]; beta <- para[2]; return(min(v*u^(1-alpha), u*v^(1-beta)))
-} # The results that follow match those reported by Nelson (2006, p. 215).
+} # The results that follow match those reported by Nelsen (2006, p. 215).
 taildepCOP(cop=MOcop, para=c(0.4, 0.9)) # LambL = 0, LambU = 0.4 [min(alpha,beta)]
 }
 \dontrun{
 # Plot the tail dependencies by nonexceedance probability
-# for the PSP copula, which has lower but no upper tail dependence.
+# for the PSP copula, which has lower but no upper-tail dependence.
 taildepCOP(cop=PSP, para=NULL, plotem=TRUE) # LambL=0.5, LambU=0
 # which is readily confirmed by simCOP(1000, cop=PSP)
-# Nelson (2006, p. 216) reports that this copula has LambL=1/2 and LambU=0.
+# Nelsen (2006, p. 216) reports that this copula has LambL=1/2 and LambU=0.
 
 # How about some composited Plackett-Plackett copulas?
-# Each has upper and lower tail dependence parameters equal to zero.
+# Each has upper- and lower-tail dependence parameters equal to zero.
 para <- list(cop1=PLACKETTcop,  cop2=PLACKETTcop,
              para1=0.00395,  para2=4.67, alpha=0.9392, beta=0.5699)
 taildepCOP(cop=composite2COP, para=para, plot=TRUE, verbose=TRUE)
@@ -74,9 +96,12 @@ taildepCOP(cop=composite2COP, para=para, plot=TRUE, verbose=TRUE)
 para <- list(cop1=PLACKETTcop,  cop2=PLACKETTcop,
              para1=0.101,  para2=4493, alpha=0.0063, beta=0.0167)
 taildepCOP(cop=composite2COP, para=para, plot=TRUE)
-# This example might show numerical instability for the upper tail
+# This example might show numerical instability for the upper tail.
 }
 }
 \keyword{copula (characteristics)}
 \keyword{copula (properties)}
+\keyword{copula (tail characteristics)}
+\keyword{copula (tail properties)}
+\keyword{Nelsen (2006) Examples and Exercises}
 

@@ -2,7 +2,7 @@
 \alias{COP}
 \title{ The Copula }
 \description{
-Compute the \emph{copula} or \emph{joint distribution function} from a copula function and as shown by Nelson (2006, p. 18) is the joint probability
+Compute the \emph{copula} or \emph{joint distribution function} from a copula function and as shown by Nelsen (2006, p. 18) is the joint probability
 
 \deqn{\mathrm{Pr}[U \le u, V \le v] = \mathbf{C}(u,v)\mbox{.}}
 
@@ -22,7 +22,7 @@ COP(u, v, cop=NULL, para=NULL, ...)
   Value(s) for the copula are returned.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{coCOP}}, \code{\link{duCOP}}, \code{\link{surCOP}}, \code{\link{surfuncCOP}} }

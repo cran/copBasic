@@ -2,7 +2,7 @@
 \alias{EMPIRcopdf}
 \title{ Dataframe of the Bivariate Emprical Copula }
 \description{
-Generate a \code{data.frame} representation of the bivariate empirical copula (Salvadori et al., 2007, p. 140) using the coordinates as preserved in the raw data in the parameter object of the bivariate empirical copula.
+Generate a \code{data.frame} representation of the bivariate empirical copula (Salvadori \emph{et al.}, 2007, p. 140) using the coordinates as preserved in the raw data in the parameter object of the bivariate empirical copula.
 }
 \usage{
 EMPIRcopdf(para=NULL, ...)
@@ -15,8 +15,7 @@ EMPIRcopdf(para=NULL, ...)
   An \R \code{data.frame} of \eqn{u}, \eqn{v}, and \eqn{\mathbf{C}_{n}(u,v)} values of the bivariate empirical copula is returned.
 }
 \references{
-Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007,
-Extremes in Nature---An approach using copulas: Springer, 289 p.
+Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in Nature---An approach using copulas: Springer, 289 p.
 }
 \author{ W.H. Asquith }
 \seealso{ \code{\link{EMPIRcop}} }

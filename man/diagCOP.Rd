@@ -2,7 +2,7 @@
 \alias{diagCOP}
 \title{ The Diagonals of a Copula }
 \description{
-Compute the \emph{primary diagonal} or alternatively the \emph{secondary diagonal}  (Nelson, 2006, pp. 12 and 16) of copula \eqn{\mathbf{C}(u,v)}.
+Compute the \emph{primary diagonal} or alternatively the \emph{secondary diagonal}  (Nelsen, 2006, pp. 12 and 16) of copula \eqn{\mathbf{C}(u,v)}.
 The primary diagonal is defined as
 \deqn{\mathbf{\delta}_\mathbf{C}(t) = \mathbf{C}(t,t)\mbox{,}}
 and the secondary diagonal is defined as
@@ -23,13 +23,13 @@ diagCOP(cop=NULL, para=NULL, secondary=FALSE,
   \item{...}{Additional arguments to pass to the \code{plot()} and \code{lines()} functions of \R.}
 }
 \value{
-  An \R \code{list} of the \code{t} values, \eqn{\mathbf{\delta}_\mathbf{C}(t,t)} (primary) or \eqn{\mathbf{\delta}_\mathbf{C}(t,1-t)} (secondary diagonal), along with a tag as to which diagonal is returned.
+  An \R \code{list} of the \code{t} values, \eqn{\mathbf{\delta}_\mathbf{C}(t,t)} (primary) or \eqn{\mathbf{\delta}^{\star}_\mathbf{C}(t,1-t)} (secondary diagonal), along with a tag as to which diagonal is returned.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
-\seealso{\code{\link{COP}}, \code{\link{sectionCOP}}}
+\seealso{\code{\link{diagCOPatf}}, \code{\link{COP}}, \code{\link{sectionCOP}}}
 \examples{
 # The primary diagonal of the W, P, M, and PSP copulas on the same plot
 D <- diagCOP(cop=W,   lwd=2)

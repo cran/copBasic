@@ -3,7 +3,7 @@
 \alias{EMPIRcop}
 \title{ The Bivariate Empirical Copula }
 \description{
-The bivariate empirical copula (Nelson, 2006, p. 219) for a bivariate sample of length \eqn{n} is in words
+The bivariate empirical copula (Nelsen, 2006, p. 219) for a bivariate sample of length \eqn{n} is in words
 
 \deqn{\mathbf{C}_n\biggl(\frac{i}{n}, \frac{j}{n}\biggr) = \frac{\mathrm{number\ of\ pairs\ (}x,y\mathrm{)\ with\ }x \le x_{(i)}\mathrm{\ and\ }y \le y_{(j)}}{n}\mbox{,}}
 
@@ -11,7 +11,12 @@ where \eqn{x_{(i)}} and \eqn{y_{(i)}}, \eqn{1 \le i,j \le n} and in tighter nota
 
 \deqn{\mathbf{C}_{n}(u,v) =
      \frac{1}{n}\sum_{i=1}^n \mathbf{1}\bigl(u_{obs} \le u, v_{obs} \le v \bigr)\mbox{,}}
-where \eqn{u_{obs}} and \eqn{v_{obs}} are the estimated nonexceedance probabilities in unranked form as computed by Weibull plotting positions (\eqn{i/(n+1)}, for example) or other plotting position formula. The example shown in this documentation sufficiently clarifies this concept. The \code{sort=FALSE} of the function \code{pp} of the \pkg{lmomco} package is present (and was added to that package) just for the very operation needed here for \eqn{u_{obs}} and \eqn{v_{obs}}. Weibull plotting positions seem favorable because they provide unbiased nonexceedance probabilities for all distributions.
+where \eqn{u_{obs}} and \eqn{v_{obs}} are the estimated nonexceedance probabilities in unranked form as computed by Weibull plotting positions (\eqn{i/(n+1)}, for example) or other plotting position formula. The example shown in this documentation sufficiently clarifies this concept. The Weibull form of the empirical copula is
+\deqn{\tilde\mathbf{C}_{n}(u,v) =
+     \frac{1}{n}\sum_{i=1}^n \mathbf{1}\biggl(\frac{R_i}{n+1} \le u, \frac{S_i}{n+1} \le v \biggr)\mbox{,}}
+where \eqn{R_i} and \eqn{S_i} are ranks of the data, which can be readily obtained by the \code{rank()} function of \R.
+
+The \code{sort=FALSE} of the function \code{pp()} of the \pkg{lmomco} package is available (and was added to that package) just for the very operation needed here for \eqn{u_{obs}} and \eqn{v_{obs}}. Weibull plotting positions seem favorable because they provide unbiased nonexceedance probabilities for all distributions.
 
 
 The bivariate empirical copula can be extended nonparametrically as the Bernstein copula \cr (\enc{Hernández-Maldonado}{Hernandez-Maldonado}, \enc{Díaz-Viera}{Diaz-Viera}, and Erdely, 2012) and is formulated as
@@ -25,14 +30,16 @@ where the individual Bernstein weights \eqn{\eta(i,j)} for the \eqn{k}th paired 
 The Bernstein extension, albeit conceptually pure in its shuffling by binomial coefficients and left- and right-tail weightings, can burn serious CPU time as inspection of the equations above seemingly indicates a nest of four \code{for()} loops in \R. (The native \R code of \pkg{copBasic} uses the \code{sapply()} function in \R liberally for substantial but not blazing fast speed increase.) The Bernstein extension results in a somewhat smoother empirical copula surface.
 }
 \usage{
-EMPIRcop(u, v, para=NULL, bernstein=FALSE, bernsteinprogress=TRUE, ...)
+EMPIRcop(u, v, para=NULL, weibull=FALSE,
+               bernstein=FALSE, bernsteinprogress=TRUE, ...)
 }
 \arguments{
   \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction;}
   \item{v}{Nonexceedance probability \eqn{v} in the \eqn{Y} direction;}
   \item{para}{A vector (single element) of parameters---the U-statistics of the data (see example). Alternatively, \code{para} can be a \code{list} holding a \code{para} as would be done if it were a vector, but the arguments \code{bernstein} and \code{bernsteinprogress} can be optionally included---this feature is provide so that the Bernstein refinement can be controlled within the context of other functions calling \code{EMPIRcop} such as by \code{\link{level.curvesCOP}};}
+  \item{weibull}{A logical triggering the definition for \eqn{\tilde{\mathbf{C}}_{n}(u,v)};}
   \item{bernstein}{A logical as to whether the Bernstein weights should be incorporated;}
-  \item{bernsteinprogress}{The Bernstein copula extension is CPU intensive, so a splash counter is pushed to the console via \code{message()} function in \R so as to not discourage the user, and}
+  \item{bernsteinprogress}{The Bernstein copula extension is CPU intensive, so a splash counter is pushed to the console via \code{message()} function in \R so as to not discourage the user; and}
   \item{...}{Additional arguments to pass.}
 }
 \value{
@@ -41,10 +48,9 @@ EMPIRcop(u, v, para=NULL, bernstein=FALSE, bernsteinprogress=TRUE, ...)
 \references{
 \enc{Hernández-Maldonado}{Hernandez-Maldonado}, V., \enc{Díaz-Viera}{Diaz-Viera}, M., and Erdely, A., 2012, A joint stochastic simulation method using the Berstein copula as a flexible tool for modeling nonlinear dependence structures between petrophysical properties: Journal of Petroleum Science and Engineering, v. 90--91, pp. 112--123.
 
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 
-Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007,
-Extremes in Nature---An approach using copulas: Springer, 289 p.
+Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in Nature---An approach using copulas: Springer, 289 p.
 }
 \author{ W.H. Asquith }
 \seealso{ \code{\link{simCOP}}, \code{\link{PSP}}, \code{\link{level.curvesCOP}} }

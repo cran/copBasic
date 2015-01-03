@@ -8,115 +8,113 @@ Version 1.5.0---August 31, 2011
 1.  Enhancement on derCOPinv.R when a solution is unbounded in uniroot()
       to return NA as needed. This was discovered in massive simulation
       from simcompositeCOP()---massive means 500k simulation counts.
-2. Added Nelson's copula in equation 4.2.12 as the N4212cop() function.
-3. Removed and restructured the tabulated L-comoment solutions to the
-     Plackett-Plackett copula to clean up some loose ends and set up the
-     ability to load much much larger solutions sets that are too big
-     for CRAN distribution.
-4. Major construction of the data subdirectory and changes to documentation.
-     Removed comp2lcomsPlackettPlackett.Rd, comp2lcomsPlackettPlackett2.Rd,
-     lcom2PLACKETTPLACKETTcop.R/Rd.
-5. Added lcomoms2.cop2parameter.R/Rd (replaces lcom2PLACKETTPLACKETTcop.R/Rd).
-6. Added data/PlackettPlackettNP.RData and man/PlackettPlackettNP.Rd.
-7. Changes to the CITATION file.
-8. Removed capitalization of arguments in the empricial quantile regression
-     (including f --> f.lowess): EMPIRqua.regress.R, EMPIRqua.regress2.R.
-9. Removed capitalization of arguments in the median regression:
-     med.regressCOP(), med.regressCOP2(), and
-     qua.regressCOP(), qua.regressCOP2(), qua.regressCOP.draw()
+2.  Added Nelsen's copula in equation 4.2.12 as the N4212cop() function.
+3.  Removed and restructured the tabulated L-comoment solutions to the
+      Plackett-Plackett copula to clean up some loose ends and set up the
+      ability to load much much larger solutions sets that are too big
+      for CRAN distribution.
+4.  Major construction of the data subdirectory and changes to documentation.
+      Removed comp2lcomsPlackettPlackett.Rd, comp2lcomsPlackettPlackett2.Rd,
+      lcom2PLACKETTPLACKETTcop.R/Rd.
+5.  Added lcomoms2.cop2parameter.R/Rd (replaces lcom2PLACKETTPLACKETTcop.R/Rd).
+6.  Added data/PlackettPlackettNP.RData and man/PlackettPlackettNP.Rd.
+7.  Changes to the CITATION file.
+8.  Removed capitalization of arguments in the empricial quantile regression
+      (including f --> f.lowess): EMPIRqua.regress.R, EMPIRqua.regress2.R.
+9.  Removed capitalization of arguments in the median regression:
+      med.regressCOP(), med.regressCOP2(), and
+      qua.regressCOP(), qua.regressCOP2(), qua.regressCOP.draw()
 10. Added level.setCOP() and level.setCOP2() that are dispatchers to special
-     features of level.curvesCOP() and level.curvesCOP2(), respectively. The
-     level curves functions required some extensive reorganization and
-     further error trapping to support the single level set return.
+      features of level.curvesCOP() and level.curvesCOP2(), respectively. The
+      level curves functions required some extensive reorganization and
+      further error trapping to support the single level set return.
 11. Added surfuncCOP() as the joint survival function. This function is
-     closely related to surCOP() but with subtle argument differences. This
-     new function included to be ever more consistent with Nelson's book.
+      closely related to surCOP() but with subtle argument differences. This
+      new function included to be ever more consistent with Nelsen's book.
 
 
 Version 1.5.1---November 14, 2011
-1. Added data/PlackettPlackettABKGtest.RData and
-     man/PlackettPlackettABKGtest.Rd.
-2. Removed lcomoms2.cop2parameter.R/Rd.
-3. Added lcomoms2.ABcop2parameter.R/Rd (replaces lcomoms2.cop2parameter.R/Rd).
-4. Added lcomoms2.ABKGcop2parameter.R/Rd.
-5. BUG FIX: Labeling inconsistency when sectionCOP() called
-     with dercop=FALSE.
-6. Added the EMPIRcop() function for estimation of the empirical copula.
-7. Added the EMPIRcopdf() function to compute the entire data.frame() of
-     the empirical copula---the copula for each coordinate is computed.
-8. Added the EMPIRgrid() function for computation of a regular grid of
-     the empirical copula---this grid will form the basis of other copula
-     operations on the empirical copula.
-9. Added the EMPIRgridder() and EMPIRgridder2() functions for
-     computation of the sectional derivatives of the empirical copula from
-     EMPIRgrid().
+1.  Added data/PlackettPlackettABKGtest.RData and
+      man/PlackettPlackettABKGtest.Rd.
+2.  Removed lcomoms2.cop2parameter.R/Rd.
+3.  Added lcomoms2.ABcop2parameter.R/Rd (replaces lcomoms2.cop2parameter.R/Rd).
+4.  Added lcomoms2.ABKGcop2parameter.R/Rd.
+5.  BUG FIX: Labeling inconsistency when sectionCOP() called with dercop=FALSE.
+6.  Added the EMPIRcop() function for estimation of the empirical copula.
+7.  Added the EMPIRcopdf() function to compute the entire data.frame() of
+      the empirical copula---the copula for each coordinate is computed.
+8.  Added the EMPIRgrid() function for computation of a regular grid of
+      the empirical copula---this grid will form the basis of other copula
+      operations on the empirical copula.
+9.  Added the EMPIRgridder() and EMPIRgridder2() functions for
+      computation of the sectional derivatives of the empirical copula from
+      EMPIRgrid().
 10. Added the EMPIRgridderinv() and EMPIRgridderinv2() functions for
-     computation of the sectional derivatives of the empirical copula from
-     EMPIRgrid().
+      computation of the sectional derivatives of the empirical copula from
+      EMPIRgrid().
 11. Added the EMPIRqua.regress() and EMPIRqua.regress2() functions for
-     quantile regression from grid emanating from EMPIRgridderinv() and
-     EMPIRgridderinv2().
+      quantile regression from grid emanating from EMPIRgridderinv() and
+      EMPIRgridderinv2().
 12. Added the EMPIRmed.regress() and EMPIRmed.regress2() functions for
-     median regression from grid emanating from EMPIRgridderinv() and
-     EMPIRgridderinv2().
+      median regression from grid emanating from EMPIRgridderinv() and
+      EMPIRgridderinv2().
 13. Added the EMPIRsim() function for simulation of V given U from the
-     empirical copula.
+      empirical copula.
 14. Added the EMPIRsimv() function for simulation of V given U (by
-     argument) from the empirical copula.
+      argument) from the empirical copula.
 15. Documentation fixes in derCOP2.Rd, lcomoms2.ABcop2parameters.Rd,
-     lcomoms2.ABKGcop2parameter.Rd, PlackettPlackettNP.Rd, and
-     qua.regressCOP.Rd.
+      lcomoms2.ABKGcop2parameter.Rd, PlackettPlackettNP.Rd, and
+      qua.regressCOP.Rd.
 16. Enhanced error handling with COPinv(), COPinv2(), derCOPinv(), and
-     derCOPinv2().
+      derCOPinv2().
 17. Enhancement to derCOP() and derCOP2() by changing derivative direction
-     if near the 0 or 1 boundaries.
+      if near the 0 or 1 boundaries.
 
 
 Version 1.5.2---July 30, 2012
-1. med.regressCOP() and med.regressCOP() had arguments changed to match
-     the qua.regressCOP() and qua.regressCOP2() functions.
-2. med.regressCOP.Rd and med.regressCOP2.Rd changed in argument to match
-     code.
-3. qua.regressCOP(), qua.regressCOP2(), med.regressCOP(), and med.regressCOP2()
-     all now insert an NA in case a root solution could not be found.
-4. Spelling corrections in DESCRIPTION: derivative and empirical.
-     Thanks CRAN team for the automated spell checkers.
+1.  med.regressCOP() and med.regressCOP() had arguments changed to match
+      the qua.regressCOP() and qua.regressCOP2() functions.
+2.  med.regressCOP.Rd and med.regressCOP2.Rd changed in argument to match
+      code.
+3.  qua.regressCOP(), qua.regressCOP2(), med.regressCOP(), and med.regressCOP2()
+      all now insert an NA in case a root solution could not be found.
+4.  Spelling corrections in DESCRIPTION: derivative and empirical.
+      Thanks CRAN team for the automated spell checkers.
 
 
 Version 1.5.3---April 20, 2013
-1. Added the ReineckeWells.RData and ReineckeWell266.RData.
+1.  Added the ReineckeWells.RData and ReineckeWell266.RData.
   ** This version failed --timings checks by CRAN, never released **
 
 
 Version 1.5.4--May 10, 2013
-1. Prof. Ripley remarked that the DESCRIPTION of copBasic was too long.
-     This is a reasonably critique. The DESCRIPTION has been radically
-     shortened. The original (with new edits and organization) is now located
-     in the inst/doc/Extended_DESCRIPTION.txt file. WHA will use this file
-     as needed to provide further guidance into the package.
-2. Contraction of --timings made to the following: tauCOP.Rd wolfCOP.Rd
-     level.curvesCOP.Rd med.regressCOP.Rd qua.regressCOP.Rd qua.regressCOP2.Rd.
-     Also some minor tweaks to the median and quantile regression examples
-     were made.
+1.  Prof. Ripley remarked that the DESCRIPTION of copBasic was too long.
+      This is a reasonably critique. The DESCRIPTION has been radically
+      shortened. The original (with new edits and organization) is now located
+      in the inst/doc/Extended_DESCRIPTION.txt file. WHA will use this file
+      as needed to provide further guidance into the package.
+2.  Contraction of --timings made to the following: tauCOP.Rd wolfCOP.Rd
+      level.curvesCOP.Rd med.regressCOP.Rd qua.regressCOP.Rd qua.regressCOP2.Rd.
+      Also some minor tweaks to the median and quantile regression examples
+      were made.
 
 
 Version 1.6.0--September 26, 2014 (Quasi-closure to class project of 2008)
-1. Added the Bernstein copula extension to EMPIRcop().
-2. Changes to derCOP() and derCOP2() of accommodate vectorization yet still
+1.  Added the Bernstein copula extension to EMPIRcop().
+2.  Changes to derCOP() and derCOP2() of accommodate vectorization yet still
       retain the dynamic suspension of requested derivative direction should
       need to be changed (overrided) [but only when needed]. Thus, tauCOP()
       now does not kick off warnings.
-3. Added isCOP.radsym to numerically determine a logical on radially symmetry
-      of a copula.
-4. Added asCOP() to help build copulas with operational similarity to the
+3.  Added isCOP.radsym() for a gridwise check on radial/reflection symmetry.
+4.  Added asCOP() to help build copulas with operational similarity to the
       expected implementation style for the package.
-5. Added isCOP.PQD() for testing postively quadrant dependency of a copula.
-6. Added gridCOP() for supporting 3-D or 2-D image renderings of a copula.
-7. Enchanced simCOP() for more speed and reporting features and vectorized
+5.  Added isCOP.PQD() for testing postively quadrant dependency of a copula.
+6.  Added gridCOP() for supporting 3-D or 2-D image renderings of a copula.
+7.  Enchanced simCOP() for more speed and reporting features and vectorized
       simCOPmicro().
-8. Added the surfuncCOP() for the joint survival function of a copula, which
+8.  Added the surfuncCOP() for the joint survival function of a copula, which
       is subtly different from the survivial copula in surCOP.
-9. Removed the ratcop argument from sectionCOP(). That feature is too much
+9.  Removed the ratcop argument from sectionCOP(). That feature is too much
       like what isCOP.LTD() or isCOP.RTI() was already doing.
 10. Comprehensive Rd auditing including the Examples and example expansion.
 11. Removed the capital "F" for quantile regression level and replaced with
@@ -126,7 +124,76 @@ Version 1.6.0--September 26, 2014 (Quasi-closure to class project of 2008)
       consistent with version 1.5.0.
 12. Added Hoeffding's Phi in hoefCOP().
 13. Adjustments to the features of sectionCOP().
-14. Enhanced indexing by suggestion of Amaranthe R. Biessen.
+14. Enhanced indexing by suggestion of Amaranthe R. Biessen, whom also was
+      influential my major index extensions to the lmomco package.
 15. Adjusted DESCRIPTION and NAMESPACE to only partially grab those few
       functions needed from the lmomco package.
 
+
+Version 1.7.0--January 3, 2015 (The "Joe 2015 Release" [many ideas from therein])
+1.  Further refinement of documentation and continued work on highlighting
+      and extending the connections to numerical results of various kinds
+      reported in Nelsen (2006) as well as Joe (2015).
+2.  Extended hoefCOP() into Lp distances from independence and weaved in more
+      of Nelsen (2006).
+3.  Added LpCOP(), which is functionally the same as hoefCOP().
+4.  Minor documentation tweaks to EMPIRcop.Rd, EMPIRcopdf.Rd, EMPIRgrid.Rd,
+      PLACKETTpar.Rd, PlackettPlackettABKGtest.Rd, PlackettPlackettNP.Rd,
+      composite1COP.Rd, composite2COP.Rd, composite3COP.Rd,
+      isCOP.LTD.Rd, isCOP.RTI.Rd, isCOP.radsym.Rd,
+      lcomoms2.ABKGcop2parameter.Rd, and lcomoms2.ABcop2parameter.Rd.
+5.  Added extended example for isCOP* functions inside isCOP.radsym.Rd.
+6.  Added the Gumbel-Hougaard copula (GHcop) because WHA is studying the
+      method of L-comoments on this copula relative to the Plackett copula.
+7.  Fixed spelling of Roger Nelsen's last name in all Rd files (sorry Roger).
+8.  Added another example to copBasic-package.Rd.
+9.  Added FRECHETcop() and added utf-8 encoding to those Rd files requiring
+      the dicritic on Frechet: GHcop.Rd, M.Rd, PlackettPlackettABKGtest.Rd,
+      PlackettPlackettNP.Rd, and W.Rd.
+10. Enhanced warning message in tauCOP() to point out that some failure of
+      numerical integration can be (often is?) attributable to singularity
+      for the given copula.
+11. Added an example to PLACKETTpar.Rd that shows the development of a
+      polynomial for estimation of Kendall's Tau given Spearman's Rho of a
+      Plackett copula. Further, PLACKETTpar() now sets labels for the returned
+      theta using names().
+12. Added additional discussion to isCOP.radsym.Rd to suggest that is seems
+      that radially symmetric copulas have zero L-comoments beyond
+      L-correlation. The literature seems silent on this question.
+13. Improved a conditional on infinity in PLACKETTcop.R.
+14. Added 'graphics' argument to simCOP.R to make is easier to turn off
+      graphical output from that function and also added the arguments 'snv',
+      'infsnv.rm', and 'trapinfsnv' as influence of Joe (2015) is incorporated.
+15. Changed to more idiomatic R syntax in derCOPinv.R and derCOPinv2.R so that
+      the lines of code were reduced.
+16. Added L-comoment example into the independence copula P.Rd.
+17. Added diagCOPatf() for solution of the probabilities u and v that provide
+      joint probability F.
+18. Added densityCOP() and densityCOPplot() following review of Joe (2015).
+19. Added sample Blomqvist's Beta computation to blomCOP() after Joe (2015).
+20. Added uvlmoms() and uvskewnewss() after Joe (2015).
+21. Added lcomCOPpv() for simulating the sample distribution(s) of
+      L-correlation, L-coskew, and L-cokurtosis for a copula.
+22. Added 'weibull' argument to EMPIRcop() [note the Joe (2015) often uses
+      Hazen plotting positions without so naming them as Hazen]
+23. Added the Kullback-Leibler divergences, Jeffrey's divergence, and the
+      Kullback-Leibler sample size.
+24. Added semicorCOP() for semicorrelations of a copula and(or) data.
+25. Added isCOP.permsym() for a gridwise check on permutation symmetry.
+26. Added vuongCOP() for Vuong's procedure of copula comparison along with an
+      extensive Note section showing the forefront of copBasic extension into
+      the inference problem.
+
+
+TODO:
+
+(1) The functions that use integrate() or nested integrate()'s are
+giniCOP, hoefCOP, kullCOP, rhoCOP, tauCOP, wolfCOP. The theoretical limits of
+integration are [0,1] for the calls. Only kullCOP presently can use a
+nonhardwired [0,1] and defaults to [lo, 1-lo] for small low because it is so
+dependent on the rectangular (numerical) estimation of copula density. The other functions rely on the copula itself. Perhaps these other functions should have
+the ability for the user to override [0,1] and use [lo, 1-lo] for small lo?
+
+(2) Implementation of state-of-the-practice nonparametric estimators of lower
+and upper tail dependence parameters. Neither of the three books cited within
+deal with this. A turn to recommended literature by Joe (2015) is needed.

@@ -2,7 +2,7 @@
 \alias{derCOP2}
 \title{ Numerical Derivative of a Copula for U with respect to V }
 \description{
-Compute the numerical partial derivative of a copula according to Nelson (2006, pp. 13, 40--41) with respect to \eqn{v}:
+Compute the numerical partial derivative of a copula according to Nelsen (2006, pp. 13, 40--41) with respect to \eqn{v}:
 
 \deqn{0 \le \frac{\delta}{\delta v} \mathbf{C}(u,v) \le 1\mbox{,}}
 
@@ -26,7 +26,7 @@ derCOP2(cop=NULL, u, v, delv=.Machine$double.eps^0.50,
   \item{v}{Nonexceedance probability \eqn{v} in the \eqn{Y} direction (see previous comment on \code{u});}
   \item{delv}{The \eqn{\Delta v} interval for the derivative;}
   \item{derdir}{The direction of the derivative as described above. Default is \code{left} but internally any setting can be temporarily suspended to avoid improper computations (see source code); and}
-  \item{...}{Additional arguments to pass such as the parameters often described in \code{para} arguments of other copula functions. (The lack of \code{para=NULL} for \code{derCOP} and \code{\link{derCOP2}} was either design oversight or design foresight but too late to enforce consistency in the package on this matter.)}
+  \item{...}{Additional arguments to pass such as the parameters often described in \code{para} arguments of other copula functions. (The lack of \code{para=NULL} for \code{\link{derCOP}} and \code{derCOP2} was either design oversight or design foresight but too late to enforce consistency in the package on this matter.)}
 }
 \value{
   Value(s) for the partial derivative are returned.
@@ -35,7 +35,7 @@ derCOP2(cop=NULL, u, v, delv=.Machine$double.eps^0.50,
 A known caveat of the current implementation of the copula derivative is that there is a chance that the \eqn{\Delta v} will span a singularity or discontinuous portion of a copula should it have a property of singularity. The \code{delv} is chosen small so the chance is mitigated to a small value. It is not decided whether a derivative from the positive side (\code{dir="left"}), when failing should switch over to a computation from the negative side (\code{dir="right"}). The distinction is important for the computation of the inverse of the derivative \code{\link{derCOPinv2}} because the solution finder needs a sign reversal to work.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{derCOPinv2}}, \code{\link{derCOP}}}
@@ -59,5 +59,6 @@ cat(c(lft,rgt,cnt,"\n")) # For this example, all are correct (see derCOP example
 \keyword{copula (derivative)}
 \keyword{conditional cumulative distribution function}
 \keyword{copula operator}
+\keyword{derivative}
 
 

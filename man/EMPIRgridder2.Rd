@@ -21,3 +21,4 @@ EMPIRgridder2(empgrid=NULL, ...)
 }
 \keyword{empirical copula}
 \keyword{empirical copula (derivatives)}
+\keyword{derivative}

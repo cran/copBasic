@@ -47,6 +47,10 @@ mainpara <- list(cop1=PLACKETTcop, cop2=PLACKETTcop,
                  para2gen=function() { return(c(10^runif(1,min= 0,max=5))) })
 v <- simcompositeCOP(n=10, nsim=1, parent=mainpara, showresults=TRUE)
 print(v)
+
+
+
+
 }
 \keyword{copula composition}
 \keyword{copula (simulation)}

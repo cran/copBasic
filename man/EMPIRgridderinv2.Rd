@@ -22,3 +22,4 @@ EMPIRgridderinv2(empgrid=NULL, kumaraswamy=FALSE, ...)
 }
 \keyword{empirical copula}
 \keyword{empirical copula (derivative inverses)}
+\keyword{derivative}

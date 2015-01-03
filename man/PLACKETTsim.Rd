@@ -2,7 +2,7 @@
 \alias{PLACKETTsim}
 \title{ Direct Simulation of a Plackett Copula }
 \description{
-Simulation of the \emph{Plackett copula} (Nelson, 2006, pp. 89--92) is made by this function. The documentation for \code{\link{PLACKETTcop}} provides the mathematical formula of the copula.
+Simulation of the \emph{Plackett copula} (Nelsen, 2006, pp. 89--92) is made by this function. The documentation for \code{\link{PLACKETTcop}} provides the mathematical formula of the copula.
 }
 \usage{
 PLACKETTsim(n, para=NULL, ...)
@@ -16,7 +16,7 @@ PLACKETTsim(n, para=NULL, ...)
   An \R \code{data.frame} of the values \eqn{U} and \eqn{V} for the nonexceedance probabilities is returned.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{PLACKETTcop}}, \code{\link{PLACKETTpar}} }

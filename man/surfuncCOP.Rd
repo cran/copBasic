@@ -2,7 +2,7 @@
 \alias{surfuncCOP}
 \title{ The Joint Survival Function }
 \description{
-Compute the \emph{joint survival function} from a copula (Nelson, 2006, p. 33), which is defined as
+Compute the \emph{joint survival function} from a copula (Nelsen, 2006, p. 33), which is defined as
 \deqn{\overline{\mathbf{C}}(u,v) = \mathrm{Pr}[U > u, V > v] = 1 - u - v + \mathbf{C}(u,v) = \hat\mathbf{C}(1-u, 1-v)\mbox{,}}
 where \eqn{\hat\mathbf{C}(u',v')} is the \emph{survival copula} (see \code{\link{surCOP}}), which is defined by
 \deqn{\hat{\mathbf{C}}(u',v') = \mathrm{Pr}[U > u, V > v] =  u' + v' - 1 + \mathbf{C}(1-u',1-v')\mbox{.}}
@@ -23,7 +23,7 @@ surfuncCOP(u, v, cop=NULL, para=NULL, ...)
   Value(s) for the joint survival function are returned.
 }
 \references{
-Nelson, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
 \seealso{ \code{\link{surCOP}}  }
