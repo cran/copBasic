@@ -1,5 +1,5 @@
-4054083d53c6120202b1d5b5e38cda9f *ChangeLog
-5a22d68a70220fac1d1b240935b7f2e9 *DESCRIPTION
+ba28ef8864061ae4ff9a6d4cdb3b4a07 *ChangeLog
+8caecc5ab3984f1fc17b4e8912ddad78 *DESCRIPTION
 d72c2f88ddb629326ba1428d6a6fc991 *NAMESPACE
 2a52bca8f571c48b61b587f098cf154b *R/COP.R
 311add67e59016fed04b99d98e379178 *R/COPinv.R
@@ -105,7 +105,7 @@ fed15b7cacc49497e243aff891404a29 *inst/3dcopula/3dcopula.pl
 98dd6c42d28062e343263f1c98c19392 *inst/3dcopula/3dcopula_fromperl.tex
 2039e8769c20c2d307a87ab5781cc946 *inst/3dcopula/README
 93450755c6ddd53451628bb60a35bcf7 *inst/3dcopula/velocity.txt
-560450f001ae498b15c7f9a4a5f541c3 *inst/CITATION
+c91b665ea963a85df5c238af427745da *inst/CITATION
 12e5c86083f70f8610b59518c876d8dc *inst/doc/Extended_DESCRIPTION.txt
 ed365a36f9e4e4d84c1d97577db3b97f *man/COP.Rd
 40e20dce5f4cf48ab38b63a612fdeb01 *man/COPinv.Rd
