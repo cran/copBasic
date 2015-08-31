@@ -2,13 +2,13 @@
 \alias{isCOP.LTD}
 \title{ Is a Copula Left-Tail Decreasing }
 \description{
-Numerically set a logical whether a copula is \emph{left-tail decreasing} (LTD) as described by Nelsen (2006, pp. 192--193) and Salvadori \emph{et al.} (2007, p. 222).  A copula \eqn{\mathbf{C}(u,v)} is left-tail decreasing for \eqn{\mathrm{LTD}(V{\mid}U)} if and only if any \eqn{v \in [0,1]},
+Numerically set a logical whether a copula is \emph{left-tail decreasing} (LTD) as described by Nelsen (2006, pp. 192--193) and Salvadori \emph{et al.} (2007, p. 222).  A copula \eqn{\mathbf{C}(u,v)} is left-tail decreasing for \eqn{\mathrm{LTD}(V{\mid}U)} if and only if for any \eqn{v \in [0,1]},
 \deqn{\frac{\delta \mathbf{C}(u,v)}{\delta u} \le \frac{\mathbf{C}(u,v)}{u}}
-for almost all \eqn{u \in [0,1]}. Similarly, a copula \eqn{\mathbf{C}(u,v)} is left-tail decreasing for \eqn{\mathrm{LTD}(U{\mid}V)} if and only if any \eqn{u \in [0,1]},
+for almost all \eqn{u \in [0,1]}. Similarly, a copula \eqn{\mathbf{C}(u,v)} is left-tail decreasing for \eqn{\mathrm{LTD}(U{\mid}V)} if and only if for any \eqn{u \in [0,1]},
 \deqn{\frac{\delta \mathbf{C}(u,v)}{\delta v} \le \frac{\mathbf{C}(u,v)}{v}}
 for almost all \eqn{v \in [0,1]} where the later definition is controlled by the \code{wrtV=TRUE} argument.
 
-The LTD concept is associated with the concept of \dQuote{tail monotonicity} (Nelsen, 2006, p. 191). Specifically, but reference to Nelsen (2006) definitions and geometric interpretations is recommended, \eqn{\mathrm{LTD}(V{\mid}U)} (or \eqn{\mathrm{LTD}(V{\mid}U)}) means that the probability \eqn{P[Y \le y|X \le x]} (or \eqn{P[X \le x|Y \le y]}) is a nonincreasing function of \eqn{x} (or \eqn{y}) for all \eqn{y} (or \eqn{x}).
+The LTD concept is associated with the concept of \emph{tail monotonicity} (Nelsen, 2006, p. 191). Specifically, but reference to Nelsen (2006) definitions and geometric interpretations is recommended, \eqn{\mathrm{LTD}(V{\mid}U)} (or \eqn{\mathrm{LTD}(V{\mid}U)}) means that the probability \eqn{P[Y \le y|X \le x]} (or \eqn{P[X \le x|Y \le y]}) is a nonincreasing function of \eqn{x} (or \eqn{y}) for all \eqn{y} (or \eqn{x}).
 
 A positive LTD of either \eqn{\mathrm{LTD}(V{\mid}U)} or \eqn{\mathrm{LTD}(U{\mid}V)} implies positively quadrant dependency (PQD, \code{\link{isCOP.PQD}}) but the condition of PQD does not imply LTD. Finally, the accuracy of the numerical assessment of the returned logical by \code{isCOP.LTD} is dependent on the the \dQuote{smallness} of the \code{delta} argument passed into the function.
 }

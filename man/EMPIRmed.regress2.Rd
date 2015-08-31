@@ -2,7 +2,7 @@
 \alias{EMPIRmed.regress2}
 \title{ Median Regression of the Grid of the Bivariate Emprical Copula for U with respect to V}
 \description{
-Perform \emph{median regression} from the gridded inversion of the bivariate empirical copula of \eqn{U} with respect to \eqn{V}.
+Perform \emph{median regression} from the gridded inversion of the \emph{bivariate empirical copula} of \eqn{U} with respect to \eqn{V}.
 }
 \usage{
 EMPIRmed.regress2(...)

@@ -2,7 +2,6 @@ citHeader("To cite package 'copBasic' in publications use:")
 
 year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date) 
 vers <- paste("R package version",           meta$Version) 
-url<-paste("http://www.cran.r-project.org/package=copBasic",sep="")
 title <- "copBasic---General Copula Theory and Many Utility Functions"
 
 citEntry(entry="Manual", 
@@ -10,7 +9,6 @@ citEntry(entry="Manual",
          author = personList(as.person("W.H. Asquith")), 
          year   = year, 
          note   = vers,
-         url    = url,
          textVersion =
          paste("Asquith, W.H.,", year, 
                ", ", title, ". ",

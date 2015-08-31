@@ -1,10 +1,11 @@
+\encoding{utf8}
 \name{P}
 \alias{P}
 \title{ The Product (Independence) Copula }
 \description{
 Compute the \emph{product copula} (Nelsen, 2006, p. 12), which is defined as
 \deqn{\mathbf{\Pi}(u,v) = uv\mbox{.}}
-This is the copula of statistical independence between \eqn{U} and \eqn{V} and is sometimes referred to as the \emph{independence copula}.
+This is the copula of statistical independence between \eqn{U} and \eqn{V} and is sometimes referred to as the \emph{independence copula}.  The two extreme antithesis copulas are the \emph{\enc{Fréchet}{Frechet}-Hoeffding upper bound} (\code{\link{M}}) and \emph{\enc{Fréchet}{Frechet}-Hoeffding lower bound} (\code{\link{W}}) copulas.
 }
 \usage{
 P(u, v, ...)
@@ -15,7 +16,7 @@ P(u, v, ...)
   \item{...}{Additional arguments to pass.}
 }
 \value{
-  The value for the copula is returned.
+  Value(s) for the copula are returned.
 }
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
@@ -42,8 +43,7 @@ lmomco::lcomoms2(UV, nmom=4)
 # The following are Taus_r^{12} and Taus_r^{21}
 # L-corr        0.50136 and  0.50138 ---> Pearson R = Spearman Rho
 # L-coskews    -0.00641 and -0.00347 ---> ZERO
-# L-cokurtosis -0.00153 and  0.00046 ---> ZERO
-}
+# L-cokurtosis -0.00153 and  0.00046 ---> ZERO}
 }
 \keyword{copula (formulas)}
 \concept{independence copula}

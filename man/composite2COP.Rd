@@ -2,16 +2,16 @@
 \alias{composite2COP}
 \title{ Composition of Two Copulas with Two Compositing Parameters }
 \description{
-The \emph{composition of two copulas} (Salvadori \emph{et al.}, 2007, p. 266, Prop. C.3) provides for more sophisticated structures of dependence between variables than many single parameter copula can provide. Further, asymmetrical copulas are readily obtained from symmetrical copulas. Let \eqn{\mathbf{A}} and \eqn{\mathbf{B}} be copulas with respective parameters \eqn{\Theta_\mathbf{A}} and \eqn{\Theta_\mathbf{B}}, then
+The \emph{composition of two copulas} (Salvadori \emph{et al.}, 2007, p. 266, prop. C.3) provides for more sophisticated structures of dependence between variables than many single parameter copula can provide. Further, \emph{asymmetrical copulas} are readily obtained from \emph{symmetrical copulas}. Let \eqn{\mathbf{A}} and \eqn{\mathbf{B}} be copulas with respective parameters \eqn{\Theta_\mathbf{A}} and \eqn{\Theta_\mathbf{B}}, then
 
 \deqn{\mathbf{C}_{\alpha,\beta}(u,v) = \mathbf{A}(u^\alpha,    v^\beta) \cdot
                               \mathbf{B}(u^{1-\alpha},v^{1-\beta})\mbox{,}}
 
 defines a family of copulas \eqn{\mathbf{C}_{\alpha,\beta; \Theta_\mathbf{A}, \Theta_\mathbf{B}}} with \bold{two} \emph{compositing parameters} \eqn{\alpha,\beta \in \mathcal{I}:[0,1]}. In particular, if \eqn{\alpha = \beta = 1}, then \eqn{\mathbf{C}_{1,1} = \mathbf{A}}, and, if \eqn{\alpha = \beta = 0}, then \eqn{\mathbf{C}_{0,0} = \mathbf{B}}. For \eqn{\alpha \ne \beta}, the \eqn{\mathbf{C}_{\alpha,\beta}} is in general asymmetric that is \eqn{\mathbf{C}(u,v) \ne \mathbf{C}(v,u)} for some \eqn{(u,v) \in \mathcal{I}^2}.
 
-It is important to stress that copulas \eqn{\mathbf{A}_{\Theta_A}} and \eqn{\mathbf{B}_{\Theta_B}} can be of different families and each parameterized accordingly by the values \eqn{\Theta_A} and \eqn{\Theta_B}. This is an interesting feature in the context of building complex copulatic structures in pursuit of fitting asymmetric measures of dependency such as the L-comoments available in the \pkg{lmomco} package.  The author does not know whether the copulas \eqn{\mathbf{A}} and \eqn{\mathbf{B}} need be symmetric as the reference makes no stated restriction to that effect. (Symmetry of the copula \eqn{\mathbf{C}} is required for the situation that follows.)
+It is important to stress that copulas \eqn{\mathbf{A}_{\Theta_A}} and \eqn{\mathbf{B}_{\Theta_B}} can be of different families and each parameterized accordingly by the values \eqn{\Theta_A} and \eqn{\Theta_B}. This is an interesting feature in the context of building complex copulatic structures in pursuit of fitting asymmetric measures of dependency such as the \emph{L-comoments} available in the \pkg{lmomco} package.  The author does not know whether the copulas \eqn{\mathbf{A}} and \eqn{\mathbf{B}} need be symmetric as the reference makes no stated restriction to that effect. (Symmetry of the copula \eqn{\mathbf{C}} is required for the situation that follows.)
 
-It is possible to simplify the construction of an asymmetric copula for a single copula by the following. Let \eqn{\mathbf{C}(u,v)} be a symmetric copula, \eqn{\mathbf{C} \ne \mathbf{\Pi}} (for \eqn{\mathbf{\Pi}} see \code{\link{P}}). A family of asymmetric copulas \eqn{\mathbf{C}_{\alpha,\beta}} with \bold{two} \emph{composition parameters} \eqn{0 < \alpha,\beta < 1, \alpha \ne \beta} that also includes \eqn{\mathbf{C}(u,v)} as a limiting case and is given by
+It is possible to simplify the construction of an asymmetric copula from a symmetric copula by the following. Let \eqn{\mathbf{C}(u,v)} be a symmetric copula, \eqn{\mathbf{C} \ne \mathbf{\Pi}} (for \eqn{\mathbf{\Pi}} see \code{\link{P}}). A family of asymmetric copulas \eqn{\mathbf{C}_{\alpha,\beta}} with \bold{two} \emph{composition parameters} \eqn{0 < \alpha,\beta < 1, \alpha \ne \beta} that also includes \eqn{\mathbf{C}(u,v)} as a limiting case and is given by
 
 \deqn{\mathbf{C}_{\alpha,\beta}(u,v) = u^\alpha v^\beta \cdot \mathbf{C}(u^{1-\alpha},v^{1-\beta})\mbox{.}}
 
@@ -23,7 +23,7 @@ composite2COP(u,v, para, ...)
 \arguments{
   \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction;}
   \item{v}{Nonexceedance probability \eqn{v} in the \eqn{Y} direction;}
-  \item{para}{A special parameter \code{list} (see Note); and}
+  \item{para}{A special parameter \code{list} (see \bold{Note}); and}
   \item{...}{Additional arguments to pass to the copula.}
 }
 \value{
@@ -49,8 +49,8 @@ Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in
 \seealso{\code{\link{COP}}, \code{\link{composite1COP}}, \code{\link{composite3COP}}}
 \examples{
 alpha <- 0.24; beta <- 0.23; Theta1 <- NA; Theta2 <- NA
-# The W() and PSP() copulas do not take parameters, but show how the parameters (ThetaX)
-# would be set should either or both of the copulas require parameters.
+# The W() and PSP() copulas do not take parameters, but example shows how the
+# parameters would be set should either or both of the copulas require parameters.
 para <- list(alpha=alpha, beta=beta, cop1=W, cop2=PSP, para1=Theta1, para2=Theta2)
 t <- composite2COP(0.4,0.6,para)
 print(t)

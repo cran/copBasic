@@ -31,6 +31,13 @@ Version 1.5.0---August 31, 2011
 11. Added surfuncCOP() as the joint survival function. This function is
       closely related to surCOP() but with subtle argument differences. This
       new function included to be ever more consistent with Nelsen's book.
+12. Added kmeasCOP() for the Kendall's Measure of a copula, which is critically
+      important for "secondary return period" computations.
+13. Added alias of simCOPv() for simCOPmicro() to be in parallel with EMPIRsimv.
+14. Relations between COP(), surCOP(), surfuncCOP(), duCOP(), and coCOP() are
+      illustrated in a script in inst/doc/CopulaRelations_BaseFigure_inR.txt
+      as a base figure and vector edited in inst/doc/CopulaRelationsFigure.pdf
+
 
 
 Version 1.5.1---November 14, 2011
@@ -130,10 +137,10 @@ Version 1.6.0--September 26, 2014 (Quasi-closure to class project of 2008)
       functions needed from the lmomco package.
 
 
-Version 1.7.0--January 3, 2015 (The "Joe 2015 Release" [many ideas from therein])
+Version 1.7.0--January 3, 2015 (The "Joe 2014 Release" [many ideas from there])
 1.  Further refinement of documentation and continued work on highlighting
       and extending the connections to numerical results of various kinds
-      reported in Nelsen (2006) as well as Joe (2015).
+      reported in Nelsen (2006) as well as Joe (2014).
 2.  Extended hoefCOP() into Lp distances from independence and weaved in more
       of Nelsen (2006).
 3.  Added LpCOP(), which is functionally the same as hoefCOP().
@@ -163,18 +170,18 @@ Version 1.7.0--January 3, 2015 (The "Joe 2015 Release" [many ideas from therein]
 13. Improved a conditional on infinity in PLACKETTcop.R.
 14. Added 'graphics' argument to simCOP.R to make is easier to turn off
       graphical output from that function and also added the arguments 'snv',
-      'infsnv.rm', and 'trapinfsnv' as influence of Joe (2015) is incorporated.
+      'infsnv.rm', and 'trapinfsnv' as influence of Joe (2014) is incorporated.
 15. Changed to more idiomatic R syntax in derCOPinv.R and derCOPinv2.R so that
       the lines of code were reduced.
 16. Added L-comoment example into the independence copula P.Rd.
 17. Added diagCOPatf() for solution of the probabilities u and v that provide
       joint probability F.
-18. Added densityCOP() and densityCOPplot() following review of Joe (2015).
-19. Added sample Blomqvist's Beta computation to blomCOP() after Joe (2015).
-20. Added uvlmoms() and uvskewnewss() after Joe (2015).
+18. Added densityCOP() and densityCOPplot() following review of Joe (2014).
+19. Added sample Blomqvist's Beta computation to blomCOP() after Joe (2014).
+20. Added uvlmoms() and uvskewnewss() after Joe (2014).
 21. Added lcomCOPpv() for simulating the sample distribution(s) of
       L-correlation, L-coskew, and L-cokurtosis for a copula.
-22. Added 'weibull' argument to EMPIRcop() [note the Joe (2015) often uses
+22. Added 'weibull' argument to EMPIRcop() [note the Joe (2014) often uses
       Hazen plotting positions without so naming them as Hazen]
 23. Added the Kullback-Leibler divergences, Jeffrey's divergence, and the
       Kullback-Leibler sample size.
@@ -186,18 +193,98 @@ Version 1.7.0--January 3, 2015 (The "Joe 2015 Release" [many ideas from therein]
 
 
 Version 1.7.1--January 31, 2015
-1. Minor changes to CITATION following CRAN email dated 01/09/2014.
+1. Minor changes to CITATION following CRAN email dated 01/09/2015.
 
 
-TODO:
+Version 2.0.1--August 31, 2015
+0. Some major documentation expansion here and there as cascading impacts from
+      the other changes listed below. Minor documentation formatting changes in
+      a select few Rd files and many proofreading passes through all documen-
+      tation resulted in modest additions and corrections. Overhaul of the
+      Examples sections to keep --timings down to < 0.01 elapsed seconds
+      for all documented functions outside \dontrun{} declarations on test
+      platform.
+1. Added the "tol" argument to diagCOPatf and specified a tolerance tighter
+      than the default of uniroot because of apparent loss of precision
+      when experimenting with 1,000,000-year return periods.
+2. Added a Note to GHcop.Rd showing analytical derivatives and the inverse.
+3. Added jointCOP(), joint.curvesCOP(), joint.curvesCOP2() for an alternative
+      framework for computing joint probabilities with a feature of the two
+      conditions of AND and OR for the joint probability.
+4. Typo correction in copBasic-package.Rd and extensions to that Rd considering
+      more about joint AND, joint OR, and mutually exclusive OR probabilities.
+5. Added exp(log(...)) logic to PSP() for more accuracy for very small
+      probabilities to avoid division by small numbers.
+6. Added in PSP.Rd discussion of PSP() returning NaN for zero probabilities.
+7. Added (related to no. 5 and 6) trapped against a coupla NaN for zero
+      probabilities in root-solving in COPinv() and COPinv2(). The functions
+      jointCOP(), joint.curvesCOP(), joint.curvesCOP2() have this trap too.
+7. Added Note section in duCOP.Rd about joint AND, OR, and exclusive OR.
+8. Added reflection permutations to COP() and simCOPmicro() after Joe (2014) as
+      cited in documentation. WHA does not desire to implement the reflection
+      feature throughout the package---see the combined documentation of these
+      two functions.
+9. Changed the named argument "swap" to "wrtV" in qua.regressCOP.draw to
+      parallel syntax of similar uses in copBasic.
+10. Added inst/doc/CopulaRelationBaseFiginR.txt, which is an R script that
+      creates a base graphic suitable for manual vector editing defining
+      bivariate relations of probability a copulas.
+11. Added Joe's Skewness of a copula by joeskewCOP() after Joe (2014) for
+      measurement of permutation asymmetry (skew).
+12. Added "RhoE" of a bivariate extreme value copula by rhobevCOP() after
+      Joe (2014).
+13. Added Kendall Function [kfuncCOP()/kmeasCOP()] along with very considerable
+      documentation concerning how they are presented in Nelsen (2006),
+      Salvadori et al. (2007), and Joe (2014). The inversion is kfuncCOPinv().
+14. Added convexCOP() for a convex combination of two copulas after Joe (2014).
+15. Removed the extensive copying of internal results within composite1COP(),
+      composite2COP(), and composite3COP()---should be big speed increase for
+      giant sample sizes.
+16. Added Spearman's Footrule as footCOP() with sample estimation as well.
+17. Added sample estimation to Gini Gamma in giniCOP(), Hoeffding Phi in
+      hoefCOP(), and Schweizer and Wolff Sigma in wolfCOP(), and for
+      parallelism---sample interface in rhoCOP() and tauCOP() to R's cor().
+18. Added L-moments of the kfuncCOP() via kfuncCOPlmoms() and kfuncCOPlmom(),
+      which closely parallel theoretical L-moment computation using the
+      cdf2lmoms() and cdf2lmom() functions of the lmomco package.
+19. Added Linear Spearman copula in FRECHETcop().
+20. Added Asymmetric Gumbel-Hougaard extension to GHcop() with L-comoment demo.
+21. Added prod2COP() for the *-product multiplication of copulas.
+22. **DEPRECTATION ALERT** Added Hazen extension to EMPIRcop() and lumped
+      computation types into new argument "ctype"" and fully **removed**
+      the "weibull"" and "bernstein"" arguments.
+23. Added GLcop() [Galambos] and HRcop() [Husler-Reiss] extreme value copulas.
+24. **DEPRECTATION ALERT** Overhaul of kullCOP() into Monte Carlo integration
+      and deprecated numerical integration to kullCOPint(). Logic is simpler
+      and expense of longer computation times but does not suffer from
+      hard-to-mitigate divergent integral errors.
+25. Added isfuncCOP() as a gridded numerical test on whether a bivariate
+      function appears to be a copula. Credit to user S. Kloibhofer for idea
+      and initial code---thanks for the support!
+26. Added statTn() as a measure of a fitted coupla divergence from the
+      empirical copula.
+27. Added the tail concentration function in tailconCOP().
+28. Added the copBasic.fitpara.beta() in copBasic.fitpara as a potential
+      uni-dimensional or multi-dimensional parameter optimization interface.
+      This is not a maximum likelihood approach but matching of sample
+      statistics to theoretical (e.g. like a method of moments). Discussions
+      of maximum likelihood implementation with S. Kloibhofer are ongoing.
+29. Overhaul of the output structure of vuongCOP and added elements on the
+      return list to enhance clarity and added t-dist. for confidence interval.
 
-(1) The functions that use integrate() or nested integrate()'s are
-giniCOP, hoefCOP, kullCOP, rhoCOP, tauCOP, wolfCOP. The theoretical limits of
-integration are [0,1] for the calls. Only kullCOP presently can use a
-nonhardwired [0,1] and defaults to [lo, 1-lo] for small low because it is so
-dependent on the rectangular (numerical) estimation of copula density. The other functions rely on the copula itself. Perhaps these other functions should have
-the ability for the user to override [0,1] and use [lo, 1-lo] for small lo?
 
-(2) Implementation of state-of-the-practice nonparametric estimators of lower
-and upper tail dependence parameters. Neither of the three books cited within
-deal with this. A turn to recommended literature by Joe (2015) is needed.
+POSSIBLE TODO:
+
+(1) Implementation of state-of-the-practice nonparametric estimators of
+       lower and upper tail dependence parameters. Neither of the three books
+       cited within deal with this. A turn to recommended literature by
+       Joe (2014) is needed.
+
+(2) Maximum likelihood.
+
+(3) Goodness-of-fit of the Kendall Function following Genest et. al. (2006,
+       Goodness-of-fit procedures for copula models based on the probability
+       integral transformation: Scand J. Statist 33.
+
+(4) Convergence evaluators for the Monte Carlo integration in kullCOP() to 
+        potentially speed computation times.

@@ -1,7 +1,13 @@
 "simCOP" <-
 function(n=100, cop=NULL, para=NULL, na.rm=TRUE, keept=FALSE,
-         graphics=TRUE, ploton=TRUE, points=TRUE, snv=FALSE,
-         infsnv.rm=TRUE, trapinfsnv=.Machine$double.eps, ...) {
+                graphics=TRUE, ploton=TRUE, points=TRUE, snv=FALSE,
+                infsnv.rm=TRUE, trapinfsnv=.Machine$double.eps, ...) {
+
+  if(is.null(cop)) {
+     warning("must have copula argument specified, returning NULL")
+     return(NULL)
+  }
+
   if(! graphics) {
      ploton <- FALSE
      points <- FALSE
@@ -37,7 +43,7 @@ function(n=100, cop=NULL, para=NULL, na.rm=TRUE, keept=FALSE,
         plot(z$U, z$V, type="n",
              xlab="STANDARD NORMAL SCORE FOR U", ylab="STANDARD NORMAL SCORE FOR V")
      } else {
-        plot(c(0,1), c(0,1), type="n",
+        plot(NA, NA, type="n", xlim=c(0,1), ylim=c(0,1),
              xlab="U, NONEXCEEDANCE PROBABILITY", ylab="V, NONEXCEEDANCE PROBABILITY")
      }
   }

@@ -2,7 +2,7 @@
 \alias{EMPIRqua.regress}
 \title{ Quantile Regression of the Grid of the Bivariate Emprical Copula for V with respect to U }
 \description{
-Perform \emph{quantile regression} from the gridded inversion of the bivariate empirical copula of \eqn{V} with respect to \eqn{U}.
+Perform \emph{quantile regression} from the gridded inversion of the \emph{bivariate empirical copula} of \eqn{V} with respect to \eqn{U}.
 }
 \usage{
 EMPIRqua.regress(f=0.5, u=seq(0.01,0.99, by=0.01), empinv=NULL,
@@ -13,7 +13,7 @@ EMPIRqua.regress(f=0.5, u=seq(0.01,0.99, by=0.01), empinv=NULL,
   \item{u}{A vector of \eqn{u} nonexceedance probabilities;}
   \item{empinv}{The grid from \code{\link{EMPIRgridderinv}};}
   \item{lowess}{Perform \code{lowess} smooth on the quantile regression using the smooth factor of \code{f.lowess};}
-  \item{f.lowess}{Smooth factor of almost the same argument name fed to the \code{lowess()} function of \R; and}
+  \item{f.lowess}{Smooth factor of almost the same argument name fed to the \code{lowess()} function in \R; and}
   \item{...}{Additional arguments to pass.}
 }
 \value{

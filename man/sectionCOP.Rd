@@ -25,7 +25,7 @@ sectionCOP(f, cop=NULL,  para=NULL, wrtV=FALSE, dercop=FALSE, delt=0.005,
   \item{ploton}{A logical to toggle on the plot;}
   \item{lines}{Draw the lines of diagonal to the current device;}
   \item{xlab}{A label for the x-axis title passed to \code{plot()} in \R; and}
-  \item{...}{Additional arguments to pass to the \code{plot()} and \code{lines()} functions of \R.}
+  \item{...}{Additional arguments to pass to the \code{plot()} and \code{lines()} functions in \R.}
 }
 \value{
   An \R \code{list} is returned.
@@ -41,20 +41,22 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 \author{ W.H. Asquith}
 \seealso{\code{\link{COP}}, \code{\link{diagCOP}}}
 \examples{
+\dontrun{
 # EXAMPLE 1, plot the v=0.55 section and then u=0.55 section, which will overlay
 # the other because the PSP is a symmetrical copula
 tmp <- sectionCOP(0.55, cop=PSP, ylab="COPULA SECTIONS",  lwd=5, col=2)
 tmp <- sectionCOP(0.55, cop=PSP, wrtV=TRUE, ploton=FALSE, lwd=2, col=3)
 # now add the v=0.85 section and the u=0.85, again overlay each other
 tmp <- sectionCOP(0.85, cop=PSP, ploton=FALSE,             lwd=5, col=2, lty=2)
-tmp <- sectionCOP(0.85, cop=PSP, wrtV=TRUE, ploton=FALSE,  lwd=2, col=3, lty=2)
+tmp <- sectionCOP(0.85, cop=PSP, wrtV=TRUE, ploton=FALSE,  lwd=2, col=3, lty=2)}
+
 \dontrun{
 # EXAMPLE 2, v=0.35 section and derivative (the conditional distribution) function
 tmp <- sectionCOP(0.35, cop=PSP, ylab="COPULA SECTIONS OR DERIV.", lwd=5, col=3)
 tmp <- sectionCOP(0.35, cop=PSP, dercop=TRUE, ploton=FALSE,               col=3)
 # The thin green line represents the cumulative distribution function conditional
-# on u = 0.35 from the derCOP function.  Then see Example 3
-}
+# on u = 0.35 from the derCOP function.  Then see Example 3}
+
 \dontrun{
 # EXAMPLE 3 (random selection commented out)
 #para <- list(cop1=PLACKETTcop,  cop2=PLACKETTcop, alpha=runif(1), beta=runif(1),
@@ -81,9 +83,8 @@ mtext(paste(ftxt, collapse=""))
 # compare the point densities along and near the sections in the top plot to the
 # respective shapes of the CDFs in the bottom plot. If the bottom plot were rotated
 # 90 degrees clockwise and then reflected top to bottom, the conditional quantile
-# function QDF results. Reflection is needed because by convention, QDFs are monotonic
-# increasing to right---functions derCOPinv() and derCOPinv2() provide the CDF inversion.
-}
+# function QDF results. Reflection is needed because, by convention, QDFs are monotonic
+# increasing to right---functions derCOPinv() and derCOPinv2() provide the CDF inversion.}
 }
 \keyword{visualization}
 \keyword{diagnostics}

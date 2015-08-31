@@ -2,9 +2,16 @@
 \alias{COPinv}
 \title{ The Inverse of a Copula for V with respect to U }
 \description{
-Compute the \emph{inverse of a copula} for \eqn{V} with respect to \eqn{U} or
-\deqn{t = \mathbf{C}(u=U,v)\mbox{,}}
-and solving for \eqn{v}.  Nelsen (2006, p. 12) does not so name this function as an \dQuote{inverse.} The \code{COPinv} function is internally used by \code{\link{level.curvesCOP}}.
+Compute the \emph{inverse of a copula} for \eqn{V} with respect to \eqn{U} given \eqn{t} or
+\deqn{t = \mathbf{C}(u{=}U,v) \rightarrow \mathbf{C}^{(-1)}(u{=}U, t) = v\mbox{,}}
+and solving for \eqn{v}.  Nelsen (2006, p. 12) does not so name this function as an \dQuote{inverse.} The \code{COPinv} function is internally used by \code{\link{level.curvesCOP}}. A common misapplication that will puzzle the user is that the following call and error message are often seen:
+\preformatted{
+  COPinv(.2, .25, cop=PSP)
+  Error in uniroot(func, interval = c(lo, 1), u = u, LHS = t, cop = cop,  :
+    f() values at end points not of opposite sign
+  [1] NA
+}
+This is a harmless error in the sense that \code{COPinv} is functioning properly. One can  not invert a copula for \eqn{u < t} and for \eqn{u = t} the \eqn{v = 1} because of fundamental copula properties. Also because of fundamental theory involved, the author perceives that it is better to not silently trap the error but let errors cascade up the chain in a user's application.
 }
 \usage{
 COPinv(cop=NULL, u, t, para=NULL, ...)

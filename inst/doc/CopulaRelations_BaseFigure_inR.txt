@@ -1,0 +1,69 @@
+#pdf("CopulaRelationBaseFig.pdf")
+#seed <- as.integer(1000*runif(1))
+#set.seed(690)
+n <- 1000
+u <- 0.65; v <- 0.45; up <- 1 - u; vp <- 1 - v
+u <- qnorm(u); v <- qnorm(v); up <- qnorm(up); vp <- qnorm(vp)
+UV <- simCOP(n=n, cop=PSP, graphics=FALSE, snv=TRUE)
+lims <- max(abs(range(c(UV$U, UV$V))))
+lims <- c(-lims, lims); mnlm <- min(lims); mxlm <- max(lims)
+plot(NA, NA, xlim=lims, ylim=lims, cex=0.8, lwd=0.8,
+     xlab="U as standard normal variate", ylab="V as standard normal variate",
+     xaxs="r", yaxs="r", tcl=0.5)
+polygon(c(rep(u,2),rep(mnlm,2)),
+        c(mnlm,rep(v,2),mnlm), density=10, col=2, lwd=.5, border=FALSE)
+polygon(c(rep(u,2),rep(mxlm,2)),
+        c(mxlm,rep(v,2),mxlm), density=10, col=2, lwd=.5, border=FALSE, angle=-45)
+points(UV$U, UV$V, pch=16, col=rgb(.8,.2,.8,.2), cex=0.8)
+lines(c(mnlm*2,mnlm,u,u,u), c(v,v,v,mnlm,2*mnlm), lwd=3, col=3)
+lines(c(u,u,u,mxlm,2*mxlm), c(2*mxlm,mxlm,v,v,v), lwd=3, col=4)
+lines(rep(u,2), lims)
+lines(lims, rep(v,2))
+points(u,v, pch=16, cex=1.3)
+text(u, mnlm, "u")
+text(mnlm, v, "v")
+text(mean(c(mnlm,u)), mean(c(mnlm,u)), "U <= u and V <= v", cex=1, col=2)
+text(mean(c(mxlm,u)), mean(c(mxlm,u)), "U > u and V > v", cex=1, col=2)
+text(mean(c(mxlm,u)), mean(c(mnlm,u)), "U > u", cex=1)
+text(mean(c(mnlm,u)), mean(c(mxlm,u)), "V > v", cex=1)
+text(mean(c(mnlm,u)),
+     quantile(c(mnlm,u), probs=0.6), "COP(u,v)", cex=1.2, col=2)
+text(mean(c(mxlm,u)),
+     quantile(c(mxlm,u), probs=0.4), "surfuncCOP(u,v)", cex=1.2, col=2)
+text(mean(c(mxlm,u)),
+     quantile(c(mxlm,u), probs=0.3), "surCOP(u',v')", cex=1.2, col=2)
+text(u,mxlm, "duCOP(u,v)", cex=1.2, col=4)
+text(u,mnlm, "coCOP(u',v')", cex=1.2, col=3)
+
+copno <- length(UV$U[UV$U <= u & UV$V <= v])/n
+COPno <- COP(pnorm(u),pnorm(v),cop=PSP)
+
+surfunc.copno <- length(UV$U[UV$U > u & UV$V > v])/n
+surfunc.COPno <- surfuncCOP(pnorm(u),pnorm(v),cop=PSP)
+
+du.copno <- length(UV$U[UV$U <= u | UV$V <= v])/n
+du.COPno <- duCOP(pnorm(u),pnorm(v),cop=PSP)
+
+co.copno <- length(UV$U[UV$U > u | UV$V > v])/n
+co.COPno <- coCOP(pnorm(up),pnorm(vp),cop=PSP)
+
+COPno <- round(COPno, digits=3)
+surfunc.COPno <- round(surfunc.COPno, digits=3)
+du.COPno <- round(du.COPno, digits=3)
+co.COPno <- round(co.COPno, digits=3)
+
+text(-2,-3,
+     paste(c("COP=",COPno,"(theo.), ",
+                    copno,"(sam.)"), collapse=""), cex=0.8, col=2)
+text(2.5,3,
+     paste(c("surCOP=",surfunc.COPno,"(theo.), ",
+                       surfunc.copno,"(sam.)"), collapse=""), cex=0.8, col=2)
+text(-2,3,
+     paste(c("duCOP=",du.COPno,"(theo.), ",
+                      du.copno,"(sam.)"), collapse=""), cex=0.8, col=4)
+text(2.5,-3,
+     paste(c("coCOP=",co.COPno,"(theo.), ",
+                      co.copno,"(sam.)"), collapse=""), cex=0.8, col=3)
+mtext("Theoretical and Sample (n=1000) Copular Relations for PSP Copula")
+
+#dev.off()

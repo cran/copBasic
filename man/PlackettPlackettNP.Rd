@@ -4,7 +4,7 @@
 \alias{PlackettPlackettNP}
 \title{Parameters and L-comoments of a Composition of Two Plackett Copulas with Two Compositing Parameters}
 \description{
-These \dQuote{data} contain a stochastically generated parameter space of a Plackett-Plackett composited copulas to support a fast lookup of the relation between four copula parameters and the four L-comoments of L-correlation, L-coskew, and L-cokurtosis---hence, support the \emph{copulatic method of L-comoments}. The \dQuote{NP} in the name indicates that the first Plackett copula was only configured for negative or anticorrelation and the second Plackett copula was only configured for positive correlation. This particular data set is provided in the \pkg{copBasic} package for experimental self-contained parameter estimation.
+\emph{EXPERIMENTAL}---These \dQuote{data} contain a stochastically generated parameter space of a Plackett-Plackett composited copula to support a fast lookup of the relation between four copula parameters and the four L-comoments of L-correlation, L-coskew, and L-cokurtosis---hence, support the \emph{copulatic method of L-comoments}. The \dQuote{NP} in the name indicates that the first Plackett copula was only configured for negative or anticorrelation and the second Plackett copula was only configured for positive correlation. This particular data set is provided in the \pkg{copBasic} package for experimental self-contained parameter estimation.
 
 Specifically, these data contain the stochastically generated parameter space of the \eqn{\alpha} and \eqn{\beta} \dQuote{mixing} or \emph{compositing parameters} of the composited copula in which the two copulas for composition \eqn{\mathbf{A}} and \eqn{\mathbf{B}} are set as \emph{Plackett copulas} (see \code{\link{PLACKETTcop}}). Then the composition is made by
 
@@ -14,7 +14,7 @@ defines a family of copulas \eqn{\mathbf{C}_{\alpha,\beta,\kappa,\gamma}}, with 
 
 The first Plackett copula named \eqn{\mathbf{A}} (see \code{\link{PLACKETTcop}}) was randomly generated between the product copulas \eqn{\mathbf{\Pi}} (see \code{\link{P}}) and the \emph{\enc{Fréchet}{Frechet}-Hoeffding lower bound copula} \eqn{\mathbf{W}(u,v)} (see \code{\link{W}}). The second Plackett copula named \eqn{\mathbf{B}} (\code{\link{PLACKETTcop}}) was randomly generated between the product copulas \eqn{\mathbf{\Pi}} (see \code{\link{P}}) and the \emph{\enc{Fréchet}{Frechet}-Hoeffding upper bound copula} \eqn{\mathbf{M}(u,v)} (see \code{\link{M}}). The \eqn{\mathbf{A}} and \eqn{\mathbf{B}} generated in this way means that the first copula controls the negative correlative aspects of a data set and the second copula controls the positive aspects.
 
-To further clarify, \eqn{\mathbf{A}_\Theta} parameter is on the interval \eqn{[0,1]} and the \eqn{\mathbf{B}_\Theta} parameter is on the inteval \eqn{[1,\infty]}. In reality, the \eqn{\Theta} parameters were generated uniformly in log-space and then transformed. The log of \eqn{\mathbf{A}_\Theta} was on the interval \eqn{[-5,0]}, and the log of \eqn{\mathbf{B}_\Theta} was on the interval \eqn{[0,5]}. (See such limits of generation in the Source section of this documentation.)
+To further clarify, \eqn{\mathbf{A}_\Theta} parameter is on the interval \eqn{[0,1]} and the \eqn{\mathbf{B}_\Theta} parameter is on the inteval \eqn{[1,\infty]}. In reality, the \eqn{\Theta} parameters were generated uniformly in log-space and then transformed. The log of \eqn{\mathbf{A}_\Theta} was on the interval \eqn{[-5,0]}, and the log of \eqn{\mathbf{B}_\Theta} was on the interval \eqn{[0,5]}. (See such limits of generation in the \bold{Source} section.)
 }
 \usage{
 data(PlackettPlackettNP)
@@ -37,13 +37,13 @@ An \R \code{data.frame} with
 \source{
 This \dQuote{data set} was created using the \code{\link{simcompositeCOP}} function, which in turn defaults to use of the \code{\link{composite2COP}} function for compositing of the two Plackett copulas. The usage is shown below.
 \preformatted{
-mainpara <- list(cop1=PLACKETTcop, cop2=PLACKETTcop,
-                 para1gen=function() { return(10^runif(1, min=-5, max=0)) },
-                 para2gen=function() { return(10^runif(1, min=0,  max=5)) })
+  mainpara <- list(cop1=PLACKETTcop, cop2=PLACKETTcop,
+                   para1gen=function() { return(10^runif(1, min=-5, max=0)) },
+                   para2gen=function() { return(10^runif(1, min=0,  max=5)) })
 
-n <- 10 # really used 20500 for generation of the data set
-PlackettPlackettNP <- simcompositeCOP(n=1000, nsim=n, parent=mainpara)
-save(PlackettPlackettNP, file="PlackettPlackettNP.RData", compress="xz")
+  n <- 10 # really used 20500 for generation of the data set
+  PlackettPlackettNP <- simcompositeCOP(n=1000, nsim=n, parent=mainpara)
+  save(PlackettPlackettNP, file="PlackettPlackettNP.RData", compress="xz")
 }
 For the generation process, the \code{mainpara} list specifies the two copulas to use in the composite, and two generation functions for the parameters of the respective copulas are housed in \code{para1gen} and \code{para2gen}. For each of 20,500 simulations of size \eqn{n=1{,}000} of the stochastically generated Plackett-Plackett composited copulas, the L-correlation, L-coskew, L-cokurtosis matrices were computed. The opposing diagonals of the L-correlation, L-coskew, L-cokurtosis of the matrices were requested internally by \code{\link{simcompositeCOP}} and are shown. The L-comoment matrices were computed by the \code{lcomoms2(nmom=4)} function of the \pkg{lmomco} package.
 }

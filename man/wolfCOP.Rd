@@ -1,19 +1,25 @@
+\encoding{utf8}
 \name{wolfCOP}
 \alias{wolfCOP}
 \title{ The Schweizer and Wolff's Sigma of a Copula }
 \description{
 Compute the measure of association known as \emph{Schweizer and Wolff's Sigma} \eqn{\sigma_\mathbf{C}} of a copula according to Nelsen (2006, p. 209) by
+
 \deqn{\sigma_\mathbf{C} = 12\int\!\!\int_{\mathcal{I}^2} |\mathbf{C}(u,v) - uv|\,\mathrm{d}u\mathrm{d}v\mbox{.}}
-It is obvious that this measure of association is similar to the following form of Spearman's Rho
-\deqn{\rho_\mathbf{C} = 12\int\!\!\int_{\mathcal{I}^2} [\mathbf{C}(u,v) - uv]\,\mathrm{d}u\mathrm{d}v\mbox{,\ and}}
-if a copula is positively quadrant dependent (PQD, see \code{\link{isCOP.PQD}}) then \eqn{\sigma_\mathbf{C} = \rho_\mathbf{C}} and conversely if a copula is negatively quadrant dependent (NQD) then \eqn{\sigma_\mathbf{C} = -\rho_\mathbf{C}}. However, a feature that makes \eqn{\sigma_\mathbf{C}} especially attractive is that random variables \eqn{X} and \eqn{Y} that are not PQD or NQD---that is copulas that are neither larger nor smaller than \eqn{\mathbf{\Pi}}---is that \dQuote{\eqn{\sigma_\mathbf{C}} is often a better measure of [dependency] than \eqn{\rho_\mathbf{C}}} (Nelsen, 2006, p. 209).
+
+It is obvious that this measure of association is similar to the following form of \emph{Spearman's Rho} of a copula:
+
+\deqn{\rho_\mathbf{C} = 12\int\!\!\int_{\mathcal{I}^2} [\mathbf{C}(u,v) - uv]\,\mathrm{d}u\mathrm{d}v\mbox{.}}
+
+If a copula is \emph{positively quadrant dependent} (PQD, see \code{\link{isCOP.PQD}}) then \eqn{\sigma_\mathbf{C} = \rho_\mathbf{C}} and conversely if a copula is \emph{negatively quadrant dependent} (NQD) then \eqn{\sigma_\mathbf{C} = -\rho_\mathbf{C}}. However, a feature that makes \eqn{\sigma_\mathbf{C}} especially attractive is that random variables \eqn{X} and \eqn{Y} that are not PQD or NQD---that is copulas that are neither larger nor smaller than \eqn{\mathbf{\Pi}}---is that \dQuote{\eqn{\sigma_\mathbf{C}} is often a better measure of [dependency] than \eqn{\rho_\mathbf{C}}} (Nelsen, 2006, p. 209).
 }
 \usage{
-wolfCOP(cop=NULL, para=NULL, brute=FALSE, delta=0.002, ...)
+wolfCOP(cop=NULL, para=NULL, as.sample=FALSE, brute=FALSE, delta=0.002, ...)
 }
 \arguments{
   \item{cop}{A copula function;}
   \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula;}
+  \item{as.sample}{A logical controlling whether an optional \R \code{data.frame} in \code{para} is used to compute the \eqn{\hat{\sigma}_\mathbf{C}} (see \bold{Note}). If set to \code{-1}, then the message concerning CPU effort will be surpressed;}
   \item{brute}{Should brute force be used instead of two nested \code{integrate()} functions in \R to perform the double integration;}
   \item{delta}{The \eqn{\mathrm{d}u} and \eqn{\mathrm{d}v} for the brute force (\code{brute=TRUE}) integration; and}
   \item{...}{Additional arguments to pass.}
@@ -21,16 +27,32 @@ wolfCOP(cop=NULL, para=NULL, brute=FALSE, delta=0.002, ...)
 \value{
   The value for \eqn{\sigma_\mathbf{C}} is returned.
 }
+\note{
+A natural estimator for \eqn{\sigma_\mathbf{C}} is through the \emph{empirical copula}
+\deqn{\hat{\sigma}_\mathbf{C} = \frac{12}{n^2 - 1}
+        \sum_{i=1}^n\sum_{j=1}^n \bigg|\mathbf{C}_n\biggl(\frac{i}{n}, \frac{j}{n}\biggr) -
+                 \frac{i}{n}\times\frac{j}{n}\bigg|\mbox{,}}
+where \eqn{\hat{\mathbf{C}}_n} is the simplest empirical copula.
+}
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
-\seealso{\code{\link{hoefCOP}}, \code{\link{rhoCOP}}
+\seealso{\code{\link{blomCOP}}, \code{\link{footCOP}}, \code{\link{giniCOP}},
+         \code{\link{hoefCOP}}, \code{\link{rhoCOP}}, \code{\link{tauCOP}},
+         \code{\link{joeskewCOP}}, \code{\link{uvlmoms}}
 }
 \examples{
-wolfCOP(cop=PSP)
+\dontrun{
+wolfCOP(cop=PSP) # 0.4784176}
 
-# EXTENDED EXAMPLE --- with ## Not run: to be added by user for more graphics.
+\dontrun{
+n <- 1000; UV <- simCOP(n=n, cop=N4212cop, para=7.53, graphics=FALSE)
+wolfCOP(cop=N4212cop, para=7.53) # 0.9884666 (theoretical)
+wolfCOP(para=UV, as.sample=TRUE) # 0.9884174 (sample)}
+
+\dontrun{
+# EXTENDED EXAMPLE
 para <- list(cop1=PLACKETTcop, cop2=PLACKETTcop, para1=0.145, para2=21.9,
              alpha=0.81,       beta=0.22)
 D <- simCOP(n=250, cop=composite2COP, para=para,
@@ -38,7 +60,7 @@ D <- simCOP(n=250, cop=composite2COP, para=para,
 # Globally PQD but there is a significant local NQD part of IxI space that is
 PQD <- isCOP.PQD(cop=composite2COP, para=para, uv=D)
 points(D, col=PQD$local.PQD+2, lwd=2)
-# clearly NQD, so this copula interacts through the P copula. Hence by the logic
+# clearly NQD, so this copula intersects through the P copula. Hence by the logic
 # of Nelsen (2006), then Schweizer-Wolff Sigma should be larger than Spearman Rho.
 wolfCOP(cop=composite2COP, para=para) # 0.08373378
  rhoCOP(cop=composite2COP, para=para) # 0.02845131
@@ -46,7 +68,8 @@ hoefCOP(cop=composite2COP, para=para) # 0.08563823
 # which is clearly present in these simulated data. In fact the output above also shows
 # Sigma to be larger than Kendall Tau, Gini Gamma, and Blomqvist Beta thus Sigma has
 # captured the fact that although the symbols plot near randomly on the figure, the
-# the symbol coloring for PQD and NQD clearly shows local dependency differences.
+# the symbol coloring for PQD and NQD clearly shows local dependency differences.}
+
 \dontrun{
 the.grid <- EMPIRgrid(para=D)
 the.persp <- persp(the.grid$empcop, theta=-25, phi=20, shade=TRUE,
@@ -72,8 +95,7 @@ the.persp <- persp(RHO, theta=-25, phi=20, shade=TRUE, cex=0.5,
 mtext("Copula delta: Integrand of Spearman's Rho", cex=0.5)
 the.persp <- persp(SIG, theta=-25, phi=20, shade=TRUE, cex=0.5,
                xlab="U VARIABLE", ylab="V VARIABLE", zlab="COPULA C(u,v)")
-mtext("abs(Copula delta): Integrand of Schweizer-Wolff's Sigma", cex=0.5)
-}
+mtext("abs(Copula delta): Integrand of Schweizer-Wolff's Sigma", cex=0.5)# }
 }
 \keyword{copula (characteristics)}
 \keyword{copula (properties)}

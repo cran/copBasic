@@ -2,7 +2,7 @@
 \alias{composite1COP}
 \title{ Composition of a Single Symmetric Copula with Two Compositing Parameters }
 \description{
-The \emph{composition of a single copula} (Salvadori \emph{et al.}, 2006, p. 266, Prop. C.3) is created by the following result related to \dQuote{composition of copulas} in that reference. Suppose \eqn{\mathbf{C}(u,v)} is a \emph{symmetric copula} (see \code{\link{COP}}) with parameters \eqn{\Theta}, \eqn{\mathbf{C} \ne \mathbf{\Pi}} (for \eqn{\mathbf{\Pi}} see \code{\link{P}}) then a family of generally \emph{asymmetric copulas} \eqn{\mathbf{C}_{\alpha,\beta; \Theta}} with \bold{two} \emph{compositing parameters} \eqn{0 < \alpha,\beta < 1, \alpha \ne \beta} that also includes just the copula \eqn{\mathbf{C}(u,v)} as a limiting case for \eqn{\alpha = \beta = 0} and is given by
+The \emph{composition of a single copula} (Salvadori \emph{et al.}, 2006, p. 266, prop. C.3) is created by the following result related to \dQuote{composition of copulas} in that reference. Suppose \eqn{\mathbf{C}(u,v)} is a \emph{symmetric copula} (see \code{\link{COP}}) with parameters \eqn{\Theta}, \eqn{\mathbf{C} \ne \mathbf{\Pi}} (for \eqn{\mathbf{\Pi}} see \code{\link{P}}) then a family of generally \emph{asymmetric copulas} \eqn{\mathbf{C}_{\alpha,\beta; \Theta}} with \bold{two} \emph{compositing parameters} \eqn{0 < \alpha,\beta < 1, \alpha \ne \beta} that also includes just the copula \eqn{\mathbf{C}(u,v)} as a limiting case for \eqn{\alpha = \beta = 0} and is given by
 
 \deqn{\mathbf{C}_{\alpha,\beta}(u,v) = u^\alpha v^\beta \cdot \mathbf{C}(u^{1-\alpha},v^{1-\beta})\mbox{.}}
 
@@ -14,7 +14,7 @@ composite1COP(u,v, para, ...)
 \arguments{
   \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction;}
   \item{v}{Nonexceedance probability \eqn{v} in the \eqn{Y} direction;}
-  \item{para}{A special parameter \code{list} (see Note); and}
+  \item{para}{A special parameter \code{list} (see \bold{Note}); and}
   \item{...}{Additional arguments to pass.}
 }
 \value{
@@ -37,7 +37,7 @@ Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in
 \seealso{\code{\link{COP}}, \code{\link{composite2COP}}, \code{\link{composite3COP}}}
 \examples{
 alpha <- 0.24; beta <- 0.23; Theta1 <- NA;
-# W() does not use a parameter, but show how a parameter would be set if be needed.
+# W() does not use a parameter, but show how a parameter would be set if needed.
 para   <- list(alpha=alpha, beta=beta, cop1=W, para1=Theta1)
 t <- composite1COP(0.4,0.6,para)
 if( t != W(0.4,0.6)) message("Not equal as expected")

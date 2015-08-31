@@ -1,8 +1,8 @@
 "blomCOP" <-
-function(cop=NULL, para=NULL, sambeta=FALSE, ...) {
-   if(sambeta) {
+function(cop=NULL, para=NULL, as.sample=FALSE, ...) {
+   if(as.sample) {
       if(is.null(para)) {
-         warning("Sample Blomqvist Beta desired by para is NULL, returning NULL")
+         warning("Sample Blomqvist's Beta desired but para is NULL, returning NULL")
          return(NULL)
       }
       if(length(names(para)) != 2) {

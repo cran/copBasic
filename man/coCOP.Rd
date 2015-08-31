@@ -6,9 +6,13 @@ Compute the \emph{co-copula (function)} from a copula (Nelsen, 2006, pp. 33--34)
 
 \deqn{\mathrm{Pr}[U > u \mathrm{\ or\ } V > v] = \mathbf{C}^{\star}(u',v') = 1 - \mathbf{C}(u',v')\mbox{,}}
 
-where \eqn{\mathbf{C}^{\star}(u',v')} is the co-copula and \eqn{u'} and \eqn{v'} are exceedance probabilities, which are equivalent to \eqn{1-u} and \eqn{1-v} respectively. The co-copula is the expression for the probability that either \eqn{U > u} or \eqn{V > v} when the arguments to \eqn{\mathbf{C}^{\star}(u',v')} are exceedance probabilities, which is unlike the \emph{dual of a copula function} (see \code{\link{duCOP}}) that provides \eqn{\mathrm{Pr}[U \le u \mathrm{\ or\ } V \le v]}.
+where \eqn{\mathbf{C}^{\star}(u',v')} is the co-copula and \eqn{u'} and \eqn{v'} are exceedance probabilities and are equivalent to \eqn{1-u} and \eqn{1-v} respectively. The co-copula is the expression for the probability that either \eqn{U > u} \bold{or} \eqn{V > v} when the arguments to \eqn{\mathbf{C}^{\star}(u',v')} are exceedance probabilities, which is unlike the \emph{dual of a copula (function)} (see \code{\link{duCOP}}) that provides \eqn{\mathrm{Pr}[U \le u \mathrm{\ or\ } V \le v]}.
 
-The co-copula is a function and not in itself a copula. Some rules of copulas mean that \eqn{\mathbf{C}(u,v) + \mathbf{C}^{\star}(u',v') \equiv 1} or in \pkg{copBasic} code that the functions \code{\link{COP}} + \code{coCOP} equal unity.
+The co-copula is a function and not in itself a copula. Some rules of copulas mean that \eqn{\mathbf{C}(u,v) + \mathbf{C}^{\star}(u',v') \equiv 1} or in \pkg{copBasic} syntax that the functions \code{COP(u,v)} + \code{coCOP(u,v)} equal unity if the \code{exceedance} argument to \code{coCOP} is set to \code{FALSE}.
+
+The function \code{coCOP} gives \dQuote{risk} against failure if failure is desired as either hazard source \eqn{U} or \eqn{V} occuring by themselves or if both occurred at the same time. Expressing this in terms of an annual probability of occurrence (\eqn{q}), one has
+\deqn{q = 1 - \mathrm{Pr}[U > u \mathrm{\ or\ } V > v] =  \mathbf{C}^{\star}(u',v') \mbox{\ or}}
+in \R code \code{q <- coCOP(u,v, exceedance=FALSE, ...)}. So in yet other words and as a mnemonic: \emph{A co-copula is the probabililty of exceedance if the hazard sources \bold{collaborate} (cooperate) to cause failure.} Also \eqn{q} can be computed by \code{q <- coCOP(1-u,1-v, exceedance=TRUE, ...)}
 }
 \usage{
 coCOP(u, v, cop=NULL, para=NULL, exceedance=TRUE, ...)
@@ -25,7 +29,7 @@ coCOP(u, v, cop=NULL, para=NULL, exceedance=TRUE, ...)
   The value(s) for the co-copula are returned.
 }
 \note{
-The author (Asquith) finds the use of exceedance probabilities delicate in regards to Nelsen's notation having grown up in a strictly nonexceedance world. The \code{coCOP} function and \code{\link{surCOP}} have the \code{exceedance} argument to serve as a reminder that the co-copula as usually defined uses exceedance probabilities as its arguments. Although the arguments as code \code{u} and \code{v} do not mimic the overline nomenclature of the exceedance probabilities.
+The author (Asquith) finds the use of exceedance probabilities delicate in regards to Nelsen's notation having grown up in a strictly nonexceedance world. The \code{coCOP} function and \code{\link{surCOP}} have the \code{exceedance} argument to serve as a reminder that the co-copula as defined in the literature use exceedance probabilities as its arguments, although the arguments as code \code{u} and \code{v} do not mimic the overline nomenclature (\eqn{\,\overline{\cdots}\,}) of the exceedance (survival) probabilities.
 }
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
@@ -41,14 +45,15 @@ coCOP(u,v,cop=PLACKETTcop, para=10) # Positive association Plackett
 # computation using  manual  manipulation to nonexceedance probability
 1 - COP(cop=PSP,(1-u),(1-v))
 # computation using internal manipulation to nonexceedance probability
-  coCOP(cop=PSP,u,v)
+  coCOP(cop=PSP,   u,    v)
 
 # Next demonstrate COP + coCOP = unity.
-"MOcop.formula" <- function(u,v, para=para, ...) {
+"MOcop.formula" <- function(u,v, para=para, ...) { # Marshall-Olkin copula
    alpha <- para[1]; beta <- para[2]; return(min(v*u^(1-alpha), u*v^(1-beta)))
 }
-"MOcop" <- function(u,v, ...) { asCOP(u,v, f=MOcop.formula, ...) }
+"MOcop" <- function(u,v, ...) { asCOP( u,  v, f=MOcop.formula, ...) }
 u <- 0.2; v <- 0.75; ab <- c(1.5, 0.3)
 COP(u,v, cop=MOcop, para=ab) + coCOP(1-u,1-v, cop=MOcop, para=ab) # UNITY
 }
 \keyword{copula operator}
+\keyword{joint probability}

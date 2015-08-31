@@ -1,18 +1,19 @@
 "EMPIRsim" <-
-function(n=100, empgrid=NULL, kumaraswamy=FALSE,
-         ploton=TRUE, points=TRUE, ...) {
-
+function(n=100, empgrid=NULL, kumaraswamy=FALSE, na.rm=TRUE, keept=FALSE,
+                graphics=TRUE, ploton=TRUE, points=TRUE, snv=FALSE,
+                infsnv.rm=TRUE, trapinfsnv=.Machine$double.eps, ...) {
+  if(! graphics) {
+     ploton <- FALSE
+     points <- FALSE
+  }
   empinv <- EMPIRgridderinv(empgrid=empgrid, kumaraswamy=kumaraswamy)
   rows <- as.numeric(attributes(empinv)$rownames)
   ix <- 1:length(rows)
-  if(ploton) {
-    plot(c(0,1), c(0,1), type="n",
-         xlab="U, NONEXCEEDANCE PROBABILITY", ylab="V, NONEXCEEDANCE PROBABILITY")
-  }
   cols <- attributes(empinv)$colnames
   U <- vector(mode="numeric", length=n); V <- U
+  Ts <- runif(n)
   for(i in 1:n) {
-    u <- runif(1); t <- runif(1)
+    u <- runif(1); t <- Ts[i]
     ix.needed1 <- max(ix[rows <= u])
     ix.needed2 <- min(ix[rows >= u])
     if(ix.needed1 == 1) ix.needed1 <- 2
@@ -31,8 +32,41 @@ function(n=100, empgrid=NULL, kumaraswamy=FALSE,
     }
     U[i] <- u; V[i] <- v
   }
-  if(points & ! is.null(dev.list())) points(U,V,...)
-  z <- data.frame(U=U,V=V)
+
+  # Because z is a data.frame, it must be assigned within the ifelse()
+  ifelse(keept, z <- data.frame(U=U, V=V, T=Ts), z <- data.frame(U=U, V=V))
+  if(na.rm) {
+     z <- z[complete.cases(z), ]
+     m <- length(z[,1])
+     if(m != n) {
+        warning("user requested n=",n," simulations but only m=",m,
+                " could be made without NA from EMPIRgridderinv")
+        row.names(z) <- NULL # reset the rows to "1:m"
+     }
+  }
+  if(snv) {
+     if(infsnv.rm) {
+        z <- z[z$U != 0, ]; z <- z[z$U != 0, ]
+        z <- z[z$V != 1, ]; z <- z[z$V != 1, ]
+        row.names(z) <- NULL
+     } else if(trapinfsnv) {
+        z$U[z$U == 0] <-   trapinfsnv; z$V[z$V == 0] <-   trapinfsnv
+        z$U[z$U == 1] <- 1-trapinfsnv; z$V[z$V == 1] <- 1-trapinfsnv
+     }
+     z$U <- qnorm(z$U)
+     z$V <- qnorm(z$V)
+  }
+  if(ploton) {
+     if(snv) {
+        plot(z$U, z$V, type="n",
+             xlab="STANDARD NORMAL SCORE FOR U", ylab="STANDARD NORMAL SCORE FOR V")
+     } else {
+        plot(NA, NA, type="n", xlim=c(0,1), ylim=c(0,1),
+             xlab="U, NONEXCEEDANCE PROBABILITY", ylab="V, NONEXCEEDANCE PROBABILITY")
+     }
+  }
+  if(points & ! is.null(dev.list())) points(z$U, z$V,...)
+
   return(z)
 }
 

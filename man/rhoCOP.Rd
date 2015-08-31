@@ -6,23 +6,24 @@ Compute the measure of association known as \emph{Spearman's Rho} \eqn{\rho_\mat
 \deqn{\rho_\mathbf{C} = 12\int\!\!\int_{\mathcal{I}^2} \mathbf{C}(u,v)\, \mathrm{d}u\mathrm{d}v - 3\mbox{,}}
 or
 \deqn{\rho_\mathbf{C} = 12\int\!\!\int_{\mathcal{I}^2} [\mathbf{C}(u,v) - uv]\, \mathrm{d}u\mathrm{d}v\mbox{,}}
-where the later equation is implemented by \code{rhoCOP} as the default method (\code{method="default"}). This equation for \eqn{p = 1} and \eqn{k_p(p= 1) = 12} is generalized under \code{\link{hoefCOP}}. Depending on copula family (Joe, 2015, pp. 56 and 267) the alternative formulation for \eqn{\rho_\mathbf{C}} could be used
+where the later equation is implemented by \code{rhoCOP} as the default method (\code{method="default"}). This equation, here having \eqn{p = 1} and \eqn{k_p(1) = 12}, is generalized under \code{\link{hoefCOP}}. Depending on copula family (Joe, 2014, pp. 56 and 267), the alternative formulation for \eqn{\rho_\mathbf{C}} could be used
 \deqn{\rho_\mathbf{C} = 3 - 12\int\!\!\int_{\mathcal{I}^2} u \frac{\delta\mathbf{C}(u,v)}{\delta u} \, \mathrm{d}u\mathrm{d}v = 3 - 12\int\!\!\int_{\mathcal{I}^2} v\frac{\delta\mathbf{C}(u,v)}{\delta v} \, \mathrm{d}u\mathrm{d}v\mbox{,}}
-where the first integral form corresponds to Joe (2015, eq. 248, p. 56) and is the \code{method="joe21"}, and the second integral form is the \code{method="joe12"}.
+where the first integral form corresponds to Joe (2014, eq. 248, p. 56) and is the \code{method="joe21"}, and the second integral form is the \code{method="joe12"}.
 
 The integral
 \deqn{\int\!\!\int_{\mathcal{I}^2} \mathbf{C}(u,v)\,\mathrm{d}u\mathrm{d}v\mbox{,}}
-represents the \dQuote{volume under the graph of the copula and over the unit square} (Nelsen, 2006, p. 170) and therefore \eqn{\rho_\mathbf{C}} is simple a rescaled volume under the copula. The second equation for \eqn{\rho_\mathbf{C}} expresses the \dQuote{average distance} between the joint distribution and pure independence \eqn{\mathbf{\Pi} = uv}. Nelsen (2006, pp. 175--176) observes that the following relation between \eqn{\rho_\mathbf{C}} and \eqn{\tau_\mathbf{C}} (\code{\link{tauCOP}}) exists
+represents the \dQuote{volume under the graph of the copula and over the unit square} (Nelsen, 2006, p. 170) and therefore \eqn{\rho_\mathbf{C}} is simple a rescaled volume under the copula. The second equation for \eqn{\rho_\mathbf{C}} expresses the \dQuote{average distance} between the joint distribution and statistical \emph{independence} \eqn{\mathbf{\Pi} = uv}. Nelsen (2006, pp. 175--176) observes that the following relation between \eqn{\rho_\mathbf{C}} and \eqn{\tau_\mathbf{C}} (\code{\link{tauCOP}}) exists
 \deqn{-1 \le 3\tau - 2\rho \le 1\mbox{.}}
 }
 \usage{
 rhoCOP(cop=NULL, para=NULL, method=c("default", "joe21", "joe12"),
-                            brute=FALSE, delta=0.002, ...)
+                            as.sample=FALSE, brute=FALSE, delta=0.002, ...)
 }
 \arguments{
   \item{cop}{A copula function;}
   \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula;}
   \item{method}{The form of integration used to compute (see above);}
+  \item{as.sample}{A logical controlling whether an optional \R \code{data.frame} in \code{para} is used to compute the \eqn{\hat\rho} by dispatch to \code{cor()} function in \R with \code{method = "spearman"};}
   \item{brute}{Should brute force be used instead of two nested \code{integrate()} functions in \R to perform the double integration;}
   \item{delta}{The \eqn{\mathrm{d}u} and \eqn{\mathrm{d}v} for the brute force integration using \code{brute}; and}
   \item{...}{Additional arguments to pass.}
@@ -31,15 +32,17 @@ rhoCOP(cop=NULL, para=NULL, method=c("default", "joe21", "joe12"),
   The value for \eqn{\rho_\mathbf{C}} is returned.
 }
 \note{
-Technically, Nelsen (2006) also shows that these definitions are a form of call to a \dQuote{concordance} function of two copulas \eqn{Q(\mathbf{C}_1,\mathbf{C}_2)} that involve \eqn{\mathbf{C}_1{=}\mathbf{C}(u,v)} and \eqn{\mathbf{C}_2{=}\mathbf{\Pi}}. As such in order to keep \code{rhoCOP} a small function when \code{brute=TRUE}, \eqn{\rho_\mathbf{C}} is computed by a special call to \code{\link{tauCOP}}, which itself, although titled for computation of Kendall's Tau, can be made to support the concordance function \eqn{Q(\mathbf{C}_1, \mathbf{C}_2)} (see Nelsen (2006, pp. 158--159) when given two different copulas and respective parameters as arguments.
+Technically, Nelsen (2006) also shows that these definitions are a form of call to a \emph{concordance function} \eqn{\mathcal{Q}(\mathbf{C}_1,\mathbf{C}_2)} of two copulas that involve \eqn{\mathbf{C}_1{=}\mathbf{C}(u,v)} and \eqn{\mathbf{C}_2{=}\mathbf{\Pi}}. As such in order to keep \code{rhoCOP} a small function when \code{brute=TRUE}, \eqn{\rho_\mathbf{C}} is computed by a special call to \code{\link{tauCOP}}, which by itself and although titled for computation of \emph{Kendall's Tau}, does support the concordance function \eqn{\mathcal{Q}(\mathbf{C}_1, \mathbf{C}_2)} (see Nelsen (2006, pp. 158--159) when given two different copulas and respective parameters as arguments.
 }
 \references{
-Joe, H., 2015, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
+Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
-\seealso{\code{\link{blomCOP}}, \code{\link{giniCOP}}, \code{\link{hoefCOP}}, \code{\link{tauCOP}}, \code{\link{wolfCOP}}
+\seealso{\code{\link{blomCOP}}, \code{\link{footCOP}}, \code{\link{giniCOP}},
+         \code{\link{hoefCOP}}, \code{\link{tauCOP}},  \code{\link{wolfCOP}},
+         \code{\link{joeskewCOP}}, \code{\link{uvlmoms}}
 }
 \examples{
 rhoCOP(cop=PSP)             # 0.4784176
@@ -71,17 +74,17 @@ rhoCOP(cop=composite2COP, para=para, brute=TRUE) # 0.9752155
 \dontrun{
 # This is the same composited copula used in a highly asymmetric multi-modal
 # plotting example under densityCOPplot(). Let us use that copula as a means to
-# check on the Spearman's Rho from the alternative formulations from Joe (2015).
+# check on the Spearman's Rho from the alternative formulations from Joe (2014).
 para <- list(alpha=0.15, beta=0.90, kappa=0.06, gamma=0.96,
              cop1=GHcop, cop2=PLACKETTcop, para1=5.5, para2=0.07)
-"rhoCOPbyJoe21" <- function(cop=NULL, para=NULL, ...) { # Joe (2015, eq. 2.48)
+"rhoCOPbyJoe21" <- function(cop=NULL, para=NULL, ...) { # Joe (2014, eq. 2.48)
    myint <- NULL
    try(myint <- integrate(function(u) {
        sapply(u,function(u) { integrate(function(v) {
        u * derCOP( u, v, cop=cop, para=para, ...)},  0, 1)$value })}, 0, 1))
    ifelse(is.null(myint), return(NA), return(3 - 12*myint$value))
 }
-"rhoCOPbyJoe12" <- function(cop=NULL, para=NULL, ...) { # Not in Joe (2015)
+"rhoCOPbyJoe12" <- function(cop=NULL, para=NULL, ...) { # Not in Joe (2014)
    myint <- NULL
    try(myint <- integrate(function(u) {
        sapply(u,function(u) { integrate(function(v) {
@@ -95,6 +98,6 @@ rhoCOPbyJoe12(cop=composite2COP, para=para) # 0.1031532
 }
 \keyword{copula (characteristics)}
 \keyword{copula (properties)}
-\keyword{Joe (2015) Examples and Exercises}
+\keyword{Joe (2014) Examples and Exercises}
 
 

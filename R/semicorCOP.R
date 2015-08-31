@@ -1,18 +1,20 @@
 "semicorCOP" <-
 function(cop=NULL, para=NULL, truncation=0, n=0, samcor=FALSE, ...) {
    rhoNs <- list(cor.normal.scores=NA, minus.semicor=NA,  plus.semicor=NA,
-                 type="FILLIN", source="semicorCOP")
+                 type="TO BE FILLED IN BY CODE", source="semicorCOP")
    if(truncation < 0) {
       warning("inconsistent truncation argument, returning NULL")
    }
    a <- truncation
    if(samcor) {
       if(is.null(para)) {
-         warning("Sample semi-correlations are desired by 'para' but it is NULL, returning NULL")
+         warning("Sample semi-correlations are desired by 'para' but it is NULL, ",
+                 "returning NULL")
          return(NULL)
       }
       if(length(names(para)) != 2) {
-         warning("para argument must be data.frame having only two columns, returning NULL")
+         warning("para argument must be data.frame having only two columns, ",
+                 "returning NULL")
          return(NULL)
       }
       para <- para[para[,1] > 0 & para[,1] < 1 & para[,2] > 0 & para[,2] < 1, ]
@@ -31,8 +33,8 @@ function(cop=NULL, para=NULL, truncation=0, n=0, samcor=FALSE, ...) {
          return(NULL)
       }
       if(n == 0) {
-         warning("must have sample size argument specified, returning NULL")
-         warning("integral section of code not implemented")
+         warning("must have sample size argument specified, an section of code ",
+                 "using integration is not implemented, returning NULL")
          return(NULL)
       } else {
          UV <- simCOP(n=n, cop=cop, para=para, graphics=FALSE, ...)

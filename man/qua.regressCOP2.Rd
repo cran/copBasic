@@ -2,7 +2,7 @@
 \alias{qua.regressCOP2}
 \title{ Perform Quantile Regression using a Copula by Numerical Derivative Method for U with respect to V}
 \description{
-Perform \emph{quantile regression} (Nelsen, 2006, pp. 217--218) using a copula by numerical derivatives of the copula. If \eqn{X} and \eqn{Y} are random variables having quantile functions \eqn{x(F)} and \eqn{y(G)} and letting \eqn{x=\tilde{x}(y)} denote a solution to \eqn{\mathrm{Pr}[X \le x\mid Y = y] = F}, where \eqn{F} is a nonexceedance probability. Then the curve \eqn{x=\tilde{x}(y)} is the quantile regression curve of \eqn{U} or \eqn{X} with respect to  \eqn{V} or \eqn{Y}, respectively. If \eqn{F=1/2}, then \emph{median regression} is performed (\code{\link{med.regressCOP2}}). Using copulas, the quantile regression is expressed as
+Perform \emph{quantile regression} (Nelsen, 2006, pp. 217--218) using a copula by numerical derivatives of the copula (\code{\link{derCOPinv2}}). If \eqn{X} and \eqn{Y} are random variables having quantile functions \eqn{x(F)} and \eqn{y(G)} and letting \eqn{x=\tilde{x}(y)} denote a solution to \eqn{\mathrm{Pr}[X \le x\mid Y = y] = F}, where \eqn{F} is a nonexceedance probability. Then the curve \eqn{x=\tilde{x}(y)} is the quantile regression curve of \eqn{U} or \eqn{X} with respect to  \eqn{V} or \eqn{Y}, respectively. If \eqn{F=1/2}, then \emph{median regression} is performed (\code{\link{med.regressCOP2}}). Using copulas, the quantile regression is expressed as
 \deqn{\mathrm{Pr}[X \le x\mid Y = y] = \mathrm{Pr}[U \le F(x) \mid V = F] = \mathrm{Pr}[U \le u\mid V = F] = \frac{\delta \mathbf{C}(u,v)}{\delta v}\mbox{,}}
 where \eqn{v = G(y)} and \eqn{u = F(x)}. The general algorithm is
 \enumerate{
@@ -40,7 +40,7 @@ theta <- 0.10
 R <- qua.regressCOP2(cop=PLACKETTcop, para=theta) # 50th percentile regression
 plot(R$U,R$V, type="l", lwd=6, xlim=c(0,1), ylim=c(0,1), col=8)
 lines((1+(theta-1)*R$V)/(theta+1),R$V, col=4, lwd=1) # theoretical for Plackett,
-# compare the theoretical form to that in qua.regressCOP---just swap terms around
+# compare the theoretical form to that in qua.regressCOP---just switch terms around
 # because of symmetry
 R <- qua.regressCOP2(f=0.90, cop=PLACKETTcop, para=theta) # 90th-percentile regression
 lines(R$U,R$V, col=2, lwd=2)

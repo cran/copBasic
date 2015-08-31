@@ -9,11 +9,12 @@
       }
    }
    if(length(u) != length(v)) {
-      warning("argument(s) or implied arguments u and v are unequal in length, returning NULL")
+      warning("argument(s) or implied arguments u and v are unequal in length, ",
+              "returning NULL")
       return(NULL)
    }
-   ifelse(umv, psi <- u+v-1, psi <- u-v)
 
+   ifelse(umv, psi <- u-v, psi <- u+v-1)
    ifelse(is.na(p), getlmoms <- TRUE, getlmoms <- FALSE)
 
    if(getlmoms) { # L-moments desired
@@ -42,7 +43,8 @@
    	  # Using the empirical distribution function
    	  type <- as.integer(type)
       if(is.na(type) | type < 1 | type > 9) {
-         warning("argument 'type' as an integer is not in [1, 9] as quantile() will require, returning NULL")
+         warning("argument 'type' as an integer is not in [1, 9] as quantile() will ",
+                 "require, returning NULL")
          return(NULL)
       }
       A <- quantile(psi, probs=1-p, names=FALSE, type=type)
@@ -54,7 +56,7 @@
 }
 
 
-"uvskewness" <- function(u,v=NULL, umv=TRUE, p=0.05, type=6, getlmoms=FALSE, ...) {
+"uvskew" <- function(u,v=NULL, umv=TRUE, p=0.05, type=6, getlmoms=FALSE, ...) {
    return(uvlmoms(u,v=v, umv=umv, p=p, type=type, getlmoms=FALSE, ...))
 }
 

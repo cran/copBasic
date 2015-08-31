@@ -15,7 +15,8 @@
             para <- c(a,b); names(para) <- c("alpha", "beta")
             return(list(para=para, source="FRECHETcop"))
          } else {
-            warning("incompatible rho and tau: (",rho,", ",tau,"), parameters a and b not a,b >= 0 & a + b <= 1")
+            warning("incompatible rho and tau: (",rho,", ",
+                    tau,"), parameters a and b not a,b >= 0 & a + b <= 1")
             para <- c(NA,NA); names(para) <- c("alpha", "beta")
             return(list(para=para, source="FRECHETcop"))
          }
@@ -40,17 +41,3 @@
    warning("parameters a and b not a,b >= 0 & a + b <= 1, returning NULL")
    return(NULL)
 }
-
-#\dontrun{
-#  plot(c(0,1), c(0,1), type="n")
-#  for(tau in seq(-1,1, by=0.01)) {
-#    for(rho in seq(-1,1, by=0.01)) {
-#      #message(tau, " and ", rho)
-#      fcop <- FRECHETcop(rho=rho, tau=tau)
-#      if(! is.na(fcop$para[1])) {
-#         points(fcop$para[1], fcop$para[2])
-#      }
-#    }
-#  }
-#}
-

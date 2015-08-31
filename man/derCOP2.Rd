@@ -2,19 +2,19 @@
 \alias{derCOP2}
 \title{ Numerical Derivative of a Copula for U with respect to V }
 \description{
-Compute the numerical partial derivative of a copula according to Nelsen (2006, pp. 13, 40--41) with respect to \eqn{v}:
+Compute the numerical partial derivative of a copula, which is a \emph{conditional distribution function}, according to Nelsen (2006, pp. 13, 40--41) with respect to \eqn{v}:
 
 \deqn{0 \le \frac{\delta}{\delta v} \mathbf{C}(u,v) \le 1\mbox{,}}
 
 or
 
-\deqn{\mathrm{Pr}[U \le u\mid V=v] = \lim_{\Delta v \rightarrow 0}\frac{\mathbf{C}(u, v+\Delta v) - \mathbf{C}(u,v)}{\Delta v}\mbox{,}}
+\deqn{\mathrm{Pr}[U \le u\mid V=v] = \mathbf{C}_{1|2}(u|v) =  \lim_{\Delta v \rightarrow 0}\frac{\mathbf{C}(u, v+\Delta v) - \mathbf{C}(u,v)}{\Delta v}\mbox{,}}
 
 which is to read as the probability that \eqn{U \le u} given that \eqn{V = v} and corresponds to the \cr \code{derdir="left"} mode of the function. For \code{derdir="right"}, the following results
 \deqn{\mathrm{Pr}[U \le u\mid V=v] = \lim_{\Delta v \rightarrow 0}\frac{\mathbf{C}(u,v) - \mathbf{C}(u, v-\Delta v)}{\Delta v}\mbox{,}}
 and for \code{derdir="center"} (the usual method of computing a derivative), the following results
 \deqn{\mathrm{Pr}[U \le u\mid V=v] = \lim_{\Delta v \rightarrow 0}\frac{\mathbf{C}(u,v+\Delta v) - \mathbf{C}(u, v-\Delta v)}{2 \Delta v}\mbox{.}}
-The \dQuote{with respect to \eqn{U}} versions are seen under \code{\link{derCOP}}.
+The \dQuote{\emph{with respect to \eqn{U}}} versions are seen under \code{\link{derCOP}}.
 }
 \usage{
 derCOP2(cop=NULL, u, v, delv=.Machine$double.eps^0.50,
@@ -26,7 +26,7 @@ derCOP2(cop=NULL, u, v, delv=.Machine$double.eps^0.50,
   \item{v}{Nonexceedance probability \eqn{v} in the \eqn{Y} direction (see previous comment on \code{u});}
   \item{delv}{The \eqn{\Delta v} interval for the derivative;}
   \item{derdir}{The direction of the derivative as described above. Default is \code{left} but internally any setting can be temporarily suspended to avoid improper computations (see source code); and}
-  \item{...}{Additional arguments to pass such as the parameters often described in \code{para} arguments of other copula functions. (The lack of \code{para=NULL} for \code{\link{derCOP}} and \code{derCOP2} was either design oversight or design foresight but too late to enforce consistency in the package on this matter.)}
+  \item{...}{Additional arguments to pass such as the parameters often described in \code{para} arguments of other copula functions. (The lack of \code{para=NULL} for \code{\link{derCOP}} and \code{derCOP2} was either design oversight or design foresight but regardless it is too late to enforce package consistency in this matter.)}
 }
 \value{
   Value(s) for the partial derivative are returned.
@@ -42,16 +42,16 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 \examples{
 derCOP2(cop=W,0.4,0.6); derCOP2(cop=P,0.4,0.6); derCOP2(cop=M,0.4,0.6)
 
-lft <- derCOP2(cop=P,0.4,0.6, derdir="left")
-rgt <- derCOP2(cop=P,0.4,0.6, derdir="right")
+lft <- derCOP2(cop=P,0.4,0.6, derdir="left"  )
+rgt <- derCOP2(cop=P,0.4,0.6, derdir="right" )
 cnt <- derCOP2(cop=P,0.4,0.6, derdir="center")
 cat(c(lft,rgt,cnt,"\n"))
 # stopifnot(all.equal(lft,rgt), all.equal(lft,cnt))
 
 # Let us contrive a singularity though this NOT A COPULA in the function "afunc".
 "afunc" <- function(u,v, ...) return(ifelse(u <= 0.5, sqrt(u^2+v^2), P(u,v,...)))
-lft <- derCOP2(cop=afunc,0.67, 0.5, derdir="left")
-rgt <- derCOP2(cop=afunc,0.67, 0.5, derdir="right")
+lft <- derCOP2(cop=afunc,0.67, 0.5, derdir="left"  )
+rgt <- derCOP2(cop=afunc,0.67, 0.5, derdir="right" )
 cnt <- derCOP2(cop=afunc,0.67, 0.5, derdir="center")
 cat(c(lft,rgt,cnt,"\n")) # For this example, all are correct (see derCOP examples)
 }
@@ -60,5 +60,5 @@ cat(c(lft,rgt,cnt,"\n")) # For this example, all are correct (see derCOP example
 \keyword{conditional cumulative distribution function}
 \keyword{copula operator}
 \keyword{derivative}
-
+\keyword{copula (conditional distribution)}
 

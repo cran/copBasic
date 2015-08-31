@@ -1,8 +1,10 @@
 \name{lcomoms2.ABKGcop2parameter}
 \alias{lcomoms2.ABKGcop2parameter}
-\title{ Convert L-comoments to Parameters of Compositions of Two 2-parameter Copulas }
+\title{ Convert L-comoments to Parameters of Alpha-Beta-Kappa-Gamma Compositions of Two One-Parameter Copulas }
 \description{
-This function converts the \emph{L-comoments} of a bivariate sample to the four parameters of a composition of two one-parameter copulas. Critical inputs are of course the first three dimensionless L-comoments: \emph{L-correlation}, \emph{L-coskew}, and \emph{L-cokurtosis}. The must complex input is the \code{solutionenvir}, which is an \code{environment} containing arbitrarily long, but individual tables, of L-comoment and parameter pairings. These pairings could be computed from the examples in \code{\link{simcompositeCOP}}. The individual tables are scanned for potentially acceptable solutions and the absolute additive error of both L-comoments for a given order is controlled by the \code{tNeps} arguments. The default values seem acceptable. The purpose of the prescanning is to reduce the computation space from perhaps millions of solutions to a few orders of magnitude. The computation of the solution error can be further controlled by \eqn{X} or \eqn{u} with respect to \eqn{Y} or \eqn{v} using the \code{comptNerrXY} arguments, but experiments thus far indicate that the defaults are likely the most desired. A solution \dQuote{matching} the L-correlation is always sought; thus there is no \code{uset2err} argument. The arguments \code{uset3err} and \code{uset4err} provide some level of granular control on addition error minimization; the defaults seek to \dQuote{match} L-coskew and ignore L-cokurtosis. The \code{setreturn} controls which rank of computed solution is returned; users might want to manually inspect a few of the most favorable solutions, which can be done by the \code{setreturn} or inspection of the returned object from the \code{lcomoms2.ABKGcop2parameter} function. The examples are detailed and self-contained to the \pkg{copBasic} package; curious users are asked to test these.
+\emph{EXPERIMENTAL}---This function converts the \emph{L-comoments} of a bivariate sample to the four parameters of a composition of two one-parameter copulas. Critical inputs are of course the first three dimensionless L-comoments: \emph{L-correlation}, \emph{L-coskew}, and \emph{L-cokurtosis}. The most complex input is the \code{solutionenvir}, which is an \code{environment} containing arbitrarily long, but individual tables, of L-comoment and parameter pairings. These pairings could be computed from the examples in \code{\link{simcompositeCOP}}.
+
+The individual tables are prescanned for potentially acceptable solutions and the absolute additive error of both L-comoments for a given order is controlled by the \code{tNeps} arguments. The default values seem acceptable. The purpose of the prescanning is to reduce the computation space from perhaps millions of solutions to a few orders of magnitude. The computation of the solution error can be further controlled by \eqn{X} or \eqn{u} with respect to \eqn{Y} or \eqn{v} using the \code{comptNerrXY} arguments, but experiments thus far indicate that the defaults are likely the most desired. A solution \dQuote{matching} the L-correlation is always sought; thus there is no \code{uset2err} argument. The arguments \code{uset3err} and \code{uset4err} provide some level of granular control on addition error minimization; the defaults seek to \dQuote{match} L-coskew and ignore L-cokurtosis. The \code{setreturn} controls which rank of computed solution is returned; users might want to manually inspect a few of the most favorable solutions, which can be done by the \code{setreturn} or inspection of the returned object from the \code{lcomoms2.ABKGcop2parameter} function. The examples are detailed and self-contained to the \pkg{copBasic} package; curious users are asked to test these.
 }
 \usage{
 lcomoms2.ABKGcop2parameter(solutionenvir=NULL,
@@ -69,6 +71,7 @@ para <- list(cop1=PLACKETTcop, cop2=PLACKETTcop,
              alpha=PPcop$alpha, beta=PPcop$beta, kappa=PPcop$kappa, gamma=PPcop$gamma,
              para1=PPcop$Cop1Thetas, para2=PPcop$Cop2Thetas)
 set.seed(57) # set for reproducability
+
 # Example Plot Number 1
 D <- simCOP(n=2000, cop=composite3COP,  para=para, col=rgb(0,0,0,0.1), pch=16)
 print(lmomco::lcomoms2(D, nmom=4)) # See the six extacted sample values for this seed.
@@ -82,12 +85,13 @@ PPcop <- lcomoms2.ABKGcop2parameter(solutionenvir=PlackettPlackettABKG,
 para <- list(cop1=PLACKETTcop, cop2=PLACKETTcop,
              alpha=PPcop$alpha, beta=PPcop$beta, kappa=PPcop$kappa, gamma=PPcop$gamma,
              para1=PPcop$Cop1Thetas, para2=PPcop$Cop2Thetas)
+
 # Example Plot Number 2
 D <- simCOP(n=1000, cop=composite3COP, para=para, col=rgb(0,0,0,0.1), pch=16)
 level.curvesCOP(cop=composite3COP, para=para, delt=0.1, ploton=FALSE)
 qua.regressCOP.draw(cop=composite3COP, para=para,
                     ploton=FALSE, f=c(seq(0.05, 0.95, by=0.05)))
-qua.regressCOP.draw(cop=composite3COP, para=para, swap=TRUE,
+qua.regressCOP.draw(cop=composite3COP, para=para, wrtV=TRUE,
                     ploton=FALSE, f=c(seq(0.05, 0.95, by=0.05)), col=c(3,2))
 diag <- diagCOP(cop=composite3COP, para=para, ploton=FALSE, lwd=4)
 # Compare plots 1 and 2, some generalized consistency between the two is evident.
@@ -95,8 +99,7 @@ diag <- diagCOP(cop=composite3COP, para=para, ploton=FALSE, lwd=4)
 # S <- PPcop$solutions$solutions[,1:18]
 # B <- S[abs(S$t2.12res) < 0.02 & abs(S$t2.21res) < 0.02 &
 #        abs(S$t3.12res) < 0.02 & abs(S$t3.21res) < 0.02, ]
-#print(B)
-}
+#print(B)}
 }
 \keyword{L-comoments}
 \keyword{copula composition}

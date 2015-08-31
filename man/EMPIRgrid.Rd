@@ -2,7 +2,7 @@
 \alias{EMPIRgrid}
 \title{ Grid of the Bivariate Emprical Copula }
 \description{
-Generate a gridded representation of the bivariate empirical copula (see \code{\link{EMPIRcop}}, Salvadori \emph{et al.}, 2007, p. 140).  This function has the primary intention of supporting 3-D renderings or 2-D images of the \emph{copulatic surface}, but many empirical copula functions in \pkg{copBasic} rely on the grid of the empirical copula---unlike the functions support parametric copulas.
+Generate a gridded representation of the \emph{bivariate empirical copula} (see \code{\link{EMPIRcop}}, Salvadori \emph{et al.}, 2007, p. 140).  This function has the primary intention of supporting 3-D renderings or 2-D images of the \emph{copulatic surface}, but many empirical copula functions in \pkg{copBasic} rely on the grid of the empirical copula---unlike the functions support parametric copulas.
 }
 \usage{
 EMPIRgrid(para=NULL, deluv=0.05, verbose=FALSE, ...)
@@ -14,7 +14,7 @@ EMPIRgrid(para=NULL, deluv=0.05, verbose=FALSE, ...)
   \item{...}{Additional arguments to pass.}
 }
 \value{
-  An \R \code{list} of the gridded values of \eqn{u}, \eqn{v}, and \eqn{\mathbf{C}_{n}(u,v)} values of the bivariate empirical copula is returned. (Well only \eqn{\mathbf{C}_{n}(u,v)} is in the form of a grid or \code{matrix}.) The \code{deluv} used to generated the grid is also returned.
+  An \R \code{list} of the gridded values of \eqn{u}, \eqn{v}, and \eqn{\mathbf{C}_{n}(u,v)} values of the bivariate empirical copula is returned. (Well only \eqn{\mathbf{C}_{n}(u,v)} is in the form of a grid as an \R \code{matrix}.) The \code{deluv} used to generated the grid is also returned.
 }
 \note{
 The extensive suite of examples is included here because the various ways that algorithms involving empirical copulas can be tested. The figures also provide excellent tools for education on copulas.

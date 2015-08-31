@@ -22,7 +22,8 @@ An \R \code{data.frame} with
 Saller, A.H., Dickson, J.A., 2011, Partial dolomitization of a Pennsylvanian limestone buildup by hydrothermal fluids and its effect on reservoir quality and performance: AAPG Bulletin, v. 95, no. 10, pp. 1745--1762.
 }
 \examples{
+\dontrun{
 data(ReineckeWells)
-summary(ReineckeWells)
+summary(ReineckeWells) # show summary statistics}
 }
 \keyword{datasets}

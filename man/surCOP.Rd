@@ -5,10 +5,11 @@
 Compute the \emph{survival copula} from a copula (Nelsen, 2006, pp. 32--34), which is defined as
 
 \deqn{\hat{\mathbf{C}}(1-u,1-v) = \hat{\mathbf{C}}(u',v') = \mathrm{Pr}[U > u, V > v] = u' + v' - 1 + \mathbf{C}(1-u',1-v')\mbox{,}}
-where \eqn{u'} and \eqn{v'} are exceedance probabilities and \eqn{\mathbf{C}(u,v)} is the copula.
+where \eqn{u'} and \eqn{v'} are exceedance probabilities and \eqn{\mathbf{C}(u,v)} is the copula. The \emph{survivial copula} is a reflection of both \eqn{U} and \eqn{V}.
 
-The survival copula is an expression of the joint probability that both \eqn{U > v} and \eqn{U > v} when the arguments \eqn{a} and \eqn{b} to \eqn{\hat{\mathbf{C}}(a,b)} are exceedance probabilities as shown. This is unlike a copula that has \eqn{U \le u} and \eqn{V \le v} for nonexceedance probabilities \eqn{u} and \eqn{v}. Alternatively, the joint probability that both \eqn{U > u} and \eqn{V > v} can be solved using just the copula \eqn{1 - u - v + \mathbf{C}(u,v),} as shown below where the arguments to \eqn{\mathbf{C}(u,v)} are nonexceedance probabilities. The later formula is the \emph{joint survival function} \eqn{\overline{\mathbf{C}}(u,v)} defined as (Nelsen, 2006, p. 33)
+The \emph{survival copula} is an expression of the joint probability that both \eqn{U > v} and \eqn{U > v} when the arguments \eqn{a} and \eqn{b} to \eqn{\hat{\mathbf{C}}(a,b)} are exceedance probabilities as shown. This is unlike a copula that has \eqn{U \le u} and \eqn{V \le v} for nonexceedance probabilities \eqn{u} and \eqn{v}. Alternatively, the joint probability that both \eqn{U > u} and \eqn{V > v} can be solved using just the copula \eqn{1 - u - v + \mathbf{C}(u,v)}, as shown below where the arguments to \eqn{\mathbf{C}(u,v)} are nonexceedance probabilities. The later formula is the \emph{joint survival function} \eqn{\overline{\mathbf{C}}(u,v)} defined for a copula as (Nelsen, 2006, p. 33)
 \deqn{\overline{\mathbf{C}}(u,v) = \mathrm{Pr}[U > u, V > v] = 1 - u - v + \mathbf{C}(u,v)\mbox{.}}
+Users are directed to the collective documentation in \code{\link{COP}} and \code{\link{simCOPmicro}} for more details on copula reflection.
 }
 \usage{
 surCOP(u, v, cop=NULL, para=NULL, exceedance=TRUE, ...)
@@ -19,7 +20,7 @@ surCOP(u, v, cop=NULL, para=NULL, exceedance=TRUE, ...)
   \item{cop}{A copula function;}
   \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula;}
   \item{exceedance}{A logical affirming whether \code{u} and \code{v} are really in exceedance probability or not? If \code{FALSE}, then the complements of the two are made internally and the nonexceedances can thus be passed; and}
-  \item{...}{Additional arguments to pass (such as parameters, if needed, for the copula in the form of a list.}
+  \item{...}{Additional arguments to pass (such as parameters, if needed, for the copula in the form of an \R \code{list}).}
 }
 \value{
   Value(s) for the survival copula are returned.
@@ -31,12 +32,12 @@ The author (Asquith) finds the use of exceedance probabilities delicate in regar
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
-\seealso{\code{\link{COP}}, \code{\link{coCOP}}, \code{\link{duCOP}}, \code{\link{surfuncCOP}} }
+\seealso{\code{\link{COP}}, \code{\link{coCOP}}, \code{\link{duCOP}}, \code{\link{surfuncCOP}}, \code{\link{simCOPmicro}} }
 \examples{
 u  <-  0.26; v  <- 0.55   # nonexceedance probabilities
 up <- 1 - u; vp <- 1 - v  #    exceedance probabilities
 surCOP(up, vp,   cop=PSP, exceedance=TRUE)  # 0.4043928
-surCOP(u, v,     cop=PSP, exceedance=FALSE) # 0.4043928
+surCOP(u, v,     cop=PSP, exceedance=FALSE) # 0.4043928 (same because of symmetry)
 surfuncCOP(u, v, cop=PSP)                   # 0.4043928
 # All three examples show joint prob. that U > u and V > v.
 
@@ -52,4 +53,6 @@ image(gridCOP(cop=UsersCop, para=1.15), col=terrain.colors(20),
 }
 }
 \keyword{copula operator}
+\keyword{joint probability}
+\keyword{copula (reflection)}
 

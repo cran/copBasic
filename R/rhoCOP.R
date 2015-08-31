@@ -1,10 +1,26 @@
 "rhoCOP" <-
-function(cop=NULL, para=NULL, method=c("default", "joe21", "joe12"),
-         brute=FALSE, delta=0.002, ...) {
+function(cop=NULL, para=NULL, method=c("default", "joe21", "joe12"), as.sample=FALSE,
+                              brute=FALSE, delta=0.002, ...) {
+
+   if(as.sample) {
+      if(is.null(para)) {
+         warning("Sample Spearman's Rho desired but para is NULL, ",
+                 "returning NULL")
+         return(NULL)
+      }
+      if(length(names(para)) != 2) {
+        warning("para argument must be data.frame having only two columns, ",
+                "returning NULL")
+        return(NULL)
+      }
+      return(cor(para[,1], para[,2], method="spearman"))
+   }
+
+
    method <- match.arg(method)
    if(brute) {
       # Following logic would implement the concordance function via tauCOP
-      # if the previous if(brute) was not there, but her we only resort to if
+      # if the previous if(brute) was not there, but here we only resort to if
       # brute is request.
       Q <- tauCOP(cop=cop, cop2=P, para=para, brute=brute, delta=delta, ...);
       rho <- 3*Q;

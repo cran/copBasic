@@ -1,8 +1,26 @@
 "giniCOP" <-
-function(cop=NULL, para=NULL, by.concordance=FALSE, ...) {
+function(cop=NULL, para=NULL, by.concordance=FALSE, as.sample=FALSE, ...) {
+   if(as.sample) {
+      if(is.null(para)) {
+         warning("Sample Gini's Gamma desired but para is NULL, returning NULL")
+         return(NULL)
+      }
+      if(length(names(para)) != 2) {
+        warning("para argument must be data.frame having only two columns, returning NULL")
+        return(NULL)
+      }
+      R <- rank(para[,1]); S <- rank(para[,2]); n <- length(para[,1])
+      samGAM <- sum(abs((n + 1 - R) - S) - abs(R - S))
+      return( (2 / n^2) * samGAM)
+   }
+
+   if(is.null(cop)) {
+      warning("must have copula argument specified, returning NULL")
+      return(NULL)
+   }
    if(by.concordance == TRUE) {
-     A <- tauCOP(cop=cop, para=para, cop2=M, ...)
-     B <- tauCOP(cop=cop, para=para, cop2=W, ...)
+     A <- concordCOP(cop=cop, para=para, cop2=M, ...)
+     B <- concordCOP(cop=cop, para=para, cop2=W, ...)
      gini <- A + B
      return(A+B)
    }
