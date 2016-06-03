@@ -22,7 +22,7 @@ or in terms of the \emph{primary diagonal} \eqn{\delta(t)} and \emph{secondary d
 
 The simpler method is more readily implemented because the single unnested integration are readily deployed (and fast) and accommodated using the \code{integrate()} function in \R. Lastly, Nelsen \emph{et al.} (2001, p. 281) show that \eqn{\gamma_\mathbf{C}} also is computable by
 \deqn{\gamma_\mathbf{C} = 2\,\mathcal{Q}(\mathbf{C},\mathbf{A})\mbox{,}}
-where \eqn{\mathbf{A}} is a \emph{convex combination} (\code{\link{convex2COP}}, using \eqn{\alpha = 1/2}) of the copulas \eqn{\mathbf{M}} and \eqn{\mathbf{W}} or \eqn{\mathbf{A} = (\mathbf{M}+\mathbf{W})/2}. However, integral convergence errors seem to trigger occassionally and the first definition by summation \eqn{\mathcal{Q}(\mathbf{C},\mathbf{M}) + \mathcal{Q}(\mathbf{C},\mathbf{W})} thus is used. The convex combination is demonstrated in the \bold{Examples} section.
+where \eqn{\mathbf{A}} is a \emph{convex combination} (\code{\link{convex2COP}}, using \eqn{\alpha = 1/2}) of the copulas \eqn{\mathbf{M}} and \eqn{\mathbf{W}} or \eqn{\mathbf{A} = (\mathbf{M}+\mathbf{W})/2}. However, integral convergence errors seem to trigger occasionally, and the first definition by summation \eqn{\mathcal{Q}(\mathbf{C},\mathbf{M}) + \mathcal{Q}(\mathbf{C},\mathbf{W})} thus is used. The convex combination is demonstrated in the \bold{Examples} section.
 }
 \usage{
 giniCOP(cop=NULL, para=NULL, by.concordance=FALSE, as.sample=FALSE, ...)
@@ -98,12 +98,11 @@ hoefCOP(cop=composite2COP, para=para)         # 0.5082776 (theoretical)
 hoefCOP(para=D[sample(1:n, n/5),],
                       as.sample=TRUE)         # 0.5033842 (re-sample)
 #hoefCOP(para=D, as.sample=TRUE) # major CPU hog, n too big
-# because the Ds are already "probabilities" just resample
+# because the Ds are already "probabilities" just resample as shown above
 wolfCOP(cop=composite2COP, para=para)         # 0.5257662 (theoretical)
 #wolfCOP(para=D, as.sample=TRUE) # major CPU hog, n too big
 wolfCOP(para=D[sample(1:n, n/5),],
-                      as.sample=TRUE)         # 0.5338009 (re-sample)
-}
+                      as.sample=TRUE)         # 0.5338009 (re-sample)}
 }
 \keyword{copula (characteristics)}
 \keyword{copula (properties)}

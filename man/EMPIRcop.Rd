@@ -19,7 +19,7 @@ where \eqn{u^\mathrm{obs}} and \eqn{v^\mathrm{obs}} are thus sometype of nonpara
 \emph{Hazen Empirical Copula}---The \dQuote{Hazen form} of the empirical copula is
 \deqn{\mathbf{C}^\mathcal{H}_{n}(u,v) =
      \frac{1}{n}\sum_{i=1}^n \mathbf{1}\biggl(\frac{R_i - 0.5}{n} \le u_i, \frac{S_i - 0.5}{n} \le v_i \biggr)\mbox{,}}
-which can be triggered by \code{ctype="hazen"}. This form is named for this package because of directly similarity of the \emph{Hazen plotting position} to the definition. Joe (2014, pp. 247--248) uses this form. Joe continues by saying \dQuote{[the] adjustment of the uniform score [\eqn{(R - 0.5/n]}] could be done in an alternative form, but there is [asymptotic] equivalence[, and that] \eqn{\mathbf{C}^\mathcal{H}_{n}} puts mass of \eqn{n^{-1}} at the tuples \eqn{([r_{i1} - 0.5/n, \ldots, [r_{id} - 0.5]/n)} for \eqn{i = 1, \ldots, n}.} A Joe footnote says that \dQuote{the conversion [\eqn{R/(n+1)}] is commonly used for the empirical copula.} This later form is the \dQuote{Weibull form} described next. Joe's preference for the Hazen form is so that the sum of squared normal scores is closer to unity for large \eqn{n} than attained by the Weibull form.
+which can be triggered by \code{ctype="hazen"}. This form is named for this package because of directly similarity of the \emph{Hazen plotting position} to the definition. Joe (2014, pp. 247--248) uses this form. Joe continues by saying \dQuote{[the] adjustment of the uniform score [\eqn{(R - 0.5/n]}] could be done in an alternative form, but there is [asymptotic] equivalence[, and that] \eqn{\mathbf{C}^\mathcal{H}_{n}} puts mass of \eqn{n^{-1}} at the tuples \eqn{([r_{i1} - 0.5/n, \ldots, [r_{id} - 0.5]/n)} for \eqn{i = 1, \ldots, n}.} A footnote by Joe (2014) says that \dQuote{the conversion [\eqn{R/(n+1)}] is commonly used for the empirical copula.} This later form is the \dQuote{Weibull form} described next. Joe's preference for the Hazen form is so that the sum of squared normal scores is closer to unity for large \eqn{n} than attained by the Weibull form.
 
 
 \emph{Weibull Empirical Copula}---The \dQuote{Weibull form} of the empirical copula is
@@ -34,7 +34,7 @@ where the individual \emph{Bernstein weights} \eqn{\eta(i,j)} for the \eqn{k}th 
 
 \deqn{\eta(i,j; u,v) = {n \choose i} u^i (1-u)^{n-i} \times {n \choose j} u^j (1-u)^{n-j}\mbox{.}}
 
-The Bernstein extension, albeit conceptually pure in its shuffling by binomial coefficients and left- and right-tail weightings, is CPU intensive as inspection of the equations above seemingly indicates a nest of four \code{for()} loops in \R. (The native \R code of \pkg{copBasic} uses the \code{sapply()} function in \R liberally for substantial but not blazing fast speed increase.) The Bernstein extension results in a somewhat smoother surface of the empirical copula, and lastly which can be triggered by \code{ctype="bernstein"}.
+The Bernstein extension, albeit conceptually pure in its shuffling by binomial coefficients and left- and right-tail weightings, is CPU intensive as inspection of the equations above seemingly indicates a nest of four \code{for()} loops in \R. (The native \R code of \pkg{copBasic} uses the \code{sapply()} function in \R liberally for substantial but not a blazing fast speed increase.) The Bernstein extension results in a somewhat smoother surface of the empirical copula, and lastly which can be triggered by \code{ctype="bernstein"}.
 
 The \emph{empirical copula frequency} can be defined (Nelson, 2006, p. 219) as
 \deqn{\mathbf{c}_n(u, v) = \mathbf{C}_n\biggl(\frac{i}{n}, \frac{j}{n}\biggr) -
@@ -49,9 +49,9 @@ EMPIRcop(u, v, para=NULL, ctype=c("weibull", "hazen", "1/n", "bernstein"),
 \arguments{
   \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction;}
   \item{v}{Nonexceedance probability \eqn{v} in the \eqn{Y} direction;}
-  \item{para}{A vector (single element) of parameters---the U-statistics of the data (see \bold{Examples}). Alternatively, \code{para} can be a \code{list} holding a \code{para} as would be done if it were a vector, but arguments \code{bernstein} and \code{bernprogress} can be optionally included---this feature is provide so that the Bernstein refinement can be controlled within the context of other functions calling \code{EMPIRcop} such as by \code{\link{level.curvesCOP}};}
+  \item{para}{A vector (single element) of parameters---the U-statistics of the data (see \bold{Examples}). Alternatively, \code{para} can be a \code{list} holding a \code{para} as would be done if it were a vector, but arguments \code{bernstein} and \code{bernprogress} can be optionally included---this feature is provided so that the Bernstein refinement can be controlled within the context of other functions calling \code{EMPIRcop} such as by \code{\link{level.curvesCOP}};}
   \item{ctype}{An alternative means for trigging the definition of \eqn{\mathbf{C}^\mathcal{H}_n} (default), \eqn{\mathbf{C}^\mathcal{W}_n}, \eqn{\mathbf{C}_n}, or \eqn{\mathbf{C}^\mathcal{B}_n};}
-  \item{bernprogress}{The Bernstein copula extension is CPU intensive(!), so a splash counter is pushed to the console via \code{message()} function in \R so as to not discourage the user; and}
+  \item{bernprogress}{The Bernstein copula extension is CPU intensive(!), so a splash counter is pushed to the console via the \code{message()} function in \R so as to not discourage the user; and}
   \item{...}{Additional arguments to pass.}
 }
 \value{

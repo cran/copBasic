@@ -60,8 +60,8 @@ lines(qua.wrtv, col=4, lwd=2, lty=2)
 qua.wrtv <- EMPIRqua.regress2(f=0.1, empinv=uv.inv2)
 lines(qua.wrtv, col=4, lwd=2, lty=4)
 qua.wrtv <- EMPIRqua.regress2(f=0.9, empinv=uv.inv2)
-lines(qua.wrtv, col=4, lwd=2, lty=4)
-}
+lines(qua.wrtv, col=4, lwd=2, lty=4)#}
+
 \dontrun{
 # Now try a much more complex shape
 para   <- list(alpha=0.15,  beta=0.65, cop1=PLACKETTcop, cop2=PLACKETTcop,
@@ -107,8 +107,7 @@ lines(qua.wrtv, col=4, lwd=2, lty=2)
 qua.wrtv <- EMPIRqua.regress2(f=0.1, empinv=uv.inv2)
 lines(qua.wrtv, col=4, lwd=2, lty=4)
 qua.wrtv <- EMPIRqua.regress2(f=0.9, empinv=uv.inv2)
-lines(qua.wrtv, col=4, lwd=2, lty=4)
-}
+lines(qua.wrtv, col=4, lwd=2, lty=4)#}
 }
 \keyword{empirical copula}
 \keyword{empirical copula (derivative inverses)}

@@ -83,8 +83,7 @@ fv1 <- fv[length(fv) - 1]; rh1  <- RHOS[n1]
 fv2 <- fv[length(fv)    ]; rh2  <- RHOS[length(RHOS)]
 m <- (1 - fv1)/(1 - rh1);  rhos <- RHOS[RHOS > rh1]
 taus <- m*(rhos - rh1) + fv1; fvs <- c(fv[1:(length(fv)-1)], taus)
-lines(RHOS,fvs, col=3)
-}
+lines(RHOS,fvs, col=3)#}
 }
 \keyword{Plackett copula}
 \keyword{copula (estimation)}

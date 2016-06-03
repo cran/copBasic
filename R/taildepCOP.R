@@ -1,6 +1,7 @@
 "taildepCOP" <-
-function(cop=NULL, para=NULL, tol=1e-6, divisor=2, plot=FALSE, ylim=NULL, verbose=FALSE, ...) {
-  resolution <- abs(log10(1E-6)) - 1
+function(cop=NULL, para=NULL, tol=1e-6, divisor=2,
+         plot=FALSE, ylim=NULL, verbose=FALSE, ...) {
+  resolution <- abs(log10(tol)) - 1
   lamu.tmp <- lamu <- u <- 0
   LAMU1 <- LAMU2 <- vector(mode="numeric")
   if(verbose) message("Upper-Tail Dependency")

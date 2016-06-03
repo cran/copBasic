@@ -71,16 +71,15 @@ t <- sectionCOP(f,cop=composite3COP,para=para,   wrtV=TRUE, ploton=FALSE,
                   col=2, lwd=4)
 t <- sectionCOP(f,cop=composite3COP,para=para,   wrtV=TRUE, ploton=FALSE,
                   dercop=TRUE, col=2)
-mtext(paste(ftxt, collapse=""))
-}
+mtext(paste(ftxt, collapse=""))#}
+
 \dontrun{
 mainpara <- list(cop1=PLACKETTcop, cop2=PLACKETTcop,
                  para1gen=function() { return(10^runif(1, min=-5, max=5)) },
                  para2gen=function() { return(10^runif(1, min=-5, max=5)) })
 n.sample <- 200; n <- 20000 # really used 20000 for generation of the data set
 PlackettPlackettABKG <- simcomposite3COP(n=n.sample, nsim=n, parent=mainpara)
-save(PlackettPlackettABKG, file="PlackettPlackettABKG.RData", compress="xz")
-}
+save(PlackettPlackettABKG, file="PlackettPlackettABKG.RData", compress="xz")#}
 }
 \keyword{copula composition}
 \keyword{copula composition (four compositing parameters)}

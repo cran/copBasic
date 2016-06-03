@@ -1,5 +1,6 @@
 \name{simCOP}
 \alias{simCOP}
+\alias{rCOP}
 \title{ Simulate a Copula by Numerical Derivative Method }
 \description{
 Perform a simulation and visualization of a copula by numerical derivatives of the copula (Nelsen, 2006, p. 32). The method is more broadly known as \emph{conditional simulation method}. This function is the parametric parallel to the empirical copula simulator \code{\link{EMPIRsim}}. Because a focus of \pkg{copBasic} is on copula theory for pedagogic purposes, the coupling between simulation and subsequent visualization is emphasized by this function by it providing for both simulation and plotting by default.
@@ -10,12 +11,13 @@ The \code{simCOP} function is based on a uniformly simulating nonexceedance prob
 simCOP(n=100, cop=NULL, para=NULL, na.rm=TRUE, keept=FALSE,
               graphics=TRUE, ploton=TRUE, points=TRUE, snv=FALSE,
               infsnv.rm=TRUE, trapinfsnv=.Machine$double.eps, ...)
+rCOP(n, cop=NULL, para=NULL, na.rm=TRUE, ...)
 }
 \arguments{
   \item{n}{A sample size, default is \eqn{n = 100};}
   \item{cop}{A copula function;}
   \item{para}{Vector of parameters, if needed, to pass to the copula;}
-  \item{na.rm}{A logical to toggle the removal of \code{NA} entries on the returned \code{data.frame};}
+  \item{na.rm}{A logical to toggle the removal of \code{NA} entries should they form on the returned \code{data.frame}. A well implemented copula should accommodate and not return \code{NA} but because this package relies on numerical derivation, it was decided to have a mechanism to handle this;}
   \item{keept}{Keep the \eqn{t} uniform random variable for the simulation as the last column in the returned \code{data.frame};}
   \item{graphics}{A logical that will disable graphics by setting \code{ploton} and \code{points} to \code{FALSE} and overriding whatever their settings were;}
   \item{ploton}{A logical to toggle on the plot (see \bold{Examples} in \code{\link{vuongCOP}});}
@@ -27,6 +29,9 @@ simCOP(n=100, cop=NULL, para=NULL, na.rm=TRUE, keept=FALSE,
 }
 \value{
   An \R \code{data.frame} of the simulated values is returned.
+}
+\note{
+Function \code{rCOP} is a light-weight implementation for bivariate copula random variates that dispatches to \code{\link{simCOPmicro}} and bypasses the graphical and other features of \code{simCOP}.
 }
 \references{
 Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.

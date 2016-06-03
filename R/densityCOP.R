@@ -1,10 +1,12 @@
 "densityCOP" <-
 function(u,v, cop=NULL, para=NULL,
-              deluv=.Machine$double.eps^0.25, truncate.at.zero=TRUE, ...) {
+              deluv=.Machine$double.eps^0.25,
+              truncate.at.zero=TRUE, the.zero=0,
+              sumlogs=FALSE, ...) {
    if (length(u) > 1 & length(v) > 1 & length(u) != length(v)) {
       warning("length u = ", length(u), " and length v = ", length(v))
-      warning("longer object length is not a multiple of shorter object length, ",
-              "no recycling")
+      warning("longer object length is not a multiple of shorter ",
+              "object length, no recycling")
       return(NA)
    }
    if(length(u) == 1) {
@@ -21,7 +23,11 @@ function(u,v, cop=NULL, para=NULL,
                       cop(u2,v1, para=para, ...) -
                       cop(u1,v2, para=para, ...) +
                       cop(u1,v1, para=para, ...))/deluv^2 })
-   if(truncate.at.zero) den[den < 0] <- 0
-   return(den)
+   if(truncate.at.zero) den[den <= 0] <- the.zero
+   if(sumlogs) {
+      return(sum(log(den)))
+   } else {
+      return(den)
+   }
 }
 

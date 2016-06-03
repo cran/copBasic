@@ -7,7 +7,7 @@ Numerically set a logical whether a copula is \emph{radially symmetric} (Nelsen,
  or
  \deqn{u + v - 1 + \mathbf{C}(1-u, 1-v) - \mathbf{C}(u,v) \equiv 0\mbox{.}}
 
-Thus if the equality of the copula \eqn{\mathbf{C}(u,v) = \hat\mathbf{C}(u,v)}, then radial symmetry exists:\code{\link{COP}} \eqn{=} \code{\link{surCOP}} or \eqn{\mathbf{C}(u,v) = \hat{\mathbf{C}}(1-u,1-v)}. The computation is (can be) CPU intensive.
+Thus if the equality of the copula \eqn{\mathbf{C}(u,v) = \hat\mathbf{C}(u,v)}, then radial symmetry exists: \code{\link{COP}} \eqn{=} \code{\link{surCOP}} or \eqn{\mathbf{C}(u,v) = \hat{\mathbf{C}}(1-u,1-v)}. The computation is (can be) CPU intensive.
 }
 \usage{
 isCOP.radsym(cop=NULL, para=NULL, delta=0.005, tol=1e-4, ...)
@@ -23,13 +23,13 @@ isCOP.radsym(cop=NULL, para=NULL, delta=0.005, tol=1e-4, ...)
   A logical \code{TRUE} or \code{FALSE} is returned.
 }
 \note{
-An open research question exists (at least in the author's mind): \emph{Is a radially symmetric copula characterized by the L-comoments for orders} \eqn{r{\ge}3} \emph{as having values of zero}? The author asks this question partly out of intuition stemming from numerical experiments (some not show here) suggesting this condition, and review of copula literature does not seem to directly address this question. Let us consider the two symmetrical copulas: the parameterless \eqn{\mathbf{PSP}(u,v)} (see \code{\link{PSP}}) and the Plackett (see \code{\link{PLACKETTcop}}) with the \eqn{\rho_\mathbf{C} = 4.709} (see \code{\link{rhoCOP}}). The two copulas have different radial symmetries as shown below.
+An open research question possibly exists: \emph{Is a radially symmetric copula characterized by the L-comoments for orders} \eqn{r{\ge}3} \emph{as having values of zero}? The author asks this question partly out of intuition stemming from numerical experiments (some not show here) suggesting this condition, and review of copula literature does not seem to directly address this question. Let us consider the two symmetrical copulas: the parameterless \eqn{\mathbf{PSP}(u,v)} (see \code{\link{PSP}}) and the Plackett (see \code{\link{PLACKETTcop}}) with the \eqn{\rho_\mathbf{C} = 4.709} (see \code{\link{rhoCOP}}). The two copulas have different radial symmetries as shown below.
 \preformatted{
   plackpar <- PLACKETTpar(rho=rhoCOP(cop=PSP)) # Spearman's Rho = 0.4784176
   isCOP.radsym(cop=PSP)                        # FALSE
   isCOP.radsym(cop=PLACKETTcop, para=plackpar) # TRUE
 }
-Now, let us compute the L-comoments (from the \pkg{lmomco} \R package) for \eqn{n=10{,}000} simulations from each copula. The L-correlations are each about 0.48, which agree with the given \eqn{\rho_\mathbf{C}}.
+Now, let us compute the L-comoments from the \pkg{lmomco} \R package for \eqn{n=10{,}000} simulations from each copula. The L-correlations are each about 0.48, which agree with the given \eqn{\rho_\mathbf{C}}.
 \preformatted{
   set.seed(639)
   UVa <- simCOP(n=10000, cop=PSP,         para=NA,       graphics=FALSE)
@@ -90,10 +90,7 @@ isCOP.PQD(cop=GHcop,    para=theta) # TRUE
 
 # Notice that isCOP.RTI is not the same for empirical and theoretical.
 # This shows the difficulty in tail dependence parameter estimation for
-# small samples (see Salvadori et al., 2007 p. 175).
-
-
-}
+# small samples (see Salvadori et al., 2007 p. 175).}
 }
 \keyword{copula (characteristics)}
 \keyword{copula (properties)}

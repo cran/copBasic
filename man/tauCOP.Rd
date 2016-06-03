@@ -7,7 +7,7 @@
 Compute the measure of association known as \emph{Kendall's Tau} (\eqn{\tau_\mathbf{C}}) of a copula (\eqn{\tau_\mathbf{C}}) according to Nelsen (2006, sec. 5.1.1 and p. 161) by
 \deqn{\tau_\mathbf{C} = \mathcal{Q}(\mathbf{C}, \mathbf{C}) = 4\int\!\!\int_{\mathcal{I}^2}
                          \mathbf{C}(u,v)\,\mathrm{d}\mathbf{C}(u,v) - 1\mbox{,}}
-where \eqn{\mathcal{Q}(\mathbf{C}, \mathbf{C})} is a \emph{concordance function} (\code{concordCOP}) of a copula with itself. However, Nelsen (2006, p. 164) reports that this form is often not amenable to computation when there is a singular component to the copula and that the expression
+where \eqn{\mathcal{Q}(\mathbf{C}, \mathbf{C})} is a \emph{concordance function} (\code{concordCOP}) of a copula with itself. Nelsen (2006, p. 164) reports however that this form is often not amenable to computation when there is a singular component to the copula and that the expression
 \deqn{\tau_\mathbf{C} = 1 - 4\int\!\!\int_{\mathcal{I}^2}
                          \frac{\delta\mathbf{C}(u,v)}{\delta u}
                          \frac{\delta\mathbf{C}(u,v)}{\delta v}\,
@@ -86,8 +86,8 @@ dotau <- function(n) {
    return(cor(uv$U, uv$V, method="kendall"))
 }
 taus <- replicate(100, dotau(1000))
-tau.sample <- mean(taus); print(tau.sample) # 0.3333763
-}
+tau.sample <- mean(taus); print(tau.sample) # 0.3333763}
+
 \dontrun{
 # Nelsen (2006, pp. 160-161, numeric results shown thereine)
 # The rational values or integers may be derived analytically.
@@ -121,3 +121,4 @@ tauCOP(cop=composite2COP, para=para, brute=TRUE) # about 0.95}
 \keyword{copula (properties)}
 \keyword{Nelsen (2006) Examples and Exercises}
 \keyword{concordance function}
+\keyword{literature errors and inconsistencies}

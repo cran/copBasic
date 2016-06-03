@@ -1,6 +1,6 @@
 "tailordCOP" <-
 function(cop=NULL, para=NULL, tol=1e-6, plot=FALSE, verbose=FALSE,  ...) {
-  resolution <- abs(log10(1E-6)) - 1
+  resolution <- abs(log10(tol)) - 1
   kapu.tmp <- kapu <- NA; u <- 0
   KAPU1 <- KAPU2 <- vector(mode="numeric")
   if(verbose) message("Upper-Tail Order")
@@ -18,7 +18,8 @@ function(cop=NULL, para=NULL, tol=1e-6, plot=FALSE, verbose=FALSE,  ...) {
     kapu <- kapu.tmp
   }
   if(u == 0) {
-    if(! verbose) warning("  Apparent infinity on Upper-Tail Order, setting t=1/10000 and recomputing")
+    if(! verbose) warning("  Apparent infinity on Upper-Tail Order, ",
+                          "setting t=1/10000 and recomputing")
     t <- 0.0001; u <- 1
     kapu <- log(surCOP(t,t, cop=cop, para=para, ...))/log(t)
     KAPU1[u] <- t; KAPU2[u] <- kapu
@@ -42,7 +43,8 @@ function(cop=NULL, para=NULL, tol=1e-6, plot=FALSE, verbose=FALSE,  ...) {
     kapl <- kapl.tmp
   }
   if(l == 0) {
-    if(! verbose) warning("  Apparent infinity on Lower-Tail Order, setting t=1/10000 and recomputing")
+    if(! verbose) warning("  Apparent infinity on Lower-Tail Order, ",
+                          "setting t=1/10000 and recomputing")
     t <- 0.0001; l <- 1
     kapl <- log(COP(t,t, cop=cop, para=para, ...))/log(t)
     KAPL1[l] <- t; KAPL2[l] <- kapl
@@ -61,8 +63,8 @@ function(cop=NULL, para=NULL, tol=1e-6, plot=FALSE, verbose=FALSE,  ...) {
     lines(qnorm(KAPL1), KAPL2, col=2)
     points(qnorm(1-KAPU1[u]), KAPU2[u], cex=0.7, pch=16, col=4)
     points(qnorm(1-KAPU1[u]), KAPU2[u], pch="U", cex=1.3)
-    points(qnorm(KAPL1[l]), KAPL2[l], cex=0.7, pch=16, col=2)
-    points(qnorm(KAPL1[l]), KAPL2[l], pch="L", cex=1.3)
+    points(qnorm(  KAPL1[l]), KAPL2[l], cex=0.7, pch=16, col=2)
+    points(qnorm(  KAPL1[l]), KAPL2[l], pch="L", cex=1.3)
   }
   return(list(kappaL = round(KAPL2[l], digits=resolution),
               kappaU = round(KAPU2[u], digits=resolution),

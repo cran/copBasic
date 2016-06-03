@@ -2,7 +2,7 @@
 \alias{blomCOP}
 \title{ The Blomqvist's Beta of a Copula }
 \description{
-Compute the \emph{Blomqvist's Beta} \eqn{\beta_\mathbf{C}} of a copula (Nelsen, 2006, p. 182), which is defined at the middle of \eqn{\mathcal{I}^2} as
+Compute the \emph{Blomqvist's Beta} \eqn{\beta_\mathbf{C}} of a copula (Nelsen, 2006, p. 182), which is defined at the middle (center) of \eqn{\mathcal{I}^2} as
 
 \deqn{\beta_\mathbf{C} = 4\times\mathbf{C}\biggl(\frac{1}{2},\frac{1}{2}\biggr) - 1\mbox{,}}
 
@@ -10,6 +10,8 @@ where the \eqn{u = v = 1/2} and thus shows that \eqn{\beta_\mathbf{C}} is based 
 \deqn{\frac{1}{4}(1 + \beta_\mathbf{C})^2  - 1 \le \tau_\mathbf{C} \le 1 - \frac{1}{4}(1 - \beta_\mathbf{C})^2\mbox{,}}
 \deqn{\frac{3}{16}(1 + \beta_\mathbf{C})^3  - 1 \le \rho_\mathbf{C} \le 1 - \frac{3}{16}(1 - \beta_\mathbf{C})^3\mbox{, and}}
 \deqn{\frac{3}{8}(1 + \beta_\mathbf{C})^2  - 1 \le \tau_\mathbf{C} \le 1 - \frac{3}{8}(1 - \beta_\mathbf{C})^2\mbox{.}}
+
+A curious aside (Joe, 2014, p. 164) about the \emph{Gaussian copula} is that \emph{Blomqvist's Beta} (\code{\link{blomCOP}}) is equal to \emph{Kendall's Tau} (\code{\link{tauCOP}}): \eqn{\beta_\mathbf{C} = \tau_\mathbf{C}} (see \bold{Note} in \code{\link{med.regressCOP}} for a demonstration).
 }
 \usage{
 blomCOP(cop=NULL, para=NULL, as.sample=FALSE, ...)
@@ -46,10 +48,10 @@ B <- blomCOP(cop=N4212cop, para=2.2)
 G <- giniCOP(cop=N4212cop, para=2.2)
 R <-  rhoCOP(cop=N4212cop, para=2.2)
 T <-  tauCOP(cop=N4212cop, para=2.2, brute=TRUE) # numerical problems w/o brute
-if(1*(1+B)^2/4  - 1 <= T & T <= 1 - 1*(1-B)^2/4 ) print("TRUE")
-if(3*(1+B)^3/16 - 1 <= T & T <= 1 - 3*(1-B)^3/16) print("TRUE")
-if(3*(1+B)^2/8  - 1 <= T & T <= 1 - 3*(1-B)^2/8 ) print("TRUE")
-}
+if(1*(1+B)^2/4  - 1 <= T & T <= 1 - 1*(1-B)^2/4 ) print("TRUE") #
+if(3*(1+B)^3/16 - 1 <= T & T <= 1 - 3*(1-B)^3/16) print("TRUE") #
+if(3*(1+B)^2/8  - 1 <= T & T <= 1 - 3*(1-B)^2/8 ) print("TRUE") #}
+
 \dontrun{
 # A demonstration of a special feature of blomCOP for sample data.
 set.seed(794)
@@ -68,3 +70,4 @@ print(var(H)) # Joe (2014) says that sqrt(n)(B-hatB) is Norm(0, 1 - B^2)
 \keyword{medial correlation coefficient}
 \concept{medial correlation}
 \keyword{Nelsen (2006) Examples and Exercises}
+\keyword{Gaussian copula}

@@ -9,7 +9,7 @@ The \emph{composition of two copulas} (Salvadori \emph{et al.}, 2007, p. 266, pr
 
 defines a family of copulas \eqn{\mathbf{C}_{\alpha,\beta; \Theta_\mathbf{A}, \Theta_\mathbf{B}}} with \bold{two} \emph{compositing parameters} \eqn{\alpha,\beta \in \mathcal{I}:[0,1]}. In particular, if \eqn{\alpha = \beta = 1}, then \eqn{\mathbf{C}_{1,1} = \mathbf{A}}, and, if \eqn{\alpha = \beta = 0}, then \eqn{\mathbf{C}_{0,0} = \mathbf{B}}. For \eqn{\alpha \ne \beta}, the \eqn{\mathbf{C}_{\alpha,\beta}} is in general asymmetric that is \eqn{\mathbf{C}(u,v) \ne \mathbf{C}(v,u)} for some \eqn{(u,v) \in \mathcal{I}^2}.
 
-It is important to stress that copulas \eqn{\mathbf{A}_{\Theta_A}} and \eqn{\mathbf{B}_{\Theta_B}} can be of different families and each parameterized accordingly by the values \eqn{\Theta_A} and \eqn{\Theta_B}. This is an interesting feature in the context of building complex copulatic structures in pursuit of fitting asymmetric measures of dependency such as the \emph{L-comoments} available in the \pkg{lmomco} package.  The author does not know whether the copulas \eqn{\mathbf{A}} and \eqn{\mathbf{B}} need be symmetric as the reference makes no stated restriction to that effect. (Symmetry of the copula \eqn{\mathbf{C}} is required for the situation that follows.)
+It is important to stress that copulas \eqn{\mathbf{A}_{\Theta_A}} and \eqn{\mathbf{B}_{\Theta_B}} can be of different families and each parameterized accordingly by the values \eqn{\Theta_A} and \eqn{\Theta_B}. This is an interesting feature in the context of building complex copulatic structures in pursuit of fitting asymmetric measures of dependency such as the \emph{L-comoments} available in the \pkg{lmomco} package.  The author does not know whether the copulas \eqn{\mathbf{A}} and \eqn{\mathbf{B}} need be symmetric as the reference makes no stated restriction to that effect. (Symmetry of the copula \eqn{\mathbf{C}} is required for the situation that follows, however.)
 
 It is possible to simplify the construction of an asymmetric copula from a symmetric copula by the following. Let \eqn{\mathbf{C}(u,v)} be a symmetric copula, \eqn{\mathbf{C} \ne \mathbf{\Pi}} (for \eqn{\mathbf{\Pi}} see \code{\link{P}}). A family of asymmetric copulas \eqn{\mathbf{C}_{\alpha,\beta}} with \bold{two} \emph{composition parameters} \eqn{0 < \alpha,\beta < 1, \alpha \ne \beta} that also includes \eqn{\mathbf{C}(u,v)} as a limiting case and is given by
 
@@ -60,6 +60,7 @@ print(t)
 para <- list(alpha=alpha, beta=beta, cop1=W, cop2=N4212cop, para1=Theta1, para2=3)
 t <- composite2COP(0.4,0.6,para)
 print(t)
+
 \dontrun{
 # This example does a great job of showing a composited copula with a near singularity,
 # but with leakage of chance to the upper left. The example is also critical because
@@ -82,8 +83,7 @@ image(emp$empcop, col=terrain.colors(30) ) # orientation is correct!
 # above the near singularity in this example composited copula.
 points(D$U, D$V, pch=4, col=4, cex=0.75)
 level.curvesCOP(cop=EMPIRcop, para=D, ploton=FALSE, delu=0.02, delt = 0.1)
-mtext("Empirical copula from n=2000 simulation")
-}
+mtext("Empirical copula from n=2000 simulation") #}
 }
 \keyword{copula composition}
 \keyword{copula composition (two compositing parameters)}

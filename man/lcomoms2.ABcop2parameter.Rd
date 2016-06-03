@@ -52,7 +52,16 @@ Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in
 \seealso{\code{\link{simCOP}}, \code{\link{simcompositeCOP}}, \code{\link{composite2COP}}}
 \examples{
 \dontrun{
-data(PlackettPlackettNP)  # grab a solution table for a
+# Build an initial parameter to L-comoment mapping table.
+  mainpara <- list(cop1=PLACKETTcop, cop2=PLACKETTcop,
+                   para1gen=function() { return(10^runif(1, min=-5, max=0)) },
+                   para2gen=function() { return(10^runif(1, min=0,  max=5)) })
+  nsim <- 1E4
+  n <- 1000 # really use vastly larger sample size
+  PlackettPlackettNP <- simcompositeCOP(n=sample.size.for.estimation,
+        nsim=nsim, parent=mainpara)
+  save(PlackettPlackettNP, file="PlackettPlackettNP.RData", compress="xz")
+
 # Plackett-Plackett composited copula from the copBasic package
 # Then create an environment to house the "table."
 PlackettPlackett <- new.env()
@@ -74,7 +83,7 @@ PPcop <- lcomoms2.ABcop2parameter(solutionenvir=PlackettPlackett,
 # copula via a simulation of the fitted version.
 para <- list(cop1=PLACKETTcop, cop2=PLACKETTcop, alpha=PPcop$alpha, beta=PPcop$beta,
              para1=PPcop$Cop1Thetas, para2=PPcop$Cop2Thetas)
-set.seed(1776)
+
 D <- simCOP(n=5000, cop=composite2COP, para=para, col=rgb(0,0,0,0.1), pch=16)
 # The sample L-comoments of the fitted Plackett-Plackett may be found by
 lmomco::lcomoms2(D, nmom=4) # from the lmomco package, and six sample values shown

@@ -1,6 +1,6 @@
 "kullCOP" <-
 function(cop1=NULL, cop2=NULL, para1=NULL, para2=NULL, alpha=0.05,
-         del=0, n=1E6, verbose=TRUE, ...) {
+         del=0, n=1E5, verbose=TRUE, sobol=FALSE, ...) {
 
     if(del > 0) {
       lo <- del; hi <- 1 - del # integration limits
@@ -8,14 +8,22 @@ function(cop1=NULL, cop2=NULL, para1=NULL, para2=NULL, alpha=0.05,
       lo <- 0; hi <- 1
     }
 
-    U <- runif(n, min=lo, max=hi);   V <- runif(n, min=lo, max=hi)
-
-    if(verbose) message("kullCOP: Computing 'f' density values---", appendLF=FALSE)
-    f <- densityCOP(U,V, cop=cop1, para=para1)
+    UV <- NULL
+    if(sobol) {
+       if(! exists(".Random.seed")) tmp <- runif(1) # insures definition
+       seed <- sample(.Random.seed, 1); set.seed(seed)
+       UV <- randtoolbox::sobol(n = n, dim = 2, seed=seed, scrambling=3, ...)
+    } else {
+       UV <- matrix(data=runif(2*n), ncol=2)
+    }
+    if(verbose) message("kullCOP: Computing 'f' density values---",
+                        appendLF=FALSE)
+    f <- densityCOP(UV[,1],UV[,2], cop=cop1, para=para1)
     if(verbose) message("done")
 
-    if(verbose) message("kullCOP: Computing 'g' density values---", appendLF=FALSE)
-    g <- densityCOP(U,V, cop=cop2, para=para2)
+    if(verbose) message("kullCOP: Computing 'g' density values---",
+                        appendLF=FALSE)
+    g <- densityCOP(UV[,1],UV[,2], cop=cop2, para=para2)
     if(verbose) message("done")
 
     h <- g*(log(g/f))
@@ -48,9 +56,9 @@ function(cop1=NULL, cop2=NULL, para1=NULL, para2=NULL, alpha=0.05,
     sigmaKL.fg <- sqrt(KLvar.fg - KLdivergence.fg^2)
     sigmaKL.gf <- sqrt(KLvar.gf - KLdivergence.gf^2)
 
-    alpha <- alpha
     tmp <- c(sigmaKL.fg/KLdivergence.fg, sigmaKL.gf/KLdivergence.gf)
     tmp <- max(tmp[! is.nan(tmp)]) # even need with other protections above?
+
     KL.sample.size <- (qnorm(1-alpha) * tmp)^2
 
     diverge   <- c(KLdivergence.fg, sigmaKL.fg,

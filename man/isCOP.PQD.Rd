@@ -54,7 +54,7 @@ and
 which in the former only returns the global PQD and the later returns an \R \code{list} with global (\code{global.PQD}), local (\code{local.PQD} as well as \code{local.NQD}), and the four statistics (\code{beta} [\eqn{\beta_\mathbf{C}}], \code{gamma} [\eqn{\gamma_\mathbf{C}}], \code{rho} \eqn{\rho_\mathbf{C}}, \code{tau} \eqn{\tau_\mathbf{C}}) used to determine global PQD.
 
 
-\emph{SPECIAL DEMONSTRATION 1}---Lastly, the \code{ctype=}\code{"bernstein"} argument to the empirical copula can be used. Repeated iterations of the following will show that local quadrant dependency can appear slightly different when the \code{bernstein} argument is present. The simulation sample size is reduced considerably for this second example because of the CPU effort triggered by the \emph{Bernstein extension} (see \code{\link{EMPIRcop}}) being turned on.
+\emph{SPECIAL DEMONSTRATION 1}---Lastly, the \code{ctype=}\code{"bernstein"} argument to the empirical copula can be used. Repeated iterations of the following will show that local quadrant dependency can appear slightly different when the \code{bernstein} argument is present. The simulation sample size is reduced considerably for this second example because of the CPU effort triggered by the \emph{Bernstein extension} (see \code{\link{EMPIRcop}}) having been turned on.
 \preformatted{
   para <- list(cop1=PLACKETTcop,  cop2=PLACKETTcop, para1=14.5, para2=1.45,
                alpha=0.51, beta=0.15, kappa=0.45, gamma=0.78)

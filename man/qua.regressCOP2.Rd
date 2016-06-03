@@ -46,7 +46,6 @@ R <- qua.regressCOP2(f=0.90, cop=PLACKETTcop, para=theta) # 90th-percentile regr
 lines(R$U,R$V, col=2, lwd=2)
 R <- qua.regressCOP2(f=0.10, cop=PLACKETTcop, para=theta) # 10th-percentile regression
 lines(R$U,R$V, col=2, lty=2)
-mtext("Quantile Regression U wrt V for Plackett copula")
-}
+mtext("Quantile Regression U wrt V for Plackett copula")#}
 }
 \keyword{quantile regression}

@@ -52,7 +52,15 @@ Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in
 \seealso{\code{\link{simCOP}}, \code{\link{simcompositeCOP}}, \code{\link{composite3COP}}}
 \examples{
 \dontrun{
-data(PlackettPlackettABKGtest)  # grab a solution table for a
+  mainpara <- list(cop1=PLACKETTcop, cop2=PLACKETTcop,
+                   para1gen=function() { return(10^runif(1, min=-5, max=5)) },
+                   para2gen=function() { return(10^runif(1, min=-5, max=5)) })
+  nsim <- 1E4
+  sample.size.for.estimation <- 1000
+  PlackettPlackettABKGtest <-
+      simcomposite3COP(n=sample.size.for.estimation, nsim=nsim, parent=mainpara)
+  save(PlackettPlackettABKGtest,file="PlackettPlackettABKG.RData",compress="xz")
+
 # Plackett-Plackett composited copula from the copBasic package
 # Then create an environment to house the "table".
 PlackettPlackettABKG <- new.env()
@@ -70,7 +78,6 @@ PPcop <- lcomoms2.ABKGcop2parameter(solutionenvir=PlackettPlackettABKG,
 para <- list(cop1=PLACKETTcop, cop2=PLACKETTcop,
              alpha=PPcop$alpha, beta=PPcop$beta, kappa=PPcop$kappa, gamma=PPcop$gamma,
              para1=PPcop$Cop1Thetas, para2=PPcop$Cop2Thetas)
-set.seed(57) # set for reproducability
 
 # Example Plot Number 1
 D <- simCOP(n=2000, cop=composite3COP,  para=para, col=rgb(0,0,0,0.1), pch=16)

@@ -32,7 +32,7 @@ rhoCOP(cop=NULL, para=NULL, method=c("default", "joe21", "joe12"),
   The value for \eqn{\rho_\mathbf{C}} is returned.
 }
 \note{
-Technically, Nelsen (2006) also shows that these definitions are a form of call to a \emph{concordance function} \eqn{\mathcal{Q}(\mathbf{C}_1,\mathbf{C}_2)} of two copulas that involve \eqn{\mathbf{C}_1{=}\mathbf{C}(u,v)} and \eqn{\mathbf{C}_2{=}\mathbf{\Pi}}. As such in order to keep \code{rhoCOP} a small function when \code{brute=TRUE}, \eqn{\rho_\mathbf{C}} is computed by a special call to \code{\link{tauCOP}}, which by itself and although titled for computation of \emph{Kendall's Tau}, does support the concordance function \eqn{\mathcal{Q}(\mathbf{C}_1, \mathbf{C}_2)} (see Nelsen (2006, pp. 158--159) when given two different copulas and respective parameters as arguments.
+Technically, Nelsen (2006) also shows that these definitions are a form of call to a \emph{concordance function} \eqn{\mathcal{Q}(\mathbf{C}_1,\mathbf{C}_2)} of two copulas that involve \eqn{\mathbf{C}_1{=}\mathbf{C}(u,v)} and \eqn{\mathbf{C}_2{=}\mathbf{\Pi}}. As such in order to keep \code{rhoCOP} a small function when \code{brute=TRUE}, \eqn{\rho_\mathbf{C}} is computed by a special call to \code{\link{tauCOP}}, which by itself and although titled for computation of \emph{Kendall's Tau}, does support the concordance function \eqn{\mathcal{Q}(\mathbf{C}_1, \mathbf{C}_2)} [see Nelsen (2006, pp. 158--159)] when given two different copulas and respective parameters as arguments.
 }
 \references{
 Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
@@ -55,8 +55,8 @@ dorho <- function(n) {
    return(cor(uv$U, uv$V, method="spearman"))
 }
 rhos <- replicate(100, dorho(1000))
-rho.sample <- mean(rhos); print(rho.sample) # 0.472661
-}
+rho.sample <- mean(rhos); print(rho.sample) # 0.472661}
+
 \dontrun{
 para <- list(cop1=PLACKETTcop,  cop2=PLACKETTcop,
              para1=0.00395,    para2=4.67, alpha=0.9392, beta=0.5699)
@@ -69,8 +69,8 @@ rhoCOP(cop=composite2COP, para=para) # 0.2818874
 para <- list(cop1=PLACKETTcop,  cop2=PLACKETTcop,
              para1=0.10137,     para2=4492.87, alpha=0.0063, beta=0.0167)
 rhoCOP(cop=composite2COP, para=para)             # 0.9812919
-rhoCOP(cop=composite2COP, para=para, brute=TRUE) # 0.9752155
-}
+rhoCOP(cop=composite2COP, para=para, brute=TRUE) # 0.9752155}
+
 \dontrun{
 # This is the same composited copula used in a highly asymmetric multi-modal
 # plotting example under densityCOPplot(). Let us use that copula as a means to
@@ -93,8 +93,7 @@ para <- list(alpha=0.15, beta=0.90, kappa=0.06, gamma=0.96,
 }
 rhoCOP(       cop=composite2COP, para=para) # 0.1031758
 rhoCOPbyJoe21(cop=composite2COP, para=para) # 0.1031803
-rhoCOPbyJoe12(cop=composite2COP, para=para) # 0.1031532
-}
+rhoCOPbyJoe12(cop=composite2COP, para=para) # 0.1031532}
 }
 \keyword{copula (characteristics)}
 \keyword{copula (properties)}

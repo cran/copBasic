@@ -1,3 +1,9 @@
+"rCOP" <- function(n=n, cop=NULL, para=NULL, na.rm=TRUE, ...) {
+   u <- runif(n)
+   data.frame(U=u, V=simCOPmicro(u, cop=cop, para=para, ...))
+}
+
+
 "simCOP" <-
 function(n=100, cop=NULL, para=NULL, na.rm=TRUE, keept=FALSE,
                 graphics=TRUE, ploton=TRUE, points=TRUE, snv=FALSE,

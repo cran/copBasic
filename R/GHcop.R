@@ -37,18 +37,43 @@ function(u, v, para=NULL, tau=NULL, tau.big=0.985, cor=NULL, ...) {
         return(list(para=para, tau=tau))
      }
   }
+
   if(length(para) == 1) {
-     if(para[1] < 1 | para[1] > para.big ) {
-        warning("Parameter Theta (para) is not in [1, ",para.big,
-                "] (numerically too big), returning M(u,v)")
+     if(para[1] < 1) {
+        warning("Parameter Theta < 1")
+        return(NULL)
+     }
+     if(para[1] > para.big ) {
+        warning("Parameter Theta (para) is big (numerically too big), returning M(u,v)")
         return(M(u,v))
      }
-  } else if(para[1] < 1) {
-     warning("Parameter Theta (para[1]) is < 1, returning NULL")
-     # Because the two pis control as well, identification of a numerical
-     # upper bounds of Theta for the asymmetric GH is not possible
-     return(NULL)
+  } else if(length(para) == 2) {
+    go <- TRUE
+    if(para[1] < 1) {
+       warning("Parameter Beta1 is < 1");  go <- FALSE
+    }
+    if(para[2] <= 0) {
+       warning("Parameter Beta2 is <= 0"); go <- FALSE
+    }
+    if(! go) return(NULL)
+  } else if(length(para) == 3) {
+     if(para[1] < 1) {
+        warning("Parameter Theta (para[1]) is < 1, returning NULL")
+        return(NULL)
+     }
+     if(para[2] < 0 | para[2] > 1) {
+        warning("Parameter Pi1 is not in [0, 1], returning NULL")
+        return(NULL)
+     }
+     if(para[3] < 0 | para[3] > 1) {
+        warning("Parameter Pi2 is not in [0, 1], returning NULL")
+        return(NULL)
+     }
+  } else {
+     stop("Should not be here in logic---too many parameters")
   }
+
+
   if(length(u) > 1 & length(v) > 1 & length(u) != length(v)) {
     warning("length u = ",length(u), " and length v = ",length(v))
     warning("longer object length is not a multiple of shorter object length, ",
@@ -64,8 +89,13 @@ function(u, v, para=NULL, tau=NULL, tau.big=0.985, cor=NULL, ...) {
   }
 
   if(length(para) == 1) {
-     cop <- ((-log(u))^para + (-log(v))^para)^(1/para)
-     return(exp(-cop))
+     # R's defaults catch Inf correctly so no need to check on the finiteness
+     # and make a local copy
+     return(exp(-(((-log(u))^para + (-log(v))^para)^(1/para))))
+  } else if(length(para) == 2) {
+     b1 <- para[1]; b2 <- -para[2]
+     cop <- (((u^b2 - 1)^b1 + (v^b2 - 1)^b1)^(1/b1) + 1)^(1/b2)
+     return(cop)
   } else if(length(para) == 3) {
      pi2 <- para[2]; pi3 <- para[3]; di <- 1/para[1]
      x <- -log(u); y <- -log(v)

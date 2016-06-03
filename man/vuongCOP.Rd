@@ -25,7 +25,8 @@ Joe (2014, p. 258) reports that these three intervals can be used for \emph{diag
 }
 \usage{
 vuongCOP(u, v=NULL, cop1=NULL, cop2=NULL, para1=NULL, para2=NULL,
-                    alpha=0.05, method=c("D12", "AIC", "BIC"), ...)
+                    alpha=0.05, method=c("D12", "AIC", "BIC"),
+                    the.zero=.Machine$double.eps^0.25, ...)
 }
 \arguments{
   \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction;}
@@ -36,6 +37,7 @@ vuongCOP(u, v=NULL, cop1=NULL, cop2=NULL, para1=NULL, para2=NULL,
   \item{para2}{Vector of parameters or other data structure, if needed, to pass to the copula \eqn{f_2};}
   \item{alpha}{The \eqn{\alpha} in Vuong's Procedure, which results in the \eqn{100{\times}(1 - \alpha)} confidence interval (two sided);}
   \item{method}{The interval to evaluate as to position of the respective statistic form the comparison of the two copulas;}
+  \item{the.zero}{The value for \dQuote{the zero} of the copula density function. This argument is the argument of the same name for \code{\link{densityCOP}}. The default here is intended to suggest that a tiny nonzero value for density will trap the numerical zero densities; and}
   \item{...}{Additional arguments to pass to the \code{\link{densityCOP}} function.}
 }
 \value{
@@ -80,8 +82,8 @@ The \emph{Plackett copula} (\eqn{\mathbf{PL}(u,v; \Theta_{\mathbf{PL}})}; \code{
 \preformatted{
   KL <- replicate(20, kullCOP(cop1=PLACKETTcop, para1=paraPL,
             cop2=rGHcop, para2=paraGH, n=1E5)$KL.sample.size) # CPU intensive
-  print(mean(KL) )  # n_{fg} = 221 sample size
-  print(range(KL))
+  print(round(mean(KL))) #         n_{fg} = 221   sample size
+  print(     range(KL))  # 204 <-- n_{fg} --> 252 sample size range
 }
 
 Depending on the sample \eqn{\hat\sigma_\mathbf{C}} coming from the simulation of the parent \eqn{\mathbf{PSP}} copula, the call to \code{\link{kullCOP}} will likely report different \eqn{n_{f\!g}} values because \eqn{n_{f\!g}(\mathbf{C}_1(\Theta_1), \mathbf{C}_1(\Theta_1)}. These sample sizes have a range for 20 replications of about \eqn{n_{f\!g}=204{-}252}. The result here is \eqn{n_{f\!g}=221} and thus \bold{the sample size \eqn{n=390} should be more than large enough to generally distinguish between the \eqn{\mathbf{PL}} and \eqn{\mathbf{rGH}} copulas at the respective sample measure of association.}
@@ -157,9 +159,11 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in Nature---An approach using copulas: Springer, 289 p.
 }
 \author{ W.H. Asquith}
-\seealso{\code{\link{densityCOP}}, \code{\link{kullCOP}}, \code{\link{simCOP}}, \code{\link{statTn}}}
+\seealso{\code{\link{densityCOP}}, \code{\link{kullCOP}}, \code{\link{simCOP}}, \code{\link{statTn}}, \code{\link{mleCOP}}}
 \examples{
 # See extended code listings and discussion in the Note section
+# See Examples in mleCOP() (Last example therein might suggest a problem in the
+# implied 95th percentile associated with n_fg above.
 }
 \keyword{inference}
 \keyword{copula (goodness of fit)}

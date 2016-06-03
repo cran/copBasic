@@ -19,7 +19,7 @@ The \dQuote{\emph{with respect to \eqn{V}}} versions are available under \code{\
 Copula derivatives (\eqn{\delta \mathbf{C}/\delta u} or say  \eqn{\delta \mathbf{C}/\delta v} \code{\link{derCOP2}}) are non-decreasing functions meaning that if \eqn{v_1 \le v_2}, then \eqn{\mathbf{C}(u, v_2) - \mathbf{C}(u,v_1)} is a non-decreasing function in \eqn{u}, thus
 \deqn{\frac{\delta\bigl(\mathbf{C}(u, v_2) - \mathbf{C}(u,v_1)\bigr)}{\delta u}}
 is non-negative, which means
-\deqn{\frac{\delta\mathbf{C}(u, v_2)}{\delta u} \ge \frac{\delta\mathbf{C}(u, v_1)}{\delta u}\mbox{\ for\ } v_1 \le v_2\mbox{.}}
+\deqn{\frac{\delta\mathbf{C}(u, v_2)}{\delta u} \ge \frac{\delta\mathbf{C}(u, v_1)}{\delta u}\mbox{\ for\ } v_2 \ge v_1\mbox{.}}
 }
 \usage{
 derCOP(cop=NULL, u, v, delu=.Machine$double.eps^0.50,
@@ -37,7 +37,7 @@ derCOP(cop=NULL, u, v, delu=.Machine$double.eps^0.50,
   Value(s) for the partial derivative are returned.
 }
 \note{
-A known caveat of the current implementation of the copula derivative is that there is a chance that the \eqn{\Delta u} will span a singularity or discontinuous portion of a copula should it have a property of singularity. The \code{delu} is chosen small so the chance is mitigated to a small value. It is not decided whether a derivative from the positive side (\code{dir="left"}), when failing should switch over to a computation from the negative side (\code{dir="right"}). The distinction is important for the computation of the inverse of the derivative \code{\link{derCOPinv}} because the solution finder needs a sign reversal to work.
+A known caveat of the current implementation of the copula derivative is that there is a chance that the \eqn{\Delta u} will span a singularity or discontinuous (or nearly so) portion of a copula should it have a property of singularity or nearly so. The \code{delu} is chosen small so the chance is mitigated to a small value. It is not decided whether a derivative from the positive side (\code{dir="left"}), when failing should switch over to a computation from the negative side (\code{dir="right"}). The distinction is important for the computation of the inverse of the derivative \code{\link{derCOPinv}} because the solution finder needs a sign reversal to work.
 }
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
@@ -47,9 +47,9 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 \examples{
 derCOP(cop=W,0.4,0.6); derCOP(cop=P,0.4,0.6); derCOP(cop=M,0.4,0.6)
 
-lft <- derCOP(cop=PSP,0.4,0.6, derdir="left"  )
-rgt <- derCOP(cop=PSP,0.4,0.6, derdir="right" )
-cnt <- derCOP(cop=PSP,0.4,0.6, derdir="center")
+lft <- derCOP(cop=PSP, 0.4,0.6, derdir="left"  )
+rgt <- derCOP(cop=PSP, 0.4,0.6, derdir="right" )
+cnt <- derCOP(cop=PSP, 0.4,0.6, derdir="center")
 cat(c(lft,rgt,cnt,"\n"))
 #stopifnot(all.equal(lft,rgt), all.equal(lft,cnt))
 

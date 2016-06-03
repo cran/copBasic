@@ -11,7 +11,7 @@ where \eqn{F_x(x)} and  \eqn{F_y(y)} are the respective cumulative distribution 
 }
 \usage{
 densityCOP(u,v, cop=NULL, para=NULL, deluv=.Machine$double.eps^0.25,
-                truncate.at.zero=TRUE, ...)
+                truncate.at.zero=TRUE, the.zero=0, sumlogs=FALSE, ...)
 }
 \arguments{
   \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction;}
@@ -19,7 +19,9 @@ densityCOP(u,v, cop=NULL, para=NULL, deluv=.Machine$double.eps^0.25,
   \item{cop}{A copula function;}
   \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula;}
   \item{deluv}{The change in the sequences \eqn{\{u, v\} \mapsto \delta, \ldots, 1-\delta; \delta = \Delta(uv)} probabilities;}
-  \item{truncate.at.zero}{A density must be \eqn{c(u,v) \ge 0}, but because this computation is based on a rectangular approximation and not analytical, there exists a possibility that very small rectangles could result in numerical values in \R that are less than zero and blamed on rounding. This logical truncates computed densities to zero, and the default assumes that the user is providing a proper copula. A \code{FALSE} value is used by the function \code{\link{isfuncCOP}}; and}
+  \item{truncate.at.zero}{A density must be \eqn{c(u,v) \ge 0}, but because this computation is based on a rectangular approximation and not analytical, there exists a possibility that very small rectangles could result in numerical values in \R that are less than zero and blamed on rounding. This logical truncates computed densities to zero, and the default assumes that the user is providing a proper copula. A \code{FALSE} value is used by the function \code{\link{isfuncCOP}};}
+  \item{the.zero}{The value for \dQuote{the zero} where a small number might be useful for pseudo-maximum likelihood estimation using \code{sumlogs};}
+  \item{sumlogs}{Return the \eqn{\sum{\log c(u,v; \Theta)}} where \eqn{\Theta} are the parameters in \code{para}; and}
   \item{...}{Additional arguments to pass to the copula function.}
 }
 \value{
@@ -39,8 +41,8 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
    A <- para*(1+eta*(upv - 2*uv)); B <- ((1+eta*upv)^2 - 4*para*eta*uv)^(3/2)
    return(A/B)
 }
-dPLACKETTcop(0.32, 0.74, para=1.3)                # 0.9557124
-densityCOP(0.32, 0.74, cop=PLACKETTcop, para=1.3) # 0.9557153
+dPLACKETTcop(0.32, 0.74, para=1.3)                  # 0.9557124
+densityCOP(  0.32, 0.74, cop=PLACKETTcop, para=1.3) # 0.9557153
 
 # Joe (2014, p. 170) shows the closed form copula density for "Bivariate Joe/B5" copula
 "JOEB5cop" <- function(u,v,para) {
@@ -53,7 +55,7 @@ densityCOP(0.32, 0.74, cop=PLACKETTcop, para=1.3) # 0.9557153
    return(A^(-2 + 1/para) * B * C)
 }
 densityCOP(0.32, 0.74, cop=JOEB5cop, para=1.3) # 0.9410653
-dJOEB5cop(0.32, 0.74, para=1.3)                # 0.9410973
+dJOEB5cop( 0.32, 0.74, para=1.3)               # 0.9410973
 }
 \keyword{visualization}
 \keyword{copula (density)}

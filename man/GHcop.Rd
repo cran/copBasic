@@ -15,6 +15,18 @@ Every Gumbel-Hougaard copula is a \emph{multivariate extreme value} (\eqn{MEV}) 
 
 A comparison through simulation between Gumbel-Hougaard implementations by the \R packages \pkg{acopula}, \pkg{copBasic}, \pkg{copula}, and \pkg{Gumbel} is shown in the \bold{Examples} section. At least three divergent techniques for random variate generation are used amongst those packages. The simulations also use \pkg{copBasic}-style random variate generation  (conditional simulation) using an analytical-numerical hybrid solution to conditional inverse described in the \pkg{Note} section.
 
+\emph{TWO-PARAMETER GUMBEL-HOUGAARD}---A \emph{permutation symmetric} (\code{\link{isCOP.permsym}}) but almost certainly \emph{radial asymmetric} (\code{\link{isCOP.radsym}}) version of the copula is readily constructed (Brahimi \emph{et al.}, 2015) into a two-parameter version:
+\deqn{\mathbf{C}(u,v; \beta_1, \beta_2) =
+\biggl[
+\biggl(\bigl(u^{-\beta_2} -1\bigr)^{\beta_1} +
+       \bigl(v^{-\beta_2} -1\bigr)^{\beta_1}
+\biggr)^{1/\beta_1} + 1
+\biggr]^{-1/\beta_2}\mbox{,}}
+where \eqn{\beta_1 \ge 1} and \eqn{\beta_2 > 0}. Both parameters controls the general level of association, whereas parameter \eqn{\beta_2} can be thought of as controling left-tail dependency (\code{\link{taildepCOP}}, \eqn{\lambda^{[U\mid L]}_{(\beta_1, \beta_2)}}; \emph{e.g.}
+\eqn{\lambda^U_{(1.5; \beta_2)} = 0.413} for all \eqn{\beta_2} but
+\eqn{\lambda^L_{(1.5; 0.2)} = 0.811} and
+\eqn{\lambda^L_{(1.5; 2.2)} = 0.099}. Brahimi \emph{et al.} (2015) report a \emph{Spearman's Rho} (\code{\link{rhoCOP}}) for a \eqn{\mathbf{GH}_{(1.5, 0.2)}(u,v)} is 0.5, which is readily confirmed in \pkg{copBasic} by the function call \code{rhoCOP(cop=GHcop, para=c(1.5,0.2))}. The two-parameter \eqn{\mathbf{GH}} is triggered if the length of the \code{para} argument is exactly 2.
+
 \emph{ASYMMETRIC GUMBEL-HOUGAARD}---An asymmetric version of the copula is readily constructed (Joe, 2014, p. 185--186) into a three-parameter version with \emph{Marshall-Olkin} copulas on the boundaries:
 \deqn{\mathbf{C}(u,v; \Theta, \pi_2, \pi_3) = \mathrm{exp}[-\mathcal{A}(-\log u, -\log v; \Theta, \pi_2, \pi_3)]\mbox{,}}
 where \eqn{\Theta \ge 1} as before, \eqn{0 \le \pi_2,  \pi_3 \le 1}, and
@@ -41,7 +53,7 @@ GHcop(u, v, para=NULL, tau=NULL, tau.big=0.985, cor=NULL, ...)
   \item{tau}{The sample estimate of \eqn{\tau}.}
 }
 \details{
-Numerical experiments seem to indicate that for \eqn{\tau_\mathbf{C} > 0.985} that failures in the numerical partial derivatives in \code{\link{derCOP}} and \code{\link{derCOP2}} result---a \eqn{\tau_\mathbf{C}} this large is indeed large. As \eqn{\Theta \rightarrow \infty} the Gumbel-Hougaard copula becomes the \emph{\enc{Fréchet}{Frechet}-Hoeffding upper bound copula} \eqn{\mathbf{M}} (see \code{\link{M}}). A \eqn{\tau_\mathbf{C} \approx 0.985} yields \eqn{\Theta \approx 66 + 2/3}, then for \eqn{\Theta > 1/(1-\tau_\mathbf{C})} flips over to the \eqn{\mathbf{M}} copula with a warning being issued.
+Numerical experiments seem to indicate for \eqn{\tau_\mathbf{C} > 0.985} that failures in the numerical partial derivatives in \code{\link{derCOP}} and \code{\link{derCOP2}} result---a \eqn{\tau_\mathbf{C}} this large is indeed large. As \eqn{\Theta \rightarrow \infty} the Gumbel-Hougaard copula becomes the \emph{\enc{Fréchet}{Frechet}-Hoeffding upper bound copula} \eqn{\mathbf{M}} (see \code{\link{M}}). A \eqn{\tau_\mathbf{C} \approx 0.985} yields \eqn{\Theta \approx 66 + 2/3}, then for \eqn{\Theta > 1/(1-\tau_\mathbf{C})} flips over to the \eqn{\mathbf{M}} copula with a warning being issued.
 }
 \note{
 \emph{SYMMETRIC GUMBEL-HOUGAARD}---A function for the derivative of the copula (Joe, 2014, p. 172) given \eqn{u} is
@@ -120,7 +132,7 @@ that can be tested by the following, which also shows how to increase the tolera
   nuskewCOP(cop=GHcop, c(2.132856, 0.6, 0.9)) #  0.008245653
   nuskewCOP(cop=GHcop, c(2.132856, 0.9, 0.6)) # -0.008245653
 }
-So we see that, holding \eqn{\tau_\mathbf{C}} constant that the \eqn{\mathbf{GH}} has a \eqn{\nu_{\mathbf{GH}(1.538)} = 0} but the asymmetric case \eqn{\nu_{\mathbf{GH}(2.133, 0.6, 0.9)} = 0.0082} and \eqn{\nu_{\mathbf{GH}(2.133, 0.9, 0.6)} = -0.0082} where the change in sign represents reflection about the 1:1 line. Finally, compute \emph{L-coskew} by large simulation and the adjective \dQuote{bow} representing the direction of bowing or curvature of the principle copula density.
+So we see, holding \eqn{\tau_\mathbf{C}} constant, that the \eqn{\mathbf{GH}} has a \eqn{\nu_{\mathbf{GH}(1.538)} = 0} but the asymmetric case \eqn{\nu_{\mathbf{GH}(2.133, 0.6, 0.9)} = 0.0082} and \eqn{\nu_{\mathbf{GH}(2.133, 0.9, 0.6)} = -0.0082} where the change in sign represents reflection about the 1:1 line. Finally, compute \emph{L-coskew} by large simulation and the adjective \dQuote{bow} representing the direction of bowing or curvature of the principle copula density.
 \preformatted{
   # Because the Tau's are all similar, there is nothing to learn from the
   # L-correlation, so let us inspect the L-coskew:
@@ -149,6 +161,8 @@ Thus, the \eqn{\pi_2} and \eqn{\pi_3} parameters as choosen add about (\eqn{(0.1
 }
 \references{
 Asquith, W.H., 2011, Distributional analysis with L-moment statistics using the R environment for statistical computing: Createspace Independent Publishing Platform, ISBN 978--146350841--8.
+
+Brahimi, B., Chebana, F., and Necir, A., 2015, Copula representation of bivariate L-moments---A new estimation method for multiparameter two-dimensional copula models: Statistics, v. 49, no. 3, pp. 497--521.
 
 Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 
@@ -263,3 +277,5 @@ message("Kendall's Tau: ", K[1], tx, K[2], tx, K[3], tx, K[4], tx, K[5], tx, K[6
 \concept{asymmetric Gumbel copula}
 \concept{asymmetric logistic copula}
 \concept{Gumbel-Hougaard extreme value copula}
+\keyword{literature errors and inconsistencies}
+\keyword{API to the copula package}

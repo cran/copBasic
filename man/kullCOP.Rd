@@ -20,7 +20,7 @@ and
 
 For comparison of copula families \eqn{f} and \eqn{g} and taking an \eqn{\alpha = 0.05}, the Kullback-Leibler sample size is defined as
 \deqn{n_{f\!g} = [\Phi^{(-1)}(1-\alpha) \times \eta_\mathrm{KL}]^2\mbox{,}}
-where \eqn{\Phi^{(-1)}(t)} is the quantile function for the standard normal distribution \eqn{\sim} N(0,1) for nonexceedance probability \eqn{t}, and \eqn{\eta} is the maximum of
+where \eqn{\Phi^{(-1)}(t)} is the quantile function for the standard normal distribution \eqn{\sim} N(0,1) for nonexceedance probability \eqn{t}, and \eqn{\eta_\mathrm{KL}} is the maximum of
 \deqn{\eta_\mathrm{KL} = \mathrm{max}[\sigma_{\mathrm{KL}(f|g)}/\mathrm{KL}(f|g),\, \sigma_{\mathrm{KL}(g|f)}/\mathrm{KL}(g|f)]\mbox{.}}
 The \eqn{n_{f\!g}} gives an indication of the sample size needed to distinguish \eqn{f} and \eqn{g} with a probability of at least \eqn{1 - \alpha = 1 - 0.05 = 0.95} or 95 percent.
 
@@ -28,7 +28,7 @@ The \pkg{copBasic} features a \enc{naïve}{naive} \emph{Monte Carlo integration}
 }
 \usage{
 kullCOP(cop1=NULL, cop2=NULL, para1=NULL, para2=NULL, alpha=0.05,
-           del=0, n=1E6, verbose=TRUE, ...)
+           del=0, n=1E5, verbose=TRUE, sobol=FALSE, ...)
 
 kullCOPint(cop1=NULL, cop2=NULL, para1=NULL, para2=NULL, alpha=0.05,
            del=.Machine$double.eps^0.25, verbose=TRUE, ...)
@@ -39,9 +39,10 @@ kullCOPint(cop1=NULL, cop2=NULL, para1=NULL, para2=NULL, alpha=0.05,
   \item{cop2}{A copula function corresponding to copula \eqn{g} in Joe (2014);}
   \item{para2}{Vector of parameters or other data structure, if needed, to pass to the copula \eqn{g};}
   \item{alpha}{The \eqn{\alpha} in the Kullback-Leibler sample size equation;}
-  \item{del}{A small value used to denote the lo and hi values of the numerical integration: \code{lo = del} and \code{hi = 1 - del}. If \code{del == 0}, then \code{lo = 0} and \code{hi = 1}, which corresponds to the theoretical limits \eqn{\mathcal{I}^2 = [0,1]^2} and are defaulted here to \eqn{[0,1]^2} because the Monte Carlo algorithm is preferred for general application;}
+  \item{del}{A small value used to denote the lo and hi values of the numerical integration: \code{lo = del} and \code{hi = 1 - del}. If \code{del == 0}, then \code{lo = 0} and \code{hi = 1}, which corresponds to the theoretical limits \eqn{\mathcal{I}^2 = [0,1]^2} and are defaulted here to \eqn{[0,1]^2} because the Monte Carlo algorithm is preferred for general application. The end point control, however, is maintained just in case pathological situations should arise;}
   \item{n}{\code{kullCOP} (Monte Carlo integration) only---The Monte Carlo integration simulation size;}
-  \item{verbose}{A logical trigging a couple of status lines of output through the \code{message()} function in \R; and}
+  \item{verbose}{A logical trigging a couple of status lines of output through the \code{message()} function in \R;}
+  \item{sobol}{A logical trigging \emph{Sobol sequences} for the Monte Carlo integration instead of the bivariate uniform distribution. The Sobol sequences are dependent on the \pkg{randtoolbox} package and the \code{sobol()} function; and}
   \item{...}{Additional arguments to pass to the \code{\link{densityCOP}} function.}
 }
 \value{
@@ -62,25 +63,42 @@ Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 # See another demonstration under the Note section of statTn().
 \dontrun{
 # Joe (2014, p. 237, table 5.2)
-# The Gumbel-Hougaard copula and Plackett copula below each have a Kendall Tau
-# of about 0.5. Joe (2014) lists in the table that Jeffrey divergence is about
-# 0.110 and the Kullback-Leibler sample size is 133. Joe (2014) does not list
-# the parameters for either copula, just that Kendall Tau = 0.5.
+# The Gumbel-Hougaard copula and Plackett copula below each have a Kendall Tau of
+# about 0.5. Joe (2014) lists in the table that Jeffrey divergence is about 0.110
+# and the Kullback-Leibler sample size is 133. Joe (2014) does not list the
+# parameters for either copula, just that Kendall Tau = 0.5.
 KL <- kullCOP(cop1=GHcop, para1=2, cop2=PLACKETTcop, para2=11.40484)
 # Reports Jeffrey divergence        =   0.1086986
 #      Kullback-Leibler sample size = 130 (another run produces 132)
 
 # Joe (2014, p. 237, table 5.3)
-# The Gumbel-Hougaard copula and Plackett copula below each have a Spearman Rho
-# of about 0.5. Joe (2014) lists in the table that Jeffrey divergence is about
-# 0.063 and the Kullback-Leibler sample size is 210. Joe (2014) does not list
-# the parameters for either copula, just that for Spearman Rho = 0.5.
+# The Gumbel-Hougaard copula and Plackett copula below each have a Spearman Rho of
+# about 0.5. Joe (2014) lists in the table that Jeffrey divergence is about 0.063
+# and the Kullback-Leibler sample size is 210. Joe (2014) does not list the
+# parameters for either copula, just that for Spearman Rho = 0.5.
 KL <- kullCOP(cop1=GHcop, para1=1.541071, cop2=PLACKETTcop, para2=5.115658)
 # Reports Jeffrey divergence        =   0.06381151
 #      Kullback-Leibler sample size = 220 (another run produces 203)
 
 # Joe (2014) likely did the numerical integrations using analytical solutions to the
 # probability densities and not rectangular approximations as in densityCOP().}
+
+\dontrun{
+# Compare Jeffery Divergence estimates as functions of sample size when computed
+# using Sobol sequences or not---Sobol sequences have less sampling variability.
+GHpar <- PApar <- 2 # Spearman Rho = 0.6822339
+Ns <- as.integer(10^seq(2.0, 3.5,by=0.01))
+JDuni <- sapply(1:length(Ns), function(i) {
+                  kullCOP(cop1=GHcop, para1=GHpar, verbose=FALSE,
+                          cop2=PARETOcop, para2=PApar, n=Ns[i],
+                          sobol=FALSE)$Jeffrey.divergence })
+JDsob <- sapply(1:length(Ns), function(i) {
+                  kullCOP(cop1=GHcop, para1=GHpar, verbose=FALSE,
+                          cop2=PARETOcop, para2=PApar, n=Ns[i],
+                          sobol=TRUE )$Jeffrey.divergence })
+plot(Ns, JDuni, type="l", log="x", # black line, notice likely outliers too
+     xlab="Sample Size", ylab="Jeffery Divergence")
+lines(Ns, JDsob, col=2) # red line }
 }
 \keyword{inference}
 \keyword{copula (inference)}
@@ -91,4 +109,4 @@ KL <- kullCOP(cop1=GHcop, para1=1.541071, cop2=PLACKETTcop, para2=5.115658)
 \concept{Jeffery divergence}
 \concept{Jeffery's divergence}
 \concept{copula divergence}
-
+\keyword{Sobol sequence (Monte Carlo integration)}

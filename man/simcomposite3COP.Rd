@@ -55,8 +55,7 @@ v <- simcomposite3COP(n=500, nsim=10, parent=mainpara); labs <- colnames(v)
 plot(v[,5],v[,7], # open circles are 1 with respect to 2
      xlab=paste(c(labs[5], "and", labs[6]), collapse=" "),
      ylab=paste(c(labs[6], "and", labs[8]), collapse=" "))
-points(v[,6],v[,8], pch=16) # black dots are 2 with respect to 1
-}
+points(v[,6],v[,8], pch=16) # black dots are 2 with respect to 1}
 }
 \keyword{copula composition}
 \keyword{copula (simulation)}

@@ -67,8 +67,8 @@ lines(U, rq.1, col=4, lwd=2, lty=4)
 lines(U, rq.2, col=4, lwd=2, lty=2)
 lines(U, rq.5, col=4, lwd=4)
 lines(U, rq.7, col=4, lwd=2, lty=2)
-lines(U, rq.9, col=4, lwd=2, lty=4)
-}
+lines(U, rq.9, col=4, lwd=2, lty=4)#}
+
 \dontrun{ # EXAMPLE 2
 # Start again with the PSP copula
 uv <- simCOP(n=10000, cop=PSP, ploton=FALSE, points=FALSE)
@@ -113,8 +113,8 @@ lines(U, rq.1, col=4, lwd=2, lty=4)
 lines(U, rq.2, col=4, lwd=2, lty=2)
 lines(U, rq.5, col=4, lwd=4)
 lines(U, rq.7, col=4, lwd=2, lty=2)
-lines(U, rq.9, col=4, lwd=2, lty=4)
-}
+lines(U, rq.9, col=4, lwd=2, lty=4)#}
+
 \dontrun{ # EXAMPLE 3
 uv <- simCOP(n=10000, cop=PSP, ploton=FALSE, points=FALSE)
 fakeU <- pp(uv[,1], sort=FALSE); fakeV <- pp(uv[,2], sort=FALSE)
@@ -157,8 +157,8 @@ lines(qua.wrtv, col=4, lwd=2, lty=2)
 qua.wrtv <- EMPIRqua.regress2(f=0.1, empinv=uv.inv2)
 lines(qua.wrtv, col=4, lwd=2, lty=4)
 qua.wrtv <- EMPIRqua.regress2(f=0.9, empinv=uv.inv2)
-lines(qua.wrtv, col=4, lwd=2, lty=4)
-}
+lines(qua.wrtv, col=4, lwd=2, lty=4)#}
+
 \dontrun{ # EXAMPLE 4
 # Now try a much more complex shape
 # lowess smoothing on quantile regression is possible,
@@ -206,8 +206,8 @@ lines(qua.wrtv, col=4, lwd=2, lty=2)
 qua.wrtv <- EMPIRqua.regress2(f=0.1, empinv=uv.inv2)
 lines(qua.wrtv, col=4, lwd=2, lty=4)
 qua.wrtv <- EMPIRqua.regress2(f=0.9, empinv=uv.inv2)
-lines(qua.wrtv, col=4, lwd=2, lty=4)
-}
+lines(qua.wrtv, col=4, lwd=2, lty=4)#}
+
 \dontrun{ # EXAMPLE 5
 plot(uv, pch=16, col=rgb(0,0,0,.1), xlim=c(0,1), ylim=c(0,1),
      xlab="U, NONEXCEEDANCE PROBABILITY", ylab="V, NONEXCEEDANCE PROBABILITY")
@@ -243,8 +243,8 @@ lines(qua.wrtv, col=4, lwd=2, lty=2)
 qua.wrtv <- EMPIRqua.regress2(f=0.1, empinv=uv.inv2, lowess=TRUE)
 lines(qua.wrtv, col=4, lwd=2, lty=4)
 qua.wrtv <- EMPIRqua.regress2(f=0.9, empinv=uv.inv2, lowess=TRUE)
-lines(qua.wrtv, col=4, lwd=2, lty=4)
-}
+lines(qua.wrtv, col=4, lwd=2, lty=4)#}
+
 \dontrun{ # EXAMPLE 6
 plot(uv, pch=16, col=rgb(0,0,0,0.1), xlim=c(0,1), ylim=c(0,1),
      xlab="U, NONEXCEEDANCE PROBABILITY", ylab="V, NONEXCEEDANCE PROBABILTIY")
@@ -280,8 +280,7 @@ lines(qua.wrtv, col=4, lwd=2, lty=2)
 qua.wrtv <- EMPIRqua.regress2(f=0.1, empinv=uv.inv2, lowess=TRUE, f.lowess=0.1)
 lines(qua.wrtv, col=4, lwd=2, lty=4)
 qua.wrtv <- EMPIRqua.regress2(f=0.9, empinv=uv.inv2, lowess=TRUE, f.lowess=0.1)
-lines(qua.wrtv, col=4, lwd=2, lty=4)
-}
+lines(qua.wrtv, col=4, lwd=2, lty=4)#}
 }
 \keyword{empirical copula}
 \keyword{empirical copula (quantile regression)}

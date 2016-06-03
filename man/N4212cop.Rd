@@ -33,8 +33,7 @@ taildepCOP(cop=N4212cop, para=10) # LamL = 0.93303; LamU = 0.92823
 \dontrun{
 D <- simCOP(n=400, cop=N4212cop, para=2)
 D <- simCOP(n=400, cop=N4212cop, para=10)
-D <- simCOP(n=400, cop=N4212cop, para=100)
-}
+D <- simCOP(n=400, cop=N4212cop, para=100)#}
 }
 \keyword{copula (formulas)}
 \keyword{copula}

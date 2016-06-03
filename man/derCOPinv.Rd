@@ -4,7 +4,7 @@
 \description{
 Compute the inverse of a numerical partial derivative for \eqn{V} with respect to \eqn{U} of a copula, which is a \emph{conditional quantile function} for nonexceedance probability \eqn{t}, or
 \deqn{t = c_u(v) = \mathbf{C}^{(-1)}_{2|1}(v|u) = \frac{\delta \mathbf{C}(u,v)}{\delta u}\mbox{,}}
-and solving for \eqn{v}. Nelsen (2006, pp. 13, 40--41) shows that this inverse is quite important for random variable generation using the \emph{conditional distribution method}. This function is not vectorized.
+and solving for \eqn{v}. Nelsen (2006, pp. 13, 40--41) shows that this inverse is quite important for random variable generation using the \emph{conditional distribution method}. This function is not vectorized and will not be so.
 }
 \usage{
 derCOPinv(cop=NULL, u, t, delu=.Machine$double.eps^0.50, para=NULL, ...)

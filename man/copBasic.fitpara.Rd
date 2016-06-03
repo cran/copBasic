@@ -3,7 +3,7 @@
 \alias{copBasic.fitpara.beta}
 \title{ A Single or Multi-Parameter Optimization Engine (Beta Version) }
 \description{
-An example of a general implementation of a parameter optimization scheme using core features of the \pkg{copBasic} package. Because of the general complexity of the objectives for this function, the interface shown here is considered a \dQuote{beta version} and nomenclature is subject to dramatic changes in the future.
+An example of a general implementation of a parameter optimization scheme using core features of the \pkg{copBasic} package. Because of the general complexity of the objectives for this function, the interface shown here is considered an \dQuote{alpha version} and nomenclature is subject to dramatic changes in the future.
 }
 \usage{
 copBasic.fitpara.beta(uv=NULL, popstat=NULL, statf=NULL, cop=NULL,

@@ -68,8 +68,7 @@ lines(some.lines, lwd=4, col=6)
 empinv <- EMPIRgridderinv(empgrid=the.grid)
 some.lines <- trans3d(rep(0.7, length(the.grid$v)), empinv[8,],
                       attributes(empinv)$colnames, the.persp)
-lines(some.lines, lwd=4, col=5, lty=2)
-}
+lines(some.lines, lwd=4, col=5, lty=2)#}
 }
 \keyword{empirical copula}
 \keyword{empirical copula (derivatives)}

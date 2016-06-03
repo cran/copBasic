@@ -76,8 +76,8 @@ lines(thelines, lwd=2, col=2, lty=2)
 
 empder <- EMPIRgridder(empgrid=the.grid)
 thelines <- trans3d(rep(0.2, length(the.grid$v)), the.grid$v, empder[3,], the.persp)
-lines(thelines, lwd=4, col=6)
-}
+lines(thelines, lwd=4, col=6) 3 }
+
 \dontrun{
 # EXAMPLE 2:
 # An asymmetric example to demonstrate that the grid is populated with the
@@ -111,8 +111,8 @@ mtext("3-D representation of gridded empirical copula with data points")
 # too smoothed out relative to the raw empirical, but of course the sample size
 # is large enough to see such things. (Try kumaraswamy=TRUE)
 empsim <- EMPIRsim(n=1000, empgrid = the.grid, kumaraswamy=FALSE)
-mtext("Simulations from the Empirical Copula")
-}
+mtext("Simulations from the Empirical Copula") #}
+
 \dontrun{
 # EXAMPLE 3:
 psp <- simCOP(n=4900, cop=PSP, ploton=FALSE, points=FALSE) * 150
@@ -161,8 +161,7 @@ pdf("conditional_distributions.pdf")
      lines(the.grid$v, empder[i,], lwd=4, col=5, lty=2) # empirical
      mtext(paste("Conditioned on U=",u," nonexceedance probability"))
   }
-dev.off()
-}
+dev.off()#}
 }
 \keyword{empirical copula}
 \keyword{empirical copula (utility)}

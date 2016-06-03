@@ -76,8 +76,7 @@ if(is.na(spara[1])) { # now a fittable combination is not guaranteed
    warning("sample rho and tau do not provide valid parameters, ",
            "try another simulation")
 } else { # now if fit, draw some red-colored level curves for comparison
-   level.curvesCOP(cop=FRECHETcop, para=spara, ploton=FALSE, col=2)
-}
+   level.curvesCOP(cop=FRECHETcop, para=spara, ploton=FALSE, col=2)#}
 }
 }
 \keyword{Frechet Family copula}

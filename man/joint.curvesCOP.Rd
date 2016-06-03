@@ -27,7 +27,7 @@ joint.curvesCOP(cop=NULL, para=NULL, type=c("and", "or"),
   \item{zero2small}{A logical controlling whether exactly zero value for probability are converted to a \code{small} value and exactly unity values for probability are converted to the value \code{1 - small}; this logical is useful if transformation from probability space into standard normal variates or \emph{Gumbel reduced variates} (see function \code{prob2grv()} in package \pkg{lmomco}) is later desired by the user for attendant graphics (see \bold{Examples} section);}
   \item{small}{The value for \emph{small} described for \code{zero2small};}
   \item{divisor}{A divisor on a computation of a \eqn{\Delta t} for incrementing through the irregularly-spaced \eqn{u} domain as part of the coordinate computation (see source code);}
-  \item{delu}{A \eqn{\Delta u} for setup of the incrementing through the irregularly-space \eqn{u} domain as part of the coordinate computation (see source code);}
+  \item{delu}{A \eqn{\Delta u} for setup of the incrementing through the irregularly-space \eqn{u} domain as part of the coordinate computation (see source code); and}
   \item{...}{Additional arguments to pass to the \code{\link{duCOP}} function of \pkg{copBasic} or \code{uniroot()} function in \R.}
 }
 \value{

@@ -7,7 +7,7 @@ The primary diagonal is defined as
 \deqn{\mathbf{\delta}_\mathbf{C}(t) = \mathbf{C}(t,t)\mbox{,}}
 and the secondary diagonal is defined as
 \deqn{\mathbf{\delta}^{\star}_\mathbf{C}(t) = \mathbf{C}(t,1-t)\mbox{.}}
-Plotting is provided by this function because the diagonals are such important visual attributes of a copula. This function computes whole diagonals. If individual values are desired, then users are asked to use function calls such as \code{COP(0.25,0.25, cop=P)} for the primary diagonal and \code{COP(0.25,1-0.25, cop=P)} for the secondary diagonal, where for both exqmples the \emph{independence copula} (\eqn{uv = \mathbf{\Pi}}; \code{\link{P}}) was chosen for this clarification.
+Plotting is provided by this function because the diagonals are such important visual attributes of a copula. This function computes whole diagonals. If individual values are desired, then users are asked to use function calls along the diagonal such as \code{COP(0.25,0.25, cop=P)} for the primary diagonal and \code{COP(0.25,1-0.25, cop=P)} for the secondary diagonal, where for both exqmples the \emph{independence copula} (\eqn{uv = \mathbf{\Pi}}; \code{\link{P}}) was chosen for this clarification.
 
 The \eqn{\mathbf{\delta}_\mathbf{C}(t)} is related to order statistics of the multivariate sample (here bivariate) (Durante and Sempi, 2015, p. 68). The probability for the maxima is
 \eqn{\mathrm{Pr}[\mathrm{max}(u, v) \le t] = \mathbf{C}(t,t) = \mathbf{\delta}_\mathbf{C}(t) \mbox{\ and }}

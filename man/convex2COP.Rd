@@ -50,11 +50,11 @@ taildepCOP(   cop=GHcop, para=1.5, plot = TRUE)$lambdaU  # 0.4126
 TargetUpperTailDep <- 2/10
 
 # **Serious CPU time pending for this example**
-par <- c(-.10, 4.65) # inital guess but the first parameter is in standard
+par <- c(-.10, 4.65) # Initial guess but the first parameter is in standard
 # normal units for the optimize to keep us in the [0,1] domain when converted to
 # probability. The guesses of -0.10 (standard deviation) for the convex
 # parameter and 4.65 for the Plackett are based on a much longer search times as
-# setup for this problem. The simplex for optim() is going to be close the
+# setup for this problem. The simplex for optim() is going to be close to the
 # solution on startup.
 "afunc" <- function(par) {
    para <- list(alpha=pnorm(par[1]), cop1=GHcop,       para1=1.5,
@@ -69,8 +69,7 @@ mysolution <- optim(par, afunc, control=list(abstol=1E-4))
 
 para <- list(alpha=.4846902, cop1=GHcop,     para1=1.5,
                            cop2=PLACKETTcop, para2=4.711464)
-UV <- simCOP(n=2500, cop=convex2COP, para=para, snv=TRUE)
-}
+UV <- simCOP(n=2500, cop=convex2COP, para=para, snv=TRUE) # }
 }
 \keyword{copula composition}
 \keyword{copula composition (convex combination)}

@@ -59,11 +59,11 @@ What are the expected number of exceedances if designs for \eqn{U} and \eqn{V} a
 }
 Note that the 791 losses is nearly equal to 799, but obviously not 500 as one might incorrectly have imagined strictly in a univariate world.
 
-Then an couple of questions can be asked about the joint \bold{and} and \bold{or} probabilities using the definition of a copula \code{\link{COP}} and then the \emph{dual of a copula (function)} (\eqn{\tilde{\mathbf{C}}(u,v)}, \code{\link{duCOP}}), respectively?
+Now a couple of questions can be asked about the joint \bold{and} and \bold{or} probabilities using the definition of a copula \code{\link{COP}} and then the \emph{dual of a copula (function)} (\eqn{\tilde{\mathbf{C}}(u,v)}, \code{\link{duCOP}}), respectively:
 \preformatted{
   # The AND nonexceedances:
   length(UV$U[UV$U <= 0.99 & UV$V <= 0.99]) / n    # 0.98402   ( simulated )
-  COP(0.99, 0.99, cop=GHcop, para=1.5)             # 0.9841727 (theoretical)
+    COP(0.99, 0.99, cop=GHcop, para=1.5)           # 0.9841727 (theoretical)
 
   # The OR nonexceedances:
   length(UV$U[UV$U <= 0.99 | UV$V <= 0.99]) / n    # 0.99584   ( simulated )

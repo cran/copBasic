@@ -44,8 +44,7 @@ isCOP.LTD(cop=PLACKETTcop, para=15)              # TRUE
 # Negative association Plackett
 isCOP.LTD(cop=PLACKETTcop, wrtv=TRUE, para=0.15) # FALSE
 # Positive association Plackett
-isCOP.LTD(cop=PLACKETTcop, wrtV=TRUE, para=15)   # TRUE
-}
+isCOP.LTD(cop=PLACKETTcop, wrtV=TRUE, para=15)   # TRUE}
 }
 \keyword{copula (characteristics)}
 \keyword{copula (properties)}

@@ -44,7 +44,8 @@ att <- attributes(invgrid2); kur <- att$kumaraswamy
 # Now draw random variates from the Kumaraswamy distribution using
 # rlmomco() and vec2par() provided by the lmomco package.
 set.seed(1)
-Vsim <- lmomco::rlmomco(nsim, lmomco::vec2par(c(kur$Alpha[7], kur$Beta[7]), type="kur"))
+kurpar <- lmomco::vec2par(c(kur$Alpha[7], kur$Beta[7]), type="kur")
+Vsim <- lmomco::rlmomco(nsim, kurpar)
 
 print(summary(V1))   # Kumaraswamy not core in QDF reconstruction
 print(summary(V2))   # Kumaraswamy core in QDF reconstruction
@@ -72,8 +73,7 @@ Vblend <- (V1/W1 + V2/W2) / sum(1/W1 + 1/W2)
 lines(lmomco::pp(Vblend), sort(Vblend), col=4, lwd=2) # BLUE LINE
 # Notice how the grey line and the blue diverge for about F < 0.1 and F > 0.9.
 # These are the limits of the grid spacing and linear interpolation within the
-# grid intervals is being used and not direct simulation from the Kumaraswamy.
-}
+# grid intervals is being used and not direct simulation from the Kumaraswamy.}
 }
 \keyword{empirical copula}
 \keyword{empirical copula (simulation)}

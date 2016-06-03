@@ -34,8 +34,7 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \examples{
 \dontrun{
-level.curvesCOP2(cop=M, para=NULL, delt=.02) # Upper bounds copula
-}
+level.curvesCOP2(cop=M, para=NULL, delt=.02) # Upper bounds copula}
 }
 \keyword{visualization}
 \keyword{diagnostics}

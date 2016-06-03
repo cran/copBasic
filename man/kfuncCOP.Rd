@@ -4,7 +4,7 @@
 \alias{kmeasCOP}
 \title{ The Kendall (Distribution) Function of a Copula }
 \description{
-To begin, there are at least three terms in the literature for the same function supported by the \code{kfuncCOP} function.  The Kendall Function also is known as Kendall Distribution Function (Nelsen, 2006, p. 163) and Kendall Measure (Salvadori \emph{et al.}, 2007, p. 148). Each of these is dealt with in sequel to set manner of the lengthy documentation for this function.
+To begin, there are at least three terms in the literature for the same function supported by the \code{kfuncCOP} function.  The Kendall Function also is known as Kendall Distribution Function (Nelsen, 2006, p. 163) and Kendall Measure (Salvadori \emph{et al.}, 2007, p. 148). Each of these is dealt with in sequel to set the manner of the rather lengthy documentation for this function.
 
 \emph{KENDALL FUNCTION}---The \emph{Kendall Function} (\eqn{F_K}) (Joe, 2014, pp. 419--422) is the cumulative distribution function (CDF) of the vector \eqn{\mathbf{U} = (U_1, U_2, \ldots)} or \eqn{\mathbf{U} = (u,v)} (bivariate) where \eqn{\mathbf{U}} is distributed as the copula: \eqn{\mathbf{U} \sim \mathbf{C}(u,v)}. Letting \eqn{Z} be the random variable for \eqn{\mathbf{C}(u,v): Z = \mathbf{C}(u,v)}, the Kendall Function is defined as
 
@@ -21,11 +21,11 @@ Joe (2014) and others as cited list various special cases of \eqn{F_K(z)}, inequ
 \eqn{\mbox{}\quad\bullet\quad\mbox{}}For any \eqn{\mathbf{C}}: \eqn{\tau_\mathbf{C} = 3 - 4\int_0^1 F_K(t)\,\mathrm{d}t} (Nelsen, 2006, p. 163; see \code{\link{tauCOP}} [\bold{Examples}]).\cr
 \eqn{\mbox{}\quad\bullet\quad\mbox{}}For any \eqn{\mathbf{C}}: \eqn{F_K(t)} does not uniquely determine the copula.
 
-This last item is from Durante and Sempi (2015, p. 118) and see later discussion herein concerning an Example of theirs. By coincidence within a few days before receipt of the Durante and Sempi book, experiments using \code{kfuncCOP} suggested that numerically the Galambos (\code{\link{GLcop}}), Gumbel-Hougaard (\code{\link{GHcop}}), and H\enc{ü}{u}sler-Reiss (\code{\link{HRcop}}) extreme value copulas for the same \emph{Kendall Tau} (\eqn{\tau_\mathbf{C}}) all have the same \eqn{F_K(t)}. Therefore, do all \emph{EV}s have the same Kendall Function? Well in fact, they do and Durante and Sempi (2015, p. 207) show that \eqn{F_K(z) = z - (1 - \tau_\mathbf{C})z \log(z)} for an \emph{EV}-copula.
+This last item is from Durante and Sempi (2015, p. 118) and see later discussion herein concerning an example of theirs. By coincidence within a few days before receipt of the Durante and Sempi book, experiments using \code{kfuncCOP} suggested that numerically the Galambos (\code{\link{GLcop}}), Gumbel-Hougaard (\code{\link{GHcop}}), and H\enc{ü}{u}sler-Reiss (\code{\link{HRcop}}) extreme value copulas for the same \emph{Kendall Tau} (\eqn{\tau_\mathbf{C}}) all have the same \eqn{F_K(t)}. Therefore, do all \emph{EV}-copulas have the same Kendall Function? Well in fact, they do and Durante and Sempi (2015, p. 207) show that \eqn{F_K(z) = z - (1 - \tau_\mathbf{C})z \log(z)} for an \emph{EV}-copula.
 
 Joe (2014, p. 420) also indicates that strength of \emph{lower-tail dependence} (\code{\link{taildepCOP}}) affects \eqn{F_K(z)} as \eqn{z \rightarrow 0^{+}}, whereas strength of \emph{upper-tail dependence} affects \eqn{F_K(z)} as \eqn{z \rightarrow 1^{-}}. (A demonstration of tail dependence dependence is made in section \bold{Note}.) Also compared to \emph{comonotonicity copula} [\eqn{\mathbf{M}}] there are no \emph{countermonotonicity copula} (\eqn{\mathbf{W}_{d > 2}}) for dimensions greater the bivariate (Joe, 2014, p. 214)
 
-Joe does not explicitly list an expression of \eqn{F_K(z)} that is computable directly for any \eqn{\mathbf{C}(u,v)}, and Nelsen (2006, p. 163) only lists a form (see later in documentation) for \emph{Archimedean copulas} and Salvadori \emph{et al.} (2007, eq. 3.47, p. 147) also do the same. However, Salvadori \emph{et al.} (2007, eq. 3.49, p. 148) \bold{also list a form computable directly for any} \eqn{\mathbf{C}(u,v)}. Considerable numerical experiments and derivations, involving the \eqn{\mathbf{\Pi}(u,v)} copula and results for \eqn{K_\mathbf{C}(z)} shown later, indicate that the correct form for any \eqn{\mathbf{C}(u,v)} is
+Joe (2014) does not explicitly list an expression of \eqn{F_K(z)} that is computable directly for any \eqn{\mathbf{C}(u,v)}, and Nelsen (2006, p. 163) only lists a form (see later in documentation) for \emph{Archimedean copulas} and Salvadori \emph{et al.} (2007, eq. 3.47, p. 147) also do the same. However, Salvadori \emph{et al.} (2007, eq. 3.49, p. 148) \bold{also list a form computable directly for any} \eqn{\mathbf{C}(u,v)}. Considerable numerical experiments and derivations involving the \eqn{\mathbf{\Pi}(u,v)} copula and results for \eqn{K_\mathbf{C}(z)} shown later, indicate that the correct form for any \eqn{\mathbf{C}(u,v)} is
 
 \deqn{F_K(z) \equiv z + \int_z^1 \frac{\delta\mathbf{C}(u,t)}{\delta u}\,\mathrm{d}u\mbox{,}}
 
@@ -45,9 +45,9 @@ is referred to as a \emph{secondary return period} (Salvadori \emph{et al.}, 200
 
 where \eqn{\phi(t)} is a \emph{generator function} of an \emph{Archimedean copula} and \eqn{\phi'(t^{+})} is a one-sided derivative (Nelsen, 2006, p. 125), and \eqn{\phi(t)} is \eqn{\phi(\mathbf{C}(u,v)) = \phi(u) + \phi(v)}.
 
-Nelsen (2006) does not seem to list a more general definition for any \eqn{\mathbf{C}}. Because there is considerable support for Archimedean copulas in \R, \pkg{copBasic} has deliberately been kept from being yet another Archimedean-based package. This is made for more fundamental theory and pedogogic reasons without tuning algorithms to the many convenient properties of Archimedean copulas.
+Nelsen (2006) does not seem to list a more general definition for any \eqn{\mathbf{C}(u,v)}. Because there is considerable support for Archimedean copulas in \R, \pkg{copBasic} has deliberately been kept from being yet another Archimedean-based package. This is made for more fundamental theory and pedogogic reasons without tuning algorithms to the many convenient properties of Archimedean copulas.
 
-The similarity of \eqn{F_K(z)}, \eqn{K_\mathbf{C}(z)}, and \eqn{K^\star_\mathbf{C}(t)}, however, is obvious---research shows that there are no syntatic differences between \eqn{F_K(z)} and \eqn{K_\mathbf{C}(t)} and \eqn{K^\star_\mathbf{C}(z)}---they all are the CDF of the joint probability \eqn{Z} of the copula. Consider now that Salvadori \emph{et al.} show \eqn{K_\mathbf{C}} having the form \eqn{a - b} and not a from \eqn{a + b} as previously shown for \eqn{F_K(z)}. Which form is thus correct? The greater bulk of this documentation now deals with that question, and it must be concluded that Salvadori \emph{et al.} (2007, pp. 161--165) definition for \eqn{K_\mathbf{C}(z)} has a typesetting error.
+The similarity of \eqn{F_K(z)}, \eqn{K_\mathbf{C}(z)}, and \eqn{K^\star_\mathbf{C}(t)}, however, is obvious---research shows that there are no syntatic differences between \eqn{F_K(z)} and \eqn{K_\mathbf{C}(t)} and \eqn{K^\star_\mathbf{C}(z)}---they all are the CDF of the joint probability \eqn{Z} of the copula. Consider now that Salvadori \emph{et al.} show \eqn{K_\mathbf{C}} having the form \eqn{a - b} and not a form \eqn{a + b} as previously shown for \eqn{F_K(z)}. Which form is thus correct? The greater bulk of this documentation now deals with that question, and it must be concluded that Salvadori \emph{et al.} (2007, pp. 161--165) definition for \eqn{K_\mathbf{C}(z)} has a typesetting error.
 }
 \usage{
 kfuncCOP(z, cop=NULL, para=NULL, wrtV=FALSE, as.sample=FALSE,verbose=FALSE,...)
@@ -68,7 +68,7 @@ kmeasCOP(z, cop=NULL, para=NULL, wrtV=FALSE, as.sample=FALSE,verbose=FALSE,...)
 \note{
 \emph{VALIDATION STUDY}---A validation study using the \emph{Independence copula} (\eqn{uv = \mathbf{\Pi}}; \code{\link{P}}) with theoretical results of Joe (2014) and empiricism is readily performed using the expression for \eqn{F_K(z)}:
 \preformatted{
-  Z <- sort(c(0.01, seq(0,1, by=0.05), 0.99)) # ** Joint probabilities **
+  Z <- sort(c(0.01, seq(0,1, by=0.05), 0.99))       # ** Joint probabilities **
   UV <- simCOP(n=4000, cop=P, graphics=FALSE);      kendF <- Z - Z*log(Z)
   emp.kendF  <- kfuncCOP(Z, para=UV, as.sample="genest") # emp. Kendall func
   theo.kendF <- kfuncCOP(Z, cop=P) # theo. Kendall func, numeric integration
@@ -85,7 +85,7 @@ The figure so produced shows that the theoretical relation in Joe (2014) is corr
 Now consider a more comprehensive demonstration using the \code{\link{N4212cop}} copula with some relatively weak dependence in \eqn{\Theta = 1.17}.
 \preformatted{
   Theta <- 1.17; print(rhoCOP(cop=N4212cop, para=Theta)) # Spearman rho = 6/10
-  Z <- sort(c(0.01, seq(0,1, by=0.05), 0.99)) # ** Joint probabilities **
+  Z <- sort(c(0.01, seq(0,1, by=0.05), 0.99))       # ** Joint probabilities **
   UV <- simCOP(n=16000,      cop=N4212cop,   para=Theta, graphics=TRUE)
   empir.kendF <- kfuncCOP(Z, as.sample=TRUE, para=UV, ctype="weibull")
   kwrtU       <- kfuncCOP(Z, cop=N4212cop,   para=Theta, wrtV=FALSE)
@@ -99,7 +99,7 @@ Now consider a more comprehensive demonstration using the \code{\link{N4212cop}}
 The figure so produced again shows congruence between the two theoretical computations and the empirical curve. Now consider a yet another comprehensive demonstration using the \code{\link{PLACKETTcop}} copula with some strong negative dependence in \eqn{\Theta = 0.04}.
 \preformatted{
   Theta <- 0.04
-  Z <- sort(c(0.01, seq(0,1, by=0.05), 0.99)) #  ** Joint probabilities **
+  Z <- sort(c(0.01, seq(0,1, by=0.05), 0.99))       # ** Joint probabilities **
   UV <- simCOP(n=2600,       cop=PLACKETTcop,   para=Theta, graphics=TRUE)
   empir.kendF <- kfuncCOP(Z, as.sample="hazen", para=UV)
   kwrtU       <- kfuncCOP(Z, cop=PLACKETTcop,   para=Theta, wrtV=FALSE)
@@ -150,9 +150,9 @@ Durante and Sempi (2015, p. 118) provide an example of two copula having the sam
 }
 The plot so produced shows indeed that the numerical operations by \code{kfuncCOP} solidly work on two strictly singular copulas \eqn{\mathbf{C}_1} and \eqn{\mathbf{C}_2} that are different from the two singular \eqn{\mathbf{M}} and \eqn{\mathbf{W}} copulas already throughout \pkg{copBasic} to produce \eqn{F_K(z)} curves exactly matching the theoretical curve provided by Durante and Sempi.
 
-\emph{CONVERSATIONAL ASIDE}---Interestingly, Durante and Sempi (2015, pp. 115--121), like other authors of major works cited herein, do not list a general expression for the \eqn{F_K(z)} as a function of any \eqn{\mathbf{C}}. Those authors develop the idea well and show results but for the author (Asquith) the jump from based of Theorem 3.9.2 to an expression, such as shown above for \eqn{F_K(z)} based on \eqn{\mathbf{C}(u,t)/\delta u}, to an usable form for any \eqn{\mathbf{C}} and elementary numerical operations seemingly is beyond the author's academic background.
+\emph{CONVERSATIONAL ASIDE}---Interestingly, Durante and Sempi (2015, pp. 115--121), like other authors of major works cited herein, do not list a general expression for the \eqn{F_K(z)} as a function of any \eqn{\mathbf{C}(u,v)}. Those authors develop the idea well and show results but for the author (Asquith) the jump based of Theorem 3.9.2 to an expression, such as shown above for \eqn{F_K(z)} based on \eqn{\mathbf{C}(u,t)/\delta u}, to an usable form for any \eqn{\mathbf{C}(u,v)} and elementary numerical operations seemingly is beyond the author's academic background.
 
-This is a fascinating topic because if the Kendall Function is a reasonably important component of copula theory, then why so much difficulty in finding a canonical reference? For this one piece, whereas so much of \pkg{copBasic} features are quite nomenclaturely clear in say Nelsen (2006) or Joe (2014).
+This is a fascinating topic because if the Kendall Function is a reasonably important component of copula theory, then why so much difficulty in finding a canonical reference? For this one piece, whereas so much of \pkg{copBasic} features are quite nomenclaturely clear in say Nelsen (2006) or Joe (2014) but somehow not for the Kendall Function.
 
 Perhaps to the copula experts, the description (nomenclature) used in all but Salvadori \emph{et al.} (2007) are clear to intended readers. But even Salvadori \emph{et al.} seemingly show theirs in error---perhaps the author (Asquith) has missed something fundamental, but the validations shown in this documentation prove at least that \code{kfuncCOP} does what it is supposed to be doing but perhaps for the wrong reasoning. Lastly, Durante and Sempi have an error in their expression for Kendall Tau as a function of \eqn{F_K(z)} (see \code{\link{tauCOP}}).
 
@@ -176,16 +176,16 @@ Some additional details on secondary return period from Salvadori \emph{et al.} 
 Salvadori \emph{et al.} (2007) provide considerable discussion of \eqn{T_K} and some highlights are:\cr
 \eqn{\mbox{}\quad\bullet\quad\mbox{}}(p. 162) events equally or exceeding probability \eqn{F_K(t_\star)} or having return intervals \eqn{\ge T_K} \dQuote{represent [a] class of potentially dangerous events, the \emph{outliers}, and [\eqn{F_K} can be used to] introduce an \emph{ad hoc} return period for such destructive events.}\cr
 \eqn{\mbox{}\quad\bullet\quad\mbox{}}(p. 162) \dQuote{primary return period [\eqn{T}] \ldots only takes into account the fact that a prescribed critical event is expected to appear once in a given time interval [\eqn{T}] \ldots \eqn{\overline{F}_K(t_\star)} provides the \emph{exact probability} that a potentially destructive event will happen at any given realization of \eqn{Z} \ldots and \eqn{T_K} gives the expected time for such an outlier to occur.}\cr
-\eqn{\mbox{}\quad\bullet\quad\mbox{}}(p. 164) \dQuote{[T] only predicts that a critical event is \emph{expected} to appear once in a given time interval \ldots would be more important to be able to calculate (1) the probability that a super-critical [sic. ] event will occur at any given realization of [\eqn{Z}], and (2) how long it takes, \emph{on average}, for a super-critical event to appear.}\cr
+\eqn{\mbox{}\quad\bullet\quad\mbox{}}(p. 164) \dQuote{[\eqn{T}] only predicts that a critical event is \emph{expected} to appear once in a given time interval \ldots would be more important to be able to calculate (1) the probability that a super-critical [sic. ] event will occur at any given realization of [\eqn{Z}], and (2) how long it takes, \emph{on average}, for a super-critical event to appear.}\cr
 \eqn{\mbox{}\quad\bullet\quad\mbox{}}(p. 164) \dQuote{the function \eqn{\overline{F}_K} turns the difficult analysis of bivariate dynamics of \eqn{X} and \eqn{Y} into a simpler one-dimensional problem.}
 
 }
 \source{
 The comprehensive demonstrations are shown in the \bold{Note} because of a sign convention and (or) probability convention incompatibility with the equation shown by Salvadori \emph{et al.} (2007, p. 148).  Initial source code development for \pkg{copBasic} was based on an hypothesis that the terms \dQuote{Kendall's Function} and \dQuote{Kendall Measure} might somehow have separate meanings---that the author must be blamed for misunderstanding the requisite nomenclature---this is evidently not true.
 
-The \eqn{K_\mathbf{C}(z)} as shown herein simply can not reproduce \eqn{F_K(z; \mathbf{\Pi}) = z - z\log z} for the \eqn{\mathbf{\Pi}} copula unless the \dQuote{\eqn{-}} sign in the \eqn{K_\mathbf{C}(z)} equation is changed to a \dQuote{\eqn{+}} to become the \eqn{F_K(z)} definition as shown. The detective work needed for a valid function \code{kmeasCOP} was further complicated by fact that neither Durante and Sempi (2015), Joe (2014), Nelsen (2006), and others do not actually present a general equation for \eqn{F_K(z)} computation for any \eqn{\mathbf{C}}. Prior demonstrations numerically and graphically show that the implementation of \code{kfuncCOP} is valid.
+The \eqn{K_\mathbf{C}(z)} as shown herein simply can not reproduce \eqn{F_K(z; \mathbf{\Pi}) = z - z\log z} for the \eqn{\mathbf{\Pi}} copula unless the \dQuote{\eqn{-}} sign in the \eqn{K_\mathbf{C}(z)} equation is changed to a \dQuote{\eqn{+}} to become the \eqn{F_K(z)} definition as shown. The detective work needed for a valid function \code{kmeasCOP} was further complicated by fact that neither Durante and Sempi (2015), Joe (2014), Nelsen (2006), and others do not actually present a general equation for \eqn{F_K(z)} computation for any \eqn{\mathbf{C}(u,v)}. Prior demonstrations numerically and graphically show that the implementation of \code{kfuncCOP} is valid.
 
-Lastly and again because of the subtle differences evidently between \dQuote{Kendall functions} (lower case), an explict derivation for \eqn{F_K(z; \mathbf{\Pi})} is informative to confirm what is meant by the \emph{Kendall Function} as defined by \eqn{F_K(z)}. Starting with \eqn{z = \mathbf{\Pi}(u,v) = u\,v}, then \deqn{v(z) = t = \mathbf{\Pi}^{(-1)}(u, z) = z/u\mbox{,\ and}}
+Lastly and again because of the subtle differences evidently between \dQuote{Kendall functions} (lower case), an explict derivation for \eqn{F_K(z; \mathbf{\Pi})} is informative to confirm what is meant by the \emph{Kendall Function} as defined by \eqn{F_K(z)}. Starting with \eqn{z = \mathbf{\Pi}(u,v) = uv}, then \deqn{v(z) = t = \mathbf{\Pi}^{(-1)}(u, z) = z/u\mbox{,\ and}}
 \deqn{\frac{\delta}{\delta u} \mathbf{\Pi}(u,t) = \frac{\delta }{\delta u} u\,v= t = \frac{z}{u}\mbox{,}}
 substitution can now proceed:
 \deqn{F_K(z; \mathbf{\Pi}) = z + \int_z^1 \frac{\delta}{\delta u}\mathbf{\Pi}(u,t)\,\mathrm{d}u\mbox = z + \int_z^1 \frac{z}{u}\,\mathrm{d}u{,}}
@@ -215,8 +215,7 @@ Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in
 # Salvadori et al. (2007, p. 148, fig. 3.5 [right])
 zs <- seq(0,1, by=.01)
 plot(zs, kmeasCOP(zs, cop=GHcop, para=5), log="y", type="l", lwd=4,
-     xlab="Z <= z", ylab="Kendall Function", xlim=c(0,1), ylim=c(0.001,1))
-}
+     xlab="Z <= z", ylab="Kendall Function", xlim=c(0,1), ylim=c(0.001,1))#}
 }
 \keyword{copula (characteristics)}
 \keyword{copula (properties)}
@@ -231,3 +230,4 @@ plot(zs, kmeasCOP(zs, cop=GHcop, para=5), log="y", type="l", lwd=4,
 \concept{Kendall measure}
 \concept{decomposition of Kendall tau}
 \concept{decomposition of Kendall's tau}
+\keyword{literature errors and inconsistencies}

@@ -72,7 +72,7 @@ Let us then play out a scenario in which it is judged that of the events causing
   }
   dThres <- uniroot(designf, c(.Machine$double.eps,0.5))$root
 }
-where the \code{uniroot} function performs the optimization and the \code{.Machine$double.eps} value is used because the \eqn{\mathbf{PSP}} is \code{NaN} for zero probability.
+where the \code{uniroot} function performs the optimization and the \code{.Machine$double.eps} value is used because the \eqn{\mathbf{PSP}} is \code{NaN} for zero probability. (It is unity for unity marginal probabilities.)
 
 The design threshold on the margins then is \code{dThres} \eqn{\approx} 0.05135. In other words, the \code{designThres} is the marginal probability that results in about 5 percent of events not occurring at the same time. Then considering the simulated sample and counting the nonexceedances by code one achieves:
 \preformatted{
@@ -93,7 +93,7 @@ but also the theoretical expectations are readily computed using copula theory:
           "\n    Simultaneous damaging events (theory) = ", tSimDamage,
           "\n Nonsimultaneous damaging events (theory) = ", tNonSimDamage)
 }
-The counts from the former listing are 7,670, 2,669, and 5,001, whereas the respective counts from the later listing are 7,635, 2,635, and 5,000. Numerical congruency in the counts thus exists.
+The counts from the former listing are 7,670; 2,669; and 5,001, whereas the respective counts from the later listing are 7,635; 2,635; and 5,000. Numerical congruency in the counts thus exists.
 }
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.

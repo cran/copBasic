@@ -1,14 +1,13 @@
 "vuongCOP" <- function(u, v=NULL, cop1=NULL, cop2=NULL, para1=NULL, para2=NULL,
-                                  alpha=0.05, method=c("D12", "AIC", "BIC"), ...) {
+                                  alpha=0.05, method=c("D12", "AIC", "BIC"),
+                                  the.zero=.Machine$double.eps^0.25, ...) {
    method <- match.arg(method)
    if(is.null(v)) {
       if(length(names(u)) != 2) {
          warning("a data.frame having only two columns is required")
          return(NULL)
-      } else {
-         v <- u[,2]
-         u <- u[,1]
       }
+      v <- u[,2]; u <- u[,1] # v must come before u
    }
    if(length(u) != length(v)) {
       warning("argument(s) or implied arguments u and v are unequal in length, returning NULL")
@@ -19,8 +18,8 @@
    the.qt <- qt(1 - alpha/2, df=(n-2))
 
    "Di" <- function(x,y) {
-       f1 <- densityCOP(x,y, cop=cop1, para=para1, ...)
-       f2 <- densityCOP(x,y, cop=cop2, para=para2, ...)
+       f1 <- densityCOP(x,y, cop=cop1, para=para1, the.zero=the.zero, ...)
+       f2 <- densityCOP(x,y, cop=cop2, para=para2, the.zero=the.zero, ...)
        tmp <- log(f2/f1)
        return(tmp)
    }

@@ -2,7 +2,7 @@ citHeader("To cite package 'copBasic' in publications use:")
 
 year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date) 
 vers <- paste("R package version",           meta$Version) 
-title <- "copBasic---General Copula Theory and Many Utility Functions"
+title <- "copBasic---General Bivariate Copula Theory and Many Utility Functions"
 
 citEntry(entry="Manual", 
          title  = title, 

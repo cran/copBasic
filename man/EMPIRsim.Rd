@@ -52,8 +52,8 @@ pdf("EMPIRsim_experiment.pdf")
   uv3 <- EMPIRsim(n=nsim, empgrid=uv.grid, kumaraswamy=TRUE, snv=TRUE,
                   col=rgb(1,0,0,0.1),pch=16)
   mtext("Resimulation but using the Kumaraswamy Distribution for smoothing")
-dev.off()
-}
+dev.off()#}
+
 \dontrun{
   nsim <- 5000
   set.seed(1)
@@ -64,8 +64,8 @@ dev.off()
   uv2 <- EMPIRsim(n=nsim, empgrid=uv.grid, snv=TRUE,
                   col=rgb(1,0,0,0.1), pch=16)
   mtext("Resimulation without Kumaraswamy smoothing")
-  semicorCOP(cop=EMPIRcop, para=uv2, samcor=TRUE)
-}
+  semicorCOP(cop=EMPIRcop, para=uv2, samcor=TRUE)#}
+
 # See other examples under EMPIRsimv
 }
 \keyword{empirical copula}

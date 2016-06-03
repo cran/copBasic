@@ -1,39 +1,37 @@
 "lcomCOPpv" <-
 function(n, lcom, cop=NULL, para=NULL, repcoe=5E3, type="gno",
-                  larsimn=1E4, larsimrep=15, uselarmu=FALSE, digits=5, ...) {
+                  mcn=1E4, mcrep=10, usemcmu=FALSE, digits=5, ...) {
 
-   type <- "gno"
-   if(any("gno" == lmomco::dist.list())) {
+   if(! any(type == lmomco::dist.list())) {
       warning("the 'type' argument is providing a distribution not available ",
               "in the lmomco package, resetting to the 'gno'")
       type <- "gno"
    }
-   if(uselarmu & larsimn == 0) {
-       warning("argument 'uselarmu' is TRUE but 'larsimn == 0', incompatible, ",
-               "resetting 'uselarmu' to FALSE")
-       uselarmu <- FALSE
+   if(usemcmu & mcn == 0) {
+       warning("argument 'usemcmu' is TRUE but 'mcn == 0', incompatible, ",
+               "resetting 'usemcmu' to FALSE")
+       usemcmu <- FALSE
    }
    NAs <- rep(NA, 3)
    T2b <- T3b <- T4b <- data.frame(LcomType=NAs, N=NAs, Nrep=NAs,
                                    Mean=NAs, Lscale=NAs, Lskew=NAs, Lkurt=NAs)
-   if(larsimn > 0) {
-      if(larsimrep < 4) {
-         warning("larsimrep is too small to compute first four L-moments, ",
+   if(mcn > 0) {
+      if(mcrep < 4) {
+         warning("mcrep is too small to compute first four L-moments, ",
                  "resetting to four")
-         larsimrep <- 4
+         mcrep <- 4
       }
-      T2COPb <- vector(mode="numeric", larsimrep)
+      T2COPb <- vector(mode="numeric", mcrep)
       T3COPb <- T4COPb <- T2COPb12 <- T3COPb12 <- T4COPb12 <- T2COPb
       T2COPb21 <- T3COPb21 <- T4COPb21 <- T2COPb
-      message(" STATUS: Performing ", larsimrep,
-              " replicate(s) of Tau_(234)[12:21] with ",
-                                      larsimn,
-              " sample size [large sam. sim.]")
-      message("         Simulating replication ", appendLF=FALSE)
-      for(i in 1:larsimrep) {
+      message(" STATUS: Performing ", mcrep,
+              " replicate(s) of Tau_(234)[12:21] with N=",
+                                      mcn,
+              " Monte Carlo integration")
+      message("         Replication ", appendLF=FALSE)
+      for(i in 1:mcrep) {
          message(i,"-", appendLF=FALSE)
-         UV <- simCOP(n=larsimn, cop=cop, para=para, graphics=FALSE, ...)
-         lmcr <- lmomco::lcomoms2(data.frame(U=UV$U, V=UV$V), nmom=4)
+         lmcr <- bilmoms(n=mcn, cop=cop, para=para, ...)$bilcomoms
          T2COPb12[i] <- lmcr$T2[1,2];  T2COPb21[i] <- lmcr$T2[2,1]
          T3COPb12[i] <- lmcr$T3[1,2];  T3COPb21[i] <- lmcr$T3[2,1]
          T4COPb12[i] <- lmcr$T4[1,2];  T4COPb21[i] <- lmcr$T4[2,1]
@@ -53,19 +51,19 @@ function(n, lcom, cop=NULL, para=NULL, repcoe=5E3, type="gno",
       lmrT3b   <- lmomco::lmoms(T3COPb,   nmom=4)
       lmrT4b   <- lmomco::lmoms(T3COPb,   nmom=4)
       T2b <- data.frame(LcomType=c("Tau2[12]", "Tau2[21]", "Tau2[12:21]"),
-          N=rep(larsimn, 3), Nrep=rep(larsimrep, 3),
+          N=rep(mcn, 3), Nrep=rep(mcrep, 3),
           Mean=  c(lmrT2b12$lambdas[1], lmrT2b21$lambdas[1], lmrT2b$lambdas[1]),
           Lscale=c(lmrT2b12$lambdas[2], lmrT2b21$lambdas[2], lmrT2b$lambdas[2]),
           Lskew= c(lmrT2b12$ratios[3],  lmrT2b21$ratios[3],  lmrT2b$ratios[3]),
           Lkurt= c(lmrT2b12$ratios[4],  lmrT2b21$ratios[4],  lmrT2b$ratios[4]))
-      T3b <- data.frame(LcomType=c("Tau3[12]", "Tau3[21]", "Tau3[12|21]"),
-          N=rep(larsimn, 3), Nrep=rep(larsimrep, 3),
+      T3b <- data.frame(LcomType=c("Tau3[12]", "Tau3[21]", "Tau3[12:21]"),
+          N=rep(mcn, 3), Nrep=rep(mcrep, 3),
           Mean=  c(lmrT3b12$lambdas[1], lmrT3b21$lambdas[1], lmrT3b$lambdas[1]),
           Lscale=c(lmrT3b12$lambdas[2], lmrT3b21$lambdas[2], lmrT3b$lambdas[2]),
           Lskew= c(lmrT3b12$ratios[3],  lmrT3b21$ratios[3],  lmrT3b$ratios[3]),
           Lkurt= c(lmrT3b12$ratios[4],  lmrT3b21$ratios[4],  lmrT3b$ratios[4]))
-      T4b <- data.frame(LcomType=c("Tau4[12]", "Tau4[21]", "Tau4[12|21]"),
-          N=rep(larsimn, 3), Nrep=rep(larsimrep, 3),
+      T4b <- data.frame(LcomType=c("Tau4[12]", "Tau4[21]", "Tau4[12:21]"),
+          N=rep(mcn, 3), Nrep=rep(mcrep, 3),
           Mean=  c(lmrT4b12$lambdas[1], lmrT4b21$lambdas[1], lmrT4b$lambdas[1]),
           Lscale=c(lmrT4b12$lambdas[2], lmrT4b21$lambdas[2], lmrT4b$lambdas[2]),
           Lskew= c(lmrT4b12$ratios[3],  lmrT4b21$ratios[3],  lmrT4b$ratios[3]),
@@ -106,15 +104,15 @@ function(n, lcom, cop=NULL, para=NULL, repcoe=5E3, type="gno",
       lmrT2 <- lmomco::lmoms(T2COP12); lmrT2t <- lmrT2
       lmrT3 <- lmomco::lmoms(T3COP12); lmrT3t <- lmrT3
       lmrT4 <- lmomco::lmoms(T4COP12); lmrT4t <- lmrT4
-      if(uselarmu) {
-         message("         Using mean of large simulation and rescaling ",
+      if(usemcmu) {
+         message("         Using mean of Monte Carlo integrations and rescaling ",
                  "L-scale by small simulation LCV")
          lmrT2t$lambdas[1] <- T2b[1,4]
          lmrT3t$lambdas[1] <- T3b[1,4]
          lmrT4t$lambdas[1] <- T4b[1,4]
-         lmrT2t$lambdas[2] <- lmrT2$ratios[2]*T2b[1,4]
-         lmrT3t$lambdas[2] <- lmrT3$ratios[2]*T3b[1,4]
-         lmrT4t$lambdas[2] <- lmrT4$ratios[2]*T4b[1,4]
+         lmrT2t$lambdas[2] <- abs(lmrT2$ratios[2]*T2b[1,4]) # abs for protection
+         lmrT3t$lambdas[2] <- abs(lmrT3$ratios[2]*T3b[1,4]) # against the mean
+         lmrT4t$lambdas[2] <- abs(lmrT4$ratios[2]*T4b[1,4]) # being a negative
          lmrT2t$ratios[2] <- lmrT2$ratios[2]
          lmrT3t$ratios[2] <- lmrT3$ratios[2]
          lmrT4t$ratios[2] <- lmrT4$ratios[2]
@@ -140,15 +138,15 @@ function(n, lcom, cop=NULL, para=NULL, repcoe=5E3, type="gno",
       lmrT2 <- lmomco::lmoms(T2COP21); lmrT2t <- lmrT2
       lmrT3 <- lmomco::lmoms(T3COP21); lmrT3t <- lmrT3
       lmrT4 <- lmomco::lmoms(T4COP21); lmrT4t <- lmrT4
-      if(uselarmu) {
-         message("         Using mean of large simulation and rescaling ",
+      if(usemcmu) {
+         message("         Using mean of Monte Carlo integrations and rescaling ",
                  "L-scale by small simulation LCV")
          lmrT2t$lambdas[1] <- T2b[2,4]
          lmrT3t$lambdas[1] <- T3b[2,4]
          lmrT4t$lambdas[1] <- T4b[2,4]
-         lmrT2t$lambdas[2] <- lmrT2$ratios[2]*T2b[2,4]
-         lmrT3t$lambdas[2] <- lmrT3$ratios[2]*T3b[2,4]
-         lmrT4t$lambdas[2] <- lmrT4$ratios[2]*T4b[2,4]
+         lmrT2t$lambdas[2] <- abs(lmrT2$ratios[2]*T2b[2,4]) # abs for protection
+         lmrT3t$lambdas[2] <- abs(lmrT3$ratios[2]*T3b[2,4]) # against the mean
+         lmrT4t$lambdas[2] <- abs(lmrT4$ratios[2]*T4b[2,4]) # being a negative
          lmrT2t$ratios[2] <- lmrT2$ratios[2]
          lmrT3t$ratios[2] <- lmrT3$ratios[2]
          lmrT4t$ratios[2] <- lmrT4$ratios[2]
@@ -176,16 +174,16 @@ function(n, lcom, cop=NULL, para=NULL, repcoe=5E3, type="gno",
       T4 <- (lcom$T4[1,2] + lcom$T4[2,1]) / 2
       lmrT2 <- lmomco::lmoms(T2COP); lmrT2t <- lmrT2 # Create temporary copies that we can do
       lmrT3 <- lmomco::lmoms(T3COP); lmrT3t <- lmrT3 # substitution on the mean and L-scale dependng
-      lmrT4 <- lmomco::lmoms(T4COP); lmrT4t <- lmrT4 # on setting of 'uselarmu' for the p-value computation.
-      if(uselarmu) {
-         message("         Using mean of large simulation and rescaling ",
+      lmrT4 <- lmomco::lmoms(T4COP); lmrT4t <- lmrT4 # on setting of 'usemcmu' for the p-value computation.
+      if(usemcmu) {
+         message("         Using mean of Monte Carlo integrations and rescaling ",
                  "L-scale by small simulation LCV")
          lmrT2t$lambdas[1] <- T2b[3,4]
          lmrT3t$lambdas[1] <- T3b[3,4]
          lmrT4t$lambdas[1] <- T4b[3,4]
-         lmrT2t$lambdas[2] <- lmrT2$ratios[2]*T2b[3,4]
-         lmrT3t$lambdas[2] <- lmrT3$ratios[2]*T3b[3,4]
-         lmrT4t$lambdas[2] <- lmrT4$ratios[2]*T4b[3,4]
+         lmrT2t$lambdas[2] <- abs(lmrT2$ratios[2]*T2b[3,4]) # abs for protection
+         lmrT3t$lambdas[2] <- abs(lmrT3$ratios[2]*T3b[3,4]) # against the mean
+         lmrT4t$lambdas[2] <- abs(lmrT4$ratios[2]*T4b[3,4]) # being a negative
          lmrT2t$ratios[2] <- lmrT2$ratios[2]
          lmrT3t$ratios[2] <- lmrT3$ratios[2]
          lmrT4t$ratios[2] <- lmrT4$ratios[2]
@@ -244,11 +242,11 @@ function(n, lcom, cop=NULL, para=NULL, repcoe=5E3, type="gno",
                                                                sig.codes[1]))))
       }
    } else {
-      message(" STATUS: Skipping large sample sim. because sample size is zero.")
+      message(" STATUS: Skipping Monte Carlo integration because sample size is zero.")
    }
    message("STATUS: Rounding digits")
    if(! is.na(digits)) {
-      if(larsimn > 0) {
+      if(mcn > 0) {
           T2b[,4:7]    <- round(T2b[,4:7],     digits=digits)
           T3b[,4:7]    <- round(T3b[,4:7],     digits=digits)
           T4b[,4:7]    <- round(T4b[,4:7],     digits=digits)
@@ -259,10 +257,10 @@ function(n, lcom, cop=NULL, para=NULL, repcoe=5E3, type="gno",
          T4table[,4:9] <- round(T4table[,4:9], digits=digits)
       }
    }
-   txt <- ifelse(uselarmu,
-    "Large sample size simulated means in 'Ntable' were used for p.value computation",
+   txt <- ifelse(usemcmu,
+    "Monte Carlo integration means in 'Ntable' were used for p.value computation",
     "Small sample size simulated means in 'ntable' were used for p.value computation")
-   zz <- list(text="Sample L-comoment Characterization of a Copula",
+   zz <- list(text="Sample L-comoment Hypothesis Testing",
               p.value.how=txt,
               Ntable=list(Lcocorr=T2b,     Lcoskew=T3b,     Lcokurt=T4b),
               ntable=list(Lcocorr=T2table, Lcoskew=T3table, Lcokurt=T4table))

@@ -49,8 +49,7 @@ UsersCop <- function(u,v, para=NULL) {
      afunc <- function(u,v, theta=para) { surCOP(u, v, cop=N4212cop, para=theta)}
      return(asCOP(u,v, f=afunc)) }
 image(gridCOP(cop=UsersCop, para=1.15), col=terrain.colors(20),
-      xlab="U, EXCEEDANCE PROBABILITY", ylab="V, EXCEEDANCE PROBABILITY")
-}
+      xlab="U, EXCEEDANCE PROBABILITY", ylab="V, EXCEEDANCE PROBABILITY")}
 }
 \keyword{copula operator}
 \keyword{joint probability}

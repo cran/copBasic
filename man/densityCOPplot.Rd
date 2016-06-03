@@ -69,8 +69,7 @@ H <- densityCOPplot(cop=PLACKETTcop, para=41.25, getmatrix="cden", n=1000)
 set.seed(12)
 UV <- simCOP(cop=PLACKETTcop, para=41.25, n=1000, col=8)
 U <- as.numeric(colnames(H)); V <- as.numeric(rownames(H))
-contour(x=U, y=V, z=t(H), lwd=1.5, cex=2, add=TRUE, col=2)
-}
+contour(x=U, y=V, z=t(H), lwd=1.5, cex=2, add=TRUE, col=2) # }
 }
 \keyword{visualization}
 \keyword{copula (density)}

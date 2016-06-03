@@ -13,7 +13,7 @@ where \eqn{\hat\mathbf{C}} is the \emph{survival copula} (\code{\link{surCOP}}).
 \deqn{\mathbf{A} \ast (\mathbf{B} \ast \mathbf{C}) = (\mathbf{A} \ast \mathbf{B}) \ast \mathbf{C}\mbox{,}}
 but \eqn{\ast}-product is not commutative (order independent). Nelsen (2006, p. 245) reports that \dQuote{if we view \eqn{\ast} as a binary operation on the set of copulas, then \eqn{\mathbf{\Pi}} is the null element, and \eqn{\mathbf{M}} is the identity.} Copula mulitiplication is closely linked to Markov Processes (Nelsen, 2006, pp. 244--248).
 
-For other descriptions and computations of copula combination are possible using the \pkg{copBasic} package. (see \code{\link{convex2COP}}, \code{\link{composite1COP}}, \code{\link{composite2COP}}, \code{\link{composite3COP}}).
+For other descriptions and computations of copula combination are possible using the \pkg{copBasic} package, see \code{\link{convex2COP}}, \code{\link{composite1COP}}, \code{\link{composite2COP}}, and \code{\link{composite3COP}}.
 }
 \usage{
 prod2COP(u,v, cop1=NULL, para1=NULL, cop2=NULL, para2=NULL, para=NULL,
@@ -77,3 +77,4 @@ rhoCOP(para=UV, as.sample=TRUE) # -0.4284223 (the test n=1000 --> n=965 sample)}
 \concept{copula multiplication}
 \concept{copula product}
 \concept{Markov Product}
+\keyword{Nelsen (2006) Examples and Exercises}

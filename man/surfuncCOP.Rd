@@ -7,7 +7,7 @@ Compute the \emph{joint survival function} for a copula (Nelsen, 2006, p. 33), w
 where \eqn{\hat\mathbf{C}(u',v')} is the \emph{survival copula} (see \code{\link{surCOP}}), which is defined by
 \deqn{\hat{\mathbf{C}}(u',v') = \mathrm{Pr}[U > u, V > v] =  u' + v' - 1 + \mathbf{C}(1-u',1-v')\mbox{.}}
 
-Although the joint survival function is an expression of the probability that both \eqn{U > v} and \eqn{U > v}, it is not a copula.
+Although the joint survival function is an expression of the probability that both \eqn{U > v} and \eqn{U > v}, \eqn{\overline{\mathbf{C}}(u,v)} not a copula.
 }
 \usage{
 surfuncCOP(u, v, cop=NULL, para=NULL, ...)
@@ -46,8 +46,8 @@ UsersCop <- function(u,v, para=NULL) {
      afunc <- function(u,v, theta=para) { surfuncCOP(u, v, cop=N4212cop, para=theta)}
      return(asCOP(u,v, f=afunc)) }
 image(gridCOP(cop=UsersCop, para=1.15), col=terrain.colors(20),
-      xlab="U, NONEXCEEDANCE PROBABILITY", ylab="V, NONEXCEEDANCE PROBABILITY")
-}
+      xlab="U, NONEXCEEDANCE PROBABILITY", ylab="V, NONEXCEEDANCE PROBABILITY")#}
+      
 \dontrun{
 # Conditional return period (Salvadori et al., 2007, p. 159)
 UV <- simCOP(n=100000, cop=PLACKETTcop, para=5, graphics=FALSE)
@@ -55,8 +55,7 @@ u <- 0.5; v <- 0.99; cd <- UV$V[UV$U > u]
 by.counting <- length(cd[cd > v])/length(cd)                  # 0.0172
 by.theo     <- surfuncCOP(u,v, cop=PLACKETTcop, para=5)/(1-u) # 0.0166
 by.ec       <- surfuncCOP(u,v, cop=EMPIRcop, para=UV)/(1-u)   # 0.0189
-print(1/by.theo) # conditional return period for V > 0.99 given U > 0.5
-}
+print(1/by.theo) # conditional return period for V > 0.99 given U > 0.5}
 }
 \keyword{copula operator}
 \keyword{joint probability}

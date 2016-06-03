@@ -5,7 +5,7 @@
 \description{
 Compute the \emph{\enc{Fréchet}{Frechet}-Hoeffding lower bound copula} (Nelsen, 2006, p. 11), which is defined as
 \deqn{\mathbf{W}(u,v) = \mathrm{max}(u+v-1,0)\mbox{.}}
-This is the copula of perfect anti-association ((\emph{countermonotonicity}, \emph{perfectly negative dependence})) between \eqn{U} and \eqn{V} and is sometimes referred to as the \emph{countermonotonicity copula}. Its opposite is the \eqn{\mathbf{M}(u,v)} copula (\emph{comonotonicity copula}; \code{\link{M}}), and statistical \emph{independence} is the \eqn{\mathbf{\Pi}(u,v)} copula (\code{\link{P}}).
+This is the copula of perfect anti-association (\emph{countermonotonicity}, \emph{perfectly negative dependence}) between \eqn{U} and \eqn{V} and is sometimes referred to as the \emph{countermonotonicity copula}. Its opposite is the \eqn{\mathbf{M}(u,v)} copula (\emph{comonotonicity copula}; \code{\link{M}}), and statistical \emph{independence} is the \eqn{\mathbf{\Pi}(u,v)} copula (\code{\link{P}}).
 }
 \usage{
 W(u, v, ...)

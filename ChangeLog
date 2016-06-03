@@ -256,7 +256,7 @@ Version 2.0.1--August 31, 2015
 23. Added GLcop() [Galambos] and HRcop() [Husler-Reiss] extreme value copulas.
 24. **DEPRECTATION ALERT** Overhaul of kullCOP() into Monte Carlo integration
       and deprecated numerical integration to kullCOPint(). Logic is simpler
-      and expense of longer computation times but does not suffer from
+      at expense of longer computation times but does not suffer from
       hard-to-mitigate divergent integral errors.
 25. Added isfuncCOP() as a gridded numerical test on whether a bivariate
       function appears to be a copula. Credit to user S. Kloibhofer for idea
@@ -269,8 +269,53 @@ Version 2.0.1--August 31, 2015
       This is not a maximum likelihood approach but matching of sample
       statistics to theoretical (e.g. like a method of moments). Discussions
       of maximum likelihood implementation with S. Kloibhofer are ongoing.
-29. Overhaul of the output structure of vuongCOP and added elements on the
+29. Overhaul of the output structure of vuongCOP() and added elements on the
       return list to enhance clarity and added t-dist. for confidence interval.
+
+
+Version 2.0.2--October 31, 2015
+1.  Added sobol argument to kullCOP() for Sobol sequences in the Monte Carlo
+      integration with an example in kullCOP.Rd. The package randtoolbox is
+      now imported from to get the sobol() function.
+2.  Added bilmoms() function to compute bivariate L-moments and remapping them
+      to L-comoments of L-correlation, L-coskew, and L-cokurtosis using
+      Monte Carlo integration and optional Sobol sequences.
+3.  Added the two-parameter Gumbel-Hougaard copula that is considered in the
+      paper providing the bivariate L-moments.
+4.  Added level to med.regress() and med.regressCOP2() for prediction interval
+      computation and added example to their use involving the Gaussian copula
+      from the copula package along with linear regression.
+5.  Migration of lcomCOPpv() from large sample simulation to Monte Carlo
+      integration for population estimate of L-comoments via the new bilmoms().
+
+
+Version 2.0.3--May 31, 2016
+1.  Another deep rereading of the documentation and editorial revisions.
+2.  Extended the Gaussian copula example within med.regressCOP.Rd that deals
+       with the interaction with the copula package. (Reminder, WHA does not
+       want to just dump other copulas within copBasic. WHA wants just enough
+       directly implemented to show and validate core bivariate copula math-
+       ematical theory.)
+3.  Added the.zero and sumlogs to densityCOP() to facilitate maximum likelihood
+       estimation (see next item).
+4.  Added the.zero to vuongCOP() so it can dispatch that to densityCOP().
+5.  Added mleCOP() as an example of maximum likelihood estimation suitable for
+       the copBasic package but Examples extend into how the copula package
+       might be integrated to gain access to other copulas but still retain
+       a hosting within the copBasic package. Thanks to S. Kloibhofer for ideas.
+6.  Added rCOP() as a light-weight implementation of simCOP().
+7.  Extended use of the "tol" argument in taildepCOP() and tailconCOP() to
+       control the internally defined "resolution" variable.
+8.  Added psepolar() for pseudo-polar representation of bivariate data.
+9.  Added spectralmeas() for the spectral measure distribution of bivariate data
+       derived from the pseudo-polar representation.
+10. Added StableTailDepFN() for the esimtation of the stable tail dependence
+       function and construction of level sets associated with it.
+11. REMOVED: PlackettPlackettABKGtest.Rd, PlackettPlackettNP.Rd,
+             PlackettPlackettABKGtest.RData, PlackettPlackettNP.RData in
+       effort to reduce file size foot print of the package.
+       See lcomoms2.ABcop2parameterm() and lcomoms2.ABKGcop2parameter() to 
+       explore how to prepopulate parameter to L-comoment mappings.
 
 
 POSSIBLE TODO:
@@ -280,11 +325,9 @@ POSSIBLE TODO:
        cited within deal with this. A turn to recommended literature by
        Joe (2014) is needed.
 
-(2) Maximum likelihood.
-
-(3) Goodness-of-fit of the Kendall Function following Genest et. al. (2006,
+(2) Goodness-of-fit of the Kendall Function following Genest et. al. (2006,
        Goodness-of-fit procedures for copula models based on the probability
        integral transformation: Scand J. Statist 33.
 
-(4) Convergence evaluators for the Monte Carlo integration in kullCOP() to 
-        potentially speed computation times.
+(3) Convergence evaluators for the Monte Carlo integration in bilmoms() and
+       kullCOP() to enhance computation times.

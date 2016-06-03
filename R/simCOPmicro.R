@@ -1,11 +1,13 @@
 "simCOPv" <-
-function(u, cop=NULL, para=NULL, reflect=c("cop", "surv", "acute", "grave"), ...) {
+function(u, cop=NULL, para=NULL,
+            reflect=c("cop", "surv", "acute", "grave"), ...) {
    simCOPmicro(u, cop=cop, para=para, reflect=reflect, ...)
 }
 
 
 "simCOPmicro" <-
-function(u, cop=NULL, para=NULL, reflect=c("cop", "surv", "acute", "grave"), ...) {
+function(u, cop=NULL, para=NULL,
+            reflect=c("cop", "surv", "acute", "grave"), ...) {
   reflect <- match.arg(reflect)
   n <- length(u); t <- runif(n); v <- vector(mode="numeric", length=n)
   v <- switch(reflect,
