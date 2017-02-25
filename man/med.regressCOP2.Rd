@@ -26,13 +26,6 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \examples{
 # See other examples under med.regressCOP
-\dontrun{
-plot(R$U,R$V, type="l", lwd=5, lty=2, xlim=c(0,1), ylim=c(0,1))
-lines((1+(theta-1)*R$V)/(theta+1),R$V, col=4)
-theta <- 0.02
-R <- med.regressCOP2(cop=PLACKETTcop, para=theta)
-lines(R$U,R$V, lwd=5, lty=2)                  # black line
-lines((1+(theta-1)*R$V)/(theta+1),R$V, col=2) # red line}
 }
 \keyword{median regression}
 \keyword{quantile regression}

@@ -26,7 +26,8 @@ EMPIRqua.regress(f=0.5, u=seq(0.01,0.99, by=0.01), empinv=NULL,
 \dontrun{ # EXAMPLE 1
 theta <- 25
 uv <- simCOP(n=1000, cop=PLACKETTcop, para=theta, ploton=FALSE, points=FALSE)
-fakeU <- pp(uv[,1], sort=FALSE); fakeV <- pp(uv[,2], sort=FALSE)
+fakeU <- lmomco::pp(uv[,1], sort=FALSE)
+fakeV <- lmomco::pp(uv[,2], sort=FALSE)
 uv <- data.frame(U=fakeU, V=fakeV)
 
 uv.grid <- EMPIRgrid(para=uv, deluv=0.05) # CPU hungry
@@ -72,7 +73,8 @@ lines(U, rq.9, col=4, lwd=2, lty=4)#}
 \dontrun{ # EXAMPLE 2
 # Start again with the PSP copula
 uv <- simCOP(n=10000, cop=PSP, ploton=FALSE, points=FALSE)
-fakeU <- pp(uv[,1], sort=FALSE); fakeV <- pp(uv[,2], sort=FALSE)
+fakeU <- lmomco::pp(uv[,1], sort=FALSE)
+fakeV <- lmomco::pp(uv[,2], sort=FALSE)
 uv <- data.frame(U=fakeU, V=fakeV)
 
 uv.grid <- EMPIRgrid(para=uv, deluv=0.05) # CPU hungry
@@ -117,7 +119,8 @@ lines(U, rq.9, col=4, lwd=2, lty=4)#}
 
 \dontrun{ # EXAMPLE 3
 uv <- simCOP(n=10000, cop=PSP, ploton=FALSE, points=FALSE)
-fakeU <- pp(uv[,1], sort=FALSE); fakeV <- pp(uv[,2], sort=FALSE)
+fakeU <- lmomco::pp(uv[,1], sort=FALSE)
+fakeV <- lmomco::pp(uv[,2], sort=FALSE)
 uv <- data.frame(U=fakeU, V=fakeV)
 
 uv.grid <- EMPIRgrid(para=uv, deluv=0.1) # CPU hungry
@@ -166,7 +169,8 @@ lines(qua.wrtv, col=4, lwd=2, lty=4)#}
 para   <- list(alpha=0.15,  beta=0.65,
                cop1=PLACKETTcop, cop2=PLACKETTcop, para1=0.005, para2=1000)
 uv <- simCOP(n=20000, cop=composite2COP, para=para)
-fakeU <- pp(uv[,1], sort=FALSE); fakeV <- pp(uv[,2], sort=FALSE)
+fakeU <- lmomco::pp(uv[,1], sort=FALSE)
+fakeV <- lmomco::pp(uv[,2], sort=FALSE)
 uv <- data.frame(U=fakeU, V=fakeV)
 
 uv.grid <- EMPIRgrid(para=uv, deluv=0.025) # CPU hungry
@@ -245,7 +249,7 @@ lines(qua.wrtv, col=4, lwd=2, lty=4)
 qua.wrtv <- EMPIRqua.regress2(f=0.9, empinv=uv.inv2, lowess=TRUE)
 lines(qua.wrtv, col=4, lwd=2, lty=4)#}
 
-\dontrun{ # EXAMPLE 6
+\dontrun{ # EXAMPLE 6 (changing the smoothing on the lowess)
 plot(uv, pch=16, col=rgb(0,0,0,0.1), xlim=c(0,1), ylim=c(0,1),
      xlab="U, NONEXCEEDANCE PROBABILITY", ylab="V, NONEXCEEDANCE PROBABILTIY")
 lines(qua.regressCOP(f=0.5, cop=composite2COP, para=para), col=2)

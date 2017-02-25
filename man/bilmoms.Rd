@@ -17,7 +17,7 @@ Compute the \emph{bivariate L-moments (ratios)} (\eqn{\delta^{[\ldots]}_{k;\math
 \mathbf{C}(u,v)\,\mathrm{d}u\mathrm{d}v - \frac{1}{2}\mbox{,}}
 where the bivariate L-moments are related to the L-comoment ratios by
 \deqn{6\delta^{[12]}_k = \tau^{[12]}_{k+1}\mbox{\quad and \quad}6\delta^{[21]}_k = \tau^{[21]}_{k+1}\mbox{,}}
-where in other words, say, \dQuote{the 3rd bivariate L-moment \eqn{\delta^{[12]}_3} is one sixth the L-cokurtosis \eqn{\tau^{[12]}_4}.} The first four bivariate L-moments yield the first five L-comoments. The terms and nomenclature are not easy and also the adjective \dQuote{ratios} is not always consistent in the literature. The \eqn{\delta^{[\ldots]}_{k;\mathbf{C}}} are \bold{ratios}, and the returned \code{bilcomoms} element by this function holds matrices for the marginal means, marginal L-scales and L-coscales and then the \bold{ratio} L-comoments.
+where in other words, say, \dQuote{the 3rd bivariate L-moment \eqn{\delta^{[12]}_3} is one sixth the L-cokurtosis \eqn{\tau^{[12]}_4}.} The first four bivariate L-moments yield the first five L-comoments. The terms and nomenclature are not easy and also the adjective \dQuote{ratios} is not always consistent in the literature. The \eqn{\delta^{[\ldots]}_{k;\mathbf{C}}} are \bold{ratios}, and the returned \code{bilcomoms} element by this function holds matrices for the marginal means, marginal L-scales and L-coscales, and then the \bold{ratio} L-comoments.
 
 Similarly, the \eqn{\delta^{[21]}_k} are computed by switching \eqn{u \rightarrow v} in the polynomials within the above integrals multiplied to the copula in the system of equations with \eqn{u}. In general, \eqn{\delta^{[12]}_k \not= \delta^{[21]}_k} for \eqn{k > 1} unless in the case of \emph{permutation symmetric} (\code{\link{isCOP.permsym}}) copulas. By theory, \eqn{\delta^{[12]}_1 = \delta^{[21]}_1 = \rho_\mathbf{C}/6} where \eqn{\rho_\mathbf{C}} is \emph{Spearman's Rho} \code{\link{rhoCOP}}.
 
@@ -30,7 +30,7 @@ bilmoms(cop=NULL, para=NULL, n=1E5, sobol=TRUE, ...)
   \item{cop}{A copula function;}
   \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula;}
   \item{n}{The Monte Carlo integration size. The default seems to be at least an order of magnitude greater than needed for many applied problems;}
-  \item{sobol}{A logical trigging \emph{Sobol sequences} for the Monte Carlo integration instead of the bivariate uniform distribution (independence). The Sobol sequences are dependent on the \code{sobol()} function of the \pkg{randtoolbox} package. Sobol sequences canvas the \eqn{\mathcal{I}^2} domain for smaller \eqn{n} values than required if statistical independence is used for the Monte Carlo integration; and}
+  \item{sobol}{A logical trigging \emph{Sobol sequences} for the Monte Carlo integration instead of the bivariate uniform distribution (independence). The Sobol sequences are dependent on the \code{sobol()} function of the \pkg{randtoolbox} package, and the Sobol sequences canvas the \eqn{\mathcal{I}^2} domain for smaller \eqn{n} values than required if statistical independence is used for the Monte Carlo integration; and}
   \item{...}{Additional arguments to pass to the \code{\link{densityCOP}} function.}
 }
 \value{
@@ -42,7 +42,7 @@ bilmoms(cop=NULL, para=NULL, n=1E5, sobol=TRUE, ...)
   \item{source}{An attribute identifying the computational source of the bivariate L-moments and bivariate L-comoments: \dQuote{bilmoms.}}
 }
 \note{
-The mapping of the bivariate L-moments to their L-comoment matrix counterparts is simple but nuances should be discussed and the meaning of the \code{error.rho} needs description.  The extra effort to form L-comoment matrices (Serfling and Xiao, 2007; Asquith, 2011) is made so that output matches the structure of the sample L-comoment matrices from the \code{lcomoms2()} function of the \pkg{lmomco} package.
+The mapping of the bivariate L-moments to their L-comoment matrix counterparts is simple but nuances should be discussed and the meaning of the \code{error.rho} needs further description.  The extra effort to form L-comoment matrices (Serfling and Xiao, 2007; Asquith, 2011) is made so that output matches the structure of the sample L-comoment matrices from the \code{lcomoms2()} function of the \pkg{lmomco} package.
 
 Concerning the triangular or tent-shaped copula of Nelsen (2006, exer. 3.7, pp. 64--65) for demonstration, simulate from it a sample of size \eqn{m = 20{,}000} and compute some sample L-comoments using the following CPU intensive code. The function \code{\link{asCOP}} completes the vectorization needed for non-Monte Carlo integration.
 \preformatted{
@@ -62,7 +62,7 @@ Concerning the triangular or tent-shaped copula of Nelsen (2006, exer. 3.7, pp. 
 \preformatted{
   rhoC <- rhoCOP(cop=UsersCop) # -1.733858e-17
 }
-and used to compute \code{error.rho} (see next code snippet). Therefore, the bivariation association of \code{UsersCop} is zero and thus is an example of a perfectly dependent situation yet of zero correlation. The bivariate L-moments and L-comoments of this copula are computed as
+and used to compute the \code{error.rho} for \code{bilmoms} (see next code snippet). Therefore, the bivariate association of \code{UsersCop} is zero and thus is an example of a perfectly dependent situation yet of zero correlation. The bivariate L-moments and L-comoments of this copula are computed as
 \preformatted{
   theoLC <- bilmoms(cop=UsersCop); print(theoLC$error.rho) # 4.702751e-06
 }
@@ -72,12 +72,9 @@ where the \code{error.rho} is about \code{4.7e-06}, which is near zero (\eqn{\ep
 \deqn{\epsilon_\rho = \frac{\epsilon^{[12]}_\rho  + \epsilon^{[21]}_\rho}{2}\mbox{,}}
 where the \code{error.rho} \eqn{=} \eqn{\epsilon_\rho}, and values near zero are obviously favorable because this indicates that the Monte Carlo integration sample size \eqn{n} argument is sufficiently large to effectively canvas the \eqn{\mathcal{I}^2} domain. For the situation here, the theoretical \eqn{\rho_\mathbf{C} = 0}, but for \code{n} \eqn{= n = 100}, the \code{error.rho} \eqn{\approx} 0.006 (\emph{e.g.} \code{bilmoms(n=100,} \code{cop=UsersCop)$error.rho}), which is a hint that 100 samples are not large enough and that should be obvious.
 
-The reasoning behind using an error \eqn{\rho_\mathbf{C}} between a numerical integration and the Monte Carlo integration is that \eqn{\rho_\mathbf{C}} is symmetrical. This choice of \dQuote{convergence} assessment reduces somewhat the sample size needed for Monte Carlo integration into single number representing error.
+The reasoning behind using the \code{error.rho} between conventional numerical integration and the Monte Carlo integration (\code{error.rho}) is that \eqn{\rho_\mathbf{C}} is symmetrical. This choice of \dQuote{convergence} assessment reduces somewhat the sample size needed for Monte Carlo integration into single number representing error.
 
-
-\emph{Discussion of Theoretical L-comoments}---The theoretical L-comoments in the format structure of the sample L-comoments by the \code{lcomoms2()} function of the \pkg{lmomco} package are formed by the \code{bilmoms} function, and the theoretical values are shown below in sequence with details by L-comoment provided.
-
-Now we extract the L-comoment matrices and show the first L-comoment matrix (means):
+\emph{Discussion of Theoretical L-comoments}---The theoretical L-comoments in the format structure of the sample L-comoments by the \code{lcomoms2()} function of the \pkg{lmomco} package are formed by the \code{bilmoms} function, and the theoretical values are shown below in sequence with details listed by L-comoment. Now we extract the L-comoment matrices and show the first L-comoment matrix (the matrix of the means):
 \preformatted{
   theoLClcm <- theoLC$bilcomoms
   print(theoLClcm)
@@ -101,7 +98,7 @@ The second L-comoment ratio matrix (coefficient of L-variations and L-correlatio
   [1,]  1.000000e+00  2.821651e-05
   [2,]  2.821651e-05  1.000000e+00
 }
-where the diagonal by definition has unities (correlation is unity for a variable on itselt) but the secondary diagonal for the L-correlations has near zeros because the copula is uncorrelated, and the secondary diagonal is computed from the \eqn{\delta^{[\ldots]}_1}. These L-correlations are \emph{Spearman's Rho} computed external to \code{\link{rhoCOP}}.
+where the diagonal by definition has unities (correlation is unity for a variable on itself) but the secondary diagonal for the L-correlations has near zeros because the copula is uncorrelated, and the secondary diagonal is computed from the \eqn{\delta^{[\ldots]}_1}. These L-correlations are \emph{Spearman's Rho} computed external to \code{\link{rhoCOP}}.
 
 The third L-comoment ratio matrix (L-skews and L-coskews) is
 \preformatted{
@@ -125,7 +122,7 @@ The fifth L-comoment ratio matrix (unnamed) is
   [1,] -1.811731e-06 -9.843012e-05
   [2,]  1.249700e-01 -1.247134e-06
 }
-where the diagonal by definition should have nero zeros because the univariate L-kurtosis of a uniform variable is zero---it has no asymmetry. These values further support that default \eqn{n} is large enough. The secondary diagonal holds the fifth L-comoment ratios.  The copula has \eqn{\tau^{[12]}_5 = 0} of \eqn{U} \emph{wrt} \eqn{V} of numerically near zero (symmetry) but measurable fifth-order L-comoment asymmetry of \eqn{V} \emph{wrt} \eqn{U} of \eqn{\tau^{[21]}_5 \approx 0.125}.
+where the diagonal by definition should have nero zeros because the univariate L-kurtosis of a uniform variable is zero---such a random variable has no asymmetry. These values further support that default \eqn{n} is large enough. The secondary diagonal holds the fifth L-comoment ratios.  The copula has \eqn{\tau^{[12]}_5 = 0} of \eqn{U} \emph{wrt} \eqn{V} of numerically near zero (symmetry) but measurable fifth-order L-comoment asymmetry of \eqn{V} \emph{wrt} \eqn{U} of \eqn{\tau^{[21]}_5 \approx 0.125}.
 
 \emph{Comparison of Sample and Theoretical L-comoments}---The previous section shows theoretical values computed as \eqn{\tau^{[21]}_3 \approx -0.75} and \eqn{\tau^{[21]}_5 \approx 0.125} for the two L-comoments substantially away from zero. As sample L-comoments these values are \code{samLC$T3[2,1]} \eqn{=} \eqn{\hat\tau^{[21]}_3 \approx -0.751} and \code{samLC$T5[2,1]} \eqn{=} \eqn{\hat\tau^{[21]}_5 \approx 0.123}. CONCLUSION: \emph{The sample L-comoment algorithms in the \pkg{lmomco} package are validated.}
 }
@@ -149,7 +146,8 @@ bilmoms(cop=composite2COP, n=10000, para=para, sobol=FALSE)
 
 \dontrun{
 UVsim <- simCOP(n=20000, cop=composite2COP, para=para, graphics=FALSE)
-samLcom <- lmomco::lcomoms2(UVsim, nmom=5) # e.g. Tau3[12]=0.1489, Tau3[21]=-0.0679}
+samLcom <- lmomco::lcomoms2(UVsim, nmom=5)
+# e.g. Tau3[12]=0.1489, Tau3[21]=-0.0679}
 }
 \keyword{bivariate asymmetry (measures)}
 \keyword{bivariate skewness}

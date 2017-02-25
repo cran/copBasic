@@ -5,7 +5,6 @@
 \description{
 Compute the measure of association known as \emph{Gini's Gamma} \eqn{\gamma_\mathbf{C}} (Nelsen, 2006, pp. 180--182), which is defined as
 \deqn{\gamma_\mathbf{C} = \mathcal{Q}(\mathbf{C},\mathbf{M}) + \mathcal{Q}(\mathbf{C},\mathbf{W})\mbox{,}}
-
 where \eqn{\mathbf{C}(u,v)} is the copula, \eqn{\mathbf{M}(u,v)} is the \code{\link{M}} function, and \eqn{\mathbf{W}(u,v)} is the \code{\link{W}} function. The function \eqn{\mathcal{Q}(a,b)} (\link{concordCOP}) is a \emph{concordance function} (Nelsen, 2006, p. 158). Nelsen also reports that \dQuote{Gini's Gamma measures a concordance relation of \dQuote{distance} between \eqn{\mathbf{C}(u,v)} and monotone dependence, as represented by the \emph{\enc{Fréchet}{Frechet}-Hoeffding lower bound} and \emph{\enc{Fréchet}{Frechet}-Hoeffding upper bound} copulas [\eqn{\mathbf{M}(u,v)}, \code{\link{M}} and \eqn{\mathbf{W}(u,v)}, \code{\link{W}} respectively]}
 
 A simpler method of computation and the default for \code{giniCOP} is to compute \eqn{\gamma_\mathbf{C}} by
@@ -20,7 +19,7 @@ or in terms of the \emph{primary diagonal} \eqn{\delta(t)} and \emph{secondary d
                            2\mbox{.}}
 
 
-The simpler method is more readily implemented because the single unnested integration are readily deployed (and fast) and accommodated using the \code{integrate()} function in \R. Lastly, Nelsen \emph{et al.} (2001, p. 281) show that \eqn{\gamma_\mathbf{C}} also is computable by
+The simpler method is more readily implemented because the single unnested integration are readily deployed (and fast). Lastly, Nelsen \emph{et al.} (2001, p. 281) show that \eqn{\gamma_\mathbf{C}} also is computable by
 \deqn{\gamma_\mathbf{C} = 2\,\mathcal{Q}(\mathbf{C},\mathbf{A})\mbox{,}}
 where \eqn{\mathbf{A}} is a \emph{convex combination} (\code{\link{convex2COP}}, using \eqn{\alpha = 1/2}) of the copulas \eqn{\mathbf{M}} and \eqn{\mathbf{W}} or \eqn{\mathbf{A} = (\mathbf{M}+\mathbf{W})/2}. However, integral convergence errors seem to trigger occasionally, and the first definition by summation \eqn{\mathcal{Q}(\mathbf{C},\mathbf{M}) + \mathcal{Q}(\mathbf{C},\mathbf{W})} thus is used. The convex combination is demonstrated in the \bold{Examples} section.
 }
@@ -58,7 +57,7 @@ Nelsen, R.B., Quesada-Molina, J.J., \enc{Rodríguez-Lallena}{Rodriguez-Lallena},
          \code{\link{joeskewCOP}}, \code{\link{uvlmoms}}
 }
 \examples{
-giniCOP(cop=PSP)                                 #                   0.3819757
+giniCOP(cop=PSP)                                 #                 = 0.3819757
 \dontrun{
 giniCOP( cop=PSP, by.concordance=TRUE)           # Q(C,M) + Q(C,W) = 0.3820045
 # use convex combination ---triggers integration warning but returns anyway
@@ -95,14 +94,13 @@ rhoCOP(para=D,  as.sample=TRUE)               # 0.5242380 (sample)
 lmomco::lcomoms2(D)$T2      # 1               # 0.5242388 (sample matrix)
                             # 0.5245154 1
 hoefCOP(cop=composite2COP, para=para)         # 0.5082776 (theoretical)
-hoefCOP(para=D[sample(1:n, n/5),],
-                      as.sample=TRUE)         # 0.5033842 (re-sample)
+subsample <- D[sample(1:n, n/5),] # subsampling for speed
+hoefCOP(para=subsample, as.sample=TRUE)       # 0.5033842 (re-sample)
 #hoefCOP(para=D, as.sample=TRUE) # major CPU hog, n too big
 # because the Ds are already "probabilities" just resample as shown above
 wolfCOP(cop=composite2COP, para=para)         # 0.5257662 (theoretical)
 #wolfCOP(para=D, as.sample=TRUE) # major CPU hog, n too big
-wolfCOP(para=D[sample(1:n, n/5),],
-                      as.sample=TRUE)         # 0.5338009 (re-sample)}
+wolfCOP(para=subsample, as.sample=TRUE)       # 0.5338009 (re-sample)}
 }
 \keyword{copula (characteristics)}
 \keyword{copula (properties)}

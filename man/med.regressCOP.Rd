@@ -19,7 +19,7 @@ med.regressCOP(u=seq(0.01,0.99, by=0.01), cop=NULL, para=NULL, level=NA, ...)
 of the returned \code{data.frame} changes---please access the columns by the named idiom. The lower and upper prediction interval is contained in the columns repectively titled \code{Vlwr} and \code{Vupr} to mimic nomenclature somewhat of function \code{predict.lm()} in \R.
 }
 \note{
-An extended demonstration is needed concerning prediction intervals by median regression and comparison to well-known linear regression. This also affords and opportunity to have \pkg{copBasic} interact with the \pkg{copula} package to gain access to the \emph{Gaussian copula} and a \emph{maximum pseudo-likelihood} estimation of the parameter.
+An extended demonstration is needed concerning prediction intervals by median regression and a comparison to well-known linear regression. This also affords and opportunity to have \pkg{copBasic} interact with the \pkg{copula} package to gain access to the \emph{Gaussian copula} and a \emph{maximum pseudo-likelihood} estimation of the parameter.
 
 First, a function \code{NORMcop()} is defined to form the interconnect between the two packages. It is critically important that the user recognize that the so-called \code{copula} object as built by the \pkg{copula} package is treated as the canonical \code{para} argument in \pkg{copBasic} calls herein.
 \preformatted{
@@ -35,13 +35,14 @@ The parameter \eqn{\Theta \in [-1, 1]} (\emph{Pearson's R}) and \eqn{\rho_\mathb
 and
 \deqn{\tau_\mathbf{C}(\Theta) = \frac{6}{\pi}\,\mathrm{arcsin}(\Theta/2)\mbox{.}}
 
-Second, a bivariate \emph{Gaussian copula} is defined with a parameter \eqn{\Theta = 0.7} (thus \eqn{\rho_\mathbf{C} = 0.6829105}, \code{rhoCOP(NORMcop,norm.cop)}) and then \eqn{n=255} samples simulated from it. These are then cast into standard normal variates to mimic the idea of bivariate data in nonprobability units and facilitation regression comparison.
+Second, a bivariate \emph{Gaussian copula} is defined with a parameter \eqn{\Theta = 0.7} (thus \eqn{\rho_\mathbf{C} = 0.6829105}, \code{rhoCOP(NORMcop, norm.cop)}) and then \eqn{n=255} samples simulated from it. These are then cast into standard normal variates to mimic the idea of bivariate data in nonprobability units and facilitation regression comparison.
 \preformatted{
-  norm.cop <- copula::normalCopula(c(0.7), dim = 2)
-  UVs <- as.data.frame(copula::rCopula(255, norm.cop))
-  X <- qnorm(UVs[,1]); Y <- qnorm(UVs[,2])
+  norm.cop <- copula::normalCopula(c(0.7), dim = 2) # define a Gaussian copula
+  UVs      <- copula::rCopula(255, norm.cop) # draw 255 samples
+  UVs      <- as.data.frame(UVs); X <- qnorm(UVs[,1]); Y <- qnorm(UVs[,2])
 }
-Then the \emph{Weibull plotting positions} from the \code{pp()} function of package \pkg{lmomco} are used to estimate the empirical probababilities of the data in \code{UV} that are casted into an \R \code{matrix} because the \pkg{copula} package expects the data as a \code{matrix} for the default parameter estimation. The code is completed by the specification of the fitted Gaussian copula in \code{fnorm.cop}.
+
+Third, the \emph{Weibull plotting positions} from the \code{pp()} function of package \pkg{lmomco} are used to estimate the empirical probababilities of the data in \code{UV} that are casted into an \R \code{matrix} because the \pkg{copula} package expects the data as a \code{matrix} for the default parameter estimation. The code is completed by the specification of the fitted Gaussian copula in \code{fnorm.cop}.
 \preformatted{
   UV <- as.matrix(data.frame(U=lmomco::pp(X, sort=FALSE),
                              V=lmomco::pp(Y, sort=FALSE)))
@@ -49,7 +50,8 @@ Then the \emph{Weibull plotting positions} from the \code{pp()} function of pack
   para <- summary(para)$coefficients[1] # maximum pseudo-likelihood est.
   fnorm.cop <- copula::normalCopula(para, dim=2)
 }
-Ordinary-least-squares (OLS) linear regression for \eqn{Y\mid X} and \eqn{X\mid Y} is computed, and the results plotted on top of the data points. The 2/3-prediction limits are computed by \code{predict.lm()} and also shown.
+
+Fourth, ordinary-least-squares (OLS) linear regression for \eqn{Y\mid X} and \eqn{X\mid Y} is computed, and the results plotted on top of the data points. The 2/3-prediction limits are computed by \code{predict.lm()} and also shown.
 \preformatted{
   # Classical linear regressions from two perspectives.
   LMyx <- lm(Y~X);       LMxy <- lm(X~Y)
@@ -65,13 +67,14 @@ Ordinary-least-squares (OLS) linear regression for \eqn{Y\mid X} and \eqn{X\mid 
   tmp <- predict.lm(LMxy, list(Y=Y), level=2/3, interval="prediction")
   lines(tmp[,2], Y, col=3); lines(tmp[,3], Y, col=3)
 }
-The demonstration ends with the plotting of the median regression for the Gaussian copula and drawing the regression lines. The two median regression lines are nearly coincident with the OLS regression lines as anticipated with a reasonably large sample size albeit maximum pseudo-likelihood was used to estimate the copula parameter. The mean of a uniform distributed variable given say \eqn{U = u} (horizontal axis) is 1/2, which coincides with the median. The median regression lines thus are coincident with the OLS lines even though OLS and real-space (native units of \eqn{X} and \eqn{Y}) were not used for their computation. The 2/3-prediction intervals are also plotted for comparison.
+
+Finally, the demonstration ends with plotting of the median regression for the Gaussian copula and drawing the regression lines. The two median regression lines are nearly coincident with the OLS regression lines as anticipated with a reasonably large sample size albeit maximum pseudo-likelihood was used to estimate the copula parameter. The mean of a uniform distributed variable given say \eqn{U = u} (horizontal axis) is 1/2, which coincides with the median. The median regression lines thus are coincident with the OLS lines even though OLS and real-space (native units of \eqn{X} and \eqn{Y}) were not used for their computation. The 2/3-prediction intervals are also plotted for comparison.
 \preformatted{
   UorV    <- c(0.001, seq(.02,0.98, by=.02), 0.999)
   MEDreg  <- med.regressCOP( u=UorV, level=2/3,
-                            cop=fromPKGcopula,  para=fnorm.cop)
+                            cop=NORMcop,  para=fnorm.cop)
   MEDreg2 <- med.regressCOP2(v=UorV, level=2/3,
-                             cop=fromPKGcopula, para=fnorm.cop)
+                             cop=NORMcop, para=fnorm.cop)
   lines(qnorm(UorV),         qnorm(MEDreg$V),    col=4, lty=2)
   lines(qnorm(UorV),         qnorm(MEDreg$Vlwr), col=4, lty=2)
   lines(qnorm(UorV),         qnorm(MEDreg$Vupr), col=4, lty=2)
@@ -80,12 +83,12 @@ The demonstration ends with the plotting of the median regression for the Gaussi
   lines(qnorm(MEDreg2$Uupr), qnorm(UorV),        col=6, lty=2)
 }
 
-A curious aside (Joe, 2014, p. 164) about the \emph{Gaussian copula} is that \emph{Blomqvist's Beta} (\code{\link{blomCOP}}) is equal to \emph{Kendall's Tau} (\code{\link{tauCOP}}): \eqn{\beta_\mathbf{C} = \tau_\mathbf{C}}, which can be checked by
+A curious aside (Joe, 2014, p. 164) about the \emph{Gaussian copula} is that \emph{Blomqvist's Beta} (\code{\link{blomCOP}}) is equal to \emph{Kendall's Tau} (\code{\link{tauCOP}}), which can be checked by
 \preformatted{
   blomCOP(cop=NORMcop, para=norm.cop) # 0.4936334
   tauCOP( cop=NORMcop, para=norm.cop) # 0.493633
 }
-and obviously the two statistics are numerically the same.
+and obviously the \eqn{\beta_\mathbf{C} = \tau_\mathbf{C}} are numerically the same.
 }
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
@@ -96,14 +99,6 @@ Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in
 \seealso{\code{\link{med.regressCOP2}}, \code{\link{qua.regressCOP}}, \code{\link{qua.regressCOP.draw}}
 }
 \examples{
-\dontrun{
-plot(R$U,R$V, type="l", lwd=5, lty=2, xlim=c(0,1), ylim=c(0,1))
-lines(R$U,(1+(theta-1)*R$U)/(theta+1), col=2)
-theta <- 202
-R <- med.regressCOP(cop=PLACKETTcop, para=theta)
-lines(R$U,R$V, lwd=5, lty=2)                  # black line
-lines(R$U,(1+(theta-1)*R$U)/(theta+1), col=2) # red line }
-
 \dontrun{
 # INDEPENDENCE YIELDS STRAIGHT LINES, RED IS THE MEDIAN REGRESSION
 F <- seq(0.1, 0.9, by=0.1)

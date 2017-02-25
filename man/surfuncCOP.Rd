@@ -55,7 +55,7 @@ u <- 0.5; v <- 0.99; cd <- UV$V[UV$U > u]
 by.counting <- length(cd[cd > v])/length(cd)                  # 0.0172
 by.theo     <- surfuncCOP(u,v, cop=PLACKETTcop, para=5)/(1-u) # 0.0166
 by.ec       <- surfuncCOP(u,v, cop=EMPIRcop, para=UV)/(1-u)   # 0.0189
-print(1/by.theo) # conditional return period for V > 0.99 given U > 0.5}
+print(1/by.theo) # conditional return period for V > 0.99 given U > 0.5 }
 }
 \keyword{copula operator}
 \keyword{joint probability}

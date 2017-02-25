@@ -10,7 +10,7 @@ The \emph{(extended) composition of two copulas}  (Salvadori \emph{et al.}, 2006
 
 defines a family of copulas \eqn{\mathbf{C}_{\alpha,\beta,\kappa,\gamma}} with \bold{four} \emph{compositing parameters} \eqn{\alpha,\beta,\kappa,\gamma \in \mathcal{I}:[0,1]}.
 
-It is important to stress that copulas \eqn{\mathbf{A}_{\Theta_A}} and \eqn{\mathbf{B}_{\Theta_B}} can be of different families and each parameterized accordingly by the values \eqn{\Theta_A} and \eqn{\Theta_B}. This is an interesting observation in the context of building complex copulatic structures in pursuit of fitting asymmetric measures of dependency such as the \emph{L-comoments} available in the \pkg{lmomco} package.
+It is important to stress that copulas \eqn{\mathbf{A}_{\Theta_A}} and \eqn{\mathbf{B}_{\Theta_B}} can be of different families and each parameterized accordingly by the vectors of parameters \eqn{\Theta_A} and \eqn{\Theta_B}. This is an interesting observation in the context of building complex copulatic structures in pursuit of fitting asymmetric measures of dependency such as the \emph{L-comoments} available in the \pkg{lmomco} package.
 }
 \usage{
 composite3COP(u,v,para,...)
@@ -36,7 +36,7 @@ The following descriptions list in detail the structure and content of the \code
   \item{\code{para1}}{--- Vector of parameters \eqn{\Theta_\mathbf{A}} for \eqn{\mathbf{A}}; and}
   \item{\code{para2}}{--- Vector of parameters \eqn{\Theta_\mathbf{B}} for \eqn{\mathbf{B}}.}
 
-The first example produces two plots. These are extremely informative for nuances of copula theory. Whereas it is difficult in prose to describe, users are strongly encouraged that once full understanding of connection of red and green between the easier to understand bivariate plot and the plot showing the sections and derivatives of the sections is achieved that much of copula theory will be mastered---get a copy of Nelsen (2006) and (or) Salvadori \emph{et al.} (2007).
+The first example produces two plots. These are extremely informative for many nuances of copula theory. Whereas it is difficult in prose to describe, users are strongly encouraged that once full understanding of connection of red and green between the easier to understand bivariate plot and the plot showing the sections and derivatives of the sections is achieved that much of copula theory will be mastered---get a copy of Nelsen (2006) and (or) Salvadori \emph{et al.} (2007).
 }
 }
 \references{
@@ -51,10 +51,10 @@ Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in
 para <- list(cop1=PLACKETTcop, cop2=N4212cop,
              para1=10^(runif(1,min=-5,max=5)), para2=runif(1,min=1,max=100),
              alpha=runif(1), beta=runif(1), kappa=runif(1), gamma=runif(1))
-txts <- c("Alpha=",       round(para$alpha, digits=4),
-          "; Beta=",      round(para$beta,  digits=4),
-          "; Kappa=",     round(para$kappa, digits=4),
-          "; Gamma=",    round(para$gamma,  digits=4),
+txts <- c("Alpha=",    round(para$alpha,    digits=4),
+          "; Beta=",   round(para$beta,     digits=4),
+          "; Kappa=",  round(para$kappa,    digits=4),
+          "; Gamma=",  round(para$gamma,    digits=4),
           "; Theta1=", round(para$para1[1], digits=5),
           "; Theta2=", round(para$para2[1], digits=2))
 layout(matrix(1:2,byrow=TRUE))
@@ -65,21 +65,11 @@ f <- round(runif(1),digits=2)
 ftxt <- c("Sectionals (thick) and derivatives (thin) at f=",f," nonexceedance prob.")
 segments(f,0,f,1, col=3, lwd=2); segments(0,f,1,f, col=2, lwd=2)
 t <- sectionCOP(f,cop=composite3COP,para=para, col=3, lwd=4)
-t <- sectionCOP(f,cop=composite3COP,para=para, dercop=TRUE, ploton=FALSE,
-                  col=3)
-t <- sectionCOP(f,cop=composite3COP,para=para,   wrtV=TRUE, ploton=FALSE,
-                  col=2, lwd=4)
-t <- sectionCOP(f,cop=composite3COP,para=para,   wrtV=TRUE, ploton=FALSE,
-                  dercop=TRUE, col=2)
+t <- sectionCOP(f,cop=composite3COP,para=para, dercop=TRUE, ploton=FALSE,col=3)
+t <- sectionCOP(f,cop=composite3COP,para=para, wrtV=TRUE,   ploton=FALSE,col=2,lwd=4)
+t <- sectionCOP(f,cop=composite3COP,para=para, wrtV=TRUE,   ploton=FALSE,col=2,
+                  dercop=TRUE)
 mtext(paste(ftxt, collapse=""))#}
-
-\dontrun{
-mainpara <- list(cop1=PLACKETTcop, cop2=PLACKETTcop,
-                 para1gen=function() { return(10^runif(1, min=-5, max=5)) },
-                 para2gen=function() { return(10^runif(1, min=-5, max=5)) })
-n.sample <- 200; n <- 20000 # really used 20000 for generation of the data set
-PlackettPlackettABKG <- simcomposite3COP(n=n.sample, nsim=n, parent=mainpara)
-save(PlackettPlackettABKG, file="PlackettPlackettABKG.RData", compress="xz")#}
 }
 \keyword{copula composition}
 \keyword{copula composition (four compositing parameters)}

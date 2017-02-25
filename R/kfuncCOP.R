@@ -5,7 +5,6 @@ function(z, cop=NULL, para=NULL, wrtV=FALSE, as.sample=FALSE, verbose=FALSE, ...
 
 "kfuncCOP" <-
 function(z, cop=NULL, para=NULL, wrtV=FALSE, as.sample=FALSE, verbose=FALSE, ...) {
-
    as.sample <- as.character(as.sample)
    if(as.sample != "FALSE") {
       if(length(para[1,]) != 2) {
@@ -13,15 +12,23 @@ function(z, cop=NULL, para=NULL, wrtV=FALSE, as.sample=FALSE, verbose=FALSE, ...
          return(NA)
       }
 
-      if(as.sample=="genest") {
-         n <- length(para[,1])
+      if(as.sample=="genest" | as.sample=="Genest" ) {
+         n <- nrow(para)
          R <- rank(para[,1]); S <- rank(para[,2])
          "VIN" <- function(i) sum(as.numeric(R <= R[i] & S <= S[i]))/n
          FKin <- sapply(z, function(t) {
                 sum(sapply(1:n, function(j) as.numeric(VIN(j) <= t) ))/n })
          return(FKin)
+      } else if(as.sample == "charpentier" | as.sample == "Charpentier") {
+        # Charpentier, Arthur, 2012, Kendall's function for copulas:
+        # http://freakonometrics.hypotheses.org/1126  (12/09/2012)
+        n <- nrow(para); i <- rep(1:n,each=n); j <- rep(1:n,n)
+        S <- (para[i,1] > para[j,1]) & (para[i,2] > para[j,2])
+        Z <- tapply(S,i,sum) / (n-1)
+        zz <- data.frame(t=sort(Z), Kc=(1:n)/n)
+        return(zz)
       } else {
-         n     <- length(para[,1])
+         n     <- nrow(para)
          FKin  <- sort(EMPIRcop(para[,1], para[,2], para=para, ...))
          Zin   <- (rank(FKin)-0.5)/n
          empkc <- approx(c(0,FKin,1), c(0,Zin,1), xout=z)$y

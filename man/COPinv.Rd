@@ -11,7 +11,7 @@ and solving for \eqn{v}.  Nelsen (2006, p. 12) does not so name this function as
     f() values at end points not of opposite sign
   [1] NA
 }
-This is a harmless error in the sense that \code{COPinv} is functioning properly. One can  not invert a copula for \eqn{u < t} and for \eqn{u = t} the \eqn{v = 1} because of fundamental copula properties. Also because of fundamental theory involved, the author perceives that it is better to not silently trap the error but let errors cascade up the chain in a user's application.
+This is a harmless error in the sense that \code{COPinv} is functioning properly. One can  not invert a copula for \eqn{u < t} and for \eqn{u = t} the \eqn{v = 1} because of fundamental copula properties. Also because of fundamental theory involved, the author perceives that it is better to not silently trap the error but let errors cascade up the chain in a user's application. This might represent suboptimal design and suggestions for improvement are invited.
 }
 \usage{
 COPinv(cop=NULL, u, t, para=NULL, ...)
@@ -20,7 +20,7 @@ COPinv(cop=NULL, u, t, para=NULL, ...)
   \item{cop}{A copula function;}
   \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction;}
   \item{t}{Nonexceedance probability level \eqn{t};}
-  \item{para}{Vector of parameters or other data structures, if needed, to pass to the copula, and}
+  \item{para}{Vector of parameters or other data structures, if needed, to pass to the copula; and}
   \item{...}{Additional arguments to pass.}
 }
 \value{

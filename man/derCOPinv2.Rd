@@ -43,7 +43,7 @@ for(i in 1:500) {
    v <- runif(1); t <- runif(1)
    u <- derCOPinv2(v,t, cop=FRECHETcop, para=list(alpha=0.7, beta=0.169))
    points(u,v, cex=2, pch=16, col=2) # red dots
-}}
+} #}
 }
 \keyword{copula (utility)}
 \keyword{copula (derivative inverse)}

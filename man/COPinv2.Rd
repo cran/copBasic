@@ -11,7 +11,7 @@ and solving for \eqn{u}.  Nelsen (2006, p. 12) does not so name this function as
     f() values at end points not of opposite sign
   [1] NA
 }
-This is a harmless error in the sense that \code{COPinv2} is functioning properly. One can  not invert a copula for \eqn{v < t} and for \eqn{v = t} the \eqn{u = 1} because of fundamental copula properties. Also because of fundamental theory involved, the author perceives that it is better to not silently trap the error but let errors cascade up the chain in a user's application.
+This is a harmless error in the sense that \code{COPinv2} is functioning properly. One can  not invert a copula for \eqn{v < t} and for \eqn{v = t} the \eqn{u = 1} because of fundamental copula properties. Also because of fundamental theory involved, the author perceives that it is better to not silently trap the error but let errors cascade up the chain in a user's application.  This might represent suboptimal design and suggestions for improvement are invited.
 }
 \usage{
 COPinv2(cop=NULL, v, t, para=NULL, ...)

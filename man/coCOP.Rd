@@ -12,7 +12,7 @@ The co-copula is a function and not in itself a copula. Some rules of copulas me
 
 The function \code{coCOP} gives \dQuote{risk} against failure if failure is desired as either hazard source \eqn{U} or \eqn{V} occuring by themselves or if both occurred at the same time. Expressing this in terms of an annual probability of occurrence (\eqn{q}), one has
 \deqn{q = 1 - \mathrm{Pr}[U > u \mathrm{\ or\ } V > v] =  \mathbf{C}^{\star}(u',v') \mbox{\ or}}
-in \R code \code{q <- coCOP(u,v, exceedance=FALSE, ...)}. So in yet other words and as a mnemonic: \emph{A co-copula is the probabililty of exceedance if the hazard sources \bold{collaborate} (cooperate) to cause failure.} Also \eqn{q} can be computed by \code{q <- coCOP(1-u,1-v, exceedance=TRUE, ...)}
+in \R code \code{q <- coCOP(u,v, exceedance=FALSE, ...)}. So in yet other words and as a mnemonic: \emph{A co-copula is the probabililty of exceedance if the hazard sources \bold{collaborate} or \bold{cooperate} to cause failure.} Also \eqn{q} can be computed by \code{q <- }\code{coCOP(1-u,1-v, exceedance=TRUE, ...)}
 }
 \usage{
 coCOP(u, v, cop=NULL, para=NULL, exceedance=TRUE, ...)
@@ -22,7 +22,7 @@ coCOP(u, v, cop=NULL, para=NULL, exceedance=TRUE, ...)
   \item{v}{Exceedance probability (\eqn{v' = 1-v}) in the \eqn{Y} direction;}
   \item{cop}{A copula function;}
   \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula;}
-  \item{exceedance}{A logical controlling the probability direction. Are \code{u} and \code{v} really \eqn{u'} and \eqn{v'}, respectively? If \code{FALSE}, then the complements of the two are made internally and the nonexceedances can thus be passed; and}
+  \item{exceedance}{A logical controlling the probability direction. Are \code{u} and \code{v} values given really \eqn{u'} and \eqn{v'}, respectively? If \code{FALSE}, then the complements of the two are made internally and the nonexceedances can thus be passed; and}
   \item{...}{Additional arguments to pass to the copula.}
 }
 \value{

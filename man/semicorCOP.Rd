@@ -9,8 +9,8 @@ compute the \emph{upper semi-correlations}
 of a copula \eqn{\mathbf{C}(u,v)} (Joe, 2014, p. 73). The semi-correlations are defined as
 \deqn{\rho_N^{-}(a) = \mathrm{cor}[Z_1, Z_2|Z_1 > a, Z_2 > a]\mbox{,}}
 \deqn{\rho_N^{+}(a) = \mathrm{cor}[Z_1, Z_2|Z_1 < a, Z_2 < a]\mbox{,\ and}}
-\deqn{\rho_N(a > -\infty) = \mathrm{Cor}[Z_1, Z_2]\mbox{,}}
-where \eqn{\mathrm{cor[z_1, z_2]}} is the familiar Pearson's correlation correlation function, which is in \R the syntax \code{cor(..., method="pearson")}, parameter \eqn{a \ge 0} is a truncation point that identifies \emph{truncated tail regions} (Joe, 2014, p. 73), and lastly \eqn{(Z_1, Z_2) \sim \mathbf{C}(\Phi, \Phi)} and thus from the standard normal distribution \eqn{(Z_1, Z_2) = (\Phi^{-1}(u), \Phi^{-1}(v))} where the random variables \eqn{(U,V) \sim \mathbf{C}}.
+\deqn{\rho_N(a > -\infty) = \mathrm{cor}[Z_1, Z_2]\mbox{,}}
+where \eqn{\mathrm{cor[z_1, z_2]}} is the familiar \emph{Pearson's correlation} function, which is in \R the syntax \code{cor(...,} \code{method="pearson")}, parameter \eqn{a \ge 0} is a truncation point that identifies \emph{truncated tail regions} (Joe, 2014, p. 73), and lastly \eqn{(Z_1, Z_2) \sim \mathbf{C}(\Phi, \Phi)} and thus from the standard normal distribution \eqn{(Z_1, Z_2) = (\Phi^{-1}(u), \Phi^{-1}(v))} where the random variables \eqn{(U,V) \sim \mathbf{C}}.
 }
 \usage{
 semicorCOP(cop=NULL, para=NULL, truncation=0, n=0, samcor=FALSE, ...)
@@ -27,7 +27,7 @@ semicorCOP(cop=NULL, para=NULL, truncation=0, n=0, samcor=FALSE, ...)
   The value(s) for \eqn{\rho_N^{-}} and \eqn{\rho_N^{+}} are returned.
 }
 \note{
-The sample semi-correlations can be computed from a two column table that is passed into the function using the \code{para} argument. Although the truncation point \eqn{a \ge 0}, as \eqn{a} increases and focus is increasingly made into one or the other truncated tail regions, the sample version with data would not be estimated as well because available sample size diminishes. The \code{para} argument can contain probabilities or raw data because internally the function computes the \emph{Hazen plotting positions} (\emph{e.g.} \eqn{u_i = (i-0.5)/n} for rank \eqn{i} and sample size \eqn{n}) because Joe (2014, pp. 9, 17, 245, 247--248) repeatedly emphasizes this form of plotting position when normal scores are involved.
+The sample semi-correlations can be computed from a two column table that is passed into the function using the \code{para} argument. Although the truncation point \eqn{a \ge 0}, as \eqn{a} increases and focus is increasingly made into one or the other truncated tail regions, the sample version with data would not be estimated as well because the available sample size diminishes. The \code{para} argument can contain probabilities or raw data because internally the function computes the \emph{Hazen plotting positions} (\emph{e.g.} \eqn{u_i = (i-0.5)/n} for rank \eqn{i} and sample size \eqn{n}) because Joe (2014, pp. 9, 17, 245, 247--248) repeatedly emphasizes this form of plotting position when normal scores are involved.
 }
 \references{
 Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.

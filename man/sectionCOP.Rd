@@ -48,7 +48,7 @@ tmp <- sectionCOP(0.55, cop=PSP, ylab="COPULA SECTIONS",  lwd=5, col=2)
 tmp <- sectionCOP(0.55, cop=PSP, wrtV=TRUE, ploton=FALSE, lwd=2, col=3)
 # now add the v=0.85 section and the u=0.85, again overlay each other
 tmp <- sectionCOP(0.85, cop=PSP, ploton=FALSE,             lwd=5, col=2, lty=2)
-tmp <- sectionCOP(0.85, cop=PSP, wrtV=TRUE, ploton=FALSE,  lwd=2, col=3, lty=2)}
+tmp <- sectionCOP(0.85, cop=PSP, wrtV=TRUE, ploton=FALSE,  lwd=2, col=3, lty=2)#}
 
 \dontrun{
 # EXAMPLE 2, v=0.35 section and derivative (the conditional distribution) function

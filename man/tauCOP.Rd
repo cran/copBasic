@@ -85,8 +85,9 @@ dotau <- function(n) {
    uv <- simCOP(n=n, cop=PSP, ploton=FALSE, points=FALSE)
    return(cor(uv$U, uv$V, method="kendall"))
 }
-taus <- replicate(100, dotau(1000))
-tau.sample <- mean(taus); print(tau.sample) # 0.3333763}
+set.seed(817600)
+taus <- replicate(100, dotau(100))
+tau.sample <- mean(taus); print(tau.sample) # 0.3342034}
 
 \dontrun{
 # Nelsen (2006, pp. 160-161, numeric results shown thereine)

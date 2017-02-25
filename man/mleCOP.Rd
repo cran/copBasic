@@ -2,7 +2,7 @@
 \alias{mleCOP}
 \title{ Maximum Pseudo-Log-Likelihood Estimation for Copula Parameter Estimation }
 \description{
-This function provides maximum pseudo-log-likelihood estimation (pMLE) for copula parameters by maximizing the function:
+Perform maximum pseudo-log-likelihood estimation (pMLE) for copula parameters by maximizing the function:
 \deqn{\mathcal{L}(\Theta_p) = \sum_{i=1}^n \log\bigl[ c(F_x(x_i), F_y(y_i); \Theta_p)\bigr]\mbox{,}}
 where \eqn{\mathcal{L}(\Theta_p)} is the log-likelihood for parameter vector \eqn{\Theta_p} of dimension \eqn{p}, and \eqn{c(u,v; \Theta_p)} is the bivariate copula density. The \eqn{u} and \eqn{v} are estimated by the respective empirical cumulative distribution functions \eqn{u = F_x(\cdots)} and \eqn{v = F_y(\cdots)} for each of the joint realizations of a sample of size \eqn{n}. The \eqn{c(u,v)} is numerically estimated by the copula using the \code{\link{densityCOP}} function.
 }
@@ -33,9 +33,9 @@ function. This is independent from the \code{control$trace} of function \code{op
   \item{BIC}{Bayesian information criterion (BIC): \eqn{BIC = p\log(n) - 2\mathcal{L}(\Theta_p)}.}
 }
 \note{
-This \bold{Note} section provides for a more thorough assessment of pseudo-log-likelihood parameter estimation (pMLE) than shown in the \bold{Examples}.
+This section provides for a more thorough assessment of pseudo-log-likelihood parameter estimation (pMLE) than shown in the \bold{Examples}.
 
-\emph{INTERFACE TO THE \pkg{COPULA} PACKAGE}---A not uncommon question to the author is how can copBasic support copulas from other packages?  A \pkg{copBasic} pMLE implementation to the \emph{Gaussian copula} from the \pkg{copula} package is thus useful.
+\emph{INTERFACE TO THE \pkg{COPULA} PACKAGE}---A not uncommon question to the author is how can \pkg{copBasic} support copulas from other packages?  A \pkg{copBasic} pMLE implementation to the \emph{Gaussian copula} from the \pkg{copula} package is thus useful.
 
 Two interface functions are required for the pMLE situation. First, interface the \pkg{copula} package in a generic form for the \pkg{copBasic} package:
 \preformatted{
@@ -56,7 +56,7 @@ Now, let us perform a parameter estimate for a sample of size \eqn{n=900}:
   mleCOP(UV, cop=cB2copula, parafn=copula2cBpara, interval=c(-1,1))$para
   #   rho.1  =  0.4248822 
 }
-The search interval for the \emph{Gaussian copula} is \eqn{\rho \in [-1, 1]}, and the final result is \eqn{\rho = 0.445883}.
+The search interval for the \emph{Gaussian copula} is \eqn{\rho \in [-1, 1]}, and the final result is \eqn{\rho = 0.4458822}.
 
 \emph{MULTI-DIMENSIONAL pMLE}---Consider a 2-parameter \emph{Gumbel-Hougaard copula} (\eqn{\mathbf{GH}(\Theta_1, \Theta_2)}) but now use the \code{parafn} argument to provide boundary condition assistance through function \code{GH2pfunc} to the \code{optim()} function that performs the maximization. 
 \preformatted{
@@ -77,8 +77,8 @@ and the result is \eqn{\Theta = 5.3742229} and \eqn{\pi_{1,2} = (0.6141652, 0.93
 \emph{ANOTHER MULTI-DIMENSIONAL pMLE}---Finally, an experiment can be played to fit a 3-parameter \eqn{\mathbf{GH}(\Theta, \pi_1, \pi_2)} to a simulation from a 2-parameter \eqn{\mathbf{GH}(\Theta_1, \Theta_2)}, where the seed is just arbitrary and \emph{Vuong's Procedure} (\code{\link{vuongCOP}}) is used to compare fits and make inference. The parameter functions \code{GH2pfunc} and \code{GH3pfunc} are as before.
 \preformatted{
   set.seed(10); UV <- simCOP(n=500, cop=GHcop, para=c(1.7, 1.86))
-  GH2pfunc <- function(p) { return(c(exp(p[1])+1, exp(p[2]))) }
-  GH3pfunc <- function(p) { return(c(exp(p[1])+1, pnorm(p[2]), pnorm(p[3]))) }
+  GH2pfunc <- function(p) { return(c(exp(p[1])+1,   exp(p[2])              )) }
+  GH3pfunc <- function(p) { return(c(exp(p[1])+1, pnorm(p[2]), pnorm(p[3]) )) }
   para1 <- mleCOP(UV, cop=GHcop, init.para=c(1,1),     parafn=GH2pfunc)$para
   para2 <- mleCOP(UV, cop=GHcop, init.para=c(1,.5,.5), parafn=GH3pfunc)$para
   vuongCOP(UV, cop1=GHcop, para1=para1, cop2=GHcop, para2=para2)$message
@@ -91,7 +91,7 @@ The results show the 2-p \eqn{\mathbf{GH}} is a better fit to the simulated data
   set.seed(67) # Second, the estimated incorrect model.
   UV <- simCOP(n=200, GHcop, para=para2, snv=TRUE, ploton=FALSE)
 }
-Yes, differences in form are manifest in the produced graphic. Now, let us try another set of parameters and again arbitrary seed.
+Yes, differences in form are manifest in the produced graphic. Now, let us try another set of parameters and again an arbitrary seed.
 \preformatted{
   set.seed(10); UV <- simCOP(n=500, cop=GHcop, para=c(1.91, .16))
   para1 <- mleCOP(UV, cop=GHcop, init.para=c(1,1),     parafn=GH2pfunc)$para
@@ -104,7 +104,7 @@ The results show equivalence, let us now check a graphic.
   set.seed(67); z <- simCOP(n=200, GHcop, para=para1, snv=TRUE, pch=16, col=2)
   set.seed(67); z <- simCOP(n=200, GHcop, para=para2, snv=TRUE, ploton=FALSE)
 }
-Hum, the differences are small but might be inflating into the lower left corner. What sample size could conceivably begin to distinguish between the copula?
+The differences are small but the differences might be inflating into the lower left corner. What sample size could conceivably begin to distinguish between the copula?
 \preformatted{
   kullCOP(cop1=GHcop, cop2=GHcop, para1=para1, para2=para2) # 625 on this run
 
@@ -116,7 +116,7 @@ Hum, the differences are small but might be inflating into the lower left corner
     vuongCOP(UV, cop1=GHcop, para1=p1, cop2=GHcop, para2=p2)$result })
   sum(Results)
 }
-The summation yields 6 of 20 for which copula 1 has the better fit, but with \eqn{n=1000} instead of \eqn{n=625}, the sum of the \code{Results} is 13 of 20 (so better than half the time). This seems to be in conflict with what the \eqn{n_{fg}} sample size from \code{\link{kullCOP}} should be telling. The author thinks it should be 18 to 19 of 20 (95th percentile) based on what the \code{\link{kullCOP}} is reported to do (NEED TO LOOK INTO THIS).
+The summation yields 6 of 20 for which copula 1 has the better fit, but with \eqn{n=1{,}000} instead of \eqn{n=625}, the sum of the \code{Results} is 13 of 20 (so better than half the time). This seems to be in conflict with what the \eqn{n_{fg}} sample size from \code{\link{kullCOP}} should be telling. The author thinks it should be 18 to 19 of 20 (95th percentile) based on what the \code{\link{kullCOP}} is reported to do (NEED TO LOOK INTO THIS).
 }
 \references{
 Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.

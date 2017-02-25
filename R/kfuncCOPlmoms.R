@@ -49,7 +49,7 @@ function(r, cop=NULL, para=NULL, ...) {
       tmpA <- NULL
       try(tmpA <- integrate(afunc, 0, 1, j=j))
       if(is.null(tmpA)) {
-         warning("could not integrate for the mean of the Kendall Function")
+         warning("could not integrate for j=",j," of the Kendall Function")
          return(NA)
       }
       tmpA <- tmpA$value

@@ -2,7 +2,7 @@
 \alias{asCOP}
 \title{ A Wrapper on a User-Level Formula to Become a Copula Function }
 \description{
-This function is intended to document and then to extend a simple API to end users to aid in implementation of other copulas for use within the \pkg{copBasic} package. There is no need or requirement to use \code{asCOP} but for the mathematical definition of some copulas, the \code{asCOP} function might help considerably.  There is a need for special treatment of \eqn{u} and \eqn{v} vectors of probability as they interact with the vectorization implicit in \R. The special treatment is needed because many copulas are based on the operators such as \code{min()} and \code{max()}. When numerical integration used by the \code{integrate()} function in \R in some copula operators, such as \code{\link{tauCOP}} for the \emph{Kendall's Tau} of a copula, special accommodation of how \code{integrate()} works is needed because of the inherent vectorization in \R.
+This function is intended to document and then to extend a simple API to end users to aid in implementation of other copulas for use within the \pkg{copBasic} package. There is no need or requirement to use \code{asCOP} but for the mathematical definition of some copulas, the \code{asCOP} function might help considerably.  There is a need for special treatment of \eqn{u} and \eqn{v} vectors of probability as they interact with the vectorization implicit in \R. The special treatment is needed because many copulas are based on the operators such as \code{min()} and \code{max()}. When numerical integration used by the \code{integrate()} function in \R in some copula operators, such as \code{\link{tauCOP}} for the \emph{Kendall's Tau} of a copula, special accommodation is needed related to the inherent vectorization in \R and how \code{integrate()} works.
 
 Basically, the problem is that one can not strictly rely in all circumstances on what \R does in terms of value recycling when  \eqn{u} and \eqn{v} are of unequal lengths. The source code is straightforward. Simply put, if lengths of \eqn{u} and \eqn{v} are unity, then there is no concern, and even if the length of \eqn{u} (say) is unity and \eqn{v} is 21, then recycling of \eqn{u} would often be ok. The real danger is when \eqn{u} and \eqn{v} have unequal lengths and those lengths are each greater than unity---\R's treatment can not be universally relied upon.
 
@@ -52,7 +52,7 @@ EMPIRcop(0.17,0.95, para=UV) # = B; then A != B
 # distributed, but their difference need not be symmetric about zero
 tmp <- (UV$V - UV$U) > 0
 length(tmp[tmp == TRUE])/n # about 2/3; Nelsen says == 2/3
-#UV <- simCOP(n=n, cop=P)  # the prior two lines yield about 1/2 for independence
+# the prior two lines yield about 1/2 for independence copula P()
 
 # (d) Pr[X + Y > 0] = 2/3; so that uniform random variables on (-1,1) can each
 # be symmetric about zero, but their sum need not be.
@@ -89,9 +89,9 @@ mtext("Plackett mixed with a Convex Copula Sum")
 # (a constant) and rerun, and independence is seen again.
 
 # Concerning Nelsen (2006, exam. 5.14, p. 195)
-"deltacop" <- function(u,v, ...) {   min(c(u,v,(u^2+v^2)/2))   }
-"UsersCop" <- function(u,v, ...) { asCOP(u,v, f=deltacop, ...) }
-isCOP.PQD(cop=UsersCop) # TRUE and Rho=0.288, Tau=0.333 as Nelsen says
+"deltacop" <- function(u,v, ...) {   min(c(u,v,(u^2+v^2)/2))     }
+"UsersCop" <- function(u,v, ...) {   asCOP(u,v, f=deltacop, ...) }
+isCOP.PQD(cop=UsersCop) # TRUE and Rho=0.288 and Tau=0.333 as Nelsen says
 isCOP.LTD(cop=UsersCop, wrtV=TRUE) # FALSE as Nelsen says
 isCOP.RTI(cop=UsersCop, wrtV=TRUE) # FALSE as Nelsen says}
 }

@@ -48,13 +48,12 @@ spectralmeas(u, v=NULL, w=NULL, f=0.90, snv=FALSE,
   An \R \code{vector} of \eqn{H_3(w)}, \eqn{\tilde{H}_3(w)}, or \eqn{\tilde{h}_3(w)} is returned.
 }
 \note{
-The purpose of this \bold{Note} is to describe an extremely CPU intensive study of goodness-of-fit between a \emph{Gumbel-Hougaard copula} (\code{\link{GHcop}}, \eqn{\mathbf{GH}(u,v; \Theta_1)}) parent and a fitted \emph{\enc{Hüsler}{Husler}-Reiss copula} (\code{\link{HRcop}}, \eqn{\mathbf{HR}(u,v; \Theta_2)}). Both of these copulas are extreme values and are somewhat similar to each other, so sample sizes necessary for detection of differences should be large. A two-sided Kolmogorov-Smirnov tests (KS test, \code{ks.test()}) will be used to measure significance in the differences between the estimated spectral measure distributions at \eqn{f=0.90} (the 90th percentile, \eqn{F(S_f)}) into the right tail.
+The purpose of this section is to describe an extremely CPU intensive study of goodness-of-fit between a \emph{Gumbel-Hougaard copula} (\code{\link{GHcop}}, \eqn{\mathbf{GH}(u,v; \Theta_1)}) parent and a fitted \emph{\enc{Hüsler}{Husler}-Reiss copula} (\code{\link{HRcop}}, \eqn{\mathbf{HR}(u,v; \Theta_2)}). Both of these copulas are extreme values and are somewhat similar to each other, so sample sizes necessary for detection of differences should be large. A two-sided Kolmogorov-Smirnov tests (KS test, \code{ks.test()}) will be used to measure significance in the differences between the estimated spectral measure distributions at \eqn{f=0.90} (the 90th percentile, \eqn{F(S_f)}) into the right tail.
 
 The true copula will be the \eqn{\mathbf{GH}(\Theta_1)} having parameter \eqn{\Theta_1 = 3.3}. The number of simulations per sample size \code{n} \eqn{\in} \code{seq(50,1000, by=25)} is \code{nsim = 500}. For each sample size, a sample from the true parent is drawn, and a \eqn{\mathbf{HR}(\Theta_2)} fit by maximum likelihood (\code{\link{mleCOP}}). The two spectral measure distributions (\eqn{\widehat{H}_{\mathbf{GH}}(w)}, \code{Htru} and \eqn{\widehat{H}_{\mathbf{HR}}(w)}, \code{Hfit}) are estimated for a uniform variate of the angle \code{W} having length equal to the applicable sample size. The Kolmogorov-Smirnov test is made between \code{Htru} and \code{Hfit}, and number of p-values less than the \eqn{\beta = 0.05} (Type II error because alternative hypothesis is rigged as true) and simulation count are returned and written in file \code{Results.txt}. The sample sizes initially are small and traps of \code{NaN} (abandonment of a simulation run) are made. These traps are needed when the empirical distribution of \code{Htru} or \code{Hfit} degenerates.
 \preformatted{
-  opts <- options(warn=-1) # to silence ties warnings from ks.test()
   true.par <- 3.3; true.cop <- GHcop; fit.cop <- HRcop; search <- c(0,100)
-  nsim <- 500; first_time <- TRUE; f <- 0.90; beta <- 0.05
+  nsim <- 2000; first_time <- TRUE; f <- 0.90; beta <- 0.05
   ns <- c(seq(100,1000, by=50), 1250, 1500, 1750, 2000)
   for(n in ns) {
     W <- sort(runif(n)); PV <- vector(mode="numeric")
@@ -68,8 +67,8 @@ The true copula will be the \eqn{\mathbf{GH}(\Theta_1)} having parameter \eqn{\T
          length(Htru[! is.nan(Htru)]) == 0 |
          length(Hfit[! is.nan(Hfit)]) == 0) {
          PV[i] <- NA; next
-      }
-      KS <- stats::ks.test(Htru, Hfit)$p.value
+      }   # suppressWarnings() to silence ties warnings from ks.test()
+      KS <- suppressWarnings(stats::ks.test(Htru, Hfit)$p.value)
       #plot(FF, H, type="l"); lines(FF, Hfit, col=2); mtext(KS)
       message("-",i, appendLF=FALSE)
       PV[i] <- KS
@@ -81,15 +80,14 @@ The true copula will be the \eqn{\mathbf{GH}(\Theta_1)} having parameter \eqn{\T
        write.table(zz, file="Results.txt", append=FALSE, quote=FALSE,
                        row.names=FALSE, col.names=TRUE)
     } else {
-       write.table(zz, file="Results.txt", append=TRUE, quote=FALSE,
+       write.table(zz, file="Results.txt", append=TRUE,  quote=FALSE,
                        row.names=FALSE, col.names=FALSE)
     }
     first_time <- FALSE
   }
-  options(opts)
 }
 
-The \code{Results} show a general increase in the counts of p-value \eqn{\le} 0.05 as sample size increases. There is variation of course and increasing \code{nsim} would smooth that considerably.  The results show for \eqn{n \approx 1{,}000} that the detection of statistically significant differences for extremal \eqn{F(S_f) = 0.90} dependency between the \eqn{\mathbf{GH}(\Theta_1{=}3.3)} and \eqn{\mathbf{HR}(\Theta_2)} are detected at the error rate implied by the specified \eqn{\beta = 0.05}.
+The \code{Results} show a general increase in the counts of p-value \eqn{\le} 0.05 as sample size increases. There is variation of course and increasing \code{nsim} would smooth that considerably. The results show for \eqn{n \approx 1{,}000} that the detection of statistically significant differences for extremal \eqn{F(S_f) = 0.90} dependency between the \eqn{\mathbf{GH}(\Theta_1{=}3.3)} and \eqn{\mathbf{HR}(\Theta_2)} are detected at the error rate implied by the specified \eqn{\beta = 0.05}.
 
 This range in sample size can be compared to the Kullback-Leibler sample size (\eqn{n_{fg}}):
 \preformatted{
@@ -97,7 +95,7 @@ This range in sample size can be compared to the Kullback-Leibler sample size (\
   fit.par <- mleCOP(UV,      cop= fit.cop, interval=search)$para
   kullCOP(cop1=true.cop, para1=true.par, cop2=fit.cop, para2=fit.par)
   # The Kullback-Leibler (integer) sample size for detection of differences at
-  # alpha = 0.05 is n_fg = 915 for one run.
+  # alpha = 0.05 is n_fg = 915 for one run, try again to see variation
 }
 where the Kullback-Leilber approach is to measure density departures across the whole \eqn{\mathcal{I}^2} domain as opposed to extremal dependency in the right tail as the spectral measure.
 
@@ -109,7 +107,7 @@ Now if the aforementioned simulation run is repeated for \eqn{F(S_f) = 0.95} or 
 Kiriliouk, Anna, Segers, Johan, \enc{Warchoł}{Warchol}, \enc{Michał}{Michal}, 2016, Nonparameteric estimation of extremal dependence: \emph{in} Extreme Value Modeling and Risk Analysis, D.K. Dey and Jun Yan \emph{eds.}, Boca Raton, FL, CRC Press, ISBN 978--1--4987--0129--7.
 }
 \author{William Asquith \email{william.asquith@ttu.edu} }
-\seealso{ \code{\link{psepolar}}, \code{\link{StableTailDepFN}}
+\seealso{ \code{\link{psepolar}}, \code{\link{stabtaildepf}}
 }
 \examples{
 \dontrun{
@@ -130,7 +128,7 @@ n <- 2000 # The PSP parent has no upper tail dependency
 uv    <- simCOP(n=n, cop=PSP, para=NULL, graphics=FALSE)
 PLpar <- mleCOP(uv,  cop=PLACKETTcop, interval=c(0,100))$para
 PLuv  <- simCOP(n=n, cop=PLACKETTcop, para=PLpar, graphics=FALSE)
-GApar <- mleCOP(uv,  cop=GAUScop, parafn=GAUSparfn, interval=c(-1,1))$para
+GApar <- mleCOP(uv,  cop=GAUScop,     parafn=GAUSparfn, interval=c(-1,1))$para
 GAuv  <- simCOP(n=n, cop=GAUScop,     para=GApar, graphics=FALSE)
 GLpar <- mleCOP(uv,  cop=GLcop,       interval=c(0,100))$para
 GLuv  <- simCOP(n=n, cop=GLcop,       para=GLpar, graphics=FALSE)

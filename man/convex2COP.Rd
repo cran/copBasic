@@ -2,7 +2,7 @@
 \alias{convex2COP}
 \title{ Convex Combination of Two Copulas }
 \description{
-The \emph{convex composition of two copulas} (Joe, 2014, p. 155) provides for some simple complexity extension between coupla families. Let \eqn{\mathbf{A}} and \eqn{\mathbf{B}} be copulas with respective parameters \eqn{\Theta_\mathbf{A}} and \eqn{\Theta_\mathbf{B}}, then the \dQuote{conve\eqn{\times}} combination of these copulas is
+The \emph{convex composition of two copulas} (Joe, 2014, p. 155) provides for some simple complexity extension between coupla families. Let \eqn{\mathbf{A}} and \eqn{\mathbf{B}} be copulas with respective vectors of parameters \eqn{\Theta_\mathbf{A}} and \eqn{\Theta_\mathbf{B}}, then the convex combination of these copulas is
 
 \deqn{\mathbf{C}^{\times}_{\alpha}(u,v) = \alpha \mathbf{A}(u, v; \Theta_\mathbf{A}) - (1-\alpha)\mathbf{B}(u,v; \Theta_\mathbf{B})\mbox{,}}
 
@@ -38,24 +38,22 @@ Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 \examples{
 para <- list(alpha=0.24, cop1=FRECHETcop, para1=c(.4,.56),
                          cop2=PSP,        para2=NA)
-convex2COP(0.87,0.35, para=para)
+convex2COP(0.87,0.35, para=para) # 0.3188711
 \dontrun{
-# Suppose we have a target Kendall Tau of 1/3 and a Gumbel-Hougaard copula
-# seems pretty attractive but the GH has just too much upper tail dependency
-# for our comfort. We think from data analysis that an upper tail dependency
-# that is weaker and near 2/10 is the better. Let us convex mix in a Plackett
-# copula and optimize.
+# Suppose we have a target Kendall Tau of 1/3 and a Gumbel-Hougaard copula seems
+# attractive but the GH has just too much upper tail dependency for comfort. We
+# think from data analysis that an upper tail dependency that is weaker and near
+# 2/10 is the better. Let us convex mix in a Plackett copula and optimize.
 TargetTau <- tauCOP(cop=GHcop, para=1.5) # 1/3 (Kendall's Tau)
 taildepCOP(   cop=GHcop, para=1.5, plot = TRUE)$lambdaU  # 0.4126
 TargetUpperTailDep <- 2/10
 
 # **Serious CPU time pending for this example**
 par <- c(-.10, 4.65) # Initial guess but the first parameter is in standard
-# normal units for the optimize to keep us in the [0,1] domain when converted to
-# probability. The guesses of -0.10 (standard deviation) for the convex
-# parameter and 4.65 for the Plackett are based on a much longer search times as
-# setup for this problem. The simplex for optim() is going to be close to the
-# solution on startup.
+# normal for optim() to keep us in the [0,1] domain when converted to probability.
+# The guesses of -0.10 (standard deviation) for the convex parameter and 4.65 for
+# the Plackett are based on a much longer search times as setup for this problem.
+# The simplex for optim() is going to be close to the solution on startup.
 "afunc" <- function(par) {
    para <- list(alpha=pnorm(par[1]), cop1=GHcop,       para1=1.5,
                                      cop2=PLACKETTcop, para2=par[2])
@@ -67,8 +65,8 @@ par <- c(-.10, 4.65) # Initial guess but the first parameter is in standard
 }
 mysolution <- optim(par, afunc, control=list(abstol=1E-4))
 
-para <- list(alpha=.4846902, cop1=GHcop,     para1=1.5,
-                           cop2=PLACKETTcop, para2=4.711464)
+para <- list(alpha=.4846902, cop1=GHcop,       para1=1.5,
+                             cop2=PLACKETTcop, para2=4.711464)
 UV <- simCOP(n=2500, cop=convex2COP, para=para, snv=TRUE) # }
 }
 \keyword{copula composition}

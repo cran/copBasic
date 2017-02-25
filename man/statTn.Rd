@@ -60,7 +60,7 @@ Let us imagine an \eqn{n=400} sample size of a \emph{Galambos copula} (\eqn{\mat
                                 interval=c(.001,200), cop=chosenCopula )
 }
 
-Next, compute the sample \eqn{\hat T_n = 0.063} from \code{sampleUV}. The distribution of the \eqn{T_n} is estimated using the \code{distTn} function, and an estimate of the \eqn{\hat T_n} p-value is in turn estimated. A large simulation run \eqn{N = 1000} for a sample of size of \eqn{n = 400} is selected. The \code{distTn} function internally will simulate for \code{N}-replicates from the assumed parent and estimate the parameter. A computation run yields a p-value of approximately 0.01 (depending upon the seed) and is statistically significant at an alpha of 0.05, and therefore, the \eqn{\mathbf{PL}(\Theta{=}20.75)} should be rejected for fitting to these data.
+Next, compute the sample \eqn{\hat T_n = 0.063} from \code{sampleUV}. The distribution of the \eqn{T_n} is estimated using the \code{distTn} function, and an estimate of the \eqn{\hat T_n} p-value is in turn estimated. A large simulation run \eqn{N = 1000} for a sample of size of \eqn{n = 400} is selected. The \code{distTn} function internally will simulated for \code{N}-replicates from the assumed parent and estimate the parameter. A computation run yields a p-value of approximately 0.01 (depending upon the seed) and is statistically significant at an alpha of 0.05, and therefore, the \eqn{\mathbf{PL}(\Theta{=}20.75)} should be rejected for fitting to these data.
 \preformatted{
   sampleTn   <- statTn(sampleUV, cop=chosenCopula, para=para)
   Tns        <- distTn(n=n,      cop=chosenCopula, para=para,
@@ -91,12 +91,13 @@ Genest, C., Kojadinovic, I., \enc{Nešlehová}{Neslehova}, J., and Yan, J., 2011
 # Example here is just for Tn. For the example below, the PSP copula is radically
 # different from the Gumbel-Hougaard copula and thus, the hatTn would be expected
 # to be quite different from those of the Gumbel-Hougaard and certainly not too
-# near to zero. The Bernstein extension to the empirical copula is CPU intensive.
-samUV  <- simCOP(n=40, cop=PSP, graphics=FALSE)   # random sample
+# near to zero.
+sampleUV  <- simCOP(n=60, cop=PSP, graphics=FALSE)   # random sample
 hatTau <- cor(samUV$U, samUV$V, method="kendall") # Kendall Tau
 hatTn  <- statTn(sampleUV, cop=GHcop, para=GHcop(tau=hatTau)$para,
-                 ctype="bernstein") # approximate range 0.0141 -- 0.030
-# hatTn in this case is cernby itself is somewhat uninformative and requires
+                 ctype="bernstein", bernprogress=TRUE)
+# approximate range 0.0141 -- 0.030
+# hatTn in this case is by itself is somewhat uninformative and requires
 # Monte Carlo to put an individual value into context.}
 }
 \keyword{copula (goodness of fit)}

@@ -3,7 +3,7 @@
 \alias{densityCOPplot}
 \title{ Contour Density Plot of a Copula }
 \description{
-Generate a \emph{contour density plot} after the advocation of Joe (2014, pp. 9--15). Such plots are plots of \emph{scaled copula densities} (\eqn{c^\star(u,v)}, bivariate herein) that are copula densities scaled to the standard normal distribution \eqn{\sim} N(0,1) margins. Joe (2014) repeatedly emphasizes such plots in contrast to the uniform distribution \eqn{\sim} U(0,1) margins. Nelsen (2006) does not discuss such scaling but seemingly Nelsen's objectives for his book were different.
+Generate a \emph{contour density plot} after the advocation of Joe (2014, pp. 9--15). Such graphics are plots of \emph{scaled copula densities} (\eqn{c^\star(u,v)}, bivariate herein) that are copula densities scaled to the standard normal distribution \eqn{\sim} N(0,1) margins. Joe (2014) repeatedly emphasizes such plots in contrast to the uniform distribution \eqn{\sim} U(0,1) margins. Nelsen (2006) does not discuss such scaling but seemingly Nelsen's objectives for his book were different.
 
 The density of copula \eqn{\mathbf{C}(u,v)} is numerically estimated by
 \deqn{c(u,v) = [\mathbf{C}(u_2,v_2) - \mathbf{C}(u_2,v_1) - \mathbf{C}(u_1,v_2) + \mathbf{C}(u_1,v_1)]/[\Delta(uv)\times\Delta(uv)]\mbox{,}}
@@ -50,20 +50,19 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 } # Survial Copula ("reflected" in Joe's terms)
 densityCOPplot(cop=rMTCJ, para=1.0760, n=9000)
 # The density plot matches that shown by Joe (2014, p. 11, fig. 1.2, lower left plot)
-# for a Spearman's Rho equaling 0.5.
+# for a Spearman's Rho equaling 0.5. Let us compute then Rho:
 rhoCOP(cop=rMTCJ, para=1.076075) # 0.4999958
 
 # Now let us get really wild with a composition with TWO modes!
-# This example also proves that the orientation of the grid is consistent with
-# orientation of the simulations.
+# This example also proves that the grid orientation is consistent with respect
+# to the orientation of the simulations.
 para <- list(alpha=0.15, beta=0.90, kappa=0.06, gamma=0.96,
              cop1=GHcop, cop2=PLACKETTcop, para1=5.5, para2=0.07)
 densityCOPplot(cop=composite2COP, para=para, n=9000)
 
-# Now let us hack back to a contour density plot with U(0,1) and not N(0,1)
-# margins just so show that capability exists, but emphasis of densityCOPplot
-# is clearly on Joe's advocation so it does not have a trigger to use U(0,1)
-# margins.
+# Now let us hack back to a contour density plot with U(0,1) and not N(0,1) margins
+# just so show that capability exists, but emphasis of densityCOPplot is clearly
+# on Joe's advocation so it does not have a trigger to use U(0,1) margins.
 set.seed(12)
 H <- densityCOPplot(cop=PLACKETTcop, para=41.25, getmatrix="cden", n=1000)
 set.seed(12)

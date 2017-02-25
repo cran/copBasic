@@ -51,7 +51,7 @@ and
   PQD.list <- isCOP.PQD(cop=EMPIRcop, para=D, empirical=TRUE, uv=D)
   points(D, col=PQD.list$local.PQD+2, lwd=2) # red (if present) is local NQD
 }
-which in the former only returns the global PQD and the later returns an \R \code{list} with global (\code{global.PQD}), local (\code{local.PQD} as well as \code{local.NQD}), and the four statistics (\code{beta} [\eqn{\beta_\mathbf{C}}], \code{gamma} [\eqn{\gamma_\mathbf{C}}], \code{rho} \eqn{\rho_\mathbf{C}}, \code{tau} \eqn{\tau_\mathbf{C}}) used to determine global PQD.
+which in the former only returns the global PQD and the later returns an \R \code{list} with global (\code{global.PQD}), local (\code{local.PQD} as well as \code{local.NQD}), and the four statistics (\code{beta} \eqn{\beta_\mathbf{C}}, \code{gamma} \eqn{\gamma_\mathbf{C}}, \code{rho} \eqn{\rho_\mathbf{C}}, \code{tau} \eqn{\tau_\mathbf{C}}) used to determine global PQD.
 
 
 \emph{SPECIAL DEMONSTRATION 1}---Lastly, the \code{ctype=}\code{"bernstein"} argument to the empirical copula can be used. Repeated iterations of the following will show that local quadrant dependency can appear slightly different when the \code{bernstein} argument is present. The simulation sample size is reduced considerably for this second example because of the CPU effort triggered by the \emph{Bernstein extension} (see \code{\link{EMPIRcop}}) having been turned on.
@@ -72,7 +72,7 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 \seealso{\code{\link{blomCOP}}, \code{\link{giniCOP}}, \code{\link{rhoCOP}}, \code{\link{tauCOP}}, \code{\link{isCOP.LTD}}, \code{\link{isCOP.RTI}}}
 \examples{
 \dontrun{
-isCOP.PQD(cop=PSP)}
+isCOP.PQD(cop=PSP) # TRUE}
 
 \dontrun{
 # Example concerning Empirical Bivariate Copula and sample versions for comparison.
@@ -81,15 +81,15 @@ para <- list(cop1=PLACKETTcop, cop2=PLACKETTcop, para1=0.145,  para2=1.45,
              alpha=0.81, beta=0.8)
 D <- simCOP(n=n, cop=composite2COP, para=para, cex=0.5, col=rgb(0,0,0,0.2), pch=16)
 #tauCOP(cop=EMPIRcop, para=D)   # ??? but == 1
-cor(D$U, D$V, method="kendall") # -0.2852573
-blomCOP(cop=EMPIRcop, para=D)   # -0.30
-giniCOP(cop=EMPIRcop, para=D)   # ??? but fails
+cor(D$U, D$V, method="kendall") # -0.3224705
+blomCOP(cop=EMPIRcop, para=D)   # -0.332
+giniCOP(cop=EMPIRcop, para=D)   # -0.3692037
 GINI <- sum(abs(rank(D$U)+rank(D$V)-n-1)) - sum(abs(rank(D$U)-rank(D$V)))
-print(GINI/as.integer(n^2/2))   # -0.332380
+print(GINI/as.integer(n^2/2))   # -0.369996
 rhoCOP(cop=EMPIRcop, para=D)    # ??? but fails
-cor(D$U, D$V, method="spearman")      # -0.407031
-lmomco::lcomoms2(D)$T2     #  1.0000000 -0.4066804
-                           # -0.4064251  1.0000000}
+cor(D$U, D$V, method="spearman")      # -0.456694
+lmomco::lcomoms2(D)$T2     #  1.0000000 -0.4568357
+                           # -0.4567859  1.0000000}
 }
 \keyword{copula (characteristics)}
 \keyword{copula (properties)}

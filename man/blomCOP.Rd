@@ -2,11 +2,11 @@
 \alias{blomCOP}
 \title{ The Blomqvist's Beta of a Copula }
 \description{
-Compute the \emph{Blomqvist's Beta} \eqn{\beta_\mathbf{C}} of a copula (Nelsen, 2006, p. 182), which is defined at the middle (center) of \eqn{\mathcal{I}^2} as
+Compute the \emph{Blomqvist's Beta} \eqn{\beta_\mathbf{C}} of a copula (Nelsen, 2006, p. 182), which is defined at the middle or center of \eqn{\mathcal{I}^2} as
 
 \deqn{\beta_\mathbf{C} = 4\times\mathbf{C}\biggl(\frac{1}{2},\frac{1}{2}\biggr) - 1\mbox{,}}
 
-where the \eqn{u = v = 1/2} and thus shows that \eqn{\beta_\mathbf{C}} is based on the median joint probability. Blomqvist's Beta is also called the \emph{medial correlation coefficient}. Nelsen also reports that \dQuote{although, Blomqvist's Beta depends only on the copula only through its value at the center of \eqn{\mathcal{I}^2}, it nevertheless often provides an accurate approximation to \emph{Spearman's Rho} \code{\link{rhoCOP}} and \emph{Kendall's Tau} \code{\link{tauCOP}}.}  Kendall's Tau \eqn{\tau_\mathbf{C}}, \emph{Gini's Gamma} \eqn{\gamma_\mathbf{C}}, and Spearman's Rho \eqn{\rho_\mathbf{C}} in relation to \eqn{\beta_\mathbf{C}} satisfy the following inequalities (Nelsen, 2006, exer. 5.17, p. 185):
+where the \eqn{u = v = 1/2} and thus shows that \eqn{\beta_\mathbf{C}} is based on the \emph{median joint probability}. Blomqvist's Beta is also called the \emph{medial correlation coefficient}. Nelsen also reports that \dQuote{although, Blomqvist's Beta depends only on the copula only through its value at the center of \eqn{\mathcal{I}^2}, but that [\eqn{\beta_\mathbf{C}}] nevertheless often provides an accurate approximation to \emph{Spearman's Rho} \code{\link{rhoCOP}} and \emph{Kendall's Tau} \code{\link{tauCOP}}.}  Kendall's Tau \eqn{\tau_\mathbf{C}}, \emph{Gini's Gamma} \eqn{\gamma_\mathbf{C}}, and Spearman's Rho \eqn{\rho_\mathbf{C}} in relation to \eqn{\beta_\mathbf{C}} satisfy the following inequalities (Nelsen, 2006, exer. 5.17, p. 185):
 \deqn{\frac{1}{4}(1 + \beta_\mathbf{C})^2  - 1 \le \tau_\mathbf{C} \le 1 - \frac{1}{4}(1 - \beta_\mathbf{C})^2\mbox{,}}
 \deqn{\frac{3}{16}(1 + \beta_\mathbf{C})^3  - 1 \le \rho_\mathbf{C} \le 1 - \frac{3}{16}(1 - \beta_\mathbf{C})^3\mbox{, and}}
 \deqn{\frac{3}{8}(1 + \beta_\mathbf{C})^2  - 1 \le \tau_\mathbf{C} \le 1 - \frac{3}{8}(1 - \beta_\mathbf{C})^2\mbox{.}}
@@ -41,33 +41,37 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
          \code{\link{joeskewCOP}}, \code{\link{uvlmoms}}
 }
 \examples{
-blomCOP(cop=PSP)
+blomCOP(cop=PSP) # 1/3 precisely
 \dontrun{
-# Nelsen (2006, exer. 5.17, p. 185):
-B <- blomCOP(cop=N4212cop, para=2.2)
-G <- giniCOP(cop=N4212cop, para=2.2)
+# Nelsen (2006, exer. 5.17, p. 185) : All if(...) are TRUE
+B <- blomCOP(cop=N4212cop, para=2.2); a1pB <- 1 + B; a1mB <- 1 - B
+G <- giniCOP(cop=N4212cop, para=2.2); a <- 1/4; b <- 3/16; c <- 3/8
 R <-  rhoCOP(cop=N4212cop, para=2.2)
-T <-  tauCOP(cop=N4212cop, para=2.2, brute=TRUE) # numerical problems w/o brute
-if(1*(1+B)^2/4  - 1 <= T & T <= 1 - 1*(1-B)^2/4 ) print("TRUE") #
-if(3*(1+B)^3/16 - 1 <= T & T <= 1 - 3*(1-B)^3/16) print("TRUE") #
-if(3*(1+B)^2/8  - 1 <= T & T <= 1 - 3*(1-B)^2/8 ) print("TRUE") #}
+K <-  tauCOP(cop=N4212cop, para=2.2, brute=TRUE) # numerical issues without brute
+if( a*Bp1^2 - 1 <= K & K <= 1 - a*Bm1^2 ) print("TRUE") #
+if( b*Bp1^3 - 1 <= R & R <= 1 - b*Bm1^3 ) print("TRUE") #
+if( c*Bp1^2 - 1 <= G & G <= 1 - c*Bm1^2 ) print("TRUE") #}
 
 \dontrun{
 # A demonstration of a special feature of blomCOP for sample data.
-set.seed(794)
-UV <- simCOP(n=950, cop=PSP, graphics=FALSE) # Beta = 1/3
-HatBeta <- blomCOP(para=UV, as.sample=TRUE)  # HatBeta = 0.3136842
-n <- 400
-H <- sapply(1:100, function(i) {
-       blomCOP(para=simCOP(n=n, cop=PSP, graphics=FALSE), sambeta=TRUE) })
-print(var(H)) # Joe (2014) says that sqrt(n)(B-hatB) is Norm(0, 1 - B^2)
-# but I have been unable to support this for large samples. Some confusion
-# exists in Joe's syntax and discussion. Various handling of n and other
-# suggests perhaps that 1 - B^2 is not quite right?}
+# Joe (2014, p. 60; table 60) has 0.749 for GHcop(tau=0.5); n*var(hatB) as n-->infinity
+theta <- GHcop(tau=0.5)$para; B <- blomCOP(cop=GHcop, para=theta); n <- 1000 
+H <- sapply(1:1000, function(i) { # Let us test that with pretty large sample size:
+	                blomCOP(para=rCOP(n=n, cop=GHcop, para=theta), as.sample=TRUE) })
+print(n*var(B-H)) # For 1,000 simulations of size n : 0.747, which matches Joe's result }
+
+\dontrun{
+# Joe (2014, p. 57) says that sqrt(n)(B-HatBeta) is Norm(0, 1 - B^2)
+n <- 10000; B <- blomCOP(cop=PSP) # Beta = 1/3
+H <- sapply(1:100, function(i) { message(i,"-", appendLF=FALSE)
+	               blomCOP(para=rCOP(n=n, cop=PSP), as.sample=TRUE) })
+lmomco::parnor(lmomco::lmoms(sqrt(n)*(H-B))) # mu = 0.042; sigma = 0.973
+# Joe (2014) : sqrt(1-B^2) == standard deviation (sigma) : (1-(1/3)^2) approx 0.973 }
 }
 \keyword{copula (characteristics)}
 \keyword{copula (properties)}
 \keyword{medial correlation coefficient}
 \concept{medial correlation}
+\keyword{Joe (2014) Examples and Exercises}
 \keyword{Nelsen (2006) Examples and Exercises}
 \keyword{Gaussian copula}

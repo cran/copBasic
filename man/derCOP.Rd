@@ -27,7 +27,7 @@ derCOP(cop=NULL, u, v, delu=.Machine$double.eps^0.50,
 }
 \arguments{
   \item{cop}{A copula function;}
-  \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction. If the length of \code{u} is unity, then the length of \code{v} can be arbitrarily long. If the length of \code{u} is not unity, then the length of \code{v} should be the same and if not only the first value in \code{v} will be silently used;}
+  \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction. If the length of \code{u} is unity, then the length of \code{v} can be arbitrarily long. If the length of \code{u} is not unity, then the length of \code{v} should be the same, and if not, then  only the first value in \code{v} is silently used;}
   \item{v}{Nonexceedance probability \eqn{v} in the \eqn{Y} direction (see previous comment on \code{u});}
   \item{delu}{The \eqn{\Delta u} interval for the derivative;}
   \item{derdir}{The direction of the derivative as described above. Default is \code{left} but internally any setting can be temporarily suspended to avoid improper computations (see source code); and}
@@ -37,7 +37,7 @@ derCOP(cop=NULL, u, v, delu=.Machine$double.eps^0.50,
   Value(s) for the partial derivative are returned.
 }
 \note{
-A known caveat of the current implementation of the copula derivative is that there is a chance that the \eqn{\Delta u} will span a singularity or discontinuous (or nearly so) portion of a copula should it have a property of singularity or nearly so. The \code{delu} is chosen small so the chance is mitigated to a small value. It is not decided whether a derivative from the positive side (\code{dir="left"}), when failing should switch over to a computation from the negative side (\code{dir="right"}). The distinction is important for the computation of the inverse of the derivative \code{\link{derCOPinv}} because the solution finder needs a sign reversal to work.
+A known caveat of the current implementation of the copula derivative is that there is a chance that the \eqn{\Delta u} will span a singularity or discontinuous (or nearly so) portion of a copula should it have a property of singularity (or nearly so). The \code{delu} is chosen small so the chance is mitigated to a small value. It is not decided whether a derivative from the positive side (\code{dir="left"}), when failing should switch over to a computation from the negative side (\code{dir="right"}). The distinction is important for the computation of the inverse of the derivative \code{\link{derCOPinv}} because the solution finder needs a sign reversal to work.
 }
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
@@ -47,9 +47,9 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 \examples{
 derCOP(cop=W,0.4,0.6); derCOP(cop=P,0.4,0.6); derCOP(cop=M,0.4,0.6)
 
-lft <- derCOP(cop=PSP, 0.4,0.6, derdir="left"  )
-rgt <- derCOP(cop=PSP, 0.4,0.6, derdir="right" )
-cnt <- derCOP(cop=PSP, 0.4,0.6, derdir="center")
+lft <- derCOP(cop=PSP,   0.4, 0.6, derdir="left"  )
+rgt <- derCOP(cop=PSP,   0.4, 0.6, derdir="right" )
+cnt <- derCOP(cop=PSP,   0.4, 0.6, derdir="center")
 cat(c(lft,rgt,cnt,"\n"))
 #stopifnot(all.equal(lft,rgt), all.equal(lft,cnt))
 

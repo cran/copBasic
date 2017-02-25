@@ -31,8 +31,8 @@ psp <- simCOP(n=490, cop=PSP, ploton=FALSE, points=FALSE) * 150
 # Pretend psp is real data, the * 150 is to clearly get into an arbitrary unit system.
 
 # The sort=FALSE is critical in the following two calls to pp() from lmomco.
-fakeU <- pp(psp[,1], sort=FALSE)   # Weibull plotting position i/(n+1)
-fakeV <- pp(psp[,2], sort=FALSE)   # Weibull plotting position i/(n+1)
+fakeU <- lmomco::pp(psp[,1], sort=FALSE)   # Weibull plotting position i/(n+1)
+fakeV <- lmomco::pp(psp[,2], sort=FALSE)   # Weibull plotting position i/(n+1)
 uv <- data.frame(U=fakeU, V=fakeV) # our U-statistics
 
 # The follow function is used to make 3-D --> 2-D transformation
@@ -76,7 +76,7 @@ lines(thelines, lwd=2, col=2, lty=2)
 
 empder <- EMPIRgridder(empgrid=the.grid)
 thelines <- trans3d(rep(0.2, length(the.grid$v)), the.grid$v, empder[3,], the.persp)
-lines(thelines, lwd=4, col=6) 3 }
+lines(thelines, lwd=4, col=6) #}
 
 \dontrun{
 # EXAMPLE 2:
@@ -119,8 +119,8 @@ psp <- simCOP(n=4900, cop=PSP, ploton=FALSE, points=FALSE) * 150
 # Pretend psp is real data, the * 150 is to clearly get into an arbitrary unit system.
 
 # The sort=FALSE is critical in the following two calls to pp() from lmomco.
-fakeU <- pp(psp[,1], sort=FALSE)   # Weibull plotting position i/(n+1)
-fakeV <- pp(psp[,2], sort=FALSE)   # Weibull plotting position i/(n+1)
+fakeU <- lmomco::pp(psp[,1], sort=FALSE)   # Weibull plotting position i/(n+1)
+fakeV <- lmomco::pp(psp[,2], sort=FALSE)   # Weibull plotting position i/(n+1)
 uv <- data.frame(U=fakeU, V=fakeV) # our U-statistics
 
 # EXAMPLE 3: # PLOT NUMBER 1

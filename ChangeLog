@@ -314,20 +314,44 @@ Version 2.0.3--May 31, 2016
 11. REMOVED: PlackettPlackettABKGtest.Rd, PlackettPlackettNP.Rd,
              PlackettPlackettABKGtest.RData, PlackettPlackettNP.RData in
        effort to reduce file size foot print of the package.
-       See lcomoms2.ABcop2parameterm() and lcomoms2.ABKGcop2parameter() to 
+       See lcomoms2.ABcop2parameterm() and lcomoms2.ABKGcop2parameter() to
        explore how to prepopulate parameter to L-comoment mappings.
 
 
-POSSIBLE TODO:
+Version 2.0.4--June 3, 2016
+1. Microchanges 2.0.3 to pass CRAN importation.
 
-(1) Implementation of state-of-the-practice nonparametric estimators of
+
+Version 2.0.5--February 24, 2017
+1.  Typo correction to DESCRIPTION and line ending changes to help hyphenation.
+2.  NAME CHANGE: StableTailDepFN() --> stabtaildepf()
+3.  Added importFrom("graphics", "mtext") for stabtaildepf() needs in NAMESPACE.
+4.  Small adjustments to throughout documentation, but more importantly, tried
+       running all examples + "dontrun" declarations + as well as the multitude
+       of "preformatted" code snippets. All seem to be working and several
+       errors and consistency issues have been resolved---so this exercise was
+       reasonably needed.
+5.  Error in blomCOP.Rd on old argument change: "sambeta" --> "as.sample".
+6.  NAME ADDITION: PLcop() and PLpar() are now available for Plackett copula.
+7.  Further auditing of kfuncCOP(), kfuncCOPinv(), and kfuncCOPlmoms(). Expanded
+       example of Kendall function L-moments.
+
+
+TODOs:
+
+(1) stabtaildepf.Rd --- Need to audit stabtaildepf.Rd and complete documentation.
+
+(2) EMPIRcop.Rd --- Need to audit level.curves in the Examples.
+
+(3) Implementation of state-of-the-practice nonparametric estimators of
        lower and upper tail dependence parameters. Neither of the three books
        cited within deal with this. A turn to recommended literature by
        Joe (2014) is needed.
 
-(2) Goodness-of-fit of the Kendall Function following Genest et. al. (2006,
+(4) Goodness-of-fit of the Kendall Function following Genest et. al. (2006,
        Goodness-of-fit procedures for copula models based on the probability
        integral transformation: Scand J. Statist 33.
 
-(3) Convergence evaluators for the Monte Carlo integration in bilmoms() and
+(5) Convergence evaluators for the Monte Carlo integration in bilmoms() and
        kullCOP() to enhance computation times.
+

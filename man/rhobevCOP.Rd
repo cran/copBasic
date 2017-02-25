@@ -6,15 +6,13 @@
 Compute a dependence measure based on the expectation of the product of transformed random variables \eqn{U} and \eqn{V}, which unnamed by Joe (2014, pp. 383--384) but symbolically is \eqn{\rho_E}, having a \emph{bivariate extreme value copula} \eqn{\mathbf{C}_{BEV}(u,v)} by
 \deqn{\rho_E = \mathrm{E}[(-\log U) \times (-\log V)] - 1 = \int_0^1 [B(w)]^{-2}\,\mathrm{d}w - 1\mbox{,}}
 where \eqn{B(w) = A(w, 1-w)}, \eqn{B(0) = B(1) = 1}, \eqn{B(w) \ge 1/2}, and \eqn{0 \le w \le 1}, and where only bivariate extreme value copulas can be written as
-\deqn{\mathbf{C}_{BEV}(u,v) = \mathrm{exp}\{-A(-\log u, -\log v) \}\mbox{,}}
+\deqn{\mathbf{C}_{BEV}(u,v) = \mathrm{exp}[-A(-\log u, -\log v)]\mbox{,}}
 and thus in terms of the coupla
-\deqn{B(w) = -\log\{\mathbf{C}_{BEV}(\mathrm{exp}[-w], \mathrm{exp}[w-1])\}\mbox{.}}
+\deqn{B(w) = -\log[\mathbf{C}_{BEV}(\mathrm{exp}[-w], \mathrm{exp}[w-1])]\mbox{.}}
 
 Joe (2014, p. 383) states that \eqn{\rho_E} is the correlation of the \dQuote{survival function of a bivariate min-stable exponential distribution,} which can be assembled as a function of \eqn{B(w)}. Joe (2014, p. 383) also shows the following expression for \emph{Spearman's Rho}
 \deqn{\rho_S = 12 \int_0^1 [1 + B(w)]^{-2}\,\mathrm{d}w - 3}
-in terms of \eqn{B(w)}. This expression inconjunction with \code{\link{rhoCOP}} was used to confirm the prior expression shown here for \eqn{B(w)} in terms of \eqn{\mathbf{C}_{BEV}(u,v)}.
-
-For \emph{independence} (\eqn{uv = \mathbf{\Pi}}; \code{\link{P}}), \eqn{\rho_E = 0} and for the \emph{\enc{Fréchet}{Frechet}-Hoeffding upper bound copula} (perfect positive association), \eqn{\rho_E = 1}.
+in terms of \eqn{B(w)}. This expression, in conjunction with \code{\link{rhoCOP}}, was used to confirm the prior expression shown here for \eqn{B(w)} in terms of \eqn{\mathbf{C}_{BEV}(u,v)}. Lastly, for \emph{independence} (\eqn{uv = \mathbf{\Pi}}; \code{\link{P}}), \eqn{\rho_E = 0} and for the \emph{\enc{Fréchet}{Frechet}-Hoeffding upper bound copula} (perfect positive association), \eqn{\rho_E = 1}.
 }
 \usage{
 rhobevCOP(cop=NULL, para=NULL, as.sample=FALSE, brute=FALSE, delta=0.002, ...)

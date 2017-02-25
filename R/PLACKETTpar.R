@@ -1,6 +1,6 @@
-"PLACKETTpar" <-
+"PLpar" <-
 function(x, y, rho=NULL, byrho=FALSE, cor=NULL, ...) {
-   if(! is.null(cor)) rho <- cor
+   if(! is.null(cor)) rho   <- cor
    if(! is.null(rho)) byrho <- TRUE
    if(byrho) {
      theta <- NA; names(theta) <- "theta"
@@ -28,6 +28,7 @@ function(x, y, rho=NULL, byrho=FALSE, cor=NULL, ...) {
                     LHS=the.rho))
         theta <- rt$root
      }
+     names(theta) <- "theta"
      return(theta)
    } else {
      medx <- median(x)
@@ -38,4 +39,8 @@ function(x, y, rho=NULL, byrho=FALSE, cor=NULL, ...) {
      names(theta) <- "theta"
      return(theta)
    }
+}
+
+"PLACKETTpar" <- function(x, y, rho=NULL, byrho=FALSE, cor=NULL, ...) {
+   PLpar(x=x, y=y, rho=rho, byrho=byrho, cor=cor, ...)
 }

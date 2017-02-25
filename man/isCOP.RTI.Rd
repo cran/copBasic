@@ -35,18 +35,12 @@ Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in
 \examples{
 \dontrun{
 isCOP.RTI(cop=P, delta=0.01) # independence should be FALSE
-# but function returns TRUE, note that same logic for isCOP.LTD returns
-# FALSE.
-# Positive association
-isCOP.RTI(cop=PSP)                               # TRUE
-# Negative association Plackett
-isCOP.RTI(cop=PLACKETTcop, para=0.15)            # FALSE
-# Positive association Plackett
-isCOP.RTI(cop=PLACKETTcop, para=15)              # TRUE
-# Negative association Plackett
-isCOP.RTI(cop=PLACKETTcop, wrtv=TRUE, para=0.15) # FALSE
-# Positive association Plackett
-isCOP.RTI(cop=PLACKETTcop, wrtV=TRUE, para=15)   # TRUE}
+# but function returns TRUE, note that same logic for isCOP.LTD returns FALSE.
+isCOP.RTI(cop=PSP)                              # TRUE  : positive assoc.
+isCOP.RTI(cop=PLACKETTcop, para=.15)            # FALSE : negative assoc. Plackett
+isCOP.RTI(cop=PLACKETTcop, para=15)             # TRUE  : positive assoc. Plackett
+isCOP.RTI(cop=PLACKETTcop, wrtv=TRUE, para=.15) # FALSE : negative assoc. Plackett
+isCOP.RTI(cop=PLACKETTcop, wrtV=TRUE, para=15)  # TRUE  : positive assoc. Plackett}
 }
 \keyword{copula (characteristics)}
 \keyword{copula (properties)}

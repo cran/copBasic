@@ -30,7 +30,7 @@ wolfCOP(cop=NULL, para=NULL, as.sample=FALSE, brute=FALSE, delta=0.002, ...)
 \note{
 A natural estimator for \eqn{\sigma_\mathbf{C}} is through the \emph{empirical copula}
 \deqn{\hat{\sigma}_\mathbf{C} = \frac{12}{n^2 - 1}
-        \sum_{i=1}^n\sum_{j=1}^n \bigg|\mathbf{C}_n\biggl(\frac{i}{n}, \frac{j}{n}\biggr) -
+        \sum_{i=1}^n\sum_{j=1}^n \bigg|\hat{\mathbf{C}}_n\biggl(\frac{i}{n}, \frac{j}{n}\biggr) -
                  \frac{i}{n}\times\frac{j}{n}\bigg|\mbox{,}}
 where \eqn{\hat{\mathbf{C}}_n} is the simplest empirical copula.
 }

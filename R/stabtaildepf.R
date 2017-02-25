@@ -1,4 +1,4 @@
-"StableTailDepFN" <-
+"stabtaildepf" <-
 function(uv=NULL, xy=NULL, k=function(n) as.integer(0.5*n),
              levelset=TRUE, ploton=TRUE, title=TRUE, delu=0.01,
              smooth=FALSE, ...) {
@@ -19,7 +19,7 @@ function(uv=NULL, xy=NULL, k=function(n) as.integer(0.5*n),
       }
       if(! smooth) {
          afunc <- function(y, c=NULL, x=NULL, k=NULL, ...) {
-          abs(c - StableTailDepFN(xy=c(x,y), uv=uv, k=k, levelset=FALSE, ...)) }
+          abs(c - stabtaildepf(xy=c(x,y), uv=uv, k=k, levelset=FALSE, ...)) }
          ZZ <- new.env()
          for(c in seq(0.1,1,by=0.1)) {
             x <- seq(0,c, by=delu)
@@ -31,7 +31,7 @@ function(uv=NULL, xy=NULL, k=function(n) as.integer(0.5*n),
          }
          return(as.list(ZZ))
       } else {
-         Hlis <- StableTailDepFN(xy=NA, uv=uv, smooth=TRUE, levelset=FALSE, k=k)
+         Hlis <- stabtaildepf(xy=NA, uv=uv, smooth=TRUE, levelset=FALSE, k=k)
          bfunc <- function(y, c=NULL, x=NULL, ...) {
                                   sol <- sapply(y, function(g) { 2*sum(Hlis$p3 *
                                          sapply(1:Hlis$Nn, function(i) {

@@ -22,7 +22,7 @@ EMPIRsim(n=100, empgrid=NULL, kumaraswamy=FALSE, na.rm=TRUE, keept=FALSE,
   \item{graphics}{A logical that will disable graphics by setting \code{ploton} and \code{points} to \code{FALSE} and overriding whatever their settings were;}
   \item{ploton}{A logical to toggle on the plot;}
   \item{points}{A logical to actually draw the simulations by the \code{points()} function in \R;}
-  \item{snv}{A logical to convert the \eqn{\{u,v\}} to standard normal scores (variates) both for the optional graphics and the returned \code{data.frame} (Curiously, Joe (2014) advocates extensively for use of normal scores, which is in  contrast to Nelsen (2006) who does not.);}
+  \item{snv}{A logical to convert the \eqn{\{u,v\}} to standard normal scores (variates) both for the optional graphics and the returned \code{data.frame}. Joe (2014) advocates extensively for use of normal scores, which is in  contrast to Nelsen (2006) who does not;}
    \item{infsnv.rm}{A logical that will quietly strip out any occurrences of \eqn{u = \{0,1\}} or \eqn{v = \{0,1\}} from the simulations because these are infinity in magnitude when converted to standard normal variates is to occur. Thus, this logical only impacts logic flow when \code{snv} is \code{TRUE}. The \code{infsnv.rm} is mutually exclusive from \code{trapinfsnv}; }
    \item{trapinfsnv}{If \code{TRUE} and presumably small, the numerical value of this argument (\eqn{\eta}) is used to replace \eqn{u = \{0,1\}} and \eqn{v = \{0,1\}} with \eqn{u(0) =  v(0) = \eta} or \eqn{u(1) = v(1) = 1 - \eta} as appropriate when conversion to standard normal variates is to occur. The setting of \code{trapinfsnv} only is used if \code{snv} is \code{TRUE} and \code{infsnv.rm} is \code{FALSE}; and}
   \item{...}{Additional arguments to pass to the \code{points()} function in \R.}
@@ -40,7 +40,7 @@ pdf("EMPIRsim_experiment.pdf")
                cop1=PLACKETTcop, cop2=PLACKETTcop, para1=0.005, para2=1000)
   set.seed(1)
   uv <- simCOP(n=nsim, cop=composite2COP, para=para, snv=TRUE,
-               pch=16, col=rgb(0,0,0,.2))in \R
+               pch=16, col=rgb(0,0,0,.2))
   mtext("A highly complex simulated bivariate relation")
   # set.seed(1) # try not resetting the seed
   uv.grid <- EMPIRgrid(para=uv, deluv=0.025)
@@ -55,13 +55,12 @@ pdf("EMPIRsim_experiment.pdf")
 dev.off()#}
 
 \dontrun{
-  nsim <- 5000
   set.seed(1)
-  uv1 <- simCOP(n=nsim, cop=PSP, para=NULL, snv=TRUE)
+  uv1 <- simCOP(n=5000, cop=PSP, para=NULL, snv=TRUE)
   semicorCOP(cop=EMPIRcop, para=uv2, samcor=TRUE)
-  uv.grid <- EMPIRgrid(para=uv, deluv=0.01)
+  uv.grid <- EMPIRgrid(para=uv1, deluv=0.01)
   set.seed(1)
-  uv2 <- EMPIRsim(n=nsim, empgrid=uv.grid, snv=TRUE,
+  uv2 <- EMPIRsim(n=5000, empgrid=uv.grid, snv=TRUE,
                   col=rgb(1,0,0,0.1), pch=16)
   mtext("Resimulation without Kumaraswamy smoothing")
   semicorCOP(cop=EMPIRcop, para=uv2, samcor=TRUE)#}

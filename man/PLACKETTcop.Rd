@@ -1,5 +1,6 @@
 \name{PLACKETTcop}
 \alias{PLACKETTcop}
+\alias{PLcop}
 \title{ The Plackett Copula }
 \description{
 The \emph{Plackett copula} (Nelsen, 2006, pp. 89--92) is
@@ -24,6 +25,7 @@ where it is obvious that \eqn{\Theta = ad/bc} and \eqn{a}, \eqn{b}, \eqn{c}, and
 }
 \usage{
 PLACKETTcop(u, v, para=NULL, ...)
+PLcop(u, v, para=NULL, ...)
 }
 \arguments{
   \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction;}
@@ -47,8 +49,8 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \examples{
 PLACKETTcop(0.4,0.6,para=1)
-P(0.4,0.6) # same two values because Theta == 1 is Independence
-PLACKETTcop(0.4,0.6,para=10.25)
+P(0.4,0.6) # independence copula, same two values because Theta == 1
+PLcop(0.4,0.6,para=10.25) # joint probability through positive association
 
 # Joe (2014, p. 164) shows the closed form copula density of the Plackett.
 "dPLACKETTcop" <- function(u,v,para) {

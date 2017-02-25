@@ -21,7 +21,8 @@ EMPIRgridder(empgrid=NULL, ...)
 para   <- list(alpha=0.15,  beta=0.65, cop1=PLACKETTcop, cop2=PLACKETTcop,
                para1=0.005, para2=1000)
 uv <- simCOP(n=1000, cop=composite2COP, para=para)
-fakeU <- pp(uv[,1], sort=FALSE); fakeV <- pp(uv[,2], sort=FALSE)
+fakeU <- lmomco::pp(uv[,1], sort=FALSE)
+fakeV <- lmomco::pp(uv[,2], sort=FALSE)
 uv <- data.frame(U=fakeU, V=fakeV)
 
 "trans3d" <- function(x,y,z, pmat) {

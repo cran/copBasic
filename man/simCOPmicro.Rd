@@ -54,7 +54,7 @@ The advanced features of \code{simCOPmicro} permit simulation of the three permu
   sUsV <- data.frame(U, simCOPmicro(U, cop=GHcop, para=G, reflect="surv" ))
   sUV  <- data.frame(U, simCOPmicro(U, cop=GHcop, para=G, reflect="acute"))
   UsV  <- data.frame(U, simCOPmicro(U, cop=GHcop, para=G, reflect="grave"))
-  taildepCOP(cop=GHcop, para=G)
+  taildepCOP(cop=GHcop, para=G) # lambdaL = 2e-05; lambdaU = 0.68224
 }
 The following code example will verify that the simulations produce values of \eqn{U} and \eqn{V} that are consistent with the \emph{empirical copula} (\code{\link{EMPIRcop}}) results as well as consistent with the variable reflections provided through the \code{\link{COP}} interface. Notice the combinations of nonexceedance and exceedance probabilities blended so that the two returned values for the four different copulas are numerically congruent.
 \preformatted{
@@ -102,7 +102,7 @@ simCOPmicro(runif(5), cop=composite2COP, para=para)
 # the micro version to manually create just the simulation vector of V.
 U <- runif(1500)
 UV <- data.frame(U, simCOPmicro(U, cop=N4212cop, para=4))
-plot(UV, xlab="PROBABILITY IN U", ylab="PROBABILITY IN V", pch=3, col=2)}
+plot(UV, xlab="PROBABILITY IN U", ylab="PROBABILITY IN V", pch=3, col=2) #}
 }
 \keyword{copula (simulation)}
 \keyword{copula (conditional distribution)}

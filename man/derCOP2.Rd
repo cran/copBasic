@@ -14,7 +14,12 @@ which is to read as the probability that \eqn{U \le u} given that \eqn{V = v} an
 \deqn{\mathrm{Pr}[U \le u\mid V=v] = \lim_{\Delta v \rightarrow 0}\frac{\mathbf{C}(u,v) - \mathbf{C}(u, v-\Delta v)}{\Delta v}\mbox{,}}
 and for \code{derdir="center"} (the usual method of computing a derivative), the following results
 \deqn{\mathrm{Pr}[U \le u\mid V=v] = \lim_{\Delta v \rightarrow 0}\frac{\mathbf{C}(u,v+\Delta v) - \mathbf{C}(u, v-\Delta v)}{2 \Delta v}\mbox{.}}
-The \dQuote{\emph{with respect to \eqn{U}}} versions are seen under \code{\link{derCOP}}.
+The \dQuote{\emph{with respect to \eqn{U}}} versions are under \code{\link{derCOP}}.
+
+Copula derivatives (\eqn{\delta \mathbf{C}/\delta v} or say  \eqn{\delta \mathbf{C}/\delta u} \code{\link{derCOP}}) are non-decreasing functions meaning that if \eqn{u_1 \le u_2}, then \eqn{\mathbf{C}(u_2, v) - \mathbf{C}(u_1,v)} is a non-decreasing function in \eqn{v}, thus
+\deqn{\frac{\delta\bigl(\mathbf{C}(u_2, v) - \mathbf{C}(u_1,v)\bigr)}{\delta v}}
+is non-negative, which means
+\deqn{\frac{\delta\mathbf{C}(u_2, v)}{\delta v} \ge \frac{\delta\mathbf{C}(u_1, v)}{\delta v}\mbox{\ for\ } u_2 \ge u_1\mbox{.}}
 }
 \usage{
 derCOP2(cop=NULL, u, v, delv=.Machine$double.eps^0.50,
@@ -32,7 +37,7 @@ derCOP2(cop=NULL, u, v, delv=.Machine$double.eps^0.50,
   Value(s) for the partial derivative are returned.
 }
 \note{
-A known caveat of the current implementation of the copula derivative is that there is a chance that the \eqn{\Delta v} will span a singularity or discontinuous (or nearly so) portion of a copula should it have a property of singularity or nearly so. The \code{delv} is chosen small so the chance is mitigated to a small value. It is not decided whether a derivative from the positive side (\code{dir="left"}), when failing should switch over to a computation from the negative side (\code{dir="right"}). The distinction is important for the computation of the inverse of the derivative \code{\link{derCOPinv2}} because the solution finder needs a sign reversal to work.
+A known caveat of the current implementation of the copula derivative is that there is a chance that the \eqn{\Delta v} will span a singularity or discontinuous (or nearly so) portion of a copula should it have a property of singularity (or nearly so). The \code{delv} is chosen small so the chance is mitigated to a small value. It is not decided whether a derivative from the positive side (\code{dir="left"}), when failing should switch over to a computation from the negative side (\code{dir="right"}). The distinction is important for the computation of the inverse of the derivative \code{\link{derCOPinv2}} because the solution finder needs a sign reversal to work.
 }
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
@@ -42,9 +47,9 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 \examples{
 derCOP2(cop=W,0.4,0.6); derCOP2(cop=P,0.4,0.6); derCOP2(cop=M,0.4,0.6)
 
-lft <- derCOP2(cop=P, 0.4,0.6, derdir="left"  )
-rgt <- derCOP2(cop=P, 0.4,0.6, derdir="right" )
-cnt <- derCOP2(cop=P, 0.4,0.6, derdir="center")
+lft <- derCOP2(cop=P,     0.4,  0.6, derdir="left"  )
+rgt <- derCOP2(cop=P,     0.4,  0.6, derdir="right" )
+cnt <- derCOP2(cop=P,     0.4,  0.6, derdir="center")
 cat(c(lft,rgt,cnt,"\n"))
 # stopifnot(all.equal(lft,rgt), all.equal(lft,cnt))
 

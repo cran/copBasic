@@ -1,6 +1,6 @@
 \encoding{utf8}
-\name{StableTailDepFN}
-\alias{StableTailDepFN}
+\name{stabtaildepf}
+\alias{stabtaildepf}
 \title{ Estimation of the Stable Tail Dependence Function }
 \description{
 Kiriliouk \emph{et al.} (2016, pp. 364--366) describe a technique for estimation of a \emph{empirical stable tail dependence function} for a random sample. The function is defined as
@@ -14,9 +14,8 @@ where \eqn{\widehat{p}_{3,i}} are the weights for the \emph{maximum Euclidean li
 Visualization of \eqn{l(x,y)} commences by setting a constant \eqn{c_i \in} say \eqn{0.2,0.4,0.6,0.8} for \eqn{c > 0} as \eqn{l(x,y) = c}. The \eqn{y} are solved for \eqn{x \in [0,\ldots,c_i]} through the \eqn{l(x,y)} for each of the \eqn{c_i}. Each solution set constitutes a \emph{level set} for the stable tail dependence function. If the bivariate data have \emph{asymptotic independence} (to the right), then a level set or the level sets for all the \eqn{c} is equal to the lines \eqn{x + y = c}. Conversely, if the bivariate data have \emph{asymptotic dependence} (to the right), then the level sets will make 90-degree bends for \eqn{\mathrm{max}(x,y) = c}.
 }
 \usage{
-StableTailDepFN(uv=NULL, xy=NULL, k=function(n) as.integer(0.5*n),
-                levelset=TRUE, ploton=TRUE, title=TRUE, delu=0.01,
-                smooth=FALSE, ...)
+stabtaildepf(uv=NULL, xy=NULL, k=function(n) as.integer(0.5*n),
+             levelset=TRUE, ploton=TRUE, title=TRUE, delu=0.01, smooth=FALSE, ...)
 }
 \arguments{
   \item{uv}{An \R \code{data.frame} of \eqn{u} and \eqn{v} nonexceedance probabilities in the respective \eqn{X} (horizontal) and \eqn{Y} (vertical) directions. Note that \code{rank()}s are called on these so strictly speaking this need not be as nonexceedance probabilities. This is not an optional argument;}
@@ -40,7 +39,7 @@ If \code{levelset=FALSE}, then \code{xy} is required to hold the \eqn{(x,y)} coo
   n <- 2000 # very CPU intensive this and the next code snippet
   UV <- simCOP(n=n, cop=N4212cop, para=pi); k <- 1:n
   lhat <- sapply(k, function(j)
-                 StableTailDepFN(xy=c(.1,.1), uv=UV, levelset=FALSE, k=j))
+                 stabtaildepf(xy=c(.1,.1), uv=UV, levelset=FALSE, k=j))
   plot(k, lhat, xlab="k in [1,n]", cex=0.8, lwd=0.8, type="b",
                 ylab="Empirical Stable Tail Dependence Function")
   mtext("Empirical function in the 0.10x0.10 Pr square (upper left corner)")
@@ -50,13 +49,13 @@ The \R \code{list} that can be used to compute \eqn{\widehat{l}_{CF}(x,y)} is re
 \preformatted{
   x <- 0.1; y <- 0.1; k <- 1:(n-1)
   lhatCF <- sapply(k, function(j) {
-     Hlis <- StableTailDepFN(xy=NA, uv=UV, levelset=FALSE, smooth=TRUE, k=j)
+     Hlis <- stabtaildepf(xy=NA, uv=UV, levelset=FALSE, smooth=TRUE, k=j)
      2*sum(Hlis$p3 * sapply(1:Hlis$Nn, function(i) {
                  max(c(Hlis$Wn[i]*x, (1-Hlis$Wn[i])*y)) }))
   })
   lines(k, lhatCF, col=2)
 }
-The smooth line (red) of \code{lhatCF} is somewhat close to the limiting behavior of \code{lhat}. It is problematic to determine computational consistency but consistency with the mathematics with Kiriliouk \emph{et al.} (2016) appears achieved.  The \bold{Examples} section 
+The smooth line (red) of \code{lhatCF} is somewhat close to the limiting behavior of \code{lhat}. It is problematic to determine computational consistency but consistency with the mathematics with Kiriliouk \emph{et al.} (2016) appears achieved.  The \bold{Examples} section TODO
 }
 \references{
 Kiriliouk, Anna, Segers, Johan, \enc{Warchoł}{Warchol}, \enc{Michał}{Michal}, 2016, Nonparameteric estimation of extremal dependence: \emph{in} Extreme Value Modeling and Risk Analysis, D.K. Dey and Jun Yan \emph{eds.}, Boca Raton, FL, CRC Press, ISBN 978--1--4987--0129--7.
@@ -67,8 +66,8 @@ Kiriliouk, Anna, Segers, Johan, \enc{Warchoł}{Warchol}, \enc{Michał}{Michal}, 
 \examples{
 \dontrun{
 UV <- simCOP(n=1200, cop=GLcop, para=2.1) # Galambos copula
-tmp1 <- StableTailDepFN(UV) # the lines are curves (strong tail dependence)
-tmp2 <- StableTailDepFN(UV, smooth=TRUE, ploton=FALSE, col=2) # }
+tmp1 <- stabtaildepf(UV) # the lines are curves (strong tail dependence)
+tmp2 <- stabtaildepf(UV, smooth=TRUE, ploton=FALSE, col=2) # }
 }
 \keyword{stable tail dependence function}
 \keyword{tail dependence}

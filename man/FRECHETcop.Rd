@@ -9,7 +9,7 @@ where \eqn{\alpha, \beta \ge 0} and \eqn{\alpha + \beta \le 1}. The \enc{Fréche
 
 \deqn{\tau_\mathbf{C} = \frac{(\alpha - \beta)(\alpha + \beta + 2)}{3}\mbox{\ and\ } \rho_\mathbf{C} = \alpha - \beta\mbox{.}}
 
-The \enc{Fréchet}{Frechet} Family copula virtually always has a visible \emph{singular component} unless \eqn{\alpha, \beta = 0}. The copula has respective \emph{lower-} and \emph{upper-tail dependency parameters} of \eqn{\lambda^L = \alpha} and \eqn{\lambda^U = \alpha} (\code{\link{taildepCOP}}). Lastly, Durante (2007, p. 257) reports that the \enc{Fréchet}{Frechet} Family copula can approximate any bivariate copula in a \dQuote{unique way} and the error bound can be estimated.
+The \enc{Fréchet}{Frechet} Family copula virtually always has a visible \emph{singular component} unless \eqn{\alpha, \beta = 0}. The copula has respective \emph{lower-} and \emph{upper-tail dependency parameters} of \eqn{\lambda^L = \alpha} and \eqn{\lambda^U = \alpha} (\code{\link{taildepCOP}}). Durante (2007, p. 257) reports that the \enc{Fréchet}{Frechet} Family copula can approximate any bivariate copula in a \dQuote{unique way} and the error bound can be estimated.
 }
 \usage{
 FRECHETcop(u,v, para=NULL, rho=NULL, tau=NULL, par2rhotau=FALSE, ...)
@@ -24,12 +24,12 @@ FRECHETcop(u,v, para=NULL, rho=NULL, tau=NULL, par2rhotau=FALSE, ...)
   \item{...}{Additional arguments to pass.}
 }
 \value{
-  Value(s) for the copula are returned using the \eqn{\alpha} and \eqn{\beta} as set by argument \code{para}; however, if \code{para=NULL} and \code{rho} and \code{tau} are set and compatible with the copula, then \eqn{\{\rho_\mathbf{C}, \tau_\mathbf{C}\} \rightarrow \{\alpha, \beta\}} and an \R \code{list} is returned.
+  Value(s) for the copula are returned using the \eqn{\alpha} and \eqn{\beta} as set by argument \code{para}; however, if \code{para=NULL} and \code{rho} and \code{tau} are set and compatible with the copula, then \eqn{\{\rho_\mathbf{C}, \tau_\mathbf{C}\} \rightarrow \{\alpha, \beta\}}, parameter estimation made, and an \R \code{list} is returned.
 }
 \details{
 The function will check the consistency of the parameters whether given by argument or computed from \eqn{\rho_\mathbf{C}} and \eqn{\tau_\mathbf{C}}. The term \dQuote{Family} is used with this particular copula in \pkg{copBasic} so as to draw distinction to the \enc{Fréchet}{Frechet} lower and upper bound copulas as the two limiting copulas are called.
 
-For no other reason than that it can be done and makes a nice picture, loop through a nest of \eqn{\rho} and \eqn{\tau} for the \enc{Fréchet}{Frechet} Family copula and plot the domain of the resulting parameters:
+For no other reason than that it can be easily done and makes a nice picture, loop through a nest of \eqn{\rho} and \eqn{\tau} for the \enc{Fréchet}{Frechet} Family copula and plot the domain of the resulting parameters:
 \preformatted{
   ops <- options(warn=-1) # warning supression because "loops" are dumb
   taus <- rhos <- seq(-1,1, by=0.01)
@@ -76,8 +76,8 @@ if(is.na(spara[1])) { # now a fittable combination is not guaranteed
    warning("sample rho and tau do not provide valid parameters, ",
            "try another simulation")
 } else { # now if fit, draw some red-colored level curves for comparison
-   level.curvesCOP(cop=FRECHETcop, para=spara, ploton=FALSE, col=2)#}
-}
+   level.curvesCOP(cop=FRECHETcop, para=spara, ploton=FALSE, col=2)
+} #}
 }
 \keyword{Frechet Family copula}
 \keyword{copula (formulas)}

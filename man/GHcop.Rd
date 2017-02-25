@@ -48,12 +48,12 @@ GHcop(u, v, para=NULL, tau=NULL, tau.big=0.985, cor=NULL, ...)
   \item{...}{Additional arguments to pass.}
 }
 \value{
-  Value(s) for the copula are returned using the \eqn{\Theta} as set by argument \code{para}. Alternative returned values are possible: (1) If \code{para=NULL} and \code{tau} is set, then \eqn{\tau_\mathbf{C} \rightarrow \Theta} and an \R \code{list} is returned. (2) If \code{para=NULL} and \code{tau=NULL}, then an attempt to estimate \eqn{\Theta} from the \code{u} and \code{v} is made by \eqn{\mathrm{cor}(u,v)_\tau \rightarrow \tau_\mathbf{C} \rightarrow \Theta} by either trigger using \code{cor(u,v, method="kendall")} in \R and an \R \code{list} is returned. The possibly returned \code{list} has the following elements:
-  \item{para}{The computed \eqn{\Theta} from the given bivariate data in \code{para} and}
+  Value(s) for the copula are returned using the \eqn{\Theta} as set by argument \code{para}. Alternative returned values are possible: (1) If \code{para=NULL} and \code{tau} is set, then \eqn{\tau_\mathbf{C} \rightarrow \Theta} and an \R \code{list} is returned. (2) If \code{para=NULL} and \code{tau=NULL}, then an attempt to estimate \eqn{\Theta} from the \code{u} and \code{v} is made by \eqn{\mathrm{cor}(u,v)_\tau \rightarrow \tau_\mathbf{C} \rightarrow \Theta} by either trigger using \code{cor(u,v, method="kendall")} in \R, and an \R \code{list} is returned. The possibly returned \code{list} has the following elements:
+  \item{para}{The computed \eqn{\Theta} from the given bivariate data in \code{para}; and}
   \item{tau}{The sample estimate of \eqn{\tau}.}
 }
 \details{
-Numerical experiments seem to indicate for \eqn{\tau_\mathbf{C} > 0.985} that failures in the numerical partial derivatives in \code{\link{derCOP}} and \code{\link{derCOP2}} result---a \eqn{\tau_\mathbf{C}} this large is indeed large. As \eqn{\Theta \rightarrow \infty} the Gumbel-Hougaard copula becomes the \emph{\enc{Fréchet}{Frechet}-Hoeffding upper bound copula} \eqn{\mathbf{M}} (see \code{\link{M}}). A \eqn{\tau_\mathbf{C} \approx 0.985} yields \eqn{\Theta \approx 66 + 2/3}, then for \eqn{\Theta > 1/(1-\tau_\mathbf{C})} flips over to the \eqn{\mathbf{M}} copula with a warning being issued.
+Numerical experiments seem to indicate for \eqn{\tau_\mathbf{C} > 0.985} that failures in the numerical partial derivatives in \code{\link{derCOP}} and \code{\link{derCOP2}} result---a \eqn{\tau_\mathbf{C}} this large is indeed \emph{large}. As \eqn{\Theta \rightarrow \infty} the Gumbel-Hougaard copula becomes the \emph{\enc{Fréchet}{Frechet}-Hoeffding upper bound copula} \eqn{\mathbf{M}} (see \code{\link{M}}). A \eqn{\tau_\mathbf{C} \approx 0.985} yields \eqn{\Theta \approx 66 + 2/3}, then for \eqn{\Theta > 1/(1-\tau_\mathbf{C})} flips over to the \eqn{\mathbf{M}} copula with a warning being issued.
 }
 \note{
 \emph{SYMMETRIC GUMBEL-HOUGAARD}---A function for the derivative of the copula (Joe, 2014, p. 172) given \eqn{u} is
@@ -87,8 +87,7 @@ where the last numerical approximation shows that tighter tolerance is needed. A
     u <- u[1]; t <- t[1]; rt <- NULL
     x <- -log(u); A <- (x + (para - 1)*log(x) - log(t))
     hz <- function(z) { z + (para - 1)*log(z) - A }
-    zmax <- x; i <- 0
-    hofz.lo <- hz(zmax);
+    zmax <- x; i <- 0; hofz.lo <- hz(zmax)
     if(sign(hofz.lo) != -1) warning("sign for h(z) is not negative!")
     while(1) {
        i <- i + 1
@@ -121,7 +120,7 @@ that can be tested by the following, which also shows how to increase the tolera
 \emph{ASYMMETRIC GUMBEL-HOUGAARD}---Set \eqn{\tau_\mathbf{C} = 0.35} then for a symmetric and then reflection on the 1:1 line of the asymmetric Gumbel-Hougaard copula and compute the primary parameter \eqn{\Theta}, and lastly, compute three bivariate \eqn{\nu_\mathbf{C}} skewnesses (\code{\link{nuskewCOP}}):
 \preformatted{
   Theta1 <- uniroot(function(t) {
-                0.35 - tauCOP(cop=GHcop, para=c(t)) }, c(1,10))$root
+                0.35 - tauCOP(cop=GHcop, para=c(t)) },           c(1,10))$root
   Theta2 <- uniroot(function(t) { # asymmetric
                 0.35 - tauCOP(cop=GHcop, para=c(t, 0.6, 0.9)) }, c(1,30))$root
   Theta3 <- uniroot(function(t) { # asymmetric reflection on 1:1
@@ -136,7 +135,7 @@ So we see, holding \eqn{\tau_\mathbf{C}} constant, that the \eqn{\mathbf{GH}} ha
 \preformatted{
   # Because the Tau's are all similar, there is nothing to learn from the
   # L-correlation, so let us inspect the L-coskew:
-  coT3.1<-lmomco::lcomoms2(simCOP(n=8000, cop=GHcop, para=c(Theta1       ))$T3
+  coT3.1<-lmomco::lcomoms2(simCOP(n=8000, cop=GHcop, para=c(Theta1      )))$T3
   coT3.2<-lmomco::lcomoms2(simCOP(n=8000, cop=GHcop, para=c(Theta2,.6,.9)))$T3
   coT3.3<-lmomco::lcomoms2(simCOP(n=8000, cop=GHcop, para=c(Theta3,.9,.6)))$T3
   # The simulations for Theta1 have no curvature about the diagonal.
@@ -200,11 +199,10 @@ message("# SE(sRho[-] - sRho[+])=", SE.RhoMP, " Joe's SE=0.10")
 
 \dontrun{
 file <- "Lcomom_study_of_GHcopPLACKETTcop.txt"
-x <- data.frame(tau=NA, trho=NA, srho=NA, GHtheta=NA, PLtheta=NA,
-                GHT2=NA, GHT3=NA, GHT4=NA,
-                PLT2=NA, PLT3=NA, PLT4=NA)
+x <- data.frame(tau=NA, trho=NA, srho=NA, PLtheta=NA, PLT2=NA, PLT3=NA, PLT4=NA,
+                                          GHtheta=NA, GHT2=NA, GHT3=NA, GHT4=NA ) 
 write.table(x, file=file, row.names=FALSE, quote=FALSE)
-n <- 25000 # Make a large number, long CPU run but seems stable
+n <- 250 # Make a large number for very long CPU run but seems stable
 for(tau in seq(0,0.98, by=0.005)) {
    thetag <- GHcop(u=NULL, v=NULL, tau=tau)$para
    trho <- rhoCOP(cop=GHcop, para=thetag)
@@ -224,6 +222,7 @@ for(tau in seq(0,0.98, by=0.005)) {
    write.table(x, file=file, row.names=FALSE, col.names=FALSE, append=TRUE)
 }
 
+# After a processing run with very large "n", then meaningful results exist.
 D <- read.table(file, header=TRUE); D <- D[complete.cases(D),]
 plot(D$tau, D$GHT3, ylim=c(-0.08,0.08), type="n",
      xlab="KENDALL TAU", ylab="L-COSKEW OR NEGATED L-COKURTOSIS")
@@ -232,10 +231,9 @@ points(D$tau, -D$GHT4, col=4, pch=2);      points(D$tau, -D$PLT4, col=1, pch=2)
 LM3 <- lm(D$GHT3~I(D$tau^1)+I(D$tau^2)+I(D$tau^4)-1)
 LM4 <- lm(D$GHT4~I(D$tau^1)+I(D$tau^2)+I(D$tau^4)-1)
 LM3c <- LM3$coe; LM4c <- LM4$coe
-Tau <- seq(0,1, by=.01)
-abline(0,0, lty=2, col=3)
+Tau <- seq(0,1, by=.01); abline(0,0, lty=2, col=3)
 lines(Tau,   0 + LM3c[1]*Tau^1 + LM3c[2]*Tau^2 + LM3c[3]*Tau^4,  col=4, lwd=3)
-lines(Tau, -(0 + LM4c[1]*Tau^1 + LM4c[2]*Tau^2 + LM4c[3]*Tau^4), col=2, lwd=3)}
+lines(Tau, -(0 + LM4c[1]*Tau^1 + LM4c[2]*Tau^2 + LM4c[3]*Tau^4), col=2, lwd=3) #}
 
 \dontrun{
 # Let us compare the conditional simulation method of copBasic by numerics and by the
@@ -246,7 +244,7 @@ lines(Tau, -(0 + LM4c[1]*Tau^1 + LM4c[2]*Tau^2 + LM4c[3]*Tau^4), col=2, lwd=3)}
 nsim <- 10000; kn <- "kendall" #  The theoretical KENDALL TAU is (1.5-1)/1.5 = 1/3
 # Simulate by conditional simulation using numerical derivative and then inversion
 A <- cor(copBasic::simCOP(nsim, cop=GHcop, para=1.5, graphics=FALSE), method=kn)[1,2]
-U <- runif(nsim)
+U <- runif(nsim) # GHcop.derCOPinv() comes from earlier in this documentation.
 V <- sapply(1:nsim, function(i) { GHcop.derCOPinv(U[i], runif(1), para=1.5) })
 # Simulate by conditional simulation using exact analytical solution
 B <- cor(U, y=V, method=kn);  rm(U, V)
@@ -260,9 +258,9 @@ E <- cor(acopula::rCopula(nsim, pars=1.5), method=kn)[1,2]
 G <- cor(copula::rCopula(nsim, copula::gumbelCopula(1.5)), method=kn)[1,2]
 K <- round(c(A, B, C, D, E, G), digits=5); rm(A, B, C, D, E, G, kn); tx <- ", "
 message("Kendall's Tau: ", K[1], tx, K[2], tx, K[3], tx, K[4], tx, K[5], tx, K[6])
-# Kendall's Tau: 0.32909, 0.32474, 0.33060, 0.32805, 0.32874, 0.33986
-# Kendall's Tau: 0.33357, 0.32748, 0.33563, 0.32913, 0.32732, 0.32416
-# Kendall's Tau: 0.34311, 0.33415, 0.33815, 0.33224, 0.32961, 0.33008
+# Kendall's Tau: 0.32909, 0.32474, 0.33060, 0.32805, 0.32874, 0.33986 -- run 1
+# Kendall's Tau: 0.33357, 0.32748, 0.33563, 0.32913, 0.32732, 0.32416 -- run 2
+# Kendall's Tau: 0.34311, 0.33415, 0.33815, 0.33224, 0.32961, 0.33008 -- run 3
 # Kendall's Tau: 0.32830, 0.33573, 0.32756, 0.33401, 0.33567, 0.33182 -- nsim=50000!
 # All solutions are near 1/3 and it is unknown without further study which of the
 # six methods would result in the least bias and (or) sampling variability.}

@@ -20,7 +20,8 @@ EMPIRgridderinv(empgrid=NULL, kumaraswamy=FALSE, ...)
 \examples{
 \dontrun{
 uv <- simCOP(n=10000, cop=PSP, ploton=FALSE, points=FALSE)
-fakeU <- pp(uv[,1], sort=FALSE); fakeV <- pp(uv[,2], sort=FALSE)
+fakeU <- lmomco::pp(uv[,1], sort=FALSE)
+fakeV <- lmomco::pp(uv[,2], sort=FALSE)
 uv <- data.frame(U=fakeU, V=fakeV)
 
 uv.grid <- EMPIRgrid(para=uv, deluv=.1) # CPU hungry
@@ -67,7 +68,8 @@ lines(qua.wrtv, col=4, lwd=2, lty=4)#}
 para   <- list(alpha=0.15,  beta=0.65, cop1=PLACKETTcop, cop2=PLACKETTcop,
                para1=0.005, para2=1000)
 uv <- simCOP(n=30000, cop=composite2COP, para=para)
-fakeU <- pp(uv[,1], sort=FALSE); fakeV <- pp(uv[,2], sort=FALSE)
+fakeU <- lmomco::pp(uv[,1], sort=FALSE)
+fakeV <- lmomco::pp(uv[,2], sort=FALSE)
 uv <- data.frame(U=fakeU, V=fakeV)
 
 uv.grid <- EMPIRgrid(para=uv, deluv=0.05) # CPU hungry

@@ -8,9 +8,7 @@ Compute the \emph{copula} or \emph{joint distribution function} through a copula
 
 The copula is an expression of the joint probability that both \eqn{U \le u} and \eqn{V \le v}. A \emph{radial} or \emph{permutation symmetric copula} is one such that \eqn{\mathbf{C}(u,v) = \mathbf{C}(v,u)} otherwise the copula is \emph{asymmetric}. A copula is a type of \emph{dependence function} that permits straightforward characterization of dependence from independence.  Joe (2014, p. 8) comments that \dQuote{copula families are usually given as cdfs [cumluative distribution functions.]}
 
-The copula \emph{inversions} \eqn{t = \mathbf{C}(u{=}U, v)} or \eqn{t = \mathbf{C}(u, v{=}V)} for a given \eqn{t} and \eqn{U} or \eqn{V} are provided by \code{\link{COPinv}} and \code{\link{COPinv2}}, respectively.
-
-A copula exists in the domain of the unit square (\eqn{\mathcal{I}^2 = [0, 1]\times [0,1]}) and is a \emph{grounded} function meaning that
+The copula \emph{inversions} \eqn{t = \mathbf{C}(u{=}U, v)} or \eqn{t = \mathbf{C}(u, v{=}V)} for a given \eqn{t} and \eqn{U} or \eqn{V} are provided by \code{\link{COPinv}} and \code{\link{COPinv2}}, respectively. A copula exists in the domain of the unit square (\eqn{\mathcal{I}^2 = [0, 1]\times [0,1]}) and is a \emph{grounded} function meaning that
 \deqn{\mathbf{C}(u,0) = 0 = \mathbf{C}(0,v) \mbox{\ and\ thus\ } \mathbf{C}(0,0) = 0\mbox{, }}
 and other properties of a copula are that
 \deqn{\mathbf{C}(u,1) = u \mbox{\ and\ } \mathbf{C}(1,v) = v\mbox{\ and}}
@@ -63,7 +61,7 @@ COP(cop=W,u,v); COP(cop=P,u,v); COP(cop=M,u,v); COP(cop=PSP,u,v)
 
 F <- 0.75 # 75th percentile, nonexceedance
 G <- 0.20 # 25th percentile, nonexceedance
-bF <- 1 - F; bG <- 1 - G  # exceedance
+bF <- 1 - F; bG <- 1 - G      # exceedance
 
 # What is the probability that both X and Y are less than
 # 75th and 20th percentiles, respectively?
@@ -99,8 +97,8 @@ duCOP(cop=PSP,F,G)
 coCOP(cop=PSP,bF,bG)
 
 # Both of these summations equal unity
-COP(cop=PSP,F,G)      + coCOP(cop=PSP,bF,bG)
-surCOP(cop=PSP,bF,bG) + duCOP(cop=PSP,F,G)
+   COP(cop=PSP,  F,  G) + coCOP(cop=PSP, bF, bG)
+surCOP(cop=PSP, bF, bG) + duCOP(cop=PSP,  F,  G)
 
 F <- 0.99 # 99th percentile, nonexceedance
 G <- 0.50 # 50th percentile, nonexceedance

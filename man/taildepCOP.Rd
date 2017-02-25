@@ -39,7 +39,7 @@ taildepCOP(cop=NULL, para=NULL, tol=1e-6, divisor=2, plot=FALSE, ylim=NULL,
   \item{source}{An attribute identifying the computational source: \dQuote{taildepCOP}.}
 }
 \note{
-\emph{IMPLEMENTED ALOGRITHM}---The algorithm implemented for \code{taildepCOP} is based on halves (or alternatives by the setting of \code{divisor} argument) and uses the copula function (not an analytical or even numeric derivative of the diagonal, \eqn{\delta_\mathbf{C}'(t)}). Starting from the median or \eqn{t = 0.5}, each limit is respectively computed by successive halving (or the setting of argument \code{divisor})) of the distance towards \eqn{0^{+}} and \eqn{1^{-}} and checking the change in computed value against the tolerance \code{tol} argument. After the change becomes less than the \code{tol}erance, convergence is assumed. Other tests are made for \code{NaN} to aid in breaking the successive halvings. The rounding for the numerical results for \eqn{\lambda^U_\mathbf{C}} and \eqn{\lambda^L_\mathbf{C}} is an order of magnitude larger than the tolerance.
+\emph{IMPLEMENTED ALOGRITHM}---The algorithm implemented for \code{taildepCOP} is based on halves (or alternatives by the setting of \code{divisor} argument) and uses the copula function (not an analytical or even numeric derivative of the diagonal, \eqn{\delta_\mathbf{C}'(t)}). Starting from the median or \eqn{t = 0.5}, each limit is respectively computed by successive halving (or the setting of argument \code{divisor}) of the distance towards \eqn{0^{+}} and \eqn{1^{-}} and checking the change in computed value against the tolerance \code{tol} argument. After the change becomes less than the \code{tol}erance, convergence is assumed. Other tests are made for \code{NaN} to aid in breaking the successive halvings. The rounding for the numerical results for \eqn{\lambda^U_\mathbf{C}} and \eqn{\lambda^L_\mathbf{C}} is an order of magnitude larger than the tolerance.
 
 Users are encouraged to plot the results and further verify whether the convergence makes sense. The plot produced when \code{plot=TRUE} shows the probability \eqn{t} transformed into standard normal variates by the \code{qnorm()} function in \R so that the distal reaches of each tail and thus limit are readily seen. The terminal points of each limit computation are shown by a small dot and the letter \dQuote{L} and \dQuote{U} also are plotted at the terminal points.
 
@@ -116,7 +116,7 @@ taildepCOP(cop=composite2COP, para=para, plot=TRUE, verbose=TRUE)
 para <- list(cop1=PLACKETTcop,  cop2=PLACKETTcop,
              para1=0.101,  para2=4493, alpha=0.0063, beta=0.0167)
 taildepCOP(cop=composite2COP, para=para, plot=TRUE)
-# This example might show numerical instability for the upper tail.}
+# This example shows numerical instability for the upper tail.}
 }
 \keyword{copula (characteristics)}
 \keyword{copula (properties)}

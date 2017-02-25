@@ -8,20 +8,19 @@ Compute the measure of \emph{permutation asymmetry} named for the \pkg{copBasic}
 \deqn{\nu_\mathbf{C} = 3\mathrm{E}[UV^2 - U^2V] = 6\int\!\!\int_{\mathcal{I}^2} (v-u)\mathbf{C}(u,v)\, \mathrm{d}u\mathrm{d}v\mbox{.}}
 This definition is the \code{type="nu"} for the function. Permutation asymmetry can be thought of as \emph{bivariate skewness}, which is a more recognizable term/concept to many readers.
 
-
-Numerical results indicate \eqn{\nu_\mathbf{W} \approx 0} (\code{\link{W}}), \eqn{\nu^\star_\mathbf{\Pi} = 0} (\code{\link{P}}), \eqn{\nu_\mathbf{M} \approx 0} (\code{\link{M}}), \eqn{\nu^\star_\mathbf{PL} \approx 0} for all \eqn{\Theta} (\code{\link{PLACKETTcop}}), and the \eqn{\nu^\star_\mathbf{GH} = 0} (\code{\link{GHcop}}). Copulas with mirror symmetry across the 1:1 line have \eqn{\nu_\mathbf{C} = 0}. Asymmetric copulas do exist. Consider an asymmetric Gumbel-Hougaard \eqn{\mathbf{GH}} with \eqn{\Theta_p = (5,0.8,p)}
+Numerical results indicate \eqn{\nu_\mathbf{W} \approx 0} (\code{\link{W}}), \eqn{\nu^\star_\mathbf{\Pi} = 0} (\code{\link{P}}), \eqn{\nu_\mathbf{M} \approx 0} (\code{\link{M}}), \eqn{\nu^\star_\mathbf{PL} \approx 0} for all \eqn{\Theta} (\code{\link{PLACKETTcop}}), and the \eqn{\nu^\star_\mathbf{GH} = 0} (\code{\link{GHcop}}); copulas with mirror symmetry across the 1:1 line have \eqn{\nu_\mathbf{C} = 0}. Asymmetric copulas do exist. Consider an asymmetric Gumbel-Hougaard \eqn{\mathbf{GH}} with \eqn{\Theta_p = (5,0.8,p)}
 \preformatted{
   optimize(function(p) { joeskewCOP(cop=GHcop, para=c(5,0.8, p), type="nu") },
            c(0,0.99) )$minimum
   UV <- simCOP(n=1000, cop=GHcop, c(5,0.8, 0.2836)) # inspect the graphics
 }
-then minimization yields \eqn{\nu_{\mathbf{GH}(5, 0.8, 0.2836)}(u,v) = -0.0175}.
+then minimization yields \eqn{\nu_{\mathbf{GH}(5, 0.8, 0.2836)} = -0.0175}.
 
 Another defintion supported here is for \code{type="nustar"} and is computed by
 \deqn{\nu^\star_\mathbf{C} = 6\int\!\!\int_{\mathcal{I}^2} (v+u-1)\mathbf{C}(u,v)\, \mathrm{d}u\mathrm{d}v - \frac{1}{2}\mbox{.}}
-For the \pkg{copBasic} package, \eqn{\nu^\star} is named as \emph{Joe's Nu-Skew-Star}.
+For the \pkg{copBasic} package, \eqn{\nu^\star_\mathbf{C}} is named as \emph{Joe's Nu-Skew-Star}.
 
-Numerical results indicate \eqn{\nu^\star_\mathbf{W} \approx 0} (\code{\link{W}}), \eqn{\nu^\star_\mathbf{\Pi} = 0} (\code{\link{P}}), \eqn{\nu^\star_\mathbf{M} \approx 0} (\code{\link{M}}), \eqn{\nu^\star_\mathbf{PL} \approx 0} for all \eqn{\Theta} (\code{\link{PLACKETTcop}}), and for comparison the \eqn{\nu^\star_{\mathbf{GH}(1.646)}(u,v) = 0.01173} (\code{\link{GHcop}}), which is the maximum attained by the symmetrical \eqn{\mathbf{GH}} copula for \eqn{\Theta = 1.646}:
+Numerical results indicate \eqn{\nu^\star_\mathbf{W} \approx 0} (\code{\link{W}}), \eqn{\nu^\star_\mathbf{\Pi} = 0} (\code{\link{P}}), \eqn{\nu^\star_\mathbf{M} \approx 0} (\code{\link{M}}), \eqn{\nu^\star_\mathbf{PL} \approx 0} for all \eqn{\Theta} (\code{\link{PLACKETTcop}}), and for comparison the \eqn{\nu^\star_{\mathbf{GH}(1.646)} = 0.01173} (\code{\link{GHcop}}), which is the maximum attained by the symmetrical \eqn{\mathbf{GH}} copula for \eqn{\Theta = 1.646}:
 \preformatted{
   optimize(function(p) {
          -1 * joeskewCOP(cop=GHcop, para=p, type="nustar")}, c(1,40) )$minimum
@@ -40,7 +39,7 @@ nustarCOP(cop=NULL, para=NULL, as.sample=FALSE, brute=FALSE, delta=0.002, ...)
   \item{cop}{A copula function;}
   \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula;}
   \item{type}{The type of metric to compute;}
-  \item{brute}{Should brute force be used instead of two nested \code{integrate()} functions in \R to perform the double integration;}
+  \item{brute}{Should brute force be used instead of two nested \code{integrate()} functions to perform the double integration;}
   \item{delta}{The \eqn{\mathrm{d}u} and \eqn{\mathrm{d}v} for the brute force integration using \code{brute};}
   \item{as.sample}{A logical controlling whether an optional \R \code{data.frame} in \code{para} is used to compute the \eqn{\hat\nu} (see \bold{Note}). If set to \code{-1}, then the message concerning CPU effort will be surpressed; and}
   \item{...}{Additional arguments to pass.}
@@ -49,7 +48,7 @@ nustarCOP(cop=NULL, para=NULL, as.sample=FALSE, brute=FALSE, delta=0.002, ...)
   The value for \eqn{\nu_\mathbf{C}} is returned.
 }
 \details{
-The implementation of \code{joeskewCOP} for \pkg{copBasic} provides second definition of asymmetry, but why?  Consider the results that follow:
+The implementation of \code{joeskewCOP} for \pkg{copBasic} provides the second definition of asymmetry, but why?  Consider the results that follow:
 \preformatted{
   joeskewCOP(cop=GHcop, para=c(5, 0.8,    0.2836))
      # -0.01747565
@@ -99,9 +98,9 @@ The use of \eqn{\nu_\mathbf{C}} and \eqn{\nu^\star_\mathbf{C}} with a \emph{meas
   densityCOPplot(cop=GHcop, para=para) # inspect the graphics
 }
 
-The initial parameter estimate has the value \eqn{\Theta = 1}, which is \emph{independence} for the one parameter \eqn{\mathbf{GH}}. The two other parameters are set as \eqn{\pi_2 = \pi_3 = 1/2} to be in the mid-point of their domain. The transformations using the \code{log()} \eqn{\leftrightarrow} \code{exp()} and \code{qnorm()} \eqn{\leftrightarrow} \code{pnorm()} functions in \R are used to keep the optimization in the parameter domain. The results produce a fitted copula of \eqn{\mathbf{GH}_{(3.865, 0.3634, 0.5197)}}.
+The initial parameter estimate has the value \eqn{\Theta = 1}, which is \emph{independence} for the one parameter \eqn{\mathbf{GH}}. The two other parameters are set as \eqn{\pi_2 = \pi_3 = 1/2} to be in the mid-point of their domain. The transformations using the \code{log()} \eqn{\leftrightarrow} \code{exp()} and \code{qnorm()} \eqn{\leftrightarrow} \code{pnorm()} functions in \R are used to keep the optimization in the viable parameter domain. The results produce a fitted copula of \eqn{\mathbf{GH}_{(3.865, 0.3634, 0.5197)}}.
 
-Although with much brevity, the \code{fitGHcop()} function is an effective solution for the \eqn{\mathbf{GH}}. The function handles alternative measures of association, alternative initial parameters, honors the bounds of the three parameters, and can accommodate zero values for any of the statistics to fit---the question then is, does the \eqn{\mathbf{GH}} truly itself have such solutions as suggested by the input target statistics?  Certainly, \eqn{\nu = 0} is possible because the estimated \eqn{\pi_\#} are returned as equal if \code{Nu = 0}.
+Although with much brevity, the \code{fitGHcop()} function is an effective solution for the \eqn{\mathbf{GH}}. The function handles alternative measures of association, alternative initial parameters, honors the bounds of the three parameters, and can accommodate zero values for any of the statistics to fit---the question then is, does the \eqn{\mathbf{GH}} truly itself have such solutions as suggested by the input target statistics?  Certainly, \eqn{\nu = 0} is possible because the estimated \eqn{\pi_{1,2}} are returned as equal if \code{Nu = 0}.
 }
 \note{
 A natural estimator for \eqn{\hat{\nu}_\mathbf{C}} is through the \emph{empirical copula}
@@ -123,10 +122,10 @@ Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 nuskewCOP(cop=GHcop,para=c(1.43,1/2,1)) # 0.005886 (Joe, 2014, p. 184; 0.0059)
 
 \dontrun{
-joeskewCOP(cop=GHcop, para=c(8,.7,.5)) # -0.009521820
-joeskewCOP(cop=GHcop, para=c(8,.5,.7)) #  0.009521699
-# UV <- simCOP(n=1000, cop=GHcop, para=c(8,.7,.5)) # see the switch in
-# UV <- simCOP(n=1000, cop=GHcop, para=c(8,.5,.7)) # curvature}
+joeskewCOP(            cop=GHcop, para=c(8, .7, .5)) # -0.009521820
+joeskewCOP(            cop=GHcop, para=c(8, .5, .7)) #  0.009521699
+# UV <- simCOP(n=1000, cop=GHcop, para=c(8, .7, .5)) # see the switch in
+# UV <- simCOP(n=1000, cop=GHcop, para=c(8, .5, .7)) # curvature}
 
 \dontrun{
 para=c(19,0.3,0.8); set.seed(341)

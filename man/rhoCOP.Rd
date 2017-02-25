@@ -12,7 +12,7 @@ where the first integral form corresponds to Joe (2014, eq. 248, p. 56) and is t
 
 The integral
 \deqn{\int\!\!\int_{\mathcal{I}^2} \mathbf{C}(u,v)\,\mathrm{d}u\mathrm{d}v\mbox{,}}
-represents the \dQuote{volume under the graph of the copula and over the unit square} (Nelsen, 2006, p. 170) and therefore \eqn{\rho_\mathbf{C}} is simple a rescaled volume under the copula. The second equation for \eqn{\rho_\mathbf{C}} expresses the \dQuote{average distance} between the joint distribution and statistical \emph{independence} \eqn{\mathbf{\Pi} = uv}. Nelsen (2006, pp. 175--176) observes that the following relation between \eqn{\rho_\mathbf{C}} and \eqn{\tau_\mathbf{C}} (\code{\link{tauCOP}}) exists
+represents the \dQuote{volume under the graph of the copula and over the unit square} (Nelsen, 2006, p. 170) and therefore \eqn{\rho_\mathbf{C}} is simple a rescaled volume under the copula. The second equation for \eqn{\rho_\mathbf{C}} expresses the \dQuote{average distance} between the joint distribution and statistical \emph{independence} \eqn{\mathbf{\Pi} = uv}. Nelsen (2006, pp. 175--176) shows that the following relation between \eqn{\rho_\mathbf{C}} and \eqn{\tau_\mathbf{C}} (\code{\link{tauCOP}}) exists
 \deqn{-1 \le 3\tau - 2\rho \le 1\mbox{.}}
 }
 \usage{
@@ -50,12 +50,12 @@ rhoCOP(cop=PSP)             # 0.4784176
 rhoCOP(cop=PSP, brute=TRUE) # 0.4684063
 # CPU heavy example showing that the dual-integration (fast) results in
 # a Spearman's Rho that mimics a sample version
-dorho <- function(n) {
+do_rho <- function(n) {
    uv <- simCOP(n=n, cop=PSP, ploton=FALSE, points=FALSE)
    return(cor(uv$U, uv$V, method="spearman"))
 }
-rhos <- replicate(100, dorho(1000))
-rho.sample <- mean(rhos); print(rho.sample) # 0.472661}
+rhos <- replicate(100, do_rho(1000))
+rho_sample <- mean(rhos); print(rho_sample) # 0.472661}
 
 \dontrun{
 para <- list(cop1=PLACKETTcop,  cop2=PLACKETTcop,

@@ -29,9 +29,9 @@ An \R matrix of results is returned. Each row represents a single simulation run
 \note{
 The following descriptions list in detail the \code{parents} argument structure and content of the \code{para} argument:
 \describe{
-  \item{\code{cop1}}{--- Function of the first copula,}
-  \item{\code{cop2}}{--- Function of the second copula,}
-  \item{\code{para1gen}}{--- Function to generate random parameters for the first copula, and}
+  \item{\code{cop1}}{--- Function of the first copula;}
+  \item{\code{cop2}}{--- Function of the second copula;}
+  \item{\code{para1gen}}{--- Function to generate random parameters for the first copula; and}
   \item{\code{para2gen}}{--- Function to generate random parameters for the second copula.}
 }
 The \code{para} argument of this function are passed to the function contained in \code{compositor} and are therefore subject to further constraints in items should such constraints exist.

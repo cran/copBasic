@@ -1,12 +1,12 @@
 "sectionCOP" <-
 function(f, cop=NULL,  para=NULL, wrtV=FALSE, dercop=FALSE, delt=0.005,
-              ploton=TRUE, lines=TRUE,  xlab="NONEXCEEDANCE PROBABILITY", ...) {
+            ploton=TRUE, lines=TRUE,  xlab="NONEXCEEDANCE PROBABILITY", ...) {
 
   if(wrtV) {
-     message("Triggering Horizontal Section logic: v = constant")
+     #message("Triggering Horizontal Section logic: v = constant")
      txt <- "horizontal section"
   } else {
-     message("Triggering Vertical Section logic: u = constant")
+     #message("Triggering Vertical Section logic: u = constant")
      txt <- "vertical section"
   }
 

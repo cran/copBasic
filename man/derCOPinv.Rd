@@ -29,7 +29,7 @@ and the inverse of the conditional CDF as
 \deqn{\mathbf{C}_{2|1}(v|u) = \frac{[1 + \Theta(1-2u)] - \sqrt{[1+\Theta(1-2u)]^2 - 4t(1-2u)}}{2\Theta(1-2u)}\mbox{.}}
 These three functions for the copula can be defined in \R by
 \preformatted{
-  "FGMcop"       <- function(u,v, para=NULL, ...) u*v*(1 + para*(1-u)*(1-v))
+  "FGMcop"       <- function(u,v, para=NULL, ...) u*v*(1 + para*(1-u)*(1-v)  )
   "joeFGMder"    <- function(u,v, para=NULL, ...)   v*(1 + para*(1-v)*(1-2*u))
   "joeFGMderinv" <- function(u,t, para=NULL, ...) {
       K <- (1-2*u)
@@ -42,7 +42,7 @@ The three analytical algorithms for nonexceedance probability \eqn{t} given \eqn
 \deqn{A = \Theta(1-2u) - 1\mbox{,}}
 \deqn{B = \sqrt{A^2 - 4t(A+1)}\mbox{, and}}
 \deqn{v = 2t/(B-A)\mbox{,}}
-and in \R this \dQuote{Durante algorithm} is
+and in \R, this \dQuote{Durante algorithm} is
 \preformatted{
   "durFGMderinv" <- function(u,t, para=NULL, ...) { # Durante (2007, p. 245)
       A <- para*(1-2*u) - 1; B <- sqrt(A^2 - 4*t*(A+1)); return(2*t/(B - A))
@@ -121,7 +121,7 @@ for(i in 1:500) {
 for(i in 1:500) {
    u <- runif(1); t <- runif(1)
    points(u,derCOPinv(cop=N4212cop,para=9.3,u,t), cex=2, pch=16, col=2) # red dots
-}}
+} #}
 }
 \keyword{copula (utility)}
 \keyword{copula (derivative inverse)}

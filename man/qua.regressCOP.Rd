@@ -37,9 +37,8 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 \dontrun{
 # Use a positively associated Plackett copula and perform quantile regression
 theta <- 10
-R <- qua.regressCOP(cop=PLACKETTcop, para=theta) # 50th percentile regression}
+R <- qua.regressCOP(cop=PLACKETTcop, para=theta) # 50th percentile regression
 
-\dontrun{
 plot(R$U,R$V, type="l", lwd=6, xlim=c(0,1), ylim=c(0,1), col=8)
 lines(R$U,(1+(theta-1)*R$U)/(theta+1), col=4, lwd=1) # theoretical for Plackett, see
 #                                                             (Nelsen, 2006, p. 218)

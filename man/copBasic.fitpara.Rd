@@ -3,7 +3,7 @@
 \alias{copBasic.fitpara.beta}
 \title{ A Single or Multi-Parameter Optimization Engine (Beta Version) }
 \description{
-An example of a general implementation of a parameter optimization scheme using core features of the \pkg{copBasic} package. Because of the general complexity of the objectives for this function, the interface shown here is considered an \dQuote{alpha version} and nomenclature is subject to dramatic changes in the future.
+An example of a general implementation of a parameter optimization scheme using core features of the \pkg{copBasic} package. Because of the general complexity of the objectives for this function, the interface shown here is considered an \dQuote{beta version} and nomenclature is subject to dramatic changes in the future.
 }
 \usage{
 copBasic.fitpara.beta(uv=NULL, popstat=NULL, statf=NULL, cop=NULL,
@@ -14,7 +14,7 @@ copBasic.fitpara.beta(uv=NULL, popstat=NULL, statf=NULL, cop=NULL,
   \item{popstat}{The population statistic(s) that will be used if \code{uv} is \code{NULL};}
   \item{statf}{A function responsible at the minimum for computation of the theoretical values of the population statistic(s) that the optimization will revolve around; This function, if supporting an \code{as.sample} interface (\emph{e.g.} \code{\link{hoefCOP}}) and if \code{uv} has been provided, will be dispatched to compute the population statistic(s);}
   \item{cop}{A copula function that is passed along to \code{statf} though of course the \code{statf} function can decide whether to use this argument or not;}
-  \item{paradim}{The dimension of the parameters. In reality, the default triggers uni-dimensional root solving using the \code{uniroot()} function in \R or otherwise the \code{optim()} function in \R is used for multi-dimensional minimization with subtle changes in setup (see source code). Alternative logic could be have been used but it is felt the this is the most logical for future adaptations;}
+  \item{paradim}{The dimension of the parameters. In reality, the default triggers uni-dimensional root solving using the \code{uniroot()} function in \R or otherwise the \code{optim()} function in \R is used for multi-dimensional minimization with subtle changes in setup (see source code). Alternative logic could be have been used but it is felt that this is the most logical for future adaptations;}
   \item{interval}{The \code{interval} argument by the same name for the \code{uniroot()} function;}
   \item{par.init}{The initial parameter vector for the \code{optim()} function; and}
   \item{...}{Additional arguments to pass.}
@@ -23,7 +23,7 @@ copBasic.fitpara.beta(uv=NULL, popstat=NULL, statf=NULL, cop=NULL,
   A vector of the values for the parameter variable is returned
 }
 \note{
-\emph{One-Parameter Optimization}---A demonstration of uni-dimensional parameter optimimization using \emph{Gini's Gamma} (\code{\link{giniCOP}}) measure of association. There is no native support for Gini's Gamma (and most of the other measures of association) as a parameter estimator at the copula function interface level in \pkg{copBasic}, such as thematically provided by the \code{\link{GHcop}} copula.
+\emph{One-Parameter Optimization}---A demonstration of one-dimensional parameter optimimization using \emph{Gini's Gamma} (\code{\link{giniCOP}}), which is a measure of bivariate association. There is no native support for Gini's Gamma (and most of the other measures of association) in regards to being a parameter estimator at the copula function interface level in \pkg{copBasic}. (A converse example is one provided internally by the \code{\link{GHcop}} copula.)
 \preformatted{
   set.seed(24); n <- 230 # sample size to draw from Galambos copula but a
   # different copula was chosen for the fitting.
@@ -39,7 +39,7 @@ copBasic.fitpara.beta(uv=NULL, popstat=NULL, statf=NULL, cop=NULL,
   sampleUV <- simCOP(n=n, cop=composite1COP, para=pop.para, col=3, snv=TRUE)
 }
 
-A custom objective function \code{objfunc} to serve as the \code{statf} for the \code{copBasic.fitpara.beta} call. The objective function has the \code{as.sample} interface (\emph{e.g.} \code{\link{giniCOP}}) implemented for sample estimation. The most subtle feature of function presumably is the use of the \code{pnorm()} function in \R for the \eqn{\alpha} and \eqn{\beta} parameters to keep each parameter in the range \eqn{\alpha, \beta \in (0,1)}. Another subtly, which affects the choice of other copulas from \code{\link{HRcop}} is how the parameter range of \eqn{\Theta} (the \code{para[1]} variable) is controlled---here the parameter remains untransformed but the lower domain edge is truncated by the return of infinity (\code{return(Inf)}). The \code{getstat} argument is only for short circuiting the objective so that \code{objfunc} can be used to compute the three statistics after the optimal parameters are found.
+A custom objective function \code{objfunc} to serve as the \code{statf} for the \code{copBasic.fitpara.beta} call. The objective function has the \code{as.sample} interface (\emph{e.g.} \code{\link{giniCOP}}) implemented for sample estimation. The most subtle feature of function presumably is the use of the \code{pnorm()} function in \R for the \eqn{\alpha} and \eqn{\beta} parameters to keep each parameter in the range \eqn{\alpha, \beta \in (0,1)}. Another subtly, which affects the choice of other copulas from \code{\link{HRcop}}, is how the parameter range of \eqn{\Theta} (the \code{para[1]} variable) is controlled---here the parameter remains untransformed but the lower domain edge is truncated by the return of infinity (\code{return(Inf)}). The \code{getstat} argument is only for short circuiting the objective so that \code{objfunc} can be used to compute the three statistics after the optimal parameters are found.
 \preformatted{
   "objfunc" <- function(para, stat=NA, as.sample=FALSE, getstat=FALSE, ...) {
       if(as.sample) {
@@ -70,7 +70,7 @@ The parameter estimation proceeds in the following code. The sample statistics (
                    alpha=pnorm(raw.fit.para[2]), beta=pnorm(raw.fit.para[3]))
 }
 
-The optimization is completed. It can be informative to see what the simulation of the fitted copula looks like. Note that this particular problem suffers from identifiability problems between the parameters---meaning that local minima exist or that satisfactory solutions using different parameters than used to generate the random sample can occur. The same seed is used so that one-to-one comparison of points can visually be made with the \code{\link{simCOP}} function call.
+The optimization is completed. It can be informative to see what the simulation of the fitted copula looks like. Note that this particular example suffers from identifiability problems between the parameters---meaning that local minima exist or that satisfactory solutions using different parameters than used to generate the random sample can occur. The same seed is used so that one-to-one comparison of points can visually be made with the \code{\link{simCOP}} function call.
 \preformatted{
   set.seed(1999) # This value will be used again (see below)
   sampleUV <- simCOP(n=n, cop=composite1COP, para=fit.para,
@@ -89,7 +89,7 @@ The visual comparison is qualitative. The tabular comparison of the sample stati
 
                                                # Tail Dependency Parameters
   taildepCOP(cop=composite1COP, para=pop.para) # lower = 0 : upper = 0.5838
-  taildepCOP(cop=composite1COP, para=fit.para) # lower = 0 : upper = 0.53##
+  taildepCOP(cop=composite1COP, para=fit.para) # lower = 0 : upper = 0.5302
 }
 
 The demonstration ends with the comparison of the two asymmetrical density contours.
