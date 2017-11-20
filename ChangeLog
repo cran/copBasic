@@ -337,6 +337,12 @@ Version 2.0.5--February 24, 2017
        example of Kendall function L-moments.
 
 
+Version 2.0.6--11/08/2017
+1.  Added convexCOP() as a N-bivariate copula generalization of convex2COP().
+2.  Documentation adjustment to GHcop.Rd.
+3.  Added CLcop() for user R. Adat related to his own coding efforts.
+
+
 TODOs:
 
 (1) stabtaildepf.Rd --- Need to audit stabtaildepf.Rd and complete documentation.
@@ -345,7 +351,7 @@ TODOs:
 
 (3) Implementation of state-of-the-practice nonparametric estimators of
        lower and upper tail dependence parameters. Neither of the three books
-       cited within deal with this. A turn to recommended literature by
+       cited within deal with this. A turn towards recommended literature by
        Joe (2014) is needed.
 
 (4) Goodness-of-fit of the Kendall Function following Genest et. al. (2006,

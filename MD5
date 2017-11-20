@@ -1,6 +1,7 @@
-f2adabf99c30195c4c4e965c562d6732 *ChangeLog
-61da5e6e241b0c84391aecaf92b32347 *DESCRIPTION
-6b227a70ddd1983d93c4acd4d5f19e44 *NAMESPACE
+6ccd8a5ac465a119f7665aa68a792d91 *ChangeLog
+bbfb1aec026610f38a278fbc1f1f4822 *DESCRIPTION
+9a07790eda9a22f4b0217d6585e8209f *NAMESPACE
+26374ec12c8b119eccaf2817c424ef76 *R/CLcop.R
 a51004d4470c246b2a9bbd8475e37846 *R/COP.R
 e525a5458ac19c7d4cb8e95a51433b05 *R/COPinv.R
 a9efb8e0c0dabb9cc5fc678d9c9c2921 *R/COPinv2.R
@@ -38,6 +39,7 @@ df4ee083987aaef3194d914790d05991 *R/composite1COP.R
 23ce04c20fb5b166a21a2b07a0af717c *R/composite2COP.R
 a329f5b5ed08e0f6235f6cdbf7ff1285 *R/composite3COP.R
 91d4e6c1c0e41e8f2d5dea85ea345ca8 *R/convex2COP.R
+63b393bb6d30d3f15a7b001a46471613 *R/convexCOP.R
 07ba7c768e9bda88fd60b0840a8f2842 *R/copBasic.fitpara.R
 d4b178c507f26a93c39f20be85dcccde *R/densityCOP.R
 9603fa17a2da5c8d26f9579bd445bf6f *R/densityCOPplot.R
@@ -75,7 +77,7 @@ e8d683316b57f3769ae35045d23f4d9d *R/level.setCOP.R
 5a983d885bc87f28c2823f53bc09b8ba *R/level.setCOP2.R
 f56d15b75f4399b1fecc09f792a54364 *R/med.regressCOP.R
 53b415b919ebffeed727ec499afe883f *R/med.regressCOP2.R
-874243c988fc79c33066204aea15f251 *R/mleCOP.R
+708d773cde6289049356fb9b6f91e08e *R/mleCOP.R
 214d81c73631819c5bcf19261199e81b *R/prod2COP.R
 1e8b63c5df165314cb5f458a7ba7f3df *R/psepolar.R
 b7a7b41e1c1622e5fd7cb9c5ce867216 *R/qua.regressCOP.R
@@ -123,11 +125,13 @@ fed15b7cacc49497e243aff891404a29 *inst/3dcopula/3dcopula.pl
 98d9be9e3181a707be82d97f15a068ef *inst/3dcopula/3dcopula_ancillary.tex
 5117b46a5df4129a9d5717c7a2d74067 *inst/3dcopula/3dcopula_config_example.txt
 98dd6c42d28062e343263f1c98c19392 *inst/3dcopula/3dcopula_fromperl.tex
-2039e8769c20c2d307a87ab5781cc946 *inst/3dcopula/README
+2039e8769c20c2d307a87ab5781cc946 *inst/3dcopula/README.txt
 93450755c6ddd53451628bb60a35bcf7 *inst/3dcopula/velocity.txt
 7fc86dcf3eca01b3a7b2cadbf51fb37e *inst/CITATION
 8a7a16d915fcb23c07973462aeafda01 *inst/doc/CopulaRelations_BaseFigure_inR.txt
 12e5c86083f70f8610b59518c876d8dc *inst/doc/Extended_DESCRIPTION.txt
+ca726d75767081a8bf6742c4460d1d42 *inst/testdata/README.md
+ef1c843c0a80d3589ee54bce65af2735 *man/CLcop.Rd
 1f38cd5620c3243d6172c06cf1202656 *man/COP.Rd
 550d483a9bad473711d64771e62e1096 *man/COPinv.Rd
 8a224c20fb8e9ed62e37b7afec4de513 *man/COPinv2.Rd
@@ -145,7 +149,7 @@ e983d3bcd3965cc85345e3d58c1baa94 *man/EMPIRmed.regress.Rd
 9e75b1a071e4c3984af3b58cd5da16ea *man/EMPIRsim.Rd
 d069aa7407b5c011570e397a7a47c66b *man/EMPIRsimv.Rd
 c17a4a0948dc0d21fb8e57424343d193 *man/FRECHETcop.Rd
-bde714c99882761041921130218cfcff *man/GHcop.Rd
+6bf0fbd6bd353dd7cd42894d82e62048 *man/GHcop.Rd
 10fe9e611b7600d9c05821a945bc0196 *man/GLcop.Rd
 94f18d309eaba588b78a0d1866bfcc84 *man/HRcop.Rd
 c65c090d9152e09af5aec220ff53eac9 *man/M.Rd
@@ -166,8 +170,9 @@ ff5112c37bd043cc4d4b9d994bd4c3db *man/coCOP.Rd
 d5628f5663a3ea3409639d2492008983 *man/composite1COP.Rd
 1ecd4aca94c7133f6f1ea45cb8de9342 *man/composite2COP.Rd
 357307a290807f868964b43706f5e6ea *man/composite3COP.Rd
-ad3e013781805b5b248a0cb83f47c7b4 *man/convex2COP.Rd
-074f031ef40161075e735cf087417fc1 *man/copBasic-package.Rd
+85c497132334d734180b4d852c6ee582 *man/convex2COP.Rd
+dfaa8a9463368ebc7160a20d92be1815 *man/convexCOP.Rd
+491ee85773769731e220ee3bd5a1166e *man/copBasic-package.Rd
 57a850369ddb6078831e097bb1f66dae *man/copBasic.fitpara.Rd
 6c49d03011f136a64950647e155834fd *man/densityCOP.Rd
 b73b6543e9995a0485b461640be03f1d *man/densityCOPplot.Rd
@@ -207,7 +212,7 @@ de043f6a9be487e71956f17d070300ca *man/level.curvesCOP2.Rd
 ccd06f177bdd0cfa2fb19e15ce5bdc2e *man/level.setCOP2.Rd
 d2c8151e2b59898ca00b22e04f31fd9c *man/med.regressCOP.Rd
 809975361a89a7a590afca4f5cd5c99c *man/med.regressCOP2.Rd
-7bc6f2304c6ef1b9228c401a5efd6820 *man/mleCOP.Rd
+58d92c637d9fb3831e1c10f2a5083e3c *man/mleCOP.Rd
 b470b6ae18baedb970012e9bb11c451f *man/prod2COP.Rd
 0bf269d8783f3ea7f888b2dee76e965c *man/psepolar.Rd
 a74e260453dc64fd5d7d18c6dd12cbad *man/qua.regressCOP.Rd

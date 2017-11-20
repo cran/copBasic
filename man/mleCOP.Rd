@@ -17,7 +17,7 @@ mleCOP(u, v=NULL, cop=NULL, parafn=function(k) return(k),
   \item{cop}{A copula function;}
   \item{parafn}{A function responsible for generating the parameters. This is often just a simple return of a parameter vector as \pkg{copBasic} uses this style of parameterization, but this function can take over parameter remapping to handle boundary conditions to benefit the search or provide an interface into other copula packages in \R (see \bold{Examples});}
   \item{interval}{The search interval for root finding if the parameter dimension of the copula is \eqn{p = 1}. The interval is not used for \eqn{p \ge 2};}
-  \item{init.para}{The initial guesses for the parameters for the \eqn{p}-dimensional optimization for \eqn{p \ge 2}. These are not used if the parameter dimension of the copula is \eqn{p = 1};}
+  \item{init.para}{The initial guesses for the parameters for the \eqn{p}-dimensional optimization for \eqn{p \ge 2}. The initial guess is used if the parameter dimension of the copula is \eqn{p = 1} and \code{interval} is \code{NULL} (see \bold{Examples});}
   \item{verbose}{A logical to trigger an minimal reporting scheme within the objective
 function. This is independent from the \code{control$trace} of function \code{optim()};}
   \item{control}{This argument is the argument of the same name for \code{optim()};}
@@ -58,14 +58,14 @@ Now, let us perform a parameter estimate for a sample of size \eqn{n=900}:
 }
 The search interval for the \emph{Gaussian copula} is \eqn{\rho \in [-1, 1]}, and the final result is \eqn{\rho = 0.4458822}.
 
-\emph{MULTI-DIMENSIONAL pMLE}---Consider a 2-parameter \emph{Gumbel-Hougaard copula} (\eqn{\mathbf{GH}(\Theta_1, \Theta_2)}) but now use the \code{parafn} argument to provide boundary condition assistance through function \code{GH2pfunc} to the \code{optim()} function that performs the maximization. 
+\emph{MULTI-DIMENSIONAL pMLE}---Consider a 2-parameter \emph{Gumbel-Hougaard copula} (\eqn{\mathbf{GH}(\Theta_1, \Theta_2)}) but now use the \code{parafn} argument to provide boundary condition assistance through function \cr \code{GH2pfunc} to the \code{optim()} function that performs the maximization. 
 \preformatted{
   set.seed(162); UV <- simCOP(n=890, cop=GHcop, para=c(2.4, .06))
   GH2pfunc <- function(p) { return(c(exp(p[1])+1, exp(p[2]))) }
   ML <- mleCOP(UV$U, UV$V, cop=GHcop, init.para=c(1,1), parafn=GH2pfunc)
   print(ML$para) # [1] 2.2755018 0.1194788
 }
-and the result is \eqn{\Theta_{1,2} = (2.2755018, 0.1194788)}. Next, consider a 3-parameter \eqn{\mathbf{GH}(\Theta, \pi_1, \pi_2)} copula and again use the \code{parafn} argument through function \code{GH3pfunc}  but notice that the 2nd and 3rd parameters are now mapped into \eqn{0 \le \pi_1, \pi_2 \le 1} domain using the \code{pnorm()} function.
+and the result is \eqn{\Theta_{1,2} = (2.2755018, 0.1194788)}. Next, consider now a 3-parameter \eqn{\mathbf{GH}(\Theta, \pi_1, \pi_2)} copula and again use the \code{parafn} argument through function \code{GH3pfunc}  but notice that the 2nd and 3rd parameters are now mapped into \eqn{0 \le \pi_1, \pi_2 \le 1} domain using the \code{pnorm()} function.
 \preformatted{
   set.seed(162); UV <- simCOP(n=500, cop=GHcop, para=c(5.5, .6, .9))
   GH3pfunc <- function(p) { return(c(exp(p[1])+1, pnorm(p[2]), pnorm(p[3]))) }
@@ -74,7 +74,7 @@ and the result is \eqn{\Theta_{1,2} = (2.2755018, 0.1194788)}. Next, consider a 
 }
 and the result is \eqn{\Theta = 5.3742229} and \eqn{\pi_{1,2} = (0.6141652, 0.9382638)}.
 
-\emph{ANOTHER MULTI-DIMENSIONAL pMLE}---Finally, an experiment can be played to fit a 3-parameter \eqn{\mathbf{GH}(\Theta, \pi_1, \pi_2)} to a simulation from a 2-parameter \eqn{\mathbf{GH}(\Theta_1, \Theta_2)}, where the seed is just arbitrary and \emph{Vuong's Procedure} (\code{\link{vuongCOP}}) is used to compare fits and make inference. The parameter functions \code{GH2pfunc} and \code{GH3pfunc} are as before.
+\emph{ANOTHER MULTI-DIMENSIONAL pMLE}---Finally, an experiment can be made fitting a 3-parameter \eqn{\mathbf{GH}(\Theta, \pi_1, \pi_2)} to a simulation from a 2-parameter \eqn{\mathbf{GH}(\Theta_1, \Theta_2)}, where the seed is just arbitrary and \emph{Vuong's Procedure} (\code{\link{vuongCOP}}) is used to compare fits and make inference. The parameter functions \code{GH2pfunc} and \code{GH3pfunc} are as before.
 \preformatted{
   set.seed(10); UV <- simCOP(n=500, cop=GHcop, para=c(1.7, 1.86))
   GH2pfunc <- function(p) { return(c(exp(p[1])+1,   exp(p[2])              )) }
@@ -130,10 +130,17 @@ ML <- mleCOP(UV$U, UV$V, cop=PLACKETTcop, interval=c(0.1,40)) # 5.225459 estimat
 
 Thetas <- 10^(seq(log10(0.001),log10(100), by=.005))
 MLs <- sapply(Thetas, function(k)
-             densityCOP(UV$U, UV$V, cop=PLACKETTcop, para=k, sumlogs=TRUE))
+              densityCOP(UV$U, UV$V, cop=PLACKETTcop, para=k, sumlogs=TRUE))
 plot(Thetas, MLs, log="x", type="l", # draw the pMLE solution process
      xlab="Plackett Theta", ylab="sum of log densities")
 lines(rep(ML$para, 2), c(ML$objective, par()$usr[3]), col=2) # }
+
+\dontrun{
+set.seed(149); UV <- simCOP(1000, cop=CLcop, para=pi)
+# Warning messages about using optim() for 1D solution
+mleCOP(UV, cop=CLcop, init.para=2)$para          # 3.082031
+# No warning message, optimise() called instead.
+mleCOP(UV, cop=CLcop, interval=c(0,1E2))$para    # 3.081699 }
 
 # See extended code listings and discussion in the Note section
 }

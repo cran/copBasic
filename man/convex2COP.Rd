@@ -6,7 +6,7 @@ The \emph{convex composition of two copulas} (Joe, 2014, p. 155) provides for so
 
 \deqn{\mathbf{C}^{\times}_{\alpha}(u,v) = \alpha \mathbf{A}(u, v; \Theta_\mathbf{A}) - (1-\alpha)\mathbf{B}(u,v; \Theta_\mathbf{B})\mbox{,}}
 
-where \eqn{0 \le \alpha \le 1}.
+where \eqn{0 \le \alpha \le 1}. The generalization of this function for \eqn{N} number of copulas is provided by \code{\link{convexCOP}}.
 }
 \usage{
 convex2COP(u,v, para, ...)
@@ -34,7 +34,7 @@ The following descriptions list in detail the structure and content of the \code
 Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 }
 \author{ W.H. Asquith}
-\seealso{ \code{\link{composite2COP}}, \code{\link{FRECHETcop}} }
+\seealso{ \code{\link{composite2COP}}, \code{\link{convexCOP}}, \code{\link{FRECHETcop}} }
 \examples{
 para <- list(alpha=0.24, cop1=FRECHETcop, para1=c(.4,.56),
                          cop2=PSP,        para2=NA)

@@ -6,6 +6,9 @@
 \description{
 The \pkg{copBasic} package is oriented around copula theory and mathematical operations involving copulas and closely follows the standard texts by Nelsen (2006) and from 2015\eqn{+} increasely Joe (2014) as well. Another recommended text is by Salvadori \emph{et al.} (2007) and is cited herein, but about half of that excellent book is on univariate applications. The primal objective of \pkg{copBasic} is to provide a basic application programming interface (API) to numerous results shown by authoritative texts on copulas. It is hoped in part that the package will help new inductees to copulas in their self study, potential course work, and applied circumstances.
 
+\bold{Notes on copulas that are supported.} The author has focused on pedagogical aspects of the theory of copulas, and this package is a \emph{diary} of sorts in the learning of \emph{bivariate copula} theory by the author in a self-taught fashion. The author has deliberately not thrown in a lot of copulas in the \pkg{copBasic} to avoid redundancy to that support such as it exists on the \R CRAN. However, the author has interests in extreme value analysis, so more of those types of copulas are supported.  Though as time has progressed copulas have been added from time to time based on needs of the user community or need to show some specific concept in the general theory of bivariate copulas. For example, the Clayton copula is a very late arriving addition to the \pkg{copBasic} package (\emph{c.} fall 2017) that has been added to assist a specific user. Other dedicated users are welcome to ask for more.
+
+
 The language and vocabulary of copulas is quite formidable as this documentation exemplifies. The author (Asquith) has often emphasized \dQuote{vocabulary} words in \emph{italics}. Italic typeface is used extensively and usually near the opening of function-by-function documentation to identify vocabulary words, such as \emph{survival copula} (see \code{\link{surCOP}}). This syntax tries to mimic and accentuate the word usage in Nelsen (2006) and Joe (2014). The \pkg{copBasic} package was started well before Joe (2014) so many more citations to Nelsen (2006) are made.
 
 The italics then are used to draw connections between concepts. In conjunction with the summary of functions in \bold{copBasic-package}, the extensive cross referencing to functions throughout and expansive indexing of this documentation should be beneficial. The author had no experience with copulas prior to a chance happening upon Nelsen (2006) in \emph{c.}2008. The \pkg{copBasic} package is a personal \emph{tour de force} in self study. This package and user's manual hopefully is helpful to others.
@@ -54,6 +57,7 @@ Lower-bounds copula \tab \eqn{\mathbf{W}(u,v)} \tab \code{\link{W}} \tab copula\
 Independence copula \tab \eqn{\mathbf{\Pi}(u,v)} \tab \code{\link{P}} \tab copula\cr
 Upper-bounds copula \tab \eqn{\mathbf{M}(u,v)} \tab \code{\link{M}} \tab copula\cr
 \enc{Fréchet}{Frechet} Family copula \tab \eqn{\mathbf{FF}(u,v)} \tab \code{\link{FRECHETcop}} \tab copula\cr
+Clayton copula \tab \eqn{\mathbf{CL}(u,v)} \tab \code{\link{CLcop}} \tab copula\cr
 Galambos copula \tab \eqn{\mathbf{GL}(u,v)} \tab \code{\link{GLcop}} \tab copula\cr
 Gumbel-Hougaard copula \tab \eqn{\mathbf{GH}(u,v)} \tab \code{\link{GHcop}} \tab copula\cr
 \enc{Hüsler}{Husler}-Reiss copula \tab \eqn{\mathbf{HR}(u,v)} \tab \code{\link{HRcop}} \tab copula\cr
@@ -150,7 +154,7 @@ The following \bold{Table of Probabilities} lists some important relations betwe
 The function \code{\link{jointCOP}} has considerable demonstration in its \bold{Note} section of the \bold{joint and} and \bold{joint or} relations supported by simulation + counting scenarios. Also there is considerable demonstration in the \bold{Note} section of function \code{\link{duCOP}} on application of the concepts of \bold{joint and} conditions, \bold{joint or} conditions, and importantly joint \bold{mutually exclusive or} conditions.
 
 
-One or two copulas can be \dQuote{composited,} \dQuote{combined,} or \dQuote{multiplied} in interesting ways to create highly unique joint probability relations and complex dependence structures. \pkg{copBasic} provides the three functions for copula composition: \code{\link{composite1COP}} composites a single copula with two compositing parameters, \code{\link{composite2COP}} composites two copulas with two compositing parameters, and \code{\link{composite3COP}} composites two copulas with four compositing parameters. Two copulas can be combined through a weighted convex combination using \code{\link{convex2COP}} with a single weighting parameter. Copula multiplication of two copulas to form a third is supported by \code{\link{prod2COP}}. All of the five functions for compositing, combining, or multipling copulas are compatible with joint probability simulation (\code{\link{simCOP}}), measures of association (\emph{e.g.} \eqn{\rho_\mathbf{C}}), and presumably all other copula operations using \pkg{copBasic} features.
+One or two copulas can be \dQuote{composited,} \dQuote{combined,} or \dQuote{multiplied} in interesting ways to create highly unique joint probability relations and complex dependence structures. \pkg{copBasic} provides the three functions for copula composition: \code{\link{composite1COP}} composites a single copula with two compositing parameters, \code{\link{composite2COP}} composites two copulas with two compositing parameters, and \code{\link{composite3COP}} composites two copulas with four compositing parameters. Two copulas can be combined through a weighted convex combination using \code{\link{convex2COP}} with a single weighting parameter or \eqn{N} number of copulas combined by weights using \code{\link{convexCOP}}. Copula multiplication of two copulas to form a third is supported by \code{\link{prod2COP}}. All of the five functions for compositing, combining, or multipling copulas are compatible with joint probability simulation (\code{\link{simCOP}}), measures of association (\emph{e.g.} \eqn{\rho_\mathbf{C}}), and presumably all other copula operations using \pkg{copBasic} features.
 
 
 \tabular{cclr}{
@@ -159,16 +163,14 @@ One or two copulas can be \dQuote{composited,} \dQuote{combined,} or \dQuote{mul
 2 \tab \eqn{\alpha, \beta} \tab \code{\link{composite2COP}} \tab copula combination\cr
 2 \tab \eqn{\alpha, \beta, \kappa, \gamma} \tab \code{\link{composite3COP}} \tab copula combination\cr
 2 \tab \eqn{\alpha} \tab \code{\link{convex2COP}} \tab copula combination\cr
+N \tab \eqn{\omega_{i \in N}} \tab \code{\link{convexCOP}} \tab copula combination\cr
 2 \tab \eqn{\bigl(\mathbf{C}_1 \ast \mathbf{C}_2 \bigr)} \tab \code{\link{prod2COP}} \tab copula multiplication\cr
 }
 
 
 \bold{Useful Copula Relations by Visualization}
 
-There are a myriad of relations amongst variables computable through copulas, and these were listed in the \bold{Table of Probabilities} earlier in this \pkg{copBasic} documentation. There is a script located in the \code{inst/doc} directory of the \pkg{copBasic} sources titled \code{CopulaRelations_BaseFigure_inR.txt}. This script demonstrates, using the \code{\link{PSP}} copula, relations between the copula (\code{\link{COP}}), survival copula (\code{\link{surCOP}}), joint survival function of a copula (\code{\link{surfuncCOP}}), co-copula (\code{\link{coCOP}}), and dual of a copula function (\code{\link{duCOP}}). The script performs simulation and manual counts observations meeting select criteria in order to compute their empirical probabilities. The script produces a \dQuote{base figure,} which after extending in a vector editing software application, is suitable for educational description, and is shown below.
-
-\if{html}{\figure{CopulaRelationsFigure4pkg.jpg}}
-\if{latex}{\figure{CopulaRelationsFigure4pkg.pdf}{options: width=4.5in, trim=1in 2.25in 0.75in 1in, clip}}
+There are a myriad of relations amongst variables computable through copulas, and these were listed in the \bold{Table of Probabilities} earlier in this \pkg{copBasic} documentation. There is a script located in the \code{inst/doc} directory of the \pkg{copBasic} sources titled \code{CopulaRelations_BaseFigure_inR.txt}. This script demonstrates, using the \code{\link{PSP}} copula, relations between the copula (\code{\link{COP}}), survival copula (\code{\link{surCOP}}), joint survival function of a copula (\code{\link{surfuncCOP}}), co-copula (\code{\link{coCOP}}), and dual of a copula function (\code{\link{duCOP}}). The script performs simulation and manual counts observations meeting select criteria in order to compute their empirical probabilities. The script produces a \dQuote{base figure,} which after extending in a vector editing software application, is suitable for educational description, and is provided in these help pages.
 
 \bold{A Review of \dQuote{Return Periods} using Copulas}
 
@@ -207,6 +209,11 @@ Thus, a \dQuote{better understanding of the statistical characteristics of [mult
 \bold{Interaction of copBasic to Copulas in Other Packages}
 
 As mentioned in various places in this documentation, the \pkg{copBasic} is not intended to be a port of the numerous bivariate copulas and over re-implement other bivariate copulas available in \R. A demonstration showing an implemention of the Gaussian copula from the \pkg{copula} package is shown in the \bold{Note} section of \code{\link{med.regressCOP}} in a circumstance of ordinary least squares linear regression  compared to median regression of a copula as well as prediction limits of both regressions. Another demonstration in context of maximum pseudo-log-likelihood estimation of copula parameters is seen in the \bold{Note} section \code{\link{mleCOP}}, and also see \dQuote{\bold{API to the copula package}} entry in the Index.
+
+\if{html}{\figure{CopulaRelationsFigure4pkg.jpg}}
+\if{latex}{\figure{CopulaRelationsFigure4pkg.pdf}{options: width=4.5in, trim=1in 2.25in 0.75in 1in, clip}}
+
+
 }
 \references{
 Cherubini, U., Luciano, E., and Vecchiato, W., 2004, Copula methods in finance: Hoboken, NJ, Wiley, 293 p.

@@ -1,7 +1,7 @@
 Package: copBasic
 Title: General Bivariate Copula Theory and Many Utility Functions
-Version: 2.0.5
-Date: 2017-02-24
+Version: 2.0.6
+Date: 2017-11-08
 Author: William Asquith
 Description: Extensive functions for bivariate copula (bicopula) computations and related
  operations concerning oft cited bicopula theory described by Nelsen (2006), Joe (2014), and
@@ -25,5 +25,5 @@ Imports: lmomco, randtoolbox
 Suggests: copula
 License: GPL-2
 NeedsCompilation: no
-Packaged: 2017-02-24 17:15:56 UTC; williamasquith
-Date/Publication: 2017-02-25 15:57:35
+Packaged: 2017-11-20 13:51:01 UTC; wasquith
+Date/Publication: 2017-11-20 14:00:40 UTC

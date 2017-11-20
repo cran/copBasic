@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{GHcop}
 \alias{GHcop}
-\title{ The Gumbel-Hougaard Extreme Copula }
+\title{ The Gumbel-Hougaard Extreme Value Copula }
 \description{
 \emph{SYMMETRIC GUMBEL-HOUGAARD}---The \emph{Gumbel-Hougaard copula} (Nelsen, 2006, pp. 118 and 164) is
 \deqn{\mathbf{C}_{\Theta}(u,v) = \mathbf{GH}(u,v) = \mathrm{exp}\{-[(-\log u)^\Theta+(-\log v)^\Theta]^{1/\Theta}\}\mbox{,}}

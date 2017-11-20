@@ -45,8 +45,14 @@ function(u, v=NULL, cop=NULL, parafn=function(k) return(k),
          return(NULL)
        }
     } else if(! is.null(init.para)) {
-       # need optim import!!! stats::optim
        control$fnscale <- -1
+       if(length(init.para) == 1) {
+          warning("init.para is length one, need to use 1D 'Brent' method\n",
+                  " but then but interval **will require** specification,\n",
+                  " proceeding anyway with init.para and optim(),\n",
+                  " other warning message will be triggered by optim(),\n",
+                  " suggest calling > mleCOP(..., interval=c(N,M), ...)")
+       }
        try(rt <- optim(init.para, fn=objfunc, control=control, ...))
        if(! is.null(rt)) {
          rt$packagetext <- "Solution by package copBasic + stats::optim()"
