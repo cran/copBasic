@@ -1,5 +1,5 @@
-6ccd8a5ac465a119f7665aa68a792d91 *ChangeLog
-bbfb1aec026610f38a278fbc1f1f4822 *DESCRIPTION
+dc77162765d648c9a28e988fb620920c *ChangeLog
+f9ba79e3c7506867b6f8254fc949aaf7 *DESCRIPTION
 9a07790eda9a22f4b0217d6585e8209f *NAMESPACE
 26374ec12c8b119eccaf2817c424ef76 *R/CLcop.R
 a51004d4470c246b2a9bbd8475e37846 *R/COP.R
@@ -32,7 +32,7 @@ b2022f5179563c854d65d192ebac60aa *R/PLACKETTsim.R
 5fdc7a0c6beebe62c59b7f59adafdec1 *R/PSP.R
 efb635c089cd25d1ae6b3671403f8ce5 *R/W.R
 e003d9590bb5179dd8dfb0d2193ec1ea *R/asCOP.R
-83247d121dbe74bd48daf2817ad683ce *R/bilmoms.R
+63ece754633e81ea7036b6296c4748df *R/bilmoms.R
 87f6b74f2ec94e4c6faa93866c3575a0 *R/blomCOP.R
 5cdc3ebee3de99e3c17e17dc3a448c8b *R/coCOP.R
 df4ee083987aaef3194d914790d05991 *R/composite1COP.R
@@ -67,7 +67,7 @@ e2f6f3d5802ca2fec5b4b2c5ac346494 *R/jointCOP.R
 5152ef5be35e5fff2b329c4529f838fc *R/kfuncCOP.R
 58a3338380a44fb1d34687c24a7a2a1e *R/kfuncCOPinv.R
 a6e3fb091aa657fbc2bb1c7bf6368a60 *R/kfuncCOPlmoms.R
-e9b6c4b14909d5b27758039b95d05641 *R/kullCOP.R
+466103456ea01d33b42bd241f31a9256 *R/kullCOP.R
 7a8f8cc56e3b3648b23fc19502c2fbc7 *R/lcomCOPpv.R
 04c959fb10ccdd4fd37ae15986cf3e73 *R/lcomoms2.ABKGcop2parameter.R
 33f632cdf40cc5e9306507e1d46b4cc5 *R/lcomoms2.ABcop2parameter.R
@@ -164,7 +164,7 @@ c65c090d9152e09af5aec220ff53eac9 *man/M.Rd
 a8b56dd18a21740d60f99f5a737ad8d7 *man/ReineckeWells.Rd
 81b825620ea9d8ddccce31109293c289 *man/W.Rd
 71434cba07217d952dc6da7a0c66469f *man/asCOP.Rd
-94d4154826e1fe92c048bf1d8822c39c *man/bilmoms.Rd
+a3673a9cc7f88e753a249446411cff5f *man/bilmoms.Rd
 e7acd06897112a8e2cb5f4ca20191e2f *man/blomCOP.Rd
 ff5112c37bd043cc4d4b9d994bd4c3db *man/coCOP.Rd
 d5628f5663a3ea3409639d2492008983 *man/composite1COP.Rd
@@ -202,7 +202,7 @@ f33b9b8ce88806f14e2d1d94806c0c53 *man/joint.curvesCOP.Rd
 52bf7ccd805cb5f68de116b226d557d6 *man/kfuncCOP.Rd
 25aee0b39d3037d1938229ec5ba7f53f *man/kfuncCOPinv.Rd
 b7a70c44c9733d54c11af39f9740d5f5 *man/kfuncCOPlmoms.Rd
-99dff62d7e8593d96d6cf7a1ae96141d *man/kullCOP.Rd
+98d57ea9808d89d74a7d0c7ce09541cd *man/kullCOP.Rd
 3b6560d4d98a7bffc18ac7c80a060cdd *man/lcomCOPpv.Rd
 2d6f2450e59c97bdbf214b34723b7663 *man/lcomoms2.ABKGcop2parameter.Rd
 c72ab4d5e46765f0031eef41cde58c51 *man/lcomoms2.ABcop2parameter.Rd

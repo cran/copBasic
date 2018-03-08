@@ -343,6 +343,11 @@ Version 2.0.6--11/08/2017
 3.  Added CLcop() for user R. Adat related to his own coding efforts.
 
 
+Version 2.0.7--03/08/2018
+1.  Clarified some documentation in bilmoms.Rd.
+2.  Expanded description in Examples in kullCOP.Rd.
+
+
 TODOs:
 
 (1) stabtaildepf.Rd --- Need to audit stabtaildepf.Rd and complete documentation.

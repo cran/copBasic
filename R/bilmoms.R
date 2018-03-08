@@ -6,8 +6,8 @@
    }
 
    if(sobol) {
-     if(! exists(".Random.seed")) tmp <- runif(1) # insures definition
-     seed <- sample(.Random.seed, 1); set.seed(seed)
+     if(! exists(".Random.seed")) tmp <- runif(1) # insures definition of .Random.seed
+     seed <- sample(.Random.seed, 1)
      uv   <- randtoolbox::sobol(n = n, dim = 2, seed=seed, scrambling=3)
    } else {
      uv <- matrix(data=runif(2*n), ncol=2)
@@ -25,7 +25,7 @@
    d3  <-   d3 - 1/2
    d4  <- mean((280*uv[,2]^3 - 420*uv[,2]^2 + 180*uv[,2] - 20)*cuv)
    d4  <-   d4 - 1/2
-   err <- 0.5*(d1 - rho/6) # The 1/2 is for an unbiased mean
+   err1 <- abs(d1 - rho/6) # The 1/2 is for an unbiased mean
    deltasX1wrtX2 <- c(d1, d2, d3, d4)
    names(deltasX1wrtX2) <- c("BiVarLM:del1[12]", "BiVarLM:del2[12]",
                              "BiVarLM:del3[12]", "BiVarLM:del4[12]")
@@ -38,7 +38,7 @@
    d3  <-   d3 - 1/2
    d4  <- mean((280*uv[,1]^3 - 420*uv[,1]^2 + 180*uv[,1] - 20)*cuv)
    d4  <-   d4 - 1/2
-   err <- err + 0.5*(d1 - rho/6) # The 1/2 is for an unbiased mean
+   err2 <- abs(d1 - rho/6) # The 1/2 is for an unbiased mean
    deltasX2wrtX1 <- c(d1, d2, d3, d4)
    names(deltasX2wrtX1) <- c("BiVarLM:del1[21]", "BiVarLM:del2[21]",
                              "BiVarLM:del3[21]", "BiVarLM:del4[21]")
@@ -63,10 +63,10 @@
    T4 <- matrix(c( ulmoms$ratios[4], lcX2X1[4], lcX1X2[4],  vlmoms$ratios[4]), ncol=2)
    T5 <- matrix(c( ulmoms$ratios[5], lcX2X1[5], lcX1X2[5],  vlmoms$ratios[5]), ncol=2)
 
-   names(err) <- "mean(MCI_del1[12&21] - del1bySpearmanRho_via_rhoCOP)"
-   return(list(bilmomUV=deltasX1wrtX2,
-               bilmomVU=deltasX2wrtX1,
+   err <- (err1 + err2)/2
+   zz <- list(bilmomUV=deltasX1wrtX2, bilmomVU=deltasX2wrtX1,
                error.rho=err,
                bilcomoms=list(L1=L1, L2=L2, T2=T2, T3=T3, T4=T4, T5=T5),
-               source="bilmoms"))
+               source="bilmoms")
+   return(zz)
 }

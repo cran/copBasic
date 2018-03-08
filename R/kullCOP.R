@@ -11,7 +11,7 @@ function(cop1=NULL, cop2=NULL, para1=NULL, para2=NULL, alpha=0.05,
     UV <- NULL
     if(sobol) {
        if(! exists(".Random.seed")) tmp <- runif(1) # insures definition
-       seed <- sample(.Random.seed, 1); set.seed(seed)
+       seed <- sample(.Random.seed, 1)
        UV <- randtoolbox::sobol(n = n, dim = 2, seed=seed, scrambling=3, ...)
     } else {
        UV <- matrix(data=runif(2*n), ncol=2)

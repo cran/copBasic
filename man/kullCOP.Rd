@@ -68,8 +68,12 @@ Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 # and the Kullback-Leibler sample size is 133. Joe (2014) does not list the
 # parameters for either copula, just that Kendall Tau = 0.5.
 KL <- kullCOP(cop1=GHcop, para1=2, cop2=PLACKETTcop, para2=11.40484)
-# Reports Jeffrey divergence        =   0.1086986
-#      Kullback-Leibler sample size = 130 (another run produces 132)
+# Reports Jeffrey divergence        =   0.1063858
+#      Kullback-Leibler sample size = 136 (another run produces 131)
+
+S <- replicate(20, kullCOP(cop1=GHcop, para1=2, cop2=PLACKETTcop,
+                           para2=11.40484, verbose=FALSE)$KL.sample.size)
+print(as.integer(c(mean(S), sd(S)))) # 134 plus/minus 5
 
 # Joe (2014, p. 237, table 5.3)
 # The Gumbel-Hougaard copula and Plackett copula below each have a Spearman Rho of
@@ -80,6 +84,10 @@ KL <- kullCOP(cop1=GHcop, para1=1.541071, cop2=PLACKETTcop, para2=5.115658)
 # Reports Jeffrey divergence        =   0.06381151
 #      Kullback-Leibler sample size = 220 (another run produces 203)
 
+S <- replicate(20, kullCOP(cop1=GHcop, para1=1.541071, cop2=PLACKETTcop,
+                           para2=5.115658, verbose=FALSE)$KL.sample.size)
+print(as.integer(c(mean(S), sd(S))))  # 220 plus/minus 16
+
 # Joe (2014) likely did the numerical integrations using analytical solutions to the
 # probability densities and not rectangular approximations as in densityCOP().}
 
@@ -87,7 +95,7 @@ KL <- kullCOP(cop1=GHcop, para1=1.541071, cop2=PLACKETTcop, para2=5.115658)
 # Compare Jeffery Divergence estimates as functions of sample size when computed
 # using Sobol sequences or not---Sobol sequences have less sampling variability.
 GHpar <- PApar <- 2 # Spearman Rho = 0.6822339
-Ns <- as.integer(10^seq(2.0, 3.5,by=0.01))
+Ns <- as.integer(10^c(seq(2.0, 3.5,by=0.01), seq(3.6, 5,by=0.2)))
 JDuni <- sapply(1:length(Ns), function(i) {
                   kullCOP(cop1=GHcop, para1=GHpar, verbose=FALSE,
                           cop2=PARETOcop, para2=PApar, n=Ns[i],
@@ -98,7 +106,10 @@ JDsob <- sapply(1:length(Ns), function(i) {
                           sobol=TRUE )$Jeffrey.divergence })
 plot(Ns, JDuni, type="l", log="x", # black line, notice likely outliers too
      xlab="Sample Size", ylab="Jeffery Divergence")
-lines(Ns, JDsob, col=2) # red line }
+lines(Ns, JDsob, col=2) # red line
+print(c(mean(JDuni), sd(JDuni))) # [1] 0.05923462 0.01544651
+print(c(mean(JDsob), sd(JDsob))) # [1] 0.05863623 0.01184879
+# So we see a slightly smaller variation when the Sobol sequence is used. }
 }
 \keyword{inference}
 \keyword{copula (inference)}
