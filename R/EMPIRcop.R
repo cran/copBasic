@@ -23,7 +23,7 @@ function(u,v, para=NULL, ctype=c("weibull", "hazen", "1/n", "bernstein"),
 
   uobs <- para[,1]
   vobs <- para[,2]
-  n <- length(uobs)
+  n <- length(uobs); ns <- 1:n
 
   nu <- length(u); nv <- length(v)
   if(nu > 1 & nv > 1 & nu != nv) {
@@ -48,9 +48,9 @@ function(u,v, para=NULL, ctype=c("weibull", "hazen", "1/n", "bernstein"),
      }
      ber <- sapply(1:nu, function(k) {
                    if(bernprogress) message(k,"-", appendLF=FALSE);
-                   tmpA <- sapply(1:n, function(i) {
+                   tmpA <- sapply(ns, function(i) {
                         A <- choose(n, i) * u[k]^i * (1-u[k])^(n-i)
-                        tmpB <- sapply(1:n, function(j) {
+                        tmpB <- sapply(ns, function(j) {
                                   B <- choose(n, j) * v[k]^j *(1-v[k])^(n-j)
                          return(EMPIRcop(i/n, j/n, para=para, ctype="1/n")*A*B) })
                                   return(sum(tmpB)) })

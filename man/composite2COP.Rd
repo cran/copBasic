@@ -24,7 +24,7 @@ composite2COP(u,v, para, ...)
   \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction;}
   \item{v}{Nonexceedance probability \eqn{v} in the \eqn{Y} direction;}
   \item{para}{A special parameter \code{list} (see \bold{Note}); and}
-  \item{...}{Additional arguments to pass to the copula.}
+  \item{...}{Additional arguments to pass to the copulas.}
 }
 \value{
   Value(s) for the composited copula is returned.

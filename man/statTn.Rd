@@ -68,7 +68,7 @@ Next, compute the sample \eqn{\hat T_n = 0.063} from \code{sampleUV}. The distri
   Tns_pvalue <- 1 - sum(Tns <= sampleTn)/length(Tns) # estimate p-value
 }
 
-The demonstration is furthered with a check on the \emph{Kullback-Leibler sample size} \eqn{n_{f\!g}} at the 5-percent significance level (alpha = 0.05) by the \code{\link{kullCOP}} function, which yields \eqn{100}. Given the parent copula as \eqn{\mathbf{GL}(\Theta{=}1.9)}, therefore, it would take approximately 100 samples to distinguish between that copula and a \eqn{\mathbf{PL}(\Theta{=}20.75)} where in this case the fit was through the \eqn{\hat\beta_\mathbf{C} = 0.64}.
+The demonstration is furthered with a check on the \emph{Kullback--Leibler sample size} \eqn{n_{f\!g}} at the 5-percent significance level (alpha = 0.05) by the \code{\link{kullCOP}} function, which yields \eqn{100}. Given the parent copula as \eqn{\mathbf{GL}(\Theta{=}1.9)}, therefore, it would take approximately 100 samples to distinguish between that copula and a \eqn{\mathbf{PL}(\Theta{=}20.75)} where in this case the fit was through the \eqn{\hat\beta_\mathbf{C} = 0.64}.
 \preformatted{
   kullCOP(cop1=correctCopula, para1=1.9,
           cop2=chosenCopula,  para2=para)$KL.sample.size # KL sample size = 100

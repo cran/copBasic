@@ -92,11 +92,22 @@ Schmidt, R., \enc{Stadtmüller}{Stadtmuller}, U., 2006, Nonparametric estimation
 # for a positive association Plackett copula and see that both are zero.
 taildepCOP(cop=PLACKETTcop, para=3, plotem=TRUE)
 # So Plackett has no tail dependency, as Nelsen (2006, p. 215) shows.
+
 \dontrun{
 "MOcop" <- function(u,v, para=NULL) { # Marshall-Olkin copula
    alpha <- para[1]; beta <- para[2]; return(min(v*u^(1-alpha), u*v^(1-beta)))
 } # The results that follow match those reported by Nelsen (2006, p. 215).
 taildepCOP(cop=MOcop, para=c(0.4, 0.9)) # LambL = 0, LambU = 0.4 [min(alpha,beta)]}
+
+\dontrun{
+# Analytical solution to Gumbel-Hougaard copula from the copula package:
+copula::lambda(copula::gumbelCopula(3))
+#   lower    upper 
+# 0.000000 0.740079 
+# Numerical approximation (see copBasic::GHcop for analytical formula):
+as.data.frame(taildepCOP(GHcop, para=3))
+#  lambdaL lambdaU     source
+#1 0.00012 0.74008 taildepCOP }
 
 \dontrun{
 # Plot the tail dependencies by nonexceedance probability
@@ -124,3 +135,4 @@ taildepCOP(cop=composite2COP, para=para, plot=TRUE)
 \keyword{copula (tail properties)}
 \keyword{Nelsen (2006) Examples and Exercises}
 \keyword{tail dependence}
+\keyword{package copula (comparison to)}

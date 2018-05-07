@@ -48,16 +48,12 @@ dPLACKETTcop(0.32, 0.74, para=1.3)                  # 0.9557124
 densityCOP(  0.32, 0.74, cop=PLACKETTcop, para=1.3) # 0.9557153
 
 # Joe (2014, p. 170) shows the closed form copula density for "Bivariate Joe/B5" copula
-"JOEB5cop" <- function(u,v,para) {
-   up <- (1-u)^para; vp <- (1-v)^para
-   return(1 - (up + vp - up*vp)^(1/para))
-}
 "dJOEB5cop" <- function(u,v,para) {
    up <- (1-u)^para; vp <- (1-v)^para; eta <- para - 1
    A <- (up + vp - up*vp); B <- (1-u)^eta * (1-v)^eta; C <- (eta + A)
    return(A^(-2 + 1/para) * B * C)
 }
-densityCOP(0.32, 0.74, cop=JOEB5cop, para=1.3) # 0.9410653
+densityCOP(0.32, 0.74, cop=JOcopB5, para=1.3)  # 0.9410653
 dJOEB5cop( 0.32, 0.74, para=1.3)               # 0.9410973
 }
 \keyword{visualization}

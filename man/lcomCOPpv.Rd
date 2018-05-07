@@ -69,3 +69,4 @@ print(ZZ2)
 \keyword{hypothesis testing}
 \keyword{copula (characteristics)}
 \keyword{copula (inference)}
+\keyword{L-comoments}

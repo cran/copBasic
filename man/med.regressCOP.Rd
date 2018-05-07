@@ -123,4 +123,5 @@ qua.regressCOP.draw(f=F, cop=PLACKETTcop, ploton=FALSE, para=theta, wrtV=TRUE, l
 \keyword{Normal copula}
 \keyword{Gaussian copula}
 \keyword{API to the copula package}
+\keyword{package copula (comparison to)}
 

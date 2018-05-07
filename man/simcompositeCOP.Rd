@@ -38,6 +38,9 @@ The following descriptions list in detail the \code{parents} argument structure 
 
 The \code{para} argument of this function are passed to the function contained in \code{compositor} and are therefore subject to further constraints in items should such constraints exist.
 }
+\references{
+Asquith, W.H., 2011, Distributional analysis with L-moment statistics using the R environment for statistical computing: Createspace Independent Publishing Platform, ISBN 978--146350841--8.
+}
 \author{ W.H. Asquith}
 \seealso{\code{\link{composite1COP}}, \code{\link{composite2COP}}, \code{\link{simCOP}}}
 \examples{

@@ -58,7 +58,7 @@ Now, let us perform a parameter estimate for a sample of size \eqn{n=900}:
 }
 The search interval for the \emph{Gaussian copula} is \eqn{\rho \in [-1, 1]}, and the final result is \eqn{\rho = 0.4458822}.
 
-\emph{MULTI-DIMENSIONAL pMLE}---Consider a 2-parameter \emph{Gumbel-Hougaard copula} (\eqn{\mathbf{GH}(\Theta_1, \Theta_2)}) but now use the \code{parafn} argument to provide boundary condition assistance through function \cr \code{GH2pfunc} to the \code{optim()} function that performs the maximization. 
+\emph{MULTI-DIMENSIONAL pMLE}---Consider a 2-parameter \emph{Gumbel--Hougaard copula} (\eqn{\mathbf{GH}(\Theta_1, \Theta_2)}) but now use the \code{parafn} argument to provide boundary condition assistance through function \cr \code{GH2pfunc} to the \code{optim()} function that performs the maximization. 
 \preformatted{
   set.seed(162); UV <- simCOP(n=890, cop=GHcop, para=c(2.4, .06))
   GH2pfunc <- function(p) { return(c(exp(p[1])+1, exp(p[2]))) }
@@ -151,5 +151,7 @@ mleCOP(UV, cop=CLcop, interval=c(0,1E2))$para    # 3.081699 }
 \concept{AIC}
 \concept{BIC}
 \concept{Vuong}
+\concept{Kullback--Leibler}
 \concept{Kullback-Leibler}
 \keyword{API to the copula package}
+\keyword{package copula (comparison to)}

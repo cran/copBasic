@@ -75,3 +75,4 @@ lmomco::parnor(lmomco::lmoms(sqrt(n)*(H-B))) # mu = 0.042; sigma = 0.973
 \keyword{Joe (2014) Examples and Exercises}
 \keyword{Nelsen (2006) Examples and Exercises}
 \keyword{Gaussian copula}
+\keyword{Normal copula}

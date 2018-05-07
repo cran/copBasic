@@ -30,6 +30,8 @@ uvskew( u,v=NULL, umv=TRUE, p=0.05, type=6,     getlmoms=FALSE, ...)
   An \R \code{list} of the univariate L-moments of \eqn{\eta} is returned (see documentation for \code{lmoms} in the \pkg{lmomco} package). Or the skewness of \eqn{\eta} can be either (1) based on the empirical distribution based on plotting positions by the \code{quantile} function in \R using the \code{type} as described, or (2) based on the fitted quantile function for the parameters of a distribution for the \pkg{lmomco} package.
 }
 \references{
+Asquith, W.H., 2011, Distributional analysis with L-moment statistics using the R environment for statistical computing: Createspace Independent Publishing Platform, ISBN 978--146350841--8.
+
 Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 }
 \author{ W.H. Asquith}
@@ -51,4 +53,6 @@ plot(ps, ETA, type="l", xlab="P FACTOR", ylab="BIVARIATE SKEWNESS") #}
 \keyword{bivariate asymmetry (measures)}
 \keyword{bivariate skewness}
 \keyword{L-moments of combined U and V}
+\keyword{L-moments}
+\concept{Lmoments}
 

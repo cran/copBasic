@@ -23,9 +23,9 @@
        tmp <- log(f2/f1)
        return(tmp)
    }
-
-   hatD12 <- sum(sapply(1:n, function(i) {  Di(u[i],v[i])             })) / n
-   varD12 <- sum(sapply(1:n, function(i) { (Di(u[i],v[i]) - hatD12)^2 })) / (n-1)
+   ns <- 1:n
+   hatD12 <- sum(sapply(ns, function(i) {  Di(u[i],v[i])             })) / n
+   varD12 <- sum(sapply(ns, function(i) { (Di(u[i],v[i]) - hatD12)^2 })) / (n-1)
    sigmaD12 <- sqrt(varD12)
 
    parameters <- c(alpha, as.integer(n), the.qt, sigmaD12)

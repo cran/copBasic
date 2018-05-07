@@ -1,6 +1,7 @@
 \encoding{utf8}
 \name{PARETOcop}
 \alias{PARETOcop}
+\alias{PAcop}
 \title{ The Pareto Copula }
 \description{
 The \emph{Pareto copula} (Nelsen, 2006, pp. 33) is
@@ -9,6 +10,7 @@ where \eqn{\Theta \in [0, \infty)}. As \eqn{\Theta \rightarrow 0^{+}}, the copul
 }
 \usage{
 PARETOcop(u, v, para=NULL, ...)
+PAcop(u, v, para=NULL, ...)
 }
 \arguments{
   \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction;}
@@ -31,9 +33,9 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 \examples{
 \dontrun{
 z <- seq(0.01,0.99, by=0.01) # Both copulas have Kendall Tau = 1/3
-plot( z, kfuncCOP(z, cop=PARETOcop, para=1), lwd=2,
+plot( z, kfuncCOP(z, cop=PAcop, para=1), lwd=2,
                                 xlab="z <= Z", ylab="F_K(z)", type="l")
-lines(z, kfuncCOP(z, cop=GHcop,     para=1.5), lwd=2, col=2) # red line
+lines(z, kfuncCOP(z, cop=GHcop, para=1.5), lwd=2, col=2) # red line
 # All extreme value copulas have the same Kendall Function [F_K(z)], the
 # Gumbel-Hougaard is such a copula and the F_K(z) for the Pareto does not
 # plot on top and thus is not an extreme value but shares a "closeness."}

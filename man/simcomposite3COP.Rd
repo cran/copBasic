@@ -26,6 +26,9 @@ simcomposite3COP(n=1000, nsim=100, compositor=composite3COP,
 \value{
 An \R matrix of results is returned. Each row represents a single simulation run. The first four columns are the \eqn{\alpha}, \eqn{\beta}, \eqn{\kappa}, and \eqn{\gamma} \emph{compositing parameters} and are labeled as such. The next two columns are the opposing diagonals, by first row and then second, of the \emph{L-comoment correlation}. The following two columns are the opposing diagnonals, by row and then second, of the \emph{L-coskew}. The following two columns are the opposing diagnonals, by row and then second, of the \emph{L-cokurtosis}. The L-comoment columns are labeled to reflect the L-comoment matrix: \code{T2.21} means the L-comoment correlation row 2 column 1 and \code{T3.12} mean the L-coskew row 1 column 2. The remaining columns represent the \eqn{\Theta_n} parameters for copula 1, the \eqn{\Theta_m} parameters for copula 2. The columns are labeled \code{Cop1Thetas} or \code{Cop2Thetas}.
 }
+\references{
+Asquith, W.H., 2011, Distributional analysis with L-moment statistics using the R environment for statistical computing: Createspace Independent Publishing Platform, ISBN 978--146350841--8.
+}
 \note{
 The following descriptions list in detail the \code{parents} argument structure and content of the \code{para} argument:
 \describe{

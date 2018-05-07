@@ -1,6 +1,6 @@
 \name{EMPIRgrid}
 \alias{EMPIRgrid}
-\title{ Grid of the Bivariate Emprical Copula }
+\title{ Grid of the Bivariate Empirical Copula }
 \description{
 Generate a gridded representation of the \emph{bivariate empirical copula} (see \code{\link{EMPIRcop}}, Salvadori \emph{et al.}, 2007, p. 140).  This function has the primary intention of supporting 3-D renderings or 2-D images of the \emph{copulatic surface}, but many empirical copula functions in \pkg{copBasic} rely on the grid of the empirical copula---unlike the functions support parametric copulas.
 }

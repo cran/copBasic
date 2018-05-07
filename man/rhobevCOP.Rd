@@ -10,9 +10,9 @@ where \eqn{B(w) = A(w, 1-w)}, \eqn{B(0) = B(1) = 1}, \eqn{B(w) \ge 1/2}, and \eq
 and thus in terms of the coupla
 \deqn{B(w) = -\log[\mathbf{C}_{BEV}(\mathrm{exp}[-w], \mathrm{exp}[w-1])]\mbox{.}}
 
-Joe (2014, p. 383) states that \eqn{\rho_E} is the correlation of the \dQuote{survival function of a bivariate min-stable exponential distribution,} which can be assembled as a function of \eqn{B(w)}. Joe (2014, p. 383) also shows the following expression for \emph{Spearman's Rho}
+Joe (2014, p. 383) states that \eqn{\rho_E} is the correlation of the \dQuote{survival function of a bivariate min-stable exponential distribution,} which can be assembled as a function of \eqn{B(w)}. Joe (2014, p. 383) also shows the following expression for \emph{Spearman Rho}
 \deqn{\rho_S = 12 \int_0^1 [1 + B(w)]^{-2}\,\mathrm{d}w - 3}
-in terms of \eqn{B(w)}. This expression, in conjunction with \code{\link{rhoCOP}}, was used to confirm the prior expression shown here for \eqn{B(w)} in terms of \eqn{\mathbf{C}_{BEV}(u,v)}. Lastly, for \emph{independence} (\eqn{uv = \mathbf{\Pi}}; \code{\link{P}}), \eqn{\rho_E = 0} and for the \emph{\enc{Fréchet}{Frechet}-Hoeffding upper bound copula} (perfect positive association), \eqn{\rho_E = 1}.
+in terms of \eqn{B(w)}. This expression, in conjunction with \code{\link{rhoCOP}}, was used to confirm the prior expression shown here for \eqn{B(w)} in terms of \eqn{\mathbf{C}_{BEV}(u,v)}. Lastly, for \emph{independence} (\eqn{uv = \mathbf{\Pi}}; \code{\link{P}}), \eqn{\rho_E = 0} and for the \emph{\enc{Fréchet}{Frechet}--Hoeffding upper bound copula} (perfect positive association), \eqn{\rho_E = 1}.
 }
 \usage{
 rhobevCOP(cop=NULL, para=NULL, as.sample=FALSE, brute=FALSE, delta=0.002, ...)
@@ -34,7 +34,7 @@ Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 \author{ W.H. Asquith}
 \seealso{\code{\link{rhoCOP}}, \code{\link{tauCOP}} }
 \examples{
-Theta <- GHcop(tau=1/3)$para     # Gumbel-Hougaard copula with Kendall's Tau = 1/3
+Theta <- GHcop(tau=1/3)$para     # Gumbel-Hougaard copula with Kendall Tau = 1/3
 rhobevCOP(cop=GHcop, para=Theta) # 0.3689268 (RhoE after Joe [2014])
 rhoCOP(   cop=GHcop, para=Theta) # 0.4766613 (Spearman's Rho)
 \dontrun{

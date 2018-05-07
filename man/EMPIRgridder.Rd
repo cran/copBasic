@@ -1,6 +1,6 @@
 \name{EMPIRgridder}
 \alias{EMPIRgridder}
-\title{ Derivatives of the Grid of the Bivariate Emprical Copula for V with respect to U }
+\title{ Derivatives of the Grid of the Bivariate Empirical Copula for V with respect to U }
 \description{
 Generate derivatives of \eqn{V} with respect to \eqn{U} of a gridded representation of the \emph{bivariate empirical copula} (see \code{\link{EMPIRcop}}). This function is the empirical analog to \code{\link{derCOP}}.
 }

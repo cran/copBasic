@@ -38,7 +38,7 @@ The arguments \code{divisor} and \code{delu} are provided to given some flexibil
 
 \emph{Extended Example}---The code herein shows both types of joint probability being computed using the default \code{probs}. The plotting is made in \emph{Gumbel reduced variates} (GRV; see \code{prob2grv} in package \pkg{lmomco}). This transformation is somewhat suitable for the magnitude variation in and at tail depth of the \code{probs} and because transformation is being used the \code{zero2small} logical kept at \code{TRUE} is appropriate and would remain so if standard normal variate transformation (by the \code{qnorm()} function in \R) were used instead.
 
-The \emph{Gumbel-Hougaard} copula (\code{\link{GHcop}}) and a reversed Gumbel-Hougaard copula \code{rGH} are composited together by \code{\link{composite2COP}}. These were chosen so that some asymmetry in the solutions by \code{joint.curvesCOP} could be seen. We begin by specifying symmetrical plotting limits for later use and then creating a function for the reversed Gumbel-Hougaard and setting the parameters and composition weights:
+The \emph{Gumbel--Hougaard} copula (\code{\link{GHcop}}) and a reversed Gumbel--Hougaard copula \code{rGH} are composited together by \code{\link{composite2COP}}. These were chosen so that some asymmetry in the solutions by \code{joint.curvesCOP} could be seen. We begin by specifying symmetrical plotting limits for later use and then creating a function for the reversed Gumbel--Hougaard and setting the parameters and composition weights:
 \preformatted{
   grvlim <- lmomco::prob2grv(c(0.25,0.999)) # out to 1,000 years
   "rGHcop" <- function(u,v, ...) { u + v - 1 + GHcop(1-u, 1-v, ...) }

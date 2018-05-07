@@ -1,7 +1,8 @@
 "densityCOPplot" <-
  function(cop=NULL, para=NULL, deluv=0.002, origins=TRUE,
           getmatrix=c("none", "cdenzz", "cden"), n=0,
-          ploton=TRUE, contour.col=1, ...) {
+          ploton=TRUE,
+          contour.col=1, contour.lwd=1.5, ...) {
    getmatrix <- match.arg(getmatrix)
 
    U <- V <- seq(deluv, 1-deluv, by=+deluv)
@@ -34,7 +35,7 @@
    }
    # The transposition t() is CRITICAL!!!!!!!! Let the 2nd example in
    # densityCOPplot(), which is highly asymmetrical be the canonical demonstration.
-   contour(x=qU, y=qV, z=t(cdenzz), lwd=1.5, cex=2, add=TRUE, col=contour.col, ...)
+   contour(x=qU, y=qV, z=t(cdenzz), lwd=contour.lwd, cex=2, add=TRUE, col=contour.col, ...)
 
    if(getmatrix == "cdenzz") {
       return(cdenzz)

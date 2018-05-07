@@ -21,7 +21,7 @@ Joe (2014) provides additional properties:
 \describe{
 \item{\eqn{\bullet}}{\eqn{\kappa_L = \kappa_U = d} for the \eqn{d}-dimensional \emph{independence copula} (\code{\link{P}}; \emph{e.g.} \code{tailordCOP(cop=P)});}
 \item{\eqn{\bullet}}{It is not possible for \eqn{\kappa_L < 1} or \eqn{\kappa_U < 1} but each can be \eqn{> 1} for a \eqn{\mathbf{C}(u,v)} having some negative dependence (\emph{e.g.} \code{tailordCOP(cop=PLACKETTcop, para=0.2)}; see \code{\link{PLACKETTcop}}); and}
-\item{\eqn{\bullet}}{For the bivariate \emph{\enc{Fréchet}{Frechet}-Hoeffding lower bound copula} (\code{\link{W}}; \emph{countermonotonicity copula}) the \eqn{\kappa_L = \kappa_U} and can be considered \eqn{+\infty}. (A special trap in the \code{tailordCOP} provides consistency on \code{\link{W}} but does not test that the copula is actually that function itself.)}
+\item{\eqn{\bullet}}{For the bivariate \emph{\enc{Fréchet}{Frechet}--Hoeffding lower bound copula} (\code{\link{W}}; \emph{countermonotonicity copula}) the \eqn{\kappa_L = \kappa_U} and can be considered \eqn{+\infty}. (A special trap in the \code{tailordCOP} provides consistency on \code{\link{W}} but does not test that the copula is actually that function itself.)}
 }
 }
 \usage{

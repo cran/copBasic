@@ -31,13 +31,14 @@ function(cop=NULL, para=NULL, p=2, as.sample=FALSE, sample.as.prob=TRUE,
       # case, rank and convert back to a simple probability.
       U <- as.matrix(para); n <- length(U[,1]); d <- length(U[1,])
       if(! sample.as.prob) for(i in 1:d) U[,i] <- rank(U[,i])/n
-      A <- sum(sapply(1:n, function(j) {
-             sum(sapply(1:n, function(k) {
+      ns <- 1:n
+      A <- sum(sapply(ns, function(j) {
+             sum(sapply(ns, function(k) {
              cumprod(sapply(1:d, function(i) { 1 - max(c(U[j,i], U[k,i])) }))[d]
              } ))
            } ))
 
-      B <- sum(sapply(1:n, function(j) {
+      B <- sum(sapply(ns, function(j) {
                            cumprod(sapply(1:d, function(i) { 1 - U[j,i]^2 }))[d]
            } ))
 

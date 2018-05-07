@@ -28,7 +28,7 @@ else {
 # code prior to forking off to R for copula computations.
 $OPTS{'n4lcomom'} = (exists $OPTS{'n4lcomom'}) ? $OPTS{'n4lcomom'} : 0;
 $OPTS{'nsimcop'}  = (exists $OPTS{'nsimcop'})  ? $OPTS{'nsimcop'}  : 500;
-$OPTS{'noshadow'} = (exists $OPTS{'noshadow'}) ? "TRUE" : "FALSE"; 
+$OPTS{'noshadow'} = (exists $OPTS{'noshadow'}) ? "TRUE" : "FALSE";
 
 # BEGIN CORE OF PROGRAM
 my $Rlibraries = "library(copBasic);\n";
@@ -90,7 +90,7 @@ system("R --vanilla < $Rfile");
 print "STATUS: R is done.\n";
 
 print "STATUS: system forking to LaTeX (not pdflatex)...\n";
-if(! exists $OPTS{'nolatex'}) { 
+if(! exists $OPTS{'nolatex'}) {
   system("latex 3dcopula.tex; latex 3dcopula.tex; dvipdf 3dcopula.dvi");
 }
 print "STATUS: latex is done processing\n";
@@ -259,7 +259,7 @@ OPTIONS:
 
   Basic options
 
-  --help   
+  --help
             This help page and exit.
 
   --file=<string>
@@ -320,14 +320,14 @@ EXAMPLES:
 
 FURTHER CONFIGURATION:
   The file 3dcopula_ancillary.tex, if exists, is included in the LaTeX
-  run on 3dcopula.tex just before the \\begin{document} and users can 
+  run on 3dcopula.tex just before the \\begin{document} and users can
   place arbitrary LaTeX code as needed.
 
 HOW IT WORKS:
   The file 3dcopula.tex is the core of the 3D rendering. This LaTeX file
   uses packages of the PSTRICKS bundle and processing to dvi file is
-  require. Your latex command must not point to pdflatex as PSTRICKS uses
-  the postscript language. A dvi file is created and the dvipdf command is
+  required. Your latex command must not point to pdflatex as PSTRICKS uses
+  the Postscript language. A dvi file is created and the dvipdf command is
   used to convert the dvi to pdf.
 
   The program $0 creates numerous temporary files TMP*.txt, which
@@ -335,7 +335,7 @@ HOW IT WORKS:
   LaTeX processing or TMPoff2R.R for a dispatch to R for the copula
   computations. The file TMPlcomoment.txt contains the L-comoments based
   on a simulation size provided by --n4lcomom=<integer> or 5000.
-    
+
 
 HERE
 ;

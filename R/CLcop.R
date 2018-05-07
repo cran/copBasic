@@ -1,13 +1,14 @@
 "CLcop" <- function(u, v, para=NULL, tau=NULL, ...) {
     if(is.null(para)) {
       if(is.null(tau)) {
-        tau <- cor(u,v, method="kendall")$estimate
+        tau <- cor(u,v, method="kendall")
       }
       if(tau > 0.975) {
         warning("tau > 0.975, simCOP might begin to show rare failures this high")
       }
       para <- 2*tau/(1-tau)
       names(para) <- "theta"
+      names(tau)  <- "Kendall Tau"
       return(list(para=para, tau=tau))
     }
     if(length(para) == 1) {

@@ -34,14 +34,13 @@ prod2COP(u,v, cop1=NULL, para1=NULL, cop2=NULL, para2=NULL, para=NULL,
   Value(s) for the copula are returned.
 }
 \note{
-The \emph{Farlie-Gumbel-Morgenstern copula} \eqn{\mathbf{FGM}(u,v; \Theta)} is
+The \emph{Farlie--Gumbel--Morgenstern copula} \eqn{\mathbf{FGM}(u,v; \Theta)} is
 \deqn{\mathbf{FGM}(u,v; \Theta) = uv[1+\Theta(1-u)(1-v)]\mbox{,}}
 where \eqn{-1 \le \Theta \le 1}. Nelsen (2006, exer. 6.12, p. 249) asserts that for \eqn{\mathbf{FGM}_\alpha} and \eqn{\mathbf{FGM}_\beta} with \eqn{\ast}-product as \eqn{\mathbf{FGM}_\alpha \ast \mathbf{FGM}_\beta} that a closed-form solution exists and is
 \deqn{\mathbf{FGM}_\alpha \ast \mathbf{FGM}_\beta = \mathbf{FGM}_{\alpha\beta/3}\mbox{.}}
 That the assertion is numerically true as readily verified using the \code{prod2COP} function:
 \preformatted{
   u <- c(0.41, 0.87); v <- c(0.13,0.35); A <- -0.532; B <- 0.235
-  "FGMcop" <- function(u,v, para=NULL, ...) u*v*(1 + para*(1-u)*(1-v))
   FGMcop(  u,v, para=A*B/3) # 0.05215986 and 0.30342773, matched by prod2COP()
   prod2COP(u,v, cop1=FGMcop, para1=A, cop2=FGMcop, para2=B)
 }
@@ -60,16 +59,14 @@ prod2COP(u,v, cop1=P, cop2=N4212cop, para1=NA, para2=2.12) # 0.0533 and 0.3045
 COP(u,v, cop=P)                                            # 0.0533 and 0.3045}
 
 \dontrun{
-para <- list(cop1=PLACKETTcop, para1=0.19, cop2=PLACKETTcop, para2=34.5)
+para <- list(cop1=PLcop, para1=0.19, cop2=PLcop, para2=34.5)
 UV <- simCOP(n=1000, cop=prod2COP, para=para)
 # This is large simulation run (with a lot of numerical operations) is expected
-# at least for the Placketts and chosen parameters to trigger one or more
-# Error in uniroot(func, interval = c(0, 1), u = u, LHS = t, cop = cop,  :
-#   f() values at end points not of opposite sign warnings. The simCOP() function
-# simply continues on with ignoring the solution or lack thereof for certain
-# combinations, and simCOP() will report how many of the simulated values for sample
-# of size n were computed. For example, for one n=1000, some 965 simulated values
-# were returned. Lastly, the Spearman Rho can be computed
+# at least for the Placketts and chosen parameters to trigger one or more NAs
+# from derCOPinv().  The simCOP() function simply continues on with ignoring the
+# solution or lack thereof for certain combinations, and simCOP() will report how
+# many of the simulated values for sample of size n were computed. For example,
+# for one n=1000, some 965 simulated values were returned. The Spearman Rho is
 rhoCOP(cop=prod2COP, para=para) # -0.4271195 (theoretical)
 rhoCOP(para=UV, as.sample=TRUE) # -0.4284223 (the test n=1000 --> n=965 sample)}
 }

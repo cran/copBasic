@@ -26,22 +26,22 @@ function(cop=NULL, para=NULL, type=c("nu", "nustar"), as.sample=FALSE,
         return(NULL)
       }
 
-      n <- length(para[,1]); nn <- n^2
+      n <- length(para[,1]); nn <- n^2; ns <- 1:n
       R <- rank(para[,1]); S <- rank(para[,2])
       samNU <- NA
       if(type == "nu") {
          if(as.sample == -1) message("Sample Nu-Skew after Joe (2015)",
                                      "---CPU intensive!")
-         samNU <- sum(sapply(1:n, function(i) {
-                     sum(sapply(1:n, function(j) {
+         samNU <- sum(sapply(ns, function(i) {
+                     sum(sapply(ns, function(j) {
                         (j - i)*sum(as.numeric(R <= i & S <= j))
                      } ))/nn
                   } ))
       } else if(type == "nustar") {
          if(as.sample == -1) message("Sample Nu-Skew-Star after Joe (2015)",
                                   "---CPU intensive!")
-         samNU <- sum(sapply(1:n, function(i) {
-                  sum(sapply(1:n, function(j) {
+         samNU <- sum(sapply(ns, function(i) {
+                  sum(sapply(ns, function(j) {
                      (j + i - n)*sum(as.numeric(R <= i & S <= j))
                   } ))/nn
                } ))

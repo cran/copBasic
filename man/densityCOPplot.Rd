@@ -16,7 +16,7 @@ For plotting and other uses of normal scores of data, Joe (2014, p. 245) advocat
 \usage{
 densityCOPplot(cop=NULL, para=NULL, deluv=0.002, origins=TRUE,
                getmatrix=c("none", "cdenzz", "cden"), n=0,
-               ploton=TRUE, contour.col=1, ...)
+               ploton=TRUE, contour.col=1, contour.lwd=1.5, ...)
 }
 \arguments{
   \item{cop}{A copula function;}
@@ -26,6 +26,7 @@ densityCOPplot(cop=NULL, para=NULL, deluv=0.002, origins=TRUE,
   \item{getmatrix}{A trigger on whether the density matrix is to be returned. The option \code{cdenzz} returns the density scaled by the two standard normal densities (\eqn{c^\star(u,v)}), whereas the option \code{cden} returns simply the copula density (\eqn{c(u,v)});}
   \item{ploton}{A logical to toggle on the plot;}
   \item{contour.col}{The color of the contour lines, which corresponds to the \code{col} argument of the \code{contour} function in \R;}
+  \item{contour.lwd}{The width of the contour lines, which corresponds to the \code{lwd} argument of the \code{contour} function in \R;}
   \item{n}{An optional sample size for which simulation of this many values from the copula will be made by \code{\link{simCOP}} and drawn; and}
   \item{...}{Additional arguments to pass to the copula function and to the \code{contour} function in \R (\emph{e.g.} to turn off labeling of contours add \code{drawlabels=FALSE}).}
 }
@@ -47,7 +48,7 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 # Joe (2014, p. 5) names rMTCJ = reflected Mardia-Takahasi-Cook-Johnson copula
 "rMTCJ" <- function(u,v,para, ...) {
    u + v - 1 + ((1-u)^(-para) + (1-v)^(-para) - 1)^(-1/para)
-} # Survial Copula ("reflected" in Joe's terms)
+} # Survival Copula ("reflected" in Joe's terms)
 densityCOPplot(cop=rMTCJ, para=1.0760, n=9000)
 # The density plot matches that shown by Joe (2014, p. 11, fig. 1.2, lower left plot)
 # for a Spearman's Rho equaling 0.5. Let us compute then Rho:
@@ -69,6 +70,32 @@ set.seed(12)
 UV <- simCOP(cop=PLACKETTcop, para=41.25, n=1000, col=8)
 U <- as.numeric(colnames(H)); V <- as.numeric(rownames(H))
 contour(x=U, y=V, z=t(H), lwd=1.5, cex=2, add=TRUE, col=2) # }
+
+\dontrun{
+UV <- rCOP(400,  cop=PSP, pch=16, col=8, n=400)
+CL <- mleCOP(UV, cop=CLcop,   interval=c(1,20))
+JO <- mleCOP(UV, cop=JOcopB5, interval=c(.1,20))
+PL <- mleCOP(UV, cop=PLcop,   interval=c(.1,20))
+
+AICs <- c(CL$AIC, JO$AIC, PL$AIC)
+names(AICs) <- c("Clayton", "Joe(B5)", "Plackett")
+print(round(AICs, digits=2))
+# Clayton    Joe(B5)   Plackett 
+#  -167.15   -36.91  -131.35
+# So we conclude Clayton must be the best fit of the three.
+
+plot(qnorm(UV[,1]), qnorm(UV[,2]), pch=16, col=8,
+     xlim=c(-3,3), ylim=c(-3,3), cex=0.5,
+     xlab="Standard normal variate of V",
+     ylab="Standard normal variate of U")
+densityCOPplot(cop=PSP, contour.col=grey(0.5), lty=2,
+               contour.lwd=3.5, ploton=FALSE)
+densityCOPplot(cop=CLcop,     para=CL$para,
+               contour.col=2, ploton=FALSE)
+densityCOPplot(cop=JOcopB5,   para=JO$para,
+               contour.col=3, ploton=FALSE)
+densityCOPplot(cop=PLcop,     para=PL$para,
+               contour.col=4, ploton=FALSE) # }
 }
 \keyword{visualization}
 \keyword{copula (density)}

@@ -5,7 +5,7 @@
 \description{
 Compute the \emph{product copula} (Nelsen, 2006, p. 12), which is defined as
 \deqn{\mathbf{\Pi}(u,v) = uv\mbox{.}}
-This is the copula of statistical independence between \eqn{U} and \eqn{V} and is sometimes referred to as the \emph{independence copula}.  The two extreme antithesis copulas are the \emph{\enc{Fréchet}{Frechet}-Hoeffding upper bound} (\code{\link{M}}) and \emph{\enc{Fréchet}{Frechet}-Hoeffding lower bound} (\code{\link{W}}) copulas.
+This is the copula of statistical independence between \eqn{U} and \eqn{V} and is sometimes referred to as the \emph{independence copula}.  The two extreme antithesis copulas are the \emph{\enc{Fréchet}{Frechet}--Hoeffding upper bound} (\code{\link{M}}) and \emph{\enc{Fréchet}{Frechet}--Hoeffding lower bound} (\code{\link{W}}) copulas.
 }
 \usage{
 P(u, v, ...)

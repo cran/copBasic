@@ -13,19 +13,19 @@ function(z, cop=NULL, para=NULL, wrtV=FALSE, as.sample=FALSE, verbose=FALSE, ...
       }
 
       if(as.sample=="genest" | as.sample=="Genest" ) {
-         n <- nrow(para)
+         n <- nrow(para); ns <- 1:n
          R <- rank(para[,1]); S <- rank(para[,2])
          "VIN" <- function(i) sum(as.numeric(R <= R[i] & S <= S[i]))/n
          FKin <- sapply(z, function(t) {
-                sum(sapply(1:n, function(j) as.numeric(VIN(j) <= t) ))/n })
+                sum(sapply(ns, function(j) as.numeric(VIN(j) <= t) ))/n })
          return(FKin)
       } else if(as.sample == "charpentier" | as.sample == "Charpentier") {
         # Charpentier, Arthur, 2012, Kendall's function for copulas:
         # http://freakonometrics.hypotheses.org/1126  (12/09/2012)
-        n <- nrow(para); i <- rep(1:n,each=n); j <- rep(1:n,n)
+        n <- nrow(para); i <- rep(ns,each=n); j <- rep(ns,n)
         S <- (para[i,1] > para[j,1]) & (para[i,2] > para[j,2])
         Z <- tapply(S,i,sum) / (n-1)
-        zz <- data.frame(t=sort(Z), Kc=(1:n)/n)
+        zz <- data.frame(t=sort(Z), Kc=(ns)/n)
         return(zz)
       } else {
          n     <- nrow(para)

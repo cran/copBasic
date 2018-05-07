@@ -64,9 +64,9 @@ length(tmp[tmp == TRUE])/n # about 2/3; Nelsen says == 2/3
 function(u,v, mixer=NA, subcop=NULL, ...) {
    if(is.na(mixer) | mixer <= 0 | mixer >= 1) stop("mixer ! in (0,1)")
    if(u <= mixer) {
-      return(subcop(1-mixer+u, v, ...) - subcop(1-mixer,v, ...))
+      return(    subcop(1-mixer+u, v, ...) - subcop(1-mixer,v, ...))
    } else {
-      return(v - subcop(1-mixer, v, ...) + subcop(u-mixer,v, ...))
+      return(v - subcop(1-mixer,   v, ...) + subcop(u-mixer,v, ...))
    }
 }
 "UsersCop" <- function(u,v, mixer=NA, subcop=NULL, ...) {

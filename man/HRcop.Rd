@@ -1,9 +1,9 @@
 \encoding{utf8}
 \name{HRcop}
 \alias{HRcop}
-\title{ The \enc{Hüsler}{Husler}-Reiss Extreme Value Copula}
+\title{ The \enc{Hüsler}{Husler}--Reiss Extreme Value Copula}
 \description{
-The \emph{\enc{Hüsler}{Husler}-Reiss copula} (Joe, 2014, p. 176) is
+The \emph{\enc{Hüsler}{Husler}--Reiss copula} (Joe, 2014, p. 176) is
 \deqn{\mathbf{C}_{\Theta}(u,v) = \mathbf{HR}(u,v) = \mathrm{exp}[-x \Phi(X) - y\Phi(Y)]\mbox{,}}
 where \eqn{\Theta \ge 0}, \eqn{x = - \log(u)}, \eqn{y = - \log(v)}, \eqn{\Phi(.)} is the cumulative distribution function of the standard normal distribution, \eqn{X} and \eqn{Y} are defined as:
 \deqn{X = \frac{1}{\Theta} + \frac{\Theta}{2}  \log[x/y]\mbox{\ and\ } Y = \frac{1}{\Theta} + \frac{\Theta}{2} \log[y/x]\mbox{.}}
@@ -31,8 +31,9 @@ Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 # Parameter Theta = pi recovery through Blomqvist's Beta (Joe, 2014, p. 176)
 qnorm(1 - log(1+blomCOP(cop=HRcop, para=pi))/(2*log(2)))^(-1)
 }
-\keyword{Husler-Reiss copula}
+\keyword{Husler--Reiss copula}
 \keyword{copula (formulas)}
 \keyword{copula}
+\concept{\enc{Hüsler}{Husler}--Reiss extreme value copula}
 \concept{\enc{Hüsler}{Husler}-Reiss extreme value copula}
 \keyword{Joe (2014) Examples and Exercises}

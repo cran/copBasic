@@ -1,11 +1,11 @@
 \encoding{utf8}
 \name{giniCOP}
 \alias{giniCOP}
-\title{ The Gini's Gamma of a Copula }
+\title{ The Gini Gamma of a Copula }
 \description{
-Compute the measure of association known as \emph{Gini's Gamma} \eqn{\gamma_\mathbf{C}} (Nelsen, 2006, pp. 180--182), which is defined as
+Compute the measure of association known as \emph{Gini Gamma} \eqn{\gamma_\mathbf{C}} (Nelsen, 2006, pp. 180--182), which is defined as
 \deqn{\gamma_\mathbf{C} = \mathcal{Q}(\mathbf{C},\mathbf{M}) + \mathcal{Q}(\mathbf{C},\mathbf{W})\mbox{,}}
-where \eqn{\mathbf{C}(u,v)} is the copula, \eqn{\mathbf{M}(u,v)} is the \code{\link{M}} function, and \eqn{\mathbf{W}(u,v)} is the \code{\link{W}} function. The function \eqn{\mathcal{Q}(a,b)} (\link{concordCOP}) is a \emph{concordance function} (Nelsen, 2006, p. 158). Nelsen also reports that \dQuote{Gini's Gamma measures a concordance relation of \dQuote{distance} between \eqn{\mathbf{C}(u,v)} and monotone dependence, as represented by the \emph{\enc{Fréchet}{Frechet}-Hoeffding lower bound} and \emph{\enc{Fréchet}{Frechet}-Hoeffding upper bound} copulas [\eqn{\mathbf{M}(u,v)}, \code{\link{M}} and \eqn{\mathbf{W}(u,v)}, \code{\link{W}} respectively]}
+where \eqn{\mathbf{C}(u,v)} is the copula, \eqn{\mathbf{M}(u,v)} is the \code{\link{M}} function, and \eqn{\mathbf{W}(u,v)} is the \code{\link{W}} function. The function \eqn{\mathcal{Q}(a,b)} (\link{concordCOP}) is a \emph{concordance function} (Nelsen, 2006, p. 158). Nelsen also reports that \dQuote{Gini Gamma measures a concordance relation of \dQuote{distance} between \eqn{\mathbf{C}(u,v)} and monotone dependence, as represented by the \emph{\enc{Fréchet}{Frechet}--Hoeffding lower bound} and \emph{\enc{Fréchet}{Frechet}--Hoeffding upper bound} copulas [\eqn{\mathbf{M}(u,v)}, \code{\link{M}} and \eqn{\mathbf{W}(u,v)}, \code{\link{W}} respectively]}
 
 A simpler method of computation and the default for \code{giniCOP} is to compute \eqn{\gamma_\mathbf{C}} by
 
@@ -37,7 +37,7 @@ giniCOP(cop=NULL, para=NULL, by.concordance=FALSE, as.sample=FALSE, ...)
   The value for \eqn{\gamma_\mathbf{C}} is returned.
 }
 \note{
-Conceptually, the sample Gini's Gamma (\eqn{\hat\gamma}; Genest \emph{et al.}, 2010) is
+Conceptually, the sample Gini Gamma (\eqn{\hat\gamma}; Genest \emph{et al.}, 2010) is
 \deqn{\hat\gamma = \frac{2}{n^2}\frac{\sum_{i=1}^n |(n+1-R_i) - S_i|- |R_i - S_i|}{n^2 - 1}\mbox{,}}
 where \eqn{R_i} and \eqn{S_i} are the respective ranks of \eqn{X} and \eqn{Y} and \eqn{n} is sample size. The sampling variance of \eqn{\hat\gamma} under assumption of independence between \eqn{X} and \eqn{Y} is
 \deqn{\mathrm{var}(\hat\gamma)_{n\ \mathrm{even}} = \frac{2(n^2 + 2)}{3(n-1)n^2}\mbox{\ and}}

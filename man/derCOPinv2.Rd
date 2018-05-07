@@ -7,12 +7,14 @@ Compute the inverse of a numerical partial derivative for \eqn{U} with respect t
 and solving for \eqn{u}. Nelsen (2006, pp. 13, 40--41) shows that this inverse is quite important for random variable generation using the \emph{conditional distribution method}. This function is not vectorized and will not be so.
 }
 \usage{
-derCOPinv2(cop=NULL, v, t, delv=.Machine$double.eps^0.50, para=NULL, ...)
+derCOPinv2(cop=NULL, v, t, trace=FALSE,
+           delv=.Machine$double.eps^0.50, para=NULL, ...)
 }
 \arguments{
   \item{cop}{A copula function;}
   \item{v}{A single nonexceedance probability \eqn{v} in the \eqn{Y} direction;}
   \item{t}{A single nonexceedance probability level \eqn{t};}
+  \item{trace}{A logical controlling a \code{message} on whether the signs on the \code{uniroot} are the same---this is helpful in exploring the numerical derivative limits of a given implementation of a copula.}
   \item{delv}{The \eqn{\Delta v} interval for the derivative;}
   \item{para}{Vector of parameters or other data structure, if needed, to pass to \code{cop}; and}
   \item{...}{Additional arguments to pass to the copula.}

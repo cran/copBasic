@@ -8,7 +8,7 @@ Compute the measure of \emph{permutation asymmetry} named for the \pkg{copBasic}
 \deqn{\nu_\mathbf{C} = 3\mathrm{E}[UV^2 - U^2V] = 6\int\!\!\int_{\mathcal{I}^2} (v-u)\mathbf{C}(u,v)\, \mathrm{d}u\mathrm{d}v\mbox{.}}
 This definition is the \code{type="nu"} for the function. Permutation asymmetry can be thought of as \emph{bivariate skewness}, which is a more recognizable term/concept to many readers.
 
-Numerical results indicate \eqn{\nu_\mathbf{W} \approx 0} (\code{\link{W}}), \eqn{\nu^\star_\mathbf{\Pi} = 0} (\code{\link{P}}), \eqn{\nu_\mathbf{M} \approx 0} (\code{\link{M}}), \eqn{\nu^\star_\mathbf{PL} \approx 0} for all \eqn{\Theta} (\code{\link{PLACKETTcop}}), and the \eqn{\nu^\star_\mathbf{GH} = 0} (\code{\link{GHcop}}); copulas with mirror symmetry across the 1:1 line have \eqn{\nu_\mathbf{C} = 0}. Asymmetric copulas do exist. Consider an asymmetric Gumbel-Hougaard \eqn{\mathbf{GH}} with \eqn{\Theta_p = (5,0.8,p)}
+Numerical results indicate \eqn{\nu_\mathbf{W} \approx 0} (\code{\link{W}}), \eqn{\nu^\star_\mathbf{\Pi} = 0} (\code{\link{P}}), \eqn{\nu_\mathbf{M} \approx 0} (\code{\link{M}}), \eqn{\nu^\star_\mathbf{PL} \approx 0} for all \eqn{\Theta} (\code{\link{PLACKETTcop}}), and the \eqn{\nu^\star_\mathbf{GH} = 0} (\code{\link{GHcop}}); copulas with mirror symmetry across the 1:1 line have \eqn{\nu_\mathbf{C} = 0}. Asymmetric copulas do exist. Consider an asymmetric Gumbel--Hougaard \eqn{\mathbf{GH}} with \eqn{\Theta_p = (5,0.8,p)}
 \preformatted{
   optimize(function(p) { joeskewCOP(cop=GHcop, para=c(5,0.8, p), type="nu") },
            c(0,0.99) )$minimum
@@ -133,8 +133,8 @@ nuskew <- joeskewCOP( cop=GHcop, para=para) # 0.01911090
 UV <- simCOP(n=10000, cop=GHcop, para=para) #   a large simulation
 mean((UV$U - UV$V)^3)                       # 0.01954624
 # Two other definitions of skewness follow and are not numerically the same.
-uvskew(u=UV$U, v=UV$V, umv=TRUE)  # 0.3592739  (see documentation uvskew)
-uvskew(u=UV$U, v=UV$V, umv=FALSE) # 0.3738987  ( or documentation uvlmoms)
+uvskew(u=UV$U, v=UV$V, umv=TRUE)  # 0.3738987  (see documentation uvskew)
+uvskew(u=UV$U, v=UV$V, umv=FALSE) # 0.3592739  ( or documentation uvlmoms)
 # Yet another definition of skew, which requires large sample approximation
 # using the L-comoments (3rd L-comoment is L-coskew).
 lmomco::lcomoms2(UV)$T3 # L-coskew of the simulated values [1,2] and [2,1]
@@ -148,9 +148,9 @@ lmomco::lcomoms2(UV)$T3 # L-coskew of the simulated values [1,2] and [2,1]
 # for suitable large sample must be zero because the L-skew of the uniform
 # distribution is by definition zero.
 #
-# Now let us check the sample estimator for sample of size n=200, and the
-# t-test will result in acceptance of the NULL hypothesis.
-S <- replicate(40, joeskewCOP(para=simCOP(n=200, cop=GHcop, para=para,
+# Now let us check the sample estimator for sample of size n=300, and the
+# t-test will (should) result in acceptance of the NULL hypothesis.
+S <- replicate(60, joeskewCOP(para=simCOP(n=300, cop=GHcop, para=para,
                                           graphics=FALSE), as.sample=TRUE))
 t.test(S, mu=nuskew)
 #         One Sample t-test

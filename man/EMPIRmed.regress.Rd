@@ -1,6 +1,6 @@
 \name{EMPIRmed.regress}
 \alias{EMPIRmed.regress}
-\title{ Median Regression of the Grid of the Bivariate Emprical Copula for V with respect to U }
+\title{ Median Regression of the Grid of the Bivariate Empirical Copula for V with respect to U }
 \description{
 Perform \emph{median regression} from the gridded inversion of the \emph{bivariate empirical copula} of \eqn{V} with respect to \eqn{U}.
 }

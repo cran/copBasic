@@ -1,4 +1,4 @@
-"PARETOcop" <- function(u,v, para=NULL, ...) {
+"PAcop" <- function(u,v, para=NULL, ...) {
    if(para < 0) {
       warning("parameter must be 0 <= Theta < Infinity [well numerically 100]")
       return(NA)
@@ -22,4 +22,9 @@
    if(para > 100)  return(M(u,v)) # from rhoCOP 
 
    return( ((1-u)^(-para) + (1-v)^(-para) - 1)^(-1/para) + u + v - 1 )
+}
+
+
+"PARETOcop" <- function(u, v, para=NULL, ...) {
+  PAcop(u, v, para=para, ...)
 }

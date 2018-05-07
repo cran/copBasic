@@ -1,6 +1,6 @@
 \name{EMPIRgridderinv2}
 \alias{EMPIRgridderinv2}
-\title{ Derivative Inverses of the Grid of the Bivariate Emprical Copula for U with respect to V}
+\title{ Derivative Inverses of the Grid of the Bivariate Empirical Copula for U with respect to V}
 \description{
 Generate a gridded representation of the inverse of the derivatives of the \emph{bivariate empirical copula} of \eqn{U} with respect to \eqn{V}.  This function is the empirical analog to \code{\link{derCOPinv2}}.
 }

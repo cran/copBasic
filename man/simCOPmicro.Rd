@@ -47,7 +47,7 @@ simCOPv(u, cop=NULL, para=NULL,
   Simulated value(s) of nonexceedance probability \eqn{v} are returned based on the nonexceedance probabilities \eqn{u} in argument \code{u}.
 }
 \note{
-The advanced features of \code{simCOPmicro} permit simulation of the three permutations of \emph{variable reflection}. The first code simply produce four different \dQuote{copulas} based on the \emph{Gumbel-Hougaard} copula (\eqn{\mathbf{GH}(u,v; \Theta)}; \code{\link{GHcop}}), which has substantial upper tail dependency but no lower tail dependency for \eqn{\Theta = 2.512} as quantified by the \code{\link{taildepCOP}} function call.
+The advanced features of \code{simCOPmicro} permit simulation of the three permutations of \emph{variable reflection}. The first code simply produce four different \dQuote{copulas} based on the \emph{Gumbel--Hougaard} copula (\eqn{\mathbf{GH}(u,v; \Theta)}; \code{\link{GHcop}}), which has substantial upper tail dependency but no lower tail dependency for \eqn{\Theta = 2.512} as quantified by the \code{\link{taildepCOP}} function call.
 \preformatted{
   U <- runif(1500); G <- 2.512; u <- 0.1; up <- 1-u; v <- 0.2; vp <- 1-v
   UV   <- data.frame(U, simCOPmicro(U, cop=GHcop, para=G              ))

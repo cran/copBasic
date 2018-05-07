@@ -1,9 +1,9 @@
 \encoding{utf8}
 \name{GHcop}
 \alias{GHcop}
-\title{ The Gumbel-Hougaard Extreme Value Copula }
+\title{ The Gumbel--Hougaard Extreme Value Copula }
 \description{
-\emph{SYMMETRIC GUMBEL-HOUGAARD}---The \emph{Gumbel-Hougaard copula} (Nelsen, 2006, pp. 118 and 164) is
+\emph{SYMMETRIC GUMBEL-HOUGAARD}---The \emph{Gumbel--Hougaard copula} (Nelsen, 2006, pp. 118 and 164) is
 \deqn{\mathbf{C}_{\Theta}(u,v) = \mathbf{GH}(u,v) = \mathrm{exp}\{-[(-\log u)^\Theta+(-\log v)^\Theta]^{1/\Theta}\}\mbox{,}}
 where \eqn{\Theta \in [1 , \infty)}. The copula here is a \emph{bivariate extreme value copula} (\eqn{BEV}). The parameter \eqn{\Theta} is readily estimated using \emph{Kendall's Tau} (say a sample version \eqn{\hat\tau}) where the \eqn{\tau} of the copula (\eqn{\tau_\mathbf{C}}) is defined as
 \deqn{\tau_\mathbf{C} = \frac{\Theta - 1}{\Theta} \rightarrow \Theta = \frac{1}{1-\tau}\mbox{.}}
@@ -11,11 +11,11 @@ The copula is readily extended into \eqn{d} dimensions by
 \deqn{\mathbf{C}_{\Theta}(u,v) = \mathrm{exp}\{-[(-\log u_1)^\Theta+\cdots+(-\log u_d)^\Theta]^{1/\Theta}\}\mbox{.}}
 However, such an implementation is not available in the \pkg{copBasic} package.
 
-Every Gumbel-Hougaard copula is a \emph{multivariate extreme value} (\eqn{MEV}) copula, and hence useful in analysis of extreme value distributions. The Gumbel-Hougaard copula is the \emph{only} Archimedean \eqn{MEV} (Salvadori \emph{et al.}, 2007, p. 192). The Gumbel-Hougaard copula has respective \emph{lower-} and \emph{upper-tail dependency} parameters of \eqn{\lambda^L = 0} and \eqn{\lambda^U = 2 - 2^{1/\Theta}}, respectively. Nelsen (2006, p. 96) shows that \eqn{\mathbf{C}^r_\theta(u^{1/r}, v^{1/r}) = \mathbf{C}_\theta(u,v)} so that every Gumbel-Hougaard copula is \emph{max-stable}.  A \emph{dependence measure} uniquely defined for \eqn{BEV} copulas is shown under \code{\link{rhobevCOP}}.
+Every Gumbel--Hougaard copula is a \emph{multivariate extreme value} (\eqn{MEV}) copula, and hence useful in analysis of extreme value distributions. The Gumbel--Hougaard copula is the \emph{only} Archimedean \eqn{MEV} (Salvadori \emph{et al.}, 2007, p. 192). The Gumbel--Hougaard copula has respective \emph{lower-} and \emph{upper-tail dependency} parameters of \eqn{\lambda^L = 0} and \eqn{\lambda^U = 2 - 2^{1/\Theta}}, respectively. Nelsen (2006, p. 96) shows that \eqn{\mathbf{C}^r_\theta(u^{1/r}, v^{1/r}) = \mathbf{C}_\theta(u,v)} so that every Gumbel--Hougaard copula is \emph{max-stable}.  A \emph{dependence measure} uniquely defined for \eqn{BEV} copulas is shown under \code{\link{rhobevCOP}}.
 
-A comparison through simulation between Gumbel-Hougaard implementations by the \R packages \pkg{acopula}, \pkg{copBasic}, \pkg{copula}, and \pkg{Gumbel} is shown in the \bold{Examples} section. At least three divergent techniques for random variate generation are used amongst those packages. The simulations also use \pkg{copBasic}-style random variate generation  (conditional simulation) using an analytical-numerical hybrid solution to conditional inverse described in the \pkg{Note} section.
+A comparison through simulation between Gumbel--Hougaard implementations by the \R packages \pkg{acopula}, \pkg{copBasic}, \pkg{copula}, and \pkg{Gumbel} is shown in the \bold{Examples} section. At least three divergent techniques for random variate generation are used amongst those packages. The simulations also use \pkg{copBasic}-style random variate generation  (conditional simulation) using an analytical-numerical hybrid solution to conditional inverse described in the \pkg{Note} section.
 
-\emph{TWO-PARAMETER GUMBEL-HOUGAARD}---A \emph{permutation symmetric} (\code{\link{isCOP.permsym}}) but almost certainly \emph{radial asymmetric} (\code{\link{isCOP.radsym}}) version of the copula is readily constructed (Brahimi \emph{et al.}, 2015) into a two-parameter version:
+\emph{TWO-PARAMETER GUMBEL--HOUGAARD}---A \emph{permutation symmetric} (\code{\link{isCOP.permsym}}) but almost certainly \emph{radial asymmetric} (\code{\link{isCOP.radsym}}) version of the copula is readily constructed (Brahimi \emph{et al.}, 2015) into a two-parameter version:
 \deqn{\mathbf{C}(u,v; \beta_1, \beta_2) =
 \biggl[
 \biggl(\bigl(u^{-\beta_2} -1\bigr)^{\beta_1} +
@@ -27,7 +27,7 @@ where \eqn{\beta_1 \ge 1} and \eqn{\beta_2 > 0}. Both parameters controls the ge
 \eqn{\lambda^L_{(1.5; 0.2)} = 0.811} and
 \eqn{\lambda^L_{(1.5; 2.2)} = 0.099}. Brahimi \emph{et al.} (2015) report a \emph{Spearman's Rho} (\code{\link{rhoCOP}}) for a \eqn{\mathbf{GH}_{(1.5, 0.2)}(u,v)} is 0.5, which is readily confirmed in \pkg{copBasic} by the function call \code{rhoCOP(cop=GHcop, para=c(1.5,0.2))}. The two-parameter \eqn{\mathbf{GH}} is triggered if the length of the \code{para} argument is exactly 2.
 
-\emph{ASYMMETRIC GUMBEL-HOUGAARD}---An asymmetric version of the copula is readily constructed (Joe, 2014, p. 185--186) into a three-parameter version with \emph{Marshall-Olkin} copulas on the boundaries:
+\emph{ASYMMETRIC GUMBEL--HOUGAARD}---An asymmetric version of the copula is readily constructed (Joe, 2014, p. 185--186) into a three-parameter version with \emph{Marshall--Olkin} copulas on the boundaries:
 \deqn{\mathbf{C}(u,v; \Theta, \pi_2, \pi_3) = \mathrm{exp}[-\mathcal{A}(-\log u, -\log v; \Theta, \pi_2, \pi_3)]\mbox{,}}
 where \eqn{\Theta \ge 1} as before, \eqn{0 \le \pi_2,  \pi_3 \le 1}, and
 
@@ -53,10 +53,10 @@ GHcop(u, v, para=NULL, tau=NULL, tau.big=0.985, cor=NULL, ...)
   \item{tau}{The sample estimate of \eqn{\tau}.}
 }
 \details{
-Numerical experiments seem to indicate for \eqn{\tau_\mathbf{C} > 0.985} that failures in the numerical partial derivatives in \code{\link{derCOP}} and \code{\link{derCOP2}} result---a \eqn{\tau_\mathbf{C}} this large is indeed \emph{large}. As \eqn{\Theta \rightarrow \infty} the Gumbel-Hougaard copula becomes the \emph{\enc{Fréchet}{Frechet}-Hoeffding upper bound copula} \eqn{\mathbf{M}} (see \code{\link{M}}). A \eqn{\tau_\mathbf{C} \approx 0.985} yields \eqn{\Theta \approx 66 + 2/3}, then for \eqn{\Theta > 1/(1-\tau_\mathbf{C})} flips over to the \eqn{\mathbf{M}} copula with a warning being issued.
+Numerical experiments seem to indicate for \eqn{\tau_\mathbf{C} > 0.985} that failures in the numerical partial derivatives in \code{\link{derCOP}} and \code{\link{derCOP2}} result---a \eqn{\tau_\mathbf{C}} this large is indeed \emph{large}. As \eqn{\Theta \rightarrow \infty} the Gumbel--Hougaard copula becomes the \emph{\enc{Fréchet}{Frechet}--Hoeffding upper bound copula} \eqn{\mathbf{M}} (see \code{\link{M}}). A \eqn{\tau_\mathbf{C} \approx 0.985} yields \eqn{\Theta \approx 66 + 2/3}, then for \eqn{\Theta > 1/(1-\tau_\mathbf{C})} flips over to the \eqn{\mathbf{M}} copula with a warning being issued.
 }
 \note{
-\emph{SYMMETRIC GUMBEL-HOUGAARD}---A function for the derivative of the copula (Joe, 2014, p. 172) given \eqn{u} is
+\emph{SYMMETRIC GUMBEL--HOUGAARD}---A function for the derivative of the copula (Joe, 2014, p. 172) given \eqn{u} is
 \preformatted{
   "GHcop.derCOP" <- function(u, v, para=NULL, ...) {
      x <- -log(u); y <- -log(v)
@@ -117,7 +117,7 @@ that can be tested by the following, which also shows how to increase the tolera
   derCOPinv(cop=GHcop, u, p, para=1.56, tol=.Machine$double.eps/10) # 0.999977
 }
 
-\emph{ASYMMETRIC GUMBEL-HOUGAARD}---Set \eqn{\tau_\mathbf{C} = 0.35} then for a symmetric and then reflection on the 1:1 line of the asymmetric Gumbel-Hougaard copula and compute the primary parameter \eqn{\Theta}, and lastly, compute three bivariate \eqn{\nu_\mathbf{C}} skewnesses (\code{\link{nuskewCOP}}):
+\emph{ASYMMETRIC GUMBEL--HOUGAARD}---Set \eqn{\tau_\mathbf{C} = 0.35} then for a symmetric and then reflection on the 1:1 line of the asymmetric Gumbel--Hougaard copula and compute the primary parameter \eqn{\Theta}, and lastly, compute three bivariate \eqn{\nu_\mathbf{C}} skewnesses (\code{\link{nuskewCOP}}):
 \preformatted{
   Theta1 <- uniroot(function(t) {
                 0.35 - tauCOP(cop=GHcop, para=c(t)) },           c(1,10))$root
@@ -169,7 +169,7 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 
 Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in Nature---An approach using copulas: Springer, 289 p.
 
-Zhang, L., and Singh, V.P., 2007, Gumbel-Hougaard copula for trivariate rainfall frequency analysis: Journal Hydrologic Engineering, v. 12, Special issue---Copulas in Hydrology, pp. 409--419.
+Zhang, L., and Singh, V.P., 2007, Gumbel--Hougaard copula for trivariate rainfall frequency analysis: Journal Hydrologic Engineering, v. 12, Special issue---Copulas in Hydrology, pp. 409--419.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{M}}, \code{\link{GLcop}}, \code{\link{HRcop}}, \code{\link{rhobevCOP}}
@@ -265,15 +265,20 @@ message("Kendall's Tau: ", K[1], tx, K[2], tx, K[3], tx, K[4], tx, K[5], tx, K[6
 # All solutions are near 1/3 and it is unknown without further study which of the
 # six methods would result in the least bias and (or) sampling variability.}
 }
-\keyword{Gumbel-Hougaard copula}
+\keyword{Gumbel--Hougaard copula}
 \keyword{copula (formulas)}
 \keyword{copula}
 \keyword{Joe (2014) Examples and Exercises}
-\keyword{Asymmetric Gumbel-Hougaard copula}
+\keyword{Asymmetric Gumbel--Hougaard copula}
+\concept{asymmetric Gumbel--Hougaard copula}
+\concept{asymmetric Gumbel-Hougaard copula}
+\concept{symmetric Gumbel--Hougaard copula}
 \concept{symmetric Gumbel-Hougaard copula}
 \concept{symmetric Gumbel copula}
 \concept{asymmetric Gumbel copula}
 \concept{asymmetric logistic copula}
 \concept{Gumbel-Hougaard extreme value copula}
+\concept{Gumbel--Hougaard extreme value copula}
 \keyword{literature errors and inconsistencies}
 \keyword{API to the copula package}
+\keyword{package copula (comparison to)}

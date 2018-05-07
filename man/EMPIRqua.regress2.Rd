@@ -1,6 +1,6 @@
 \name{EMPIRqua.regress2}
 \alias{EMPIRqua.regress2}
-\title{ Quantile Regression of the Grid of the Bivariate Emprical Copula for U with respect to V }
+\title{ Quantile Regression of the Grid of the Bivariate Empirical Copula for U with respect to V }
 \description{
 Generate quantile regression from the gridded inversion of the \emph{bivariate empirical copula} of \eqn{U} with respect to \eqn{V}.
 }

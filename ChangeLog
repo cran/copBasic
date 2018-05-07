@@ -39,7 +39,6 @@ Version 1.5.0---August 31, 2011
       as a base figure and vector edited in inst/doc/CopulaRelationsFigure.pdf
 
 
-
 Version 1.5.1---November 14, 2011
 1.  Added data/PlackettPlackettABKGtest.RData and
       man/PlackettPlackettABKGtest.Rd.
@@ -348,7 +347,50 @@ Version 2.0.7--03/08/2018
 2.  Expanded description in Examples in kullCOP.Rd.
 
 
-TODOs:
+Version 2.1.0--2018-05-07
+1.  Minor Rd updates throughout.
+2.  Revision of warning() in wolfCOP().
+3.  Removed last of the repeated sequence computation inside nested sapply()s
+       with in EMPIRcop(), hoefCOP(), joeskewCOP(), and wolfCOP(). A test wtih
+       n=3000 for an as.sample=TRUE computation for wolfCOP() yielded about a
+       5-percent decrease in execution time. It is possible that some R idiom
+       exists for substantially more speed increase in situations of
+       "sapply(..., sapply(...))". However, investigations have not found one and
+       use of the "outer()" function does not appear applicable in testing because
+       of the lack of symmetry in the matrices involved.
+4.  Removed repeated sequence computation (though not nested) in kfuncCOP()
+       and vuongCOP(). This should be categorized as a "code cleaning" exercise.
+5.  Fixed error in vuongCOP.Rd about nonrejection of the Plackett with the wording
+       should be "rejection." Error was a result of poor cut and paste when first
+       written. It was the reverse Gumbel–Hougaard that was not rejected.
+6.  Fixed error in some accidentally swapped results in Examples of joeskewCOP.Rd.
+7.  BUG FIX: CLcop() was throwing an error when trying to estimate Kendall Tau and
+       the copula parameter from the observed data. The cor(, method="kendall")
+       function was being called and the estimate retrieved by $estimate as in
+       cor.test()$estimate.
+8.  Enhancement: Added some parsing of the ... to simCOP on which the delu and
+       derdir arguments are identified, used as needed, and then stripped before
+       the calls to plot() or points() to avoid "not a graphical parameter"
+       warnings. This has been an issue for nearly 10 years but finally WHA 
+       sat down and figured out how to deal with it.
+9.  Enhancement: Added a sign test on the objective function in derCOPinv and
+       derCOPinv2. This will cut down on repeated warnings during simulations
+       when the calls to uniroot breakdown.
+10. Added JOcopB5().
+11. BUG FIX: rCOP() was not forwarding the sample size on down to simCOPmicro().
+12. Added the contour.lwd argument to densityCOPplot().
+13. BUG FIX: composite1COP() composite2COP() were not passing ... to COP().
+       This has not actually been a problem because most of the practical 
+       applications of copula herein are not often called with other arguments.
+       However, composite3COP() was passing ... down to composite2COP().
+14. Added FGMcop() for the Farlie-Gumbel-Morgenstern copula, which is actually
+       a recent (2012) generalization of this copula.
+15. Added AMHcop() for the Ali-Mikhail-Haq copula.
+16. Added alternative reflection arguments "1,2,3,4" to COP().
+17. Added alias PAcop() for PARETOcop() to be parallel to the PLACKETTcop().
+
+
+POTENTIAL TODOs:
 
 (1) stabtaildepf.Rd --- Need to audit stabtaildepf.Rd and complete documentation.
 
@@ -365,4 +407,6 @@ TODOs:
 
 (5) Convergence evaluators for the Monte Carlo integration in bilmoms() and
        kullCOP() to enhance computation times.
+
+(6) rhobevCOP() study for a copula yielding 0.
 
