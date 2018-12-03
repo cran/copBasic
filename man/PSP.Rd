@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{PSP}
 \alias{PSP}
 \title{ The Ratio of the Product Copula to Summation minus Product Copula }

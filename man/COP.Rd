@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{COP}
 \alias{COP}
 \title{ The Copula }

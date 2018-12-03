@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{diagCOPatf}
 \alias{diagCOPatf}
 \alias{diagCOPinv}

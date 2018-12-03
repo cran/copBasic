@@ -5,8 +5,7 @@
 \description{
 The \emph{Clayton copula} (Joe, 2014, p. 168) is
 \deqn{\mathbf{C}_{\Theta}(u,v) = \mathbf{CL}(u,v) = \mathrm{max}[(u^{-\Theta}+v^{-\Theta}-1; 0)]^{-1/\Theta}\mbox{,}}
-where \eqn{\Theta \in [-1,\infty), \Theta \ne 0}
-The copula as \eqn{\Theta \rightarrow -1^{+}} limits to the \emph{countermonotonicity coupla} (\eqn{\mathbf{W}(u,v)};  \code{\link{W}}), as \eqn{\Theta \rightarrow 0} limits to \emph{independence copula} (\eqn{\mathbf{\Pi}(u,v)}; \code{\link{P}}), and as \eqn{\Theta \rightarrow \infty} limits to the \emph{comonotonicity copula} (\eqn{\mathbf{M}(u,v)};  \code{\link{M}}). Finally, the parameter \eqn{\Theta} is readily computed from \emph{Kendall's Tau} (\code{\link{tauCOP}}) by \eqn{\tau_\mathbf{C} = \Theta/(\Theta+2)}.
+where \eqn{\Theta \in [-1,\infty), \Theta \ne 0}. The copula, as \eqn{\Theta \rightarrow -1^{+}} limits, to the \emph{countermonotonicity coupla} (\eqn{\mathbf{W}(u,v)}; \code{\link{W}}), as \eqn{\Theta \rightarrow 0} limits to the \emph{independence copula} (\eqn{\mathbf{\Pi}(u,v)}; \code{\link{P}}), and as \eqn{\Theta \rightarrow \infty}, limits to the \emph{comonotonicity copula} (\eqn{\mathbf{M}(u,v)};  \code{\link{M}}). The parameter \eqn{\Theta} is readily computed from \emph{Kendall's Tau} (\code{\link{tauCOP}}) by \eqn{\tau_\mathbf{C} = \Theta/(\Theta+2)}.
 }
 \usage{
 CLcop(u, v, para=NULL, tau=NULL, ...)

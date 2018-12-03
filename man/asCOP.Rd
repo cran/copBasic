@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{asCOP}
 \alias{asCOP}
 \title{ A Wrapper on a User-Level Formula to Become a Copula Function }

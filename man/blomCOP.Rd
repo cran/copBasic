@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{blomCOP}
 \alias{blomCOP}
 \title{ The Blomqvist's Beta of a Copula }

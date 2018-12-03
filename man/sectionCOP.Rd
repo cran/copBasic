@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{sectionCOP}
 \alias{sectionCOP}
 \title{ The Sections or Derivative of the Sections of a Copula }

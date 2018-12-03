@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{EMPIRgridderinv}
 \alias{EMPIRgridderinv}
 \title{ Derivative Inverses of the Grid of the Bivariate Empirical Copula for V with respect to U }

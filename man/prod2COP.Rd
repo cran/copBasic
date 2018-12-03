@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{prod2COP}
 \alias{prod2COP}
 \title{ The Product of Two Copulas }

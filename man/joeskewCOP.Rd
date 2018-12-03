@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{joeskewCOP}
 \alias{joeskewCOP}
 \alias{nuskewCOP}

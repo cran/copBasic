@@ -72,7 +72,7 @@ Semi-correlations \tab \eqn{\rho_N^{+}(a)} \tab \code{\link{semicorCOP}} \tab bi
 Spearman Footrule \tab \eqn{\psi_\mathbf{C}} \tab \code{\link{footCOP}} \tab bivariate association\cr
 Spearman Rho \tab \eqn{\rho_\mathbf{C}} \tab \code{\link{rhoCOP}} \tab bivariate association\cr
 Schweizer--Wolff Sigma \tab \eqn{\sigma_\mathbf{C}} \tab \code{\link{wolfCOP}} \tab bivariate association\cr
-Density \tab \eqn{c(u,v)} \tab \code{\link{densityCOP}} \tab copula density\cr
+Density of a copula\tab \eqn{c(u,v)} \tab \code{\link{densityCOP}} \tab copula density\cr
 Density visualization \tab \eqn{{-}{-}} \tab \code{\link{densityCOPplot}} \tab copula density\cr
 Empirical copula \tab \eqn{\mathbf{C}_n(u,v)} \tab \code{\link{EMPIRcop}} \tab copula\cr
 Empirical simulation \tab \eqn{{-}{-}} \tab \code{\link{EMPIRsim}} \tab copula simulation\cr
@@ -82,13 +82,19 @@ Parametric copulatic surface \tab \eqn{{-}{-}} \tab \code{\link{gridCOP}} \tab c
 Parametric simulation \tab \eqn{{-}{-}} \tab \code{\link{simCOP}} or   \code{\link{rCOP}}\tab copula simulation\cr
 Parametric simulation \tab \eqn{{-}{-}} \tab \code{\link{simCOPmicro}} \tab copula simulation\cr
 Maximum likelihood \tab \eqn{\mathcal{L}(\Theta_d)} \tab \code{\link{mleCOP}} \tab copula fitting\cr
+Akaike information criterion \tab \eqn{\mathrm{AIC}_\mathbf{C}} \tab \code{\link{aicCOP}} \tab goodness-of-fit\cr
+Bayesian information criterion \tab \eqn{\mathrm{BIC}_\mathbf{C}} \tab \code{\link{bicCOP}} \tab goodness-of-fit\cr
+Root mean square error \tab \eqn{\mathrm{RMSE}_\mathbf{C}} \tab \code{\link{rmseCOP}} \tab goodness-of-fit\cr
+Another goodness-of-fit \tab \eqn{T_n} \tab \code{\link{statTn}} \tab goodness-of-fit\cr
 }
 
 Several of the functions listed above are measures of \dQuote{bivariate association.} Two of the measures (\emph{Kendall Tau}, \code{\link{tauCOP}}; \emph{Spearman Rho}, \code{\link{rhoCOP}}) are widely known. \R provides native support for their sample estimation of course, but each function can be used to call the \code{cor()} function in \R for parallelism to the other measures of this package. The other measures (\emph{Blomqvist Beta}, \emph{Gini Gamma}, \emph{Hoeffding Phi}, \emph{Schweizer--Wolff Sigma}, \emph{Spearman Footrule}) support sample estimation by specially formed calls to their respective functions: \code{\link{blomCOP}}, \code{\link{giniCOP}}, \code{\link{hoefCOP}}, \code{\link{wolfCOP}}, and \code{\link{footCOP}}. The documentation for Gini Gamma (\code{\link{giniCOP}}) shows extensive use of theoretical and sample compuations for all of these functions.
 
-\emph{Bivariate skewness} measures are supported in \code{\link{joeskewCOP}} (\code{\link{nuskewCOP}} and \code{\link{nustarCOP}}) and \code{\link{uvlmoms}} (\code{\link{uvskew}}). Extensive discussion and example computations of bivariate skewness are provided in the \code{\link{joeskewCOP}} documentation.  Lastly, so-called \emph{bivariate L-moments} and \emph{bivariate L-comoments} of a copula are directly computable in \code{\link{bilmoms}}, and this function is the theoretical counterpart to the \emph{sample L-comoments} in the \pkg{lmomco} package.
+Concerning \code{goodness-of-fit} and although not quite the same as copula properties (such as \dQuote{correlation}) per se as the coefficients aforementioned in the prior paragraph, three goodness-of-fit metrics of a copula compared to the empirical copula, which are all based on \emph{mean square error} (MSE), are \code{\link{aicCOP}}, \code{\link{bicCOP}}, and \code{\link{rmseCOP}}. This triad are useful in making decisions on whether a copula is more favorable than another to a given dataset; however, because they are genetically related by using MSE, if these are used for copula fitting by minimization, the fits are identical. A statement of \dQuote{not quite the same} is made because the previously described copula properties are generally defined as types of deviations from other copulas (such as \code{\link{P}}). Another goodness-of-fit statistic is \code{\link{statTn}}, that is based on magnitude summation of fitted copula difference from the empirical copula. These four (\code{\link{aicCOP}}, \code{\link{bicCOP}}, \code{\link{rmseCOP}}, and \code{\link{statTn}}) collectively are relative simple and readily understood measures.
 
-Bivariate random simulation by several functions is identified in the previous table. The \pkg{copBasic} package explicitly uses only \emph{conditional simulation} also known as the \emph{conditional distribution method} for random variate generation following the guidance of Nelsen (2006, pp. 40--41) (see also \code{\link{simCOPmicro}}, \code{\link{simCOP}}). The \emph{numerical derivatives} (\code{\link{derCOP}}, \code{\link{derCOP2}}) and their \emph{inversions} (\code{\link{derCOPinv}}, \code{\link{derCOPinv2}}) represent the foundation of the conditional simulation. There are other methods in the literature and available in other \R packages, and a comparison of some methods is made in the \bold{Examples} section of the Gumbel--Hougaard copula (\code{\link{GHcop}}).
+\emph{Bivariate skewness} measures are supported in \code{\link{joeskewCOP}} (\code{\link{nuskewCOP}} and \code{\link{nustarCOP}}) and \code{\link{uvlmoms}} (\code{\link{uvskew}}). Extensive discussion and example computations of bivariate skewness are provided in the \code{\link{joeskewCOP}} documentation.  Lastly, so-called \emph{bivariate L-moments} and \emph{bivariate L-comoments} of a copula are directly computable in \code{\link{bilmoms}}, and that function is the theoretical counterpart to the \emph{sample L-comoments} long provided in the \pkg{lmomco} package.
+
+Bivariate random simulation by several functions is identified in the previous table. The \pkg{copBasic} package explicitly uses only \emph{conditional simulation} also known as the \emph{conditional distribution method} for \emph{random variate} generation following Nelsen (2006, pp. 40--41) (see also \code{\link{simCOPmicro}}, \code{\link{simCOP}}). The \emph{numerical derivatives} (\code{\link{derCOP}}, \code{\link{derCOP2}}) and their \emph{inversions} (\code{\link{derCOPinv}}, \code{\link{derCOPinv2}}) represent the foundation of the conditional simulation. There are other methods in the literature and available in other \R packages, and a comparison of some methods is made in the \bold{Examples} section of the Gumbel--Hougaard copula (\code{\link{GHcop}}).
 
 
 Several functions in \pkg{copBasic} make the distinction between \eqn{V} with respect to (\emph{wrt}) \eqn{U} and \eqn{U} \emph{wrt} \eqn{V}, and a guide for the nomenclature involving \emph{wrt} distinctions is listed in the following table:
@@ -113,7 +119,7 @@ Copula section \tab \eqn{t \mapsto \mathbf{C}(t,a)} \tab \code{\link{sectionCOP}
 Copula section \tab \eqn{t \mapsto \mathbf{C}(a,t)} \tab \code{\link{sectionCOP}} \tab copula theory\cr
 }
 
-The two tables do not include all of the myriad of special functions to support similar operations on \emph{empirical copulas}. All empirical copula operators and utilites are prepended with \code{EMPIR} in the function name. An additional note concerning package nomenclature is that an appended \dQuote{\code{2}} to a function name indicates \eqn{U} \emph{wrt} \eqn{V} (\emph{e.g.} \code{\link{EMPIRgridderinv2}} for an inversion of the partial derivatives \eqn{\delta \mathbf{C}/\delta v} across the grid of the empirical copula).
+The previous two tables shown above  do not include all of the myriad of special functions to support similar operations on \emph{empirical copulas}. All empirical copula operators and utilites are prepended with \code{EMPIR} in the function name. An additional note concerning package nomenclature is that an appended \dQuote{\code{2}} to a function name indicates \eqn{U} \emph{wrt} \eqn{V} (\emph{e.g.} \code{\link{EMPIRgridderinv2}} for an inversion of the partial derivatives \eqn{\delta \mathbf{C}/\delta v} across the grid of the empirical copula).
 
 Some additional functions to compute often salient features or characteristics of copulas or bivariate data, including functions for bivariate inference or goodness-of-fit, are listed in the following table:
 \tabular{lclr}{
@@ -135,7 +141,6 @@ Radial symmetry \tab \eqn{\mathrm{radsym}} \tab \code{\link{isCOP.radsym}} \tab 
 Skewness (Joe, 2014) \tab \eqn{\eta(p; \psi)} \tab \code{\link{uvskew}} \tab bivariate skewness\cr
 Kullback--Leibler divergence \tab \eqn{\mathrm{KL}(f|g)} \tab \code{\link{kullCOP}} \tab bivariate inference\cr
 KL sample size \tab \eqn{n_{f\!g}} \tab \code{\link{kullCOP}} \tab bivariate inference\cr
-General goodness-of-fit \tab \eqn{T_n} \tab \code{\link{statTn}} \tab bivariate inference\cr
 Vuong's Procedure \tab \eqn{{-}{-}} \tab \code{\link{vuongCOP}} \tab bivariate inference\cr
 Spectral measure \tab \eqn{H(w)} \tab \code{\link{spectralmeas}} \tab extremal dependency inference\cr
 Stable tail dependence \tab \eqn{\widehat{l}(x,y)} \tab \code{\link{stabtaildepf}} \tab extremal dependency inference\cr
@@ -162,9 +167,7 @@ The following \bold{Table of Probabilities} lists some important relations betwe
 }
 The function \code{\link{jointCOP}} has considerable demonstration in its \bold{Note} section of the \bold{joint and} and \bold{joint or} relations supported by simulation + counting scenarios. Also there is considerable demonstration in the \bold{Note} section of function \code{\link{duCOP}} on application of the concepts of \bold{joint and} conditions, \bold{joint or} conditions, and importantly joint \bold{mutually exclusive or} conditions.
 
-
 One or two copulas can be \dQuote{composited,} \dQuote{combined,} or \dQuote{multiplied} in interesting ways to create highly unique joint probability relations and complex dependence structures. \pkg{copBasic} provides the three functions for copula composition: \code{\link{composite1COP}} composites a single copula with two compositing parameters, \code{\link{composite2COP}} composites two copulas with two compositing parameters, and \code{\link{composite3COP}} composites two copulas with four compositing parameters. Two copulas can be combined through a weighted convex combination using \code{\link{convex2COP}} with a single weighting parameter or \eqn{N} number of copulas combined by weights using \code{\link{convexCOP}}. Copula multiplication of two copulas to form a third is supported by \code{\link{prod2COP}}. All of the five functions for compositing, combining, or multipling copulas are compatible with joint probability simulation (\code{\link{simCOP}}), measures of association (\emph{e.g.} \eqn{\rho_\mathbf{C}}), and presumably all other copula operations using \pkg{copBasic} features.
-
 
 \tabular{cclr}{
 \bold{No. of copulas} \tab \bold{Combining Parameters} \tab \bold{Function} \tab \bold{Concept}\cr
@@ -176,10 +179,9 @@ N \tab \eqn{\omega_{i \in N}} \tab \code{\link{convexCOP}} \tab copula combinati
 2 \tab \eqn{\bigl(\mathbf{C}_1 \ast \mathbf{C}_2 \bigr)} \tab \code{\link{prod2COP}} \tab copula multiplication\cr
 }
 
-
 \bold{Useful Copula Relations by Visualization}
 
-There are a myriad of relations amongst variables computable through copulas, and these were listed in the \bold{Table of Probabilities} earlier in this \pkg{copBasic} documentation. There is a script located in the \code{inst/doc} directory of the \pkg{copBasic} sources titled \code{CopulaRelations_BaseFigure_inR.txt}. This script demonstrates, using the \code{\link{PSP}} copula, relations between the copula (\code{\link{COP}}), survival copula (\code{\link{surCOP}}), joint survival function of a copula (\code{\link{surfuncCOP}}), co-copula (\code{\link{coCOP}}), and dual of a copula function (\code{\link{duCOP}}). The script performs simulation and manual counts observations meeting select criteria in order to compute their \emph{empirical probabilities}. The script produces a \dQuote{base figure,} which after extending in a vector editing software application, is suitable for educational description, and is provided in these help pages.
+There are a myriad of relations amongst variables computable through copulas, and these were listed in the \bold{Table of Probabilities} earlier in this \pkg{copBasic} documentation. There is a script located in the \code{inst/doc} directory of the \pkg{copBasic} sources titled \code{CopulaRelations_BaseFigure_inR.txt}. This script demonstrates, using the \code{\link{PSP}} copula, relations between the copula (\code{\link{COP}}), survival copula (\code{\link{surCOP}}), joint survival function of a copula (\code{\link{surfuncCOP}}), co-copula (\code{\link{coCOP}}), and dual of a copula function (\code{\link{duCOP}}). The script performs simulation and manual counts observations meeting select criteria in order to compute their \emph{empirical probabilities}. The script produces a \dQuote{base figure,} which after extending in a vector editing software application, is suitable for educational description, and is provided within these help pages.
 
 \bold{A Review of \dQuote{Return Periods} using Copulas}
 

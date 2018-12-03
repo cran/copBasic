@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{diagCOP}
 \alias{diagCOP}
 \title{ The Diagonals of a Copula }

@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{surfuncCOP}
 \alias{surfuncCOP}
 \title{ The Joint Survival Function }

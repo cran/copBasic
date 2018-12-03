@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{isCOP.permsym}
 \alias{isCOP.permsym}
 \title{ Is a Copula Permutation Symmetric }

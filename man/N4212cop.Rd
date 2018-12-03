@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{N4212cop}
 \alias{N4212cop}
 \title{ The Copula of Equation 4.2.12 of Nelsen's Book }

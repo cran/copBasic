@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{PLACKETTpar}
 \alias{PLACKETTpar}
 \alias{PLpar}

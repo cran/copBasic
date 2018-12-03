@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{duCOP}
 \alias{duCOP}
 \title{ The Dual of a Copula Function }

@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{med.regressCOP}
 \alias{med.regressCOP}
 \title{ Perform Median Regression using a Copula by Numerical Derivative Method for V with respect to U}

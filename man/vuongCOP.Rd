@@ -166,9 +166,11 @@ Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in
 # implied 95th percentile associated with n_fg above.
 }
 \keyword{inference}
-\keyword{copula (goodness of fit)}
+\keyword{copula (goodness-of-fit)}
 \keyword{copula (inference)}
 \keyword{copula (density)}
+\keyword{inference}
+\keyword{goodness-of-fit}
 \concept{Vuong procedure}
 \concept{Akaike}
 \concept{AIC}

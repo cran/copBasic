@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{simCOPmicro}
 \alias{simCOPmicro}
 \alias{simCOPv}

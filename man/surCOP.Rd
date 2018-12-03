@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{surCOP}
 \alias{surCOP}
 \title{ The Survival Copula }

@@ -104,5 +104,7 @@ The demonstration ends with the comparison of the two asymmetrical density conto
 # See the Note section
 }
 \keyword{copula (fitting)}
-\keyword{copula (goodness of fit)}
+\keyword{copula (goodness-of-fit)}
 \keyword{copula (inference)}
+\keyword{inference}
+\keyword{goodness-of-fit}

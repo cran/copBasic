@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{COPinv2}
 \alias{COPinv2}
 \title{ The Inverse of a Copula for U with respect to V }

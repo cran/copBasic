@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{isCOP.PQD}
 \alias{isCOP.PQD}
 \title{ The Positively Quadrant Dependency State of a Copula }

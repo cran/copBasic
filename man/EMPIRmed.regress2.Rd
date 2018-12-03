@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{EMPIRmed.regress2}
 \alias{EMPIRmed.regress2}
 \title{ Median Regression of the Grid of the Bivariate Empirical Copula for U with respect to V}

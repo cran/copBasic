@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{isCOP.LTD}
 \alias{isCOP.LTD}
 \title{ Is a Copula Left-Tail Decreasing }

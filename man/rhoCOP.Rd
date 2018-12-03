@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{rhoCOP}
 \alias{rhoCOP}
 \title{ The Spearman's Rho of a Copula }

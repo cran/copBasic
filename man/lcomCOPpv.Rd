@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{lcomCOPpv}
 \alias{lcomCOPpv}
 \title{ Simulating the Sample Distribution(s) of L-correlation, L-coskew, and L-cokurtosis for a Copula }

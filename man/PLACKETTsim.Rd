@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{PLACKETTsim}
 \alias{PLACKETTsim}
 \title{ Direct Simulation of a Plackett Copula }

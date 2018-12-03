@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{composite2COP}
 \alias{composite2COP}
 \title{ Composition of Two Copulas with Two Compositing Parameters }

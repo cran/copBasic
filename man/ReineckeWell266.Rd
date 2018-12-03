@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{ReineckeWell266}
 \docType{data}
 \alias{ReineckeWell266}

@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{convexCOP}
 \alias{convexCOP}
 \title{ Convex Combination of an Arbitrary Number of Copulas }

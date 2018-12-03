@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{joint.curvesCOP}
 \alias{joint.curvesCOP}
 \title{ Compute Coordinates of the Marginal Probabilities given joint AND or OR Probabilities }

@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{qua.regressCOP2}
 \alias{qua.regressCOP2}
 \title{ Perform Quantile Regression using a Copula by Numerical Derivative Method for U with respect to V}

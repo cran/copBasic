@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{lcomoms2.ABcop2parameter}
 \alias{lcomoms2.ABcop2parameter}
 \title{ Convert L-comoments to Parameters of Alpha-Beta Compositions of Two One-Parameter Copulas }

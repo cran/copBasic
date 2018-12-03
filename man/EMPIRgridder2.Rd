@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{EMPIRgridder2}
 \alias{EMPIRgridder2}
 \title{ Derivatives of the Grid of the Bivariate Empirical Copula for U with respect to V }

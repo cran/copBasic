@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{derCOPinv}
 \alias{derCOPinv}
 \title{ Numerical Derivative Inverse  of a Copula for V with respect to U }

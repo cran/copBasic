@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{EMPIRsimv}
 \alias{EMPIRsimv}
 \title{ Simulate a Bivariate Empirical Copula For a Fixed Value of U  }

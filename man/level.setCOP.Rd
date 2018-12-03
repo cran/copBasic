@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{level.setCOP}
 \alias{level.setCOP}
 \title{ Compute a Level Set of a Copula V with respect to U }

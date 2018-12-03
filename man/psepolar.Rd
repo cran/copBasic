@@ -56,8 +56,9 @@ plot(pse$What, pse$Shat, log="y", col=pse$Shat_ge_Sf+1, lwd=0.8, cex=0.5, pch=16
 plot(density(pse$What[pse$Shat_ge_Sf]), pch=16, xlim=c(0,1)) # then try the
 # non-right tail extremal copula PSP as cop=PSP in the above psepolar() call. }
 }
-\keyword{copula (goodness of fit)}
+\keyword{copula (goodness-of-fit)}
 \keyword{copula (inference)}
 \keyword{inference}
+\keyword{goodness-of-fit}
 \keyword{pseudo-polar representation}
 \concept{polar}

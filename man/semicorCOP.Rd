@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{semicorCOP}
 \alias{semicorCOP}
 \title{ The Lower and Upper Semi-Correlations of a Copula }

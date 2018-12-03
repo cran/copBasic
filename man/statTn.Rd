@@ -1,13 +1,13 @@
 \encoding{utf8}
 \name{statTn}
 \alias{statTn}
-\title{ The Tn Statistic of a Fitted Copula to the Empirical Copula }
+\title{ The Tn Statistic of a Fitted Copula to an Empirical Copula }
 \description{
 Compute the \eqn{T_n(p)} statistic of Genest \emph{et al.} (2011) that is defined as
 \deqn{T_n(p) = \sum_{i=1}^n \big|\mathbf{C}_n(u_i, v_i) - \mathbf{C}_{\Theta_n}(u_i, v_i)\big|^p\mbox{,}}
-where \eqn{\mathbf{C}_n(u,v)} is the empirical copula, \eqn{\mathbf{C}_{\Theta_n}(u,v)} is the copula with estimated parameters \eqn{\Theta_n} from the sample of size \eqn{n}. The \eqn{T_n} for \eqn{p = 2} is reported by those authors to be of general purpose and overall performance in large scale simulation studies. The extension here for arbitary exponent \eqn{p} is made for flexibility. Alternatively the definition could be associated with the statistic \eqn{T_n(p)^{1/p}} in terms of a root \eqn{1/p} of the summation as shown above.
+where \eqn{\mathbf{C}_n(u,v)} is the \emph{empirical copula}, \eqn{\mathbf{C}_{\Theta_n}(u,v)} is the \emph{fitted copula} with estimated parameters \eqn{\Theta_n} from the sample of size \eqn{n}. The \eqn{T_n} for \eqn{p = 2} is reported by those authors to be of general purpose and overall performance in large scale simulation studies. The extension here for arbitary exponent \eqn{p} is made for flexibility. Alternatively the definition could be associated with the statistic \eqn{T_n(p)^{1/p}} in terms of a root \eqn{1/p} of the summation as shown above.
 
-The \eqn{T_n} statistic is obviously a form of deviation between the empirical (nonparametric) and parametric fitted copula. The distribution of this statistic through Monte Carlo simulation could be used for inference. The inference is based on that a chosen parametric model is suitably close to the empirical copula. The \eqn{T_n(p)} statistic has an advantage of being relatively straightforward to understand and explain to stakeholders and decision makers, is attractive for being suitable in a wide variety of circumstances, but intuitively might have limited statistical power in some situations for it looks at whole copula structure and not say at tail dependency.
+The \eqn{T_n} statistic is obviously a form of deviation between the empirical (nonparametric) and parametric fitted copula. The distribution of this statistic through Monte Carlo simulation could be used for inference. The inference is based on that a chosen parametric model is suitably close to the empirical copula. The \eqn{T_n(p)} statistic has an advantage of being relatively straightforward to understand and explain to stakeholders and decision makers, is attractive for being suitable in a wide variety of circumstances, but intuitively might have limited statistical power in some situations for it looks at whole copula structure and not say at tail dependency. Finally, other goodness-of-fits using the squared differences between \eqn{\mathbf{C}_n(u,v)} and \eqn{\mathbf{C}_{\Theta_m}(u, v)} are \code{\link{aicCOP}},, \code{\link{bicCOP}}, \code{\link{rmseCOP}}.
 }
 \usage{
 statTn(uv, cop=NULL, para=NULL, p=2, proot=FALSE, ...)
@@ -84,7 +84,7 @@ The prior conclusion is supported by the p-value of the \eqn{\hat T_n} being abo
 Genest, C., Kojadinovic, I., \enc{Nešlehová}{Neslehova}, J., and Yan, J., 2011, A goodness-of-fit test for bivariate extreme-value copulas: Bernoulli, v. 17, no. 1, pp. 253--275.
 }
 \author{ W.H. Asquith}
-\seealso{ \code{\link{EMPIRcopdf}}, \code{\link{vuongCOP}}, \code{\link{kullCOP}}
+\seealso{ \code{\link{aicCOP}}, \code{\link{bicCOP}}, \code{\link{rmseCOP}}, \code{\link{vuongCOP}}, \code{\link{kullCOP}}
 }
 \examples{
 \dontrun{
@@ -100,6 +100,7 @@ hatTn  <- statTn(sampleUV, cop=GHcop, para=GHcop(tau=hatTau)$para,
 # hatTn in this case is by itself is somewhat uninformative and requires
 # Monte Carlo to put an individual value into context.}
 }
-\keyword{copula (goodness of fit)}
+\keyword{copula (goodness-of-fit)}
 \keyword{copula (inference)}
 \keyword{inference}
+\keyword{goodness-of-fit}

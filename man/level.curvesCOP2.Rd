@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{level.curvesCOP2}
 \alias{level.curvesCOP2}
 \title{ Compute and Plot Level Curves of a Copula U with respect to V }

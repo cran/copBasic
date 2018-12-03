@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{EMPIRsim}
 \alias{EMPIRsim}
 \title{ Simulate a Bivariate Empirical Copula  }

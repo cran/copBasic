@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{derCOP}
 \alias{derCOP}
 \title{ Numerical Derivative of a Copula for V with respect to U }

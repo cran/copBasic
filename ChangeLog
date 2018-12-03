@@ -2,9 +2,9 @@
 ChangeLog for R Package "copBasic" by W.H. Asquith
 -----------------------------------------------------------------------------
 
-Version 1.4---October 30, 2008 Initial Release (class project)
+Version 1.4--October 30, 2008 Initial Release (class project)
 
-Version 1.5.0---August 31, 2011
+Version 1.5.0--August 31, 2011
 1.  Enhancement on derCOPinv.R when a solution is unbounded in uniroot()
       to return NA as needed. This was discovered in massive simulation
       from simcompositeCOP()---massive means 500k simulation counts.
@@ -39,7 +39,7 @@ Version 1.5.0---August 31, 2011
       as a base figure and vector edited in inst/doc/CopulaRelationsFigure.pdf
 
 
-Version 1.5.1---November 14, 2011
+Version 1.5.1--November 14, 2011
 1.  Added data/PlackettPlackettABKGtest.RData and
       man/PlackettPlackettABKGtest.Rd.
 2.  Removed lcomoms2.cop2parameter.R/Rd.
@@ -77,7 +77,7 @@ Version 1.5.1---November 14, 2011
       if near the 0 or 1 boundaries.
 
 
-Version 1.5.2---July 30, 2012
+Version 1.5.2--July 30, 2012
 1.  med.regressCOP() and med.regressCOP() had arguments changed to match
       the qua.regressCOP() and qua.regressCOP2() functions.
 2.  med.regressCOP.Rd and med.regressCOP2.Rd changed in argument to match
@@ -88,7 +88,7 @@ Version 1.5.2---July 30, 2012
       Thanks CRAN team for the automated spell checkers.
 
 
-Version 1.5.3---April 20, 2013
+Version 1.5.3--April 20, 2013
 1.  Added the ReineckeWells.RData and ReineckeWell266.RData.
   ** This version failed --timings checks by CRAN, never released **
 
@@ -390,23 +390,43 @@ Version 2.1.0--2018-05-07
 17. Added alias PAcop() for PARETOcop() to be parallel to the PLACKETTcop().
 
 
+Version 2.1.1--2018-12-01
+1. Enhancement: Changed from sapply to u*v on return. This dates for a long
+       time back when the vectorization in R was not idiomatic for the author.
+2. Added aicCOP(), bicCOP(), and rmseCOP(): a triad of similar goodness of fits.
+3. Minor warning() editing in mleCOP.Rd when alerting user to use interval 
+       search for one-parameter copulas.
+4. Standardized all *.Rd files to utf8 encoding declaration whether needed or no.
+
+
 POTENTIAL TODOs:
 
-(1) stabtaildepf.Rd --- Need to audit stabtaildepf.Rd and complete documentation.
+Vectorization problem in convexCOP.R needs to be fixed.
 
-(2) EMPIRcop.Rd --- Need to audit level.curves in the Examples.
+\author{William Asquith \email{william.asquith@ttu.edu} }
+  Make such conversions through out or go back to W.H. Asquith?
 
-(3) Implementation of state-of-the-practice nonparametric estimators of
-       lower and upper tail dependence parameters. Neither of the three books
-       cited within deal with this. A turn towards recommended literature by
-       Joe (2014) is needed.
+EMPIRcopdf() can be replaced by EMPIRcop() as the later is fully 
+  vectorized itself and makes presumably a lesser impact on memory (faster)?
 
-(4) Goodness-of-fit of the Kendall Function following Genest et. al. (2006,
-       Goodness-of-fit procedures for copula models based on the probability
-       integral transformation: Scand J. Statist 33.
+aic/bicCOP() need m parameter length. These needs generalization to
+  composited and convex copulas. Currently, only checking length(para).
 
-(5) Convergence evaluators for the Monte Carlo integration in bilmoms() and
-       kullCOP() to enhance computation times.
+stabtaildepf.Rd --- Need to audit stabtaildepf.Rd and complete documentation.
 
-(6) rhobevCOP() study for a copula yielding 0.
+EMPIRcop.Rd --- Need to audit level.curves in the Examples.
+
+Implementation of state-of-the-practice nonparametric estimators of
+  lower and upper tail dependence parameters. Neither of the three books
+  cited within deal with this. A turn towards recommended literature by
+  Joe (2014) is needed.
+
+Goodness-of-fit of the Kendall Function following Genest et. al. (2006,
+  Goodness-of-fit procedures for copula models based on the probability
+  integral transformation: Scand J. Statist 33.
+
+Convergence evaluators for the Monte Carlo integration in bilmoms() and
+  kullCOP() to enhance computation times.
+
+rhobevCOP() study for a copula yielding 0.
 

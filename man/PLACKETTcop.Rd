@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{PLACKETTcop}
 \alias{PLACKETTcop}
 \alias{PLcop}

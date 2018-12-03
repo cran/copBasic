@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{simcompositeCOP}
 \alias{simcompositeCOP}
 \alias{simcomposite2COP}

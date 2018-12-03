@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{simCOP}
 \alias{simCOP}
 \alias{rCOP}

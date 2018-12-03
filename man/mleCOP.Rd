@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{mleCOP}
 \alias{mleCOP}
 \title{ Maximum Pseudo-Log-Likelihood Estimation for Copula Parameter Estimation }

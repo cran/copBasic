@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{isCOP.RTI}
 \alias{isCOP.RTI}
 \title{ Is a Copula Right-Tail Increasing }

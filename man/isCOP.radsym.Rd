@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{isCOP.radsym}
 \alias{isCOP.radsym}
 \title{ Is a Copula Radially Symmetric }

@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{convex2COP}
 \alias{convex2COP}
 \title{ Convex Combination of Two Copulas }

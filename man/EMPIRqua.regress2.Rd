@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{EMPIRqua.regress2}
 \alias{EMPIRqua.regress2}
 \title{ Quantile Regression of the Grid of the Bivariate Empirical Copula for U with respect to V }

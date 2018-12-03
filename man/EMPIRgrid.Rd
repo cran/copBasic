@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{EMPIRgrid}
 \alias{EMPIRgrid}
 \title{ Grid of the Bivariate Empirical Copula }

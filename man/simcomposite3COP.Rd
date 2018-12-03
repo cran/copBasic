@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{simcomposite3COP}
 \alias{simcomposite3COP}
 \title{  Compute the L-comoments of a Four-Value Composited Copula by Numerical Simulation }

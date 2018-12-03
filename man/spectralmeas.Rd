@@ -150,10 +150,12 @@ lines(qFF, GLh, col=4) #  blue line is the Galambos copula
 # The Galambos copula has upper tail dependency, which is seen by
 # the mass concentration and steepening of the curve on the plot.}
 }
-\keyword{copula (goodness of fit)}
+\keyword{copula (goodness-of-fit)}
 \keyword{copula (inference)}
 \keyword{inference}
 \keyword{spectral measure}
+\keyword{inference}
+\keyword{goodness-of-fit}
 \concept{polar}
 \keyword{API to the copula package}
 \keyword{package copula (comparison to)}

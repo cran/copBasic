@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{composite3COP}
 \alias{composite3COP}
 \title{ (Extended) Composition of Two Copulas with Four Compositing Parameters }

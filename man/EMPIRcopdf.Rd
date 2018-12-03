@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{EMPIRcopdf}
 \alias{EMPIRcopdf}
 \title{ Dataframe of the Bivariate Empirical Copula }

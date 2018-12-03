@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{gridCOP}
 \alias{gridCOP}
 \title{ Compute a Copula on a Grid }

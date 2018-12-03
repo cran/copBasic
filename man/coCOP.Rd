@@ -1,3 +1,4 @@
+\encoding{utf8}
 \name{coCOP}
 \alias{coCOP}
 \title{ The Co-Copula Function }
