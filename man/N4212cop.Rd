@@ -8,7 +8,7 @@ The \emph{N4212 copula} (Nelsen, 2006, p. 91; eq. 4.2.12) is named by the author
 
 The \eqn{\mathbf{N4212}(u,v)} copula is \emph{not comprehensive} because for \eqn{\Theta = 1} the copula becomes the so-called \eqn{\mathbf{PSP}(u,v)} copula (see \code{\link{PSP}}) and as \eqn{\Theta \rightarrow \infty} the copula becomes \eqn{\mathbf{M}(u,v)} (see \code{\link{M}}). The copula is undefined for \eqn{\Theta < 1}. The N4212 copula  has respective \emph{lower-} and \emph{upper-tail dependency} (see \code{\link{taildepCOP}}).
 
-Although \pkg{copBasic} is intended to not implement or \dQuote{store house} the enormous suite of copula functions available in the literature, the N4212 copula is included to give the package another copula with a parameter besides the \emph{Gumbel--Hougaard} (\code{\link{GHcop}}), \emph{Plackett} (\code{\link{PLACKETTcop}}), and a few other copulas. This is done largely for pedagogic purposes. But the Plackett is \emph{comprehensive} and N4212 is \emph{not comprehensive} so both those concepts are available for instructional purposes.
+Although \pkg{copBasic} is intended to not implement or \dQuote{store house} the enormous suite of copula functions available in the literature, the N4212 copula is included to give the package another copula to test against.
 }
 \usage{
 N4212cop(u, v, para=NULL, infis=100, ...)

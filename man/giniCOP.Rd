@@ -19,7 +19,7 @@ or in terms of the \emph{primary diagonal} \eqn{\delta(t)} and \emph{secondary d
                            2\mbox{.}}
 
 
-The simpler method is more readily implemented because the single unnested integration are readily deployed (and fast). Lastly, Nelsen \emph{et al.} (2001, p. 281) show that \eqn{\gamma_\mathbf{C}} also is computable by
+The simpler method is more readily implemented because single integration is fast. Lastly, Nelsen \emph{et al.} (2001, p. 281) show that \eqn{\gamma_\mathbf{C}} also is computable by
 \deqn{\gamma_\mathbf{C} = 2\,\mathcal{Q}(\mathbf{C},\mathbf{A})\mbox{,}}
 where \eqn{\mathbf{A}} is a \emph{convex combination} (\code{\link{convex2COP}}, using \eqn{\alpha = 1/2}) of the copulas \eqn{\mathbf{M}} and \eqn{\mathbf{W}} or \eqn{\mathbf{A} = (\mathbf{M}+\mathbf{W})/2}. However, integral convergence errors seem to trigger occasionally, and the first definition by summation \eqn{\mathcal{Q}(\mathbf{C},\mathbf{M}) + \mathcal{Q}(\mathbf{C},\mathbf{W})} thus is used. The convex combination is demonstrated in the \bold{Examples} section.
 }

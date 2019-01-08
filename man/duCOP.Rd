@@ -15,7 +15,7 @@ where \eqn{\hat\mathbf{C}(u',v')} is the survival copula in terms of exceedance 
 
 The function \code{duCOP} gives \dQuote{protection} against simultaneous (concurrent or dual) risk by failure if and only if failure is caused (defined) by both hazard sources \eqn{U} and \eqn{V} occurring at the same time. Expressing this in terms of an annual probability of occurrence (\eqn{q}), one has
 \deqn{q = 1 - \mathrm{Pr}[U \le v \mathrm{\ or\ } V \le v] = 1 - \tilde{\mathbf{C}}(u,v)\mbox{\ or}}
-in \R code \code{q <- 1 - duCOP(u,v)}. So as a mnemonic: \emph{A dual of a copula is the probabililty of nonexceedance if the hazard sources must \bold{dual} (concur, link, pair, twin) to cause failure.} An informative graphic is shown within \code{\link{copBasic-package}}.
+in \R code \code{q <- 1 - duCOP(u,v)}. So as a mnemonic: \emph{A dual of a copula is the probabililty of nonexceedance if the hazard sources must \bold{dual} (concur, link, pair, twin, twain) to cause failure.} An informative graphic is shown within \code{\link{copBasic-package}}.
 }
 \usage{
 duCOP(u, v, cop=NULL, para=NULL, ...)
@@ -31,14 +31,14 @@ duCOP(u, v, cop=NULL, para=NULL, ...)
   Value(s) for the dual of a copula are returned.
 }
 \note{
-There can be confusion in the interpretation and implemenation of the \bold{or} condition of joint probability provided by \eqn{\tilde{\mathbf{C}}(u,v)}. Two types of \bold{or}'s seemingly exist depending on one's concept of the meaning of \dQuote{or.}  To start, there is the \dQuote{either or both} conceptualization (\bold{join or}) that encompasses either \dQuote{event} (say a loss) of importance for random variables \eqn{U} and \eqn{V} \emph{as well as} the \bold{joint and} conditions where both variables simultaneously are generating an event of importance.
+There can be confusion in the interpretation and implemenation of the \bold{or} condition of \emph{joint probability} provided by \eqn{\tilde{\mathbf{C}}(u,v)}. Two types of \bold{or}'s seemingly exist depending on one's concept of the meaning of \dQuote{or.}  To start, there is the \dQuote{either or both} conceptualization (\bold{join or}) that encompasses either \dQuote{event} (say a loss) of importance for random variables \eqn{U} and \eqn{V} \emph{as well as} the \bold{joint and} conditions where both variables simultaneously are generating an event of importance.
 
 Let us continue by performing a massive simulation for the \eqn{\mathbf{PSP}(u,v)} copula (\code{\link{PSP}}) and set an either event standard on the margins as 10 percent for an arbitrary starting point. The \eqn{\mathbf{PSP}} has positive association with lower tail dependency, and the example here considers the left tail as the risk tail.
 \preformatted{
   Event <- 0.1; nn <- 100000; set.seed(9238)
   UV <- simCOP(n=nn, cop=PSP, graphics=FALSE) # 1E5 realizations
 }
-Next, let us step through counting and then theoretical comparisons using copula theory. The \bold{joint and} condition as nonexceedances is
+Next, let us step through counting and then make theoretical comparisons using copula theory. The \bold{joint and} condition as nonexceedances is
 \preformatted{
   ANDs <- length(UV$U[UV$U <= Event & UV$V <= Event]) / nn
   ANDt <- COP(Event, Event, cop=PSP)

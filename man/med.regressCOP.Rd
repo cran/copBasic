@@ -3,7 +3,7 @@
 \alias{med.regressCOP}
 \title{ Perform Median Regression using a Copula by Numerical Derivative Method for V with respect to U}
 \description{
-Perform \emph{median regression} (Nelsen, 2006, pp. 217--218) of a copula by inversion of numerical derivatives of the copula (\code{\link{derCOPinv}}). The documentation for \code{\link{qua.regressCOP}} provides mathematical details. The \code{\link{qua.regressCOP.draw}} supports so-called \emph{quantile regression} along numerous probability levels (see \bold{Examples}).
+Perform \emph{median regression} (Nelsen, 2006, pp. 217--218) of a copula by inversion of numerical derivatives of the copula (\code{\link{derCOPinv}}). The documentation for \code{\link{qua.regressCOP}} provides mathematical details. The \code{\link{qua.regressCOP.draw}} supports so-called \emph{quantile regression} along various probability levels (see \bold{Examples}).
 }
 \usage{
 med.regressCOP(u=seq(0.01,0.99, by=0.01), cop=NULL, para=NULL, level=NA, ...)
@@ -16,7 +16,7 @@ med.regressCOP(u=seq(0.01,0.99, by=0.01), cop=NULL, para=NULL, level=NA, ...)
   \item{...}{Additional arguments to pass such \code{\link{qua.regressCOP}} and \code{\link{derCOPinv}} that are called in succession.}
 }
 \value{
-  An \R \code{data.frame} of the median regressed probabilities of \eqn{V} and provided \eqn{U} values is returned. Note that if \code{level} is used that the column ordering
+  An \R \code{data.frame} of the median regressed probabilities of \eqn{V} and provided \eqn{U} values is returned. Note that if \code{level} is used then the column ordering
 of the returned \code{data.frame} changes---please access the columns by the named idiom. The lower and upper prediction interval is contained in the columns repectively titled \code{Vlwr} and \code{Vupr} to mimic nomenclature somewhat of function \code{predict.lm()} in \R.
 }
 \note{
@@ -31,7 +31,7 @@ First, a function \code{NORMcop()} is defined to form the interconnect between t
     return(copula::pCopula(matrix(c(u,v), ncol=2), para))
   }
 }
-The parameter \eqn{\Theta \in [-1, 1]} (\emph{Pearson's R}) and \eqn{\rho_\mathbf{C}(\Theta)} (\emph{Spearman's Rho}, \code{\link{rhoCOP}}) and \eqn{\tau_\mathbf{C}(\Theta)} (\emph{Kendall's Tau}, \code{\link{tauCOP}}) are according to Salvadori \emph{et al.} (2007, p. 255) the values 
+The parameter \eqn{\Theta \in [-1, 1]} (\emph{Pearson's R}) and \eqn{\rho_\mathbf{C}(\Theta)} (\emph{Spearman's Rho}, \code{\link{rhoCOP}}) and \eqn{\tau_\mathbf{C}(\Theta)} (\emph{Kendall's Tau}, \code{\link{tauCOP}}) are according to Salvadori \emph{et al.} (2007, p. 255) the values
 \deqn{\rho_\mathbf{C}(\Theta) = \frac{2}{\pi}\,\mathrm{arcsin}(\Theta)}
 and
 \deqn{\tau_\mathbf{C}(\Theta) = \frac{6}{\pi}\,\mathrm{arcsin}(\Theta/2)\mbox{.}}
@@ -52,7 +52,7 @@ Third, the \emph{Weibull plotting positions} from the \code{pp()} function of pa
   fnorm.cop <- copula::normalCopula(para, dim=2)
 }
 
-Fourth, ordinary-least-squares (OLS) linear regression for \eqn{Y\mid X} and \eqn{X\mid Y} is computed, and the results plotted on top of the data points. The 2/3-prediction limits are computed by \code{predict.lm()} and also shown.
+Fourth, ordinary-least-squares (OLS) linear regression for \eqn{Y\mid X} and \eqn{X\mid Y} is computed, and the results plotted on top of the data points. The 2/3rd-prediction limits are computed by \code{predict.lm()} and also shown.
 \preformatted{
   # Classical linear regressions from two perspectives.
   LMyx <- lm(Y~X);       LMxy <- lm(X~Y)

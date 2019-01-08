@@ -14,9 +14,7 @@ The concept of negatively quadrant dependency (NQD) is the reverse: \eqn{\mathbf
 
 Conceptually, PQD is related to the probability that two random variables are simultaneously small (or simultaneously large) is at least as great as it would be if they were \emph{independent}. The graph of a PQD copula lies on or above the copulatic surface of the \emph{independence copula} \eqn{\mathbf{\Pi}}, and conversely a NQD copula lies on or below \eqn{\mathbf{\Pi}}.
 
-Albeit a \dQuote{global} property of a copula, there can be \dQuote{local} variations in the PQD/NQD state. Points in \eqn{\mathcal{I}^2} where \eqn{\mathbf{C}(u,v) - \mathbf{\Pi} \ge 0} are locally PQD, whereas points in \eqn{\mathcal{I}^2} where \eqn{\mathbf{C}(u,v) - \mathbf{\Pi} \le 0} and locally NQD.
-
-Readers are directed to the last examples in \code{\link{wolfCOP}} because as those examples involve the copulatic difference from independence \eqn{\mathbf{C}(u,v) - \mathbf{\Pi} = \mathbf{C}(u,v) - \mathbf{\Pi}} with 3-D renderings.
+Albeit a \dQuote{global} property of a copula, there can be \dQuote{local} variations in the PQD/NQD state. Points in \eqn{\mathcal{I}^2} where \eqn{\mathbf{C}(u,v) - \mathbf{\Pi} \ge 0} are locally PQD, whereas points in \eqn{\mathcal{I}^2} where \eqn{\mathbf{C}(u,v) - \mathbf{\Pi} \le 0} and locally NQD. Lastly, readers are directed to the last examples in \code{\link{wolfCOP}} because as those examples involve the copulatic difference from independence \eqn{\mathbf{C}(u,v) - \mathbf{\Pi} = \mathbf{C}(u,v) - \mathbf{\Pi}} with 3D renderings.
 }
 \usage{
 isCOP.PQD(cop=NULL, para=NULL, uv=NULL, empirical=FALSE, verbose=TRUE, ...)

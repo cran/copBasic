@@ -43,9 +43,9 @@ R <- qua.regressCOP(cop=PLACKETTcop, para=theta) # 50th percentile regression
 plot(R$U,R$V, type="l", lwd=6, xlim=c(0,1), ylim=c(0,1), col=8)
 lines(R$U,(1+(theta-1)*R$U)/(theta+1), col=4, lwd=1) # theoretical for Plackett, see
 #                                                             (Nelsen, 2006, p. 218)
-R <- qua.regressCOP(f=0.90, cop=PLACKETTcop,para=theta) # 90th-percentile regression
+R <- qua.regressCOP(f=0.90, cop=PLACKETTcop, para=theta) # 90th-percentile regression
 lines(R$U,R$V, col=2, lwd=2)
-R <- qua.regressCOP(f=0.10, cop=PLACKETTcop,para=theta) # 10th-percentile regression
+R <- qua.regressCOP(f=0.10, cop=PLACKETTcop, para=theta) # 10th-percentile regression
 lines(R$U,R$V, col=3, lty=2)
 mtext("Quantile Regression V wrt U for Plackett copula")#}
 

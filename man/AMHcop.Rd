@@ -6,8 +6,8 @@
 The \emph{Ali--Mikhail--Haq copula} (Joe, 2014, p. 168) is
 \deqn{\mathbf{C}_{\Theta}(u,v) = \mathbf{AMH}(u,v) = \frac{uv}{1 - \Theta(1-u)(1-v)}\mbox{,}}
 where \eqn{\Theta \in [-1,+1)}, where the right boundary,
-\eqn{\Theta = 1}, can sometimes be considered valid according to \enc{Mächler}{Machler} (2014). The copula \eqn{\Theta \rightarrow 0} becomes the \emph{independence copula} (\eqn{\mathbf{\Pi}(u,v)}; \code{\link{P}}). Finally, the parameter \eqn{\Theta} is readily computed from \emph{Kendall's Tau} (\code{\link{tauCOP}}) by
-\deqn{\tau_\mathbf{C} = \frac{3\Theta - 2}{3\Theta} -   
+\eqn{\Theta = 1}, can sometimes be considered valid according to \enc{Mächler}{Machler} (2014). The copula \eqn{\Theta \rightarrow 0} becomes the \emph{independence copula} (\eqn{\mathbf{\Pi}(u,v)}; \code{\link{P}}), and the parameter \eqn{\Theta} is readily computed from \emph{Kendall's Tau} (\code{\link{tauCOP}}) by
+\deqn{\tau_\mathbf{C} = \frac{3\Theta - 2}{3\Theta} -
                         \frac{2(1-\Theta)^2\log(1-\Theta)}{3\Theta^2}\mbox{,}}
 and \emph{Spearman Rho} (\code{\link{rhoCOP}}) by
 \deqn{\rho_\mathbf{C} = 12\biggl(\frac{\mathrm{dilog}(1-\Theta)\times(1+\Theta) - 2\log(1-\Theta) + 2\Theta\log(1-\Theta)-3\Theta}{\Theta^2}\biggl)\; -\; 3\mbox{,}}
@@ -37,7 +37,7 @@ and if \code{para=NULL} and \code{tau=NULL}, then the values within \code{u} and
 \deqn{\rho_\mathbf{C} = \sum_{k=1}^{\infty} \frac{3\Theta^k}{{k+2 \choose 2}^2}\mbox{.}}
 The \pkg{copula} package provides a Taylor series expansion for \eqn{\tau_\mathbf{C}} for small \eqn{\Theta} in the \code{copula::tauAMH()}. This is demonstrated here between the implementation of \eqn{\tau = 0} for parameter estimation in the \pkg{copBasic} package to that in the more sophisticated implementation in the \pkg{copula} package.
 \preformatted{
-  copula::tauAMH(AMHcop(tau=0)$para) # theta = -2.313076e-07 
+  copula::tauAMH(AMHcop(tau=0)$para) # theta = -2.313076e-07
 }
 It is seen that the numerical approaches yield quite similar results for small \eqn{\tau_\mathbf{C}}, and finally, a comparison to the \eqn{\rho_\mathbf{C}} is informative:
 \preformatted{
@@ -51,7 +51,7 @@ It is seen that the numerical approaches yield quite similar results for small \
 The plot shows that the apparent differences are less than 1 part in 100 million---The \pkg{copBasic} computation is radically slower though, but \code{\link{rhoCOP}} was designed for generality of copula family.
 }
 \references{
-\enc{Mächler}{Machler}, Martin, 2014, Spearman’s Rho for the AMH Copula---A Beautiful Formula: copula package vignette, accessed on April 7, 2018 at \url{https://CRAN.R-project.org/package=copula} under the vignette \emph{rhoAMH-dilog.pdf}
+\enc{Mächler}{Machler}, Martin, 2014, Spearman’s Rho for the AMH Copula---A Beautiful Formula: copula package vignette, accessed on April 7, 2018 at \url{https://CRAN.R-project.org/package=copula} under the vignette \emph{rhoAMH-dilog.pdf}.
 
 Pranesh, Kumar, 2010, Probability distributions and estimation of Ali--Mikhail--Haq copula: Applied Mathematical Sciences, v. 4, no. 14, p. 657--666.
 }

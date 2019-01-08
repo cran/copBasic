@@ -4,9 +4,9 @@
 \alias{rCOP}
 \title{ Simulate a Copula by Numerical Derivative Method }
 \description{
-Perform a simulation and visualization of a copula by numerical derivatives of the copula (Nelsen, 2006, p. 32). The method is more broadly known as \emph{conditional simulation method}. This function is the parametric parallel to the empirical copula simulator \code{\link{EMPIRsim}}. Because a focus of \pkg{copBasic} is on copula theory for pedagogic purposes, the coupling between simulation and subsequent visualization is emphasized by this function by it providing for both simulation and plotting operations by default.
+Perform a simulation and visualization of a copula using numerical partial derivatives of the copula (Nelsen, 2006, p. 32). The method is more broadly known as \emph{conditional simulation method}. Because a focus of \pkg{copBasic} is on copula theory for pedagogic purposes, the coupling between simulation and subsequent visualization is emphasized by this function by it providing for both simulation and plotting operations by default.
 
-The \code{simCOP} function is based on a uniformly simulating nonexceedance probability \eqn{u} and then conditioning the \eqn{v} from the inverse of the sectional derivative for \eqn{V} with respect to \eqn{U} (see \code{\link{derCOPinv}}). The function for speed will only report a warning if at least one of the requested simulations in \code{n} could not be made because of \code{uniroot}'ing problems in \code{\link{derCOPinv}}. The returned \code{data.frame} will be shortened automatically but can be controlled by \code{na.rm}. Failure of a simulation is purely dependent on the derivative inversion, which should be quite robust for continuous or near continuous copulas and even copulas with singularities should be more or less okay. Lastly, the logical combination \code{na.rm=FALSE} and \code{keept=TRUE} could be used to isolate those combinations giving \code{\link{derCOPinv}} problems. The implemented simulation method in the \pkg{copBasic} package is known as the \emph{conditional distribution method} (Nelsen, 2006; pp. 40--41), \emph{conditional method}, or \emph{Rosenblatt transform} (Joe, 2014, p. 270).
+The \code{simCOP} function is based on a uniformly simulating nonexceedance probability \eqn{u} and then conditioning the \eqn{v} from the inverse of the sectional derivative for \eqn{V} with respect to \eqn{U} (see \code{\link{derCOPinv}}). The function for speed will only report a warning if at least one of the requested simulations in \code{n} could not be made because of \code{uniroot}'ing problems in \code{\link{derCOPinv}}. The returned \code{data.frame} will be shortened automatically, but this can be controlled by \code{na.rm}. Failure of a simulation is purely dependent on the derivative inversion, which should be quite robust for continuous or near continuous copulas and even copulas with singularities should be more or less okay. Lastly, the logical combination \code{na.rm=FALSE} and \code{keept=TRUE} could be used to isolate those combinations giving \code{\link{derCOPinv}} problems. The implemented simulation method in the \pkg{copBasic} package is known as the \emph{conditional distribution method} (Nelsen, 2006; pp. 40--41), \emph{conditional method}, or \emph{Rosenblatt transform} (Joe, 2014, p. 270).
 }
 \usage{
 simCOP(n=100, cop=NULL, para=NULL, na.rm=TRUE, keept=FALSE,
@@ -32,7 +32,7 @@ rCOP(n, cop=NULL, para=NULL, na.rm=TRUE, ...)
   An \R \code{data.frame} of the simulated values is returned.
 }
 \note{
-Function \code{rCOP} is a light-weight implementation for bivariate copula random variates that dispatches to \code{\link{simCOPmicro}} and bypasses the graphical and other features of \code{simCOP}.
+Function \code{rCOP} is a light-weight implementation for bivariate copula random variates that dispatches to \code{\link{simCOPmicro}} and bypasses the graphical and other features of \code{simCOP}. Finally, an experimental parallel for the empirical copula is \code{\link{EMPIRsim}}.
 }
 \references{
 Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.

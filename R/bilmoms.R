@@ -1,4 +1,5 @@
-"bilmoms" <- function(cop=NULL, para=NULL, n=1E5, sobol=TRUE, ...) {
+"bilmoms" <- function(cop=NULL, para=NULL, only.bilmoms=FALSE,
+                      n=1E5, sobol=TRUE, ...) {
 
    if(is.null(cop)) {
       warning("must have copula argument specified, returning NULL")
@@ -42,6 +43,12 @@
    deltasX2wrtX1 <- c(d1, d2, d3, d4)
    names(deltasX2wrtX1) <- c("BiVarLM:del1[21]", "BiVarLM:del2[21]",
                              "BiVarLM:del3[21]", "BiVarLM:del4[21]")
+   err <- (err1 + err2)/2
+   if(only.bilmoms) {
+     zz <- list(bilmomUV=deltasX1wrtX2, bilmomVU=deltasX2wrtX1,
+                 error.rho=err, source="bilmoms")
+     return(zz)
+   }
 
    ulmoms <- lmomco::lmoms(uv[,1], nmom=5)
    vlmoms <- lmomco::lmoms(uv[,2], nmom=5)
@@ -63,7 +70,6 @@
    T4 <- matrix(c( ulmoms$ratios[4], lcX2X1[4], lcX1X2[4],  vlmoms$ratios[4]), ncol=2)
    T5 <- matrix(c( ulmoms$ratios[5], lcX2X1[5], lcX1X2[5],  vlmoms$ratios[5]), ncol=2)
 
-   err <- (err1 + err2)/2
    zz <- list(bilmomUV=deltasX1wrtX2, bilmomVU=deltasX2wrtX1,
                error.rho=err,
                bilcomoms=list(L1=L1, L2=L2, T2=T2, T3=T3, T4=T4, T5=T5),

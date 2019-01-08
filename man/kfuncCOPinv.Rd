@@ -3,7 +3,7 @@
 \alias{kfuncCOPinv}
 \title{ The Inverse Kendall Function of a Copula }
 \description{
-Compute the (numerical) inverse \eqn{F^{(-1)_K(z)}\equiv z(F_K)} of the \emph{Kendall Function} \eqn{F_K(z; \mathbf{C})} (\code{\link{kfuncCOP}}) of a copula \eqn{\mathbf{C}(u,v)} given nonexceedance probability \eqn{F_K}. The \eqn{z} is the joint probability of the random variables \eqn{U} and \eqn{V} coupled to each other through the copula \eqn{\mathbf{C}(u,v)} and the nonexceedance probability of the probability \eqn{z} is \eqn{F_K}---statements such as ``probabilities of probabilities'' are rhetorically complex so pursuit of word precision is made herein.
+Compute the (numerical) inverse \eqn{F^{(-1)}_K(z) \equiv z(F_K)} of the \emph{Kendall Function} \eqn{F_K(z; \mathbf{C})} (\code{\link{kfuncCOP}}) of a copula \eqn{\mathbf{C}(u,v)} given nonexceedance probability \eqn{F_K}. The \eqn{z} is the joint probability of the random variables \eqn{U} and \eqn{V} coupled to each other through the copula \eqn{\mathbf{C}(u,v)} and the nonexceedance probability of the probability \eqn{z} is \eqn{F_K}---statements such as ``probabilities of probabilities'' are rhetorically complex so pursuit of word precision is made herein.
 }
 \usage{
 kfuncCOPinv(f, cop=NULL, para=NULL, ...)

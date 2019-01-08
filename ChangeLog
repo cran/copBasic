@@ -336,18 +336,18 @@ Version 2.0.5--February 24, 2017
        example of Kendall function L-moments.
 
 
-Version 2.0.6--11/08/2017
+Version 2.0.6--November 11, 2017
 1.  Added convexCOP() as a N-bivariate copula generalization of convex2COP().
 2.  Documentation adjustment to GHcop.Rd.
 3.  Added CLcop() for user R. Adat related to his own coding efforts.
 
 
-Version 2.0.7--03/08/2018
+Version 2.0.7--March 8, 2018
 1.  Clarified some documentation in bilmoms.Rd.
 2.  Expanded description in Examples in kullCOP.Rd.
 
 
-Version 2.1.0--2018-05-07
+Version 2.1.0--May 7, 2018
 1.  Minor Rd updates throughout.
 2.  Revision of warning() in wolfCOP().
 3.  Removed last of the repeated sequence computation inside nested sapply()s
@@ -390,7 +390,7 @@ Version 2.1.0--2018-05-07
 17. Added alias PAcop() for PARETOcop() to be parallel to the PLACKETTcop().
 
 
-Version 2.1.1--2018-12-01
+Version 2.1.1--December 1, 2018
 1. Enhancement: Changed from sapply to u*v on return. This dates for a long
        time back when the vectorization in R was not idiomatic for the author.
 2. Added aicCOP(), bicCOP(), and rmseCOP(): a triad of similar goodness of fits.
@@ -399,18 +399,86 @@ Version 2.1.1--2018-12-01
 4. Standardized all *.Rd files to utf8 encoding declaration whether needed or no.
 
 
+Version 2.1.2--January 8, 2019
+1. Added m=NA argument to aicCOP() and bicCOP() to pass the number of parameters
+       of the copula. Trivial to compute the number from standard copulas,
+       the problem is how to handle and count on the fly the number of parameters
+       for the various the compositing types. 
+2. Added warning of missing alpha or beta parameters in composite1COP and
+       composite2COP. Small speed it, but debugging when these are not given 
+       (forgotten) becomes complicated. (See #3 and #4)
+3. Added warning of missing kappa or gamma parameters in composite3COP.
+       (See #2 and #4)
+4. Added warning of missing alpha in convex2COP() (See #2 and #3)
+5. Enhancement: Added additional indexing for GHcop, GLcop, and HRcop as EV cops.
+6. Added tEVcop() with implementation based on the Pickands dependence
+       function. Examples are provided. The tEVcop() is deemed useful because
+       of interest in semi-exhaustive EV-copula study with the easy addition of
+       a 2-parameter copula without triggering convex or compositing. However,
+       some literature indicates that the form itself with two parameters is 
+       not really more expressive than the GHcop, GLcop, and HRcop.
+7. Feature fix: COP.R had a weakness when parameters as a list are passed in
+       its handling of "cop" versus "cop1", "cop2" etc.
+8. BUG FIX: Vectorization in convexCOP.R was not fully working for some
+       operations on composited copulas.
+9. BUX FIX: isCOP.permsym() and isCOP.radsym() both had dispatching problems
+       when composited copulas were involved in "cop" being "matched by 
+       multiple arguments" error in R. Had this always been a problem or had
+       R itself become more restricted? The fix was to insert a COP() call
+       as opposed cop() call (the argument named cop).
+10. Added the Gaussian extreme-value copula as gEVcop().
+11. Added rotation to cophalf (Nelsen's triangular copula) within the examples
+       of asCOP.Rd and bilmoms.Rd by including a para argument. This is useful
+       for further testing and as related to exploring nuskew() and nustar().
+12. Overhauled joeskewCOP() after more extensive testing including nuskew() and
+       nustar() for parameter estimation. There are now changes in the numerical
+       outputs including the basic scale of each statistic. (See joeskewCOP.Rd)
+       The biggest problems seem to have been in the numerical version of the
+       sample nustar, which prompted the overhaul. *** No users have reported
+       any problems with the older scheme, but it needs to be stated that no
+       users are actually known to be using nuskew() and nustar(). ***
+13. Added only.bilmoms argument to bilmoms() to skip L-comoment computation, 
+       in order to speed execution.
+14. Added lcomCOP() based on integrate(integrate()) nest for computation of the
+       bivariate L-moments and then conversion to the L-comoments. This is much
+       faster than bilmoms(). It is not remembered by the author why nested
+       integration was not originally implemented for bilmoms(). (Sorry.)
+       Testing indicates that lcomCOP() works well and is much much faster.
+       The function lcomCOPpv() will need revisition for a future release.
+15. Added "1", "2", "3", "4" argument options for reflect in simCOPmicro() and
+       simCOPv() to be parallel with COP().
+16. Made an editorial sweep throughout the documentation.
+17. BUG FIX: semicorCOP() seems to have not had the truncation properly coded,
+       which was discovered during inspection of code as the Examples were
+       audited. However, the default truncation=0, would not show the problem.
+       Signs were not properly being used if truncation > 0 and matching logic
+       of Joe (2014, p. 73). Also argument 'samcor' renamed as 'as.sample' to
+       be consistent with other functions of the package.
+18. Added the Raftery copula as RFcop.
+19. GLcop() extended to a two-parameter version as a lower-extreme value
+       GL_LEV and related extension to another two-parameter version as the 
+       "gamma-power mixture" of the Galambos. The two-parameter version does not
+       seem materially broader than the one-parameter Galambos (see Note).
+       The gamma-power mixture is though a different copula.  
+
+
+
+
+
 POTENTIAL TODOs:
 
-Vectorization problem in convexCOP.R needs to be fixed.
+lcomCOPpv() <--> vuongCOP() work as now lcomCOP() is available.
+lcomCOPpv() might need some reworking too.
+
+If two-parameter Galambos (Joe, 2014, p. 198) is not materially broader than
+the one-parameter, does this hold for a two-parameter Gumbel hinted by
+Joe (2014, p. 199)? Further investigation is needed.
 
 \author{William Asquith \email{william.asquith@ttu.edu} }
   Make such conversions through out or go back to W.H. Asquith?
 
 EMPIRcopdf() can be replaced by EMPIRcop() as the later is fully 
   vectorized itself and makes presumably a lesser impact on memory (faster)?
-
-aic/bicCOP() need m parameter length. These needs generalization to
-  composited and convex copulas. Currently, only checking length(para).
 
 stabtaildepf.Rd --- Need to audit stabtaildepf.Rd and complete documentation.
 

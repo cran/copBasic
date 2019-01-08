@@ -8,7 +8,10 @@ function(cop=NULL, v, t, trace=FALSE,
     f.lower <- func(0,v,t,cop,delv=delv,para=para, ...)
     f.upper <- func(1,v,t,cop,delv=delv,para=para, ...)
     if(sign(f.lower) == sign(f.upper)) {
-      if(trace) message("not opposite signs for f.lower and f.upper: v=",v, " and t=",t)
+      if(trace) message("not opposite signs for f.lower=",f.lower,
+                        " and f.upper=",f.upper,
+                        " at v=",v, " and t=",t,
+                        "\nThis might be because of degenerate derivative on the section at v.")
       return(NA)
     }
 

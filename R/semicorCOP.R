@@ -1,12 +1,13 @@
 "semicorCOP" <-
-function(cop=NULL, para=NULL, truncation=0, n=0, samcor=FALSE, ...) {
+function(cop=NULL, para=NULL, truncation=0, n=0, as.sample=FALSE, ...) {
    rhoNs <- list(cor.normal.scores=NA, minus.semicor=NA,  plus.semicor=NA,
                  type="TO BE FILLED IN BY CODE", source="semicorCOP")
    if(truncation < 0) {
       warning("inconsistent truncation argument, returning NULL")
    }
+   method <- "pearson"
    a <- truncation
-   if(samcor) {
+   if(as.sample) {
       if(is.null(para)) {
          warning("Sample semi-correlations are desired by 'para' but it is NULL, ",
                  "returning NULL")
@@ -21,11 +22,11 @@ function(cop=NULL, para=NULL, truncation=0, n=0, samcor=FALSE, ...) {
       n <- length(para[,1])  # Hazen plotting positions
       para[,1] <- (rank(para[,1])-0.5)/n; para[,2] <- (rank(para[,2])-0.5)/n
       qu <- qnorm(para[,1]); qv <- qnorm(para[,2])
-      rhoNs$cor.normal.scores <- cor(qu,qv, method="pearson")
-      rhoNs$plus.semicor      <- cor(qu[qu > a & qv > a],
-                                     qv[qu > a & qv > a], method="pearson")
-      rhoNs$minus.semicor     <- cor(qu[qu < a & qv < a],
-                                     qv[qu < a & qv < a], method="pearson")
+      rhoNs$cor.normal.scores <- cor(qu,qv, method=method)
+      rhoNs$plus.semicor      <- cor(qu[qu >  a & qv >  a],
+                                     qv[qu >  a & qv >  a], method=method)
+      rhoNs$minus.semicor     <- cor(qu[qu < -a & qv < -a],
+                                     qv[qu < -a & qv < -a], method=method)
       rhoNs$type <- "performed cor()'s on the columns in 'para'"
    } else {
       if(is.null(cop)) {
@@ -42,11 +43,11 @@ function(cop=NULL, para=NULL, truncation=0, n=0, samcor=FALSE, ...) {
          n <- length(para[,1]) # Hazen plotting positions
          para[,1] <- (rank(para[,1])-0.5)/n; para[,2] <- (rank(para[,2])-0.5)/n
          qu <- qnorm(para[,1]); qv <- qnorm(para[,2])
-         rhoNs$cor.normal.scores <- cor(qu,qv, method="pearson")
-         rhoNs$plus.semicor      <- cor(qu[qu > a & qv > a],
-                                        qv[qu > a & qv > a], method="pearson")
-         rhoNs$minus.semicor     <- cor(qu[qu < a & qv < a],
-                                        qv[qu < a & qv < a], method="pearson")
+         rhoNs$cor.normal.scores <- cor(qu,qv, method=method)
+         rhoNs$plus.semicor      <- cor(qu[qu >  a & qv >  a],
+                                        qv[qu >  a & qv >  a], method=method)
+         rhoNs$minus.semicor     <- cor(qu[qu < -a & qv < -a],
+                                        qv[qu < -a & qv < -a], method=method)
          rhoNs$type <- "simulated the copula and then computed cor()'s"
       }
    }

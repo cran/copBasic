@@ -5,7 +5,7 @@
 \title{ The Plackett Copula }
 \description{
 The \emph{Plackett copula} (Nelsen, 2006, pp. 89--92) is
-\deqn{\mathbf{C}_{\Theta}(u,v) = \mathbf{PL}(u,v) = \frac{[1+(\Theta-1)(u+v)]-\sqrt{[1+(\Theta-1)(u+v)]^2 - 4uv\Theta(\Theta-1)}}{2(\Theta - 1)}\mbox{.}}
+\deqn{\mathbf{C}_\Theta(u,v) = \mathbf{PL}(u,v) = \frac{[1+(\Theta-1)(u+v)]-\sqrt{[1+(\Theta-1)(u+v)]^2 - 4uv\Theta(\Theta-1)}}{2(\Theta - 1)}\mbox{.}}
 
 The Plackett copula (\eqn{\mathbf{PL}(u,v)}) is \emph{comprehensive} because as \eqn{\Theta \rightarrow 0} the copula becomes \eqn{\mathbf{W}(u,v)} (see \code{\link{W}}, \emph{countermonotonicity}), as \eqn{\Theta \rightarrow \infty} the copula becomes \eqn{\mathbf{M}(u,v)} (see \code{\link{M}},  \emph{comonotonicity}) and for \eqn{\Theta = 1} the copula is \eqn{\mathbf{\Pi}(u,v)} (see \code{\link{P}},  \emph{independence}).
 
@@ -53,6 +53,7 @@ PLACKETTcop(0.4,0.6,para=1)
 P(0.4,0.6) # independence copula, same two values because Theta == 1
 PLcop(0.4,0.6,para=10.25) # joint probability through positive association
 
+\dontrun{
 # Joe (2014, p. 164) shows the closed form copula density of the Plackett.
 "dPLACKETTcop" <- function(u,v,para) {
    eta <- para - 1; A <- para*(1 + eta*(u+v-2*u*v))
@@ -62,24 +63,25 @@ u <- 0.08; v <- 0.67 # Two probabilities to make numerical evaluations.
 del <- 0.0001 # a 'small' differential value of probability
 u1 <- u; u2 <- u+del; v1 <- v; v2 <- v+del
 # Density following (Nelsen, 2006, p. 10)
-dCrect <- (PLACKETTcop(u2, v2, para=10.25) - PLACKETTcop(u2, v1, para=10.25) -
-           PLACKETTcop(u1, v2, para=10.25) + PLACKETTcop(u1, v1, para=10.25))/del^2
+dCrect <- (PLcop(u2, v2, para=10.25) - PLcop(u2, v1, para=10.25) -
+           PLcop(u1, v2, para=10.25) + PLcop(u1, v1, para=10.25))/del^2
 dCanal <- dPLACKETTcop(u,  v,  para=10.25)
-dCfunc <- densityCOP(u, v, cop=PLACKETTcop, para=10.25, deluv = del)
+dCfunc <- densityCOP(u, v, cop=PLcop, para=10.25, deluv = del)
 R <- round(c(dCrect, dCanal, dCfunc), digits=6)
 message("Density: ", R[1], "(manual), ", R[2], "(analytical), ", R[3], "(function)");
 
 # Comparison of partial derivatives
-dUr <- (PLACKETTcop(u2, v2, para=10.25) - PLACKETTcop(u1, v2, para=10.25))/del
-dVr <- (PLACKETTcop(u2, v2, para=10.25) - PLACKETTcop(u2, v1, para=10.25))/del
-dU  <-  derCOP(u, v, cop=PLACKETTcop, para=10.25)
-dV  <- derCOP2(u, v, cop=PLACKETTcop, para=10.25)
+dUr <- (PLcop(u2, v2, para=10.25) - PLcop(u1, v2, para=10.25))/del
+dVr <- (PLcop(u2, v2, para=10.25) - PLcop(u2, v1, para=10.25))/del
+dU  <-  derCOP(u, v, cop=PLcop, para=10.25)
+dV  <- derCOP2(u, v, cop=PLcop, para=10.25)
 R   <- round(c(dU, dV, dUr, dVr), digits=6)
 message("Partial derivatives dU=", R[1], " and dUr=", R[3], "\n",
-        "                    dV=", R[2], " and dVr=", R[4])
+        "                    dV=", R[2], " and dVr=", R[4]) #}
 }
 \keyword{Plackett copula}
 \keyword{copula (formulas)}
 \keyword{copula (density)}
 \concept{comprehensive copula}
 \keyword{copula}
+\keyword{Joe (2014) Examples and Exercises}

@@ -10,7 +10,7 @@ Compute the measure of association known as \emph{Spearman Footrule} \eqn{\psi_\
 where \eqn{\mathbf{C}(u,v)} is the copula, \eqn{\mathbf{M}(u,v)} is the \emph{\enc{Fréchet}{Frechet}--Hoeffding upper bound} (\code{\link{M}}), and \eqn{\mathcal{Q}(a,b)} is a \emph{concordance function} (Nelsen, 2006, p. 158), which is implemented by a specially formed call to \code{\link{concordCOP}}. The \eqn{\psi_\mathbf{C}} in terms of a single integration pass on the copula is
 \deqn{\psi_\mathbf{C} = 6 \int_0^1 \mathbf{C}(u,u)\,\mathrm{d}u - 2\mbox{.}}
 % http://www.encyclopediaofmath.org/index.php?title=Spearman_rho_metric&oldid=15466  (accessed Aug 9, 2015)
-Note that Nelsen \emph{et al.} use \eqn{\phi_\mathbf{C}} but that symbol is taken in \pkg{copBasic} for \emph{Hoeffding's Phi} (\code{\link{hoefCOP}}), and Spearman's Footrule does not seem to appear in Nelsen (2006).
+Note that Nelsen \emph{et al.} (2001) use \eqn{\phi_\mathbf{C}} but that symbol is taken in \pkg{copBasic} for \emph{Hoeffding's Phi} (\code{\link{hoefCOP}}), and Spearman's Footrule does not seem to appear in Nelsen (2006).
 }
 \usage{
 footCOP(cop=NULL, para=NULL, by.concordance=FALSE, as.sample=FALSE, ...)

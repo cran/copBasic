@@ -7,7 +7,12 @@ Compute the measure of association known as \emph{Spearman's Rho} \eqn{\rho_\mat
 \deqn{\rho_\mathbf{C} = 12\int\!\!\int_{\mathcal{I}^2} \mathbf{C}(u,v)\, \mathrm{d}u\mathrm{d}v - 3\mbox{,}}
 or
 \deqn{\rho_\mathbf{C} = 12\int\!\!\int_{\mathcal{I}^2} [\mathbf{C}(u,v) - uv]\, \mathrm{d}u\mathrm{d}v\mbox{,}}
-where the later equation is implemented by \code{rhoCOP} as the default method (\code{method="default"}). This equation, here having \eqn{p = 1} and \eqn{k_p(1) = 12}, is generalized under \code{\link{hoefCOP}}. Depending on copula family (Joe, 2014, pp. 56 and 267), the alternative formulation for \eqn{\rho_\mathbf{C}} could be used
+where the later equation is implemented by \code{rhoCOP} as the default method (\code{method="default"}). This equation, here having \eqn{p = 1} and \eqn{k_p(1) = 12}, is generalized under \code{\link{hoefCOP}}. The absence of the \eqn{12} in the above equation makes it equal to the covariance defined by \emph{Hoeffding's identity} (Joe, 2014, p. 54):
+\deqn{\mathrm{cov}(U, V) = \int\!\!\int_{\mathcal{I}^2} [\mathbf{C}(u,v) - uv]\, \mathrm{d}u\mathrm{d}v\mbox{ or}}
+\deqn{\mathrm{cov}(U, V) = \int\!\!\int_{\mathcal{I}^2} [\hat\mathbf{C}(u,v) - uv]\, \mathrm{d}u\mathrm{d}v\mbox{, which is}}
+\deqn{\mathrm{cov}(U, V) = \int\!\!\int_{\mathcal{I}^2} [u+v-1+\mathbf{C}(1-u,1-v) - uv]\, \mathrm{d}u\mathrm{d}v\mbox{.}}
+
+Depending on copula family (Joe, 2014, pp. 56 and 267), the alternative formulation for \eqn{\rho_\mathbf{C}} could be used
 \deqn{\rho_\mathbf{C} = 3 - 12\int\!\!\int_{\mathcal{I}^2} u \frac{\delta\mathbf{C}(u,v)}{\delta u} \, \mathrm{d}u\mathrm{d}v = 3 - 12\int\!\!\int_{\mathcal{I}^2} v\frac{\delta\mathbf{C}(u,v)}{\delta v} \, \mathrm{d}u\mathrm{d}v\mbox{,}}
 where the first integral form corresponds to Joe (2014, eq. 248, p. 56) and is the \code{method="joe21"}, and the second integral form is the \code{method="joe12"}.
 
@@ -60,11 +65,11 @@ rho_sample <- mean(rhos); print(rho_sample) # 0.472661}
 
 \dontrun{
 para <- list(cop1=PLACKETTcop,  cop2=PLACKETTcop,
-             para1=0.00395,    para2=4.67, alpha=0.9392, beta=0.5699)
+             para1=0.00395,    para2=4.67,     alpha=0.9392, beta=0.5699)
 rhoCOP(cop=composite2COP, para=para) # -0.5924796
 
 para <- list(cop1=PLACKETTcop,  cop2=PLACKETTcop,
-             para1=0.14147,    para2=20.96, alpha=0.0411, beta=0.6873)
+             para1=0.14147,    para2=20.96,    alpha=0.0411, beta=0.6873)
 rhoCOP(cop=composite2COP, para=para) # 0.2818874
 
 para <- list(cop1=PLACKETTcop,  cop2=PLACKETTcop,

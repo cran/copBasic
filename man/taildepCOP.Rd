@@ -39,7 +39,7 @@ taildepCOP(cop=NULL, para=NULL, tol=1e-6, divisor=2, plot=FALSE, ylim=NULL,
   \item{source}{An attribute identifying the computational source: \dQuote{taildepCOP}.}
 }
 \note{
-\emph{IMPLEMENTED ALOGRITHM}---The algorithm implemented for \code{taildepCOP} is based on halves (or alternatives by the setting of \code{divisor} argument) and uses the copula function (not an analytical or even numeric derivative of the diagonal, \eqn{\delta_\mathbf{C}'(t)}). Starting from the median or \eqn{t = 0.5}, each limit is respectively computed by successive halving (or the setting of argument \code{divisor}) of the distance towards \eqn{0^{+}} and \eqn{1^{-}} and checking the change in computed value against the tolerance \code{tol} argument. After the change becomes less than the \code{tol}erance, convergence is assumed. Other tests are made for \code{NaN} to aid in breaking the successive halvings. The rounding for the numerical results for \eqn{\lambda^U_\mathbf{C}} and \eqn{\lambda^L_\mathbf{C}} is an order of magnitude larger than the tolerance.
+\emph{IMPLEMENTED ALGORITHM}---The algorithm implemented for \code{taildepCOP} is based on halves (or alternatives by the setting of \code{divisor} argument) and uses the copula function (not an analytical or even numeric derivative of the diagonal, \eqn{\delta_\mathbf{C}'(t)}). Starting from the median or \eqn{t = 0.5}, each limit is respectively computed by successive halving (or the setting of argument \code{divisor}) of the distance towards \eqn{0^{+}} and \eqn{1^{-}} and checking the change in computed value against the tolerance \code{tol} argument. After the change becomes less than the \code{tol}erance, convergence is assumed. Other tests are made for \code{NaN} to aid in breaking the successive halvings. The rounding for the numerical results for \eqn{\lambda^U_\mathbf{C}} and \eqn{\lambda^L_\mathbf{C}} is an order of magnitude larger than the tolerance.
 
 Users are encouraged to plot the results and further verify whether the convergence makes sense. The plot produced when \code{plot=TRUE} shows the probability \eqn{t} transformed into standard normal variates by the \code{qnorm()} function in \R so that the distal reaches of each tail and thus limit are readily seen. The terminal points of each limit computation are shown by a small dot and the letter \dQuote{L} and \dQuote{U} also are plotted at the terminal points.
 
@@ -50,7 +50,7 @@ Joe (2014, p. 63) reports that \dQuote{the empirical measure of tail dependence 
   UV <- simCOP(cop=PSP, n=n, col=8, pch=16, graphics=FALSE)
   taildepCOP(cop=EMPIRcop, para=UV, plot=TRUE, divisor=8, ylim=c(0,1))
 }
-The returned tail dependency parameters are numerically of little importance and in strict terms likely misleading. What should be of interest is the trajectory of the lower and upper lines when plotted. Note how the lower tail wobbles but seems to show stability towards near \eqn{\hat\lambda_\mathbf{C}^L = 0.5} and upper-tail line wobbles downward towards \eqn{\hat\lambda_\mathbf{C}^U = 0}. A user might try increasing the sample size by an order of magnitude and rerunning the above code. Lastly, Salvadori \emph{et al.} (2006, pp. 173--175) caution on the difficulties of nonparametric tail dependency estimation. Therefore, given the objective of the \pkg{copBasic} package, estimation of \eqn{\hat\lambda_\mathbf{C}^L} and \eqn{\hat\lambda_\mathbf{C}^U} is an open development opportunity.
+The returned tail dependency parameters are numerically of little importance and in strict terms likely misleading. What should be of interest are the plottee trajectories of the lower and upper lines. Note how the lower tail wobbles but seems to show stability towards near \eqn{\hat\lambda_\mathbf{C}^L = 0.5} and upper-tail line wobbles downward towards \eqn{\hat\lambda_\mathbf{C}^U = 0}. A user might try increasing the sample size by an order of magnitude and rerunning the above code. Lastly, Salvadori \emph{et al.} (2006, pp. 173--175) caution on the difficulties of nonparametric tail dependency estimation. Therefore, given the objective of the \pkg{copBasic} package, estimation of \eqn{\hat\lambda_\mathbf{C}^L} and \eqn{\hat\lambda_\mathbf{C}^U} is an open development opportunity.
 
 \emph{DEMONSTRATION (Tail Dependence)}---The following example shows a comparison between early code examples by Charpentier (2012) concerning copulas and tail dependence using real-world data. Consider the \code{lossalae} data set and the following code requiring the \pkg{evd} package:
 \preformatted{
@@ -102,8 +102,8 @@ taildepCOP(cop=MOcop, para=c(0.4, 0.9)) # LambL = 0, LambU = 0.4 [min(alpha,beta
 \dontrun{
 # Analytical solution to Gumbel-Hougaard copula from the copula package:
 copula::lambda(copula::gumbelCopula(3))
-#   lower    upper 
-# 0.000000 0.740079 
+#   lower    upper
+# 0.000000 0.740079
 # Numerical approximation (see copBasic::GHcop for analytical formula):
 as.data.frame(taildepCOP(GHcop, para=3))
 #  lambdaL lambdaU     source

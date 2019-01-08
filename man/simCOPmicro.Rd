@@ -33,15 +33,17 @@ The names \code{"acute"} and \code{"grave"} match those used in the \bold{Rd}-fo
 }
 \usage{
 simCOPmicro(u, cop=NULL, para=NULL,
-               reflect=c("cop", "surv", "acute", "grave"), ...)
+               reflect=c("cop", "surv", "acute", "grave",
+                           "1",    "2",     "3",     "4"), ...)
 simCOPv(u, cop=NULL, para=NULL,
-               reflect=c("cop", "surv", "acute", "grave"), ...)
+               reflect=c("cop", "surv", "acute", "grave",
+                           "1",    "2",     "3",     "4"), ...)
 }
 \arguments{
   \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction. The \code{runif()} function in \R can be used to drive conditional simulation using the \code{simCOPmicro} function (see \bold{Examples});}
   \item{cop}{A copula function;}
   \item{para}{Vector of parameters, if needed, to pass to the copula;}
-  \item{reflect}{The reflection of the copula (see above) and the default \code{"cop"} is the usual copula definition; and}
+  \item{reflect}{The reflection of the copula (see above) and the default \code{"cop"} or \code{"1"} is the usual copula definition.  The numbered values correspond, respectively, to the named values; and}
   \item{...}{Additional arguments to pass should they be needed.}
 }
 \value{

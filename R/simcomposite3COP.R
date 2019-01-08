@@ -1,5 +1,5 @@
 "simcomposite3COP" <-
-function(n=1000, nsim=100, compositor=composite3COP,
+function(nsim=100, compositor=composite3COP,
          parents=NULL, ploton=FALSE, points=FALSE,
          showpar=FALSE, showresults=FALSE, digits=6,
          ...) {
@@ -41,9 +41,9 @@ function(n=1000, nsim=100, compositor=composite3COP,
 
     if(showpar) print(para)
 
-    S <- simCOP(n=n, cop=compositor,
-                ploton=ploton, points=points,
-                para=para, col=rgb(0,0,0,0.1), pch=16)
+    #S <- simCOP(n=n, cop=compositor,
+    #            ploton=ploton, points=points,
+    #            para=para, col=rgb(0,0,0,0.1), pch=16)
     #abline(0,1); abline(1,-1)
     #mtext(paste(c("Theta1 = ",round(Theta1,digits=3), "   ",
     #              "Theta2 = ",round(Theta2,digits=3), "   ",
@@ -54,10 +54,12 @@ function(n=1000, nsim=100, compositor=composite3COP,
     #                 collapse=" "))
     #cat(c("Sleeping to continue\n"))
 
-    z <- lmomco::lcomoms2(S, nmom=4, opdiag=TRUE)
-
+    #z <- lmomco::lcomoms2(S, nmom=4, opdiag=TRUE)
+    z <- lcomCOP(compositor, para, orders=2:4)
     results <- c(alpha, beta, kappa, gamma,
-                 z$T2, z$T3, z$T4, Theta1, Theta2)
+                 z$lcomUV[2], z$lcomVU[2],
+                 z$lcomUV[3], z$lcomVU[3],
+                 z$lcomUV[4], z$lcomVU[4], Theta1, Theta2)
     if(showresults) cat(c(round(results, digits=digits), "\n"))
     i <- i + 1
     vals[i,] <- results

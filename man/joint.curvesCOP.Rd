@@ -35,9 +35,9 @@ joint.curvesCOP(cop=NULL, para=NULL, type=c("and", "or"),
   An \R \code{list} is returned with elements each of the given \code{probs}.
 }
 \note{
-The arguments \code{divisor} and \code{delu} are provided to given some flexibility in obtaining sufficient smoothness in the curvatures of the coordinates for a given \eqn{t}. The logical suitable to cover all potential applications, copulas and parameters thereof, is problematic. So these two arguments are intended to provide sufficient flexibility. If users have alternative ideas, they are welcomed. The pairings \eqn{\{u(t_i), v(t_i)\}} for each \eqn{t} packaged as \code{data.fame}s within the returned \code{list} each have their own unique length, and this is the reason that a single \dQuote{master} \code{data.frame} is not returned by this function.
+The arguments \code{divisor} and \code{delu} provide flexibility to obtain sufficient smoothness in the coordinate curvatures for a given \eqn{t}. The pairings \eqn{\{u(t_i), v(t_i)\}} for each \eqn{t} packaged as \code{data.fame}s within the returned \code{list} each have their own unique length, and this is the reason that a single \dQuote{master} \code{data.frame} is not returned by this function.
 
-\emph{Extended Example}---The code herein shows both types of joint probability being computed using the default \code{probs}. The plotting is made in \emph{Gumbel reduced variates} (GRV; see \code{prob2grv} in package \pkg{lmomco}). This transformation is somewhat suitable for the magnitude variation in and at tail depth of the \code{probs} and because transformation is being used the \code{zero2small} logical kept at \code{TRUE} is appropriate and would remain so if standard normal variate transformation (by the \code{qnorm()} function in \R) were used instead.
+\emph{Extended Example}---The code below shows both types of joint probability being computed using the default \code{probs}. The plotting is made in \emph{Gumbel reduced variates} (GRV; see \code{prob2grv} in package \pkg{lmomco}). This transformation is somewhat suitable for the magnitude variation in and at tail depth of the \code{probs}. Also with transformation is being used, the \code{zero2small} logical is kept at \code{TRUE}, which is appropriate. The \code{zero2small} being set is also useful if standard normal variate transformation (by the \code{qnorm()} function in \R) were used instead.
 
 The \emph{Gumbel--Hougaard} copula (\code{\link{GHcop}}) and a reversed Gumbel--Hougaard copula \code{rGH} are composited together by \code{\link{composite2COP}}. These were chosen so that some asymmetry in the solutions by \code{joint.curvesCOP} could be seen. We begin by specifying symmetrical plotting limits for later use and then creating a function for the reversed Gumbel--Hougaard and setting the parameters and composition weights:
 \preformatted{
@@ -80,7 +80,7 @@ Next, we compute and plot the joint probability curves. The \code{tol}erance for
 
 \emph{Red Curves}---The red curves represent the nonexceedance \bold{joint or} (inclusive) condition. The complement of nonexceedance \bold{joint or} (inclusive) is the probability level that both random variables (say \dQuote{hazards}) \eqn{U} or \eqn{V} must simultaneously (or dually) occur for \dQuote{failure} at the respective return period. Note that there is obviously asymmetry in the \bold{joint or} curves.
 
-\emph{Interpretation}---Because the two hazards can \dQuote{cooperate} to cause failure (see \code{\link{coCOP}}) for an equal level of protection (say 500-year event) relative to the complement of nonexceedance \bold{joint or} (inclusive) condition (see \code{surCOP}), the marginal probabilities must be considerably higher. Users are encouraged to review \code{\link{copBasic-package}} and figure therein.
+\emph{Interpretation}---Because the two hazards can \dQuote{cooperate} to cause failure (see \code{\link{coCOP}}) for an equal level of protection (say 500-year event) relative to the complement of nonexceedance \bold{joint or} (inclusive) condition (see \code{surCOP}), the marginal probabilities must be considerably higher. Users are encouraged to review \code{\link{copBasic-package}} and the figure therein.
 }
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
@@ -89,6 +89,6 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 \seealso{\code{\link{diagCOPatf}}, \code{\link{duCOP}}, \code{\link{jointCOP}}, \code{\link{joint.curvesCOP2}}, \code{\link{level.curvesCOP}}
 }
 \examples{
-# See Note Section
+# See Note section
 }
 \keyword{joint probability}

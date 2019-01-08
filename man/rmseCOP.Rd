@@ -32,10 +32,10 @@ Chen, Lu, and Guo, Shenglian, 2019, Copulas and its application in hydrology and
 \examples{
 \dontrun{
 S <- simCOP(80, cop=GHcop, para=5) # Simulate some probabilities, but we
-# must then treat these as data and recompute empirical probabilities. 
+# must then treat these as data and recompute empirical probabilities.
 U <- lmomco::pp(S$U, sort=FALSE); V <- lmomco::pp(S$V, sort=FALSE)
 # The parent distribution is Gumbel-Hougaard extreme value copula.
-# But in practical application we don't know that but say we speculate that
+# But in practical application we do not know that but say we speculate that
 # perhaps the Galambos extreme value might be the parent. Then maximum
 # likelihood is used to fit the single parameter.
 pGL <- mleCOP(U,V, cop=GLcop, interval=c(0,20))$par

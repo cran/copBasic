@@ -58,9 +58,9 @@ Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in
                    para1gen=function() { return(10^runif(1, min=-5, max=0)) },
                    para2gen=function() { return(10^runif(1, min=0,  max=5)) })
   nsim <- 1E4
-  n <- 1000 # really use vastly larger sample size
-  PlackettPlackettNP <- simcompositeCOP(n=sample.size.for.estimation,
-        nsim=nsim, parent=mainpara)
+  sample.size.for.estimation <- 1000 # really use vastly larger sample size
+  PlackettPlackettNP <-
+      simcompositeCOP(n=sample.size.for.estimation, nsim=nsim, parent=mainpara)
   save(PlackettPlackettNP, file="PlackettPlackettNP.RData", compress="xz")
 
 # Plackett-Plackett composited copula from the copBasic package

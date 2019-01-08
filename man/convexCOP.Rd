@@ -7,7 +7,7 @@ The \emph{convex composition of \eqn{N} number of copulas} (Salvadori \emph{et a
 
 \deqn{\mathbf{C}^{\times}_{\omega}(u,v) = \sum_{i=1}^N \omega_i \mathbf{C}_{i}(u, v; \Theta_i)\mbox{,}}
 
-where \eqn{\sum_{i=1}^N \omega = 1} for \eqn{N} number of copulas. The weights \eqn{\omega} are treated as \eqn{1/N} if the \code{weights} element is absent in the \R \code{list} argument \code{para}.
+where \eqn{\sum_{i=1}^N \omega_i = 1} for \eqn{N} number of copulas. The weights \eqn{\omega} are silently treated as \eqn{1/N} if the \code{weights} element is absent in the \R \code{list} argument \code{para}.
 }
 \usage{
 convexCOP(u,v, para, ...)

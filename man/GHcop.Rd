@@ -33,7 +33,7 @@ where \eqn{\Theta \ge 1} as before, \eqn{0 \le \pi_2,  \pi_3 \le 1}, and
 
 \deqn{\mathcal{A}(x, y; \Theta, \pi_2, \pi_3) = [(\pi_2 x)^\Theta + (\pi_3 y)^\Theta]^{1/\Theta} + (1-\pi_2)x + (1-\pi_3)y\mbox{.}}
 
-The asymmetric \eqn{\mathbf{GH}} is triggered if the length of the \code{para} argument is exactly 3. The \code{GHcop} function provides no mechanism for estimation of the parameters for the asymmetric version. Reviewing simulations, the bounds on the \eqn{\pi}s in Joe (2014, p. 185) \dQuote{[\eqn{0 \le \pi_2 < \pi_3 \le 1}]} might be incorrect---by Joe's own back reference to Joe (2014, eq. 4.35, p. 183) the \eqn{\pi}-limits as stated for \pkg{copBasic} are shown. An algorithm for parameter estimation for the asymmetric \eqn{\mathbf{GH}} using two different measures of \emph{bivariate skewness} as well as an arbitrary \emph{measure of association} is shown in section \bold{Details} in \code{\link{joeskewCOP}}.
+The asymmetric \eqn{\mathbf{GH}} is triggered if the length of the \code{para} argument is exactly 3. The \code{GHcop} function provides no mechanism for estimation of the parameters for the asymmetric version. Reviewing simulations, the bounds on the \eqn{\pi} parameters in Joe (2014, p. 185) \dQuote{[\eqn{0 \le \pi_2 < \pi_3 \le 1}]} might be incorrect---by Joe's own back reference to Joe (2014, eq. 4.35, p. 183) the \eqn{\pi}-limits as stated for \pkg{copBasic} are shown. An algorithm for parameter estimation for the asymmetric \eqn{\mathbf{GH}} using two different measures of \emph{bivariate skewness} as well as an arbitrary \emph{measure of association} is shown in section \bold{Details} in \code{\link{joeskewCOP}}.
 }
 \usage{
 GHcop(u, v, para=NULL, tau=NULL, tau.big=0.985, cor=NULL, ...)
@@ -53,7 +53,7 @@ GHcop(u, v, para=NULL, tau=NULL, tau.big=0.985, cor=NULL, ...)
   \item{tau}{The sample estimate of \eqn{\tau}.}
 }
 \details{
-Numerical experiments seem to indicate for \eqn{\tau_\mathbf{C} > 0.985} that failures in the numerical partial derivatives in \code{\link{derCOP}} and \code{\link{derCOP2}} result---a \eqn{\tau_\mathbf{C}} this large is indeed \emph{large}. As \eqn{\Theta \rightarrow \infty} the Gumbel--Hougaard copula becomes the \emph{\enc{Fréchet}{Frechet}--Hoeffding upper bound copula} \eqn{\mathbf{M}} (see \code{\link{M}}). A \eqn{\tau_\mathbf{C} \approx 0.985} yields \eqn{\Theta \approx 66 + 2/3}, then for \eqn{\Theta > 1/(1-\tau_\mathbf{C})} flips over to the \eqn{\mathbf{M}} copula with a warning being issued.
+Numerical experiments seem to indicate for \eqn{\tau_\mathbf{C} > 0.985} that failures in the numerical partial derivatives in \code{\link{derCOP}} and \code{\link{derCOP2}} result---a \eqn{\tau_\mathbf{C}} this large is indeed \emph{large}. As \eqn{\Theta \rightarrow \infty} the Gumbel--Hougaard copula becomes the \emph{\enc{Fréchet}{Frechet}--Hoeffding upper bound copula} \eqn{\mathbf{M}} (see \code{\link{M}}). A \eqn{\tau_\mathbf{C} \approx 0.985} yields \eqn{\Theta \approx 66 + 2/3}, then for \eqn{\Theta > 1/(1-\tau_\mathbf{C})} flips over to the \eqn{\mathbf{M}} copula with a warning issued.
 }
 \note{
 \emph{SYMMETRIC GUMBEL--HOUGAARD}---A function for the derivative of the copula (Joe, 2014, p. 172) given \eqn{u} is
@@ -172,7 +172,7 @@ Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in
 Zhang, L., and Singh, V.P., 2007, Gumbel--Hougaard copula for trivariate rainfall frequency analysis: Journal Hydrologic Engineering, v. 12, Special issue---Copulas in Hydrology, pp. 409--419.
 }
 \author{ W.H. Asquith}
-\seealso{\code{\link{M}}, \code{\link{GLcop}}, \code{\link{HRcop}}, \code{\link{rhobevCOP}}
+\seealso{\code{\link{M}}, \code{\link{GLcop}}, \code{\link{HRcop}}, \code{\link{tEVcop}}, \code{\link{rhobevCOP}}
 }
 \examples{
 Theta <- 2.2 # Lets see if the numerical and analytical tail deps are the same.
@@ -200,7 +200,7 @@ message("# SE(sRho[-] - sRho[+])=", SE.RhoMP, " Joe's SE=0.10")
 \dontrun{
 file <- "Lcomom_study_of_GHcopPLACKETTcop.txt"
 x <- data.frame(tau=NA, trho=NA, srho=NA, PLtheta=NA, PLT2=NA, PLT3=NA, PLT4=NA,
-                                          GHtheta=NA, GHT2=NA, GHT3=NA, GHT4=NA ) 
+                                          GHtheta=NA, GHT2=NA, GHT3=NA, GHT4=NA )
 write.table(x, file=file, row.names=FALSE, quote=FALSE)
 n <- 250 # Make a large number for very long CPU run but seems stable
 for(tau in seq(0,0.98, by=0.005)) {
@@ -282,3 +282,5 @@ message("Kendall's Tau: ", K[1], tx, K[2], tx, K[3], tx, K[4], tx, K[5], tx, K[6
 \keyword{literature errors and inconsistencies}
 \keyword{API to the copula package}
 \keyword{package copula (comparison to)}
+\keyword{copula (extreme value)}
+\keyword{extreme value copula}

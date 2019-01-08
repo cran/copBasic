@@ -11,7 +11,7 @@ where \eqn{\mathbf{C}^{\star}(u',v')} is the co-copula and \eqn{u'} and \eqn{v'}
 
 The co-copula is a function and not in itself a copula. Some rules of copulas mean that \eqn{\mathbf{C}(u,v) + \mathbf{C}^{\star}(u',v') \equiv 1} or in \pkg{copBasic} syntax that the functions \code{COP(u,v)} + \code{coCOP(u,v)} equal unity if the \code{exceedance} argument to \code{coCOP} is set to \code{FALSE}.
 
-The function \code{coCOP} gives \dQuote{risk} against failure if failure is desired as either hazard source \eqn{U} or \eqn{V} occuring by themselves or if both occurred at the same time. Expressing this in terms of an annual probability of occurrence (\eqn{q}), one has
+The function \code{coCOP} gives \dQuote{risk} against failure if failure is defined as either hazard source \eqn{U} or \eqn{V} occuring by themselves or if both occurred at the same time. Expressing this in terms of an annual probability of occurrence (\eqn{q}), one has
 \deqn{q = 1 - \mathrm{Pr}[U > u \mathrm{\ or\ } V > v] =  \mathbf{C}^{\star}(u',v') \mbox{\ or}}
 in \R code \code{q <- coCOP(u,v, exceedance=FALSE, ...)}. So in yet other words and as a mnemonic: \emph{A co-copula is the probabililty of exceedance if the hazard sources \bold{collaborate} or \bold{cooperate} to cause failure.} Also \eqn{q} can be computed by \code{q <- }\code{coCOP(1-u,1-v, exceedance=TRUE, ...)}
 }

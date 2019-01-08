@@ -3,9 +3,12 @@ function(u, v, cop=NULL, para=NULL,
                reflect=c("cop", "surv", "acute", "grave",
                            "1",    "2",     "3",     "4"), ...) {
    reflect <- match.arg(reflect)
-   if(is.list(para)) {
-      reflect   <- para$reflect
-      if(is.null(reflect)) reflect <- "cop"
+   if(is.list(para) && ! is.null(para$cop) && is.null(cop)) {
+      # The third test is related to whether cop is incoming from
+      # the top level of the function. This is a major thing to
+      # avoid overwritting the desired copula because
+      # is.null(para$cop) is fuzzy meaning is.null(para$c) passes too.
+      if(! is.null(para$reflect)) reflect <- para$reflect
       cop  <- para$cop
       para <- para$para
    }

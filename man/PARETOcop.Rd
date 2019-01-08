@@ -5,7 +5,7 @@
 \title{ The Pareto Copula }
 \description{
 The \emph{Pareto copula} (Nelsen, 2006, pp. 33) is
-\deqn{\mathbf{C}_{\mathrm{PA}}(u,v; \Theta) = \bigl[(1-u)^{-\Theta}+(1-v)^{-\Theta}\bigr]^{-1/\Theta}\mbox{,}}
+\deqn{\mathbf{C}_{\Theta}(u,v) = \mathbf{PA}(u,v) = \bigl[(1-u)^{-\Theta}+(1-v)^{-\Theta}\bigr]^{-1/\Theta}\mbox{,}}
 where \eqn{\Theta \in [0, \infty)}. As \eqn{\Theta \rightarrow 0^{+}}, the copula limits to the \eqn{\mathbf{\Pi}} copula (\code{\link{P}}) and the \eqn{\mathbf{M}} copula (\code{\link{M}}). The parameterization here has assocation increasing with increasing \eqn{\Theta}, which differs from Nelsen (2006), and also the Pareto copula is formed with right-tail increasing reflection of Nelsen's presentation because it is anticipated that \pkg{copBasic} users are more likely to have right-tail dependency situations (say large maxima [right tail] coupling but not small maxima [left tail] coupling).
 }
 \usage{

@@ -33,7 +33,7 @@ Varies according to argument settings. In particular, the \code{levelset=TRUE} w
 }
 \note{
 This function is also called in a secondary recursion. The default \code{levelset=TRUE} makes a secondary call with \code{levelset=FALSE} to compute the \eqn{\widehat{l}(x,y)} for the benefit of the looping on the one-dimensional root to solve for a single \eqn{y} in \eqn{\widehat{l}(x,y) = c} given a single \eqn{x}. If \code{levelset=TRUE} and \code{smooth=TRUE}, then a secondary call with \code{smooth=TRUE} and \code{levelset=FALSE} is made to internally return an \R \code{list} containing scalar \eqn{N_n} and vectors \eqn{\widehat{W}_n} and \eqn{\widehat{p}_{3,i}} for similar looping and one-dimensional rooting for \eqn{\widehat{l}_{CF}(x,y)}.
-  
+
 If \code{levelset=FALSE}, then \code{xy} is required to hold the \eqn{(x,y)} coordinate pair of interest. A demonstration follows and shows the limiting behavior of a random sample from the \code{\link{N4212cop}} copula.
 \preformatted{
   n <- 2000 # very CPU intensive this and the next code snippet
@@ -55,7 +55,7 @@ The \R \code{list} that can be used to compute \eqn{\widehat{l}_{CF}(x,y)} is re
   })
   lines(k, lhatCF, col=2)
 }
-The smooth line (red) of \code{lhatCF} is somewhat close to the limiting behavior of \code{lhat}. It is problematic to determine computational consistency but consistency with the mathematics with Kiriliouk \emph{et al.} (2016) appears achieved.  The \bold{Examples} section TODO
+The smooth line (red) of \code{lhatCF} is somewhat close to the limiting behavior of \code{lhat}. It is problematic to determine computational consistency but mathematical consistency with Kiriliouk \emph{et al.} (2016) appears achieved.  The \bold{Examples} section TODO.
 }
 \references{
 Kiriliouk, Anna, Segers, Johan, \enc{Warchoł}{Warchol}, \enc{Michał}{Michal}, 2016, Nonparameteric estimation of extremal dependence: \emph{in} Extreme Value Modeling and Risk Analysis, D.K. Dey and Jun Yan \emph{eds.}, Boca Raton, FL, CRC Press, ISBN 978--1--4987--0129--7.

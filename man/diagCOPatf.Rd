@@ -6,9 +6,7 @@
 \description{
 Compute a numerical root along the \emph{primary diagonal} (Nelsen, 2006, pp. 12 and 16) of copula \eqn{\mathbf{C}(u,v)} having joint probability \eqn{F}. The diagonals treat the nonexceedance probabilities \eqn{u} and \eqn{v} as equals (\eqn{u=v=t}). The primary diagonal is defined for a joint nonexceedance probability \eqn{t} as
 \deqn{F = \mathbf{C}(t,t) \rightarrow t = \delta_{\mathbf{C}}^{(-1)}(f)\mbox{,}}
-where the function solves for \eqn{t}. Examples using the concept behind \code{diagCOPatf} are available under \code{\link{duCOP}} and \code{\link{jointCOP}}, thus the \code{diagCOPatf} function can be also called by either \code{\link{jointCOP}} and \code{\link{joint.curvesCOP}}.
-
-Internally, the function uses limits of the root finder that are not equal to the anticipated interval \eqn{[0,1]}, but equal to \dQuote{small} (see description for argument \code{interval}). The function does trap for \code{f = 0} by returning zero and \code{f = 1} by returning unity.
+where the function solves for \eqn{t}. Examples using the concept behind \code{diagCOPatf} are available under \code{\link{duCOP}} and \code{\link{jointCOP}}, thus the \code{diagCOPatf} function can be also called by either \code{\link{jointCOP}} and \code{\link{joint.curvesCOP}}. Internally, the function uses limits of the root finder that are not equal to the anticipated interval \eqn{[0,1]}, but equal to \dQuote{small} (see description for argument \code{interval}). The function does trap for \code{f = 0} by returning zero and \code{f = 1} by returning unity.
 }
 \usage{
 diagCOPatf(f, cop=NULL, para=NULL, verbose=FALSE, interval=NULL,

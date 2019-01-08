@@ -21,7 +21,7 @@ CLcop(u, v, para=NULL, tau=NULL, ...)
   Value(s) for the copula are returned. Otherwise if \code{tau} is given, then the \eqn{\Theta} is computed and a \code{list} having
   \item{para}{The parameter \eqn{\Theta}, and}
   \item{tau}{Kendall's tau.}
-and if \code{para=NULL} and \code{tau=NULL}, then the values within \code{u} and \code{v} are used to compute Kendall Tau and then compute the parameter, and these are returned in the aforementioned list.
+and if \code{para=NULL} and \code{tau=NULL}, then the values within \code{u} and \code{v} are used to compute Kendall's Tau and then compute the parameter, and these are returned in the aforementioned list.
 }
 \references{
 Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.

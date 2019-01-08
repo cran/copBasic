@@ -83,12 +83,12 @@ With appropriate code now available, two comparisons can be made in the followin
 }
 and the result will be used in the computations that follow.
 
-\emph{Conditional Distribution Function}---A comparison for \eqn{t = 0.3246848} of the analytical inverse and the numerical optimization of the numerical derivative of \pkg{copBasic} is
+A comparison for \eqn{t = 0.3246848} of the analytical inverse and the numerical optimization of the numerical derivative of \pkg{copBasic} is
 \preformatted{
   joeFGMderinv(0.8, 0.3246848, para=0.78)             # 0.5327603
   derCOPinv(   0.8, 0.3246848, para=0.78, cop=FGMcop) # 0.4399934 --> 0.44
 }
-where obviously, the two results are not in agreement---so something is amiss. Because many examples in this \pkg{copBasic} documentation clearly demonstrate numerical reliability, a tenative conclusion is that Joe's listed equation must be in error. Let us check this hypothesis against the three other sources:
+where obviously, the two results are not in agreement---so something is amiss. Because many examples in this documentation clearly demonstrate numerical reliability, a tenative conclusion is that Joe's listed equation must be in error. Let us check this hypothesis against the three other sources:
 \preformatted{
   durFGMderinv(0.8, 0.3246848, para=0.78) # 0.2074546          (Durante, 2007)
   jonFGMderinv(0.8, 0.3246848, para=0.78) # 0.44               (Johnson, 1987)

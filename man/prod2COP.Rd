@@ -35,7 +35,7 @@ prod2COP(u,v, cop1=NULL, para1=NULL, cop2=NULL, para2=NULL, para=NULL,
   Value(s) for the copula are returned.
 }
 \note{
-The \emph{Farlie--Gumbel--Morgenstern copula} \eqn{\mathbf{FGM}(u,v; \Theta)} is
+The \emph{Farlie--Gumbel--Morgenstern copula} (\eqn{\mathbf{FGM}(u,v; \Theta)}; \code{\link{FGMcop}}) is
 \deqn{\mathbf{FGM}(u,v; \Theta) = uv[1+\Theta(1-u)(1-v)]\mbox{,}}
 where \eqn{-1 \le \Theta \le 1}. Nelsen (2006, exer. 6.12, p. 249) asserts that for \eqn{\mathbf{FGM}_\alpha} and \eqn{\mathbf{FGM}_\beta} with \eqn{\ast}-product as \eqn{\mathbf{FGM}_\alpha \ast \mathbf{FGM}_\beta} that a closed-form solution exists and is
 \deqn{\mathbf{FGM}_\alpha \ast \mathbf{FGM}_\beta = \mathbf{FGM}_{\alpha\beta/3}\mbox{.}}

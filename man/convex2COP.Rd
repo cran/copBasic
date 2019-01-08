@@ -3,7 +3,7 @@
 \alias{convex2COP}
 \title{ Convex Combination of Two Copulas }
 \description{
-The \emph{convex composition of two copulas} (Joe, 2014, p. 155) provides for some simple complexity extension between coupla families. Let \eqn{\mathbf{A}} and \eqn{\mathbf{B}} be copulas with respective vectors of parameters \eqn{\Theta_\mathbf{A}} and \eqn{\Theta_\mathbf{B}}, then the convex combination of these copulas is
+The \emph{convex composition of two copulas} (Joe, 2014, p. 155) provides for some simple complexity extension between copula families. Let \eqn{\mathbf{A}} and \eqn{\mathbf{B}} be copulas with respective vectors of parameters \eqn{\Theta_\mathbf{A}} and \eqn{\Theta_\mathbf{B}}, then the convex combination of these copulas is
 
 \deqn{\mathbf{C}^{\times}_{\alpha}(u,v) = \alpha \mathbf{A}(u, v; \Theta_\mathbf{A}) - (1-\alpha)\mathbf{B}(u,v; \Theta_\mathbf{B})\mbox{,}}
 

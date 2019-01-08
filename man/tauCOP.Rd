@@ -105,18 +105,18 @@ tauCOP(cop=M, cop2=W, brute=TRUE) #    0, correct}
 \dontrun{
 para <- list(cop1=PLACKETTcop,  cop2=PLACKETTcop,
              para1=0.00395, para2=4.67, alpha=0.9392, beta=0.5699)
-tauCOP(cop=composite2COP, para=para)
+tauCOP(cop=composite2COP, para=para) # -0.4671213
 
 para <- list(cop1=PLACKETTcop,  cop2=PLACKETTcop,
              para1=0.14147, para2=20.96, alpha=0.0411, beta=0.6873)
-tauCOP(cop=composite2COP, para=para)
+tauCOP(cop=composite2COP, para=para) # +0.1950727
 
 para <- list(cop1=PLACKETTcop,  cop2=PLACKETTcop,
              para1=0.10137, para2=4492.87, alpha=0.0063, beta=0.0167)
 # Theoretical attempt fails because para2 is large and thus a singularity
 # is emerging and internal copula swapping does not help.
-tauCOP(cop=composite2COP, para=para) # fails
-tauCOP(cop=composite2COP, para=para, brute=TRUE) # about 0.95}
+tauCOP(cop=composite2COP, para=para) # fails (0.94+-.01)
+tauCOP(cop=composite2COP, para=para, brute=TRUE) # about 0.94+-.01}
 }
 \keyword{copula (characteristics)}
 \keyword{copula (properties)}

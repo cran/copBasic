@@ -19,9 +19,9 @@ and
 \deqn{\sigma^2_{\mathrm{KL}(g|f)} = \int\!\!\int_{\mathcal{I}^2} f\,[\log(f/g)]^2\,\mathrm{d}u\mathrm{d}v - [\mathrm{KL}(g|f)]^2\mbox{.}}
 
 For comparison of copula families \eqn{f} and \eqn{g} and taking an \eqn{\alpha = 0.05}, the Kullback--Leibler sample size is defined as
-\deqn{n_{f\!g} = [\Phi^{(-1)}(1-\alpha) \times \eta_\mathrm{KL}]^2\mbox{,}}
+\deqn{n_{f\!g} = \bigl[\Phi^{(-1)}(1-\alpha) \times \eta_\mathrm{KL}\bigr]^2\mbox{,}}
 where \eqn{\Phi^{(-1)}(t)} is the quantile function for the standard normal distribution \eqn{\sim} N(0,1) for nonexceedance probability \eqn{t}, and \eqn{\eta_\mathrm{KL}} is the maximum of
-\deqn{\eta_\mathrm{KL} = \mathrm{max}[\sigma_{\mathrm{KL}(f|g)}/\mathrm{KL}(f|g),\, \sigma_{\mathrm{KL}(g|f)}/\mathrm{KL}(g|f)]\mbox{.}}
+\deqn{\eta_\mathrm{KL} = \mathrm{max}\bigl[\sigma_{\mathrm{KL}(f|g)}/\mathrm{KL}(f|g),\, \sigma_{\mathrm{KL}(g|f)}/\mathrm{KL}(g|f)\bigr]\mbox{.}}
 The \eqn{n_{f\!g}} gives an indication of the sample size needed to distinguish \eqn{f} and \eqn{g} with a probability of at least \eqn{1 - \alpha = 1 - 0.05 = 0.95} or 95 percent.
 
 The \pkg{copBasic} features a \enc{naïve}{naive} \emph{Monte Carlo integration} scheme in the primary interface \code{kullCOP}, although the function \code{kullCOPint} provides for nested numerical integration. This later function is generally fast but suffers too much for general application from integral divergencies issued from the \code{integrate()} function in \R---this must be judged in the light that the package focuses only on implementation of the function of the copula itself and neither numerical estimation of copula density (\code{\link{densityCOP}}) and not analytical copula densities or hybrid representations thereof. Sufficient \dQuote{bread crumbs} are left among the code and documentation for users to re-implement if speed is paramount.  Numerical comparison to the results of Joe (2014) (see \bold{Examples}) suggests that the default Monte Carlo sample size should be more than sufficient for general inference with the expense of considerable CPU time; however, a couple of repeated calls of \code{kullCOP} would be advised and compute say the mean of the resulting sample sizes.

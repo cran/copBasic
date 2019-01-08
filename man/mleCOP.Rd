@@ -30,11 +30,11 @@ function. This is independent from the \code{control$trace} of function \code{op
   \item{para}{The parameter(s) in a canonical element after the one-dimensional root finding (\eqn{p = 1}) or multi-dimensional optimization (\eqn{p \ge 2}) solutions are passed through \code{parafn};}
   \item{packagetext}{A helpful message unique to the \pkg{copBasic} package;}
   \item{loglik}{The maximum of the log-likelihood matching the name for the same quantity by the function \code{fitCopula} in package \pkg{copula} though a separate implementation is used in \pkg{copBasic};}
-  \item{AIC}{Akaike information criterion (AIC): \eqn{AIC = 2p - 2\mathcal{L}(\Theta_p)}; and}
-  \item{BIC}{Bayesian information criterion (BIC): \eqn{BIC = p\log(n) - 2\mathcal{L}(\Theta_p)}.}
+  \item{AIC}{Akaike information criterion (AIC) (see also \code{\link{aicCOP}}): \eqn{\mathrm{AIC} = 2p - 2\mathcal{L}(\Theta_p)}; and}
+  \item{BIC}{Bayesian information criterion (BIC) (see also \code{\link{bicCOP}}): \eqn{\mathrm{BIC} = p\log(n) - 2\mathcal{L}(\Theta_p)}.}
 }
 \note{
-This section provides for a more thorough assessment of pseudo-log-likelihood parameter estimation (pMLE) than shown in the \bold{Examples}.
+This section provides for a more thorough assessment of pMLE than shown in the \bold{Examples}.
 
 \emph{INTERFACE TO THE \pkg{COPULA} PACKAGE}---A not uncommon question to the author is how can \pkg{copBasic} support copulas from other packages?  A \pkg{copBasic} pMLE implementation to the \emph{Gaussian copula} from the \pkg{copula} package is thus useful.
 
@@ -55,11 +55,11 @@ Now, let us perform a parameter estimate for a sample of size \eqn{n=900}:
 \preformatted{
   set.seed(162); UV <- simCOP(n=900, cop=cB2copula, para=copula2cBpara(0.45))
   mleCOP(UV, cop=cB2copula, parafn=copula2cBpara, interval=c(-1,1))$para
-  #   rho.1  =  0.4248822 
+  #   rho.1  =  0.4248822
 }
 The search interval for the \emph{Gaussian copula} is \eqn{\rho \in [-1, 1]}, and the final result is \eqn{\rho = 0.4458822}.
 
-\emph{MULTI-DIMENSIONAL pMLE}---Consider a 2-parameter \emph{Gumbel--Hougaard copula} (\eqn{\mathbf{GH}(\Theta_1, \Theta_2)}) but now use the \code{parafn} argument to provide boundary condition assistance through function \cr \code{GH2pfunc} to the \code{optim()} function that performs the maximization. 
+\emph{MULTI-DIMENSIONAL EXAMPLE OF pMLE}---Consider a 2-parameter \emph{Gumbel--Hougaard copula} (\eqn{\mathbf{GH}(\Theta_1, \Theta_2)}) but now use the \code{parafn} argument to provide boundary condition assistance through function \cr \code{GH2pfunc} to the \code{optim()} function that performs the maximization.
 \preformatted{
   set.seed(162); UV <- simCOP(n=890, cop=GHcop, para=c(2.4, .06))
   GH2pfunc <- function(p) { return(c(exp(p[1])+1, exp(p[2]))) }
@@ -75,7 +75,7 @@ and the result is \eqn{\Theta_{1,2} = (2.2755018, 0.1194788)}. Next, consider no
 }
 and the result is \eqn{\Theta = 5.3742229} and \eqn{\pi_{1,2} = (0.6141652, 0.9382638)}.
 
-\emph{ANOTHER MULTI-DIMENSIONAL pMLE}---Finally, an experiment can be made fitting a 3-parameter \eqn{\mathbf{GH}(\Theta, \pi_1, \pi_2)} to a simulation from a 2-parameter \eqn{\mathbf{GH}(\Theta_1, \Theta_2)}, where the seed is just arbitrary and \emph{Vuong's Procedure} (\code{\link{vuongCOP}}) is used to compare fits and make inference. The parameter functions \code{GH2pfunc} and \code{GH3pfunc} are as before.
+\emph{ANOTHER MULTI-DIMENSIONAL EXAMPLE OF pMLE}---Finally, an experiment can be made fitting a 3-parameter \eqn{\mathbf{GH}(\Theta, \pi_1, \pi_2)} to a simulation from a 2-parameter \eqn{\mathbf{GH}(\Theta_1, \Theta_2)}, where the seed is just arbitrary and \emph{Vuong's Procedure} (\code{\link{vuongCOP}}) is used to compare fits and make inference. The parameter functions \code{GH2pfunc} and \code{GH3pfunc} are as before.
 \preformatted{
   set.seed(10); UV <- simCOP(n=500, cop=GHcop, para=c(1.7, 1.86))
   GH2pfunc <- function(p) { return(c(exp(p[1])+1,   exp(p[2])              )) }
@@ -85,14 +85,14 @@ and the result is \eqn{\Theta = 5.3742229} and \eqn{\pi_{1,2} = (0.6141652, 0.93
   vuongCOP(UV, cop1=GHcop, para1=para1, cop2=GHcop, para2=para2)$message
   #[1] "Copula 1 has better fit than Copula 2 at 100x(1-alpha) level"
 }
-The results show the 2-p \eqn{\mathbf{GH}} is a better fit to the simulated data than the 3-p \eqn{\mathbf{GH}}, which seems a bit self evident?  Plot some same seeded simulations just to see.
+The results show the 2-p \eqn{\mathbf{GH}} is a better fit to the simulated data than the 3-p \eqn{\mathbf{GH}}, which seems a bit self evident?  Plot some same-seeded simulations just to confirm.
 \preformatted{
   set.seed(67) # First the estimated parameters but with the correct model.
   UV <- simCOP(n=200, GHcop, para=para1, snv=TRUE, pch=16, col=2)
   set.seed(67) # Second, the estimated incorrect model.
   UV <- simCOP(n=200, GHcop, para=para2, snv=TRUE, ploton=FALSE)
 }
-Yes, differences in form are manifest in the produced graphic. Now, let us try another set of parameters and again an arbitrary seed.
+Yes, differences in form are manifest in the produced graphic. Now, let us try another set of parameters and again an arbitrarily-chosen seed.
 \preformatted{
   set.seed(10); UV <- simCOP(n=500, cop=GHcop, para=c(1.91, .16))
   para1 <- mleCOP(UV, cop=GHcop, init.para=c(1,1),     parafn=GH2pfunc)$para
