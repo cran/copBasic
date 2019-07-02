@@ -27,7 +27,7 @@ whereas the L-moment ratios are
 \eqn{ \tau_3 = \lambda_3/\lambda_2 = \mbox{L-skew, }}
 \eqn{ \tau_4 = \lambda_4/\lambda_2 = \mbox{L-kurtosis, and}}
 \eqn{ \tau_5 = \lambda_5/\lambda_2 = \mbox{not named.}}
-It is common amongst practitioners to lump the L-moment ratios into the general term \dQuote{L-moments} and remain inclusive of the L-moment ratios. For example, L-skew then is referred to as the 3rd L-moment when it technically is the 3rd L-moment ratio.  There is no first L-moment ratio (meaningless) so results from this function will canoncially show a \code{NA} in that slot. The coefficient of L-variation is \eqn{\tau_2} (subscript 2) and not \emph{Kendall's Tau} (\eqn{\tau}). Sample L-moments are readily computed by several packages in \R (\emph{e.g.} \pkg{lmomco}, \pkg{lmom}, \pkg{Lmoments}, \pkg{POT}).
+It is common amongst practitioners to lump the L-moment ratios into the general term \dQuote{L-moments} and remain inclusive of the L-moment ratios. For example, L-skew then is referred to as the 3rd L-moment when it technically is the 3rd L-moment ratio.  There is no first L-moment ratio (meaningless) so results from this function will canoncially show a \code{NA} in that slot. The coefficient of L-variation is \eqn{\tau_2} (subscript 2) and not \emph{Kendall Tau} (\eqn{\tau}). Sample L-moments are readily computed by several packages in \R (\emph{e.g.} \pkg{lmomco}, \pkg{lmom}, \pkg{Lmoments}, \pkg{POT}).
 }
 \usage{
 kfuncCOPlmom(r, cop=NULL, para=NULL, ...)

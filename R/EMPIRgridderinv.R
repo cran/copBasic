@@ -5,15 +5,19 @@ function(empgrid=NULL, kumaraswamy=FALSE, ...) {
     warning("The gridded empirical copula (say from EMPIRgrid) is NULL")
     return(NULL)
   }
+  if(! is.list(empgrid)) {
+    warning("The gridded empirical copula is expected as a list from EMPIRgrid")
+    return(NULL)
+  }
 
   the.deriv <- EMPIRgridder(empgrid=empgrid,...)
 
-  F <- empgrid$v
-  n <- length(F)
+  FF <- empgrid$v
+  n <- length(FF)
 
   # use a mid-point integration method so 1/2s are needed
   # on the tails.
-  delF <- diff(F)
+  delF <- diff(FF)
   delF <- c(0.5*delF[1], delF)
   delF[n] <- 0.5*delF[n]
 
@@ -24,17 +28,20 @@ function(empgrid=NULL, kumaraswamy=FALSE, ...) {
     x <- the.deriv[i,]
 
     # invert the CDF by linear approximation
-    # we want the QDF with F (horizontal axis values on same spacing)
-    inv <- approx(x, y=F, xout=F, rule=2)$y
-
+    # we want the QDF with FF (horizontal axis values on same spacing)
+    # we know that the x are given in ordered seqeuence to so avoid
+    # the warning
+    # In regularize.values(x, y, ties, missing(ties)) :
+    # collapsing to unique 'x' values
+    inv <- approx(x, y=FF, xout=FF, rule=2, ties="ordered")$y
 
     if(kumaraswamy) {
       beta0 <- sum(inv*delF) # first PWM (mean)
-      beta1 <- sum(inv*F*delF) # second PWM (no name)
+      beta1 <- sum(inv*FF*delF) # second PWM (no name)
 
       lmr <- lmomco::vec2lmom(c(beta0, 2*beta1 - beta0)) # L-moments
       par.of.kur <- lmomco::parkur(lmr)
-      X <- lmomco::quakur(F, par.of.kur) # Kumuraswamy distribution
+      X <- lmomco::quakur(FF, par.of.kur) # Kumuraswamy distribution
 
       the.inverse[i,] <- X
       Alphas[i] <- par.of.kur$para[1]

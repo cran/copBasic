@@ -24,9 +24,9 @@ isCOP.radsym(cop=NULL, para=NULL, delta=0.005, tol=1e-4, ...)
   A logical \code{TRUE} or \code{FALSE} is returned.
 }
 \note{
-An open research question possibly exists: \emph{Is a radially symmetric copula characterized by the L-comoments for orders} \eqn{r{\ge}3} \emph{as having values of zero}? The author asks this question partly out of intuition stemming from numerical experiments (some not show here) suggesting this condition, and review of copula literature does not seem to directly address this question. Let us consider the two symmetrical copulas: the parameterless \eqn{\mathbf{PSP}(u,v)} (see \code{\link{PSP}}) and the Plackett (see \code{\link{PLACKETTcop}}) with the \eqn{\rho_\mathbf{C} = 4.709} (see \code{\link{rhoCOP}}). The two copulas have different radial symmetries as shown below.
+An open research question possibly exists: \emph{Is a radially symmetric copula characterized by the L-comoments for orders} \eqn{r{\ge}3} \emph{as having values of zero}? The author asks this question partly out of intuition stemming from numerical experiments (some not show here) suggesting this condition, and review of copula literature does not seem to directly address this question. Let us consider the two symmetrical copulas: the parameterless \eqn{\mathbf{PSP}(u,v)} (see \code{\link{PSP}}) and the \eqn{\mathbf{PL}(u,v)} (see \code{\link{PLACKETTcop}}) with the \eqn{\rho_\mathbf{C} = 4.709} (see \code{\link{rhoCOP}}). The two copulas have different radial symmetries as shown below.
 \preformatted{
-  plackpar <- PLACKETTpar(rho=rhoCOP(cop=PSP)) # Spearman's Rho = 0.4784176
+  plackpar <- PLACKETTpar(rho=rhoCOP(cop=PSP)) # Spearman Rho = 0.4784176
   isCOP.radsym(cop=PSP)                        # FALSE
   isCOP.radsym(cop=PLACKETTcop, para=plackpar) # TRUE
 }

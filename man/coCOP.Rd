@@ -30,7 +30,7 @@ coCOP(u, v, cop=NULL, para=NULL, exceedance=TRUE, ...)
   The value(s) for the co-copula are returned.
 }
 \note{
-The author (Asquith) finds the use of exceedance probabilities delicate in regards to Nelsen's notation having grown up in a strictly nonexceedance world. The \code{coCOP} function and \code{\link{surCOP}} have the \code{exceedance} argument to serve as a reminder that the co-copula as defined in the literature uses \emph{exceedance probabilities} as its arguments, although the arguments as code \code{u} and \code{v} do not mimic the overline nomenclature (\eqn{\,\overline{\cdots}\,}) of the exceedance (survival) probabilities.
+The author (Asquith) finds the use of exceedance probabilities delicate in regards to Nelsen's notation. The \code{coCOP} function and \code{\link{surCOP}} have the \code{exceedance} argument to serve as a reminder that the co-copula as defined in the literature uses \emph{exceedance probabilities} as its arguments, although the arguments as code \code{u} and \code{v} do not mimic the overline nomenclature (\eqn{\,\overline{\cdots}\,}) of the exceedance (survival) probabilities.
 }
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.

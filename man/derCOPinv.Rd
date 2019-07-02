@@ -24,7 +24,7 @@ derCOPinv(cop=NULL, u, t, trace=FALSE,
   Value(s) for the derivative inverse are returned.
 }
 \note{
-\emph{AN EDUCATIONAL OPPORTUNITY}---The Farlie-Gumbel-Morgenstern copula \eqn{\mathbf{FGM}(u,v)} (Joe, 2014, p. 213) is
+\emph{AN EDUCATIONAL OPPORTUNITY}---The Farlie-Gumbel-Morgenstern copula \eqn{\mathbf{FGM}(u,v)} (\code{\link{FGMcop}}) (Joe, 2014, p. 213) is
 \deqn{\mathbf{FGM}(u,v; \Theta) = uv[1+\Theta(1-u)(1-v)]\mbox{,}}
 where \eqn{-1 \le \Theta \le 1} has analytical solutions to the conditional cumulative distribution function (CDF) \eqn{\mathbf{C}_{2|1}(v|u)} as
 \deqn{\mathbf{C}_{2|1}(v|u) = v[1 + \Theta(1-v)(1-2u)]\mbox{,}}
@@ -94,7 +94,7 @@ where obviously, the two results are not in agreement---so something is amiss. B
   jonFGMderinv(0.8, 0.3246848, para=0.78) # 0.44               (Johnson, 1987)
   nelFGMderinv(0.8, 0.3246848, para=0.78) # 0.44               (Nelsen,  2006)
 }
-The result from Durante (2007) is different from both Joe (2014) and from \pkg{copBasic}. However, the Johnson (1987) and Nelsen (2006) versions are equivalent and congruent with the \emph{distinctly different} numerical methods of \code{derCOPinv}. These incongruent results demonstrate that care is needed when navigating the copula literature and the usefulness of the \pkg{copBasic}-style implementation of copula theory. In words, these compuations show that the \eqn{t \approx 32}nd percentile of the \eqn{\mathbf{FGM}} copula given that the 80th percentile in \eqn{U} is about the 44th percentile of \eqn{V}.
+The result from Durante (2007) is different from both Joe (2014) and from \pkg{copBasic}. However, the Johnson (1987) and Nelsen (2006) versions are equivalent and congruent to \pkg{copBasic} with the \emph{distinctly different} numerical methods of \code{derCOPinv}. These incongruent results demonstrate that care is needed when navigating the copula literature and the usefulness of the \pkg{copBasic}-style implementation of copula theory. In words, these compuations show that the \eqn{t \approx 32}nd percentile of the \eqn{\mathbf{FGM}} copula given that the 80th percentile in \eqn{U} is about the 44th percentile of \eqn{V}.
 }
 \references{
 Durante, F., 2007, Families of copulas, Appendix C, \emph{in} Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in Nature---An approach using copulas: Springer, 289 p.

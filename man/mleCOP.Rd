@@ -59,7 +59,7 @@ Now, let us perform a parameter estimate for a sample of size \eqn{n=900}:
 }
 The search interval for the \emph{Gaussian copula} is \eqn{\rho \in [-1, 1]}, and the final result is \eqn{\rho = 0.4458822}.
 
-\emph{MULTI-DIMENSIONAL EXAMPLE OF pMLE}---Consider a 2-parameter \emph{Gumbel--Hougaard copula} (\eqn{\mathbf{GH}(\Theta_1, \Theta_2)}) but now use the \code{parafn} argument to provide boundary condition assistance through function \cr \code{GH2pfunc} to the \code{optim()} function that performs the maximization.
+\emph{MULTI-DIMENSIONAL EXAMPLE OF pMLE}---Consider a 2-parameter \emph{Gumbel--Hougaard copula} (\eqn{\mathbf{GH}(\Theta_1, \Theta_2)}) but now use the \code{parafn} argument to provide boundary condition assistance through function \code{GH2pfunc} to the \code{optim()} function that performs the maximization.
 \preformatted{
   set.seed(162); UV <- simCOP(n=890, cop=GHcop, para=c(2.4, .06))
   GH2pfunc <- function(p) { return(c(exp(p[1])+1, exp(p[2]))) }
@@ -75,7 +75,7 @@ and the result is \eqn{\Theta_{1,2} = (2.2755018, 0.1194788)}. Next, consider no
 }
 and the result is \eqn{\Theta = 5.3742229} and \eqn{\pi_{1,2} = (0.6141652, 0.9382638)}.
 
-\emph{ANOTHER MULTI-DIMENSIONAL EXAMPLE OF pMLE}---Finally, an experiment can be made fitting a 3-parameter \eqn{\mathbf{GH}(\Theta, \pi_1, \pi_2)} to a simulation from a 2-parameter \eqn{\mathbf{GH}(\Theta_1, \Theta_2)}, where the seed is just arbitrary and \emph{Vuong's Procedure} (\code{\link{vuongCOP}}) is used to compare fits and make inference. The parameter functions \code{GH2pfunc} and \code{GH3pfunc} are as before.
+\emph{ANOTHER MULTI-DIMENSIONAL EXAMPLE OF pMLE}---Finally, an experiment can be made fitting a 3-parameter \eqn{\mathbf{GH}(\Theta, \pi_1, \pi_2)} to a simulation from a 2-parameter \eqn{\mathbf{GH}(\Theta_1, \Theta_2)}, where the seed is just arbitrary and the \emph{Vuong Procedure} (\code{\link{vuongCOP}}) is used to compare fits and make inference. The parameter functions \code{GH2pfunc} and \code{GH3pfunc} are as before.
 \preformatted{
   set.seed(10); UV <- simCOP(n=500, cop=GHcop, para=c(1.7, 1.86))
   GH2pfunc <- function(p) { return(c(exp(p[1])+1,   exp(p[2])              )) }

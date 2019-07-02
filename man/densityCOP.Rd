@@ -28,7 +28,7 @@ densityCOP(u,v, cop=NULL, para=NULL, deluv=.Machine$double.eps^0.25,
   Value(s) for \eqn{c(u,v)} are returned.
 }
 \note{
-The \pkg{copBasic} package does not currently have copula densities as analytical solutions. This is because initial design decisions were entirely on cumulative distribution function (CDF) representations of the copula.
+The \pkg{copBasic} package does not currently have copula densities as analytical solutions implemented. This is because initial design decisions were entirely on cumulative distribution function (CDF) representations of the copula.
 }
 \references{
 Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.

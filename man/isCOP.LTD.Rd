@@ -3,9 +3,9 @@
 \alias{isCOP.LTD}
 \title{ Is a Copula Left-Tail Decreasing }
 \description{
-Numerically set a logical whether a copula is \emph{left-tail decreasing} (LTD) as described by Nelsen (2006, pp. 192--193) and Salvadori \emph{et al.} (2007, p. 222).  A copula \eqn{\mathbf{C}(u,v)} is left-tail decreasing for \eqn{\mathrm{LTD}(V{\mid}U)} if and only if for any \eqn{v \in [0,1]},
+Numerically set a logical whether a copula is \emph{left-tail decreasing} (LTD) as described by Nelsen (2006, pp. 192--193) and Salvadori \emph{et al.} (2007, p. 222).  A copula \eqn{\mathbf{C}(u,v)} is left-tail decreasing for \eqn{\mathrm{LTD}(V{\mid}U)} if and only if for any \eqn{v \in [0,1]} that the following holds
 \deqn{\frac{\delta \mathbf{C}(u,v)}{\delta u} \le \frac{\mathbf{C}(u,v)}{u}}
-for almost all \eqn{u \in [0,1]}. Similarly, a copula \eqn{\mathbf{C}(u,v)} is left-tail decreasing for \eqn{\mathrm{LTD}(U{\mid}V)} if and only if for any \eqn{u \in [0,1]},
+for almost all \eqn{u \in [0,1]}. Similarly, a copula \eqn{\mathbf{C}(u,v)} is left-tail decreasing for \eqn{\mathrm{LTD}(U{\mid}V)} if and only if for any \eqn{u \in [0,1]} that the following holds
 \deqn{\frac{\delta \mathbf{C}(u,v)}{\delta v} \le \frac{\mathbf{C}(u,v)}{v}}
 for almost all \eqn{v \in [0,1]} where the later definition is controlled by the \code{wrtV=TRUE} argument.
 

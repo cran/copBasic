@@ -3,7 +3,7 @@
 \alias{psepolar}
 \title{Pseudo-Polar Representation of Bivariate Data}
 \description{
-Kiriliouk \emph{et al.} (2016, pp. 358--360) describe a \emph{pseudo-polar} representation of bivariate data as a means to explore right-tail extremal dependency between the variables. Let \eqn{(X_i, Y_i)} (real values) or \eqn{(U_i, V_i)} (as probabilities) for \eqn{i = 1, \ldots, n} be a bivariate sample of size \eqn{n}. When such data are transformed into a \dQuote{uni-Pareto} scale by
+Kiriliouk \emph{et al.} (2016, pp. 358--360) describe a \emph{pseudo-polar} representation of bivariate data as a means to explore right-tail extremal dependency between the variables. Let \eqn{(X_i, Y_i)} (real values) or \eqn{(U_i, V_i)} (as probabilities) for \eqn{i = 1, \ldots, n} be a bivariate sample of size \eqn{n}. When such data are transformed into a \dQuote{unit-Pareto} scale by
 \deqn{\widehat{X}^\star_i = n/(n+1-R_{X,i}) \mbox{\ and\ } \widehat{Y}^\star_i = n/(n+1-R_{Y,i})\mbox{,}}
 where \eqn{R} is \code{rank()}, then letting each \emph{component sum} or \emph{pseudo-polar radius} be defined as
 \deqn{\widehat{S}_i = \widehat{X}^\star_i + \widehat{Y}^\star_i\mbox{,}}
@@ -32,8 +32,8 @@ psepolar(u, v=NULL, f=0.90, ...)
   \item{Ystar}{The \eqn{\widehat{Y}^\star_i} (Kiriliouk \emph{et al.}, 2016, eq. 17.8, p. 359);}
   \item{FXhat1}{The \eqn{F_{X,i} = 1 - 1/X^\star_i}, which is the inverse of Kiriliouk \emph{et al.} (2016, eq. 17.1, p. 354);}
   \item{FYhat1}{The \eqn{F_{Y,i} = 1 - 1/Y^\star_i}, which is the inverse of Kiriliouk \emph{et al.} (2016, eq. 17.1, p. 354);}
-  \item{FXhat3}{The \eqn{F_{3,X,i} = (R_{X,i} - 1/2)/n} corresponding to the \dQuote{3} alternative identified by Kiriliouk \emph{et al.} (2016, p. 365);}
-  \item{FYhat3}{The \eqn{F_{3,Y,i} = (R_{Y,i} - 1/2)/n} corresponding to the \dQuote{3} alternative identified by Kiriliouk \emph{et al.} (2016, p. 365);}
+  \item{FXhat3}{The \eqn{F_{3,X,i} = (R_{X,i} - 0.5)/n} corresponding to the \dQuote{3} alternative identified by Kiriliouk \emph{et al.} (2016, p. 365);}
+  \item{FYhat3}{The \eqn{F_{3,Y,i} = (R_{Y,i} - 0.5)/n} corresponding to the \dQuote{3} alternative identified by Kiriliouk \emph{et al.} (2016, p. 365);}
   \item{What}{The \eqn{\widehat{W}_i} (Kiriliouk \emph{et al.}, 2016, eq. 17.9, p. 359);}
   \item{Shat}{The \eqn{\widehat{S}_i} (Kiriliouk \emph{et al.}, 2016, eq. 17.9, p. 359); and}
   \item{Shat_ge_Sf}{A logical on whether the \eqn{\widehat{S}_i} are larger than \eqn{S_f}.}

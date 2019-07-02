@@ -4,10 +4,11 @@ function(u,v, para=NULL, ctype=c("weibull", "hazen", "1/n", "bernstein"),
   bernstein <- FALSE
   ctype <- match.arg(ctype)
   uobs <- vobs <- NA
+
   if(exists("para", para)) {
      uobs <- para$para[,1]
      vobs <- para$para[,2]
-     if(exists("bernstein",    para)) bernstein    <- para$bernstein
+     if(exists("ctype",        para)) ctype <- para$ctype
      if(exists("bernprogress", para)) bernprogress <- para$bernprogress
      para <- para$para # now reset the para to ONLY have the uobs and vobs
      # because if bernstein is triggered the a secondary call to this function

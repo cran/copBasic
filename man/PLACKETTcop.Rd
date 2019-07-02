@@ -26,7 +26,7 @@ where it is obvious that \eqn{\Theta = ad/bc} and \eqn{a}, \eqn{b}, \eqn{c}, and
 }
 \usage{
 PLACKETTcop(u, v, para=NULL, ...)
-PLcop(u, v, para=NULL, ...)
+      PLcop(u, v, para=NULL, ...)
 }
 \arguments{
   \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction;}
@@ -38,7 +38,7 @@ PLcop(u, v, para=NULL, ...)
   Value(s) for the copula are returned.
 }
 \note{
-The Plackett copula was the first copula implemented in \pkg{copBasic} as part of initial development of the code base for instructional purposes. Thus, this particular copula has a separate parameter estimation function in \code{\link{PLACKETTpar}}.
+The Plackett copula was the first (2008) copula implemented in \pkg{copBasic} as part of initial development of the code base for instructional purposes. Thus, this particular copula has a separate parameter estimation function in \code{\link{PLACKETTpar}} as a historical vestige of a class project.
 }
 \references{
 Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.

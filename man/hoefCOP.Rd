@@ -4,13 +4,13 @@
 \alias{LpCOP}
 \alias{LpCOPradsym}
 \alias{LpCOPpermsym}
-\title{ The Hoeffding's Phi of a Copula or Lp Distances (Independence, Radial Asymmetry, or Reflection Symmetry Forms) }
+\title{ The Hoeffding Phi of a Copula or Lp Distances (Independence, Radial Asymmetry, or Reflection Symmetry Forms) }
 \description{
-Compute the measure of association known as \emph{Hoeffding's Phi} \eqn{\Phi_\mathbf{C}} of a copula from \emph{independence} (\eqn{uv = \mathbf{\Pi}}; \code{\link{P}}) according to Cherunbini \emph{et al.} (2004, p. 164) by
-\deqn{\Phi_\mathbf{C} = 3 \sqrt{10\int\!\!\int_{\mathcal{I}^2} (\mathbf{C}(u,v) - uv)^2\,\mathrm{d}u\mathrm{d}v}\mbox{,}}
+Compute the measure of association known as the \emph{Hoeffding Phi} \eqn{\Phi_\mathbf{C}} of a copula from \emph{independence} (\eqn{uv = \mathbf{\Pi}}; \code{\link{P}}) according to Cherunbini \emph{et al.} (2004, p. 164) by
+\deqn{\Phi_\mathbf{C} = 3 \sqrt{10\int\!\!\int_{\mathcal{I}^2} \bigl(\mathbf{C}(u,v) - uv\bigr)^2\,\mathrm{d}u\mathrm{d}v}\mbox{,}}
 and Nelsen (2006, p. 210) shows this as
 \deqn{\Phi_\mathbf{C} = \biggl(90\int\!\!\int_{\mathcal{I}^2} |\mathbf{C}(u,v) - uv|^2\,\mathrm{d}u\mathrm{d}v\biggr)^{1/2}\mbox{,}}
-for which \eqn{\Phi^2_\mathbf{C}} (the square of the quantity) is known as the \emph{dependence index}. \enc{Gaißer}{Gaisser} \emph{et al.} (2010, eq. 1) have \eqn{\Phi^2_\mathbf{C}} as \emph{Hoeffding's Phi-Square}, and their definition, when square-rooted, matches Nelsen's listing.
+for which \eqn{\Phi^2_\mathbf{C}} (the square of the quantity) is known as the \emph{dependence index}. \enc{Gaißer}{Gaisser} \emph{et al.} (2010, eq. 1) have \eqn{\Phi^2_\mathbf{C}} as the \emph{Hoeffding Phi-Square}, and their definition, when square-rooted, matches Nelsen's listing.
 
 A generalization (Nelsen, 2006) to \eqn{L_p} distances from independence (\eqn{uv = \mathbf{\Pi}}; \code{\link{P}}) through the \code{LpCOP} function is
 \deqn{L_p \equiv \Phi_\mathbf{C}(p) = \biggl(k(p)\int\!\!\int_{\mathcal{I}^2} |\mathbf{C}(u,v) - uv|^p\,\mathrm{d}u\mathrm{d}v\biggr)^{1/p}\mbox{,}}
@@ -32,7 +32,7 @@ where \eqn{p: 1 \le p \le \infty}. Again, Joe (2014) does not seem to discuss an
 
 The asymmetrical \eqn{L_\infty} and \eqn{L_p} measures identified by Joe (2014, p. 66) are nonnegative with an upper bounds that depends on \eqn{p}. The bound dependence on \eqn{p} is caused by the lack of normalization constant \eqn{k(p)}. In an earlier paragraph, Joe (2014) indicates an upper bounds of 1/3 for both (likely?) concerning \eqn{L_\infty^{(\mathrm{radsym})}} and \eqn{L_\infty^{(\mathrm{permsym})}}.  The numerical integrations for \eqn{L_p^{(\mathrm{radsym})}} and \eqn{L_p^{(\mathrm{permsym})}} can readily return zeros and often inspection of the formula for the \eqn{\mathbf{C}(u,v)} itself would be sufficient to judge whether symmetry exists and hence the distances are uniquely zero.
 
-Joe (2014, p. 66) completes the asymmetry discussion with three definitions of skewness of combinations of random variables \eqn{U} and \eqn{V}: Two definitions are in \code{\link{uvlmoms}} (for \eqn{U + V - 1} and \eqn{U - V}) and two are in \code{\link{joeskewCOP}} (for \eqn{V-U} and \eqn{U+V-1}) where only the later function \code{\link{joeskewCOP}} makes direct computations directly using formula for the copula.
+Joe (2014, p. 66) completes the asymmetry discussion with three definitions of skewness of combinations of random variables \eqn{U} and \eqn{V}: Two definitions are in \code{\link{uvlmoms}} (for \eqn{U + V - 1} and \eqn{U - V}) and two are for \eqn{V-U} (\code{\link{nuskewCOP}}) and \eqn{U+V-1} (\code{\link{nustarCOP}}).
 }
 \usage{
 hoefCOP(cop=NULL,      para=NULL, p=2, as.sample=FALSE, sample.as.prob=TRUE,
@@ -45,7 +45,7 @@ LpCOPpermsym(cop=NULL, para=NULL, p=2, brute=FALSE, delta=0.002, ...)
 \arguments{
   \item{cop}{A copula function;}
   \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula;}
-  \item{p}{The value for \eqn{p} as described above with a default to 2 to match the discussion of Nelsen (2006) and \emph{Hoeffding's Phi} of Cherubini \emph{et al.} (2004). Do not confuse \eqn{p} with \eqn{d} described in \bold{Note};}
+  \item{p}{The value for \eqn{p} as described above with a default to 2 to match the discussion of Nelsen (2006) and the \emph{Hoeffding Phi} of Cherubini \emph{et al.} (2004). Do not confuse \eqn{p} with \eqn{d} described in \bold{Note};}
   \item{as.sample}{A logical controlling whether an optional \R \code{data.frame} in \code{para} is used to compute the \eqn{\hat{\Phi}_\mathbf{C}} (see \bold{Note}). If set to \code{-1}, then the message concerning CPU effort will be surpressed;}
   \item{sample.as.prob}{When \code{as.sample} triggered, what are the units incoming in \code{para}? If they are probabilities, the default is applicable. If they are not, then the columns are re-ranked and divided simply by \eqn{1/n}---more sophisticated \emph{empirical copula} probabilities are not used (\code{\link{EMPIRcop}});}
   \item{brute}{Should brute force be used instead of two nested \code{integrate()} functions in \R to perform the double integration;}
@@ -56,16 +56,16 @@ LpCOPpermsym(cop=NULL, para=NULL, p=2, brute=FALSE, delta=0.002, ...)
   The value for \eqn{\Phi_\mathbf{C}(p)} is returned.
 }
 \note{
-Concerning the distance from independence, when \eqn{p = 1}, then \emph{Spearman's Rho} (\code{\link{rhoCOP}}) of a copula is computed where is it seen in that documentation that the \eqn{k_p(1) = 12}. The respective values of \eqn{k(p)} for select integers \eqn{p} are
+Concerning the distance from independence, when \eqn{p = 1}, then the \emph{Spearman Rho} (\code{\link{rhoCOP}}) of a copula is computed where is it seen in that documentation that the \eqn{k_p(1) = 12}. The respective values of \eqn{k(p)} for select integers \eqn{p} are
 \deqn{p \mapsto [1, 2, 3, 4, 5] \equiv k(p) \mapsto \{12, 90, 560, 3150, 16600\}\mbox{,}}
 and these values are hardwired into \code{hoefCOP} and \code{LpCOP}. The integers for \eqn{k_p} ensures that the equality in the second line of the examples is \code{TRUE}, but the \eqn{p} can be a noninteger as well. Nelsen (2006, p. 211) reports that when \eqn{p = \infty} that \eqn{L_\infty} is
 \deqn{L_\infty \equiv \Phi_\mathbf{C}(\infty) = \Lambda_\mathbf{C} = 4\;\mathrm{sup}_{u,v \in \mathcal{I}}|\mathbf{C}(u,v) - uv|\mbox{.}}
 
-A sample \eqn{\hat\Phi_\mathbf{C}} (square root of nonparametric \emph{Hoeffding's Phi-Square}) based on nonparametric estimation generalized for \eqn{d} dimensions (\eqn{d = 2} for bivariate) is presented by \enc{Gaißer}{Gaisser} \emph{et al.} (2010, eq. 10) for estimated probabilities \eqn{\hat{U}_{ij}} for the \eqn{i}th dimension and \eqn{j}th row (observation) for sample of size \eqn{n}. Those authors suggest that the \eqn{\hat{U}_{ij}} be estimated from the empirical copula:
+A sample \eqn{\hat\Phi_\mathbf{C}} (square root of the \emph{Hoeffding Phi-Square}) based on nonparametric estimation generalized for \eqn{d} dimensions (\eqn{d = 2} for bivariate) is presented by \enc{Gaißer}{Gaisser} \emph{et al.} (2010, eq. 10) for estimated probabilities \eqn{\hat{U}_{ij}} for the \eqn{i}th dimension and \eqn{j}th row (observation) for sample of size \eqn{n}. Those authors suggest that the \eqn{\hat{U}_{ij}} be estimated from the empirical copula:
 \deqn{\hat\Phi_\mathbf{C} = \sqrt{h(d)[A + B]}\mbox{,}}
 where
 \deqn{A = \biggl(\frac{1}{n}\biggr)^2\sum_{j=1}^n\sum_{k=1}^n\prod_{i=1}^d
-                    [1 - \mathrm{max}(\hat{U}_{ij}, \hat{U}_{ik})]\mbox{,}}
+                    \bigl[1 - \mathrm{max}\bigl(\hat{U}_{ij}, \hat{U}_{ik}\bigr)\bigr]\mbox{,}}
 \deqn{B = \biggl(\frac{1}{3}\biggr)^d - \biggl(\frac{2}{n}\biggr)\biggl(\frac{1}{2}\biggr)^d
                \sum_{j=1}^n\prod_{i=1}^d  [1 - \hat{U}_{ij}^2]\mbox{, and}}
 the normalization constant is a function of dimension and is

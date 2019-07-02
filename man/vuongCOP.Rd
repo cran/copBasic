@@ -1,13 +1,13 @@
 \encoding{utf8}
 \name{vuongCOP}
 \alias{vuongCOP}
-\title{ Vuong's Procedure for Parametric Copula Comparison }
+\title{ The Vuong Procedure for Parametric Copula Comparison }
 \description{
-Perform \emph{Vuong's Procedure} following Joe (2014, pp. 257--258). Consider two copula densities \eqn{f_1 = c_1(u,v; \Theta_1)} and \eqn{f_2 = c_2(u,v; \Theta_2)} for two different bivariate copulas \eqn{\mathbf{C}_1(\Theta_1)} and \eqn{\mathbf{C}_2(\Theta_2)} having respective parameters \eqn{\Theta_1} and \eqn{\Theta_2} that provide the \dQuote{closest} \emph{Kullback--Leibler divergence} from the true copula density \eqn{g(u,v)}.
+Perform the \emph{Vuong Procedure} following Joe (2014, pp. 257--258). Consider two copula densities \eqn{f_1 = c_1(u,v; \Theta_1)} and \eqn{f_2 = c_2(u,v; \Theta_2)} for two different bivariate copulas \eqn{\mathbf{C}_1(\Theta_1)} and \eqn{\mathbf{C}_2(\Theta_2)} having respective parameters \eqn{\Theta_1} and \eqn{\Theta_2} that provide the \dQuote{closest} \emph{Kullback--Leibler divergence} from the true copula density \eqn{g(u,v)}.
 
 The difference of the Kullback--Leibler divergence (\code{\link{kullCOP}}) of the two copulas from the true copula density can be measured for a sample of size \eqn{n} and bivariate sample realizations \eqn{\{u_i, v_i\}} by
 \deqn{\hat{D}_{12} = n^{-1}\sum_{i=1}^n D_i\mbox{,}}
-where \eqn{\hat{D}_{12}} is referred to in the \pkg{copBasic} package as \dQuote{Vuong's \eqn{D}} and \eqn{D_i} is defined as
+where \eqn{\hat{D}_{12}} is referred to in the \pkg{copBasic} package as the \dQuote{Vuong \eqn{D}} and \eqn{D_i} is defined as
 \deqn{D_i = \log\biggl[\frac{f_1(u_i, v_i; \Theta_2)}{f_2(u_i, v_i; \Theta_1)}\biggr]\mbox{.}}
 The variance of \eqn{\hat{D}_{12}} can be estimated by
 \deqn{\hat\sigma^2_{12} = (n-1)^{-1}\sum_{i=1}^n (D_i - \hat{D}_{12})^2\mbox{.}}
@@ -35,7 +35,7 @@ vuongCOP(u, v=NULL, cop1=NULL, cop2=NULL, para1=NULL, para2=NULL,
   \item{para1}{Vector of parameters or other data structure, if needed, to pass to the copula \eqn{f_1};}
   \item{cop2}{A copula function corresponding to copula \eqn{f_2} in Vuong's Procedure;}
   \item{para2}{Vector of parameters or other data structure, if needed, to pass to the copula \eqn{f_2};}
-  \item{alpha}{The \eqn{\alpha} in Vuong's Procedure, which results in the \eqn{100{\times}(1 - \alpha)} confidence interval (two sided);}
+  \item{alpha}{The \eqn{\alpha} in the Vuong Procedure, which results in the \eqn{100{\times}(1 - \alpha)} confidence interval (two sided);}
   \item{method}{The interval to evaluate as to position of the respective statistic form the comparison of the two copulas;}
   \item{the.zero}{The value for \dQuote{the zero} of the copula density function. This argument is the argument of the same name for \code{\link{densityCOP}}. The default here is intended to suggest that a tiny nonzero value for density will trap the numerical zero densities; and}
   \item{...}{Additional arguments to pass to the \code{\link{densityCOP}} function.}
@@ -46,14 +46,14 @@ vuongCOP(u, v=NULL, cop1=NULL, cop2=NULL, para1=NULL, para2=NULL,
   \item{method}{A textual description of the \code{method} setting;}
   \item{result.text}{A textual description of the result of Vuong's Procedure;}
   \item{result}{A value 1 if \eqn{\mathbf{C}_1(\Theta_1)} is better fit, 2 if copula \eqn{\mathbf{C}_2(\Theta_2)} is better fit, and \code{0} if neither is better (\eqn{\hat{D}_{12} = 0}), and \code{NA} including the likely(?) erroneous situation of \eqn{\mathbf{C}_1(\Theta_1) \equiv \mathbf{C}_2(\Theta_2)};}
-  \item{p.value}{The two-sided p-values of the Vuong's Procedure inclusive of \eqn{\mathrm{AIC}} and \eqn{\mathrm{BIC}};}
+  \item{p.value}{The two-sided p-values of the Vuong Procedure inclusive of \eqn{\mathrm{AIC}} and \eqn{\mathrm{BIC}};}
   \item{D12}{A named vector of the lower and upper bounds of Vuong's \eqn{D} at the respective confidence interval percentage along with \eqn{\hat{D}_{12}} and \eqn{\sigma^2_{12}};}
   \item{AIC}{A named vector of the lower and upper bounds of Vuong's \eqn{\mathrm{AIC}} at the respective confidence interval percentage;}
   \item{BIC}{A named vector of the lower and upper bounds of Vuong's \eqn{\mathrm{BIC}} at the respective confidence interval percentage; and}
   \item{parameters}{A named vector of the alpha, sample size, value for the t-distribution quantile \code{qt(1-alpha/2, df=n)}, and \eqn{\hat\sigma_{12}}.}
 }
 \note{
-The \code{vuongCOP} function along with \code{\link{kullCOP}} and features of function \code{\link{densityCOPplot}} represent collective milestones towards \emph{copula inference} and diagnostics post fitting of copulas to the usual measures of association such as \emph{Kendall's Tau} (\eqn{\tau_K}) and \emph{Spearman's Rho} (\eqn{\rho_S}) and their copula counterparts \eqn{\tau_\mathbf{C}} (\code{\link{tauCOP}}) and \eqn{\rho_\mathbf{C}} (\code{\link{rhoCOP}}).
+The \code{vuongCOP} function along with \code{\link{kullCOP}} and features of function \code{\link{densityCOPplot}} represent collective milestones towards \emph{copula inference} and diagnostics post fitting of copulas to the usual measures of association such as the \emph{Kendall Tau} (\eqn{\tau_K}) and \emph{Spearman Rho} (\eqn{\rho_S}) and their copula counterparts \eqn{\tau_\mathbf{C}} (\code{\link{tauCOP}}) and \eqn{\rho_\mathbf{C}} (\code{\link{rhoCOP}}).
 
 For an example application, imagine a problem of say low springflow risk at \dQuote{nearby springs} that jointly should converge in the lower tail because drought usually has a strong regional impact. First, it is necessary to form a reflection of the \emph{Gumbel--Hougaard copula} (\eqn{\mathbf{GH}(u,v; \Theta_{\mathbf{GH}})}; \code{\link{GHcop}}) but parameter estimation using \eqn{\tau_\mathbf{C}} is the same because sample \eqn{\hat\tau_K} is invariant to reflection.
 \preformatted{
@@ -88,7 +88,7 @@ The \emph{Plackett copula} (\eqn{\mathbf{PL}(u,v; \Theta_{\mathbf{PL}})}; \code{
 
 Depending on the sample \eqn{\hat\sigma_\mathbf{C}} coming from the simulation of the parent \eqn{\mathbf{PSP}} copula, the call to \code{\link{kullCOP}} will likely report different \eqn{n_{f\!g}} values because \eqn{n_{f\!g}(\mathbf{C}_1(\Theta_1), \mathbf{C}_1(\Theta_1)}. These sample sizes have a range for 20 replications of about \eqn{n_{f\!g}=204{-}252}. The result here is \eqn{n_{f\!g}=221} and thus \bold{the sample size \eqn{n=390} should be more than large enough to generally distinguish between the \eqn{\mathbf{PL}} and \eqn{\mathbf{rGH}} copulas at the respective sample measure of association.}
 
-\emph{STEP 2---Perform Vuong's Procedure:} The Vuong's Procedure can now be completed. Now watch the copula and parameter order in the next code for mistakes, the author has purposefully switched order here to draw attention to the need to make sure argument \code{cop1} has the correct parameter(s) for copula 1 (the \eqn{\mathbf{PL}}). The two calls to \code{\link{simCOP}} are made to graphically superimpose these simulations on top of the parent \eqn{\mathbf{PSP}}.
+\emph{STEP 2---Perform the Vuong Procedure:} The Vuong Procedure can now be completed. Now watch the copula and parameter order in the next code for mistakes, the author has purposefully switched order here to draw attention to the need to make sure argument \code{cop1} has the correct parameter(s) for copula 1 (the \eqn{\mathbf{PL}}). The two calls to \code{\link{simCOP}} are made to graphically superimpose these simulations on top of the parent \eqn{\mathbf{PSP}}.
 \preformatted{
   VD <-vuongCOP(UV, cop2=rGHcop, para2=paraGH, cop1=PLACKETTcop, para1=paraPL)
   print(VD) # "Copula 2 better" or rGHcop (Gumbel-Hougaard is better)
@@ -99,7 +99,7 @@ Depending on the sample \eqn{\hat\sigma_\mathbf{C}} coming from the simulation o
   rm(TMP) # just cleaning up the workspace.
 }
 
-Further discussion of Vuong's Procedure is informative. Simply speaking, the result is that \bold{the \eqn{\mathbf{rGH}} (copula 2) has better fit than \eqn{\mathbf{PL}} (copula 1).} The 95-percent confident limits from Vuong's Procedure having \eqn{\hat{D}_{12} = 0.049} with p-value \eqn{0.0012}, \eqn{\hat\sigma_{12} = 0.297}, and \eqn{n=390} are \eqn{0.0194 < \hat{D}_{12} < 0.0786}. This interval does not contain zero and is greater than zero and therefore a conclusion may be drawn that copula 2 has the better fit.
+Further discussion of the Vuong Procedure is informative. Simply speaking, the result is that \bold{the \eqn{\mathbf{rGH}} (copula 2) has better fit than \eqn{\mathbf{PL}} (copula 1).} The 95-percent confident limits from the procedure for \eqn{\hat{D}_{12} = 0.049} with p-value \eqn{0.0012}, \eqn{\hat\sigma_{12} = 0.297}, and \eqn{n=390} are \eqn{0.0194 < \hat{D}_{12} < 0.0786}. This interval does not contain zero and is greater than zero and therefore a conclusion may be drawn that copula 2 has the better fit.
 
 \emph{STEP 3---Comparison of lower-tail dependency parameters:} What does the tail dependency do for inference? This can be checked by computing the lower-tail dependency parameters (\eqn{\lambda^L_\mathbf{C}}; \code{\link{taildepCOP}}) in the code that follows for each of the three copulas \eqn{+} the empirical copula but note that true sample estimators do not quite exist. Numeric focus need only be on the lower tail, but the four graphics are informative.
 \preformatted{
@@ -111,7 +111,7 @@ Further discussion of Vuong's Procedure is informative. Simply speaking, the res
 
 The important aspect of the graphics by \code{\link{taildepCOP}} is that the \eqn{\mathbf{rGH}} has lower-tail dependency and the \eqn{\mathbf{PL}} does not, so based on inspection \eqn{\mathbf{rGH}} is superior given that we known \eqn{\mathbf{PSP}} was the true parent.  The empirical estimate of the \eqn{\hat\lambda^L_\mathbf{C} = 0.328} through the \code{\link{EMPIRcop}} copula indicates that its lower-tail dependency is closer to that of the \eqn{\mathbf{rGH}} relative to \eqn{\mathbf{PL}} and thus \bold{quantitatively by lower-tail dependency the \eqn{\mathbf{rGH}} has a superior fit.}
 
-So the \eqn{\mathbf{rGH}} has a tail dependency more similar to the true model compared to the \eqn{\mathbf{PL}}. Hence for this example, the \eqn{\mathbf{rGH}} is clearly a superior fitting model in terms of \emph{Vuong's Procedure} (fit alone) and the \eqn{\lambda^L_\mathbf{C}} then is used as a follow up to shown that the \eqn{\mathbf{rGH}} might be \dQuote{good enough} an approximation to the \eqn{\mathbf{PSP}}. The efficacy of reflecting the \eqn{\mathbf{GH}} copula into a \dQuote{new} form as \eqn{\mathbf{rGH}} is demonstrated. Users are strongly encouraged to review the so-produced graphic from the \code{\link{simCOP}} call several listings back for \eqn{n=390}, and lastly, this example is one for which absence of the argument \code{snv} (standard normal variate [scores]) by \code{\link{simCOP}} makes the tail dependency issue for the sample size more prominent in the graphic.
+Therefore the \eqn{\mathbf{rGH}} has a tail dependency more similar to the true model compared to the \eqn{\mathbf{PL}}. Hence for this example, the \eqn{\mathbf{rGH}} is clearly a superior fitting model in terms of the \emph{Vuong Procedure} (fit alone) and the \eqn{\lambda^L_\mathbf{C}} then is used as a follow up to shown that the \eqn{\mathbf{rGH}} might be \dQuote{good enough} an approximation to the \eqn{\mathbf{PSP}}. The efficacy of reflecting the \eqn{\mathbf{GH}} copula into a \dQuote{new} form as \eqn{\mathbf{rGH}} is demonstrated. Users are strongly encouraged to review the so-produced graphic from the \code{\link{simCOP}} call several listings back for \eqn{n=390}, and lastly, this example is one for which absence of the argument \code{snv} (standard normal variate [scores]) by \code{\link{simCOP}} makes the tail dependency issue for the sample size more prominent in the graphic.
 
 \emph{STEP 4---Qualitatively compare using copula density plots:} Graphical depiction of copula density contours by the \code{\link{densityCOPplot}} function supports the conclusion that the \eqn{\mathbf{rGH}} is the superior model relative to the \eqn{\mathbf{PL}}. The so-produced graphic obviously shows that \bold{the \eqn{\mathbf{rGH}} strongly mimics the shape of the parent \eqn{\mathbf{PSP}}.}
 \preformatted{
@@ -120,7 +120,7 @@ So the \eqn{\mathbf{rGH}} has a tail dependency more similar to the true model c
   densityCOPplot(cop=rGHcop,     para=paraGH,contour.col=2,ploton=FALSE)# red
 }
 
-\emph{STEP 5---Compute L-comoments of the data via simulation and estimate the sampling distributions:} An open research problem is the what if any role that \emph{L-comoments} might play in either copula estimation or inference. (There being virtually no literature on the topic?) Because a measure of association was used for parameter estimation, the L-correlation is uniformative, but a comparison is conceptually useful. The \eqn{\hat\sigma_\mathbf{C} = 0.4969} and \emph{Spearman's Rho} of the data \eqn{\hat\rho_S = } and the L-correlations \eqn{\tau^{[12]}_{2} \approx \tau^{[21]}_{2} \approx 0.497} are all similar.
+\emph{STEP 5---Compute L-comoments of the data via simulation and estimate the sampling distributions:} An open research problem is the what if any role that \emph{L-comoments} might play in either copula estimation or inference. (There being very little literature on the topic?) Because a measure of association was used for parameter estimation, the L-correlation is uniformative, but a comparison is conceptually useful. The \eqn{\hat\sigma_\mathbf{C} = 0.4969} and \emph{Spearman Rho} of the data \eqn{\hat\rho_S} and the L-correlations \eqn{\hat\rho_S \approx \tau^{[12]}_{2} \approx \tau^{[21]}_{2} \approx 0.497} are all similar as mandated by the mathematics.
 
 Inference using L-coskew and L-cokurtosis seems possible. The following code listing is CPU intensive. First, the L-correlation, L-coskew, and L-cokurtosis values are computed from the simulated sample by the \code{lcomoms2()} function of the \pkg{lmomco} package. Second and third, the respective sampling distributions of these L-comoments (\code{\link{lcomCOPpv}}) for the two copulas are estimated.
 \preformatted{
@@ -145,9 +145,9 @@ Inference using L-coskew and L-cokurtosis seems possible. The following code lis
   #    Tau4[21] 390  0.00361 0.01851 -0.01869 0.12052    0.07804 0.00929     **
   # Tau4[12:21] 390  0.00257 0.01362 -0.01194 0.10796    0.05994 0.00744     **
 }
-Because each copula was fit to a measure of association, the p-values for the L-correlations are all nonsignificant (noninformative because of how the copulas were fit), and therefore p-values quite near to the 50th percentile should be produced. So here, the L-correlation is noninformative on fit even though it might have some role because it is asymmetrical unlike that statistics \eqn{\tau_K} and \eqn{\rho_S}. The results in variable \code{GHlmr} show no statistically significant entries (all p-values \eqn{{>}0.05 = (\alpha=0.1)/2)}) for L-coskew and L-cokurtosis---\bold{the \eqn{\mathbf{rGH}} copula is not rejected.} The results in \code{PLlmr} show many p-values \eqn{{<}0.05 = (\alpha=0.1)/2} for both L-coskew and L-cokurtosis---\bold{the \eqn{\mathbf{PL}} copula is rejected}. The experimental L-comoment inference shown is consistent with results with Vuong's Procedure.
+Because each copula was fit to a measure of association, the p-values for the L-correlations are all nonsignificant (noninformative because of how the copulas were fit), and therefore p-values quite near to the 50th percentile should be produced. So here, the L-correlation is noninformative on fit even though it might have some role because it is asymmetrical unlike that statistics \eqn{\tau_K} and \eqn{\rho_S}. The results in variable \code{GHlmr} show no statistically significant entries (all p-values \eqn{{>}0.05 = (\alpha=0.1)/2)}) for L-coskew and L-cokurtosis---\bold{the \eqn{\mathbf{rGH}} copula is not rejected.} The results in \code{PLlmr} show many p-values \eqn{{<}0.05 = (\alpha=0.1)/2} for both L-coskew and L-cokurtosis---\bold{the \eqn{\mathbf{PL}} copula is rejected}. The experimental L-comoment inference shown is consistent with results with the Vuong Procedure.
 
-Vuong's Procedure, however, does not address adequacy of fit---it just evaluates which copula fits better. The inspection of the lower tail dependency results previously shown (\eqn{\lambda^L_\mathbf{PSP} = 1/2 \approx \lambda^U_\mathbf{rGH}} = 0.429) along with the L-coskew and L-cokurtosis of the sample being well within the sample distribution suggests that the \eqn{\mathbf{rGH}} is a adequate mimic of the \eqn{\mathbf{PSP}} copula.
+The Vuong Procedure, however, does not address adequacy of fit---it just evaluates which copula fits better. The inspection of the lower tail dependency results previously shown (\eqn{\lambda^L_\mathbf{PSP} = 1/2 \approx \lambda^U_\mathbf{rGH}} = 0.429) along with the L-coskew and L-cokurtosis of the sample being well within the sample distribution suggests that the \eqn{\mathbf{rGH}} is a adequate mimic of the \eqn{\mathbf{PSP}} copula.
 
 Some open research questions concern the numerical performance of the L-comoments as simulation sample size becomes large and whether or not the L-comoments should be computed on the probabilities \eqn{\{u, v\}}. Also should conversion to normal scores be made and if so, should adjustment by the \emph{Hazen plotting positions} (\eqn{u_i = (r_i - 0.5)/n} for rank \eqn{r_i}) be made that Joe (2014) repeatedly advocates when standard normal variates (scores) [\eqn{z_i = \Phi^{(-1)}(u_i)} for quantile function of standard normal distribution \eqn{\Phi(0,1)}]? Collectively, Nelsen (2006) and Salvadori \emph{et al.} (2007) are both silent on the matter of normal score conversion, and in conclusion Nelsen (2006), Salvadori \emph{et al.} (2007), and Joe (2014) also are all silent on L-comoment applications with copulas.
 }

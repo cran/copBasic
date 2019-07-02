@@ -1,0 +1,76 @@
+\encoding{utf8}
+\name{glueCOP}
+\alias{glueCOP}
+\title{ The Gluing Two Copulas}
+\description{
+The \emph{gluing copula} technique (Erdely, 2017, p. 71), given two bivariate copulas \eqn{\mathbf{C}_A} and \eqn{\mathbf{C}_B} and a fixed value \eqn{0 \le \gamma \le 1} is
+\deqn{\mathbf{C}_{A,B\gamma}(u,v) = \gamma\mathbf{C}_A(u/\gamma, v)}
+for \eqn{0 \le u \le \gamma} and
+\deqn{\mathbf{C}_{A,B\gamma}(u,v) = (1-\gamma)\mathbf{C}_B((u-\gamma)/(1-\gamma), v)}
+for \eqn{\gamma \le u \le 1} and \eqn{\gamma} represents the \emph{gluing point}. The logic is simply the rescaling of \eqn{\mathbf{C}_A} to \eqn{[0,\gamma] \times [0,1]} and \eqn{\mathbf{C}_B} to \eqn{[\gamma,1] \times [0,1]}. Copula gluing is potentially useful in circumstances for which regression is non-monotone.
+}
+\usage{
+glueCOP(u, v, para=NULL, ...)
+}
+\arguments{
+  \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction;}
+  \item{v}{Nonexceedance probability \eqn{v} in the \eqn{Y} direction;}
+  \item{para}{A special parameter \code{list} (see \bold{Note}) with a mandatory element of \code{glue}  parameter \eqn{\gamma}; and}
+  \item{...}{Additional arguments to pass to the copulas.}
+}
+\value{
+  Value(s) for the copula are returned.
+}
+\note{
+The following descriptions list in detail the structure and content of the \code{para} argument:
+\describe{
+  \item{\code{alpha}}{--- The \eqn{\alpha} compositing parameter;}
+  \item{\code{beta}}{--- The \eqn{\beta} compositing parameter;}
+  \item{\code{cop1}}{--- Function of the first copula \eqn{\mathbf{A}};}
+  \item{\code{cop2}}{--- Function of the second copula  \eqn{\mathbf{B}};}
+  \item{\code{para1}}{--- Vector of parameters \eqn{\Theta_\mathbf{A}} for  \eqn{\mathbf{A}}; and}
+  \item{\code{para2}}{--- Vector of parameters \eqn{\Theta_\mathbf{B}} for  \eqn{\mathbf{B}}.}
+}
+}
+\references{
+Erdely, A., 2017, Copula-based piecewise regression (chap. 5) \emph{in} Copulas and dependence models with applications---Contributions in honor of Roger B. Nelsen, \emph{eds.} Flores, U.M., Amo Artero, E., Durante, F., \enc{Sánchez}{Sanchez}, J.F.: Springer, Cham, Switzerland, ISBN 978--3--319--64220--9.
+}
+\author{ W.H. Asquith}
+\seealso{\code{\link{composite1COP}}, \code{\link{composite2COP}}, \code{\link{composite3COP}}, \code{\link{convexCOP}}
+}
+\examples{
+\dontrun{
+para <- list(cop1=PLACKETTcop, para1=.2, cop2=GLcop, para2=1.2)
+densityCOPplot(cop=glueCOP, para=para, glue=0.6) # }
+
+\dontrun{
+# Concerning Nelsen (2006, exer. 3.3, pp. NN)
+# Concerning Erdely (2017, exam. 5.1, p. 71)
+# Concerning Erdely (2017, exam. 5.2, p. 75
+# Nelsen's example is a triangle with vertex at [P,1].
+# Erdley's example permits the construction using glueCOP from M and W.
+"coptri" <- function(u,v, para=NA, ...) {
+   p <- para[1]; r <- 1 - (1-p)*v
+   if(length(u) > 1 | length(v) > 1) stop("only scalars for this function")
+   if(0 <= u & u <= p*v & p*v <= p) {            return(u)
+   } else if(  0 <= p*v & p*v <  u & u <  r) {   return(p*v)
+   } else if(  p <= r   & r   <= u & u <= 1 ) {  return(u+v-1)
+   } else { stop("should not be here in logic") }
+}
+"UsersCop" <- function(u,v, ...) { asCOP(u,v, f=coptri, ...) }
+para <- list(cop1=M, cop2=W, para1=NA, para2=NA, glue=0.35)
+UV <- simCOP(cop=UsersCop, para=0.35, cex=0.5, pch=16)
+UV <- simCOP(cop=glueCOP,  para=para, col=2,   ploton=FALSE)
+# We see in the plot that the triangular copulas are the same.
+# For P = 0.5, Erdley shows Spearman Rho = 2*P-1 = 0, but
+#  Schweizer-Wolff = P^2 + (P-1)^2 = 0.5, let us check these:
+rhoCOP( cop=glueCOP, para=para, glue=0.5) # -2.181726e-17
+wolfCOP(cop=glueCOP, para=para, glue=0.5) #  0.4999953
+# So rhoCOP() indicates independence, but wolfCOP() indicates
+# dependence at the minimum value possible for a triangular copula. }
+}
+\keyword{copula (formulas)}
+\keyword{copula gluing}
+\keyword{copula composition}
+\keyword{Erdely (2017) Examples and Exercises}
+

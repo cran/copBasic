@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{EMPIRcopdf}
 \alias{EMPIRcopdf}
-\title{ Dataframe of the Bivariate Empirical Copula }
+\title{ Data Frame Representation of the Bivariate Empirical Copula }
 \description{
 Generate an \R \code{data.frame} representation of the \emph{bivariate empirical copula} (Salvadori \emph{et al.}, 2007, p. 140) using the coordinates as preserved in the raw data in the parameter object of the bivariate empirical copula.
 }

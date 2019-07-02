@@ -462,10 +462,55 @@ Version 2.1.2--January 8, 2019
        The gamma-power mixture is though a different copula.  
 
 
+Version 2.1.3--July 1, 2019
+1. Added documention in lcomCOP() stating that Chine and Benatia (2017) describe
+       trimmed L-comoments as the multivariate extensions of the univariate
+       trimmed L-moments. Unknown as to whether an extension jump should be made.
+2. Added iterated Farlie-Gumbel-Morgenstern copula as FGMrcop(), which is any more
+       useful than the existing generalization, but Chine and Benatia (2017) concern
+       themselves with the iterated FGM.
+3. Documentation audit again with tiny changes to many Rds.
+4. Added glueCOP() as another means of constructing other copulas.
+5. BUG FIX: EMPIRqua.regress() and EMPIRqua.regress2() with lowess=TRUE could return
+       probabilities outside of [0,1]. Truncation to zero and unity is now made.
+6. Warning Fix: EMPIRgridderinv()/EMPIRgridderinv2() in their calls to approx() could
+       trigger warnings about ties and deletion of them. We know therein that the
+       x values are ordered, so a switch was made to use ties="ordered" in approx().
+       Also, "F" was being used as the nonexceedance probability but R syntax
+       highlighting treats as FALSE, so switch made to FF. By association, the
+       EMPIRqua.regress()/EMPIRqua.regress2() also need the ties="ordered" in their
+       use of the approx() on the inversion of the gridded derivative of the empirical 
+       copula.
+7. Added an as.list() check to the empirical grid argument in both pairs of 
+       EMPIRgridder()/EMPIRgridder2() and EMPIRgridderinv()/EMPIRgridderinv2().
+8. BUG FIX: Through an audit of EMPIRcop.Rd examples, which then found that the 
+       Bernstein argument to pass through lower-level dispatch to level.curvesCOP()
+       did not work. The ability for the para argument in EMPIRcop() now properly
+       supports the ability to trigger ctype and the bernstein arguments through
+       list embedment.
+9. COP.Rd, diagCOPatf.Rd, and med.regressCOP.Rd examples edited to avoid using F with
+       change to FF as a variable for nonexceedance probability (see no. 6).
 
+Version 2.1.4--July 2, 2019
+1. Fixups in FGMcop.Rd (bad URL), HRcop.Rd (no encoding switch in the concept/keyword),
+       lcomCOP.Rd (bad URL), rhobevCOP.Rd (no commas in indexing or concepts) for 
+       release to CRAN.
 
 
 POTENTIAL TODOs:
+
+Continued inspection of the approx() use and whether ties="ordered" can be used
+(see Version 2.1.3#6), it appears in all other cases that yes, we can move
+to the ties="ordered" because the inversion of the gridded derivative of the empirical 
+copula is being used and structurally the "x" part of the approx will be ordered.
+R/EMPIRsim.R:      v <- approx(cols, y=v.available, xout=t, rule=2)$y
+R/EMPIRsim.R:      v1 <- approx(cols, y=v.available1, xout=t, rule=2)$y
+R/EMPIRsim.R:      v2 <- approx(cols, y=v.available2, xout=t, rule=2)$y
+R/EMPIRsimv.R:      v <- approx(cols, y=v.available, xout=t, rule=2)$y
+R/EMPIRsimv.R:      v1 <- approx(cols, y=v.available1, xout=t, rule=2)$y
+R/EMPIRsimv.R:      v2 <- approx(cols, y=v.available2, xout=t, rule=2)$y
+R/kfuncCOP.R:         empkc <- approx(c(0,FKin,1), c(0,Zin,1), xout=z)$y
+
 
 lcomCOPpv() <--> vuongCOP() work as now lcomCOP() is available.
 lcomCOPpv() might need some reworking too.
@@ -474,15 +519,21 @@ If two-parameter Galambos (Joe, 2014, p. 198) is not materially broader than
 the one-parameter, does this hold for a two-parameter Gumbel hinted by
 Joe (2014, p. 199)? Further investigation is needed.
 
+Note: Joe's 2-p GHcop does appear different from Brahimi et. al (2015) version
+of a 2-p GHcop. Should support for both be made? Are both the same? (Quick testing suggests that perhaps they are not, but mathematical checking has not been made [01/09/2019]).
+
+Add the trimmed L-comoments? 
+
 \author{William Asquith \email{william.asquith@ttu.edu} }
-  Make such conversions through out or go back to W.H. Asquith?
+  Make such conversions throughout or go back to W.H. Asquith?
 
 EMPIRcopdf() can be replaced by EMPIRcop() as the later is fully 
   vectorized itself and makes presumably a lesser impact on memory (faster)?
 
 stabtaildepf.Rd --- Need to audit stabtaildepf.Rd and complete documentation.
-
-EMPIRcop.Rd --- Need to audit level.curves in the Examples.
+Beirlant, J., Escobar-Bach, M., Goegebeur, Y., Guillou, A.: Bias-corrected estimation of stable tail dependence function. J. Multivar. Anal. 143, 453–466 (2016)
+https://doi.org/10.1016/j.jmva.2015.10.006
+Kiriliouk, A., Segers, J. & Tafakori, L. Extremes (2018) 21: 581. https://doi.org/10.1007/s10687-018-0315-y
 
 Implementation of state-of-the-practice nonparametric estimators of
   lower and upper tail dependence parameters. Neither of the three books

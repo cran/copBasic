@@ -31,7 +31,7 @@ First, a function \code{NORMcop()} is defined to form the interconnect between t
     return(copula::pCopula(matrix(c(u,v), ncol=2), para))
   }
 }
-The parameter \eqn{\Theta \in [-1, 1]} (\emph{Pearson's R}) and \eqn{\rho_\mathbf{C}(\Theta)} (\emph{Spearman's Rho}, \code{\link{rhoCOP}}) and \eqn{\tau_\mathbf{C}(\Theta)} (\emph{Kendall's Tau}, \code{\link{tauCOP}}) are according to Salvadori \emph{et al.} (2007, p. 255) the values
+The parameter \eqn{\Theta \in [-1, 1]} (\emph{Pearson R}) and \eqn{\rho_\mathbf{C}(\Theta)} (\emph{Spearman Rho}, \code{\link{rhoCOP}}) and \eqn{\tau_\mathbf{C}(\Theta)} (\emph{Kendall Tau}, \code{\link{tauCOP}}) are according to Salvadori \emph{et al.} (2007, p. 255) the values
 \deqn{\rho_\mathbf{C}(\Theta) = \frac{2}{\pi}\,\mathrm{arcsin}(\Theta)}
 and
 \deqn{\tau_\mathbf{C}(\Theta) = \frac{6}{\pi}\,\mathrm{arcsin}(\Theta/2)\mbox{.}}
@@ -84,7 +84,7 @@ Finally, the demonstration ends with plotting of the median regression for the G
   lines(qnorm(MEDreg2$Uupr), qnorm(UorV),        col=6, lty=2)
 }
 
-A curious aside (Joe, 2014, p. 164) about the \emph{Gaussian copula} is that \emph{Blomqvist's Beta} (\code{\link{blomCOP}}) is equal to \emph{Kendall's Tau} (\code{\link{tauCOP}}), which can be checked by
+A curious aside (Joe, 2014, p. 164) about the \emph{Gaussian copula} is that \emph{Blomqvist Beta} (\code{\link{blomCOP}}) is equal to \emph{Kendall Tau} (\code{\link{tauCOP}}), which can be checked by
 \preformatted{
   blomCOP(cop=NORMcop, para=norm.cop) # 0.4936334
   tauCOP( cop=NORMcop, para=norm.cop) # 0.493633
@@ -102,21 +102,21 @@ Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in
 \examples{
 \dontrun{
 # INDEPENDENCE YIELDS STRAIGHT LINES, RED IS THE MEDIAN REGRESSION
-F <- seq(0.1, 0.9, by=0.1)
+FF <- seq(0.1, 0.9, by=0.1)
 plot(c(0,1),c(0,1), type="n", lwd=3,
      xlab="U, NONEXCEEDANCE PROBABILITY", ylab="V, NONEXCEEDANCE PROBABILITY")
 # Draw the regression of V on U and then U on V (wrtV=TRUE)
-qua.regressCOP.draw(f=F, cop=P, para=NA, ploton=FALSE)
-qua.regressCOP.draw(f=F, cop=P, para=NA, ploton=FALSE, wrtV=TRUE, lty=2)#}
+qua.regressCOP.draw(f=FF, cop=P, para=NA, ploton=FALSE)
+qua.regressCOP.draw(f=FF, cop=P, para=NA, ploton=FALSE, wrtV=TRUE, lty=2)#}
 
 \dontrun{
 # NEGATIVE PLACKETT THETA YIELDS CURVES DOWN TO RIGHT, RED IS THE MEDIAN REGRESSION
-theta <- 0.5; F <- seq(0.1, 0.9, by=0.1)
+theta <- 0.5; FF <- seq(0.1, 0.9, by=0.1)
 plot(c(0,1),c(0,1), type="n", lwd=3,
      xlab="U, NONEXCEEDANCE PROBABILITY", ylab="V, NONEXCEEDANCE PROBABILITY")
 # Draw the regression of V on U and then U on V (wrtV=TRUE)
-qua.regressCOP.draw(f=F, cop=PLACKETTcop, ploton=FALSE, para=theta)
-qua.regressCOP.draw(f=F, cop=PLACKETTcop, ploton=FALSE, para=theta, wrtV=TRUE, lty=2)#}
+qua.regressCOP.draw(f=FF, cop=PLACKETTcop, ploton=FALSE, para=theta)
+qua.regressCOP.draw(f=FF, cop=PLACKETTcop, ploton=FALSE, para=theta, wrtV=TRUE, lty=2)#}
 }
 \keyword{median regression}
 \keyword{quantile regression}

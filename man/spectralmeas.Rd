@@ -23,7 +23,7 @@ where Kiriliouk \emph{et al.} (2016, p. 363) do not show the \eqn{N_n - 1} in th
 
 \bold{Step 4:} A smoothed version of \eqn{\hat{H}_3(w)} is optionally available by
 \deqn{\tilde{H}_3(w) = \sum_{i \in I_n} \hat{p}_{3,i} \times \mathcal{B}(w; \widehat{W}_i\nu, (1-\widehat{W}_i)\nu)\mbox{,}}
-where \eqn{\mathcal{B}(x; p, q)} is the cumulative distribution function of the Beta distribution for \eqn{p, q > 0} and where \eqn{\nu > 0} is a smoothing parameter that  can be optimized by cross-validation.
+where \eqn{\mathcal{B}(x; p, q)} is the cumulative distribution function of the Beta distribution for \eqn{p, q > 0} and where \eqn{\nu > 0} is a smoothing parameter that  can be optimized by cross validation.
 
 \bold{Step 5:} The spectral density lastly can be computed optionally as
 \deqn{\tilde{h}_3(w) = \sum_{i \in I_n} \hat{p}_{3,i} \times \beta(w; \widehat{W}_i\nu, (1-\widehat{W}_i)\nu)}

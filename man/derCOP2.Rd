@@ -38,7 +38,7 @@ derCOP2(cop=NULL, u, v, delv=.Machine$double.eps^0.50,
   Value(s) for the partial derivative are returned.
 }
 \note{
-A known caveat of the current implementation of the copula derivative is that there is a chance that the \eqn{\Delta v} will span a singularity or discontinuous (or nearly so) portion of a copula should it have a property of singularity (or nearly so). The \code{delv} is chosen small so the chance is mitigated to a small value. It is not decided whether a derivative from the positive side (\code{dir="left"}), when failing should switch over to a computation from the negative side (\code{dir="right"}). The distinction is important for the computation of the inverse of the derivative \code{\link{derCOPinv2}} because the solution finder needs a sign reversal to work.
+A known caveat of the current implementation of the copula derivative is that there is a chance that the \eqn{\Delta v} will span a singularity or discontinuous (or nearly so) portion of a copula should it have a property of singularity (or nearly so). The \code{delv} is chosen small so the chance is mitigated to be a small change and certainly seems to work throughout the examples herein. It is not decided whether a derivative from the positive side (\code{dir="left"}), when failing should switch over to a computation from the negative side (\code{dir="right"}). The distinction is important for the computation of the inverse of the derivative \code{\link{derCOPinv2}} because the solution finder needs a sign reversal to work.
 }
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.

@@ -4,13 +4,13 @@
 \alias{copBasic-package}
 \title{Basic Theoretical Copula, Empirical Copula, and Various Utility Functions}
 \description{
-The \pkg{copBasic} package is oriented around \emph{bivariate copula theory} and mathematical operations closely follow the standard texts by Nelsen (2006) and Joe (2014) as well as select other references. Another recommended text is Salvadori \emph{et al.} (2007) and is cited herein, but about half of that excellent book concerns univariate applications. The primal objective of \pkg{copBasic} is to provide a basic application programming interface (API) to numerous results shown by authoritative texts on copulas. It is hoped in part that the package will help new copula students in their self study, potential course work, and applied circumstances.
+The \pkg{copBasic} package is oriented around \emph{bivariate copula theory} and mathematical operations closely follow the standard texts of Nelsen (2006) and Joe (2014) as well as select other references. Another recommended text is Salvadori \emph{et al.} (2007) and is cited herein, but about half of that excellent book concerns univariate applications. The primal objective of \pkg{copBasic} is to provide a basic application programming interface (API) to numerous results shown by authoritative texts on copulas. It is hoped in part that the package will help other copula students in self study, potential course work, and applied circumstances.
 
-\bold{Notes on copulas that are supported.} The author has focused on pedagogical aspects of copulas, and this package is a \emph{diary} of sorts in self-guided learning. Originally, the author did not implement many copulas in the \pkg{copBasic} in order to deliberately avoid redundancy to that support such as it exists on the \R CRAN. Though as time has progressed, other copulas have been added occassionally based on needs of the user community, need to show some specific concept in the general theory, or test algorithms. For example, the Clayton copula (\code{\link{CLcop}}) is a late arriving addition to the \pkg{copBasic} package (\emph{c.}2017), which was added to assist a specific user.
+\bold{Notes on copulas that are supported.} The author has focused on pedagogical aspects of copulas, and this package is a \emph{diary} of sorts. Originally, the author did not implement many copulas in the \pkg{copBasic} in order to deliberately avoid redundancy to that support such as it exists on the \R CRAN. Though as time has progressed, other copulas have been added occassionally based on needs of the user community, need to show some specific concept in the general theory, or test algorithms. For example, the Clayton copula (\code{\link{CLcop}}) is a late arriving addition to the \pkg{copBasic} package (\emph{c.}2017), which was added to assist a specific user.
 
 
 \bold{Helpful Navigation of Copulas Implemented in the copBasic Package}
-Some helpful pivot points into the copulas implemented are listed in the following table:
+Some entry points to the copulas implemented are listed in the \bold{Table of Copulas}:
 \tabular{lclr}{
 \bold{Name} \tab \bold{Symbol} \tab \bold{Function} \tab \bold{Concept} \cr
 Lower-bounds copula \tab \eqn{\mathbf{W}(u,v)} \tab \code{\link{W}} \tab copula\cr
@@ -19,7 +19,7 @@ Upper-bounds copula \tab \eqn{\mathbf{M}(u,v)} \tab \code{\link{M}} \tab copula\
 \enc{Fréchet}{Frechet} Family copula \tab \eqn{\mathbf{FF}(u,v)} \tab \code{\link{FRECHETcop}} \tab copula\cr
 Ali--Mikhail--Haq copula \tab \eqn{\mathbf{AMH}(u,v)} \tab \code{\link{AMHcop}} \tab copula\cr
 Clayton copula \tab \eqn{\mathbf{CL}(u,v)} \tab \code{\link{CLcop}} \tab copula\cr
-Farlie--Gumbel--Morgenstern (generalized) copula \tab \eqn{\mathbf{FGM}(u,v)} \tab \code{\link{FGMcop}} \tab copula\cr
+Farlie--Gumbel--Morgenstern (generalized) \tab \eqn{\mathbf{FGM}(u,v)} \tab \code{\link{FGMcop}} \tab copula\cr
 Galambos copula \tab \eqn{\mathbf{GL}(u,v)} \tab \code{\link{GLcop}} \tab copula\cr
 Gumbel--Hougaard copula \tab \eqn{\mathbf{GH}(u,v)} \tab \code{\link{GHcop}} \tab copula\cr
 \enc{Hüsler}{Husler}--Reiss copula \tab \eqn{\mathbf{HR}(u,v)} \tab \code{\link{HRcop}} \tab copula\cr
@@ -34,7 +34,7 @@ t-EV copula (t-distribution extreme value) \tab \eqn{\mathbf{tEV}(u,v)} \tab \co
 }
 
 
-The language and vocabulary of copulas is formidable. The author (Asquith) has often emphasized \dQuote{vocabulary} words in \emph{italics}, which is used extensively and usually near the opening of function-by-function documentation to identify vocabulary words, such as \emph{survival copula} (see \code{\link{surCOP}}). This syntax tries to mimic and accentuate the word usage in Nelsen (2006) and Joe (2014). The \pkg{copBasic} package was started well before Joe (2014) so more citations to Nelsen (2006) are made.
+The language and vocabulary of copulas is formidable. The author (Asquith) has often emphasized \dQuote{vocabulary} words in \emph{italics}, which is used extensively and usually near the opening of function-by-function documentation to identify vocabulary words, such as \emph{survival copula} (see \code{\link{surCOP}}). This syntax tries to mimic and accentuate the word usage in Nelsen (2006) and Joe (2014).
 
 The italics then are used to draw connections between concepts. In conjunction with the summary of functions in \bold{copBasic-package}, the extensive cross referencing to functions and expansive keyword indexing should be beneficial. The author had no experience with copulas prior to a chance happening upon Nelsen (2006) in \emph{c.}2008. The \pkg{copBasic} package is a personal \emph{tour de force} in self-guided learning. Hopefully, this package and user's manual will be helpful to others.
 
@@ -42,11 +42,11 @@ A few comments on notation herein are needed. A bold math typeface is used to re
 
 The random variables \eqn{X} and \eqn{Y} respectively denote the horizontal and vertical directions in \eqn{\mathcal{R}^2}. Their probabilistic counterparts are uniformly distributed random variables on \eqn{[0,1]}, are respectively denoted as \eqn{U} and \eqn{V}, and necessarily also are the respective directions in \eqn{\mathcal{I}^2} (\eqn{U} denotes the horizontal, \eqn{V} denotes the vertical). Often realizations of these random variables are respectively \eqn{x} and \eqn{y} for \eqn{X} and \eqn{Y} and \eqn{u} and \eqn{v} for \eqn{U} and \eqn{V}.
 
-There is an obvious difference between nonexceedance probability \eqn{F} and its complement---exceedance probability \eqn{1-F}. Both \eqn{u} and \eqn{v} herein are in \dQuote{units} of nonexceedance probability. Arguments to many functions herein are \code{u} \eqn{= u} and \code{v} \eqn{= v} and are almost \emph{exclusively nonexceedance} but there are instances for which the probability arguments are \code{u} \eqn{= 1 - u = u'} and \code{v} \eqn{= 1 - v = v'}.\cr
+There is an obvious difference between nonexceedance probability \eqn{F} and its complement, which is exceedance probability defined as \eqn{1-F}. Both \eqn{u} and \eqn{v} herein are in nonexceedance probability. Arguments to many functions herein are \code{u} \eqn{= u} and \code{v} \eqn{= v} and are almost \emph{exclusively nonexceedance} but there are instances for which the probability arguments are \code{u} \eqn{= 1 - u = u'} and \code{v} \eqn{= 1 - v = v'}.\cr
 
 \bold{Helpful Navigation of the copBasic Package}
 
-Some helpful pivot points into the package are listed in the following table:
+Some other entry points into the package are listed in the following table:
 \tabular{lclr}{
 \bold{Name} \tab \bold{Symbol} \tab \bold{Function} \tab \bold{Concept} \cr
 Copula  \tab \eqn{\mathbf{C}(u,v)} \tab \code{\link{COP}} \tab copula theory\cr
@@ -96,7 +96,7 @@ Another goodness-of-fit \tab \eqn{T_n} \tab \code{\link{statTn}} \tab goodness-o
 
 Several of the functions listed above are measures of \dQuote{bivariate association.} Two of the measures (\emph{Kendall Tau}, \code{\link{tauCOP}}; \emph{Spearman Rho}, \code{\link{rhoCOP}}) are widely known. \R provides native support for their sample estimation of course, but each function can be used to call the \code{cor()} function in \R for parallelism to the other measures of this package. The other measures (\emph{Blomqvist Beta}, \emph{Gini Gamma}, \emph{Hoeffding Phi}, \emph{Schweizer--Wolff Sigma}, \emph{Spearman Footrule}) support sample estimation by specially formed calls to their respective functions: \code{\link{blomCOP}}, \code{\link{giniCOP}}, \code{\link{hoefCOP}}, \code{\link{wolfCOP}}, and \code{\link{footCOP}}. Gini Gamma (\code{\link{giniCOP}}) documentation (also \code{\link{joeskewCOP}}) shows extensive use of theoretical and sample compuations for these and other functions.
 
-Concerning \emph{goodness-of-fit} and although not quite the same as copula properties (such as \dQuote{correlation}) per se as the coefficients aforementioned in the prior paragraph, three goodness-of-fit metrics of a copula compared to the empirical copula, which are all based on \emph{mean square error} (MSE), are \code{\link{aicCOP}}, \code{\link{bicCOP}}, and \code{\link{rmseCOP}}. This triad of functions is useful for making decisions on whether a copula is more favorable than another to a given dataset. However, because they are genetically related by using MSE and if these are used for copula fitting by minimization, the fits will be identical. A statement of \dQuote{not quite the same} is made because the previously described copula properties are generally defined as types of deviations from other copulas (such as \code{\link{P}}). Another goodness-of-fit statistic is \code{\link{statTn}}, which is based on magnitude summation of fitted copula difference from the empirical copula. These four (\code{\link{aicCOP}}, \code{\link{bicCOP}}, \code{\link{rmseCOP}}, and \code{\link{statTn}}) collectively are relative simple and readily understood measures. These bulk sample statistics are useful, but generally thought to not capture the nuances of tail behavior (\code{\link{semicorCOP}} and \code{\link{taildepCOP}} might be useful).
+Concerning \emph{goodness-of-fit} and although not quite the same as copula properties (such as \dQuote{correlation}) per se as the coefficients aforementioned in the prior paragraph, three goodness-of-fit metrics of a copula compared to the empirical copula, which are all based the \emph{mean square error} (MSE), are \code{\link{aicCOP}}, \code{\link{bicCOP}}, and \code{\link{rmseCOP}}. This triad of functions is useful for making decisions on whether a copula is more favorable than another to a given dataset. However, because they are genetically related by using MSE and if these are used for copula fitting by minimization, the fits will be identical. A statement of \dQuote{not quite the same} is made because the previously described copula properties are generally defined as types of deviations from other copulas (such as \code{\link{P}}). Another goodness-of-fit statistic is \code{\link{statTn}}, which is based on magnitude summation of fitted copula difference from the empirical copula. These four (\code{\link{aicCOP}}, \code{\link{bicCOP}}, \code{\link{rmseCOP}}, and \code{\link{statTn}}) collectively are relative simple and readily understood measures. These bulk sample statistics are useful, but generally thought to not capture the nuances of tail behavior (\code{\link{semicorCOP}} and \code{\link{taildepCOP}} might be useful).
 
 \emph{Bivariate skewness} measures are supported in the functions \code{\link{joeskewCOP}} (\code{\link{nuskewCOP}} and \code{\link{nustarCOP}}) and \code{\link{uvlmoms}} (\code{\link{uvskew}}). Extensive discussion and example computations of bivariate skewness are provided in the \code{\link{joeskewCOP}} documentation.  Lastly, so-called \emph{bivariate L-moments} and \emph{bivariate L-comoments} of a copula are directly computable in \code{\link{bilmoms}}, and that function is the theoretical counterpart to the \emph{sample L-comoments} long provided in the \pkg{lmomco} package.
 
@@ -147,13 +147,13 @@ Radial symmetry \tab \eqn{\mathrm{radsym}} \tab \code{\link{isCOP.radsym}} \tab 
 Skewness (Joe, 2014) \tab \eqn{\eta(p; \psi)} \tab \code{\link{uvskew}} \tab bivariate skewness\cr
 Kullback--Leibler divergence \tab \eqn{\mathrm{KL}(f|g)} \tab \code{\link{kullCOP}} \tab bivariate inference\cr
 KL sample size \tab \eqn{n_{f\!g}} \tab \code{\link{kullCOP}} \tab bivariate inference\cr
-Vuong's Procedure \tab \eqn{{-}{-}} \tab \code{\link{vuongCOP}} \tab bivariate inference\cr
+The Vuong Procedure \tab \eqn{{-}{-}} \tab \code{\link{vuongCOP}} \tab bivariate inference\cr
 Spectral measure \tab \eqn{H(w)} \tab \code{\link{spectralmeas}} \tab extremal dependency inference\cr
 Stable tail dependence \tab \eqn{\widehat{l}(x,y)} \tab \code{\link{stabtaildepf}} \tab extremal dependency inference\cr
 L-comoments (samp. distr.) \tab \eqn{{-}{-}} \tab \code{\link{lcomCOPpv}} \tab experimental bivariate inference\cr
 }
 
-The following \bold{Table of Probabilities} lists important relations between various joint probability concepts, the copula, nonexceedance probabilities \eqn{u} and \eqn{v}, and exceedance probabilities \eqn{u'} and \eqn{v'}. A compact summary of these probability relations has obvious usefulness. The notation \eqn{[\ldots, \ldots]} is to read as \eqn{[\ldots \mathrm{\ and\ } \ldots]}, and the \eqn{[\ldots | \ldots]} is to be read as \eqn{[\ldots \mathrm{\ given\ } \ldots]}.
+The \bold{Table of Probabilities} that follows lists important relations between various joint probability concepts, the copula, nonexceedance probabilities \eqn{u} and \eqn{v}, and exceedance probabilities \eqn{u'} and \eqn{v'}. A compact summary of these probability relations has obvious usefulness. The notation \eqn{[\ldots, \ldots]} is to read as \eqn{[\ldots \mathrm{\ and\ } \ldots]}, and the \eqn{[\ldots | \ldots]} is to be read as \eqn{[\ldots \mathrm{\ given\ } \ldots]}.
 \tabular{rcl}{
 \bold{Probability} \tab \bold{and} \tab \bold{Symbol Convention}\cr
 \eqn{\mathrm{Pr}[\,U \le u, V \le v\,]}     \tab \eqn{=} \tab \eqn{\mathbf{C}(u,v)}\cr
@@ -187,7 +187,7 @@ One, two, or more copulas can be \dQuote{composited,} \dQuote{combined,} or \dQu
 
 \bold{Useful Copula Relations by Visualization}
 
-There are a myriad of relations amongst variables computable through copulas, and these were listed in the \bold{Table of Probabilities} earlier in this \pkg{copBasic} documentation. There is a script located in the \code{inst/doc} directory of the \pkg{copBasic} sources titled \code{CopulaRelations_BaseFigure_inR.txt}. This script demonstrates, using the \code{\link{PSP}} copula, relations between the copula (\code{\link{COP}}), survival copula (\code{\link{surCOP}}), joint survival function of a copula (\code{\link{surfuncCOP}}), co-copula (\code{\link{coCOP}}), and dual of a copula function (\code{\link{duCOP}}). The script performs simulation and manual counts observations meeting various criteria in order to compute their \emph{empirical probabilities}. The script produces a \dQuote{base figure,} which after extending in vector editing software, is suitable for educational description, and is provided within these help pages.
+There are a myriad of relations amongst variables computable through copulas, and these were listed in the \bold{Table of Probabilities} earlier in this \pkg{copBasic} documentation. There is a script located in the \code{inst/doc} directory of the \pkg{copBasic} sources titled \code{CopulaRelations_BaseFigure_inR.txt}. This script demonstrates, using the \code{\link{PSP}} copula, relations between the copula (\code{\link{COP}}), survival copula (\code{\link{surCOP}}), joint survival function of a copula (\code{\link{surfuncCOP}}), co-copula (\code{\link{coCOP}}), and dual of a copula function (\code{\link{duCOP}}). The script performs simulation and manual counts observations meeting various criteria in order to compute their \emph{empirical probabilities}. The script produces a base figure, which after extending in editing software, is suitable for educational description and is provided herein.
 
 \bold{A Review of \dQuote{Return Periods} using Copulas}
 
@@ -201,7 +201,7 @@ Let the copula \eqn{\mathbf{C}(u,v; \Theta)} for nonexceedances \eqn{u} and \eqn
 \deqn{T_{q;\,\mathrm{coop}} = \frac{1}{1 - \mathbf{C}(q, q; \Theta)} = \frac{1}{\mathbf{C}^\star(1-q, 1-q; \Theta)}\mbox{\ and}}
 \deqn{T_{q;\,\mathrm{coop}} \equiv \frac{1}{\mathrm{cooperative\ risk}}\mbox{.}}
 
-Or in words, the hazard sources \bold{collaborate} or \bold{cooperate} to cause failure. However, if failure only occurs if and only if \bold{both} hazards \eqn{U} and \eqn{V} occur simultaneously (that is the hazards must \dQuote{dually work together}), then the \bold{real return period} is defined using either the \emph{dual of a copula (function)} (\eqn{\tilde\mathbf{C}(q,q; \Theta)}), the \emph{joint survival function} (\eqn{\overline\mathbf{C}(q,q;\Theta)}), or \emph{survival copula} (\eqn{\hat\mathbf{C}(q',q'; \Theta)}) as
+Or in words, the hazard sources \bold{collaborate} or \bold{cooperate} to cause failure. However, if failure only occurs if and only if \bold{both} hazards \eqn{U} and \eqn{V} occur simultaneously (the hazards must \dQuote{dually work together} or be \dQuote{conjunctive}), then the \bold{real return period} is defined using either the \emph{dual of a copula (function)} (\eqn{\tilde\mathbf{C}(q,q; \Theta)}), the \emph{joint survival function} (\eqn{\overline\mathbf{C}(q,q;\Theta)}), or \emph{survival copula} (\eqn{\hat\mathbf{C}(q',q'; \Theta)}) as
 
 \deqn{T_{q;\,\mathrm{dual}} = \frac{1}{1 - \tilde\mathbf{C}(q,q; \Theta)} = \frac{1}{\overline\mathbf{C}(q,q;\Theta)} = \frac{1}{\hat\mathbf{C}(q',q';\Theta)} \mbox{\ and}}
 \deqn{T_{q;\,\mathrm{dual}} \equiv \frac{1}{\mathrm{complement\ of\ dual\ protection}}\mbox{.}}
@@ -288,3 +288,4 @@ lmomco::lcomoms2(simCOP(n=1000, cop=MCDURV, para=0.5), nmom=5) # Perfect pos. co
 \keyword{return period (conditional)}
 \keyword{return period (secondary)}
 \keyword{Table of Copulas}
+\keyword{Table of Probabilities}

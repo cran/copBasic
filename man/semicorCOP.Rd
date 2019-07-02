@@ -11,7 +11,7 @@ of a copula \eqn{\mathbf{C}(u,v)} (Joe, 2014, p. 73) using numerical simulation.
 \deqn{\rho_N^{-}(a) = \mathrm{cor}[Z_1, Z_2|Z_1 < -a, Z_2 < -a]\mbox{,}}
 \deqn{\rho_N^{+}(a) = \mathrm{cor}[Z_1, Z_2|Z_1 > +a, Z_2 > +a]\mbox{,\ and}}
 \deqn{\rho_N(a > -\infty) = \mathrm{cor}[Z_1, Z_2]\mbox{,}}
-where \eqn{\mathrm{cor[z_1, z_2]}} is the familiar \emph{Pearson's correlation} function, which is in \R the syntax \code{cor(...,} \code{method="pearson")}, parameter \eqn{a \ge 0} is a truncation point that identifies \emph{truncated tail regions} (Joe, 2014, p. 73), and lastly \eqn{(Z_1, Z_2) \sim \mathbf{C}(\Phi, \Phi)} and thus from the standard normal distribution \eqn{(Z_1, Z_2) = (\Phi^{-1}(u), \Phi^{-1}(v))} where the random variables \eqn{(U,V) \sim \mathbf{C}}.
+where \eqn{\mathrm{cor[z_1, z_2]}} is the familiar \emph{Pearson correlation function}, which is in \R the syntax \code{cor(...,} \code{method="pearson")}, parameter \eqn{a \ge 0} is a truncation point that identifies \emph{truncated tail regions} (Joe, 2014, p. 73), and lastly \eqn{(Z_1, Z_2) \sim \mathbf{C}(\Phi, \Phi)} and thus from the standard normal distribution \eqn{(Z_1, Z_2) = (\Phi^{-1}(u), \Phi^{-1}(v))} where the random variables \eqn{(U,V) \sim \mathbf{C}}.
 }
 \usage{
 semicorCOP(cop=NULL, para=NULL, truncation=0, n=0, as.sample=FALSE, ...)

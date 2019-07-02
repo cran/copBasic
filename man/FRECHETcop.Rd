@@ -5,7 +5,7 @@
 \description{
 The \emph{\enc{Fréchet}{Frechet} Family copula} (Durante, 2007, pp. 256--259) is
 \deqn{\mathbf{C}_{\alpha, \beta}(u,v) = \mathbf{FF}(u,v) = \alpha\mathbf{M}(u,v) + (1-\alpha-\beta)\mathbf{\Pi}(u,v)+\beta\mathbf{W}(u,v)\mbox{,}}
-where \eqn{\alpha, \beta \ge 0} and \eqn{\alpha + \beta \le 1}. The \enc{Fréchet}{Frechet} Family copulas are \emph{convex combinations} of the fundamental copulas \eqn{\mathbf{W}} (\emph{\enc{Fréchet}{Frechet}--Hoeffding lower bound copula}; \code{\link{W}}), \eqn{\mathbf{\Pi}} (independence; \code{\link{P}}), and \eqn{\mathbf{M}} (\emph{\enc{Fréchet}{Frechet}--Hoeffding upper bound copula}; \code{\link{M}}). The copula is \emph{comprehensive} because both \eqn{\mathbf{W}} and \eqn{\mathbf{M}} can be obtained.   The parameters are readily estimated using \emph{Spearman Rho} (\eqn{\rho_\mathbf{C}}; \code{\link{rhoCOP}}) and \emph{Kendall's Tau} (\eqn{\tau_\mathbf{C}}; \code{\link{tauCOP}}) by
+where \eqn{\alpha, \beta \ge 0} and \eqn{\alpha + \beta \le 1}. The \enc{Fréchet}{Frechet} Family copulas are \emph{convex combinations} of the fundamental copulas \eqn{\mathbf{W}} (\emph{\enc{Fréchet}{Frechet}--Hoeffding lower bound copula}; \code{\link{W}}), \eqn{\mathbf{\Pi}} (independence; \code{\link{P}}), and \eqn{\mathbf{M}} (\emph{\enc{Fréchet}{Frechet}--Hoeffding upper bound copula}; \code{\link{M}}). The copula is \emph{comprehensive} because both \eqn{\mathbf{W}} and \eqn{\mathbf{M}} can be obtained. The parameters are readily estimated using the \emph{Spearman Rho} (\eqn{\rho_\mathbf{C}}; \code{\link{rhoCOP}}) and \emph{Kendall Tau} (\eqn{\tau_\mathbf{C}}; \code{\link{tauCOP}}) by
 
 \deqn{\tau_\mathbf{C} = \frac{(\alpha - \beta)(\alpha + \beta + 2)}{3}\mbox{\ and\ } \rho_\mathbf{C} = \alpha - \beta\mbox{.}}
 

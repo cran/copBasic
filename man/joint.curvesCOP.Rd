@@ -45,11 +45,11 @@ The \emph{Gumbel--Hougaard} copula (\code{\link{GHcop}}) and a reversed Gumbel--
   "rGHcop" <- function(u,v, ...) { u + v - 1 + GHcop(1-u, 1-v, ...) }
   para <- list(alpha=0.16, beta=0.67, cop1 =GHcop, cop2 =rGHcop,
                                       para1=4.5,   para2=2.2)
-  tau     <- tauCOP(    cop=composite2COP, para=para) # Tau     = 0.351219
-  joeskew <- joeskewCOP(cop=composite2COP, para=para) # Joeskew = 0.005266
+  tau    <- tauCOP(    cop=composite2COP, para=para) # Tau    = 0.351219
+  nuskew <- nuskewCOP(cop=composite2COP, para=para)  # Nuskew = 0.084262
   UV <- simCOP(n=1000,  cop=composite2COP, para=para, snv=TRUE)
 }
-The code also computed \emph{Kendall's Tau} (\code{\link{tauCOP}}) and \emph{Joe's Bivariate Skewness} (\code{\link{joeskewCOP}}) and the results are shown. The code finishes with a simulation by \code{\link{simCOP}} of the copula composition just for reference.
+The code also computed the \emph{Kendall Tau} (\code{\link{tauCOP}}) and \emph{Nu-Skew} (\code{\link{nuskewCOP}}) and the results shown. The code finishes with a simulation by \code{\link{simCOP}} of the copula composition just for reference.
 
 Next, we compute and plot the joint probability curves. The \code{tol}erance for the \code{uniroot} calls is reset from \R's defaults because slight wooble in the numerical solutions exists otherwise.  The \code{AND} and \code{OR} \code{lists} each provide \code{data.frame}s from which successive graphic calls plot the lines. The second \code{plot()} call is commented out so that both sets of joint probability curves are drawn on the same plot.
 \preformatted{

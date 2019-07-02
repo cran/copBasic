@@ -43,24 +43,24 @@ lmrB <- lmomco::vec2lmom(c(3.77, 0.475, -0.1377, 0.08280))
 Tau <- 0.45 #  Kendall's Tau between A and B.
 # Suppose that the F=0.99 for either A and B provides a common risk level when they
 # are considered in isolation. But what if A and B are rivers that join and joint
-# F=0.99 at their union is of interest?
-F <- 0.99
+# FF=0.99 at their union is of interest?
+FF <- 0.99
 parA   <- lmomco::lmom2par(lmrA, type="kap")
 parB   <- lmomco::lmom2par(lmrB, type="kap")
-EventA <- lmomco::qlmomco(F, parA)
-EventB <- lmomco::qlmomco(F, parB)
+EventA <- lmomco::qlmomco(FF, parA)
+EventB <- lmomco::qlmomco(FF, parB)
 ApB <- 10^(EventA) + 10^(EventB) # Purely an additive conceptualization
-# The F=0.99 event is assumed to occur simultaneously on both streams, which is
+# The FF=0.99 event is assumed to occur simultaneously on both streams, which is
 # equivalent to saying that the correlation between the two is absolute 1-to-1.
 
 # Now consider including the association as measured by Kendall Tau:
-Fjoint  <- diagCOPatf(F, cop=GHcop, para=GHcop(tau=Tau)$para)
+Fjoint  <- diagCOPatf(FF, cop=GHcop, para=GHcop(tau=Tau)$para)
 EventAj <- lmomco::qlmomco(Fjoint, parA)
 EventBj <- lmomco::qlmomco(Fjoint, parB)
 AcB <- 10^(EventAj) + 10^(EventBj) # Joint probability 0.99 at the union
 
 # Now consider the association if the streams are INDEPENDENT:
-Fjoint  <- diagCOPatf(F, cop=GHcop, para=GHcop(tau=0)$para)
+Fjoint  <- diagCOPatf(FF, cop=GHcop, para=GHcop(tau=0)$para)
 EventAj <- lmomco::qlmomco(Fjoint, parA)
 EventBj <- lmomco::qlmomco(Fjoint, parB)
 AiB <- 10^(EventAj) + 10^(EventBj) # Joint probability 0.99 at the union

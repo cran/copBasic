@@ -5,13 +5,13 @@
 \description{
 \emph{SYMMETRIC GUMBEL-HOUGAARD}---The \emph{Gumbel--Hougaard copula} (Nelsen, 2006, pp. 118 and 164) is
 \deqn{\mathbf{C}_{\Theta}(u,v) = \mathbf{GH}(u,v) = \mathrm{exp}\{-[(-\log u)^\Theta+(-\log v)^\Theta]^{1/\Theta}\}\mbox{,}}
-where \eqn{\Theta \in [1 , \infty)}. The copula here is a \emph{bivariate extreme value copula} (\eqn{BEV}). The parameter \eqn{\Theta} is readily estimated using \emph{Kendall's Tau} (say a sample version \eqn{\hat\tau}) where the \eqn{\tau} of the copula (\eqn{\tau_\mathbf{C}}) is defined as
+where \eqn{\Theta \in [1 , \infty)}. The copula here is a \emph{bivariate extreme value copula} (\eqn{BEV}). The parameter \eqn{\Theta} is readily estimated using a \emph{Kendall Tau} (say a sample version \eqn{\hat\tau}) where the \eqn{\tau} of the copula (\eqn{\tau_\mathbf{C}}) is defined as
 \deqn{\tau_\mathbf{C} = \frac{\Theta - 1}{\Theta} \rightarrow \Theta = \frac{1}{1-\tau}\mbox{.}}
 The copula is readily extended into \eqn{d} dimensions by
 \deqn{\mathbf{C}_{\Theta}(u,v) = \mathrm{exp}\{-[(-\log u_1)^\Theta+\cdots+(-\log u_d)^\Theta]^{1/\Theta}\}\mbox{.}}
 However, such an implementation is not available in the \pkg{copBasic} package.
 
-Every Gumbel--Hougaard copula is a \emph{multivariate extreme value} (\eqn{MEV}) copula, and hence useful in analysis of extreme value distributions. The Gumbel--Hougaard copula is the \emph{only} Archimedean \eqn{MEV} (Salvadori \emph{et al.}, 2007, p. 192). The Gumbel--Hougaard copula has respective \emph{lower-} and \emph{upper-tail dependency} parameters of \eqn{\lambda^L = 0} and \eqn{\lambda^U = 2 - 2^{1/\Theta}}, respectively. Nelsen (2006, p. 96) shows that \eqn{\mathbf{C}^r_\theta(u^{1/r}, v^{1/r}) = \mathbf{C}_\theta(u,v)} so that every Gumbel--Hougaard copula is \emph{max-stable}.  A \emph{dependence measure} uniquely defined for \eqn{BEV} copulas is shown under \code{\link{rhobevCOP}}.
+Every Gumbel--Hougaard copula is a \emph{multivariate extreme value} (\eqn{MEV}) copula, and hence useful in analysis of extreme value distributions. The Gumbel--Hougaard copula is the \emph{only} Archimedean \eqn{MEV} (Salvadori \emph{et al.}, 2007, p. 192). The Gumbel--Hougaard copula has respective \emph{lower-} and \emph{upper-tail dependency} parameters of \eqn{\lambda^L = 0} and \eqn{\lambda^U = 2 - 2^{1/\Theta}}, respectively. Nelsen (2006, p. 96) shows that \eqn{\mathbf{C}^r_\theta(u^{1/r}, v^{1/r}) = \mathbf{C}_\theta(u,v)} so that every Gumbel--Hougaard copula is has a property known as \emph{max-stable}.  A \emph{dependence measure} uniquely defined for \eqn{BEV} copulas is shown under \code{\link{rhobevCOP}}.
 
 A comparison through simulation between Gumbel--Hougaard implementations by the \R packages \pkg{acopula}, \pkg{copBasic}, \pkg{copula}, and \pkg{Gumbel} is shown in the \bold{Examples} section. At least three divergent techniques for random variate generation are used amongst those packages. The simulations also use \pkg{copBasic}-style random variate generation  (conditional simulation) using an analytical-numerical hybrid solution to conditional inverse described in the \pkg{Note} section.
 
@@ -25,7 +25,7 @@ A comparison through simulation between Gumbel--Hougaard implementations by the 
 where \eqn{\beta_1 \ge 1} and \eqn{\beta_2 > 0}. Both parameters controls the general level of association, whereas parameter \eqn{\beta_2} can be thought of as controling left-tail dependency (\code{\link{taildepCOP}}, \eqn{\lambda^{[U\mid L]}_{(\beta_1, \beta_2)}}; \emph{e.g.}
 \eqn{\lambda^U_{(1.5; \beta_2)} = 0.413} for all \eqn{\beta_2} but
 \eqn{\lambda^L_{(1.5; 0.2)} = 0.811} and
-\eqn{\lambda^L_{(1.5; 2.2)} = 0.099}. Brahimi \emph{et al.} (2015) report a \emph{Spearman's Rho} (\code{\link{rhoCOP}}) for a \eqn{\mathbf{GH}_{(1.5, 0.2)}(u,v)} is 0.5, which is readily confirmed in \pkg{copBasic} by the function call \code{rhoCOP(cop=GHcop, para=c(1.5,0.2))}. The two-parameter \eqn{\mathbf{GH}} is triggered if the length of the \code{para} argument is exactly 2.
+\eqn{\lambda^L_{(1.5; 2.2)} = 0.099}. Brahimi \emph{et al.} (2015) report a \emph{Spearman Rho} (\code{\link{rhoCOP}}) for a \eqn{\mathbf{GH}_{(1.5, 0.2)}(u,v)} is 0.5, which is readily confirmed in \pkg{copBasic} by the function call \code{rhoCOP(cop=GHcop, para=c(1.5,0.2))}. The two-parameter \eqn{\mathbf{GH}} is triggered if the length of the \code{para} argument is exactly 2.
 
 \emph{ASYMMETRIC GUMBEL--HOUGAARD}---An asymmetric version of the copula is readily constructed (Joe, 2014, p. 185--186) into a three-parameter version with \emph{Marshall--Olkin} copulas on the boundaries:
 \deqn{\mathbf{C}(u,v; \Theta, \pi_2, \pi_3) = \mathrm{exp}[-\mathcal{A}(-\log u, -\log v; \Theta, \pi_2, \pi_3)]\mbox{,}}
@@ -42,7 +42,7 @@ GHcop(u, v, para=NULL, tau=NULL, tau.big=0.985, cor=NULL, ...)
   \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction;}
   \item{v}{Nonexceedance probability \eqn{v} in the \eqn{Y} direction;}
   \item{para}{A vector (single element or triplet) of parameters---the \eqn{\Theta} parameter of the copula;}
-  \item{tau}{Kendall's Tau \eqn{\tau} from which to estimate the parameter \eqn{\Theta};}
+  \item{tau}{Kendall Tau \eqn{\tau} from which to estimate the parameter \eqn{\Theta};}
   \item{tau.big}{The largest value for \eqn{\tau_\mathbf{C}} prior to switching to the \eqn{\mathbf{M}} copula applicable to the the symmetric version of this copula;}
   \item{cor}{A \pkg{copBasic} syntax for \dQuote{the correlation coefficient} suitable for the copula---a synonym for \code{tau}; and}
   \item{...}{Additional arguments to pass.}
@@ -66,7 +66,7 @@ Numerical experiments seem to indicate for \eqn{\tau_\mathbf{C} > 0.985} that fa
 }
 that can be tested by the following
 \preformatted{
-  Theta <- 1/(1-.15) # a Kendall's Tau of 0.15
+  Theta <- 1/(1-.15) # a Kendall Tau of 0.15
   GHcop.derCOP(     0.5, 0.75, para=Theta) # 0.7787597
   derCOP(cop=GHcop, 0.5, 0.75, para=Theta) # 0.7787597
   # The next two nearly return same value but conversion to GRVs

@@ -48,7 +48,7 @@ The \code{distTn} defined below and is dependent on the \code{\link{copBasic.fit
   }
 }
 
-Let us imagine an \eqn{n=400} sample size of a \emph{Galambos copula} (\eqn{\mathbf{GL}(u,v)}; \code{\link{GLcop}}) and then treat the \emph{Plackett copula} (\eqn{\mathbf{PL}(u,v)}; \code{\link{PLACKETTcop}}) as the proper (chosen) model. The estimated parameter by the sample \emph{Blomqvist's Beta} (\eqn{\hat\beta_\mathbf{C} = 0.64} using the \code{\link{blomCOP}} function called from within \code{copBasic.fitpara.beta} is then placed in variable \code{para}. The \eqn{\hat\beta_\mathbf{C}} is not the most efficient estimator but for purposes here, but it is fast.  The parameter for the given seed is estimated as about \eqn{\mathbf{PL}(\hat\Theta{=}20.75)}.
+Let us imagine an \eqn{n=400} sample size of a \emph{Galambos copula} (\eqn{\mathbf{GL}(u,v)}; \code{\link{GLcop}}) and then treat the \emph{Plackett copula} (\eqn{\mathbf{PL}(u,v)}; \code{\link{PLACKETTcop}}) as the proper (chosen) model. The estimated parameter by the sample \emph{Blomqvist Beta} of \eqn{\hat\beta_\mathbf{C} = 0.64} using the \code{\link{blomCOP}} function called from within \code{copBasic.fitpara.beta} is then placed in variable \code{para}. The \eqn{\hat\beta_\mathbf{C}} is not the most efficient estimator but for purposes here, but it is fast.  The parameter for the given seed is estimated as about \eqn{\mathbf{PL}(\hat\Theta{=}20.75)}.
 \preformatted{
   n <- 400 # sample size
   correctCopula <- GLcop; set.seed(1596)
@@ -60,7 +60,7 @@ Let us imagine an \eqn{n=400} sample size of a \emph{Galambos copula} (\eqn{\mat
                                 interval=c(.001,200), cop=chosenCopula )
 }
 
-Next, compute the sample \eqn{\hat T_n = 0.063} from \code{sampleUV}. The distribution of the \eqn{T_n} is estimated using the \code{distTn} function, and an estimate of the \eqn{\hat T_n} p-value is in turn estimated. A large simulation run \eqn{N = 1000} for a sample of size of \eqn{n = 400} is selected. The \code{distTn} function internally will simulated for \code{N}-replicates from the assumed parent and estimate the parameter. A computation run yields a p-value of approximately 0.01 (depending upon the seed) and is statistically significant at an alpha of 0.05, and therefore, the \eqn{\mathbf{PL}(\Theta{=}20.75)} should be rejected for fitting to these data.
+Next, compute the sample \eqn{\hat T_n = 0.063} from \code{sampleUV}. The distribution of the \eqn{T_n} is estimated using the \code{distTn} function, and an estimate of the \eqn{\hat T_n} p-value is in turn estimated. A large simulation run \eqn{N = 1{,}000} for a sample of size of \eqn{n = 400} is selected. The \code{distTn} function internally will simulated for \code{N}-replicates from the assumed parent and estimate the parameter. A computation run yields a p-value of approximately 0.01 (depending upon the seed) and is statistically significant at an alpha of 0.05, and therefore, the \eqn{\mathbf{PL}(\Theta{=}20.75)} should be rejected for fitting to these data.
 \preformatted{
   sampleTn   <- statTn(sampleUV, cop=chosenCopula, para=para)
   Tns        <- distTn(n=n,      cop=chosenCopula, para=para,
@@ -76,9 +76,9 @@ The demonstration is furthered with a check on the \emph{Kullback--Leibler sampl
                      cop2=chosenCopula,  para2=para)$message
   # [1] "Copula 1 has better fit than Copula 2 at 100x(1-alpha) level"
 }
-The available sample size \eqn{n = 400} is then about four times larger than \eqn{n_{f\!g}} so the sample size \eqn{n} should be sufficient to judge goodness-of-fit. This is a large value but with the sample variability of \eqn{\hat\beta_\mathbf{C}}, it seems that other measures of association such as \emph{Spearman's Rho} (\code{\link{rhoCOP}}) or \emph{Kendall's Tau} (\code{\link{tauCOP}}) and others cross-referenced therein might be preferable.
+The available sample size \eqn{n = 400} is then about four times larger than \eqn{n_{f\!g}} so the sample size \eqn{n} should be sufficient to judge goodness-of-fit. This is a large value but with the sample variability of \eqn{\hat\beta_\mathbf{C}}, it seems that other measures of association such as \emph{Spearman Rho} (\code{\link{rhoCOP}}) or \emph{Kendall Tau} (\code{\link{tauCOP}}) and others cross-referenced therein might be preferable.
 
-The prior conclusion is supported by the p-value of the \eqn{\hat T_n} being about 0.01, which suggests that the \eqn{\mathbf{PL}(u,v)} is not a good model of the available sample data in \code{sampleUV}. Lastly, these judgments are consistent with \emph{Vuoug's Procedure} performed by the \code{\link{vuongCOP}} function, which reports at the 5-percent significance level that \dQuote{copula number 1}---in this case, the \eqn{\mathbf{GL}(u,v)}---has the better fit, and this is obviously consistent with the problem setup because the random sample for investigation was drawn from the Galambos coupla (the parent form).
+The prior conclusion is supported by the p-value of the \eqn{\hat T_n} being about 0.01, which suggests that the \eqn{\mathbf{PL}(u,v)} is not a good model of the available sample data in \code{sampleUV}. Lastly, these judgments are consistent with the \emph{Vuoug Procedure} performed by the \code{\link{vuongCOP}} function, which reports at the 5-percent significance level that \dQuote{copula number 1}---in this case, the \eqn{\mathbf{GL}(u,v)}---has the better fit, and this is obviously consistent with the problem setup because the random sample for investigation was drawn from the Galambos coupla (the parent form).
 }
 \references{
 Genest, C., Kojadinovic, I., \enc{Nešlehová}{Neslehova}, J., and Yan, J., 2011, A goodness-of-fit test for bivariate extreme-value copulas: Bernoulli, v. 17, no. 1, pp. 253--275.

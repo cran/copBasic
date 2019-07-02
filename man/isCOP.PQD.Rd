@@ -14,7 +14,7 @@ The concept of negatively quadrant dependency (NQD) is the reverse: \eqn{\mathbf
 
 Conceptually, PQD is related to the probability that two random variables are simultaneously small (or simultaneously large) is at least as great as it would be if they were \emph{independent}. The graph of a PQD copula lies on or above the copulatic surface of the \emph{independence copula} \eqn{\mathbf{\Pi}}, and conversely a NQD copula lies on or below \eqn{\mathbf{\Pi}}.
 
-Albeit a \dQuote{global} property of a copula, there can be \dQuote{local} variations in the PQD/NQD state. Points in \eqn{\mathcal{I}^2} where \eqn{\mathbf{C}(u,v) - \mathbf{\Pi} \ge 0} are locally PQD, whereas points in \eqn{\mathcal{I}^2} where \eqn{\mathbf{C}(u,v) - \mathbf{\Pi} \le 0} and locally NQD. Lastly, readers are directed to the last examples in \code{\link{wolfCOP}} because as those examples involve the copulatic difference from independence \eqn{\mathbf{C}(u,v) - \mathbf{\Pi} = \mathbf{C}(u,v) - \mathbf{\Pi}} with 3D renderings.
+Albeit a \dQuote{global} property of a copula, there can be \dQuote{local} variations in the PQD/NQD state. Points in \eqn{\mathcal{I}^2} where \eqn{\mathbf{C}(u,v) - \mathbf{\Pi} \ge 0} are locally PQD, whereas points in \eqn{\mathcal{I}^2} where \eqn{\mathbf{C}(u,v) - \mathbf{\Pi} \le 0} and locally NQD. Lastly, readers are directed to the last examples in \code{\link{wolfCOP}} because as those examples involve the copulatic difference from independence \eqn{\mathbf{C}(u,v) - \mathbf{\Pi} = \mathbf{C}(u,v) - \mathbf{\Pi}} with 3-D renderings.
 }
 \usage{
 isCOP.PQD(cop=NULL, para=NULL, uv=NULL, empirical=FALSE, verbose=TRUE, ...)
@@ -23,7 +23,7 @@ isCOP.PQD(cop=NULL, para=NULL, uv=NULL, empirical=FALSE, verbose=TRUE, ...)
   \item{cop}{A copula function;}
   \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula;}
   \item{uv}{An optional \R \code{data.frame} of \eqn{U} and \eqn{V} nonexceedance probabilities \eqn{u} and \eqn{v} for the random variables \eqn{X} and \eqn{Y}. This argument triggers different value return behavior (see \bold{Value});}
-  \item{empirical}{A logical that will use sample versions for \emph{Gini's Gamma}, \emph{Spearman's Rho}, and \emph{Kendall's Tau}. This feature is \emph{only} applicable if the copula is empirical and therefore the \code{para} argument is the \code{data.frame} of \eqn{u} and \eqn{v}, which will be passed along to sample version functions instead of copula (see \bold{Note});}
+  \item{empirical}{A logical that will use sample versions for \emph{Gini Gamma}, \emph{Spearman Rho}, and \emph{Kendall Tau}. This feature is \emph{only} applicable if the copula is empirical and therefore the \code{para} argument is the \code{data.frame} of \eqn{u} and \eqn{v}, which will be passed along to sample version functions instead of copula (see \bold{Note});}
   \item{verbose}{A logical that will report the four concordance measures; and}
   \item{...}{Additional arguments to pass, which are then passed to subordinate functions.}
 }

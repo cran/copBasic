@@ -10,7 +10,7 @@ where \eqn{\Theta \in [0, \infty)}. As \eqn{\Theta \rightarrow 0^{+}}, the copul
 }
 \usage{
 PARETOcop(u, v, para=NULL, ...)
-PAcop(u, v, para=NULL, ...)
+    PAcop(u, v, para=NULL, ...)
 }
 \arguments{
   \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction;}

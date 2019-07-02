@@ -1,13 +1,13 @@
 \encoding{utf8}
 \name{blomCOP}
 \alias{blomCOP}
-\title{ The Blomqvist's Beta of a Copula }
+\title{ The Blomqvist Beta of a Copula }
 \description{
-Compute the \emph{Blomqvist's Beta} \eqn{\beta_\mathbf{C}} of a copula (Nelsen, 2006, p. 182), which is defined at the middle or center of \eqn{\mathcal{I}^2} as
+Compute the \emph{Blomqvist Beta} \eqn{\beta_\mathbf{C}} of a copula (Nelsen, 2006, p. 182), which is defined at the middle or center of \eqn{\mathcal{I}^2} as
 
 \deqn{\beta_\mathbf{C} = 4\times\mathbf{C}\biggl(\frac{1}{2},\frac{1}{2}\biggr) - 1\mbox{,}}
 
-where the \eqn{u = v = 1/2} and thus shows that \eqn{\beta_\mathbf{C}} is based on the \emph{median joint probability}. Blomqvist's Beta is also called the \emph{medial correlation coefficient}. Nelsen also reports that \dQuote{although, Blomqvist's Beta depends only on the copula only through its value at the center of \eqn{\mathcal{I}^2}, but that [\eqn{\beta_\mathbf{C}}] nevertheless often provides an accurate approximation to \emph{Spearman's Rho} \code{\link{rhoCOP}} and \emph{Kendall's Tau} \code{\link{tauCOP}}.}  Kendall's Tau \eqn{\tau_\mathbf{C}}, \emph{Gini's Gamma} \eqn{\gamma_\mathbf{C}}, and Spearman's Rho \eqn{\rho_\mathbf{C}} in relation to \eqn{\beta_\mathbf{C}} satisfy the following inequalities (Nelsen, 2006, exer. 5.17, p. 185):
+where the \eqn{u = v = 1/2} and thus shows that \eqn{\beta_\mathbf{C}} is based on the \emph{median joint probability}. The Blomqvist Beta is also called the \emph{medial correlation coefficient}. Nelsen also reports that \dQuote{although, the Blomqvist Beta depends only on the copula only through its value at the center of \eqn{\mathcal{I}^2}, but that [\eqn{\beta_\mathbf{C}}] nevertheless often provides an accurate approximation to both \emph{Spearman Rho} \code{\link{rhoCOP}} and \emph{Kendall Tau} \code{\link{tauCOP}}.}  Kendall Tau \eqn{\tau_\mathbf{C}}, \emph{Gini Gamma} \eqn{\gamma_\mathbf{C}}, and Spearman Rho \eqn{\rho_\mathbf{C}} in relation to \eqn{\beta_\mathbf{C}} satisfy the following inequalities (Nelsen, 2006, exer. 5.17, p. 185):
 \deqn{\frac{1}{4}(1 + \beta_\mathbf{C})^2  - 1 \le \tau_\mathbf{C} \le 1 - \frac{1}{4}(1 - \beta_\mathbf{C})^2\mbox{,}}
 \deqn{\frac{3}{16}(1 + \beta_\mathbf{C})^3  - 1 \le \rho_\mathbf{C} \le 1 - \frac{3}{16}(1 - \beta_\mathbf{C})^3\mbox{, and}}
 \deqn{\frac{3}{8}(1 + \beta_\mathbf{C})^2  - 1 \le \tau_\mathbf{C} \le 1 - \frac{3}{8}(1 - \beta_\mathbf{C})^2\mbox{.}}

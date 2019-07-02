@@ -5,6 +5,10 @@ function(empgrid=NULL, ...) {
     warning("The gridded empirical copula (say from EMPIRgrid) is NULL")
     return(NULL)
   }
+  if(! is.list(empgrid)) {
+    warning("The gridded empirical copula is expected as a list from EMPIRgrid")
+    return(NULL)
+  }
 
   deluv <- empgrid$deluv
   empcop <- empgrid$empcop

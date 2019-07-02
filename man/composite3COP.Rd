@@ -9,7 +9,7 @@ The \emph{(extended) composition of two copulas}  (Salvadori \emph{et al.}, 2006
                               \mathbf{A}([u^{1-\kappa}]^\alpha,    [v^{1-\gamma}]^\beta) \cdot
                               \mathbf{B}([u^{1-\kappa}]^{1-\alpha},[v^{1-\gamma}]^{1-\beta})\mbox{,}}
 
-defines a family of copulas \eqn{\mathbf{C}_{\alpha,\beta,\kappa,\gamma}} with \bold{four} \emph{compositing parameters} \eqn{\alpha,\beta,\kappa,\gamma \in \mathcal{I}:[0,1]}.
+defines a family of copulas \eqn{\mathbf{C}_{\alpha,\beta,\kappa,\gamma}} with \bold{four} \emph{compositing parameters} \eqn{\alpha,\beta,\kappa,\gamma \in (0,1)}.
 
 It is important to stress that copulas \eqn{\mathbf{A}_{\Theta_A}} and \eqn{\mathbf{B}_{\Theta_B}} can be of different families and each parameterized accordingly by the vectors of parameters \eqn{\Theta_A} and \eqn{\Theta_B}.
 }

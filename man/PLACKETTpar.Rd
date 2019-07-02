@@ -4,7 +4,7 @@
 \alias{PLpar}
 \title{ Estimate the Parameter of the Plackett Copula }
 \description{
-The parameter \eqn{\Theta} of the \emph{Plackett copula} (Nelsen, 2006, pp. 89--92) is related to \emph{Spearman's Rho} (\eqn{\rho_S \ne 1}, see \code{\link{rhoCOP}})
+The parameter \eqn{\Theta} of the \emph{Plackett copula} (Nelsen, 2006, pp. 89--92) is related to the \emph{Spearman Rho} (\eqn{\rho_S \ne 1}, see \code{\link{rhoCOP}})
 \deqn{\rho_S(\Theta) = \frac{\Theta + 1}{\Theta - 1} - \frac{2\Theta\log(\Theta)}{(\Theta - 1)^2}\mbox{.}}
 Alternatively the parameter can be estimated using a \emph{median-split estimator}, which is best shown as an algorithm. First, compute the two medians:
 \preformatted{
@@ -19,14 +19,14 @@ Finally, the median-split estimator of  \eqn{\Theta} is computed by
 Nelsen (2006, p. 92) and Salvadori \emph{et al.} (2007, p. 247) provide further details. The input values \code{x} and \code{y} are \emph{not used} for the median-split estimator if \emph{Spearman's Rho} (see \code{\link{rhoCOP}}) is provided by \code{rho}.
 }
 \usage{
-PLpar(x, y, rho=NULL, byrho=FALSE, cor=NULL, ...)
 PLACKETTpar(x, y, rho=NULL, byrho=FALSE, cor=NULL, ...)
+      PLpar(x, y, rho=NULL, byrho=FALSE, cor=NULL, ...)
 }
 \arguments{
   \item{x}{Vector of values for random variable \eqn{X};}
   \item{y}{Vector of values for random variable \eqn{Y};}
-  \item{rho}{Spearman's Rho and \code{byrho} is set to \code{TRUE} automatically;}
-  \item{byrho}{Should Spearman's Rho be used instead of the median-split estimator;}
+  \item{rho}{Spearman Rho and \code{byrho} is set to \code{TRUE} automatically;}
+  \item{byrho}{Should Spearman Rho be used instead of the median-split estimator;}
   \item{cor}{A \pkg{copBasic} syntax for \dQuote{the correlation coefficient} suitable for the copula---a synonym for \code{rho}; and}
   \item{...}{Additional arguments to pass.}
 }
@@ -34,7 +34,7 @@ PLACKETTpar(x, y, rho=NULL, byrho=FALSE, cor=NULL, ...)
   A value for the Plackett copula \eqn{\Theta} is returned.
 }
 \note{
-Evidently there \dQuote{does not appear to be a closed form for \eqn{\tau(\Theta)}} (Fredricks and Nelsen, 2007, p. 2147),  but given \eqn{\rho(\Theta)}, the equivalent \eqn{\tau(\Theta)} can be computed by either the \code{\link{tauCOP}} function or by approximation. One of the Examples sweeps through \eqn{\rho \mapsto [0,1; \Delta\rho{=}\delta]}, fits the Plackett \eqn{\theta(\rho)}, and then solves for Kendall's Tau \eqn{\tau(\theta)} using \code{\link{tauCOP}}. A polynomial is then fit between \eqn{\tau} and \eqn{\rho} to provide rapid conversion between \eqn{|\rho|} and \eqn{\tau}
+Evidently there \dQuote{does not appear to be a closed form for \eqn{\tau(\Theta)}} (Fredricks and Nelsen, 2007, p. 2147),  but given \eqn{\rho(\Theta)}, the equivalent \eqn{\tau(\Theta)} can be computed by either the \code{\link{tauCOP}} function or by approximation. One of the Examples sweeps through \eqn{\rho \mapsto [0,1; \Delta\rho{=}\delta]}, fits the Plackett \eqn{\theta(\rho)}, and then solves for Kendall Tau \eqn{\tau(\theta)} using \code{\link{tauCOP}}. A polynomial is then fit between \eqn{\tau} and \eqn{\rho} to provide rapid conversion between \eqn{|\rho|} and \eqn{\tau}
 where the residual standard error is 0.0005705, adjusted R-squared is \eqn{\approx 1}, the maximum residual is \eqn{\epsilon < 0.006}. Because of symmetry, it is only necessary to fit positive association and reflect the result by the sign of \eqn{\rho}. This polynomial is from the \code{Examples} is
 \preformatted{
   rho <- 0.920698
@@ -74,7 +74,7 @@ tauCOP(cop=PLcop, para=PLpar(rho=-0.15, by.rho=TRUE))
 \dontrun{
 RHOS <- seq(0,0.990, by=0.002); TAUS <- rep(NA, length(RHOS))
 for(i in 1:length(RHOS)) {
-   #message("Spearman's Rho: ", RHOS[i])
+   #message("Spearman Rho: ", RHOS[i])
    theta <- PLACKETTpar(rho=RHOS[i], by.rho=TRUE); tau <- NA
    try(tau <- tauCOP(cop=PLACKETTcop, para=theta), silent=TRUE)
    TAUS[i] <- ifelse(is.null(tau), NA, tau)

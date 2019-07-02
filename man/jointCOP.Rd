@@ -37,7 +37,7 @@ jointCOP(t, cop=NULL, para=NULL, type=c("and", "or"), ...)
 }
 Letting \code{JP} equal 0.99356, which forces the required acceptance of 500 losses for the design has conditions of \code{UV$U > JP} \bold{or} \code{UV$V > JP} as well as condition of \code{UV$U > JP} \bold{and} \code{UV$V > JP}. These three conditions are captured using the structure of the \R code listed. Up until now, manual searching resulted in a value for \code{JP} equaling 0.99356, which produces the 500 count losses (acceptable losses). Thus, \code{JP} is a marginal bivariate probability (in this case equality between \eqn{U_{\mathrm{crit.}} = V_{\mathrm{crit.}}} declared) necessary to attain a 99th percentile joint protection from loss. The magnitude for either \eqn{U} or \eqn{V} thus must exceed the 99th percentile, and this is what the code shows with 799 losses.
 
-It is important to consider that unless \eqn{U} and \eqn{V} are in perfect positive correlation (\emph{e.g.} \eqn{\mathbf{M}(u,v)}, \code{\link{M}}, \emph{\enc{Fréchet}{Frechet}--Hoeffding upper bound copula}), that protection from loss needs to be higher than 0.99 if the marginal risk is set at that level. Continuing, if the 99th percentile is the 100-year event, then design criteria should be about 155 years instead [\code{lmomco::prob2T(0.99356)}]. The user can readily stay with the switch to perfect independence with the \eqn{\mathbf{GH}(u,v)} copula with \eqn{\Theta = 1} and produce quite different results or extreme correlation with say \eqn{\Theta > 20}.
+It is important to consider that unless \eqn{U} and \eqn{V} are in perfect positive correlation (\emph{e.g.} \eqn{\mathbf{M}(u,v)}, \code{\link{M}}, \emph{\enc{Fréchet}{Frechet}--Hoeffding upper bound copula}), that protection from loss needs to be higher than 0.99 if the marginal risk is set at that level. Continuing, if the 99th percentile is the 100-year event, then design criteria should be about 155 years instead [\code{lmomco::prob2T(0.99356)}]. The user can readily see this with the switch to perfect independence with the \eqn{\mathbf{GH}(u,v)} copula with \eqn{\Theta = 1} and produce quite different results or extreme correlation with say \eqn{\Theta > 20}.
 
 To provide the protection for 500 exceedances in \eqn{n =} 50,000 trials and for purposes of demonstration, balance the protection between \eqn{U} and \eqn{V} by setting their probabilities equal, then the theoretical joint probability is
 \preformatted{
@@ -123,7 +123,7 @@ the vectorized conditional evaluations in \R. This first example concretely chan
           length(uv$U[ as.numeric(uv$U > PT) + as.numeric(uv$V > PT) >= 1 ]) })
   t.test(EX1a, mu=(1-EitherEvent) * n)
 }
-The expected count \eqn{E[}\code{EX1a}\eqn{] =} 5 and the simulation run yielded 5.058. The \code{t.test()} function in \R results in a statistically insignificant difference, and thus the result indistinguishable from the expectation. The following two example use a similar there. For sake of both code brevity and clarity, the examples here all restart the simulations at the expense of computation time.
+The expected count \eqn{E[}\code{EX1a}\eqn{] =} 5 and the simulation run yielded 5.058. The \code{t.test()} function in \R results in a statistically insignificant difference. The following two example use a similar there. For sake of both code brevity and clarity, the examples here all restart the simulations at the expense of computation time.
 \preformatted{
   set.seed(894234)
   EX1b <- sapply(1:nsim, function(i) {
@@ -141,7 +141,7 @@ Next, let us demonstrate the dual of a copula for mutually occurring events.
                 length(uv$U[uv$U > DU & uv$V > DU]) })
   t.test(EX2, mu=(1-MutualEvent) * n)
 }
-The expected count \eqn{E[}\code{EX2}\eqn{] =} 2.5 and the simulation run yielded 2.49. The \code{t.test()} again results in a statistically insignificant difference, and thus the result indistinguishable from the expectation.
+The expected count \eqn{E[}\code{EX2}\eqn{] =} 2.5 and the simulation run yielded 2.49. The \code{t.test()} again results in a statistically insignificant difference.
 
 
 Now the \eqn{U = V = 0.9873537} for the \dQuote{and} and \eqn{U = V = 0.9763951} for the \dQuote{or} are not equal marginal probabilities. Taking the larger of the two marginal probabilities, the actual joint protection from mutual event occurrance can be computed:

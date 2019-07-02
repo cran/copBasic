@@ -6,12 +6,12 @@
 The \emph{Ali--Mikhail--Haq copula} (Joe, 2014, p. 168) is
 \deqn{\mathbf{C}_{\Theta}(u,v) = \mathbf{AMH}(u,v) = \frac{uv}{1 - \Theta(1-u)(1-v)}\mbox{,}}
 where \eqn{\Theta \in [-1,+1)}, where the right boundary,
-\eqn{\Theta = 1}, can sometimes be considered valid according to \enc{Mächler}{Machler} (2014). The copula \eqn{\Theta \rightarrow 0} becomes the \emph{independence copula} (\eqn{\mathbf{\Pi}(u,v)}; \code{\link{P}}), and the parameter \eqn{\Theta} is readily computed from \emph{Kendall's Tau} (\code{\link{tauCOP}}) by
+\eqn{\Theta = 1}, can sometimes be considered valid according to \enc{Mächler}{Machler} (2014). The copula \eqn{\Theta \rightarrow 0} becomes the \emph{independence copula} (\eqn{\mathbf{\Pi}(u,v)}; \code{\link{P}}), and the parameter \eqn{\Theta} is readily computed from a \emph{Kendall Tau} (\code{\link{tauCOP}}) by
 \deqn{\tau_\mathbf{C} = \frac{3\Theta - 2}{3\Theta} -
                         \frac{2(1-\Theta)^2\log(1-\Theta)}{3\Theta^2}\mbox{,}}
 and \emph{Spearman Rho} (\code{\link{rhoCOP}}) by
 \deqn{\rho_\mathbf{C} = 12\biggl(\frac{\mathrm{dilog}(1-\Theta)\times(1+\Theta) - 2\log(1-\Theta) + 2\Theta\log(1-\Theta)-3\Theta}{\Theta^2}\biggl)\; -\; 3\mbox{,}}
-where \eqn{\mathrm{dilog}(x)} is the \emph{dilogarithm} function (\emph{Spence's function}):
+where \eqn{\mathrm{dilog}(x)} is the \emph{dilogarithm} function (the \emph{Spence function}):
 \deqn{\mathrm{dilog}(x) = \int_1^x \frac{\log(t)}{1-t}\, \mathrm{d}t\mbox{.}}
 The support of \eqn{\tau_\mathbf{C}} is \eqn{[(5 - 8\log(2))/3, 1/3] } \eqn{\approx} \eqn{[-0.1817258, 0.3333333]} and the \eqn{\rho_\mathbf{C}} is \eqn{[33 - 48\log(2), 4\pi^2 - 39]} \eqn{\approx} \eqn{[-0.2710647, 0.4784176]}, which shows that this copula has a limited range of dependency.
 }
@@ -69,7 +69,7 @@ sum(sapply(100:1,function(k) exp(log(3)+k*log(t)-2*lchoose(k+2,2))))
 # 0.4070369 (see Note, very many tens of terms are needed) }
 
 \dontrun{
-layout(matrix(1:2,byrow=TRUE)) # Note Kendall's Tau same on reversal.
+layout(matrix(1:2,byrow=TRUE)) # Note Kendall Tau is same on reversal.
 UVn <- simCOP(3560, cop=AMHcop, para=c(-0.9, "FALSE" ), col=4)
 mtext("Normal definition [default]") # '2nd' parameter could be skipped
 UVr <- simCOP(3560, cop=AMHcop, para=c(-0.9, "TRUE"),   col=2)
@@ -82,4 +82,5 @@ AMHcop(UVr[,1], UVr[,2])$tau # tauCOP(AMHcop, para=-0.9) is theoretically. }
 \keyword{copula}
 \concept{Ali-Mikhail-Haq copula}
 \keyword{package copula (comparison to)}
+\keyword{Spence function}
 

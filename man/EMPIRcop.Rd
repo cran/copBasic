@@ -10,22 +10,22 @@ The \emph{bivariate empirical copula} (Nelsen, 2006, p. 219) for a bivariate sam
 where \eqn{x_{(i)}} and \eqn{y_{(i)}}, \eqn{1 \le i,j \le n} or expressed as
 \deqn{\mathbf{C}_n\biggl(\frac{i}{n}, \frac{j}{n}\biggr) =
      \frac{1}{n}\sum_{i=1}^n \mathbf{1}\biggl(\frac{R_i}{n} \le u_i, \frac{S_i}{n} \le v_i \biggr)\mbox{,}}
-where \eqn{R_i} and \eqn{S_i} are ranks of the data for \eqn{U} and \eqn{V}, and \eqn{\mathbf{1}(.)} is an \emph{indicator function} scoring 1 if condition is true otherwise zero. Using more generic notation, the empirical copula can be defined by
+where \eqn{R_i} and \eqn{S_i} are ranks of the data for \eqn{U} and \eqn{V}, and \eqn{\mathbf{1}(.)} is an \emph{indicator function} that score 1 if condition is true otherwise scoring zero. Using more generic notation, the empirical copula can be defined by
 \deqn{\mathbf{C}_{n}(u,v) =
      \frac{1}{n}\sum_{i=1}^n \mathbf{1}\bigl(u^\mathrm{obs}_{i} \le u_i, v^\mathrm{obs}_{i} \le v_i \bigr)\mbox{,}}
-where \eqn{u^\mathrm{obs}} and \eqn{v^\mathrm{obs}} are thus sometype of nonparametric nonexceedance probabilities based on counts of the underlying data expressed in probabilities.
+where \eqn{u^\mathrm{obs}} and \eqn{v^\mathrm{obs}} are thus some type of nonparametric nonexceedance probabilities based on counts of the underlying data expressed in probabilities.
 
 
 \emph{Hazen Empirical Copula}---The \dQuote{Hazen form} of the empirical copula is
 \deqn{\mathbf{C}^\mathcal{H}_{n}(u,v) =
      \frac{1}{n}\sum_{i=1}^n \mathbf{1}\biggl(\frac{R_i - 0.5}{n} \le u_i, \frac{S_i - 0.5}{n} \le v_i \biggr)\mbox{,}}
-which can be triggered by \code{ctype="hazen"}. This form is named for this package because of directly similarity of the \emph{Hazen plotting position} to the definition. Joe (2014, pp. 247--248) uses this form. Joe continues by saying \dQuote{[the] adjustment of the uniform score [\eqn{(R - 0.5/n]}] could be done in an alternative form, but there is [asymptotic] equivalence[, and that] \eqn{\mathbf{C}^\mathcal{H}_{n}} puts mass of \eqn{n^{-1}} at the tuples \eqn{([r_{i1} - 0.5/n, \ldots, [r_{id} - 0.5]/n)} for \eqn{i = 1, \ldots, n}.} A footnote by Joe (2014) says that \dQuote{the conversion [\eqn{R/(n+1)}] is commonly used for the empirical copula.} This later form is the \dQuote{Weibull form} described next. Joe's preference for the Hazen form is so that the sum of squared normal scores is closer to unity for large \eqn{n} than attained by the Weibull form.
+which can be triggered by \code{ctype="hazen"}. This form is named for this package because of direct similarity of the \emph{Hazen plotting position} to the above definition. Joe (2014, pp. 247--248) uses the Hazen form. Joe continues by saying \dQuote{[the] adjustment of the uniform score [\eqn{(R - 0.5)/n]}] could be done in an alternative form, but there is [asymptotic] equivalence[, and that] \eqn{\mathbf{C}^\mathcal{H}_{n}} puts mass of \eqn{n^{-1}} at the tuples \eqn{([r_{i1} - 0.5]/n, \ldots, [r_{id} - 0.5]/n)} for \eqn{i = 1, \ldots, n}.} A footnote by Joe (2014) says that \dQuote{the conversion [\eqn{R/(n+1)}] is commonly used for the empirical copula.} This later form is the \dQuote{Weibull form} described next. Joe's preference for the Hazen form is so that the sum of squared normal scores is closer to unity for large \eqn{n} than such a sum would be attained using the Weibull form.
 
 
 \emph{Weibull Empirical Copula}---The \dQuote{Weibull form} of the empirical copula is
 \deqn{\mathbf{C}^\mathcal{W}_{n}(u,v) =
      \frac{1}{n}\sum_{i=1}^n \mathbf{1}\biggl(\frac{R_i}{n+1} \le u_i, \frac{S_i}{n+1} \le v_i \biggr)\mbox{,}}
-which can be triggered by \code{ctype="weibull"}. This form is named for this package because of direct similarity of the \emph{Hazen plotting position} to the definition, and this form is the default (see argument description).
+which can be triggered by \code{ctype="weibull"}. This form is named for this package because of direct similarity of the \emph{Weibull plotting position} to the definition, and this form is the default (see argument description).
 
 \emph{Bernstein Empirical Copula}---The empirical copula can be extended nonparametrically as the \emph{Bernstein empirical copula} (\enc{Hernández-Maldonado}{Hernandez-Maldonado}, \enc{Díaz-Viera}{Diaz-Viera}, and Erdely, 2012) and is formulated as
 
@@ -34,7 +34,7 @@ where the individual \emph{Bernstein weights} \eqn{\eta(i,j)} for the \eqn{k}th 
 
 \deqn{\eta(i,j; u,v) = {n \choose i} u^i (1-u)^{n-i} \times {n \choose j} u^j (1-u)^{n-j}\mbox{.}}
 
-The Bernstein extension, albeit conceptually pure in its shuffling by binomial coefficients and left- and right-tail weightings, is CPU intensive as inspection of the equations above indicates a nest of four \code{for()} loops in \R. (The native \R code of \pkg{copBasic} uses the \code{sapply()} function in \R liberally for substantial but not a blazing fast speed increase.) The Bernstein extension results in a somewhat smoother surface of the empirical copula and can be triggered by \code{ctype="bernstein"}. Finally, the \emph{empirical copula frequency} can be defined (Nelson, 2006, p. 219) as
+The Bernstein extension, albeit conceptually pure in its shuffling by binomial coefficients and left- and right-tail weightings, is quite CPU intensive as inspection of the equations above indicates a nest of four \code{for()} loops in \R. (The native \R code of \pkg{copBasic} uses the \code{sapply()} function in \R liberally for substantial but not a blazing fast speed increase.) The Bernstein extension results in a smoother surface of the empirical copula and can be triggered by \code{ctype="bernstein"}. Finally, the \emph{empirical copula frequency} can be defined (Nelson, 2006, p. 219) as
 \deqn{\mathbf{c}_n(u, v) = \mathbf{C}_n\biggl(\frac{i}{n}, \frac{j}{n}\biggr) -
                            \mathbf{C}_n\biggl(\frac{i-1}{n}, \frac{j}{n}\biggr) -
                            \mathbf{C}_n\biggl(\frac{i}{n}, \frac{j-1}{n}\biggr) +
@@ -56,9 +56,9 @@ EMPIRcop(u, v, para=NULL, ctype=c("weibull", "hazen", "1/n", "bernstein"),
   Value(s) for the copula are returned.
 }
 \note{
-Not all theoretical measures of copula dependence (both measures of association and measures of asymmetry), which use numerical integration by the \code{integrate()} function in \R, can be used for all empirical copulas because of \dQuote{divergent} integral errors; however, examples using \emph{Hoeffding's Phi} (\eqn{\Phi_\mathbf{C}}; \code{\link{hoefCOP}}) and shown under \bold{Examples}. Other measures of copula dependence include \code{\link{blomCOP}}, \code{\link{footCOP}}, \code{\link{giniCOP}}, \code{\link{rhoCOP}}, \code{\link{tauCOP}}, \code{\link{wolfCOP}}, \code{\link{joeskewCOP}}, and \code{\link{uvlmoms}}. Fortunately, each of these measures has a built-in sample estimator.
+Not all theoretical measures of copula dependence (both measures of association and measures of asymmetry), which use numerical integration by the \code{integrate()} function in \R, can be used for all empirical copulas because of \dQuote{divergent} integral errors; however, examples using \emph{Hoeffding's Phi} (\eqn{\Phi_\mathbf{C}}; \code{\link{hoefCOP}}) and shown under \bold{Examples}. Other measures of copula dependence include \code{\link{blomCOP}}, \code{\link{footCOP}}, \code{\link{giniCOP}}, \code{\link{rhoCOP}}, \code{\link{tauCOP}}, \code{\link{wolfCOP}}, \code{\link{joeskewCOP}}, and \code{\link{uvlmoms}}. Each of these measures fortunately has a built-in sample estimator.
 
-It is important to distinquish between a sample estimator and the estimation of the measure using the empirical copula itself via the \code{EMPIRcop} function. The sample estimators (triggered by the \code{as.sample} arguments for the measures) are reasonably fast and numerically preferred over using the empirical copula. Further, the generally slow numerical integrations for the theoretical definitions of these copula measures might have difficulties. Limited testing, however, suggests prevalence of numerical integration not erroring using the Bernstein extension of the empirical copula, which must be by-product of enhanced and sufficient smoothness for \R's default numerical integration to succeed.  Many of the measures have \code{brute} option for a brute-force numerical integration on a regular grid across the empirical copula---these are slow but should not trigger errors---still use the sample estimators instead.
+It is important to distinquish between a sample estimator and the estimation of the measure using the empirical copula itself via the \code{EMPIRcop} function. The sample estimators (triggered by the \code{as.sample} arguments for the measures) are reasonably fast and numerically preferred over using the empirical copula. Further, the generally slow numerical integrations for the theoretical definitions of these copula measures might have difficulties. Limited testing, however, suggests prevalence of numerical integration not erroring using the Bernstein extension of the empirical copula, which must be a by-product of the enhanced and sufficient smoothness for \R's default numerical integration to succeed. Many of the measures have \code{brute} option for a brute-force numerical integration on a regular grid across the empirical copula---these are slow but should not trigger errors. As a general rule, users should still use the sample estimators instead.
 }
 \references{
 \enc{Hernández-Maldonado}{Hernandez-Maldonado}, V., \enc{Díaz-Viera}{Diaz-Viera}, M., and Erdely, A., 2012, A joint stochastic simulation method using the Bernstein copula as a flexible tool for modeling nonlinear dependence structures between petrophysical properties: Journal of Petroleum Science and Engineering, v. 90--91, pp. 112--123.
@@ -121,7 +121,8 @@ hoefCOP(cop=EMPIRcop,   para=uv, ctype="bernstein")             # 0.4563724}
 # level curves for berstein weights are quite smooth.
 
 \dontrun{
-# TODO: Now let us construct as many as three sets of level curves
+# Now let us construct as many as three sets of level curves to the sample
+# resided in the uv sample from above using the PSP copula.
 level.curvesCOP(cop=PSP); # TRUE, parametric, fast, BLACK CURVES
 
 # Empirical copulas can consume lots of CPU.

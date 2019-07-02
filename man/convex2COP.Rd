@@ -45,7 +45,7 @@ convex2COP(0.87,0.35, para=para) # 0.3188711
 # attractive but the GH has just too much upper tail dependency for comfort. We
 # think from data analysis that an upper tail dependency that is weaker and near
 # 2/10 is the better. Let us convex mix in a Plackett copula and optimize.
-TargetTau <- tauCOP(cop=GHcop, para=1.5) # 1/3 (Kendall's Tau)
+TargetTau <- tauCOP(cop=GHcop, para=1.5) # 1/3 (Kendall Tau)
 taildepCOP(   cop=GHcop, para=1.5, plot = TRUE)$lambdaU  # 0.4126
 TargetUpperTailDep <- 2/10
 

@@ -5,7 +5,7 @@
 \description{
 Compute the \emph{root mean square error} \eqn{\mathrm{RMSE}_\mathbf{C}} (Chen and Guo, 2019, p. 29), which is computed using \emph{mean square error} \eqn{\mathrm{MSE}} as
 
-\deqn{\mathrm{MSE}_\mathbf{C} = \frac{1}{n}\sum_{i=1}^n \bigl(\mathbf{C}_n(u_i,v_i) - \mathbf{C}_{\Theta_n}(u_i, v_i)\bigr)^2\mbox{ and}}
+\deqn{\mathrm{MSE}_\mathbf{C} = \frac{1}{n}\sum_{i=1}^n \bigl(\mathbf{C}_n(u_i,v_i) - \mathbf{C}_{\Theta_m}(u_i, v_i)\bigr)^2\mbox{ and}}
 \deqn{\mathrm{RMSE}_\mathbf{C} = \sqrt{\mathrm{MSE}_\mathbf{C}}\mbox{,}}
 
 where \eqn{\mathbf{C}_n(u_i,v_i)} is the \emph{empirical copula} (empirical joint probability) for the \eqn{i}th observation, \eqn{\mathbf{C}_{\Theta_m}(u_i, v_i)} is the fitted copula having \eqn{m} parameters in \eqn{\Theta}. The \eqn{\mathbf{C}_n(u_i,v_i)} comes from \code{\link{EMPIRcop}}. The \eqn{\mathrm{RMSE}_\mathbf{C}} is in effect saying that the best copula will have its joint probabilities plotting on a 1:1 line with the empirical joint probabilities, which is an \eqn{\mathrm{RMSE}_\mathbf{C}=0}. From the \eqn{\mathrm{MSE}_\mathbf{C}} shown above, the Akaike information criterion (AIC) \code{\link{aicCOP}} and Bayesian information criterion (BIC) \code{\link{bicCOP}} can be computed, which add a penalty for \eqn{m} parameters. These goodness-of-fits can assist in deciding one copula favorability over another, and another goodness-of-fit using the absolute differences between \eqn{\mathbf{C}_n(u,v)} and \eqn{\mathbf{C}_{\Theta_m}(u, v)} is found under \code{\link{statTn}}.

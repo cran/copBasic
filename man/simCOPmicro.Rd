@@ -89,9 +89,9 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 \author{ W.H. Asquith}
 \seealso{\code{\link{simCOP}}}
 \examples{
-simCOPmicro(runif(1), cop=W)   # Frechet lower bound copula
-simCOPmicro(runif(1), cop=P)   # Independence copula
-simCOPmicro(runif(1), cop=M)   # Frechet upper bound copula
+simCOPmicro(runif(1), cop=W  ) # Frechet lower bound copula
+simCOPmicro(runif(1), cop=P  ) # Independence copula
+simCOPmicro(runif(1), cop=M  ) # Frechet upper bound copula
 simCOPmicro(runif(1), cop=PSP) # The PSP copula
 
 # Now let us get more complicated and mix two Plackett copulas together using the

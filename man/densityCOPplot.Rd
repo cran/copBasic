@@ -51,7 +51,7 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 } # Survival Copula ("reflected" in Joe's terms)
 densityCOPplot(cop=rMTCJ, para=1.0760, n=9000)
 # The density plot matches that shown by Joe (2014, p. 11, fig. 1.2, lower left plot)
-# for a Spearman's Rho equaling 0.5. Let us compute then Rho:
+# for a Spearman Rho equaling 0.5. Let us compute then Rho:
 rhoCOP(cop=rMTCJ, para=1.076075) # 0.4999958
 
 # Now let us get really wild with a composition with TWO modes!

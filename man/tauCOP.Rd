@@ -2,9 +2,9 @@
 \name{tauCOP}
 \alias{tauCOP}
 \alias{concordCOP}
-\title{ The Kendall's Tau and Concordance Function of a Copula }
+\title{ The Kendall Tau and Concordance Function of a Copula }
 \description{
-Compute the measure of association known as \emph{Kendall's Tau} (\eqn{\tau_\mathbf{C}}) of a copula (\eqn{\tau_\mathbf{C}}) according to Nelsen (2006, sec. 5.1.1 and p. 161) by
+Compute the measure of association known as the \emph{Kendall Tau} (\eqn{\tau_\mathbf{C}}) of a copula (\eqn{\tau_\mathbf{C}}) according to Nelsen (2006, sec. 5.1.1 and p. 161) by
 \deqn{\tau_\mathbf{C} = \mathcal{Q}(\mathbf{C}, \mathbf{C}) = 4\int\!\!\int_{\mathcal{I}^2}
                          \mathbf{C}(u,v)\,\mathrm{d}\mathbf{C}(u,v) - 1\mbox{,}}
 where \eqn{\mathcal{Q}(\mathbf{C}, \mathbf{C})} is a \emph{concordance function} (\code{concordCOP}) of a copula with itself. Nelsen (2006, p. 164) reports however that this form is often not amenable to computation when there is a singular component to the copula and that the expression
@@ -24,7 +24,7 @@ Nelsen (2006, pp. 160--161) lists some special identities involving \eqn{\mathca
 \deqn{\mathcal{Q}(\mathbf{\Pi}, \mathbf{\Pi}) = 4\int\!\!\int_{\mathcal{I}^2} uv\,\mathrm{d}u\mathrm{d}v - 1 = 0\mbox{.}}
 
 
-Kendall's Tau also can be expressed in terms of the \emph{Kendall Function} (\eqn{F_K(z)}; \code{\link{kfuncCOP}}):
+Kendall Tau also can be expressed in terms of the \emph{Kendall Function} (\eqn{F_K(z)}; \code{\link{kfuncCOP}}):
 \deqn{\tau_\mathbf{C} = 3 - 4\int_0^1 F_K(t)\,\mathrm{d}t\mbox{,}}
 which is readily verified by code shown in \bold{Examples}. This definition might be useful if integration errors are encountered for some arbitrary copula and arbitrary parameter set. In fact, should two attempts (see source code) at dual integration of the partial derivatives occur, the implementation switches over to integration of the Kendall Function (\emph{e.g.} \code{tauCOP(cop=N4212cop, para=2)}). Note that Durante and Sempi have erroneously dropped the multiplication by \dQuote{\eqn{4}} as shown above in their definition of \eqn{\tau_\mathbf{C}} as a function of \eqn{F_K(t)} (Durante and Sempi, 2015, eq. 3.9.4, p. 121).
 }
@@ -54,10 +54,10 @@ Although titled for computation of Kendall's Tau, the \code{tauCOP} function is 
 where \eqn{\mathbf{C}_1(u,v)} is the first copula and \eqn{\mathbf{C}_2(u,v)} is the second copula.
 
 Nelsen \emph{et al.} (2001, p. 281) lists several measures of association defined by the concordance function:\cr
-\eqn{\mbox{}\quad\mathrm{1.}\quad\mbox{}}\eqn{\tau_\mathbf{C} = \quad\ \mathcal{Q}(\mathbf{C}, \mathbf{C})} : (Kendall's Tau; \code{tauCOP});\cr
-\eqn{\mbox{}\quad\mathrm{2.}\quad\mbox{}}\eqn{\rho_\mathbf{C} = 3\cdot\mathcal{Q}(\mathbf{C}, \mathbf{\Pi})} : (Spearman's Rho; \code{\link{rhoCOP}});\cr
-\eqn{\mbox{}\quad\mathrm{3.}\quad\mbox{}}\eqn{\gamma_\mathbf{C} = 2\cdot\mathcal{Q}(\mathbf{C}, [\mathbf{M}+\mathbf{W}]/2)} : (Gini's Gamma; \code{\link{giniCOP}}); and\cr
-\eqn{\mbox{}\quad\mathrm{4.}\quad\mbox{}}\eqn{\psi_\mathbf{C} = \frac{3}{2}\cdot\mathcal{Q}(\mathbf{C}, \mathbf{M}) - \frac{1}{2}} : (Spearman's Footrule; \code{\link{footCOP}}).
+\eqn{\mbox{}\quad\mathrm{1.}\quad\mbox{}}\eqn{\tau_\mathbf{C} = \quad\ \mathcal{Q}(\mathbf{C}, \mathbf{C})} : (Kendall Tau; \code{tauCOP});\cr
+\eqn{\mbox{}\quad\mathrm{2.}\quad\mbox{}}\eqn{\rho_\mathbf{C} = 3\cdot\mathcal{Q}(\mathbf{C}, \mathbf{\Pi})} : (Spearman Rho; \code{\link{rhoCOP}});\cr
+\eqn{\mbox{}\quad\mathrm{3.}\quad\mbox{}}\eqn{\gamma_\mathbf{C} = 2\cdot\mathcal{Q}(\mathbf{C}, [\mathbf{M}+\mathbf{W}]/2)} : (Gini Gamma; \code{\link{giniCOP}}); and\cr
+\eqn{\mbox{}\quad\mathrm{4.}\quad\mbox{}}\eqn{\psi_\mathbf{C} = \frac{3}{2}\cdot\mathcal{Q}(\mathbf{C}, \mathbf{M}) - \frac{1}{2}} : (Spearman Footrule; \code{\link{footCOP}}).
 }
 \references{
 Durante, F., and Sempi, C., 2015, Principles of copula theory: Boca Raton, CRC Press, 315 p.

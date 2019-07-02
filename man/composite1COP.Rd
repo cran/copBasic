@@ -7,7 +7,7 @@ The \emph{composition of a single copula} (Salvadori \emph{et al.}, 2006, p. 266
 
 \deqn{\mathbf{C}_{\alpha,\beta}(u,v) = u^\alpha v^\beta \cdot \mathbf{C}(u^{1-\alpha},v^{1-\beta})\mbox{.}}
 
-The \code{composite1COP} function provides the means for \emph{permutation asymmetry} from a \emph{permutation symmetric} copula as also described by Joe (2017, p. 124) but in a more general way by providing for two and not just one parameter. Joe's description is supported herein if one of the \eqn{\alpha} or \eqn{\beta} are held at zero. Very loosely, the \eqn{\alpha > 0} kicks probability density down towards the lower right corner, whereas \eqn{\beta > 0} kicks density up towards the upper left corner. Finally, the \code{\link{composite2COP}} function is based on a slighty more general result (see \code{\link{composite2COP}} for further details of copula composition).
+The \code{composite1COP} function provides the means for \emph{permutation asymmetry} from a \emph{permutation symmetric} copula as also described by Joe (2017, p. 124) but do so in a more general way through the provision of two and not just one parameter. Joe's description is supported herein if one of the \eqn{\alpha} or \eqn{\beta} is held at zero. Very loosely, the \eqn{\alpha > 0} kicks probability density down towards the lower right corner, whereas \eqn{\beta > 0} kicks density up towards the upper left corner. Finally, the \code{\link{composite2COP}} function is based on a slighty more general result (see \code{\link{composite2COP}} for further details of copula composition).
 }
 \usage{
 composite1COP(u,v, para, ...)

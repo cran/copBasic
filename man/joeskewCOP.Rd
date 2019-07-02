@@ -5,7 +5,7 @@
 \alias{nustarCOP}
 \title{ Joe's Nu-Skew and the copBasic Nu-Star of a Copula }
 \description{
-Compute the measure of \emph{permutation asymmetry}, which can be thought of as \emph{bivariate skewness}, named for the \pkg{copBasic} package as \emph{Joe's Nu-Skew} \eqn{\nu_\mathbf{C}} of a copula according to Joe (2014, p. 66) by
+Compute the measure of \emph{permutation asymmetry}, which can be thought of as \emph{bivariate skewness}, named for the \pkg{copBasic} package as \emph{Nu-Skew} \eqn{\nu_\mathbf{C}} of a copula according to Joe (2014, p. 66) by
 \deqn{\nu_\mathbf{C} = 3\mathrm{E}[UV^2 - U^2V] = 6\int\!\!\int_{\mathcal{I}^2} (v-u)\mathbf{C}(u,v)\, \mathrm{d}u\mathrm{d}v\mbox{.}}
 This definition is effectively the \code{type="nu"} for the function for which the multiplier \eqn{6} has been converted to \eqn{96} as explained in the \bold{Note}.
 
@@ -59,7 +59,7 @@ The implementation of \code{joeskewCOP} for \pkg{copBasic} provides the second m
   tauCOP(    cop=GHcop, para=c(5, 0.2836485,    0.8))
      #  0.2443377
 }
-The demonstration shows---at least for the symmetry (switchability) of the 2nd and 3rd parameters (\eqn{\pi_2} and \eqn{\pi_3}) of the asymmetric \eqn{\mathbf{GH}} copula---that the first definition \eqn{\nu} is magnitude symmetric but carries a sign change. The demonstration shows magnitude and sign stability for \eqn{\nu^\star}, and ends with \emph{Kendall's Tau} (\code{\link{tauCOP}}). Collectively, Kendall's Tau (or the other \emph{symmetric measures of association}, \emph{e.g.} \code{\link{blomCOP}}, \code{\link{footCOP}}, \code{\link{giniCOP}}, \code{\link{hoefCOP}}, \code{\link{rhoCOP}}, \code{\link{wolfCOP}}) when combined with \eqn{\nu} and \eqn{\nu^\star} might provide a framework for parameter optimization of the asymmetric \eqn{\mathbf{GH}} copula (see below).
+The demonstration shows---at least for the symmetry (switchability) of the 2nd and 3rd parameters (\eqn{\pi_2} and \eqn{\pi_3}) of the asymmetric \eqn{\mathbf{GH}} copula---that the first definition \eqn{\nu} is magnitude symmetric but carries a sign change. The demonstration shows magnitude and sign stability for \eqn{\nu^\star}, and ends with \emph{Kendall Tau} (\code{\link{tauCOP}}). Collectively, Kendall Tau (or the other \emph{symmetric measures of association}, \emph{e.g.} \code{\link{blomCOP}}, \code{\link{footCOP}}, \code{\link{giniCOP}}, \code{\link{hoefCOP}}, \code{\link{rhoCOP}}, \code{\link{wolfCOP}}) when combined with \eqn{\nu} and \eqn{\nu^\star} might provide a framework for parameter optimization of the asymmetric \eqn{\mathbf{GH}} copula (see below).
 
 The asymmetric \eqn{\mathbf{GH}_{(5, 0.2836485, 0.8)}} is not radial (\code{\link{isCOP.radsym}}) or permutation (\code{\link{isCOP.permsym}}), but if \eqn{\pi_2 = \pi_3} then the resulting \eqn{\mathbf{GH}} copula is not radially symmetric but is permutation symmetric:
 \preformatted{
@@ -69,7 +69,7 @@ The asymmetric \eqn{\mathbf{GH}_{(5, 0.2836485, 0.8)}} is not radial (\code{\lin
   isCOP.permsym(cop=GHcop, para=c(5, 0.8,       0.8)) # TRUE
 }
 
-The use of \eqn{\nu_\mathbf{C}} and \eqn{\nu^\star_\mathbf{C}} with a \emph{measure of association} is just suggested above for parameter optimization. Suppose we have \eqn{\mathbf{GH}_{(5,0.5,0.7)}} with \emph{Spearman's Rho} \eqn{\rho = 0.4888}, \eqn{\nu = 0.001475}, and \eqn{\nu^\star = 0.04223}, and the asymmetric \eqn{\mathbf{GH}} coupla is to be fit. Parameter estimation for the asymmetric \eqn{\mathbf{GH}} is accomplished by
+The use of \eqn{\nu_\mathbf{C}} and \eqn{\nu^\star_\mathbf{C}} with a \emph{measure of association} is just suggested above for parameter optimization. Suppose we have \eqn{\mathbf{GH}_{(5,0.5,0.7)}} with \emph{Spearman Rho} \eqn{\rho = 0.4888}, \eqn{\nu = 0.001475}, and \eqn{\nu^\star = 0.04223}, and the asymmetric \eqn{\mathbf{GH}} coupla is to be fit. Parameter estimation for the asymmetric \eqn{\mathbf{GH}} is accomplished by
 \preformatted{
   "fitGHcop" <- function(hats, assocfunc=rhoCOP, init=NA, eps=1E-4, ...) {
      H <- GHcop # shorthand for the copula
@@ -85,7 +85,7 @@ The use of \eqn{\nu_\mathbf{C}} and \eqn{\nu^\star_\mathbf{C}} with a \emph{meas
      para <- c( exp(par[1]), pnorm(par[2:3]) )
      names(para) <- c("Theta", "Pi2", "Pi3")
      fit <- c(assocfunc(H, para), nuskewCOP(H, para), nustarCOP(H, para))
-     txt <- c("AssocMeasure", "NuSkew", "NuSkewStar")
+     txt <- c("AssocMeasure", "NuSkew", "NuStar")
      names(fit) <- txt; names(hats) <- txt
      if(opt$value > eps) warning("inspect the fit")
      return(list(para=para, fit=fit, given=hats, optim=opt))
@@ -133,7 +133,7 @@ Now let us choose a different (the \emph{Clayton}) copula
 \note{
 The \eqn{\nu_\mathbf{C}} definition is given with a multiplier of \eqn{6} on the integrals in order to agree with Joe (2014) relation that is also shown. However, in mutual parameter estimation experiments using a simple sum-of-square errors as shown in the \bold{Details}, it is preferred to have \eqn{\nu_\mathbf{C}} measured on a larger scale. Where does the \eqn{96} then come from? It is heuristically made so that the upright and rotated \code{cophalf} (see \bold{Examples} under \code{\link{asCOP}} and \code{\link{bilmoms}} for this copula) acquires \eqn{\nu_\mathbf{C}} values of \eqn{+1} and \eqn{-1}, respectively. As a result to make back comparisons to Joe results, the ratios of \eqn{96} are made in this documentation.
 
-The source code shows slightly different styles of division by the sample size as part of the sample estimation of the statistics. The \eqn{\hat\nu} using just division by the sample size as testing indicates that this statistic is reasonably unbiased for simple copula. The \eqn{\hat\nu^\star} with similar division is a biased statistic and the bias is not symmetrical in magnitude or sign it seems whether the \eqn{\hat\nu^\star} is positive or negative. The salient code is \code{spm <- ifelse(corsgn == -1, +2.4, +1.1)} within the sources for which the corrections were determined heuristically through simulation, and \code{corsgn} is the sign of the sample Spearman's Rho through the \code{cor()} function of \R.
+The source code shows slightly different styles of division by the sample size as part of the sample estimation of the statistics. The \eqn{\hat\nu} using just division by the sample size as testing indicates that this statistic is reasonably unbiased for simple copula. The \eqn{\hat\nu^\star} with similar division is a biased statistic and the bias is not symmetrical in magnitude or sign it seems whether the \eqn{\hat\nu^\star} is positive or negative. The salient code is \code{spm <- ifelse(corsgn == -1, +2.4, +1.1)} within the sources for which the corrections were determined heuristically through simulation, and \code{corsgn} is the sign of the sample Spearman Rho through the \code{cor()} function of \R.
 }
 \references{
 Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.

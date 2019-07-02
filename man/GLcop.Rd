@@ -7,7 +7,7 @@
 \title{ The Galambos Extreme Value Copula (with Gamma Power Mixture [Joe/BB4] and Lower Extreme Value Limit) }
 \description{
 The \emph{Galambos copula} (Joe, 2014, p. 174) is
-\deqn{\mathbf{C}_{\Theta}(u,v) = \mathbf{GL}(u,v) = uv\,\mathrm{exp}\bigl[(x^{-\Theta} + y^{-\Theta})^{-1/\Theta}\bigr]\mbox{,}}
+\deqn{\mathbf{C}_{\Theta}(u,v) = \mathbf{GL}(u,v) = uv\,\mathrm{exp}\bigl[\bigl(x^{-\Theta} + y^{-\Theta}\bigr)^{-1/\Theta}\bigr]\mbox{,}}
 where \eqn{\Theta \in [0, \infty)}, \eqn{x = -\log u}, and \eqn{y = -\log v}. As \eqn{\Theta \rightarrow 0^{+}}, the copula limits to \emph{independence} (\eqn{\mathbf{\Pi}}; \code{\link{P}}) and as  \eqn{\Theta \rightarrow \infty}, the copula limits to perfect association (\eqn{\mathbf{M}}; \code{\link{M}}). The copula here is a \emph{bivariate extreme value copula} (\eqn{BEV}), and parameter estimation requires for \eqn{\Theta} numerical methods.
 
 There are two other genetically related forms. Joe (2014, p. 197) describes an extension of the Galambos copula as a \emph{Galambos gamma power mixture} (GLPM), which is Joe's \emph{BB4 copula}, with the following form

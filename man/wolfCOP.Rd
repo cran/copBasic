@@ -7,7 +7,7 @@ Compute the measure of association known as \emph{Schweizer--Wolff Sigma} \eqn{\
 
 \deqn{\sigma_\mathbf{C} = 12\int\!\!\int_{\mathcal{I}^2} |\mathbf{C}(u,v) - uv|\,\mathrm{d}u\mathrm{d}v\mbox{,}}
 
-which is \eqn{0 \le \sigma_\mathbf{C} \le 1}. It is obvious that this measure of association, without the positive sign restriction, is similar to the following form of \emph{Spearman's Rho} of a copula:
+which is \eqn{0 \le \sigma_\mathbf{C} \le 1}. It is obvious that this measure of association, without the positive sign restriction, is similar to the following form of \emph{Spearman's Rho} (\code{\link{rhoCOP}}) of a copula:
 
 \deqn{\rho_\mathbf{C} = 12\int\!\!\int_{\mathcal{I}^2} [\mathbf{C}(u,v) - uv]\,\mathrm{d}u\mathrm{d}v\mbox{.}}
 
@@ -49,13 +49,13 @@ Second, show that this copula is globally PQD (\code{\link{isCOP.PQD}}), but the
   message(PQD$global.PQD) # TRUE
   points(D, col=PQD$local.PQD+2, lwd=2)
 }
-This composited copula intersects (passes through) the \code{\link{P}} copula. Hence by the logic of Nelsen (2006), then Schweizer--Wolff Sigma should be larger than Spearman Rho (\code{\link{rhoCOP}}) as shown below
+This composited copula intersects, that is, passes through, the \code{\link{P}} copula. Hence by the logic of Nelsen (2006), then the \eqn{\sigma_\mathbf{C}} should be larger than \eqn{\rho_\mathbf{C}} as shown below
 \preformatted{
   wolfCOP(cop=composite2COP, para=para) # 0.08373378 (theoretical)
    rhoCOP(cop=composite2COP, para=para) # 0.02845131 (theoretical)
   hoefCOP(cop=composite2COP, para=para) # 0.08563823 (theoretical)
 }
-In fact, the output above also shows Schweizer--Wolff Sigma to be larger than Kendall Tau (\code{\link{tauCOP}}), Gini Gamma (\code{\link{giniCOP}}), and Blomqvist Beta (\code{\link{blomCOP}}). The Schweizer--Wolff Sigma has captured the fact that although the symbols plot near randomly on the figure, the symbol coloring for PQD and NQD clearly shows local dependency differences. The sample version is triggered by
+In fact, the output above also shows Schweizer--Wolff Sigma to be larger than Blomqvist Beta (\code{\link{blomCOP}}), Gini Gamma (\code{\link{giniCOP}}), and Kendall Tau (\code{\link{tauCOP}}). The Schweizer--Wolff Sigma has captured the fact that although the symbols plot near randomly on the figure, the symbol coloring for PQD and NQD clearly shows local dependency differences. The sample version is triggered by
 \preformatted{
   wolfCOP(para=D, as.sample=TRUE) # 0.09278467 (an example sample)
 }

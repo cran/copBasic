@@ -46,4 +46,4 @@ rhobevCOP(para=samUV, as.sample=TRUE) # 0.3708275}
 }
 \keyword{copula (characteristics)}
 \keyword{copula (properties)}
-\keyword{copula (properties, extreme value)}
+\keyword{copula (properties for extreme value)}
