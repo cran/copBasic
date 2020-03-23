@@ -94,11 +94,12 @@ simCOPmicro(runif(1), cop=P  ) # Independence copula
 simCOPmicro(runif(1), cop=M  ) # Frechet upper bound copula
 simCOPmicro(runif(1), cop=PSP) # The PSP copula
 
+\dontrun{
 # Now let us get more complicated and mix two Plackett copulas together using the
 # composite2COP as a "compositor." The parameter argument becomes more complex, but is
 # passed as shown into composite2COP.
 para <- list(cop1=PLACKETTcop,cop2=PLACKETTcop, alpha=0.3,beta=0.5, para1=0.1,para2=50)
-simCOPmicro(runif(5), cop=composite2COP, para=para)
+simCOPmicro(runif(5), cop=composite2COP, para=para) #}
 
 \dontrun{
 # Now let us implement "our" own version of features of simCOP() but using

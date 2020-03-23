@@ -5,7 +5,7 @@ function(f=0.5, u=seq(0.01,0.99, by=0.01), empinv=NULL,
    ix <- 1:length(cols)
    ix.needed <- ix[as.character(cols) == as.character(f)]
    if(length(ix.needed) != 1) {
-      warning("f value does not match against row names in empinv, ",
+      warning("f=",f," value does not match against column names in empinv, ",
               "likely source of this is a real number with too many digits ",
               "relative to a keyed entry")
       return(data.frame(U=NA, V=NA))

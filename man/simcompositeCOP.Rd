@@ -4,7 +4,7 @@
 \alias{simcomposite2COP}
 \title{  Compute the L-comoments of a Two-Value Composited Copula by Simulation  }
 \description{
-TSimulate copula parameters and compute \emph{L-comoments} and provision for plotting features for a composited copula using using two compositing parameters (see \code{\link{composite1COP}} and \code{\link{composite2COP}}).  The compositing parameters are each independent and uniformly distributed:
+Simulate copula parameters and compute \emph{L-comoments} and provision for plotting features for a composited copula using using two compositing parameters (see \code{\link{composite1COP}} as well as \code{\link{composite2COP}}).  The compositing parameters are each independent and uniformly distributed:
 \deqn{\alpha \sim \mathrm{U}[0,1];\ \beta \sim \mathrm{U}[0,1]\mbox{.}}
 L-comoment estimation is provided by the \code{\link{lcomCOP}}.
 }
@@ -25,7 +25,7 @@ simcompositeCOP(nsim=100, compositor=composite2COP,
   \item{...}{Additional arguments to pass.}
 }
 \value{
-  An \R matrix of results is returned. Each row represents a single simulation run. The first two columns are the \eqn{\alpha} and \eqn{\beta} \emph{compositing parameters} and are labeled as such. The next two columns are the opposing diagonals, by first row and then second, of the \emph{L-comoment correlation}. The following two columns are the opposing diagnonals, by row and then second, of the \emph{L-coskew}. The following two columns are the opposing diagnonals, by row and then second, of the \emph{L-cokurtosis}. The L-comoment columns are labeled to reflect the L-comoment matrix: \code{T2.21} means the L-comoment correlation row 2 column 1 and \code{T3.12} mean the L-coskew row 1 column 2. The remaining columns represent the \eqn{\Theta_n} parameters for copula 1, the \eqn{\Theta_m} parameters for copula 2. The columns are labeled \code{Cop1Thetas} or \code{Cop2Thetas}.
+  An \R matrix of results is returned. Each row represents a single simulation run. The first two columns are the \eqn{\alpha} and \eqn{\beta} \emph{compositing parameters} and are labeled as such. The next two columns are the opposing diagonals, by first row and then second, of the \emph{L-comoment correlation}. The following two columns are the opposing diagonals, by row and then second, of the \emph{L-coskew}. The following two columns are the opposing diagonals, by row and then second, of the \emph{L-cokurtosis}. The L-comoment columns are labeled to reflect the L-comoment matrix: \code{T2.21} means the L-comoment correlation row 2 column 1 and \code{T3.12} mean the L-coskew row 1 column 2. The remaining columns represent the \eqn{\Theta_n} parameters for copula 1, the \eqn{\Theta_m} parameters for copula 2. The columns are labeled \code{Cop1Thetas} or \code{Cop2Thetas}.
 }
 \note{
 The following descriptions list in detail the \code{parents} argument structure and content of the \code{para} argument:

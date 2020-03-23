@@ -466,7 +466,7 @@ Version 2.1.3--July 1, 2019
 1. Added documention in lcomCOP() stating that Chine and Benatia (2017) describe
        trimmed L-comoments as the multivariate extensions of the univariate
        trimmed L-moments. Unknown as to whether an extension jump should be made.
-2. Added iterated Farlie-Gumbel-Morgenstern copula as FGMrcop(), which is any more
+2. Added iterated Farlie-Gumbel-Morgenstern copula as FGMrcop(), which is not any more
        useful than the existing generalization, but Chine and Benatia (2017) concern
        themselves with the iterated FGM.
 3. Documentation audit again with tiny changes to many Rds.
@@ -491,10 +491,43 @@ Version 2.1.3--July 1, 2019
 9. COP.Rd, diagCOPatf.Rd, and med.regressCOP.Rd examples edited to avoid using F with
        change to FF as a variable for nonexceedance probability (see no. 6).
 
+
 Version 2.1.4--July 2, 2019
 1. Fixups in FGMcop.Rd (bad URL), HRcop.Rd (no encoding switch in the concept/keyword),
        lcomCOP.Rd (bad URL), rhobevCOP.Rd (no commas in indexing or concepts) for 
        release to CRAN.
+
+
+Version 2.1.5--03/22/2020
+1. Extended RFcop() with a fit argument to toggle between Spearman Rho or Kendall Tau.
+2. Extended COP.Rd with a example of taking a copula, such as the RFcop, that only has
+       positive association and reflecting it three different times to form alternative
+       association structures, including negative association, that its formula can not
+       natively attain.
+3. Audit of AMHcop.Rd found documentation problems in the formula for Spearman's Rho.
+       Modified it and AMHcop() to show and respectively use the infinite series of
+       Machler (2014). Added the support for rho argument along with a fit argument
+       like RFcop() (see 2.1.5:1). Examples in AMHcop.Rd changed.
+4. Audit pass of much of the documentation.
+5. Changed a few Examples to dontruns because of the maturity of the package. The
+       --timings of the R CMD check were consulted. Should be a savings of less than
+       one second overall, but trying to help the CRAN.
+6. gEVcop.Rd received a minor fix in the Examples.
+7. Advancement: EMPIRgrid() was not passing ... to EMPIRcop(). 
+8. Extended EMPIRgridderinv() and EMPIRgridderinv2() to accept a precomputed gridded
+       derivative in the dergrid argument. 
+9. Extended EMPIRgridder() and EMPIRgridder2() to throw a warning about NaN along
+       a row or column
+         warning("found nonfinite values on row|column=",i," in grid derivative")
+       The author has encountered one data set that produces NaN on two rows and
+       trying to understand how and why this is happening.
+10. Extended the EMPIRcop() with a checker-board empirical copula, which is a type
+       of light smooth and adapted from the copula package.
+11. Added a trap in EMPIRgridderinv() and EMPIRgridderinv2() if Kumaraswamy is set
+       and the Kumaraswamy fit fails, the original approx() to the inversion is
+       set for the failure and a warning() triggered as to which index was involved.
+12. BUG FIX: An example within EMPIRsim.Rd need fixing and other minor cleanup.
+13. Minor spelling checks during Rd auditing for margin protrusion on Rd2pdf.
 
 
 POTENTIAL TODOs:
@@ -533,7 +566,8 @@ EMPIRcopdf() can be replaced by EMPIRcop() as the later is fully
 stabtaildepf.Rd --- Need to audit stabtaildepf.Rd and complete documentation.
 Beirlant, J., Escobar-Bach, M., Goegebeur, Y., Guillou, A.: Bias-corrected estimation of stable tail dependence function. J. Multivar. Anal. 143, 453–466 (2016)
 https://doi.org/10.1016/j.jmva.2015.10.006
-Kiriliouk, A., Segers, J. & Tafakori, L. Extremes (2018) 21: 581. https://doi.org/10.1007/s10687-018-0315-y
+Kiriliouk, A., Segers, J. & Tafakori, L. Extremes (2018) 21: 581.
+https://doi.org/10.1007/s10687-018-0315-y
 
 Implementation of state-of-the-practice nonparametric estimators of
   lower and upper tail dependence parameters. Neither of the three books

@@ -14,7 +14,7 @@ level.setCOP2(cop=NULL, para=NULL, getlevel=NULL, delv=0.001, lines=FALSE, ...)
   \item{cop}{A copula function;}
   \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula;}
   \item{getlevel}{The level set for \eqn{t};}
-  \item{delv}{The increment for \eqn{\Delta v}. The default is 1 part in 1,000, which should often provide enough smoothness for many copulas in practice;}
+  \item{delv}{The increment for \eqn{\Delta v}. The default is 1 part in 1,000, which should often in practice provide enough smoothness for many copulas;}
   \item{lines}{A logical that matches the argument of the same name in \code{\link{level.curvesCOP2}}; and}
   \item{...}{Additional arguments to pass to the \code{lines()} function in \R.}
 }
@@ -33,7 +33,7 @@ set <- level.setCOP2(cop=N4212cop, para=3.1, getlevel=0.23, delu=0.005)
 level.curvesCOP2(cop=N4212cop, para=3.1, delv=0.001, delt=0.02)
 lines(set$U, set$V, col=2, lwd=2) # manually draw the 23rd percentile
 set <- level.setCOP2(cop=N4212cop, para=3.1, getlevel=0.17, lines=TRUE, col=4, lwd=4)
-# Notice the change in the lines argument and using levelsetCOP2 to draw. 
+# Notice the change in the lines argument and using levelsetCOP2 to draw.
 mtext("Level Curves and Special Level Sets for N4212 copula") #}
 }
 \keyword{visualization}

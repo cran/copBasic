@@ -39,6 +39,7 @@ Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in
 \author{ W.H. Asquith}
 \seealso{\code{\link{COP}}, \code{\link{composite2COP}}, \code{\link{composite3COP}}}
 \examples{
+\dontrun{
 alpha <- 0.24; beta <- 0.23; Theta1 <- NA;
 # W() does not use a parameter, but show how a parameter would be set if needed.
 para  <- list(alpha=alpha, beta=beta, cop1=W, para1=Theta1)
@@ -66,7 +67,7 @@ nustarCOP(cop=composite1COP, para=my.para)
 nustarCOP(cop=composite2COP, para=my.para)
 
 # uses cop1/2, para1/2, only alpha,beta,kappa,gamma
-nustarCOP(cop=composite3COP, para=my.para)
+nustarCOP(cop=composite3COP, para=my.para) #}
 }
 \keyword{copula composition}
 \keyword{copula composition (two compositing parameters)}

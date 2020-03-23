@@ -18,7 +18,7 @@ aicCOP(u,v, cop=NULL, para=NULL, m=NA, ...)
   \item{v}{Nonexceedance probability \eqn{v} in the \eqn{Y} direction;}
   \item{cop}{A copula function;}
   \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula;}
-    \item{m}{The number of parameters in the copula, which is usually determined by length of \code{para} if \code{m=NA}, but some complex compositions of copulas are difficult to authoritatively probe for total parameter lengths and mixing coefficients;}
+    \item{m}{The number of parameters in the copula, which is usually determined by length of \code{para} if \code{m=NA}, but some complex compositions of copulas are difficult to authoritatively probe for total parameter lengths and mixing coefficients; and}
   \item{...}{Additional arguments to pass to either copula (likely most commonly to the empirical copula).}
 }
 \value{
@@ -33,17 +33,18 @@ Chen, Lu, and Guo, Shenglian, 2019, Copulas and its application in hydrology and
 \examples{
 \dontrun{
 S <- simCOP(80, cop=GHcop, para=5) # Simulate some probabilities, but we
-# must then treat these as data and recompute empirical probabilities. 
+# must then treat these as data and recompute empirical probabilities.
 U <- lmomco::pp(S$U, sort=FALSE); V <- lmomco::pp(S$V, sort=FALSE)
 # The parent distribution is Gumbel-Hougaard extreme value copula.
-# But in practical application we don't know that but say we speculate that
-# perhaps the Galambos extreme value might be the parent. Then maximum
+# But in practical application we do not know that, but say we speculate
+# that perhaps the Galambos extreme value might be the parent. Then maximum
 # likelihood is used to fit the single parameter.
 pGL <- mleCOP(U,V, cop=GLcop, interval=c(0,20))$par
 
 aics <- c(aicCOP(U,V, cop=GLcop, para=pGL),
           aicCOP(U,V, cop=P),
           aicCOP(U,V, cop=PSP))
+names(aics) <- c("GLcop", "P", "PSP")
 print(aics) # We will see that the first AIC is the smallest as the
 # Galambos has the nearest overall behavior than the P and PSP copulas.}
 }
@@ -51,4 +52,4 @@ print(aics) # We will see that the first AIC is the smallest as the
 \keyword{copula (inference)}
 \keyword{inference}
 \keyword{goodness-of-fit}
-
+\keyword{Akaike Information Criterion}

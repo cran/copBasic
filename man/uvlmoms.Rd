@@ -46,9 +46,9 @@ uvskew(UV, p=0.10)             # -0.1271723
 uvskew(UV, p=0.10, type="gno") # -0.1467011}
 
 \dontrun{
-ps <- seq(0.01,0.49, by=0.01)
-ETA <- sapply(1:length(ps), function(i) uvskew(UV, p=ps[i], type=5, uvm1=FALSE) )
-plot(ps, ETA, type="l", xlab="P FACTOR", ylab="BIVARIATE SKEWNESS") #}
+pss <- seq(0.01,0.49, by=0.01)
+ETA <- sapply(1:length(pss), function(i) uvskew(UV, p=pss[i], type=5, uvm1=FALSE) )
+plot(pss, ETA, type="l", xlab="P FACTOR", ylab="BIVARIATE SKEWNESS") #}
 }
 \keyword{bivariate asymmetry (measures)}
 \keyword{bivariate skewness}

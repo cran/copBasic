@@ -5,7 +5,7 @@
 \description{
 \bold{Attention:} This function is thought to be mostly deprecated in favor of \code{\link{lcomCOP}}, which uses only direct numerical \code{integrate()} on the integrals shown below. The \code{bilmoms} function is strictly based on Monte Carlo integration.
 
-Compute the \emph{bivariate L-moments (ratios)} (\eqn{\delta^{[\ldots]}_{k;\mathbf{C}}}) of a copula \eqn{\mathbf{C}(u,v; \Theta)} and remap these into the \emph{L-comoment} matrix counterparts (Serfling and Xiao, 2007; Asquith, 2011) including \emph{L-correlation} (\emph{Spearman's Rho}), \emph{L-coskew}, and \emph{L-cokurtosis}.  As described by Brahimi \emph{et al.} (2015), the first four bivariate L-moments \eqn{\delta^{[12]}_k} for random variable \eqn{X^{(1)}} or \eqn{U} with respect to (\emph{wrt}) random variable \eqn{X^{(2)}} or \eqn{V} are defined as
+Compute the \emph{bivariate L-moments (ratios)} (\eqn{\delta^{[\ldots]}_{k;\mathbf{C}}}) of a copula \eqn{\mathbf{C}(u,v; \Theta)} and remap these into the \emph{L-comoment} matrix counterparts (Serfling and Xiao, 2007; Asquith, 2011) including \emph{L-correlation} (\emph{Spearman Rho}), \emph{L-coskew}, and \emph{L-cokurtosis}.  As described by Brahimi \emph{et al.} (2015), the first four bivariate L-moments \eqn{\delta^{[12]}_k} for random variable \eqn{X^{(1)}} or \eqn{U} with respect to (\emph{wrt}) random variable \eqn{X^{(2)}} or \eqn{V} are defined as
 \deqn{\delta^{[12]}_{1;\mathbf{C}} = 2\int\!\!\int_{\mathcal{I}^2}
 \mathbf{C}(u,v)\,\mathrm{d}u\mathrm{d}v - \frac{1}{2}\mbox{,}}
 \deqn{\delta^{[12]}_{2;\mathbf{C}} = \int\!\!\int_{\mathcal{I}^2}

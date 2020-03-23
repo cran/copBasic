@@ -41,6 +41,7 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 \seealso{\code{\link{diagCOPatf}}, \code{\link{duCOP}}, \code{\link{jointCOP}}, \code{\link{joint.curvesCOP}}, \code{\link{level.curvesCOP2}}
 }
 \examples{
+# See Note for joint.curvesCOP()
 \dontrun{
 # Approach the joint curves from both "with respect two" perspectives---results same.
 JCvwrtu <- joint.curvesCOP( cop=PSP, prob=0.98)$"0.98"

@@ -34,22 +34,33 @@ where the individual \emph{Bernstein weights} \eqn{\eta(i,j)} for the \eqn{k}th 
 
 \deqn{\eta(i,j; u,v) = {n \choose i} u^i (1-u)^{n-i} \times {n \choose j} u^j (1-u)^{n-j}\mbox{.}}
 
-The Bernstein extension, albeit conceptually pure in its shuffling by binomial coefficients and left- and right-tail weightings, is quite CPU intensive as inspection of the equations above indicates a nest of four \code{for()} loops in \R. (The native \R code of \pkg{copBasic} uses the \code{sapply()} function in \R liberally for substantial but not a blazing fast speed increase.) The Bernstein extension results in a smoother surface of the empirical copula and can be triggered by \code{ctype="bernstein"}. Finally, the \emph{empirical copula frequency} can be defined (Nelson, 2006, p. 219) as
+The Bernstein extension, albeit conceptually pure in its shuffling by binomial coefficients and left- and right-tail weightings, is quite CPU intensive as inspection of the equations above indicates a nest of four \code{for()} loops in \R. (The native \R code of \pkg{copBasic} uses the \code{sapply()} function in \R liberally for substantial but not a blazing fast speed increase.) The Bernstein extension results in a smoother surface of the empirical copula and can be triggered by \code{ctype="bernstein"}.
+
+\emph{Checkerboard Empirical Copula}---A simple smoothing to the empirical copula is the checkerboard empirical copula (Segers et al., 2017) that has been adapted from the \pkg{copula} package. It is numerically intensive like the Bernstein and possibly of limited usefulness for large sample sizes. The checkerboard extension can be triggered by \code{ctype="checkerboard"} and is formulated as
+
+\deqn{\mathbf{C}^\sharp_{n}(U) = \frac{1}{n+o} \sum_{i=1}^n\prod_{i=1}^d \mathrm{min}[\mathrm{max}[n U_j - R^{(n)}_{i,j} + 1,0],1]\mathrm{,}}
+
+where \eqn{U} is a \eqn{d=2} column matrix of \eqn{u} and \eqn{v}, \eqn{R} is a rank function, and \eqn{o} is an offset term on \eqn{[0,1]}.
+
+
+The \emph{empirical copula frequency} can be defined (Nelson, 2006, p. 219) as
 \deqn{\mathbf{c}_n(u, v) = \mathbf{C}_n\biggl(\frac{i}{n}, \frac{j}{n}\biggr) -
                            \mathbf{C}_n\biggl(\frac{i-1}{n}, \frac{j}{n}\biggr) -
                            \mathbf{C}_n\biggl(\frac{i}{n}, \frac{j-1}{n}\biggr) +
                            \mathbf{C}_n\biggl(\frac{i-i}{n}, \frac{j-1}{n}\biggr)\mbox{.}}
 }
 \usage{
-EMPIRcop(u, v, para=NULL, ctype=c("weibull", "hazen", "1/n", "bernstein"),
-                          bernprogress=FALSE, ...)
+EMPIRcop(u, v, para=NULL,
+               ctype=c("weibull", "hazen", "1/n", "bernstein", "checkerboard"),
+                          bernprogress=FALSE, checkerboard.offset=0, ...)
 }
 \arguments{
   \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction;}
   \item{v}{Nonexceedance probability \eqn{v} in the \eqn{Y} direction;}
   \item{para}{A vector (single element) of parameters---the U-statistics of the data (see \bold{Examples}). Alternatively, \code{para} can be a \code{list} holding a \code{para} as would be done if it were a vector, but arguments \code{bernstein} and \code{bernprogress} can be optionally included---this feature is provided so that the Bernstein refinement can be controlled within the context of other functions calling \code{EMPIRcop} such as by \code{\link{level.curvesCOP}};}
-  \item{ctype}{An alternative means for trigging the definition of \eqn{\mathbf{C}^\mathcal{H}_n} (default), \eqn{\mathbf{C}^\mathcal{W}_n}, \eqn{\mathbf{C}_n}, or \eqn{\mathbf{C}^\mathcal{B}_n};}
-  \item{bernprogress}{The Bernstein copula extension is CPU intensive(!), so a splash counter is pushed to the console via the \code{message()} function in \R so as to not discourage the user; and}
+  \item{ctype}{An alternative means for trigging the definition of \eqn{\mathbf{C}^\mathcal{H}_n} (default), \eqn{\mathbf{C}^\mathcal{W}_n}, \eqn{\mathbf{C}_n}, \eqn{\mathbf{C}^\mathcal{B}_n}, or the checkerboard empirical copula (a type of smooth);}
+  \item{bernprogress}{The Bernstein copula extension is CPU intensive(!), so a splash counter is pushed to the console via the \code{message()} function in \R so as to not discourage the user;}
+  \item{checkerboard.offset}{A scaling of the ratio \code{sum(....)/(n+offset)} for the checkerboard empirical copula; and}
   \item{...}{Additional arguments to pass.}
 }
 \value{
@@ -66,13 +77,17 @@ It is important to distinquish between a sample estimator and the estimation of 
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 
 Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in Nature---An approach using copulas: Springer, 289 p.
+
+Segers, J., Sibuya, M., and Tsukahara, H., 2017, The empirical beta copula: Journal of Multivariate Analysis, v. 155, pp. 35--51.
 }
 \author{ W.H. Asquith }
 \seealso{ \code{\link{diagCOP}}, \code{\link{level.curvesCOP}}, \code{\link{simCOP}}  }
 \examples{
 \dontrun{
-EMPIRcop(0.321,0.78, para=simCOP(n=90, cop=N4212cop, para=2.32, graphics=FALSE))
-N4212cop(0.321,0.78, para=2.32)#}
+set.seed(62)
+EMPIRcop(0.321,0.78, para=simCOP(n=90, cop=N4212cop,
+                                 para=2.32, graphics=FALSE)) # [1] 0.3222222
+N4212cop(0.321,0.78, para=2.32)                              # [1] 0.3201281}
 
 \dontrun{
 set.seed(62) # See note below about another seed to try.
@@ -107,12 +122,13 @@ PSP(0.4,0.6)              # 0.3157895 (compare to listed values below)
 
 # For set.seed(62) --- not all measures of association can be used for all
 # empirical copulas because of 'divergent' integral errors, but this is an example
-# for Hoeffding's Phi.
+# for Hoeffding's Phi. These computations are CPU intensive, esp Bernstein.
 hoefCOP(as.sample=TRUE, para=uv) #  (sample estimator is fast)  # 0.4987755
 hoefCOP(cop=EMPIRcop,   para=uv, ctype="hazen")                 # 0.5035348
 hoefCOP(cop=EMPIRcop,   para=uv, ctype="weibull")               # 0.4977145
 hoefCOP(cop=EMPIRcop,   para=uv, ctype="1/n")                   # 0.4003646
-hoefCOP(cop=EMPIRcop,   para=uv, ctype="bernstein")             # 0.4563724}
+hoefCOP(cop=EMPIRcop,   para=uv, ctype="bernstein")             # 0.4563724
+hoefCOP(cop=EMPIRcop,   para=uv, ctype="checkerboard")          # 0.4952427}
 
 # All other example suites shown below are dependent on the pseudo-data in the
 # variable uv. It is suggested to not run with a sample size much larger than the
@@ -139,10 +155,13 @@ level.curvesCOP(cop=EMPIRcop, para=bpara, delu=0.03, col=3, ploton=FALSE)
 
 \dontrun{
 # Experimental from R Graphics by Murrell (2005, p.112)
-"trans3d" <-
-function(x,y,z, pmat) tmat <- cbind(x,y,z,1) \%*\% pmat; return(tmat[,1:2] / tmat[,4])
+"trans3d" <-                         # blackslashes seem needed for the package
+function(x,y,z, pmat) {              # for user manual building but bad syntax
+  tmat <- cbind(x,y,z,1) \%*\% pmat  # because remember the percent sign is a
+  return(tmat[,1:2] / tmat[,4])      # a comment character in LaTeX.
+}
 
-the.grid <- EMPIRgrid(para=uv)
+the.grid <- EMPIRgrid(para=uv, ctype="checkerboard")
 the.diag <- diagCOP(cop=EMPIRcop, para=uv, ploton=FALSE, lines=FALSE)
 
 the.persp <- persp(the.grid$empcop, theta=-25, phi=20,
@@ -152,7 +171,8 @@ lines(the.trace, lwd=2, col=2) # The diagonal of the copula
 
 # The following could have been used as an alternative to call persp()
 the.persp <- persp(x=the.grid$u, y=the.grid$v, z=the.grid$empcop, theta=-25, phi=20,
-                   xlab="U VARIABLE", ylab="V VARIABLE", zlab="COPULA C(u,v)")#}
+                   xlab="U VARIABLE", ylab="V VARIABLE", zlab="COPULA C(u,v)")
+lines(the.trace, lwd=2, col=2) # The diagonal of the copula #}
 }
 \keyword{empirical copula}
 \keyword{copula (empirical)}

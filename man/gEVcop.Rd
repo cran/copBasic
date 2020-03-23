@@ -46,9 +46,9 @@ UV <- simCOP(200, cop=gEVcop, para=0.8) #}
 
 \dontrun{
 # Joe (2014, p. 105) has brief detail indicating rho = [0,1] and though it seems
-# rho would be a Pearson correlation, this does not seem to be the case. The Rho
+# Rho would be a Pearson correlation, this does not seem to be the case. The Rho
 # seems to start with that of the Gaussian and then through the extreme-value
-# transform, it just assumes the role of a parameter?
+# transform, it just assumes the role of a parameter called Rho?
 rho <- 0.8
 UV <- simCOP(2000, cop=gEVcop, para=rho)
 P <- cor(UV[,1], UV[,2], method="pearson")
@@ -57,9 +57,9 @@ if(abs(P-0.8) < 0.001) {
 } else { print("nope not") } # Should they be?}
 
 \dontrun{
-r <- seq(0.01,1, by=.01)
-R <- sapply(rhos, function(k) rhoCOP(cop=gEVcop, para=k))
-#}
+gEVparameter <- seq(0.02,1, by=.02)
+SpearmanRho <- sapply(gEVparameter, function(k) rhoCOP(cop=gEVcop, para=k))
+plot(gEVparameter,SpearmanRho) #}
 }
 \keyword{g-EV copula}
 \keyword{copula (formulas)}

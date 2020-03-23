@@ -3,16 +3,16 @@
 \alias{EMPIRgrid}
 \title{ Grid of the Bivariate Empirical Copula }
 \description{
-Generate a gridded representation of the \emph{bivariate empirical copula} (see \code{\link{EMPIRcop}}, Salvadori \emph{et al.}, 2007, p. 140).  This function has the primary intention of supporting 3-D renderings or 2-D images of the \emph{copulatic surface}, but many empirical copula functions in \pkg{copBasic} rely on the grid of the empirical copula---unlike the functions support parametric copulas.
+Generate a gridded representation of the \emph{bivariate empirical copula} (see \code{\link{EMPIRcop}}, Salvadori \emph{et al.}, 2007, p. 140).  This function has the primary intention of supporting 3-D renderings or 2-D images of the \emph{copulatic surface}, but many empirical copula functions in \pkg{copBasic} rely on the grid of the empirical copula---unlike the functions that support parametric copulas.
 }
 \usage{
 EMPIRgrid(para=NULL, deluv=0.05, verbose=FALSE, ...)
 }
 \arguments{
   \item{para}{A vector (single element) of parameters---the U-statistics of the data (see example);}
-  \item{deluv}{A delta value of the both the \eqn{u} and \eqn{v}  axes for copula estimation from \code{\link{EMPIRcop}};}
+  \item{deluv}{A delta value of the both the \eqn{u} and \eqn{v} axes (grid edges) for empirical copula estimation by the \code{\link{EMPIRcop}} function;}
   \item{verbose}{A logical controlling whether the progress during grid building is to be shown; and}
-  \item{...}{Additional arguments to pass.}
+  \item{...}{Additional arguments to pass to \code{\link{EMPIRcop}}.}
 }
 \value{
   An \R \code{list} of the gridded values of \eqn{u}, \eqn{v}, and \eqn{\mathbf{C}_{n}(u,v)} values of the bivariate empirical copula is returned. (Well only \eqn{\mathbf{C}_{n}(u,v)} is in the form of a grid as an \R \code{matrix}.) The \code{deluv} used to generated the grid is also returned.
@@ -38,8 +38,10 @@ uv <- data.frame(U=fakeU, V=fakeV) # our U-statistics
 
 # The follow function is used to make 3-D --> 2-D transformation
 # From R Graphics by Murrell (2005, p.112)
-"trans3d" <- function(x,y,z, pmat) {
-   tmat <- cbind(x,y,z,1) \%*\% pmat; return(tmat[,1:2] / tmat[,4])
+"trans3d" <-                         # blackslashes seem needed for the package
+function(x,y,z, pmat) {              # for user manual building but bad syntax
+  tmat <- cbind(x,y,z,1) \%*\% pmat  # because remember the percent sign is a
+  return(tmat[,1:2] / tmat[,4])      # a comment character in LaTeX.
 }
 
 the.grid <- EMPIRgrid(para=uv)

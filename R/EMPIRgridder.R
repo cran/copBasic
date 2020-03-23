@@ -32,9 +32,22 @@ function(empgrid=NULL, ...) {
   }
 
   for(i in 2:n) {
+     #denominator <- the.deriv[i,n]
+     #print(c(i,the.deriv[i,n]))
+     #print(c(i,denominator))
      the.deriv[i,] <- the.deriv[i,]/the.deriv[i,n]
+     #print(c(i,sum(the.deriv[i,])))
+     #if(is.nan(the.deriv[i,1])) stop(sum(the.deriv[i,]))
   }
   the.deriv[1,] <- rep(NA, n)
+
+  for(i in 2:n) {
+    if(length(the.deriv[! is.finite(the.deriv[i,])]) > 0) {
+      #print(empcop[,i]) # this would have been the second
+      warning("found nonfinite values on row=",i," in grid derivative")
+      next
+    }
+  }
 
   attributes(the.deriv) <- list(dim=dim(empcop),
                                 rownames=empgrid$u,

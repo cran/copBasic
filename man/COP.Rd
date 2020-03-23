@@ -16,6 +16,8 @@ and other properties of a copula are that
 \deqn{\mathbf{C}(1,1) = 1\mbox{.}}
 
 Copulas can be combined with each other (\code{\link{convex2COP}}, \code{\link{composite1COP}}, \code{\link{composite2COP}}, and \cr \code{\link{composite3COP}}) to form more complex and sophisticated dependence structures. Also copula multiplication---a special product of two copulas---yields another copula (see \code{\link{prod2COP}}).
+
+Perhaps the one of the more useful features of this function is that in practical applications it can be used to take a copula formula and reflect or rotated it in fashions to attain association structures that the native definition of the copula can not acquire. The terminal demonstration in the \bold{Examples} demonstrates this for the \emph{Raftery copula} (\code{\link{RFcop}}).
 }
 \usage{
 COP(u, v, cop=NULL, para=NULL,
@@ -130,6 +132,23 @@ duCOP(cop=P,FF,GG)  # 0.995
 # What is the probability that either X or Y are greater than
 # the 99th and 50th percentiles, respectively?
 coCOP(cop=P,bF,bG)  # 0.505
+
+\dontrun{
+# MAJOR EXAMPLE FOR QUICKLY MODIFYING INHERENT ASSOCIATION STRUCTURES
+p <- .5 # Reasonable strong positive association for the Raftery copula
+"RFcop1" <- function(u,v, para) COP(u,v, cop=RFcop, para=p, reflect="1")
+"RFcop2" <- function(u,v, para) COP(u,v, cop=RFcop, para=p, reflect="2")
+"RFcop3" <- function(u,v, para) COP(u,v, cop=RFcop, para=p, reflect="3")
+"RFcop4" <- function(u,v, para) COP(u,v, cop=RFcop, para=p, reflect="4")
+
+d <- 0.01 # Just to speed up the density plots a bit
+densityCOPplot(RFcop1, para=p, contour.col=1, deluv=d) # the Raftery in the literature
+densityCOPplot(RFcop2, para=p, contour.col=1, deluv=d, ploton=FALSE)
+densityCOPplot(RFcop3, para=p, contour.col=1, deluv=d, ploton=FALSE)
+densityCOPplot(RFcop4, para=p, contour.col=1, deluv=d, ploton=FALSE)
+# Now some text into the converging tail to show the reflection used.
+text(-2,-2, "reflect=1", col=2); text(+2,+2, "reflect=2", col=2)
+text(+2,-2, "reflect=3", col=2); text(-2,+2, "reflect=4", col=2) #}
 }
 \keyword{copula (formulas)}
 \keyword{copula operator}

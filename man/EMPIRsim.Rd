@@ -34,6 +34,9 @@ EMPIRsim(n=100, empgrid=NULL, kumaraswamy=FALSE, na.rm=TRUE, keept=FALSE,
 \author{ W.H. Asquith}
 \seealso{\code{\link{EMPIRgrid}}, \code{\link{EMPIRgridderinv}},  \code{\link{EMPIRsimv}} }
 \examples{
+
+# See other examples under EMPIRsimv
+
 \dontrun{
 pdf("EMPIRsim_experiment.pdf")
   nsim <- 5000
@@ -54,20 +57,6 @@ pdf("EMPIRsim_experiment.pdf")
                   col=rgb(1,0,0,0.1),pch=16)
   mtext("Resimulation but using the Kumaraswamy Distribution for smoothing")
 dev.off()#}
-
-\dontrun{
-  set.seed(1)
-  uv1 <- simCOP(n=5000, cop=PSP, para=NULL, snv=TRUE)
-  semicorCOP(cop=EMPIRcop, para=uv2, samcor=TRUE)
-  uv.grid <- EMPIRgrid(para=uv1, deluv=0.01)
-  set.seed(1)
-  uv2 <- EMPIRsim(n=5000, empgrid=uv.grid, snv=TRUE,
-                  col=rgb(1,0,0,0.1), pch=16)
-  mtext("Resimulation without Kumaraswamy smoothing")
-  semicorCOP(cop=EMPIRcop, para=uv2, samcor=TRUE)#}
-
-# See other examples under EMPIRsimv
 }
 \keyword{empirical copula}
 \keyword{empirical copula (simulation)}
-

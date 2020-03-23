@@ -12,7 +12,7 @@ where the \eqn{u = v = 1/2} and thus shows that \eqn{\beta_\mathbf{C}} is based 
 \deqn{\frac{3}{16}(1 + \beta_\mathbf{C})^3  - 1 \le \rho_\mathbf{C} \le 1 - \frac{3}{16}(1 - \beta_\mathbf{C})^3\mbox{, and}}
 \deqn{\frac{3}{8}(1 + \beta_\mathbf{C})^2  - 1 \le \tau_\mathbf{C} \le 1 - \frac{3}{8}(1 - \beta_\mathbf{C})^2\mbox{.}}
 
-A curious aside (Joe, 2014, p. 164) about the \emph{Gaussian copula} is that \emph{Blomqvist's Beta} (\code{\link{blomCOP}}) is equal to \emph{Kendall's Tau} (\code{\link{tauCOP}}): \eqn{\beta_\mathbf{C} = \tau_\mathbf{C}} (see \bold{Note} in \code{\link{med.regressCOP}} for a demonstration).
+A curious aside (Joe, 2014, p. 164) about the \emph{Gaussian copula} is that \emph{Blomqvist Beta} (\code{\link{blomCOP}}) is equal to \emph{Kendall Tau} (\code{\link{tauCOP}}): \eqn{\beta_\mathbf{C} = \tau_\mathbf{C}} (see \bold{Note} in \code{\link{med.regressCOP}} for a demonstration).
 }
 \usage{
 blomCOP(cop=NULL, para=NULL, as.sample=FALSE, ...)
@@ -56,7 +56,7 @@ if( c*Bp1^2 - 1 <= G & G <= 1 - c*Bm1^2 ) print("TRUE") #}
 \dontrun{
 # A demonstration of a special feature of blomCOP for sample data.
 # Joe (2014, p. 60; table 60) has 0.749 for GHcop(tau=0.5); n*var(hatB) as n-->infinity
-theta <- GHcop(tau=0.5)$para; B <- blomCOP(cop=GHcop, para=theta); n <- 1000 
+theta <- GHcop(tau=0.5)$para; B <- blomCOP(cop=GHcop, para=theta); n <- 1000
 H <- sapply(1:1000, function(i) { # Let us test that with pretty large sample size:
 	                blomCOP(para=rCOP(n=n, cop=GHcop, para=theta), as.sample=TRUE) })
 print(n*var(B-H)) # For 1,000 simulations of size n : 0.747, which matches Joe's result }

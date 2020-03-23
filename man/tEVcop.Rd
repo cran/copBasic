@@ -42,7 +42,7 @@ Demarta, S., and McNeil, A.J., 2004, The t copula and related copulas: Internati
 \examples{
 \dontrun{
 tau <- 1/3 # Example from copula::evCopula.Rd
-tev.cop <- tevCopula(iTau(tevCopula(), tau))
+tev.cop <- copula::tevCopula(copula::iTau(copula::tevCopula(), tau))
 copula::pCopula(c(0.1,.5), copula=tev.cop)         # 0.07811367
 tEVcop(0.1, 0.5, para=slot(tev.cop, "parameters")) # 0.07811367}
 

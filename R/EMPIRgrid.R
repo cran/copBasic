@@ -23,7 +23,7 @@ function(para=NULL, deluv=0.05, verbose=FALSE, ...) {
   if(verbose) message("Index ")
   for(i in 1:nu) {
      if(verbose) message(nu - i,"-", appendLF=FALSE)
-     cop[i,] <- EMPIRcop(rep(us[i], nv), vs, para=para)
+     cop[i,] <- EMPIRcop(rep(us[i], nv), vs, para=para, ...)
   }
   if(verbose) message("done")
 

@@ -1,23 +1,54 @@
-"AMHcop" <- function(u, v, para=NULL, tau=NULL, ...) {
+"AMHcop" <- function(u, v, para=NULL, rho=NULL, tau=NULL,
+                            fit=c("rho","tau"), ...) {
     if(is.null(para)) {
-      if(is.null(tau)) tau <- cor(u,v, method="kendall")
-      "ktau" <- function(d) {
-        stau <- (3*d-2)/(3*d) - (2*(1-d)^2*log(1-d))/(3*d^2)
-        tau - stau
+      fit <- match.arg(fit)
+      if(is.null(tau) & is.null(rho)) {
+        if(fit == "rho") {
+          rho <- cor(u,v, method="spearman")
+        } else {
+          tau <- cor(u,v, method="kendall")
+        }
       }
       rt <- NULL
-      try(rt <- uniroot(ktau, interval=c(-1,1-.Machine$double.eps)))
-      if(! is.null(rt)) {
-         para <- rt$root
-         names(para) <- "theta"
-         names(tau)  <- "Kendall Tau"
-         return(list(para=para, tau=tau))
+      if(is.null(rho)) {
+        if(tau < (5 - 8*log(2))/3 | tau > 1/3) {
+          warning("Kendall tau=",tau," is outside limits attainable")
+          return(NULL)
+        }
+        "ktau" <- function(t) {
+          stau <- (3*t-2)/(3*t) - (2*(1-t)^2*log(1-t))/(3*t^2)
+          tau - stau
+        }
+        try(rt <- uniroot(ktau, interval=c(-1,1-.Machine$double.eps)))
+        if(! is.null(rt)) {
+          para <- rt$root
+          names(para) <- "theta"
+          names(tau)  <- "Kendall Tau"
+          return(list(para=para, tau=tau))
+        } else {
+          warning("could not solve for parameter Theta via Kendall Tau")
+          return(NULL)
+        }
       } else {
-         warning("could not solve for parameter Theta")
-         return(NULL)
+        if(rho < 33 - 48*log(2) | rho > 4*pi^2 - 39) {
+          warning("Spearman rho=",rho," is outside limits attainable")
+          return(NULL)
+        }
+        "srho" <- function(t) {
+          rho - sum(sapply(1:100, function(k) 3*t^k/choose(k+2, 2)^2))
+        }
+        try(rt <- uniroot(srho, interval=c(-1,1-.Machine$double.eps)))
+        if(! is.null(rt)) {
+          para <- rt$root
+          names(para) <- "theta"
+          names(rho)  <- "Spearman Rho"
+          return(list(para=para, rho=rho))
+        } else {
+          warning("could not solve for parameter Theta via Spearman Rho")
+          return(NULL)
+        }
       }
     }
-    
     rev <- FALSE
     if(length(para) == 2) {
       rev <- para[2]; para <- para[-2]

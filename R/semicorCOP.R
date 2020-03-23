@@ -34,7 +34,7 @@ function(cop=NULL, para=NULL, truncation=0, n=0, as.sample=FALSE, ...) {
          return(NULL)
       }
       if(n == 0) {
-         warning("must have sample size argument specified, an section of code ",
+         warning("must have sample size argument specified, a section of code ",
                  "using integration is not implemented, returning NULL")
          return(NULL)
       } else {

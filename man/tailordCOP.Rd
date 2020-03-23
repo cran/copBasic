@@ -52,6 +52,7 @@ Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 \author{ W.H. Asquith}
 \seealso{\code{\link{COP}}, \code{\link{tailconCOP}}, \code{\link{taildepCOP}}}
 \examples{
+\dontrun{
 # Joe (2014, p. 5) names MTCJ = Mardia-Takahasi-Cook-Johnson copula
 "MTCJ" <- function(u,v,para) { (u^(-para) + v^(-para) - 1)^(-1/para) }
 # The results that follow match those reported by Joe (2014, p. 69) who
@@ -60,7 +61,7 @@ Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 tailordCOP(cop=MTCJ, para=3, plot=TRUE) # kappaL  = 1.00667, kappaU  = 1.96296
 # TAIL DEPENDENCY:
 taildepCOP(cop=MTCJ, para=3, plot=TRUE) # lambdaL = 0,       lambdaU = 0.7937
-# Joe (2014) reports lambdaL = 2^(-1/para) = 2^(-1/3) = 0.7937005
+# Joe (2014) reports lambdaL = 2^(-1/para) = 2^(-1/3) = 0.7937005}
 }
 \keyword{copula (characteristics)}
 \keyword{copula (properties)}

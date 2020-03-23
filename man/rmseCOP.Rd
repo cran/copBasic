@@ -43,6 +43,7 @@ pGL <- mleCOP(U,V, cop=GLcop, interval=c(0,20))$par
 rmses <- c(rmseCOP(U,V, cop=GLcop, para=pGL),
            rmseCOP(U,V, cop=P),
            rmseCOP(U,V, cop=PSP))
+names(rmses) <- c("GLcop", "P", "PSP")
 print(rmses) # We will see that the first RMSE is the smallest as the
 # Galambos has the nearest overall behavior than the P and PSP copulas.}
 }

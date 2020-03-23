@@ -1,7 +1,13 @@
-"RFcop" <- function(u, v, para=NULL, rho=NULL, tau=NULL, ...) {
+"RFcop" <- function(u, v, para=NULL, rho=NULL, tau=NULL,
+                           fit=c('rho', 'tau'), ...) {
     if(is.null(para)) {
+      fit <- match.arg(fit)
       if(is.null(tau) & is.null(rho)) {
-        tau <- cor(u,v, method="kendall")
+        if(fit == "rho") {
+          rho <- cor(u,v, method="spearman")
+        } else {
+          tau <- cor(u,v, method="kendall")
+        }
       }
       rt <- NULL
       if(is.null(rho)) {
@@ -28,11 +34,11 @@
     }
     if(length(para) == 1) {
        if(para < 0 | para > 1) {
-         warning("Parameter 0 <= Theta <= 1")
+         warning("Parameter must be 0 <= Theta <= 1")
          return(NULL)
        }
-       tau <- 2*para/(3-para)
-       rho <- para*(4-3*para)/(2-para)^2
+       tau <- 2*para/(  3-para)
+       rho <-   para*(4-3*para)/(2-para)^2
     } else {
        warning("Parameter Theta can not be a vector")
        return(NULL)
@@ -48,9 +54,10 @@
     } else if(length(v) == 1) {
        v <- rep(v, length(u))
     }
-    m <- 1 - para; p <- 1 + para
-    mx <- sapply(1:length(u), function(i) max(c(u[i],v[i])))
-    mn <- sapply(1:length(u), function(i) min(c(u[i],v[i]))) # M(u,v)
+    m <- 1 - para; p <- 1 + para; g <- 1:length(u)
+    rng <- sapply(g, function(i) range(c(u[i], v[i])))
+    mx <- sapply(g, function(i) max(c(u[i],v[i])))
+    mn <- sapply(g, function(i) min(c(u[i],v[i]))) # M(u,v)
     cop <- mn + (m/p)*(u*v)^(1/m)*(1 - mx^(-p/m))
     # Test one is more obvious, but test two requires the simulation
     # testing on derCOPinv shown below and commented out.
@@ -63,7 +70,6 @@
     #print(c(u,v, cop, (u*v)^(1/m), (1 - mx^(-p/m))))
     return(cop)
 }
-
 
 #\note{
 # The additive quantity to the right of the

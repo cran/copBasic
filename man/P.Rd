@@ -36,7 +36,7 @@ lmomco::lcomoms2(UV, nmom=4)
 # L-cokurtosis:  0.00123 and  0.00262 ---> ZERO
 
 # MODEST POSITIVE CORRELATION
-rho <- 0.5; # Spearman's Rho
+rho <- 0.5; # Spearman Rho
 theta <- PLACKETTpar(rho=0.5) # Theta = 5.115658
 UV <- simCOP(n=n, cop=PLACKETTcop, para=theta, graphics=FALSE)
 lmomco::lcomoms2(UV, nmom=4)

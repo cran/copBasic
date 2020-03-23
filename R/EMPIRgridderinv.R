@@ -1,5 +1,5 @@
 "EMPIRgridderinv" <-
-function(empgrid=NULL, kumaraswamy=FALSE, ...) {
+function(empgrid=NULL, kumaraswamy=FALSE, dergrid=NULL, ...) {
 
   if(is.null(empgrid)) {
     warning("The gridded empirical copula (say from EMPIRgrid) is NULL")
@@ -10,7 +10,11 @@ function(empgrid=NULL, kumaraswamy=FALSE, ...) {
     return(NULL)
   }
 
-  the.deriv <- EMPIRgridder(empgrid=empgrid,...)
+  if(is.null(dergrid)) {
+    the.deriv <- EMPIRgridder(empgrid=empgrid,...)
+  } else {
+    the.deriv <- dergrid
+  }
 
   FF <- empgrid$v
   n <- length(FF)
@@ -27,6 +31,11 @@ function(empgrid=NULL, kumaraswamy=FALSE, ...) {
   for(i in 2:n) {
     x <- the.deriv[i,]
 
+    if(length(x[! is.finite(x)]) > 0) {
+      warning("found nonfinite values on row=",i," in grid inversion")
+      next
+    }
+
     # invert the CDF by linear approximation
     # we want the QDF with FF (horizontal axis values on same spacing)
     # we know that the x are given in ordered seqeuence to so avoid
@@ -42,7 +51,13 @@ function(empgrid=NULL, kumaraswamy=FALSE, ...) {
       lmr <- lmomco::vec2lmom(c(beta0, 2*beta1 - beta0)) # L-moments
       par.of.kur <- lmomco::parkur(lmr)
       X <- lmomco::quakur(FF, par.of.kur) # Kumuraswamy distribution
-
+      if(is.null(X)) {
+        warning("failed Kumaraswamy fit at i=",i,", using approx inv")
+        the.inverse[i,] <- inv
+        Alphas[i] <- NA
+        Betas[i]  <- NA
+        next
+      }
       the.inverse[i,] <- X
       Alphas[i] <- par.of.kur$para[1]
       Betas[i]  <- par.of.kur$para[2]

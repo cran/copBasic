@@ -40,7 +40,7 @@ Chine, Amel, and Benatia, Fatah, 2017, Bivariate copulas parameters estimation u
 \dontrun{
 # Bekrizade et al. (2012, table 1) report for a=2 and n=3 that range in
 # theta = [-0.1667, 0.1667] and range in rho = [-0.1806641, 0.4036458]. However,
-# we see that they have made an error in listing the lower bounds of theta:
+# we see that they have seemingly made an error in listing the lower bounds of theta:
 rhoCOP(FGMcop, para=c(  1/6, 2, 3))  #  0.4036458
 rhoCOP(FGMcop, para=c( -1/6, 2, 3))  # Following error results
 # In cop(u, v, para = para, ...) : parameter Theta < -0.0833333333333333

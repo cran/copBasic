@@ -26,8 +26,10 @@ fakeU <- lmomco::pp(uv[,1], sort=FALSE)
 fakeV <- lmomco::pp(uv[,2], sort=FALSE)
 uv <- data.frame(U=fakeU, V=fakeV)
 
-"trans3d" <- function(x,y,z, pmat) {
-   tmat <- cbind(x,y,z,1) \%*\% pmat; return(tmat[,1:2] / tmat[,4])
+"trans3d" <-                         # blackslashes seem needed for the package
+function(x,y,z, pmat) {              # for user manual building but bad syntax
+  tmat <- cbind(x,y,z,1) \%*\% pmat  # because remember the percent sign is a
+  return(tmat[,1:2] / tmat[,4])      # a comment character in LaTeX.
 }
 
 the.grid <- EMPIRgrid(para=uv, deluv=0.1)

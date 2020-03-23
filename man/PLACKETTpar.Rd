@@ -65,11 +65,12 @@ Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in
 \seealso{\code{\link{PLACKETTcop}}, \code{\link{PLACKETTsim}}, \code{\link{rhoCOP}}
 }
 \examples{
+\dontrun{
 Q1 <- rnorm(1000); Q2 <- Q1+rnorm(1000)
 PLpar(Q1,Q2); PLpar(Q1,Q2, byrho=TRUE) # two estimates for same data
 PLpar(rho= 0.76) # positive association
 PLpar(rho=-0.76) # negative association
-tauCOP(cop=PLcop, para=PLpar(rho=-0.15, by.rho=TRUE))
+tauCOP(cop=PLcop, para=PLpar(rho=-0.15, by.rho=TRUE)) #}
 
 \dontrun{
 RHOS <- seq(0,0.990, by=0.002); TAUS <- rep(NA, length(RHOS))

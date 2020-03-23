@@ -48,7 +48,7 @@ concordCOP(cop=NULL,  para=NULL, cop2=NULL, para2=NULL, ...)
   The value for \eqn{\tau_\mathbf{C}} is returned.
 }
 \note{
-Although titled for computation of Kendall's Tau, the \code{tauCOP} function is the implementation of the \emph{concordance function} \eqn{\mathcal{Q}(\mathbf{C}_1, \mathbf{C}_2)} (see Nelsen (2006, pp. 158--159) when given two different copulas and respective parameters as arguments. The function \code{concordCOP} just dispatches to \code{tauCOP}. A useful relation is
+Although titled for computation of the Kendall Tau, the \code{tauCOP} function is the implementation of the \emph{concordance function} \eqn{\mathcal{Q}(\mathbf{C}_1, \mathbf{C}_2)} (see Nelsen (2006, pp. 158--159) when given two different copulas and respective parameters as arguments. The function \code{concordCOP} just dispatches to \code{tauCOP}. A useful relation is
 \deqn{\int\!\!\int_{\mathcal{I}^2} \mathbf{C}_1(u,v)\,\mathrm{d}\mathbf{C}_2(u,v) =
       \frac{1}{2} - \int\!\!\int_{\mathcal{I}^2} \frac{\delta}{\delta u}\mathbf{C}_1(u,v)\,\frac{\delta}{\delta v}\mathbf{C}_2(u,v)\,\mathrm{d}u\mathrm{d}v\mbox{,} }
 where \eqn{\mathbf{C}_1(u,v)} is the first copula and \eqn{\mathbf{C}_2(u,v)} is the second copula.

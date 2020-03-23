@@ -14,7 +14,7 @@ level.setCOP(cop=NULL, para=NULL, getlevel=NULL, delu=0.001, lines=FALSE, ...)
   \item{cop}{A copula function;}
   \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula;}
   \item{getlevel}{The level set for \eqn{t};}
-  \item{delu}{The increment for \eqn{\Delta u}. The default is 1 part in 1,000, which should often provide enough smoothness for many copulas in practice;}
+  \item{delu}{The increment for \eqn{\Delta u}. The default is 1 part in 1,000, which should often in practice provide enough smoothness for many copulas;}
   \item{lines}{A logical that matches the argument of the same name in \code{\link{level.curvesCOP}}; and}
   \item{...}{Additional arguments to pass to the \code{lines()} function in \R.}
 }

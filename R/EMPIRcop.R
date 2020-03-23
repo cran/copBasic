@@ -1,6 +1,7 @@
 "EMPIRcop" <-
-function(u,v, para=NULL, ctype=c("weibull", "hazen", "1/n", "bernstein"),
-                                           bernprogress=FALSE, ...) {
+function(u,v, para=NULL,
+              ctype=c("weibull", "hazen", "1/n", "bernstein", "checkerboard"),
+              bernprogress=FALSE, checkerboard.offset=0, ...) {
   bernstein <- FALSE
   ctype <- match.arg(ctype)
   uobs <- vobs <- NA
@@ -22,9 +23,8 @@ function(u,v, para=NULL, ctype=c("weibull", "hazen", "1/n", "bernstein"),
 
   if(ctype == "bernstein") bernstein <- TRUE
 
-  uobs <- para[,1]
-  vobs <- para[,2]
-  n <- length(uobs); ns <- 1:n
+  # number of points based on which the empirical copula is computed
+  n <- length(para[,1]); ns <- 1:n
 
   nu <- length(u); nv <- length(v)
   if(nu > 1 & nv > 1 & nu != nv) {
@@ -40,7 +40,7 @@ function(u,v, para=NULL, ctype=c("weibull", "hazen", "1/n", "bernstein"),
   } else if(nv == 1) {
      v <- rep(v, nu)
   }
-  nu <- length(u) # make sure to RESET IT!
+  nu <- length(u) # make sure to RESET IT!,  # number of evaluation points
 
   if(bernstein) { # will potentially burn SERIOUS CPU time
      if(bernprogress) {
@@ -58,8 +58,14 @@ function(u,v, para=NULL, ctype=c("weibull", "hazen", "1/n", "bernstein"),
                         return(sum(tmpA)) })
      if(bernprogress) message("\n", appendLF=FALSE)
      return(ber)
+  } else if(ctype == "checkerboard") {
+     uv <- cbind(u,v)
+     R <- t(apply(para, 2, rank, ...)) # (d, n)-matrix of ranks
+     return(vapply(seq_len(nu), function(k) # iterate over rows k of uv
+            sum(apply(pmin(pmax(n * uv[k,] - R + 1, 0), 1), 2, prod)) / (n + checkerboard.offset),
+            NA_real_)) # pmin(...) = (d, n)-matrix
   } else {
-     R <- rank(uobs);     S <- rank(vobs)
+     R <- rank(para[,1]); S <- rank(para[,2])
      if(ctype == "hazen") {
         R <- (R - 0.5)/n; S <- (S - 0.5)/n
      } else if(ctype == "weibull") {

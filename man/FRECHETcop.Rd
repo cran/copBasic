@@ -18,8 +18,8 @@ FRECHETcop(u,v, para=NULL, rho=NULL, tau=NULL, par2rhotau=FALSE, ...)
   \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction;}
   \item{v}{Nonexceedance probability \eqn{v} in the \eqn{Y} direction;}
   \item{para}{A vector (two element) of parameters \eqn{\alpha} and \eqn{\beta};}
-  \item{rho}{Spearman's \eqn{\rho_\mathbf{C}} from which to estimate the parameters;}
-  \item{tau}{Kendall's \eqn{\tau_\mathbf{C}} from which to estimate the parameters;}
+  \item{rho}{Spearman Rho from which to estimate the parameters;}
+  \item{tau}{Kendall Tau from which to estimate the parameters;}
   \item{par2rhotau}{A logical that if \code{TRUE} will return an \R \code{list} of the \eqn{\rho} and \eqn{\tau} for the parameters; and }
   \item{...}{Additional arguments to pass.}
 }
@@ -60,11 +60,11 @@ Durante, F., 2007, Families of copulas, Appendix C, \emph{in} Salvadori, G., De 
 \seealso{\code{\link{M}}, \code{\link{P}}, \code{\link{W}}
 }
 \examples{
+\dontrun{
 ppara <- c(0.25, 0.50)
 fcop <- FRECHETcop(para=ppara, par2rhotau=TRUE)
 RHO <- fcop$rho; TAU <- fcop$tau
 
-\dontrun{
 level.curvesCOP(cop=FRECHETcop, para=ppara) # Durante (2007, Fig. C.27(b))
 mtext("Frechet Family copula")
  UV <- simCOP(n=50, cop=FRECHETcop, para=ppara, ploton=FALSE, points=FALSE)

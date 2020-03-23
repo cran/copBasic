@@ -88,10 +88,9 @@ Genest, C., Kojadinovic, I., \enc{Nešlehová}{Neslehova}, J., and Yan, J., 2011
 }
 \examples{
 \dontrun{
-# Example here is just for Tn. For the example below, the PSP copula is radically
-# different from the Gumbel-Hougaard copula and thus, the hatTn would be expected
-# to be quite different from those of the Gumbel-Hougaard and certainly not too
-# near to zero.
+# Example here is just for Tn. For the example below, the PSP copula is quite different
+# from the Gumbel-Hougaard copula and thus, the hatTn would be expected to be different
+# from those of the Gumbel-Hougaard and certainly not too near to zero.
 sampleUV  <- simCOP(n=60, cop=PSP, graphics=FALSE)   # random sample
 hatTau <- cor(samUV$U, samUV$V, method="kendall") # Kendall Tau
 hatTn  <- statTn(sampleUV, cop=GHcop, para=GHcop(tau=hatTau)$para,

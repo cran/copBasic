@@ -80,7 +80,7 @@ rhoCOP(cop=composite2COP, para=para, brute=TRUE) # 0.9752155}
 \dontrun{
 # This is the same composited copula used in a highly asymmetric multi-modal
 # plotting example under densityCOPplot(). Let us use that copula as a means to
-# check on the Spearman's Rho from the alternative formulations from Joe (2014).
+# check on the Spearman Rho from the alternative formulations from Joe (2014).
 para <- list(alpha=0.15, beta=0.90, kappa=0.06, gamma=0.96,
              cop1=GHcop, cop2=PLACKETTcop, para1=5.5, para2=0.07)
 "rhoCOPbyJoe21" <- function(cop=NULL, para=NULL, ...) { # Joe (2014, eq. 2.48)

@@ -38,6 +38,7 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 \author{ W.H. Asquith}
 \seealso{\code{\link{simCOP}}, \code{\link{densityCOPplot}}, \code{\link{kullCOP}}}
 \examples{
+\dontrun{
 # Joe (2014, p. 164) shows the closed form copula density for the Plackett.
 "dPLACKETTcop" <- function(u,v,para) {
    uv <- u*v; upv <- u + v; eta <- para - 1
@@ -45,7 +46,7 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
    return(A/B)
 }
 dPLACKETTcop(0.32, 0.74,            para=1.3) # 0.9557124
-densityCOP(  0.32, 0.74, cop=PLcop, para=1.3) # 0.9557153
+densityCOP(  0.32, 0.74, cop=PLcop, para=1.3) # 0.9557153}
 
 \dontrun{
 # Joe (2014, p. 165) shows the corner densities of the Plackett as Theta.

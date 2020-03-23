@@ -39,16 +39,15 @@ u <- 0.2; v <- 0.75; ab <- c(1.5, 0.3)
 surCOP(1-u,1-v, cop=MOcop, para=ab) + duCOP(u,v, cop=MOcop, para=ab) # UNITY
 surfuncCOP(u,v, cop=MOcop, para=ab) + duCOP(u,v, cop=MOcop, para=ab) # UNITY
 \dontrun{
-# The joint survival function is not a copula so it does not increases to the
-# upper right with increasing exceedance probabilities. Let us show that by
-# hacking the surCOP function into a copula for feeding back into the algorithmic
-# framework of copBasic.
+# The joint survival function is not a copula so it does not increases to the upper
+# right with increasing exceedance probabilities. Let us show that by hacking the surCOP
+# function into a copula for feeding back into the algorithmic framework of copBasic.
 UsersCop <- function(u,v, para=NULL) {
      afunc <- function(u,v, theta=para) { surfuncCOP(u, v, cop=N4212cop, para=theta)}
      return(asCOP(u,v, f=afunc)) }
 image(gridCOP(cop=UsersCop, para=1.15), col=terrain.colors(20),
       xlab="U, NONEXCEEDANCE PROBABILITY", ylab="V, NONEXCEEDANCE PROBABILITY")#}
-      
+
 \dontrun{
 # Conditional return period (Salvadori et al., 2007, p. 159)
 UV <- simCOP(n=100000, cop=PLACKETTcop, para=5, graphics=FALSE)

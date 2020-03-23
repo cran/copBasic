@@ -28,7 +28,7 @@ Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 \seealso{\code{\link{P}}, \code{\link{GHcop}}, \code{\link{GLcop}}, \code{\link{tEVcop}}
 }
 \examples{
-# Parameter Theta = pi recovery through Blomqvist's Beta (Joe, 2014, p. 176)
+# Parameter Theta = pi recovery through the Blomqvist Beta (Joe, 2014, p. 176)
 qnorm(1 - log(1+blomCOP(cop=HRcop, para=pi))/(2*log(2)))^(-1)
 }
 \keyword{Husler--Reiss copula}

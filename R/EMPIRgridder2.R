@@ -12,7 +12,7 @@ function(empgrid=NULL, ...) {
 
   deluv <- empgrid$deluv
   empcop <- empgrid$empcop
-  #print(the.grid)
+
   rc <- dim(empcop)
   n <- rc[1]
   if(n != rc[2]) {
@@ -35,6 +35,14 @@ function(empgrid=NULL, ...) {
      the.deriv[,i] <- the.deriv[,i]/the.deriv[n,i]
   }
   the.deriv[,1] <- rep(NA, n)
+
+  for(i in 2:n) {
+    if(length(the.deriv[! is.finite(the.deriv[,i])]) > 0) {
+      #print(empcop[i,]) # this would have been the second
+      warning("found nonfinite values on column=",i," in grid derivative")
+      next
+    }
+  }
 
   attributes(the.deriv) <- list(dim=dim(empcop),
                                 rownames=empgrid$u,
