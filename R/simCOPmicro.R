@@ -7,10 +7,13 @@ function(u, cop=NULL, para=NULL,
 
 
 "simCOPmicro" <-
-function(u, cop=NULL, para=NULL,
+function(u, cop=NULL, para=NULL, seed=NULL,
             reflect=c("cop", "surv", "acute", "grave",
                         "1",    "2",     "3",     "4"), ...) {
   reflect <- match.arg(reflect)
+
+  if(! is.null(seed)) set.seed(seed)
+
   n <- length(u); t <- runif(n); v <- vector(mode="numeric", length=n)
   v <- switch(reflect,
     cop   = sapply(1:n, function(i) {     derCOPinv(cop=cop,   u[i],   t[i], para=para, ...) }),

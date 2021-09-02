@@ -9,16 +9,17 @@ Perform a simulation and visualization of a copula using numerical partial deriv
 The \code{simCOP} function is based on a uniformly simulating nonexceedance probability \eqn{u} and then conditioning the \eqn{v} from the inverse of the sectional derivative for \eqn{V} with respect to \eqn{U} (see \code{\link{derCOPinv}}). The function for speed will only report a warning if at least one of the requested simulations in \code{n} could not be made because of \code{uniroot}'ing problems in \code{\link{derCOPinv}}. The returned \code{data.frame} will be shortened automatically, but this can be controlled by \code{na.rm}. Failure of a simulation is purely dependent on the derivative inversion, which should be quite robust for continuous or near continuous copulas and even copulas with singularities should be more or less okay. Lastly, the logical combination \code{na.rm=FALSE} and \code{keept=TRUE} could be used to isolate those combinations giving \code{\link{derCOPinv}} problems. The implemented simulation method in the \pkg{copBasic} package is known as the \emph{conditional distribution method} (Nelsen, 2006; pp. 40--41), \emph{conditional method}, or \emph{Rosenblatt transform} (Joe, 2014, p. 270).
 }
 \usage{
-simCOP(n=100, cop=NULL, para=NULL, na.rm=TRUE, keept=FALSE,
+simCOP(n=100, cop=NULL, para=NULL, na.rm=TRUE, seed=NULL, keept=FALSE,
               graphics=TRUE, ploton=TRUE, points=TRUE, snv=FALSE,
               infsnv.rm=TRUE, trapinfsnv=.Machine$double.eps, ...)
-rCOP(n, cop=NULL, para=NULL, na.rm=TRUE, ...)
+rCOP(n, cop=NULL, para=NULL, na.rm=TRUE, seed=NULL, ...)
 }
 \arguments{
   \item{n}{A sample size, default is \eqn{n = 100};}
   \item{cop}{A copula function;}
   \item{para}{Vector of parameters, if needed, to pass to the copula;}
   \item{na.rm}{A logical to toggle the removal of \code{NA} entries should they form on the returned \code{data.frame}. A well implemented copula should accommodate and not return \code{NA} but because this package relies on numerical derivation, it was decided to have a mechanism to handle this;}
+    \item{seed}{The integer seed to pass immediately to \code{set.seed()};}
   \item{keept}{Keep the \eqn{t} uniform random variable for the simulation as the last column in the returned \code{data.frame};}
   \item{graphics}{A logical that will disable graphics by setting \code{ploton} and \code{points} to \code{FALSE} and overriding whatever their settings were;}
   \item{ploton}{A logical to toggle on the plot (see \bold{Examples} in \code{\link{vuongCOP}});}

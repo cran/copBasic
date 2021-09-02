@@ -530,6 +530,14 @@ Version 2.1.5--03/22/2020
 13. Minor spelling checks during Rd auditing for margin protrusion on Rd2pdf.
 
 
+Version 2.1.6--08/30/2021
+1.  Minor Rd fixes as R 4.1.+ series emerges and check --as-cran reports new things.
+       This mostly added up to the \doi{} call instead of \url{} when a DOI is used.
+2.  Added a seed argument in simCOP, rCOP, and simCOPmicro to pass to set.seed().
+3.  Updated the minimum R version through inspection of other dependencies. This
+       update is likely not that critical but does bring consistency.
+
+
 POTENTIAL TODOs:
 
 Continued inspection of the approx() use and whether ties="ordered" can be used

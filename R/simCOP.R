@@ -1,11 +1,12 @@
-"rCOP" <- function(n, cop=NULL, para=NULL, na.rm=TRUE, ...) {
+"rCOP" <- function(n, cop=NULL, para=NULL, na.rm=TRUE, seed=NULL, ...) {
+   if(! is.null(seed)) set.seed(seed)
    u <- runif(n)
    data.frame(U=u, V=simCOPmicro(u, cop=cop, para=para, ...))
 }
 
 
 "simCOP" <-
-function(n=100, cop=NULL, para=NULL, na.rm=TRUE, keept=FALSE,
+function(n=100, cop=NULL, para=NULL, na.rm=TRUE, seed=NULL, keept=FALSE,
                 graphics=TRUE, ploton=TRUE, points=TRUE, snv=FALSE,
                 infsnv.rm=TRUE, trapinfsnv=.Machine$double.eps, ...) {
 
@@ -18,6 +19,9 @@ function(n=100, cop=NULL, para=NULL, na.rm=TRUE, keept=FALSE,
      ploton <- FALSE
      points <- FALSE
   }
+
+  if(! is.null(seed)) set.seed(seed)
+
   u <- runif(n); t <- runif(n)
   v <- sapply(1:n, function(i) { derCOPinv(cop=cop, u[i], t[i], para=para, ...) })
   dots <- list(...)

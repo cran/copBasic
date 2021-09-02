@@ -71,7 +71,7 @@ The figure that will be generated shows considerably similarity to that from the
 }
 \references{
 Charpentier, A., 2012, Copulas and tail dependence, part 1: R-bloggers, dated Sept. 17, 2012, accessed on February 2, 2019 at \cr
-\url{https://www.r-bloggers.com/copulas-and-tail-dependence-part-1/}
+\url{https://www.r-bloggers.com/2012/09/copulas-and-tail-dependence-part-1/}
 
 \enc{Dobrić}{Dobric}, J. and Schmid, F., 2005, Nonparametric estimation of the lower tail dependence \eqn{\lambda^L} in bivariate copulas: Journal of Applied Statistics, v. 32, no. 4, pp. 387--407.
 

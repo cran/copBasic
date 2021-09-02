@@ -1,5 +1,5 @@
-f6daf2624be4bbab2b95c605a327b58f *ChangeLog
-15929b18e069511912423b69d8912abd *DESCRIPTION
+d4fdcb464f0663edea86740c2f045f52 *ChangeLog
+b5fc5e964ebb8c928bfa2a014b5edd98 *DESCRIPTION
 389b363a540b4466c4dde3e10fd74a29 *NAMESPACE
 4106f23cdc0d23ea8c6d835746eaa3b0 *R/AMHcop.R
 d2b8ae2af2504fd085ec3ee7e3b7aa33 *R/CLcop.R
@@ -40,6 +40,7 @@ e003d9590bb5179dd8dfb0d2193ec1ea *R/asCOP.R
 65c6267e81038da7db6858587a872c20 *R/bicCOP.R
 353a8cedde3708e58eb189ad2e64015a *R/bilmoms.R
 87f6b74f2ec94e4c6faa93866c3575a0 *R/blomCOP.R
+21564852b3841c618dbcaf643c2a7abf *R/brix.R
 5cdc3ebee3de99e3c17e17dc3a448c8b *R/coCOP.R
 fc35c128dead78dfd875e834bd12b32d *R/composite1COP.R
 645b7602dbb8e7195c2767aac66dc880 *R/composite2COP.R
@@ -97,8 +98,8 @@ c5875942241e963135597b5d1e24c32b *R/qua.regressCOP2.R
 746cfdf7d6008c3b88cabcd13c5dd7a6 *R/rmseCOP.R
 14b899c23de22886ecdc7ab56e82e178 *R/sectionCOP.R
 4bab1df2d8790e21eb5b83be1ad913f8 *R/semicorCOP.R
-24aac94c43ce411b515d05a7345135ff *R/simCOP.R
-68a37a61d818a713f458a2e03139966e *R/simCOPmicro.R
+8e18a7569fe61c644993995bf50482bc *R/simCOP.R
+a17e872a221cbda70387ac67bb6df817 *R/simCOPmicro.R
 ac03a6687048df363baaad81147ab26d *R/simcomposite3COP.R
 6d98f30fc1e9c8b0de2ef253087cf277 *R/simcompositeCOP.R
 59d65740b645e75dfeca516e48db0f2b *R/spectralmeas.R
@@ -114,6 +115,7 @@ abbe2b4906e1e94dc4db19e74c3734d3 *R/tauCOP.R
 9aa550c8d375d11146e94e7f7fd1871d *R/uvlmoms.R
 9352cbc6172cfb42a48935e4a1b959fa *R/vuongCOP.R
 06782af0abbb8267316b2836b64a7363 *R/wolfCOP.R
+b85ec5e1deee19c352c63f5ae918c6f4 *build/partial.rdb
 2d9f44f6a7722b44d9ff70c8273c320a *data/ReineckeWell266.RData
 d45f4e44cec05d81fbb9db2aba3d3d6c *data/ReineckeWells.RData
 60627f1f27f4e76a19bae79559e31135 *inst/3dcopula/3dconfig_examples/Comal.txt
@@ -243,8 +245,8 @@ be5704fe27a44b4329c00a4434d0a66b *man/rhobevCOP.Rd
 e455913c7d9f83110775770dc5f99637 *man/rmseCOP.Rd
 b1674bd77d5141b6709082040ca9ec5b *man/sectionCOP.Rd
 80caaf7fd431ca9e757553b575bac017 *man/semicorCOP.Rd
-575e6a0bbffead6ab01df0f4f1815a4f *man/simCOP.Rd
-f7dc6b7027c9ba69b39afe5cb61d816d *man/simCOPmicro.Rd
+718973d75ed02641c66442ff4c7b6c22 *man/simCOP.Rd
+4e414b389f73b3f7eff95f7223587733 *man/simCOPmicro.Rd
 1f7407d34053f498edaaed0d237a5efb *man/simcomposite3COP.Rd
 7b5dd95ee9ab4ca6a2451997f3b57544 *man/simcompositeCOP.Rd
 a66aec4d06f9b0a71339f1a048995896 *man/spectralmeas.Rd
@@ -252,9 +254,9 @@ a66aec4d06f9b0a71339f1a048995896 *man/spectralmeas.Rd
 c7c55fbfb731b011bdabcac231ccf0f9 *man/statTn.Rd
 d348e116ed7adfe25be6df597ef66602 *man/surCOP.Rd
 ac9d5783b917a825d3449711312ae239 *man/surfuncCOP.Rd
-782b0ed6d0b243c1104bd3a7e5dd1792 *man/tEVcop.Rd
+934158f0e65fbbc64d3a71401003b56c *man/tEVcop.Rd
 811d13394303c456f4bed0d8c9b73e47 *man/tailconCOP.Rd
-2effa224353859d17e5559b8d1db9ed2 *man/taildepCOP.Rd
+2ba3b330797275b478597436d4b5cd8d *man/taildepCOP.Rd
 8bcadce7a66d659b35ab5b37e78878ef *man/tailordCOP.Rd
 a3e1cb9f2260dd79dc80042de44a3cfd *man/tauCOP.Rd
 e6ccd443aa6f0584a2d34563140e5d9a *man/uvlmoms.Rd
