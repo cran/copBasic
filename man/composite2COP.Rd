@@ -47,7 +47,8 @@ The \code{para} argument of this function also can be passed to \code{\link{comp
 Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in Nature---An approach using copulas: Springer, 289 p.
 }
 \author{ W.H. Asquith}
-\seealso{\code{\link{COP}}, \code{\link{composite1COP}}, \code{\link{composite3COP}}}
+\seealso{\code{\link{COP}}, \code{\link{composite1COP}}, \code{\link{composite3COP}},
+\code{\link{convexCOP}}, \code{\link{glueCOP}}}
 \examples{
 alpha <- 0.24; beta <- 0.23; Theta1 <- NA; Theta2 <- NA
 # The W() and PSP() copulas do not take parameters, but example shows how the

@@ -3,7 +3,7 @@
 \alias{tailordCOP}
 \title{ The Lower- and Upper-Tail Orders of a Copula }
 \description{
-Compute the \emph{lower- and upper-tail orders} (if they exist), respectively, of a copula \eqn{\mathbf{C}(u,v)} according to Joe (2014, pp. 67--70). The \emph{tail order} is a concept for the strength of dependence in the joint tails of a multivariate distribution. The opposing tails can be compared to assess tail order or \emph{reflection symmetry} (term by Joe (2014) for Nelsen's (2006, p. 36) term \emph{radial symmetry}). Joe (2014) provides extensively analytical details but sufficient for the \pkg{copBasic} package, the tail orders can be numerically explored.
+Compute the \emph{lower-} and \emph{upper-tail orders} (if they exist), respectively, of a copula \eqn{\mathbf{C}(u,v)} according to Joe (2014, pp. 67--70). The \emph{tail order} is a concept for the strength of dependence in the joint tails of a multivariate distribution. The opposing tails can be compared to assess tail order or \emph{reflection symmetry} (term by Joe (2014) for Nelsen's (2006, p. 36) term \emph{radial symmetry}). Joe (2014) provides extensively analytical details but sufficient for the \pkg{copBasic} package, the tail orders can be numerically explored.
 
 The \emph{lower-tail order} maybe numerically approximated by
 \deqn{\kappa^L_\mathbf{C} = \frac{\log[\mathbf{C}(t,t)]}{\log(t)}\mbox{,}}
@@ -54,7 +54,7 @@ Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 \examples{
 \dontrun{
 # Joe (2014, p. 5) names MTCJ = Mardia-Takahasi-Cook-Johnson copula
-"MTCJ" <- function(u,v,para) { (u^(-para) + v^(-para) - 1)^(-1/para) }
+"MTCJ" <- function(u,v, para) { (u^(-para) + v^(-para) - 1)^(-1/para) }
 # The results that follow match those reported by Joe (2014, p. 69) who
 # analytically derives KappaL = 1 and KappaU = 2.
 # TAIL ORDER:

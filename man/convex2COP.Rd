@@ -34,8 +34,8 @@ The following descriptions list in detail the structure and content of the \code
 \references{
 Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 }
-\author{ W.H. Asquith}
-\seealso{ \code{\link{composite2COP}}, \code{\link{convexCOP}}, \code{\link{FRECHETcop}} }
+\author{W.H. Asquith}
+\seealso{\code{\link{convexCOP}}, \code{\link{composite1COP}}, \code{\link{composite2COP}}, \code{\link{composite3COP}}, \code{\link{FRECHETcop}}, \code{\link{glueCOP}} }
 \examples{
 para <- list(alpha=0.24, cop1=FRECHETcop, para1=c(.4,.56),
                          cop2=PSP,        para2=NA)

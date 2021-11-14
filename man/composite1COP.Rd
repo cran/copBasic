@@ -37,7 +37,8 @@ Joe, H., 2017, Parametric copula families for statistical models (chap. 8) \emph
 Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in Nature---An approach using copulas: Springer, 289 p.
 }
 \author{ W.H. Asquith}
-\seealso{\code{\link{COP}}, \code{\link{composite2COP}}, \code{\link{composite3COP}}}
+\seealso{\code{\link{COP}}, \code{\link{composite2COP}}, \code{\link{composite3COP}},
+\code{\link{convexCOP}}, \code{\link{glueCOP}}}
 \examples{
 \dontrun{
 alpha <- 0.24; beta <- 0.23; Theta1 <- NA;

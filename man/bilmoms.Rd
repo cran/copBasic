@@ -3,7 +3,7 @@
 \alias{bilmoms}
 \title{ Bivariate L-moments and L-comoments of a Copula }
 \description{
-\bold{Attention:} This function is thought to be mostly deprecated in favor of \code{\link{lcomCOP}}, which uses only direct numerical \code{integrate()} on the integrals shown below. The \code{bilmoms} function is strictly based on Monte Carlo integration.
+\bold{Attention:} This function is deprecated in favor of \code{\link{lcomCOP}}, which uses only direct numerical \code{integrate()} on the integrals shown below. The \code{bilmoms} function is strictly based on Monte Carlo integration.
 
 Compute the \emph{bivariate L-moments (ratios)} (\eqn{\delta^{[\ldots]}_{k;\mathbf{C}}}) of a copula \eqn{\mathbf{C}(u,v; \Theta)} and remap these into the \emph{L-comoment} matrix counterparts (Serfling and Xiao, 2007; Asquith, 2011) including \emph{L-correlation} (\emph{Spearman Rho}), \emph{L-coskew}, and \emph{L-cokurtosis}.  As described by Brahimi \emph{et al.} (2015), the first four bivariate L-moments \eqn{\delta^{[12]}_k} for random variable \eqn{X^{(1)}} or \eqn{U} with respect to (\emph{wrt}) random variable \eqn{X^{(2)}} or \eqn{V} are defined as
 \deqn{\delta^{[12]}_{1;\mathbf{C}} = 2\int\!\!\int_{\mathcal{I}^2}
@@ -59,9 +59,9 @@ Concerning the triangular or tent-shaped copula of Nelsen (2006, exer. 3.7, pp. 
     } else { stop("should not be here in logic") }
   }
   "TriCop" <- function(u,v, ...) { asCOP(u,v, f=trianglecop, ...) }
-  m=20000; SampleUV <- simCOP(n=m, cop=UsersCop, graphics=FALSE)
+  m=20000; SampleUV <- simCOP(n=m, cop=TriCop, graphics=FALSE)
   samLC <- lmomco::lcomoms2(SampleUV, nmom=5)
-  theoLC <- bilmoms(TriCop)
+  theoLC <- bilmoms(cop=TriCop)
 }
 
 \emph{The Error in Rho Computation}---The \eqn{\rho_\mathbf{C}} of the copula by numerical integration is computed internally to \code{bilmoms} as
@@ -176,3 +176,4 @@ samLcom <- lmomco::lcomoms2(UVsim, nmom=5) # sample algorithm
 \keyword{Sobol sequence (Monte Carlo integration)}
 \keyword{L-comoments}
 \concept{Lcomoments}
+\keyword{Spearman Rho}

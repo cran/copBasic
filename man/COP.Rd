@@ -136,10 +136,10 @@ coCOP(cop=P,bF,bG)  # 0.505
 \dontrun{
 # MAJOR EXAMPLE FOR QUICKLY MODIFYING INHERENT ASSOCIATION STRUCTURES
 p <- .5 # Reasonable strong positive association for the Raftery copula
-"RFcop1" <- function(u,v, para) COP(u,v, cop=RFcop, para=p, reflect="1")
-"RFcop2" <- function(u,v, para) COP(u,v, cop=RFcop, para=p, reflect="2")
-"RFcop3" <- function(u,v, para) COP(u,v, cop=RFcop, para=p, reflect="3")
-"RFcop4" <- function(u,v, para) COP(u,v, cop=RFcop, para=p, reflect="4")
+"RFcop1" <- function(u,v, para) COP(u,v, cop=RFcop, para=para, reflect="1")
+"RFcop2" <- function(u,v, para) COP(u,v, cop=RFcop, para=para, reflect="2")
+"RFcop3" <- function(u,v, para) COP(u,v, cop=RFcop, para=para, reflect="3")
+"RFcop4" <- function(u,v, para) COP(u,v, cop=RFcop, para=para, reflect="4")
 
 d <- 0.01 # Just to speed up the density plots a bit
 densityCOPplot(RFcop1, para=p, contour.col=1, deluv=d) # the Raftery in the literature

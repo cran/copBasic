@@ -47,7 +47,7 @@ A significance column for the p-values is added to the right side of the returne
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith }
-\seealso{\code{\link{COP}}, \code{\link{kullCOP}}, \code{\link{vuongCOP}}}
+\seealso{\code{\link{lcomCOP}}, \code{\link{COP}}, \code{\link{kullCOP}}, \code{\link{vuongCOP}}}
 \examples{
 # See Note section of vuongCOP() for an extended discussion of copula inference
 \dontrun{

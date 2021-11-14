@@ -182,7 +182,7 @@ as.logical(del.lamU < 1E-6) # TRUE
 # The simulations match Joe (2014, p. 72) for Gumbel-Hougaard
 n <- 600; nsim <- 1000; set.seed(946) # see for reproducibility
 SM <- sapply(1:nsim, function(i) { rs <- semicorCOP(cop=GHcop, para=1.35, n=n)
-                                   c(rs$minus.semicor, rs$plus.semicor) })
+                                 c(rs$botleft.semicor, rs$topright.semicor) })
 RhoM     <- round(mean(SM[1,]),        digits=3)
 RhoP     <- round(mean(SM[2,]),        digits=3)
 SE.RhoM  <- round(sd(SM[1,]),          digits=3)

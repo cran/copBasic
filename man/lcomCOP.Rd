@@ -17,7 +17,7 @@ Compute the \emph{L-comoments} (Serfling and Xiao, 2007; Asquith, 2011) through 
 \mathbf{C}(u,v)\,\mathrm{d}u\mathrm{d}v - \frac{1}{2}\mbox{,}}
 where the bivariate L-moments are related to the L-comoment ratios by
 \deqn{6\delta^{[12]}_k = \tau^{[12]}_{k+1}\mbox{\quad and \quad}6\delta^{[21]}_k = \tau^{[21]}_{k+1}\mbox{,}}
-where in otherwords, \dQuote{the third bivariate L-moment \eqn{\delta^{[12]}_3} is one sixth the L-cokurtosis \eqn{\tau^{[12]}_4}.} The first four bivariate L-moments yield the first five L-comoments. The terms and nomenclature are not easy and also the English grammar adjective \dQuote{ratios} is not always consistent in the literature. The \eqn{\delta^{[\ldots]}_{k;\mathbf{C}}} are \bold{ratios}. The sample L-comoments are supported by the \pkg{lmomco} package, and in particular for the bivariate case, they are supported by \code{lcomoms2} of that package.
+where in otherwords, \dQuote{the third bivariate L-moment \eqn{\delta^{[12]}_3} is one sixth the L-cokurtosis \eqn{\tau^{[12]}_4}.} The first four bivariate L-moments yield the first five L-comoments. The terms and nomenclature are not easy and also the English grammar adjective \dQuote{ratios} is not always consistent in the literature. The \eqn{\delta^{[\ldots]}_{k;\mathbf{C}}} are \bold{ratios}. The sample L-comoments are supported by the \pkg{lmomco} package, and in particular for the bivariate case, they are supported by the \code{lcomoms2()} function of that package.
 
 Similarly, the \eqn{\delta^{[21]}_k} are computed by switching \eqn{u \rightarrow v} in the polynomials within the above integrals multiplied to the copula in the system of equations with \eqn{u}. In general, \eqn{\delta^{[12]}_k \not= \delta^{[21]}_k} for \eqn{k > 1} unless in the case of \emph{permutation symmetric} (\code{\link{isCOP.permsym}}) copulas. By theory, \eqn{\delta^{[12]}_1 = \delta^{[21]}_1 = \rho_\mathbf{C}/6} where \eqn{\rho_\mathbf{C}} is the \emph{Spearman Rho} \code{\link{rhoCOP}}.
 
@@ -43,7 +43,7 @@ lcomCOP(cop=NULL, para=NULL, as.bilmoms=FALSE, orders=2:5, ...)
   \item{lcomVU}{The L-comoments \eqn{\tau^{[21]}_k} of \eqn{V} with respect to \eqn{U} for \eqn{k \in [2,3,4,5]} if \code{orders} is \code{2:5} and index 1 is \code{NA}.}
 }
 \note{
-The documention here is highly parallel to \code{\link{bilmoms}} for which that function was developed some years before \code{lmomCOP} was developed in January 2019. Also \code{\link{bilmoms}} is based on gridded or Monte Carlo numerical integration is deprecated and is to be considered deprecated. Finally, related background and various algorithm testing is documented in \code{\link{bilmoms}}.
+The documention here is highly parallel to \code{\link{bilmoms}} for which that function was developed some years before \code{lmomCOP} was developed in January 2019. Also, \code{\link{bilmoms}} is based on gridded or Monte Carlo integration, and \code{\link{bilmoms}} is to be considered \bold{deprecated}. However, it is deliberate that related background and various algorithm testing are still documented in \code{\link{bilmoms}}.
 }
 \references{
 Asquith, W.H., 2011, Distributional analysis with L-moment statistics using the R environment for statistical computing: Createspace Independent Publishing Platform, ISBN 978--146350841--8.
@@ -73,6 +73,40 @@ bilmoms(cop=composite2COP, n=10000, para=para, sobol=TRUE)$bilcomoms$T3
 # The numerical default Monte Carlo integration of bilmoms()
 # matches the numerical integration of lcomCOP albeit with a
 # substantially slower and less elegant means in bilmoms().}
+
+\dontrun{
+# The following Spearman Rho and L-coskew values a predicted for a monitoring location
+# of relation between peak streamflow (V) and time into the water year (U) where
+# U and V are "U-statistics."
+site_srho  <-  0.15536430
+site_T3_12 <-  0.03866056
+site_T3_21 <- -0.03090144
+
+# Create an objective function for 3D optimization with some explicit intention that
+# transforms are used to keep the parameters in acceptable parameter space for the
+# alpha [0,1] and beta [0,1] and theta for the Plackett copula and the composite1COP
+# used to add two more parameters to the Plackett.
+ofunc <- function(par, srho=NA, T3_12=NA, T3_21=NA) {
+  alpha <- pnorm(par[1]) # takes -Inf to +Inf ---> 0 to 1 # compositing domain
+  beta  <- pnorm(par[2]) # takes -Inf to +Inf ---> 0 to 1 # compositing domain
+  theta <-   exp(par[3]) # takes -Inf to +Inf ---> 0 to +Inf # Plackett domain
+  lmr <- lcomCOP(cop=composite1COP,
+                 para=list(alpha=alpha, beta=beta, para1=theta, cop1=PLcop))
+  return((lmr$lcomUV[2] - srho )^2 + # look carefully, the 2, 3, 3 index
+         (lmr$lcomUV[3] - T3_12)^2 + # use on the lmr list are correct, so do not
+         (lmr$lcomVU[3] - T3_21)^2)  # expect to see 1, 2, 3 or 2, 3, 4.
+}
+# initial parameter guess ('middle' [0.5] compositing and independence [1]) and
+# showing the transformations involved.
+para_init <- c(qnorm(0.5), qnorm(0.5), log(1))
+rt <- optim(par=para_init, ofunc,
+            srho=site_srho, T3_12=site_T3_12, T3_21=site_T3_21)
+lcom_para <- list(alpha=pnorm(rt$par[1]), beta=pnorm(rt$par[2]),
+                  para1=exp(rt$par[3]), cop1=PLcop)
+sUV <- simCOP(10000, cop=composite1COP, para=lcom_para, col=grey(0, 0.2), pch=16)
+# Now as an exercise, consider increasing site_srho or negating it. Consider
+# switching the signs on the L-coskews or increasing their magnitudes and study
+# the resulting simulation to develop a personal feeling for L-coskew meaning.# }
 }
 \keyword{bivariate asymmetry (measures)}
 \keyword{bivariate skewness}
@@ -86,3 +120,4 @@ bilmoms(cop=composite2COP, n=10000, para=para, sobol=TRUE)$bilcomoms$T3
 \concept{copula L-cokurtosis}
 \keyword{L-comoments}
 \concept{Lcomoments}
+\keyword{Spearman Rho}

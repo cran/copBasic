@@ -4,7 +4,7 @@
 \alias{PLpar}
 \title{ Estimate the Parameter of the Plackett Copula }
 \description{
-The parameter \eqn{\Theta} of the \emph{Plackett copula} (Nelsen, 2006, pp. 89--92) is related to the \emph{Spearman Rho} (\eqn{\rho_S \ne 1}, see \code{\link{rhoCOP}})
+The parameter \eqn{\Theta} of the \emph{Plackett copula} (Nelsen, 2006, pp. 89--92) (\code{\link{PLACKETTcop}} or \code{\link{PLcop}}) is related to the \emph{Spearman Rho} (\eqn{\rho_S \ne 1}, see \code{\link{rhoCOP}})
 \deqn{\rho_S(\Theta) = \frac{\Theta + 1}{\Theta - 1} - \frac{2\Theta\log(\Theta)}{(\Theta - 1)^2}\mbox{.}}
 Alternatively the parameter can be estimated using a \emph{median-split estimator}, which is best shown as an algorithm. First, compute the two medians:
 \preformatted{
@@ -62,7 +62,7 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in Nature---An approach using copulas: Springer, 289 p.
 }
 \author{ W.H. Asquith}
-\seealso{\code{\link{PLACKETTcop}}, \code{\link{PLACKETTsim}}, \code{\link{rhoCOP}}
+\seealso{\code{\link{PLACKETTcop}}, \code{\link{PLcop}}, \code{\link{PLACKETTsim}}, \code{\link{rhoCOP}}
 }
 \examples{
 \dontrun{

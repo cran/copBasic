@@ -1,13 +1,14 @@
 \encoding{utf8}
 \name{glueCOP}
 \alias{glueCOP}
-\title{ The Gluing Two Copulas}
+\title{Gluing Two Copulas}
 \description{
 The \emph{gluing copula} technique (Erdely, 2017, p. 71), given two bivariate copulas \eqn{\mathbf{C}_A} and \eqn{\mathbf{C}_B} and a fixed value \eqn{0 \le \gamma \le 1} is
-\deqn{\mathbf{C}_{A,B\gamma}(u,v) = \gamma\mathbf{C}_A(u/\gamma, v)}
+\deqn{\mathbf{C}_{\gamma}(u,v) = \gamma\cdot\mathbf{C}_A(u/\gamma, v)}
 for \eqn{0 \le u \le \gamma} and
-\deqn{\mathbf{C}_{A,B\gamma}(u,v) = (1-\gamma)\mathbf{C}_B((u-\gamma)/(1-\gamma), v)}
-for \eqn{\gamma \le u \le 1} and \eqn{\gamma} represents the \emph{gluing point}. The logic is simply the rescaling of \eqn{\mathbf{C}_A} to \eqn{[0,\gamma] \times [0,1]} and \eqn{\mathbf{C}_B} to \eqn{[\gamma,1] \times [0,1]}. Copula gluing is potentially useful in circumstances for which regression is non-monotone.
+\deqn{\mathbf{C}_{\gamma}(u,v) = (1-\gamma)\cdot\mathbf{C}_B((u-\gamma)
+\,/\,(1-\gamma), v)}
+for \eqn{\gamma \le u \le 1} and \eqn{\gamma} represents the \emph{gluing point} in \eqn{u} (horizontal axis). The logic is simply the rescaling of \eqn{\mathbf{C}_A} to \eqn{[0,\gamma] \times [0,1]} and \eqn{\mathbf{C}_B} to \eqn{[\gamma,1] \times [0,1]}. Copula gluing is potentially useful in circumstances for which regression is non-monotone.
 }
 \usage{
 glueCOP(u, v, para=NULL, ...)
@@ -24,8 +25,7 @@ glueCOP(u, v, para=NULL, ...)
 \note{
 The following descriptions list in detail the structure and content of the \code{para} argument:
 \describe{
-  \item{\code{alpha}}{--- The \eqn{\alpha} compositing parameter;}
-  \item{\code{beta}}{--- The \eqn{\beta} compositing parameter;}
+  \item{\code{glue}}{--- The \eqn{\gamma} gluing parameter;}
   \item{\code{cop1}}{--- Function of the first copula \eqn{\mathbf{A}};}
   \item{\code{cop2}}{--- Function of the second copula  \eqn{\mathbf{B}};}
   \item{\code{para1}}{--- Vector of parameters \eqn{\Theta_\mathbf{A}} for  \eqn{\mathbf{A}}; and}
@@ -35,19 +35,19 @@ The following descriptions list in detail the structure and content of the \code
 \references{
 Erdely, A., 2017, Copula-based piecewise regression (chap. 5) \emph{in} Copulas and dependence models with applications---Contributions in honor of Roger B. Nelsen, \emph{eds.} Flores, U.M., Amo Artero, E., Durante, F., \enc{Sánchez}{Sanchez}, J.F.: Springer, Cham, Switzerland, ISBN 978--3--319--64220--9.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{composite1COP}}, \code{\link{composite2COP}}, \code{\link{composite3COP}}, \code{\link{convexCOP}}
 }
 \examples{
 \dontrun{
-para <- list(cop1=PLACKETTcop, para1=.2, cop2=GLcop, para2=1.2)
-densityCOPplot(cop=glueCOP, para=para, glue=0.6) # }
+para <- list(cop1=PLACKETTcop, para1=.2, cop2=GLcop, para2=1.2, glue=0.6)
+densityCOPplot(cop=glueCOP, para=para) # }
 
 \dontrun{
-# Concerning Nelsen (2006, exer. 3.3, pp. NN)
+# Concerning Nelsen (2006, exam. 3.3, pp. 59-61)
 # Concerning Erdely (2017, exam. 5.1, p. 71)
-# Concerning Erdely (2017, exam. 5.2, p. 75
-# Nelsen's example is a triangle with vertex at [P,1].
+# Concerning Erdely (2017, exam. 5.2, p. 75)
+# Nelsen's example is a triangle with vertex at [G, 1].
 # Erdley's example permits the construction using glueCOP from M and W.
 "coptri" <- function(u,v, para=NA, ...) {
    p <- para[1]; r <- 1 - (1-p)*v
@@ -58,14 +58,18 @@ densityCOPplot(cop=glueCOP, para=para, glue=0.6) # }
    } else { stop("should not be here in logic") }
 }
 "UsersCop" <- function(u,v, ...) { asCOP(u,v, f=coptri, ...) }
-para <- list(cop1=M, cop2=W, para1=NA, para2=NA, glue=0.35)
+# Demonstrate Nelsen's triangular copula    (black dots )
 UV <- simCOP(cop=UsersCop, para=0.35, cex=0.5, pch=16)
+# Add Erdley's gluing of M() and W() copula (red circles)
+para <- list(cop1=M, cop2=W, para1=NA, para2=NA, glue=0.35)
 UV <- simCOP(cop=glueCOP,  para=para, col=2,   ploton=FALSE)
 # We see in the plot that the triangular copulas are the same.
-# For P = 0.5, Erdley shows Spearman Rho = 2*P-1 = 0, but
-#  Schweizer-Wolff = P^2 + (P-1)^2 = 0.5, let us check these:
-rhoCOP( cop=glueCOP, para=para, glue=0.5) # -2.181726e-17
-wolfCOP(cop=glueCOP, para=para, glue=0.5) #  0.4999953
+
+# For G = 0.5, Erdley shows Spearman Rho = 2*G-1 = 0, but
+#  Schweizer-Wolff = G^2 + (G-1)^2 = 0.5, let us check these:
+para <- list(cop1=M, cop2=W, para1=NA, para2=NA, glue=0.5)
+rhoCOP( cop=glueCOP, para=para) # -2.181726e-17
+wolfCOP(cop=glueCOP, para=para) #  0.4999953
 # So rhoCOP() indicates independence, but wolfCOP() indicates
 # dependence at the minimum value possible for a triangular copula. }
 }

@@ -538,6 +538,35 @@ Version 2.1.6--08/30/2021
        update is likely not that critical but does bring consistency.
 
 
+Version 2.1.7--11/14/2021
+1.  Minor edits to lcomCOP.Rd and expanded the Examples demonstrating parameter
+       estimation for a composite1COP of the Plackett copula.
+2.  Added cross-reference link to lcomCOP to lcomCOPpv.Rd.
+3.  Spelling corrections to copBasic-package.Rd and minor augmentations to tables.
+4.  Minor typesetting edits to jointCOP.Rd.
+5.  Minor corrections to bilmoms.Rd.
+6.  Errors in Examples of glueCOP.Rd relative to implementation corrected.
+7.  Additions/consistency of cross-linking within the composite*COP.Rd, convex*.Rd,
+       and glueCOP.Rd files.
+8.  Corrected minor error on the Raftery copula example in COP.Rd.
+9.  GHcop.Rd, renamed minus.semicor to botleft.semicor and plus.semicor to
+       topright.semicor in preparation for the extension to the other corners in
+       the semicorCOP().
+10. Added bottom right and top left corners for the semi-correlations in function
+       semicorCOP(). This required renaming minus.semicor to botleft.semicor and
+       plus.semicor to topright.semicor. The new corners are botright.semicor and
+       topleft.semicor. *** There is no backwards compatibility retained to the
+       original minus.semicor and plus.semicor names for the returned values. ***
+       Overhauled the semicorCOP.Rd and added a four corner example of reflection
+       and rotation of the Raftery copula, which ties into the similar example
+       of the Raftery in COP.Rd Examples section.
+11. Added Zhang and Singh (2019) citation to derCOPinv.Rd as part of replicating
+       their example 3.23 for the Clayton copula.
+12. Minor edits to prod2COP.Rd, stabtaildepf.Rd, taildepCOP.Rd, and tailordCOP.Rd.
+13. Added cross-links to PLcop in PLACKETTpar and PLpar in PLACKETTcop.
+
+
+
 POTENTIAL TODOs:
 
 Continued inspection of the approx() use and whether ties="ordered" can be used
@@ -564,9 +593,6 @@ Note: Joe's 2-p GHcop does appear different from Brahimi et. al (2015) version
 of a 2-p GHcop. Should support for both be made? Are both the same? (Quick testing suggests that perhaps they are not, but mathematical checking has not been made [01/09/2019]).
 
 Add the trimmed L-comoments? 
-
-\author{William Asquith \email{william.asquith@ttu.edu} }
-  Make such conversions throughout or go back to W.H. Asquith?
 
 EMPIRcopdf() can be replaced by EMPIRcop() as the later is fully 
   vectorized itself and makes presumably a lesser impact on memory (faster)?

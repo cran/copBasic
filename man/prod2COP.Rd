@@ -28,7 +28,7 @@ prod2COP(u,v, cop1=NULL, para1=NULL, cop2=NULL, para2=NULL, para=NULL,
   \item{cop2}{The \eqn{\mathbf{C}_2(u,v; \Theta_2)} copula function with vectorization as in \code{asCOP};}
   \item{para2}{Vector of parameters or other data structures for \eqn{\Theta_2}, if needed, to pass to copula \eqn{\mathbf{C}_2(u,v; \Theta_2)};}
   \item{para}{An \R \code{list} that can take the place of the \code{cop1}, \code{para1}, \code{cop2}, and \code{para2} arguments. These four will be populated from same named elements of the \code{list}, and if the other four arguments were specified through the function interface, these are silently ignored;}
-  \item{interval}{An optional interval for the above integral. The default is \eqn{\mathcal{I} = [0,1]} but the option of the user to replace exact end points with \dQuote{small} numbers is possible (\emph{e.g.} \code{interval=}\code{c(lo, 1-lo)} for say \code{lo=.Machine$double.eps}; and)}
+  \item{interval}{An optional interval for the above integral. The default is \eqn{\mathcal{I} = [0,1]} but the option of the user to replace exact end points with \dQuote{small} numbers is possible (\emph{e.g.} \code{interval=}\code{c(lo, 1-lo)} for say \code{lo=.Machine$double.eps}); and}
   \item{...}{Additional arguments to pass to the copulas.}
 }
 \value{

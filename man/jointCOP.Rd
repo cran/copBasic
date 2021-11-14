@@ -84,7 +84,7 @@ The second probability is a value quite near to 0.99. So if one wants mutual los
   n - (1-0.8)*n                                    # 10000 losses (theoretical)
 }
 
-The example here shows numerical congruence of 10,049 \eqn{\approx} 10,000. An opposing question is also useful. How about a \bold{mutually exclusive} or condition as nonexceedances?
+The example here shows numerical congruence of 10,049 \eqn{\approx} 10,000. An opposing question is also useful. How about a \bold{mutually exclusive or} condition as nonexceedances?
 \preformatted{
   # The mutually exclusive OR as nonexceedances:
   length((UV$U[  (UV$U <= 0.99 | UV$V <= 0.99) &
@@ -100,7 +100,7 @@ It is clear that 208 \eqn{+} 591 \eqn{=} 799 as shown earlier. Readers are asked
 }
 which if they were perfectly uncorrelated (\eqn{\mathbf{P}(u,v)}, \code{\link{P}}, \emph{independence copula}) would be 519 \eqn{+} 491 \eqn{=} 1,007 losses. But for the simulations here, 799 losses occurred, so 1,007 \eqn{-} 799 \eqn{=} 208 losses were at the same time caused by \eqn{U} and \eqn{V}.
 
-Both of the following lengths \code{A} and \code{B} are 799 and both represent a  \bold{joint or} condition---the operations do not represent a \bold{mutually exclusive or condition}.
+Both of the following lengths \code{A} and \code{B} are 799 and both represent a  \bold{joint or} condition---the operations do not represent a \bold{mutually exclusive or} condition.
 \preformatted{
   A <- length(UV$U[UV$U > 0.99]) + length(UV$U[UV$V > 0.99]) -
        length(UV$U[UV$U > 0.99 & UV$V > 0.99])

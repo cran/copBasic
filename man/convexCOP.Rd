@@ -33,7 +33,7 @@ The following descriptions list in detail the structure and content of the \code
 Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in Nature---An approach using copulas: Springer, 289 p.
 }
 \author{ W.H. Asquith}
-\seealso{ \code{\link{convex2COP}} }
+\seealso{ \code{\link{convex2COP}}, \code{\link{composite1COP}}, \code{\link{composite2COP}}, \code{\link{composite3COP}}, \code{\link{glueCOP}} }
 \examples{
 # The copulas and parameters are named by sequence number appended to cop and para.
 para1 <- list(cop1=GHcop, cop2=PLcop, para1=8, para2=.03, weights=c(.8,.2))

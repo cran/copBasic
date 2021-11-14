@@ -46,7 +46,7 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in Nature---An approach using copulas: Springer, 289 p.
 }
 \author{ W.H. Asquith}
-\seealso{\code{\link{simCOP}}, \code{\link{composite1COP}}, \code{\link{composite2COP}}, \code{\link{simcomposite3COP}}}
+\seealso{\code{\link{simCOP}}, \code{\link{composite1COP}}, \code{\link{composite2COP}}, \code{\link{convexCOP}}, \code{\link{glueCOP}}, \code{\link{simcomposite3COP}}}
 \examples{
 \dontrun{
 para <- list(cop1=PLACKETTcop, cop2=N4212cop,

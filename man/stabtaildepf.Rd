@@ -55,7 +55,7 @@ The \R \code{list} that can be used to compute \eqn{\widehat{l}_{CF}(x,y)} is re
   })
   lines(k, lhatCF, col=2)
 }
-The smooth line (red) of \code{lhatCF} is somewhat close to the limiting behavior of \code{lhat}. It is problematic to determine computational consistency but mathematical consistency with Kiriliouk \emph{et al.} (2016) appears achieved.  The \bold{Examples} section TODO.
+The smooth line (red) of \code{lhatCF} is somewhat close to the limiting behavior of \code{lhat}. It is problematic to determine computational consistency. Mathematical consistency with Kiriliouk \emph{et al.} (2016) appears to be achieved.  The \bold{Examples} section TODO.
 }
 \references{
 Kiriliouk, Anna, Segers, Johan, \enc{Warchoł}{Warchol}, \enc{Michał}{Michal}, 2016, Nonparameteric estimation of extremal dependence: \emph{in} Extreme Value Modeling and Risk Analysis, D.K. Dey and Jun Yan \emph{eds.}, Boca Raton, FL, CRC Press, ISBN 978--1--4987--0129--7.

@@ -104,5 +104,4 @@ rhoCOPbyJoe12(cop=composite2COP, para=para) # 0.1031532}
 \keyword{copula (characteristics)}
 \keyword{copula (properties)}
 \keyword{Joe (2014) Examples and Exercises}
-
-
+\keyword{Spearman Rho}

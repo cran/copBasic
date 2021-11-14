@@ -46,7 +46,7 @@ Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{ W.H. Asquith}
-\seealso{\code{\link{PLACKETTpar}}, \code{\link{PLACKETTsim}}, \code{\link{W}}, \code{\link{M}}, \code{\link{densityCOP}}
+\seealso{\code{\link{PLACKETTpar}}, \code{\link{PLpar}}, \code{\link{PLACKETTsim}}, \code{\link{W}}, \code{\link{M}}, \code{\link{densityCOP}}
 }
 \examples{
 PLACKETTcop(0.4,0.6,para=1)
@@ -69,6 +69,7 @@ dCanal <- dPLACKETTcop(u,  v,  para=10.25)
 dCfunc <- densityCOP(u, v, cop=PLcop, para=10.25, deluv = del)
 R <- round(c(dCrect, dCanal, dCfunc), digits=6)
 message("Density: ", R[1], "(manual), ", R[2], "(analytical), ", R[3], "(function)");
+# Density: 0.255377(manual), 0.255373(analytical), 0.255377(function)
 
 # Comparison of partial derivatives
 dUr <- (PLcop(u2, v2, para=10.25) - PLcop(u1, v2, para=10.25))/del

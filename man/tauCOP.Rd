@@ -123,3 +123,4 @@ tauCOP(cop=composite2COP, para=para, brute=TRUE) # about 0.94+-.01}
 \keyword{Nelsen (2006) Examples and Exercises}
 \keyword{concordance function}
 \keyword{literature errors and inconsistencies}
+\keyword{Kendall Tau}

@@ -104,6 +104,8 @@ Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 Johnson, M.E., 1987, Multivariate statistical simulation: New York, John Wiley, 230 p.
 
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
+
+Zhang, L., and Singh, V.P., 2019, Copulas and their applications in water resources engineering: Cambridge University Press, ISBN 978--1--108--47425--2.
 }
 \author{ W.H. Asquith}
 \seealso{\code{\link{derCOP}}}
@@ -125,6 +127,16 @@ for(i in 1:500) {
    u <- runif(1); t <- runif(1)
    points(u,derCOPinv(cop=N4212cop,para=9.3,u,t), cex=2, pch=16, col=2) # red dots
 } #}
+
+\dontrun{
+# Zhang and Singh (2019) exam. 3.23, p. 105
+# show the application of the derivative inversion C2|1
+# for u=0.6036 and t=0.6036 ---> v = 0.4719
+derCOPinv( cop=CLcop, 0.6036, 0.4028, para=0.5) # 0.4719 for C2|1
+derCOPinv2(cop=CLcop, 0.6036, 0.4028, para=0.5) # 0.4719 for C1|2
+# and C2|1 and C1|2 are equal because the copula has permutation symmetry
+isCOP.permsym(cop=CLcop, para=0.5) # TRUE
+# }
 }
 \keyword{copula (utility)}
 \keyword{copula (derivative inverse)}
@@ -135,4 +147,4 @@ for(i in 1:500) {
 \keyword{Joe (2014) Examples and Exercises}
 \keyword{Nelsen (2006) Examples and Exercises}
 \keyword{Salvadori et al. (2007) Examples and Exercises}
-
+\keyword{Zhang and Singh (2019) Examples and Exercises}
