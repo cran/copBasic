@@ -1,7 +1,7 @@
 Package: copBasic
 Title: General Bivariate Copula Theory and Many Utility Functions
-Version: 2.1.7
-Date: 2021-11-14
+Version: 2.1.9
+Date: 2022-08-30
 Author: William Asquith
 Description: Extensive functions for bivariate copula (bicopula) computations and related operations 
  for bicopula theory. The lower, upper, product, and select other bicopula are implemented along 
@@ -17,10 +17,10 @@ Description: Extensive functions for bivariate copula (bicopula) computations an
  Lcomoments for inference, maximum likelihood, and AIC, BIC, and RMSE for goodness-of-fit. 
 Maintainer: William Asquith <william.asquith@ttu.edu>
 Repository: CRAN
-Depends: R (>= 3.5.0)
+Depends: R (>= 4.0.0)
 Imports: lmomco, randtoolbox
 Suggests: copula
 License: GPL-2
 NeedsCompilation: no
-Packaged: 2021-11-14 15:52:35 UTC; wasquith
-Date/Publication: 2021-11-14 16:20:02 UTC
+Packaged: 2022-08-30 14:50:36 UTC; wasquith
+Date/Publication: 2022-08-30 17:00:12 UTC

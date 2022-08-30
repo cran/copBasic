@@ -9,8 +9,8 @@ for copulas \eqn{\mathbf{C}_1(u, v)} and \eqn{\mathbf{C}_2(u, v)} are copulas wh
 \deqn{\mathbf{\Pi} \ast \mathbf{C} = \mathbf{C} \ast \mathbf{\Pi} = \mathbf{\Pi}\mbox{,}}
 \deqn{\mathbf{M} \ast \mathbf{C} = \mathbf{C} \ast \mathbf{M} = \mathbf{M}\mbox{,}}
 \deqn{\bigl(\mathbf{W} \ast \mathbf{C}\bigr)(u,v) = v - \mathbf{C}(1-u, v)\mbox{\ and\ } \bigl(\mathbf{C} \ast \mathbf{W}\bigr)(u,v) = u - \mathbf{C}(u, 1-v)\mbox{, and}}
-\deqn{\mathbf{W} \ast \mathbf{W} = \mathbf{M}\mbox{ and } \mathbf{W} \ast \mathbf{C} \ast \mathbf{W} = \hat\mathbf{C}\mbox{,}}
-where \eqn{\hat\mathbf{C}} is the \emph{survival copula} (\code{\link{surCOP}}). The \eqn{\ast}-product is associative:
+\deqn{\mathbf{W} \ast \mathbf{W} = \mathbf{M}\mbox{ and } \mathbf{W} \ast \mathbf{C} \ast \mathbf{W} = \hat{\mathbf{C}}\mbox{,}}
+where \eqn{\hat{\mathbf{C}}} is the \emph{survival copula} (\code{\link{surCOP}}). The \eqn{\ast}-product is associative:
 \deqn{\mathbf{A} \ast (\mathbf{B} \ast \mathbf{C}) = (\mathbf{A} \ast \mathbf{B}) \ast \mathbf{C}\mbox{,}}
 but \eqn{\ast}-product is not commutative (order independent). Nelsen (2006, p. 245) reports that \dQuote{if we view \eqn{\ast} as a binary operation on the set of copulas, then \eqn{\mathbf{\Pi}} is the null element, and \eqn{\mathbf{M}} is the identity.} Copula mulitiplication is closely linked to Markov Processes (Nelsen, 2006, pp. 244--248).
 

@@ -1,0 +1,646 @@
+--------------------------------------------------------------------------------------
+                NEWS for R Package "copBasic" by W.H. Asquith
+--------------------------------------------------------------------------------------
+
+Changes in version 2.1.9 (2022-08-30)
+-  Incorrect use of \overline in blomCOPss.Rd found during 2.1.8 CRAN submission.
+
+
+Changes in version 2.1.8 (2022-08-30)
+-  Converted the Changelog to this NEWS with reformatting and removed ChangeLog.
+-  Added blomatrixCOP() function and made comparisons as part of that development
+       to Joe's sample estimator for blomCOP() to the various empirical copula forms
+       that have been added (see 2.1.8:3).
+-  Added to blomCOP.Rd comparison of Joe's sample estimator to the various
+       empirical copula supported by the package. Extended blomCOP() to support the
+       empirical copula and did some mathematical edits to the equations shown.
+-  Added Blomqvist (Schmid-Schmidt) betas of a copula in blomCOPss().
+-  Modified the plotting by taildepCOP() to ensure symmetrical x-axis limits.
+-  Extended sample estimation section in Note in taildepCOP.Rd to include use of
+       blomCOPss() and show general reliability.
+-  From CRAN "check summary", the macros \acute, and \grave, \hat and \overline with
+       "new" HTML help building need to be closed with {}. Before, one could write
+       \hat\mathbf{C} and get a hat accent not top of a boldface C, but now the
+       implicit {} are no longer acceptable to KaTeX instead of LaTeX involved in
+       the HTML building. The check error looks like this:
+       Unexpected end of input in a macro argument, expected '}' in \hat\mathbf{C}
+-   Changes to COP.Rd, copBasic-package.Rd, duCOP.Rd, hoefCOP.Rd, isCOP.radsym.Rd,
+       prod2COP.Rd, rhoCOP.Rd, simCOPmicro.Rd, surfuncCOP.Rd, tailordCOP.Rd
+       https://blog.r-project.org/2022/04/08/enhancements-to-html-documentation/
+
+
+Changes in version 2.1.7 (2021-11-14)
+-   Minor edits to lcomCOP.Rd and expanded the Examples demonstrating parameter
+       estimation for a composite1COP of the Plackett copula.
+-   Added cross-reference link to lcomCOP to lcomCOPpv.Rd.
+-   Spelling corrections to copBasic-package.Rd and minor augmentations to tables.
+-   Minor typesetting edits to jointCOP.Rd.
+-   Minor corrections to bilmoms.Rd.
+-   Errors in Examples of glueCOP.Rd relative to implementation corrected.
+-   Additions/consistency of cross-linking within the composite*COP.Rd, convex*.Rd,
+       and glueCOP.Rd files.
+-   Corrected minor error on the Raftery copula example in COP.Rd.
+-   GHcop.Rd, renamed minus.semicor to botleft.semicor and plus.semicor to
+       topright.semicor in preparation for the extension to the other corners in
+       the semicorCOP().
+-  Added bottom right and top left corners for the semi-correlations in function
+       semicorCOP(). This required renaming minus.semicor to botleft.semicor and
+       plus.semicor to topright.semicor. The new corners are botright.semicor and
+       topleft.semicor. *** There is no backwards compatibility retained to the
+       original minus.semicor and plus.semicor names for the returned values. ***
+       Overhauled the semicorCOP.Rd and added a four corner example of reflection
+       and rotation of the Raftery copula, which ties into the similar example
+       of the Raftery in COP.Rd Examples section.
+-  Added Zhang and Singh (2019) citation to derCOPinv.Rd as part of replicating
+       their example 3.23 for the Clayton copula.
+-  Minor edits to prod2COP.Rd, stabtaildepf.Rd, taildepCOP.Rd, and tailordCOP.Rd.
+-  Added cross-links to PLcop in PLACKETTpar and PLpar in PLACKETTcop.
+
+
+Changes in version 2.1.6 (2021-08-30)
+-   Minor Rd fixes as R 4.1.+ series emerges and check --as-cran reports new things.
+       This mostly added up to the \doi{} call instead of \url{} when a DOI is used.
+-   Added a seed argument in simCOP, rCOP, and simCOPmicro to pass to set.seed().
+-   Updated the minimum R version through inspection of other dependencies. This
+       update is likely not that critical but does bring consistency.
+
+
+Changes in version 2.1.5 (2020-03-22)
+-  Extended RFcop() with a fit argument to toggle between Spearman Rho or Kendall Tau.
+-  Extended COP.Rd with a example of taking a copula, such as the RFcop, that only has
+       positive association and reflecting it three different times to form alternative
+       association structures, including negative association, that its formula can not
+       natively attain.
+-  Audit of AMHcop.Rd found documentation problems in the formula for Spearman's Rho.
+       Modified it and AMHcop() to show and respectively use the infinite series of
+       Machler (2014). Added the support for rho argument along with a fit argument
+       like RFcop() (see 2.1.5:1). Examples in AMHcop.Rd changed.
+-  Audit pass of much of the documentation.
+-  Changed a few Examples to dontruns because of the maturity of the package. The
+       --timings of the R CMD check were consulted. Should be a savings of less than
+       one second overall, but trying to help the CRAN.
+-  gEVcop.Rd received a minor fix in the Examples.
+-  Advancement: EMPIRgrid() was not passing ... to EMPIRcop(). 
+-  Extended EMPIRgridderinv() and EMPIRgridderinv2() to accept a precomputed gridded
+       derivative in the dergrid argument. 
+-  Extended EMPIRgridder() and EMPIRgridder2() to throw a warning about NaN along
+       a row or column
+         warning("found nonfinite values on row|column=",i," in grid derivative")
+       The author has encountered one data set that produces NaN on two rows and
+       trying to understand how and why this is happening.
+-  Extended the EMPIRcop() with a checker-board empirical copula, which is a type
+       of light smooth and adapted from the copula package.
+-  Added a trap in EMPIRgridderinv() and EMPIRgridderinv2() if Kumaraswamy is set and
+       the Kumaraswamy fit fails, the original approx() to the inversion is
+       set for the failure and a warning() triggered as to which index was involved.
+-  BUG FIX: An example within EMPIRsim.Rd need fixing and other minor cleanup.
+-  Minor spelling checks during Rd auditing for margin protrusion on Rd2pdf.
+
+
+Changes in version 2.1.4 (2019-07-02)
+-  Fixups in FGMcop.Rd (bad URL), HRcop.Rd (no encoding switch in the concept/keyword),
+       lcomCOP.Rd (bad URL), rhobevCOP.Rd (no commas in indexing or concepts) for 
+       release to CRAN.
+
+
+Changes in version 2.1.3 (2019-07-01)
+-  Added documentation in lcomCOP() stating that Chine and Benatia (2017) describe
+       trimmed L-comoments as the multivariate extensions of the univariate
+       trimmed L-moments. Unknown as to whether an extension jump should be made.
+-  Added iterated Farlie-Gumbel-Morgenstern copula as FGMrcop(), which is not any more
+       useful than the existing generalization, but Chine and Benatia (2017) concern
+       themselves with the iterated FGM.
+-  Documentation audit again with tiny changes to many Rds.
+-  Added glueCOP() as another means of constructing other copulas.
+-  BUG FIX: EMPIRqua.regress() and EMPIRqua.regress2() with lowess=TRUE could return
+       probabilities outside of [0,1]. Truncation to zero and unity is now made.
+-  Warning Fix: EMPIRgridderinv()/EMPIRgridderinv2() in their calls to approx() could
+       trigger warnings about ties and deletion of them. We know therein that the
+       x values are ordered, so a switch was made to use ties="ordered" in approx().
+       Also, "F" was being used as the nonexceedance probability but R syntax
+       highlighting treats as FALSE, so switch made to FF. By association, the
+       EMPIRqua.regress()/EMPIRqua.regress2() also need the ties="ordered" in their
+       use of the approx() on the inversion of the gridded derivative of the empirical 
+       copula.
+-  Added an as.list() check to the empirical grid argument in both pairs of 
+       EMPIRgridder()/EMPIRgridder2() and EMPIRgridderinv()/EMPIRgridderinv2().
+-  BUG FIX: Through an audit of EMPIRcop.Rd examples, which then found that the 
+       Bernstein argument to pass through lower-level dispatch to level.curvesCOP()
+       did not work. The ability for the para argument in EMPIRcop() now properly
+       supports the ability to trigger ctype and the bernstein arguments through
+       list embedment.
+-  COP.Rd, diagCOPatf.Rd, and med.regressCOP.Rd examples edited to avoid using F with
+       change to FF as a variable for nonexceedance probability (see no. 6).
+
+
+Changes in version 2.1.2 (2019-01-08)
+-  Added m=NA argument to aicCOP() and bicCOP() to pass the number of parameters
+       of the copula. Trivial to compute the number from standard copulas,
+       the problem is how to handle and count on the fly the number of parameters
+       for the various the compositing types. 
+-  Added warning of missing alpha or beta parameters in composite1COP and
+       composite2COP. Small speed it, but debugging when these are not given 
+       (forgotten) becomes complicated. (See #3 and #4)
+-  Added warning of missing kappa or gamma parameters in composite3COP.
+       (See #2 and #4)
+-  Added warning of missing alpha in convex2COP() (See #2 and #3)
+-  Enhancement: Added additional indexing for GHcop, GLcop, and HRcop as EV cops.
+-  Added tEVcop() with implementation based on the Pickands dependence
+       function. Examples are provided. The tEVcop() is deemed useful because
+       of interest in semi-exhaustive EV-copula study with the easy addition of
+       a 2-parameter copula without triggering convex or compositing. However,
+       some literature indicates that the form itself with two parameters is 
+       not really more expressive than the GHcop, GLcop, and HRcop.
+-  Feature fix: COP.R had a weakness when parameters as a list are passed in
+       its handling of "cop" versus "cop1", "cop2", etc.
+-  BUG FIX: Vectorization in convexCOP.R was not fully working for some
+       operations on composited copulas.
+-  BUX FIX: isCOP.permsym() and isCOP.radsym() both had dispatching problems
+       when composited copulas were involved in "cop" being "matched by 
+       multiple arguments" error in R. Had this always been a problem or had
+       R itself become more restricted? The fix was to insert a COP() call
+       as opposed cop() call (the argument named cop).
+-  Added the Gaussian extreme-value copula as gEVcop().
+-  Added rotation to cophalf (Nelsen's triangular copula) within the examples
+       of asCOP.Rd and bilmoms.Rd by including a para argument. This is useful
+       for further testing and as related to exploring nuskew() and nustar().
+-  Overhauled joeskewCOP() after more extensive testing including nuskew() and
+       nustar() for parameter estimation. There are now changes in the numerical
+       outputs including the basic scale of each statistic. (See joeskewCOP.Rd)
+       The biggest problems seem to have been in the numerical version of the
+       sample nustar, which prompted the overhaul. *** No users have reported
+       any problems with the older scheme, but it needs to be stated that no
+       users are actually known to be using nuskew() and nustar(). ***
+-  Added only.bilmoms argument to bilmoms() to skip L-comoment computation, 
+       in order to speed execution.
+-  Added lcomCOP() based on integrate(integrate()) nest for computation of the
+       bivariate L-moments and then conversion to the L-comoments. This is much
+       faster than bilmoms(). It is not remembered by the author why nested
+       integration was not originally implemented for bilmoms(). (Sorry.)
+       Testing indicates that lcomCOP() works well and is much much faster.
+       The function lcomCOPpv() will need revisiting for a future release.
+-  Added "1", "2", "3", "4" argument options for reflect in simCOPmicro() and
+       simCOPv() to be parallel with COP().
+-  Made an editorial sweep throughout the documentation.
+-  BUG FIX: semicorCOP() seems to have not had the truncation properly coded,
+       which was discovered during inspection of code as the Examples were
+       audited. However, the default truncation=0, would not show the problem.
+       Signs were not properly being used if truncation > 0 and matching logic
+       of Joe (2014, p. 73). Also argument 'samcor' renamed as 'as.sample' to
+       be consistent with other functions of the package.
+-  Added the Raftery copula as RFcop.
+-  GLcop() extended to a two-parameter version as a lower-extreme value
+       GL_LEV and related extension to another two-parameter version as the 
+       "gamma-power mixture" of the Galambos. The two-parameter version does not
+       seem materially broader than the one-parameter Galambos (see Note).
+       The gamma-power mixture is though a different copula.
+
+
+Changes in version 2.1.1 (2018-12-01)
+-  Enhancement: Changed from sapply to u*v on return. This dates for a long
+       time back when the vectorization in R was not idiomatic for the author.
+-  Added aicCOP(), bicCOP(), and rmseCOP(): a triad of similar goodness of fits.
+-  Minor warning() editing in mleCOP.Rd when alerting user to use interval 
+       search for one-parameter copulas.
+-  Standardized all *.Rd files to utf8 encoding declaration whether needed or no.
+
+
+Changes in version 2.1.0 (2018-05-07)
+-   Minor Rd updates throughout.
+-   Revision of warning() in wolfCOP().
+-   Removed last of the repeated sequence computation inside nested sapply()s
+       with in EMPIRcop(), hoefCOP(), joeskewCOP(), and wolfCOP(). A test wtih
+       n=3000 for an as.sample=TRUE computation for wolfCOP() yielded about a
+       5-percent decrease in execution time. It is possible that some R idiom
+       exists for substantially more speed increase in situations of
+       "sapply(..., sapply(...))". However, investigations have not found one and
+       use of the "outer()" function does not appear applicable in testing because
+       of the lack of symmetry in the matrices involved.
+-   Removed repeated sequence computation (though not nested) in kfuncCOP()
+       and vuongCOP(). This should be categorized as a "code cleaning" exercise.
+-   Fixed error in vuongCOP.Rd about nonrejection of the Plackett with the wording
+       should be "rejection." Error was a result of poor cut and paste when first
+       written. It was the reverse Gumbel–Hougaard that was not rejected.
+-   Fixed error in some accidentally swapped results in Examples of joeskewCOP.Rd.
+-   BUG FIX: CLcop() was throwing an error when trying to estimate Kendall Tau and
+       the copula parameter from the observed data. The cor(, method="kendall")
+       function was being called and the estimate retrieved by $estimate as in
+       cor.test()$estimate.
+-   Enhancement: Added some parsing of the ... to simCOP on which the delu and
+       derdir arguments are identified, used as needed, and then stripped before
+       the calls to plot() or points() to avoid "not a graphical parameter"
+       warnings. This has been an issue for nearly 10 years but finally WHA 
+       sat down and figured out how to deal with it.
+-   Enhancement: Added a sign test on the objective function in derCOPinv and
+       derCOPinv2. This will cut down on repeated warnings during simulations
+       when the calls to uniroot breakdown.
+-   Added JOcopB5().
+-   BUG FIX: rCOP() was not forwarding the sample size on down to simCOPmicro().
+-   Added the contour.lwd argument to densityCOPplot().
+-   BUG FIX: composite1COP() composite2COP() were not passing ... to COP().
+       This has not actually been a problem because most of the practical 
+       applications of copula herein are not often called with other arguments.
+       However, composite3COP() was passing ... down to composite2COP().
+-   Added FGMcop() for the Farlie-Gumbel-Morgenstern copula, which is actually
+       a recent (2012) generalization of this copula.
+-   Added AMHcop() for the Ali-Mikhail-Haq copula.
+-   Added alternative reflection arguments "1,2,3,4" to COP().
+-   Added alias PAcop() for PARETOcop() to be parallel to the PLACKETTcop().
+
+
+Changes in version 2.0.7 (2018-03-08)
+-   Clarified some documentation in bilmoms.Rd.
+-   Expanded description in Examples in kullCOP.Rd.
+
+
+Changes in version 2.0.6 (2017-11-11)
+-   Added convexCOP() as a N-bivariate copula generalization of convex2COP().
+-   Documentation adjustment to GHcop.Rd.
+-   Added CLcop() for user R. Adat related to his own coding efforts.
+
+
+Changes in version 2.0.5 (2017-02-24)
+-   Typo correction to DESCRIPTION and line ending changes to help hyphenation.
+-   NAME CHANGE: StableTailDepFN() --> stabtaildepf()
+-   Added importFrom("graphics", "mtext") for stabtaildepf() needs in NAMESPACE.
+-   Small adjustments to throughout documentation, but more importantly, tried
+       running all examples + "dontrun" declarations + as well as the multitude
+       of "preformatted" code snippets. All seem to be working and several
+       errors and consistency issues have been resolved---so this exercise was
+       reasonably needed.
+-   Error in blomCOP.Rd on old argument change: "sambeta" --> "as.sample".
+-   NAME ADDITION: PLcop() and PLpar() are now available for Plackett copula.
+-   Further auditing of kfuncCOP(), kfuncCOPinv(), and kfuncCOPlmoms(). Expanded
+       example of Kendall function L-moments.
+
+
+Changes in version 2.0.4 (2016-06-03)
+-  Microchanges 2.0.3 to pass CRAN importation.
+
+
+Changes in version 2.0.3 (2016-05-31)
+-   Another deep rereading of the documentation and editorial revisions.
+-   Extended the Gaussian copula example within med.regressCOP.Rd that deals with the
+       interaction with the copula package. (Reminder, WHA does not want to just dump
+       other copulas within copBasic. WHA wants just enough directly implemented to
+       show and validate core bivariate copula mathematical theory.)
+-   Added the.zero and sumlogs to densityCOP() to facilitate maximum likelihood
+       estimation (see next item).
+-   Added the.zero to vuongCOP() so it can dispatch that to densityCOP().
+-   Added mleCOP() as an example of maximum likelihood estimation suitable for
+       the copBasic package but Examples extend into how the copula package
+       might be integrated to gain access to other copulas but still retain
+       a hosting within the copBasic package. Thanks to S. Kloibhofer for ideas.
+-   Added rCOP() as a light-weight implementation of simCOP().
+-   Extended use of the "tol" argument in taildepCOP() and tailconCOP() to
+       control the internally defined "resolution" variable.
+-   Added psepolar() for pseudo-polar representation of bivariate data.
+-   Added spectralmeas() for the spectral measure distribution of bivariate data
+       derived from the pseudo-polar representation.
+-   Added StableTailDepFN() for the estimation of the stable tail dependence
+       function and construction of level sets associated with it.
+-   REMOVED: PlackettPlackettABKGtest.Rd, PlackettPlackettNP.Rd,
+             PlackettPlackettABKGtest.RData, PlackettPlackettNP.RData in
+       effort to reduce file size foot print of the package.
+       See lcomoms2.ABcop2parameterm() and lcomoms2.ABKGcop2parameter() to
+       explore how to prepopulate parameter to L-comoment mappings.
+
+
+Version 2.0.2 (2015-10-31)
+-   Added sobol argument to kullCOP() for Sobol sequences in the Monte Carlo
+      integration with an example in kullCOP.Rd. The package randtoolbox is
+      now imported from to get the sobol() function.
+-   Added bilmoms() function to compute bivariate L-moments and remapping them
+      to L-comoments of L-correlation, L-coskew, and L-cokurtosis using
+      Monte Carlo integration and optional Sobol sequences.
+-   Added the two-parameter Gumbel-Hougaard copula that is considered in the
+      paper providing the bivariate L-moments.
+-   Added level to med.regress() and med.regressCOP2() for prediction interval
+      computation and added example to their use involving the Gaussian copula
+      from the copula package along with linear regression.
+-   Migration of lcomCOPpv() from large sample simulation to Monte Carlo
+      integration for population estimate of L-comoments via the new bilmoms().
+
+
+Changes in version 2.0.1 (2015-08-31)
+-  Some major documentation expansion here and there as cascading impacts from
+      the other changes listed below. Minor documentation formatting changes in
+      a select few Rd files and many proofreading passes through all
+      documentation resulted in modest additions and corrections. Overhaul of
+      Examples sections to keep --timings down to < 0.01 elapsed seconds
+      for all documented functions outside \dontrun{} declarations on test
+      platform.
+-  Added the "tol" argument to diagCOPatf and specified a tolerance tighter
+      than the default of uniroot because of apparent loss of precision
+      when experimenting with 1,000,000-year return periods.
+-  Added a Note to GHcop.Rd showing analytical derivatives and the inverse.
+-  Added jointCOP(), joint.curvesCOP(), joint.curvesCOP2() for an alternative
+      framework for computing joint probabilities with a feature of the two
+      conditions of AND and OR for the joint probability.
+-  Typo correction in copBasic-package.Rd and extensions to that Rd considering
+      more about joint AND, joint OR, and mutually exclusive OR probabilities.
+-  Added exp(log(...)) logic to PSP() for more accuracy for very small
+      probabilities to avoid division by small numbers.
+-  Added in PSP.Rd discussion of PSP() returning NaN for zero probabilities.
+-  Added (related to no. 5 and 6) trapped against a coupla NaN for zero
+      probabilities in root-solving in COPinv() and COPinv2(). The functions
+      jointCOP(), joint.curvesCOP(), joint.curvesCOP2() have this trap too.
+-  Added Note section in duCOP.Rd about joint AND, OR, and exclusive OR.
+-  Added reflection permutations to COP() and simCOPmicro() after Joe (2014) as
+      cited in documentation. WHA does not desire to implement the reflection
+      feature throughout the package---see the combined documentation of these
+      two functions.
+-  Changed the named argument "swap" to "wrtV" in qua.regressCOP.draw to
+      parallel syntax of similar uses in copBasic.
+-  Added inst/doc/CopulaRelationBaseFiginR.txt, which is an R script that
+      creates a base graphic suitable for manual vector editing defining
+      bivariate relations of probability a copulas.
+-  Added Joe's Skewness of a copula by joeskewCOP() after Joe (2014) for
+      measurement of permutation asymmetry (skew).
+-  Added "RhoE" of a bivariate extreme value copula by rhobevCOP() after
+      Joe (2014).
+-  Added Kendall Function [kfuncCOP()/kmeasCOP()] along with very considerable
+      documentation concerning how they are presented in Nelsen (2006),
+      Salvadori et al. (2007), and Joe (2014). The inversion is kfuncCOPinv().
+-  Added convexCOP() for a convex combination of two copulas after Joe (2014).
+-  Removed the extensive copying of internal results within composite1COP(),
+      composite2COP(), and composite3COP()---should be big speed increase for
+      giant sample sizes.
+-  Added Spearman's Footrule as footCOP() with sample estimation as well.
+-  Added sample estimation to Gini Gamma in giniCOP(), Hoeffding Phi in
+      hoefCOP(), and Schweizer and Wolff Sigma in wolfCOP(), and for
+      parallelism---sample interface in rhoCOP() and tauCOP() to R's cor().
+-  Added L-moments of the kfuncCOP() via kfuncCOPlmoms() and kfuncCOPlmom(),
+      which closely parallel theoretical L-moment computation using the
+      cdf2lmoms() and cdf2lmom() functions of the lmomco package.
+-  Added Linear Spearman copula in FRECHETcop().
+-  Added Asymmetric Gumbel-Hougaard extension to GHcop() with L-comoment demo.
+-  Added prod2COP() for the *-product multiplication of copulas.
+-  **DEPRECTATION ALERT** Added Hazen extension to EMPIRcop() and lumped
+      computation types into new argument "ctype"" and fully **removed**
+      the "weibull"" and "bernstein"" arguments.
+-  Added GLcop() [Galambos] and HRcop() [Husler-Reiss] extreme value copulas.
+-  **DEPRECTATION ALERT** Overhaul of kullCOP() into Monte Carlo integration
+      and deprecated numerical integration to kullCOPint(). Logic is simpler
+      at expense of longer computation times but does not suffer from
+      hard-to-mitigate divergent integral errors.
+-  Added isfuncCOP() as a gridded numerical test on whether a bivariate
+      function appears to be a copula. Credit to user S. Kloibhofer for idea
+      and initial code---thanks for the support!
+-  Added statTn() as a measure of a fitted coupla divergence from the
+      empirical copula.
+-  Added the tail concentration function in tailconCOP().
+-  Added the copBasic.fitpara.beta() in copBasic.fitpara as a potential
+      uni-dimensional or multi-dimensional parameter optimization interface.
+      This is not a maximum likelihood approach but matching of sample
+      statistics to theoretical (e.g. like a method of moments). Discussions
+      of maximum likelihood implementation with S. Kloibhofer are ongoing.
+-  Overhaul of the output structure of vuongCOP() and added elements on the
+      return list to enhance clarity and added t-dist. for confidence interval.
+
+
+Changes in version 1.7.1 (2015-01-31)
+-  Minor changes to CITATION following CRAN email dated 01/09/2015.
+
+
+Changes in version 1.7.0 (2015-01-03)
+-   Further refinement of documentation and continued work on highlighting
+      and extending the connections to numerical results of various kinds
+      reported in Nelsen (2006) as well as Joe (2014).
+-   Extended hoefCOP() into Lp distances from independence and weaved in more
+      of Nelsen (2006).
+-   Added LpCOP(), which is functionally the same as hoefCOP().
+-   Minor documentation tweaks to EMPIRcop.Rd, EMPIRcopdf.Rd, EMPIRgrid.Rd,
+      PLACKETTpar.Rd, PlackettPlackettABKGtest.Rd, PlackettPlackettNP.Rd,
+      composite1COP.Rd, composite2COP.Rd, composite3COP.Rd,
+      isCOP.LTD.Rd, isCOP.RTI.Rd, isCOP.radsym.Rd,
+      lcomoms2.ABKGcop2parameter.Rd, and lcomoms2.ABcop2parameter.Rd.
+-   Added extended example for isCOP* functions inside isCOP.radsym.Rd.
+-   Added the Gumbel-Hougaard copula (GHcop) because WHA is studying the
+      method of L-comoments on this copula relative to the Plackett copula.
+-   Fixed spelling of Roger Nelsen's last name in all Rd files (sorry Roger).
+-   Added another example to copBasic-package.Rd.
+-   Added FRECHETcop() and added utf-8 encoding to those Rd files requiring
+      the dicritic on Frechet: GHcop.Rd, M.Rd, PlackettPlackettABKGtest.Rd,
+      PlackettPlackettNP.Rd, and W.Rd.
+-  Enhanced warning message in tauCOP() to point out that some failure of
+      numerical integration can be (often is?) attributable to singularity
+      for the given copula.
+-  Added an example to PLACKETTpar.Rd that shows the development of a
+      polynomial for estimation of Kendall's Tau given Spearman's Rho of a
+      Plackett copula. Further, PLACKETTpar() now sets labels for the returned
+      theta using names().
+-  Added additional discussion to isCOP.radsym.Rd to suggest that is seems
+      that radially symmetric copulas have zero L-comoments beyond
+      L-correlation. The literature seems silent on this question.
+-  Improved a conditional on infinity in PLACKETTcop.R.
+-  Added 'graphics' argument to simCOP.R to make is easier to turn off
+      graphical output from that function and also added the arguments 'snv',
+      'infsnv.rm', and 'trapinfsnv' as influence of Joe (2014) is incorporated.
+-  Changed to more idiomatic R syntax in derCOPinv.R and derCOPinv2.R so that
+      the lines of code were reduced.
+-  Added L-comoment example into the independence copula P.Rd.
+-  Added diagCOPatf() for solution of the probabilities u and v that provide
+      joint probability F.
+-  Added densityCOP() and densityCOPplot() following review of Joe (2014).
+-  Added sample Blomqvist's Beta computation to blomCOP() after Joe (2014).
+-  Added uvlmoms() and uvskewnewss() after Joe (2014).
+-  Added lcomCOPpv() for simulating the sample distribution(s) of
+      L-correlation, L-coskew, and L-cokurtosis for a copula.
+-  Added 'weibull' argument to EMPIRcop() [note the Joe (2014) often uses
+      Hazen plotting positions without so naming them as Hazen]
+-  Added the Kullback-Leibler divergences, Jeffrey's divergence, and the
+      Kullback-Leibler sample size.
+-  Added semicorCOP() for semicorrelations of a copula and(or) data.
+-  Added isCOP.permsym() for a grid-wise check on permutation symmetry.
+-  Added vuongCOP() for Vuong's procedure of copula comparison along with an
+      extensive Note section showing the forefront of copBasic extension into
+      the inference problem.
+
+
+Changes in version 1.6.0 (2014-09-26)
+-   Added the Bernstein copula extension to EMPIRcop().
+-   Changes to derCOP() and derCOP2() of accommodate vectorization yet still
+      retain the dynamic suspension of requested derivative direction should
+      need to be changed (overrided) [but only when needed]. Thus, tauCOP()
+      now does not kick off warnings.
+-   Added isCOP.radsym() for a grid-wise check on radial/reflection symmetry.
+-   Added asCOP() to help build copulas with operational similarity to the
+      expected implementation style for the package.
+-   Added isCOP.PQD() for testing positively quadrant dependency of a copula.
+-   Added gridCOP() for supporting 3-D or 2-D image renderings of a copula.
+-   Enhanced simCOP() for more speed and reporting features and vectorized
+      simCOPmicro().
+-   Added the surfuncCOP() for the joint survival function of a copula, which
+      is subtly different from the survival copula in surCOP.
+-   Removed the ratcop argument from sectionCOP(). That feature is too much
+      like what isCOP.LTD() or isCOP.RTI() was already doing.
+-  Comprehensive Rd auditing including the Examples and example expansion.
+-  Removed the capital "F" for quantile regression level and replaced with
+      lower case "f" in qua.regress(), qua.regress2(), and updated all
+      examples. If I have broken code for a few users, I am sorry but the
+      refrain from capitals in function arguments should have been kept
+      consistent with version 1.5.0.
+-  Added Hoeffding's Phi in hoefCOP().
+-  Adjustments to the features of sectionCOP().
+-  Enhanced indexing by suggestion of Amaranthe R. Biessen, whom also was
+      influential my major index extensions to the lmomco package.
+-  Adjusted DESCRIPTION and NAMESPACE to only partially grab those few
+      functions needed from the lmomco package.
+
+
+Changes in version 1.5.4 (2013-05-10)
+-  Prof. Ripley remarked that the DESCRIPTION of copBasic was too long.
+      This is a reasonably critique. The DESCRIPTION has been radically
+      shortened. The original (with new edits and organization) is now located
+      in the inst/doc/Extended_DESCRIPTION.txt file. WHA will use this file
+      as needed to provide further guidance into the package.
+-  Contraction of --timings made to the following: tauCOP.Rd wolfCOP.Rd
+      level.curvesCOP.Rd med.regressCOP.Rd qua.regressCOP.Rd qua.regressCOP2.Rd.
+      Also some minor tweaks to the median and quantile regression examples were
+      made.
+
+
+Changes in version 1.5.3 (2014-04-20)
+-   Added the ReineckeWells.RData and ReineckeWell266.RData.
+    ** This version failed --timings checks by CRAN, never released **
+
+
+Changes in version 1.5.2 (2012-07-30)
+-   med.regressCOP() and med.regressCOP() had arguments changed to match
+      the qua.regressCOP() and qua.regressCOP2() functions.
+-   med.regressCOP.Rd and med.regressCOP2.Rd changed in argument to match code.
+-   qua.regressCOP(), qua.regressCOP2(), med.regressCOP(), and med.regressCOP2()
+      all now insert an NA in case a root solution could not be found.
+-   Spelling corrections in DESCRIPTION: derivative and empirical.
+      Thanks CRAN team for the automated spell checkers.
+
+
+Changes in version 1.5.1 (2011-11-14)
+-   Added data/PlackettPlackettABKGtest.RData and
+      man/PlackettPlackettABKGtest.Rd.
+-   Removed lcomoms2.cop2parameter.R/Rd.
+-   Added lcomoms2.ABcop2parameter.R/Rd (replaces lcomoms2.cop2parameter.R/Rd).
+-   Added lcomoms2.ABKGcop2parameter.R/Rd.
+-   BUG FIX: Labeling inconsistency when sectionCOP() called with dercop=FALSE.
+-   Added the EMPIRcop() function for estimation of the empirical copula.
+-   Added the EMPIRcopdf() function to compute the entire data.frame() of
+      the empirical copula---the copula for each coordinate is computed.
+-   Added the EMPIRgrid() function for computation of a regular grid of
+      the empirical copula---this grid will form the basis of other copula
+      operations on the empirical copula.
+-   Added the EMPIRgridder() and EMPIRgridder2() functions for
+      computation of the sectional derivatives of the empirical copula from
+      EMPIRgrid().
+-  Added the EMPIRgridderinv() and EMPIRgridderinv2() functions for
+      computation of the sectional derivatives of the empirical copula from
+      EMPIRgrid().
+-  Added the EMPIRqua.regress() and EMPIRqua.regress2() functions for
+      quantile regression from grid emanating from EMPIRgridderinv() and
+      EMPIRgridderinv2().
+-  Added the EMPIRmed.regress() and EMPIRmed.regress2() functions for
+      median regression from grid emanating from EMPIRgridderinv() and
+      EMPIRgridderinv2().
+-  Added the EMPIRsim() function for simulation of V given U from the
+      empirical copula.
+-  Added the EMPIRsimv() function for simulation of V given U (by
+      argument) from the empirical copula.
+-  Documentation fixes in derCOP2.Rd, lcomoms2.ABcop2parameters.Rd,
+      lcomoms2.ABKGcop2parameter.Rd, PlackettPlackettNP.Rd, and
+      qua.regressCOP.Rd.
+-  Enhanced error handling with COPinv(), COPinv2(), derCOPinv(), and
+      derCOPinv2().
+-  Enhancement to derCOP() and derCOP2() by changing derivative direction
+      if near the 0 or 1 boundaries.
+
+Changes in version 1.5.0 (2011-08-31)
+-   Enhancement on derCOPinv.R when a solution is unbounded in uniroot()
+      to return NA as needed. This was discovered in massive simulation
+      from simcompositeCOP()---massive means 500k simulation counts.
+-   Added Nelsen's copula in equation 4.2.12 as the N4212cop() function.
+-   Removed and restructured the tabulated L-comoment solutions to the
+      Plackett-Plackett copula to clean up some loose ends and set up the
+      ability to load much much larger solutions sets that are too big
+      for CRAN distribution.
+-   Major construction of the data subdirectory and changes to documentation.
+      Removed comp2lcomsPlackettPlackett.Rd, comp2lcomsPlackettPlackett2.Rd,
+      lcom2PLACKETTPLACKETTcop.R/Rd.
+-   Added lcomoms2.cop2parameter.R/Rd (replaces lcom2PLACKETTPLACKETTcop.R/Rd).
+-   Added data/PlackettPlackettNP.RData and man/PlackettPlackettNP.Rd.
+-   Changes to the CITATION file.
+-   Removed capitalization of arguments in the empricial quantile regression
+      (including f --> f.lowess): EMPIRqua.regress.R, EMPIRqua.regress2.R.
+-   Removed capitalization of arguments in the median regression:
+      med.regressCOP(), med.regressCOP2(), and
+      qua.regressCOP(), qua.regressCOP2(), qua.regressCOP.draw()
+-  Added level.setCOP() and level.setCOP2() that are dispatchers to special
+      features of level.curvesCOP() and level.curvesCOP2(), respectively. The
+      level curves functions required some extensive reorganization and
+      further error trapping to support the single level set return.
+-  Added surfuncCOP() as the joint survival function. This function is
+      closely related to surCOP() but with subtle argument differences. This
+      new function included to be ever more consistent with Nelsen's book.
+-  Added kmeasCOP() for the Kendall's Measure of a copula, which is critically
+      important for "secondary return period" computations.
+-  Added alias of simCOPv() for simCOPmicro() to be in parallel with EMPIRsimv.
+-  Relations between COP(), surCOP(), surfuncCOP(), duCOP(), and coCOP() are
+      illustrated in a script in inst/doc/CopulaRelations_BaseFigure_inR.txt
+      as a base figure and vector edited in inst/doc/CopulaRelationsFigure.pdf
+
+Changes in version 1.4 (2008-10-30)
+-  Initial release (class project)
+
+
+--------------------------------------------------------------------------------------
+
+POTENTIAL TODOs:
+
+Continued inspection of the approx() use and whether ties="ordered" can be used
+(see 2.1.3#6), it appears in all other cases that yes, we can move
+to the ties="ordered" because the inversion of the gridded derivative of the empirical  copula is being used and structurally the "x" part of the approx will be ordered.
+R/EMPIRsim.R:      v <- approx(cols, y=v.available, xout=t, rule=2)$y
+R/EMPIRsim.R:      v1 <- approx(cols, y=v.available1, xout=t, rule=2)$y
+R/EMPIRsim.R:      v2 <- approx(cols, y=v.available2, xout=t, rule=2)$y
+R/EMPIRsimv.R:      v <- approx(cols, y=v.available, xout=t, rule=2)$y
+R/EMPIRsimv.R:      v1 <- approx(cols, y=v.available1, xout=t, rule=2)$y
+R/EMPIRsimv.R:      v2 <- approx(cols, y=v.available2, xout=t, rule=2)$y
+R/kfuncCOP.R:         empkc <- approx(c(0,FKin,1), c(0,Zin,1), xout=z)$y
+
+
+lcomCOPpv() <--> vuongCOP() work as now lcomCOP() is available.
+lcomCOPpv() might need some reworking too.
+
+If two-parameter Galambos (Joe, 2014, p. 198) is not materially broader than
+the one-parameter, does this hold for a two-parameter Gumbel hinted by
+Joe (2014, p. 199)? Further investigation is needed.
+
+Note: Joe's 2-p GHcop does appear different from Brahimi et. al (2015) version of a
+2-p GHcop. Should support for both be made? Are both the same? (Quick testing
+suggests that perhaps they are not, but mathematical checking has not been made
+as of January 2019]).
+
+Add the trimmed L-comoments? 
+
+EMPIRcopdf() can be replaced by EMPIRcop() as the later is fully 
+  vectorized itself and makes presumably a lesser impact on memory (faster)?
+
+stabtaildepf.Rd --- Need to audit stabtaildepf.Rd and complete documentation.
+Beirlant, J., Escobar-Bach, M., Goegebeur, Y., Guillou, A.: Bias-corrected
+estimation of stable tail dependence function. J. Multivar. Anal. 143, 453–466 (2016)
+https://doi.org/10.1016/j.jmva.2015.10.006
+Kiriliouk, A., Segers, J. & Tafakori, L. Extremes (2018) 21: 581.
+https://doi.org/10.1007/s10687-018-0315-y
+
+Implementation of state-of-the-practice nonparametric estimators of
+  lower and upper tail dependence parameters. Neither of the three books
+  cited within deal with this. A turn towards recommended literature by
+  Joe (2014) is needed.
+
+Goodness-of-fit of the Kendall Function following Genest et. al. (2006,
+  Goodness-of-fit procedures for copula models based on the probability
+  integral transformation: Scand J. Statist 33.
+
+Convergence evaluators for the Monte Carlo integration in bilmoms() and
+  kullCOP() to enhance computation times.
+
+rhobevCOP() study for a copula yielding 0.

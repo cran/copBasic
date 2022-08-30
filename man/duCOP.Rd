@@ -9,9 +9,9 @@ Compute the \emph{dual of a copula (function)} from a copula (Nelsen, 2006, pp. 
 
 where \eqn{\tilde{\mathbf{C}}(u,v)} is the dual of a copula and \eqn{u} and \eqn{v} are nonexceedance probabilities. The dual of a copula is the expression for the probability that either \eqn{U \le u} \bold{or} \eqn{V \le v}, which is unlike the \emph{co-copula (function)} (see \code{\link{coCOP}}) that provides \eqn{\mathrm{Pr}[U > u \mathrm{\ or\ } V > v]}. The dual of a copula is a function and not in itself a copula. The dual of the  \emph{survivial copula} (\code{\link{surCOP}}) is the \emph{co-copula (function)} (\code{\link{coCOP}}). Some rules of copulas mean that
 
-\deqn{\hat\mathbf{C}(u',v') + \tilde{\mathbf{C}}(u,v) \equiv 1\mbox{,}}
+\deqn{\hat{\mathbf{C}}(u',v') + \tilde{\mathbf{C}}(u,v) \equiv 1\mbox{,}}
 
-where \eqn{\hat\mathbf{C}(u',v')} is the survival copula in terms of exceedance probabilities \eqn{u'} and \eqn{v'} or in \pkg{copBasic} code that the functions \code{\link{surCOP}} + \code{duCOP} equal unity.
+where \eqn{\hat{\mathbf{C}}(u',v')} is the survival copula in terms of exceedance probabilities \eqn{u'} and \eqn{v'} or in \pkg{copBasic} code that the functions \code{\link{surCOP}} + \code{duCOP} equal unity.
 
 The function \code{duCOP} gives \dQuote{protection} against simultaneous (concurrent or dual) risk by failure if and only if failure is caused (defined) by both hazard sources \eqn{U} and \eqn{V} occurring at the same time. Expressing this in terms of an annual probability of occurrence (\eqn{q}), one has
 \deqn{q = 1 - \mathrm{Pr}[U \le v \mathrm{\ or\ } V \le v] = 1 - \tilde{\mathbf{C}}(u,v)\mbox{\ or}}
@@ -66,7 +66,7 @@ where it is obvious that the simulations and theory estimate about the same \bol
 where it is obvious that the simulations and theory estimate about the same joint \bold{mutually exclusive or} condition, and where it is shown that the prior two theoretical joint probabilities can be subtracted from each to yield the \bold{mutually exclusive or} condition.
 
 
-Let us then play out a scenario in which it is judged that of the events causing damage that the simultaneous occurrance is worse but that engineering against about 5 percent of events not occurring at the same time represents the most funding available. Using numerical methods, it is possible to combine \eqn{\tilde\mathbf{C}} and \eqn{\mathbf{C}} and assume equal marginal risk in \eqn{U} and \eqn{V} as the following list shows:
+Let us then play out a scenario in which it is judged that of the events causing damage that the simultaneous occurrance is worse but that engineering against about 5 percent of events not occurring at the same time represents the most funding available. Using numerical methods, it is possible to combine \eqn{\tilde{\mathbf{C}}} and \eqn{\mathbf{C}} and assume equal marginal risk in \eqn{U} and \eqn{V} as the following list shows:
 \preformatted{
   "designf" <- function(t) { # a one-off function just for this example
      duCOP(t, t, cop=PSP) - COP(t, t, cop=PSP) - 5/100 # 5 percent

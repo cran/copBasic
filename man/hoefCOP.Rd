@@ -18,16 +18,16 @@ for a \eqn{p: 1 \le p \le \infty} and where \eqn{k(p)} is a normalization consta
 \deqn{k(p) = \frac{\Gamma(2p+3)}{2[\Gamma(p + 1)]^2}\mbox{,}}
 which is implemented by the \code{hoefCOP} function. It is important to realize that the \eqn{L_p} distances are all \emph{symmetric nonparametric measures of dependence} (Nelsen, 2006, p. 210). These are symmetric because distance from independence is used as evident by \dQuote{\eqn{uv}} in the above definitions.
 
-\emph{Reflection/Radial and Permutation Asymmetry}---Asymmetric forms similar to the above distances exist. Joe (2014, p. 65) shows two measures of bivariate \emph{reflection asymmetry} or \emph{radial asymmetry} (term favored in \pkg{copBasic}) as the distance between \eqn{\mathbf{C}(u,v)} and the survival copula \eqn{\hat\mathbf{C}(u,v)} (\code{\link{surCOP}}) measured by
-\deqn{L_\infty^{(\mathrm{radsym})} = \mathrm{sup}_{0\le u,v\le1}|\mathbf{C}(u,v) - \hat\mathbf{C}(u,v)|\mbox{,}}
+\emph{Reflection/Radial and Permutation Asymmetry}---Asymmetric forms similar to the above distances exist. Joe (2014, p. 65) shows two measures of bivariate \emph{reflection asymmetry} or \emph{radial asymmetry} (term favored in \pkg{copBasic}) as the distance between \eqn{\mathbf{C}(u,v)} and the survival copula \eqn{\hat{\mathbf{C}}(u,v)} (\code{\link{surCOP}}) measured by
+\deqn{L_\infty^{(\mathrm{radsym})} = \mathrm{sup}_{0\le u,v\le1}|\mathbf{C}(u,v) - \hat{\mathbf{C}}(u,v)|\mbox{,}}
 or its \eqn{L_p^{(\mathrm{radsym})}} counterpart
-\deqn{L_p^{(\mathrm{radsym})} = \biggl[\int\!\!\int_{\mathcal{I}^2} |\mathbf{C}(u,v) - \hat\mathbf{C}(u,v)|^p\,\mathrm{d}u\mathrm{d}v\biggr]^{1/p}\mbox{with\ } p \ge 1\mbox{,}}
-where \eqn{\hat\mathbf{C}(u,v) = u + v - 1 + \mathbf{C}(1-u, 1-v)} and again \eqn{p: 1 \le p \le \infty}. Joe (2014) does not seem to discuss and normalization constants for these two radial asymmetry distances.
+\deqn{L_p^{(\mathrm{radsym})} = \biggl[\int\!\!\int_{\mathcal{I}^2} |\mathbf{C}(u,v) - \hat{\mathbf{C}}(u,v)|^p\,\mathrm{d}u\mathrm{d}v\biggr]^{1/p}\mbox{with\ } p \ge 1\mbox{,}}
+where \eqn{\hat{\mathbf{C}}(u,v) = u + v - 1 + \mathbf{C}(1-u, 1-v)} and again \eqn{p: 1 \le p \le \infty}. Joe (2014) does not seem to discuss and normalization constants for these two radial asymmetry distances.
 
 Joe (2014, p. 66) offers analogous measures of bivariate \emph{permutation asymmetry} (\eqn{\mathbf{C}(u,v) \not= \mathbf{C}(v,u)}) defined as
-\deqn{L_\infty^{(\mathrm{permsym})} = \mathrm{sup}_{0\le u,v\le1}|\mathbf{C}(u,v) - \hat\mathbf{C}(v,u)|\mbox{,}}
+\deqn{L_\infty^{(\mathrm{permsym})} = \mathrm{sup}_{0\le u,v\le1}|\mathbf{C}(u,v) - \hat{\mathbf{C}}(v,u)|\mbox{,}}
 or its \eqn{L_p^{(\mathrm{permsym})}} counterpart
-\deqn{L_p^{(\mathrm{permsym})} = \biggl[\int\!\!\int_{\mathcal{I}^2} |\mathbf{C}(u,v) - \hat\mathbf{C}(v,u)|^p\,\mathrm{d}u\mathrm{d}v\biggr]^{1/p}\mbox{with\ } p \ge 1\mbox{,}}
+\deqn{L_p^{(\mathrm{permsym})} = \biggl[\int\!\!\int_{\mathcal{I}^2} |\mathbf{C}(u,v) - \hat{\mathbf{C}}(v,u)|^p\,\mathrm{d}u\mathrm{d}v\biggr]^{1/p}\mbox{with\ } p \ge 1\mbox{,}}
 where \eqn{p: 1 \le p \le \infty}. Again, Joe (2014) does not seem to discuss and normalization constants for these two permutation symmetry distances. Joe (2014, p. 65) states that the \dQuote{simplest one-parameter bivariate copula families [and] most of the commonly used two-parameter bivariate copula families are permutation symmetric.}
 
 The asymmetrical \eqn{L_\infty} and \eqn{L_p} measures identified by Joe (2014, p. 66) are nonnegative with an upper bounds that depends on \eqn{p}. The bound dependence on \eqn{p} is caused by the lack of normalization constant \eqn{k(p)}. In an earlier paragraph, Joe (2014) indicates an upper bounds of 1/3 for both (likely?) concerning \eqn{L_\infty^{(\mathrm{radsym})}} and \eqn{L_\infty^{(\mathrm{permsym})}}. The numerical integrations for \eqn{L_p^{(\mathrm{radsym})}} and \eqn{L_p^{(\mathrm{permsym})}} can readily return zeros and often inspection of the formula for the \eqn{\mathbf{C}(u,v)} itself would be sufficient to judge whether symmetry exists and hence the distances are uniquely zero.
@@ -35,11 +35,12 @@ The asymmetrical \eqn{L_\infty} and \eqn{L_p} measures identified by Joe (2014, 
 Joe (2014, p. 66) completes the asymmetry discussion with three definitions of skewness of combinations of random variables \eqn{U} and \eqn{V}: Two definitions are in \code{\link{uvlmoms}} (for \eqn{U + V - 1} and \eqn{U - V}) and two are for \eqn{V-U} (\code{\link{nuskewCOP}}) and \eqn{U+V-1} (\code{\link{nustarCOP}}).
 }
 \usage{
-hoefCOP(cop=NULL,      para=NULL, p=2, as.sample=FALSE, sample.as.prob=TRUE,
+hoefCOP(     cop=NULL, para=NULL, p=2, as.sample=FALSE,
+                                       sample.as.prob=TRUE,
                                        brute=FALSE, delta=0.002, ...)
 
-LpCOP(cop=NULL,        para=NULL, p=2, brute=FALSE, delta=0.002, ...)
-LpCOPradsym(cop=NULL,  para=NULL, p=2, brute=FALSE, delta=0.002, ...)
+LpCOP(       cop=NULL, para=NULL, p=2, brute=FALSE, delta=0.002, ...)
+LpCOPradsym( cop=NULL, para=NULL, p=2, brute=FALSE, delta=0.002, ...)
 LpCOPpermsym(cop=NULL, para=NULL, p=2, brute=FALSE, delta=0.002, ...)
 }
 \arguments{
@@ -61,7 +62,7 @@ Concerning the distance from independence, when \eqn{p = 1}, then the \emph{Spea
 and these values are hardwired into \code{hoefCOP} and \code{LpCOP}. The integers for \eqn{k_p} ensures that the equality in the second line of the examples is \code{TRUE}, but the \eqn{p} can be a noninteger as well. Nelsen (2006, p. 211) reports that when \eqn{p = \infty} that \eqn{L_\infty} is
 \deqn{L_\infty \equiv \Phi_\mathbf{C}(\infty) = \Lambda_\mathbf{C} = 4\;\mathrm{sup}_{u,v \in \mathcal{I}}|\mathbf{C}(u,v) - uv|\mbox{.}}
 
-A sample \eqn{\hat\Phi_\mathbf{C}} (square root of the \emph{Hoeffding Phi-Square}) based on nonparametric estimation generalized for \eqn{d} dimensions (\eqn{d = 2} for bivariate) is presented by \enc{Gaißer}{Gaisser} \emph{et al.} (2010, eq. 10) for estimated probabilities \eqn{\hat{U}_{ij}} for the \eqn{i}th dimension and \eqn{j}th row (observation) for sample of size \eqn{n}. Those authors suggest that the \eqn{\hat{U}_{ij}} be estimated from the empirical copula:
+A sample \eqn{\hat{\Phi}_\mathbf{C}} (square root of the \emph{Hoeffding Phi-Square}) based on nonparametric estimation generalized for \eqn{d} dimensions (\eqn{d = 2} for bivariate) is presented by \enc{Gaißer}{Gaisser} \emph{et al.} (2010, eq. 10) for estimated probabilities \eqn{\hat{U}_{ij}} for the \eqn{i}th dimension and \eqn{j}th row (observation) for sample of size \eqn{n}. Those authors suggest that the \eqn{\hat{U}_{ij}} be estimated from the empirical copula:
 \deqn{\hat\Phi_\mathbf{C} = \sqrt{h(d)[A + B]}\mbox{,}}
 where
 \deqn{A = \biggl(\frac{1}{n}\biggr)^2\sum_{j=1}^n\sum_{k=1}^n\prod_{i=1}^d
@@ -69,8 +70,7 @@ where
 \deqn{B = \biggl(\frac{1}{3}\biggr)^d - \biggl(\frac{2}{n}\biggr)\biggl(\frac{1}{2}\biggr)^d
                \sum_{j=1}^n\prod_{i=1}^d  [1 - \hat{U}_{ij}^2]\mbox{, and}}
 the normalization constant is a function of dimension and is
-\deqn{h(d)^{-1} = \frac{2}{(d+1)(d+2)} - \biggl(\frac{1}{2}\biggr)^d\frac{d!}{\prod_{i=0}^d(i+(1/2))}+\biggl(\frac{1}{3}\biggr)^d\mbox{.}}
-The value \eqn{h(2) = 90}, which is the second \eqn{k(p)} shown above and recall the \eqn{d} dimension implied for \eqn{k(p)} is bivariate (\eqn{d = 2}). The internals of \code{hoefCOP} for \eqn{\hat\Phi_\mathbf{C}} are generalized to arbitrary dimension although the \pkg{copBasic} has a bivariate focus. An application of \eqn{\hat\Phi_\mathbf{C}} is shown in the extensive theoretical and sample estimator comparison for a composited copula in the \bold{Examples} section of \code{\link{giniCOP}}. Two examples that shown a modest difference in the sample estimation when standard normal variates are returned from \code{\link{simCOP}} and hence they require re-estimation via a simple empirical copula:
+\deqn{h(d)^{-1} = \frac{2}{(d+1)(d+2)} - \biggl(\frac{1}{2}\biggr)^d\frac{d!}{\prod_{i=0}^d\bigl(i+(1/2)\bigr)}+\biggl(\frac{1}{3}\biggr)^d\mbox{.}}
 \preformatted{
   set.seed(1); UV <- simCOP(n=1000, cop=PSP)
   hoefCOP(cop=PSP)                                       # 0.4547656 (theo.)

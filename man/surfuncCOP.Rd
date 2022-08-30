@@ -4,8 +4,8 @@
 \title{ The Joint Survival Function }
 \description{
 Compute the \emph{joint survival function} for a copula (Nelsen, 2006, p. 33), which is defined as
-\deqn{\overline{\mathbf{C}}(u,v) = \mathrm{Pr}[U > u, V > v] = 1 - u - v + \mathbf{C}(u,v) = \hat\mathbf{C}(1-u, 1-v)\mbox{,}}
-where \eqn{\hat\mathbf{C}(u',v')} is the \emph{survival copula} (see \code{\link{surCOP}}), which is defined by
+\deqn{\overline{\mathbf{C}}(u,v) = \mathrm{Pr}[U > u, V > v] = 1 - u - v + \mathbf{C}(u,v) = \hat{\mathbf{C}}(1-u, 1-v)\mbox{,}}
+where \eqn{\hat{\mathbf{C}}(u',v')} is the \emph{survival copula} (see \code{\link{surCOP}}), which is defined by
 \deqn{\hat{\mathbf{C}}(u',v') = \mathrm{Pr}[U > u, V > v] =  u' + v' - 1 + \mathbf{C}(1-u',1-v')\mbox{.}}
 
 Although the joint survival function is an expression of the probability that both \eqn{U > v} and \eqn{U > v}, \eqn{\overline{\mathbf{C}}(u,v)} not a copula.

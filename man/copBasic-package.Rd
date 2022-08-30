@@ -50,10 +50,10 @@ Some other entry points into the package are listed in the following table:
 \tabular{lclr}{
 \bold{Name} \tab \bold{Symbol} \tab \bold{Function} \tab \bold{Concept} \cr
 Copula  \tab \eqn{\mathbf{C}(u,v)} \tab \code{\link{COP}} \tab copula theory\cr
-Survival copula \tab \eqn{\hat\mathbf{C}(u',v')} \tab \code{\link{surCOP}} \tab copula theory\cr
+Survival copula \tab \eqn{\hat{\mathbf{C}}(u',v')} \tab \code{\link{surCOP}} \tab copula theory\cr
 Joint survival function \tab \eqn{\overline{\mathbf{C}}(u,v)} \tab \code{\link{surfuncCOP}} \tab copula theory\cr
 Co-copula \tab \eqn{\mathbf{C}^\star(u',v')} \tab \code{\link{coCOP}} \tab copula theory\cr
-Dual of a copula \tab \eqn{\tilde\mathbf{C}(u,v)} \tab \code{\link{duCOP}} \tab copula theory\cr
+Dual of a copula \tab \eqn{\tilde{\mathbf{C}}(u,v)} \tab \code{\link{duCOP}} \tab copula theory\cr
 Primary copula diagonal  \tab \eqn{\delta(t)} \tab \code{\link{diagCOP}} \tab copula theory\cr
 Secondary copula diagonal  \tab \eqn{\delta^\star(t)} \tab \code{\link{diagCOP}} \tab copula theory\cr
 Inverse copula diagonal \tab \eqn{\delta^{(-1)}(f)} \tab \code{\link{diagCOPatf}} \tab copula theory\cr
@@ -156,19 +156,19 @@ The \bold{Table of Probabilities} that follows lists important relations between
 \tabular{rcl}{
 \bold{Probability} \tab \bold{and} \tab \bold{Symbol Convention}\cr
 \eqn{\mathrm{Pr}[\,U \le u, V \le v\,]}     \tab \eqn{=} \tab \eqn{\mathbf{C}(u,v)} --- The copula, \code{\link{COP}}\cr
-\eqn{\mathrm{Pr}[\,U > u, V > v\,]}         \tab \eqn{=} \tab \eqn{\hat\mathbf{C}(u',v')} --- The survival copula, \code{\link{surCOP}}\cr
+\eqn{\mathrm{Pr}[\,U > u, V > v\,]}         \tab \eqn{=} \tab \eqn{\hat{\mathbf{C}}(u',v')} --- The survival copula, \code{\link{surCOP}}\cr
 \eqn{\mathrm{Pr}[\,U \le u, V > v\,]}       \tab \eqn{=} \tab \eqn{u - \mathbf{C}(u,v')}\cr
 \eqn{\mathrm{Pr}[\,U > u, V \le v\,]}       \tab \eqn{=} \tab \eqn{v - \mathbf{C}(u',v)}\cr
 \eqn{\mathrm{Pr}[\,U \le u \mid V \le v\,]} \tab \eqn{=} \tab \eqn{\mathbf{C}(u,v)/v}\cr
 \eqn{\mathrm{Pr}[\,V \le v \mid U \le u\,]} \tab \eqn{=} \tab \eqn{\mathbf{C}(u,v)/u}\cr
 \eqn{\mathrm{Pr}[\,U \le u \mid V > v\,]}   \tab \eqn{=} \tab \eqn{\bigl(u - \mathbf{C}(u,v)\bigr)/(1 - v)}\cr
 \eqn{\mathrm{Pr}[\,V \le v \mid U > u\,]}   \tab \eqn{=} \tab \eqn{\bigl(v - \mathbf{C}(u,v)\bigr)/(1 - u)}\cr
-\eqn{\mathrm{Pr}[\,U > u \mid V > v\,]}   \tab \eqn{=} \tab \eqn{\hat\mathbf{C}(u',v')/u' = \overline\mathbf{C}(u,v)/(1-u)}\cr
-\eqn{\mathrm{Pr}[\,V > v \mid U > u\,]}   \tab \eqn{=} \tab \eqn{\hat\mathbf{C}(u',v')/v' = \overline\mathbf{C}(u,v)/(1-v)}\cr
+\eqn{\mathrm{Pr}[\,U > u \mid V > v\,]}   \tab \eqn{=} \tab \eqn{\hat{\mathbf{C}}(u',v')/u' = \overline{\mathbf{C}}(u,v)/(1-u)}\cr
+\eqn{\mathrm{Pr}[\,V > v \mid U > u\,]}   \tab \eqn{=} \tab \eqn{\hat{\mathbf{C}}(u',v')/v' = \overline{\mathbf{C}}(u,v)/(1-v)}\cr
 \eqn{\mathrm{Pr}[\,V \le v \mid U = u\,]}   \tab \eqn{=} \tab \eqn{\delta \mathbf{C}(u,v)/\delta u} --- Partial derivative, \code{\link{derCOP}}\cr
 \eqn{\mathrm{Pr}[\,U \le u \mid V = v\,]}   \tab \eqn{=} \tab \eqn{\delta \mathbf{C}(u,v)/\delta v} --- Partial derivative, \code{\link{derCOP2}}\cr
 \eqn{\mathrm{Pr}[\,U > u \mathrm{\ or\ } V > v\,]}     \tab \eqn{=} \tab \eqn{\mathbf{C}^\star(u',v') = 1 - \mathbf{C}(u',v')} --- The co-copula, \code{\link{coCOP}}\cr
-\eqn{\mathrm{Pr}[\,U \le u \mathrm{\ or\ } V \le v\,]} \tab \eqn{=} \tab \eqn{\tilde\mathbf{C}(u,v) = u + v - \mathbf{C}(u,v)} --- The dual of a copula, \code{\link{duCOP}}\cr
+\eqn{\mathrm{Pr}[\,U \le u \mathrm{\ or\ } V \le v\,]} \tab \eqn{=} \tab \eqn{\tilde{\mathbf{C}}(u,v) = u + v - \mathbf{C}(u,v)} --- The dual of a copula, \code{\link{duCOP}}\cr
 }
 The function \code{\link{jointCOP}} has considerable demonstration in its \bold{Note} section of the \bold{joint and} and \bold{joint or} relations shown through simulation and counting scenarios. Also there is a demonstration in the \bold{Note} section of function \code{\link{duCOP}} on application of the concepts of \bold{joint and} conditions, \bold{joint or} conditions, and importantly joint \bold{mutually exclusive or} conditions.
 
@@ -201,9 +201,9 @@ Let the copula \eqn{\mathbf{C}(u,v; \Theta)} for nonexceedances \eqn{u} and \eqn
 \deqn{T_{q;\,\mathrm{coop}} = \frac{1}{1 - \mathbf{C}(q, q; \Theta)} = \frac{1}{\mathbf{C}^\star(1-q, 1-q; \Theta)}\mbox{\ and}}
 \deqn{T_{q;\,\mathrm{coop}} \equiv \frac{1}{\mathrm{cooperative\ risk}}\mbox{.}}
 
-Or in words, the hazard sources \bold{collaborate} or \bold{cooperate} to cause failure. However, if failure only occurs if and only if \bold{both} hazards \eqn{U} and \eqn{V} occur simultaneously (the hazards must \dQuote{dually work together} or be \dQuote{conjunctive}), then the \bold{real return period} is defined using either the \emph{dual of a copula (function)} (\eqn{\tilde\mathbf{C}(q,q; \Theta)}), the \emph{joint survival function} (\eqn{\overline\mathbf{C}(q,q;\Theta)}), or \emph{survival copula} (\eqn{\hat\mathbf{C}(q',q'; \Theta)}) as
+Or in words, the hazard sources \bold{collaborate} or \bold{cooperate} to cause failure. However, if failure only occurs if and only if \bold{both} hazards \eqn{U} and \eqn{V} occur simultaneously (the hazards must \dQuote{dually work together} or be \dQuote{conjunctive}), then the \bold{real return period} is defined using either the \emph{dual of a copula (function)} (\eqn{\tilde{\mathbf{C}}(q,q; \Theta)}), the \emph{joint survival function} (\eqn{\overline{\mathbf{C}}(q,q;\Theta)}), or \emph{survival copula} (\eqn{\hat{\mathbf{C}}(q',q'; \Theta)}) as
 
-\deqn{T_{q;\,\mathrm{dual}} = \frac{1}{1 - \tilde\mathbf{C}(q,q; \Theta)} = \frac{1}{\overline\mathbf{C}(q,q;\Theta)} = \frac{1}{\hat\mathbf{C}(q',q';\Theta)} \mbox{\ and}}
+\deqn{T_{q;\,\mathrm{dual}} = \frac{1}{1 - \tilde{\mathbf{C}}(q,q; \Theta)} = \frac{1}{\overline{\mathbf{C}}(q,q;\Theta)} = \frac{1}{\hat{\mathbf{C}}(q',q';\Theta)} \mbox{\ and}}
 \deqn{T_{q;\,\mathrm{dual}} \equiv \frac{1}{\mathrm{complement\ of\ dual\ protection}}\mbox{.}}
 
 

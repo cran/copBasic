@@ -16,19 +16,19 @@ whereas, following the notation of Joe (2014, pp. 271--272), the copula of \eqn{
 Careful consideration of the nomenclature is necessary as confusion with the occurrences of \eqn{1-u} and \eqn{1-v} easily conflate meaning. The nomenclature for the \emph{survival copula} is more elaborately shown under \code{\link{surCOP}}. The difficulty is that the bivariate arguments to the \emph{survival copula} are \emph{exceedance probabilities}.
 
 For simulation, again following the nomenclature of Joe (2014, p. 272), the conditional distribution functions (numerical derivatives; \code{\link{derCOP}} \eqn{\equiv} \eqn{\mathbf{C}_{2|1}(v|u)} and \code{\link{derCOP2}} \eqn{\equiv} \eqn{\mathbf{C}_{1|2}(u|v)}) can be written in terms of \eqn{\mathbf{C}(u|v) = \mathbf{C}_{2|1}(v|u)} as
-\deqn{  \hat\mathbf{C}_{2|1}(v|u) = 1 - \mathbf{C}_{2|1}(1-v|1-u)\mbox{,}}
-\deqn{\acute\mathbf{C}_{2|1}(v|u) =     \mathbf{C}_{2|1}(  v|1-u)\mbox{, and}}
-\deqn{\grave\mathbf{C}_{2|1}(v|u) = 1 - \mathbf{C}_{2|1}(1-v|  u)\mbox{,}}
+\deqn{  \hat{\mathbf{C}}_{2|1}(v|u) = 1 - \mathbf{C}_{2|1}(1-v|1-u)\mbox{,}}
+\deqn{\acute{\mathbf{C}}_{2|1}(v|u) =     \mathbf{C}_{2|1}(  v|1-u)\mbox{, and}}
+\deqn{\grave{\mathbf{C}}_{2|1}(v|u) = 1 - \mathbf{C}_{2|1}(1-v|  u)\mbox{,}}
 where the respective \code{"surv"}, \code{"acute"}, and \code{"grave"} are inverses (conditional quantile functions; inverses of numerical derivatives; \code{\link{derCOPinv}} \eqn{\equiv} \eqn{\mathbf{C}^{(-1)}_{2|1}(v|u)} and \code{\link{derCOPinv2}} \eqn{\equiv} \eqn{\mathbf{C}^{(-1)}_{1|2}(u|v)}) are
-\deqn{  \hat\mathbf{C}^{(-1)}_{2|1}(t|u) = 1 - \mathbf{C}^{(-1)}_{2|1}(1-t|1-u)\:\rightarrow\mbox{\ \code{"sur"},}}
-\deqn{\acute\mathbf{C}^{(-1)}_{2|1}(t|u) =     \mathbf{C}^{(-1)}_{2|1}(  t|1-u)\:\rightarrow\mbox{\ \code{"acute"}, and}}
-\deqn{\grave\mathbf{C}^{(-1)}_{2|1}(t|u) = 1 - \mathbf{C}^{(-1)}_{2|1}(1-t|  u)\:\rightarrow\mbox{\ \code{"grave"},}}
+\deqn{  \hat{\mathbf{C}}^{(-1)}_{2|1}(t|u) = 1 - \mathbf{C}^{(-1)}_{2|1}(1-t|1-u)\:\rightarrow\mbox{\ \code{"sur"},}}
+\deqn{\acute{\mathbf{C}}^{(-1)}_{2|1}(t|u) =     \mathbf{C}^{(-1)}_{2|1}(  t|1-u)\:\rightarrow\mbox{\ \code{"acute"}, and}}
+\deqn{\grave{\mathbf{C}}^{(-1)}_{2|1}(t|u) = 1 - \mathbf{C}^{(-1)}_{2|1}(1-t|  u)\:\rightarrow\mbox{\ \code{"grave"},}}
 where \eqn{t} is a uniformly distributed variable.
 
-To clarify the seemingly clunky nomenclature---Joe (2014) does not provide \dQuote{names} for \eqn{\acute\mathbf{C}(u,v)} or \eqn{\grave\mathbf{C}(u,v)}---the following guidance is informative:\cr
-\eqn{\mbox{}\quad\mbox{}}(1) \code{"surv"} or \eqn{\hat\mathbf{C}(u,v)} is a reflection of \eqn{U} and \eqn{V} on the horizontal \emph{and} vertical axes, respectively\cr
-\eqn{\mbox{}\quad\mbox{}}(2) \code{"acute"} or \eqn{\acute\mathbf{C}(u,v)} is a reflection of \eqn{U} on the horizontal axis, and\cr
-\eqn{\mbox{}\quad\mbox{}}(3) \code{"grave"} or \eqn{\grave\mathbf{C}(u,v)} is a reflection of \eqn{V} on the verical axis.\cr
+To clarify the seemingly clunky nomenclature---Joe (2014) does not provide \dQuote{names} for \eqn{\acute{\mathbf{C}}(u,v)} or \eqn{\grave{\mathbf{C}}(u,v)}---the following guidance is informative:\cr
+\eqn{\mbox{}\quad\mbox{}}(1) \code{"surv"} or \eqn{\hat{\mathbf{C}}(u,v)} is a reflection of \eqn{U} and \eqn{V} on the horizontal \emph{and} vertical axes, respectively\cr
+\eqn{\mbox{}\quad\mbox{}}(2) \code{"acute"} or \eqn{\acute{\mathbf{C}}(u,v)} is a reflection of \eqn{U} on the horizontal axis, and\cr
+\eqn{\mbox{}\quad\mbox{}}(3) \code{"grave"} or \eqn{\grave{\mathbf{C}}(u,v)} is a reflection of \eqn{V} on the verical axis.\cr
 The names \code{"acute"} and \code{"grave"} match those used in the \bold{Rd}-format math typesetting instructions.
 }
 \usage{

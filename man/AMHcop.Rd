@@ -52,7 +52,7 @@ It is seen that the numerical approaches yield quite similar results for small \
 The plot shows that the apparent differences are less than 1 part in 100 million---The \pkg{copBasic} computation is radically slower though, but \code{\link{rhoCOP}} was designed for generality of copula family.
 }
 \references{
-\enc{Mächler}{Machler}, Martin, 2014, Spearman’s Rho for the AMH copula---A beautiful formula: copula package vignette, accessed on April 7, 2018 at \url{https://CRAN.R-project.org/package=copula} under the vignette \emph{rhoAMH-dilog.pdf}.
+\enc{Mächler}{Machler}, Martin, 2014, Spearman's Rho for the AMH copula---A beautiful formula: copula package vignette, accessed on April 7, 2018 at \url{https://CRAN.R-project.org/package=copula} under the vignette \emph{rhoAMH-dilog.pdf}.
 
 Pranesh, Kumar, 2010, Probability distributions and estimation of Ali--Mikhail--Haq copula: Applied Mathematical Sciences, v. 4, no. 14, p. 657--666.
 }

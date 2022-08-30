@@ -8,7 +8,7 @@ Numerically set a logical whether a copula is \emph{radially symmetric} (Nelsen,
  or
  \deqn{u + v - 1 + \mathbf{C}(1-u, 1-v) - \mathbf{C}(u,v) \equiv 0\mbox{.}}
 
-Thus if the equality of the copula \eqn{\mathbf{C}(u,v) = \hat\mathbf{C}(u,v)}, then radial symmetry exists: \code{\link{COP}} \eqn{=} \code{\link{surCOP}} or \eqn{\mathbf{C}(u,v) = \hat{\mathbf{C}}(1-u,1-v)}. The computation is (can be) CPU intensive.
+Thus if the equality of the copula \eqn{\mathbf{C}(u,v) = \hat{\mathbf{C}}(u,v)}, then radial symmetry exists: \code{\link{COP}} \eqn{=} \code{\link{surCOP}} or \eqn{\mathbf{C}(u,v) = \hat{\mathbf{C}}(1-u,1-v)}. The computation is (can be) CPU intensive.
 }
 \usage{
 isCOP.radsym(cop=NULL, para=NULL, delta=0.005, tol=1e-4, ...)

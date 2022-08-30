@@ -7,10 +7,10 @@ function(cop=NULL, para=NULL, tol=1e-6, divisor=2,
   if(verbose) message("Upper-Tail Dependency")
   t <- 0.5
   while(t < 1 - .Machine$double.eps) {
-    lamu.tmp <- 2 - (1-cop(t,t, para=para, ...))/(1-t)
+    lamu.tmp <- 2 - (1-cop(t,t, para=para, ...)) / (1-t)
     if(is.nan(lamu.tmp)) break
     u <- u + 1
-    if(verbose) message("  iter.",u,"  t=",t,"  lambdaU=",lamu)
+    if(verbose) message("  iter.", u, "  t=", t,"  lambdaU=", lamu)
     LAMU1[u] <- t; LAMU2[u] <- lamu
     if(abs(lamu - lamu.tmp) < tol) break
     t <- t + (1-t)/divisor
@@ -21,10 +21,10 @@ function(cop=NULL, para=NULL, tol=1e-6, divisor=2,
   LAML1 <- LAML2 <- vector(mode="numeric")
   t <- 0.5
   while(t > .Machine$double.eps) {
-    laml.tmp <- cop(t,t, para=para, ...)/t
+    laml.tmp <- cop(t,t, para=para, ...) / t
     if(is.nan(laml.tmp)) break
     l <- l + 1
-    if(verbose) message("  iter.",l,"  t=",t,"  lambdaL=",laml)
+    if(verbose) message("  iter.", l, "  t=", t, "  lambdaL=", laml)
     LAML1[l] <- t; LAML2[l] <- laml
     if(abs(laml - laml.tmp) < tol) break
     t <- t - t/divisor
@@ -32,20 +32,21 @@ function(cop=NULL, para=NULL, tol=1e-6, divisor=2,
   }
   if(verbose) message("---done.")
   if(plot) {
-    xmin <- qnorm(min(LAMU1,LAML1))
-    xmax <- qnorm(max(LAMU1,LAML1))
+    xmin <- qnorm( min(LAMU1, LAML1) )
+    xmax <- qnorm( max(LAMU1, LAML1) )
+    print(c(xmin, xmax))
+    xlim <- c(-1, +1) * max( abs(c(xmin, xmax)) )
     ymin <- min(LAMU2,LAML2)
     ymax <- max(LAMU2,LAML2)
     if(is.null(ylim)) ylim <- c(ymin, ymax)
-    plot(qnorm(LAMU1), LAMU2, type="l", col=4,
-           xlim=c(xmin, xmax), ylim=ylim,
+    plot(qnorm(LAMU1), LAMU2, type="l", col="blue", xlim=xlim, ylim=ylim,
            xlab="STANDARD NORMAL VARIATES",
            ylab="UPPER- AND LOWER-TAIL DEPENDENCY PARAMETER")
-    lines(qnorm(LAML1), LAML2, col=2)
-    points(qnorm(LAMU1[u]), LAMU2[u], cex=0.7, pch=16, col=4)
-    points(qnorm(LAMU1[u]), LAMU2[u], pch="U", cex=1.3)
-    points(qnorm(LAML1[l]), LAML2[l], cex=0.7, pch=16, col=2)
-    points(qnorm(LAML1[l]), LAML2[l], pch="L", cex=1.3)
+    lines(qnorm(LAML1), LAML2, col="red")
+    points(qnorm(LAMU1[u]), LAMU2[u], cex=0.7, pch=16, col="blue")
+    points(qnorm(LAMU1[u]), LAMU2[u], cex=1.3, pch="U")
+    points(qnorm(LAML1[l]), LAML2[l], cex=0.7, pch=16, col="red")
+    points(qnorm(LAML1[l]), LAML2[l], cex=1.3, pch="L")
   }
   return(list(lambdaL = round(LAML2[l], digits=resolution),
               lambdaU = round(LAMU2[u], digits=resolution),

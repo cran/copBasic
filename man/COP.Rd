@@ -44,10 +44,10 @@ whereas, following the notation of Joe (2014, p. 271), the copula of \eqn{(1-U, 
 \deqn{\mathrm{Pr}[\,U \le u, V > v\,] = \grave{\mathbf{C}}(u,v) = u - \mathbf{C}(u,1-v)\:\rightarrow\mbox{\ \code{"grave"}.}}
 Here it is useful to stress the probability aspects that change with the reflections, but this section ends with the reflections themselves being graphically highlighted. The \bold{Examples} stress simple variations on the probability aspects.
 
-To clarify the seemingly clunky nomenclature---Joe (2014) does not provide \dQuote{names} for \eqn{\acute\mathbf{C}(u,v)} or \eqn{\grave\mathbf{C}(u,v)}---the following guidance is informative:\cr
-\eqn{\mbox{}\quad\mbox{}}(1) \code{"surv"} or \eqn{\hat\mathbf{C}(u,v)} is a reflection of \eqn{U} and \eqn{V} on the horizontal \emph{and} vertical axes, respectively,\cr
-\eqn{\mbox{}\quad\mbox{}}(2) \code{"acute"} or \eqn{\acute\mathbf{C}(u,v)} is a reflection of \eqn{U} on the horizontal axis, and\cr
-\eqn{\mbox{}\quad\mbox{}}(3) \code{"grave"} or \eqn{\grave\mathbf{C}(u,v)} is a reflection of \eqn{V} on the verical axis.\cr
+To clarify the seemingly clunky nomenclature---Joe (2014) does not provide \dQuote{names} for \eqn{\acute{\mathbf{C}}(u,v)} or \eqn{\grave{\mathbf{C}}(u,v)}---the following guidance is informative:\cr
+\eqn{\mbox{}\quad\mbox{}}(1) \code{"surv"} or \eqn{\hat{\mathbf{C}}(u,v)} is a reflection of \eqn{U} and \eqn{V} on the horizontal \emph{and} vertical axes, respectively,\cr
+\eqn{\mbox{}\quad\mbox{}}(2) \code{"acute"} or \eqn{\acute{\mathbf{C}}(u,v)} is a reflection of \eqn{U} on the horizontal axis, and\cr
+\eqn{\mbox{}\quad\mbox{}}(3) \code{"grave"} or \eqn{\grave{\mathbf{C}}(u,v)} is a reflection of \eqn{V} on the verical axis.\cr
 The names \code{"acute"} and \code{"grave"} match those used in the \bold{Rd}-format math typesetting instructions. Users are directed to the documentation of \code{\link{simCOPmicro}} for further discussion because the \code{COP} function is expected to be an early entry point for new users interested in the \pkg{copBasic} API.
 
 For the \pkg{copBasic} package and in order to keep some logic brief and code accessible for teaching and applied circumstances, reflections of copulas using analogs to the \code{reflect} argument are only natively supported in the \code{COP} and the \code{\link{simCOPmicro}} functions. The interfaces of \pkg{copBasic} should already be flexible enough for users to adapt and (or) specially name reflections of copulas for deployment.
