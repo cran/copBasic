@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{simcomposite3COP}
 \alias{simcomposite3COP}
-\title{  Compute the L-comoments of a Four-Value Composited Copula by Simulation }
+\title{Compute the L-comoments of a Four-Value Composited Copula by Simulation}
 \description{
 Simulate copula parameters and compute \emph{L-comoments} and provision for plotting features for a composited copula using four compositing parameters (see \code{\link{composite3COP}}). The compositing parameters are each independent and uniformly distributed:
 \deqn{\alpha \sim \mathrm{U}[0,1];\ \beta \sim \mathrm{U}[0,1];\ \kappa \sim \mathrm{U}[0,1];\ \gamma \sim \mathrm{U}[0,1]\mbox{.}}
@@ -39,26 +39,26 @@ The following descriptions list in detail the \code{parents} argument structure 
 }
 The \code{para} argument of this function are passed to the function contained in \code{compositor} and are therefore subject to further constraints in items should such constraints exist.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{lcomCOP}}, \code{\link{simcompositeCOP}}}
 \examples{
 \dontrun{
 # EXAMPLE 1: Make a single simulation result.
 mainpara <- list(cop1=PLACKETTcop, cop2=PLACKETTcop,
-                 para1gen=function() { return(c(10^runif(1,min=-5,max=0))) },
-                 para2gen=function() { return(c(10^runif(1,min= 0,max=5))) })
+                 para1gen=function() { return(c(10^runif(1, min=-5, max=0))) },
+                 para2gen=function() { return(c(10^runif(1, min= 0, max=5))) })
 v <- simcompositeCOP(nsim=1, parent=mainpara, showresults=TRUE)
 print(v)
 
 # EXAMPLE 2: Make 1000 "results" and plot two columns.
 mainpara <- list(cop1=PLACKETTcop, cop2=N4212cop,
-                 para1gen=function() { return(c(10^runif(1,min=-5,max=5))) },
-                 para2gen=function() { return(c(10^runif(1,min= 0,max=2))) })
+                 para1gen=function() { return(c(10^runif(1, min=-5, max=5))) },
+                 para2gen=function() { return(c(10^runif(1, min= 0, max=2))) })
 v <- simcomposite3COP(nsim=100, parent=mainpara); labs <- colnames(v)
-plot(v[,5],v[,7], # open circles are 1 with respect to 2
+plot(v[,5], v[,7],           # open circles are 1 with respect to 2
      xlab=paste(c(labs[5], "and", labs[6]), collapse=" "),
      ylab=paste(c(labs[6], "and", labs[8]), collapse=" "))
-points(v[,6],v[,8], pch=16) # black dots are 2 with respect to 1}
+points(v[,6], v[,8], pch=16) # black dots are 2 with respect to 1}
 }
 \keyword{copula composition}
 \keyword{copula (simulation)}

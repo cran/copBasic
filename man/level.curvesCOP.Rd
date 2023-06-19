@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{level.curvesCOP}
 \alias{level.curvesCOP}
-\title{ Compute and Plot Level Curves of a Copula V with respect to U }
+\title{Compute and Plot Level Curves of a Copula V with respect to U}
 \description{
 Compute and plot \emph{level curves} or \emph{level sets} of a copula for \eqn{V} with respect to \eqn{U} (Nelsen, 2006, pp. 12--13). The level curves at levels \eqn{t \mapsto [0+\Delta t, 1-\Delta t, \Delta t]} are defined for \eqn{U \mapsto [0+\Delta u, 1-\Delta u, \Delta u]} by
 \deqn{t \mapsto \mathbf{C}(u=U, v)\mbox{,}}
@@ -25,7 +25,7 @@ level.curvesCOP(cop=NULL, para=NULL, ploton=TRUE, lines=TRUE,
   \item{...}{Additional arguments to pass to the \code{lines()} function in \R.}
 }
 \value{
-  Typically no values are returned because this function is used for its side effects. But the arguments can be such that the \eqn{\{u, v\}} for \eqn{\mathbf{C}(u,v) = t} are returned within an \R \code{list}.
+  Typically no values are returned because this function is used for its side effects, but the arguments can be such that the \eqn{\{u, v\}} for \eqn{\mathbf{C}(u,v) = t} are returned within an \R \code{list}.
 }
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.

@@ -1,15 +1,14 @@
 \encoding{utf8}
 \name{sectionCOP}
 \alias{sectionCOP}
-\title{ The Sections or Derivative of the Sections of a Copula }
+\title{The Sections or Derivative of the Sections of a Copula}
 \description{
 Compute the \emph{copula sections} or the \emph{(partial) derivatives of copula sections} of a copula (Nelsen, 2006, pp. 12--14). The \emph{horizontal section} at \eqn{V=a} (a constant) is
 \deqn{t \mapsto \mathbf{C}(t,a)\mbox{, and}}
 the \emph{vertical  section} at \eqn{U=a} (a constant, with respect to \eqn{V} or \code{wrtV=TRUE}) is
 \deqn{t \mapsto \mathbf{C}(a,t)\mbox{.}}
 The partial derivatives of the copula sections are \emph{conditional cumulative distribution functions} (see \code{\link{derCOP}} and \code{\link{derCOP2}}). The derivatives are constrained as
-\deqn{0 \le \frac{\delta}{\delta u}\mathbf{C}(u,v) \le 1\mbox{,}}
-or
+\deqn{0 \le \frac{\delta}{\delta u}\mathbf{C}(u,v) \le 1\mbox{, and}}
 \deqn{0 \le \frac{\delta}{\delta v}\mathbf{C}(u,v) \le 1\mbox{.}}
 }
 \usage{
@@ -39,7 +38,7 @@ sectionCOP(f, cop=NULL,  para=NULL, wrtV=FALSE, dercop=FALSE, delt=0.005,
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{COP}}, \code{\link{diagCOP}}}
 \examples{
 \dontrun{

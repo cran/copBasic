@@ -144,7 +144,7 @@ Pos'ly quadrant dependency \tab PQD \tab \code{\link{isCOP.PQD}} \tab bivariate 
 Permutation symmetry \tab \eqn{\mathrm{permsym}} \tab \code{\link{isCOP.permsym}} \tab copula symmetry\cr
 Radial symmetry \tab \eqn{\mathrm{radsym}} \tab \code{\link{isCOP.radsym}} \tab copula symmetry\cr
 Skewness (Joe, 2014) \tab \eqn{\eta(p; \psi)} \tab \code{\link{uvskew}} \tab bivariate skewness\cr
-Kullback--Leibler divergence \tab \eqn{\mathrm{KL}(f|g)} \tab \code{\link{kullCOP}} \tab bivariate inference\cr
+Kullback--Leibler Divergence \tab \eqn{\mathrm{KL}(f|g)} \tab \code{\link{kullCOP}} \tab bivariate inference\cr
 KL sample size \tab \eqn{n_{f\!g}} \tab \code{\link{kullCOP}} \tab bivariate inference\cr
 The Vuong Procedure \tab \eqn{{-}{-}} \tab \code{\link{vuongCOP}} \tab bivariate inference\cr
 Spectral measure \tab \eqn{H(w)} \tab \code{\link{spectralmeas}} \tab extremal dependency inference\cr
@@ -172,10 +172,11 @@ The \bold{Table of Probabilities} that follows lists important relations between
 }
 The function \code{\link{jointCOP}} has considerable demonstration in its \bold{Note} section of the \bold{joint and} and \bold{joint or} relations shown through simulation and counting scenarios. Also there is a demonstration in the \bold{Note} section of function \code{\link{duCOP}} on application of the concepts of \bold{joint and} conditions, \bold{joint or} conditions, and importantly joint \bold{mutually exclusive or} conditions.
 
-One, two, or more copulas can be \dQuote{composited,} \dQuote{combined,} or \dQuote{multiplied} in interesting ways to create highly unique bivariate relations and as a result, complex dependence structures can be formed. \pkg{copBasic} provides three main functions for copula composition: \code{\link{composite1COP}} composites a single copula with two compositing parameters, \code{\link{composite2COP}} composites two copulas with two compositing parameters, and \code{\link{composite3COP}} composites two copulas with four compositing parameters. Also two copulas can be combined through a weighted convex combination using \code{\link{convex2COP}} with a single weighting parameter, and even \eqn{N} number of copulas can be combined by weights using \code{\link{convexCOP}}. Finally, multiplication of two copulas to form a third is supported by \code{\link{prod2COP}}. All six functions for compositing, combining, or multipling copulas are compatible with joint probability simulation (\code{\link{simCOP}}), measures of association (\emph{e.g.} \eqn{\rho_\mathbf{C}}), and presumably all other copula operations using \pkg{copBasic} features.
+Permutation asymmetry can be added to a copula by \code{\link{breveCOP}}. One, two, or more copulas can be \dQuote{composited,} \dQuote{combined,} or \dQuote{multiplied} in interesting ways to create highly unique bivariate relations and as a result, complex dependence structures can be formed. The package provides three main functions for copula composition: \code{\link{composite1COP}} composites a single copula with two compositing parameters, \code{\link{composite2COP}} composites two copulas with two compositing parameters, and \code{\link{composite3COP}} composites two copulas with four compositing parameters. Also two copulas can be combined through a weighted convex combination using \code{\link{convex2COP}} with a single weighting parameter, and even \eqn{N} number of copulas can be combined by weights using \code{\link{convexCOP}}. So-called \dQuote{gluing} two copula by a parameter is provided by \code{\link{glueCOP}}. Finally, multiplication of two copulas to form a third is supported by \code{\link{prod2COP}}. All seven functions for compositing, combining, or multipling copulas are compatible with joint probability simulation (\code{\link{simCOP}}), measures of association (\emph{e.g.} \eqn{\rho_\mathbf{C}}), and presumably all other copula operations using \pkg{copBasic} features.
 
 \tabular{cclr}{
 \bold{No. of copulas} \tab \bold{Combining Parameters} \tab \bold{Function} \tab \bold{Concept}\cr
+1 \tab \eqn{\beta} \tab \code{\link{breveCOP}} \tab adding permuation asymmetry\cr
 1 \tab \eqn{\alpha, \beta} \tab \code{\link{composite1COP}} \tab copula combination\cr
 2 \tab \eqn{\alpha, \beta} \tab \code{\link{composite2COP}} \tab copula combination\cr
 2 \tab \eqn{\alpha, \beta, \kappa, \gamma} \tab \code{\link{composite3COP}} \tab copula combination\cr
@@ -187,36 +188,37 @@ One, two, or more copulas can be \dQuote{composited,} \dQuote{combined,} or \dQu
 
 \bold{Useful Copula Relations by Visualization}
 
-There are a myriad of relations amongst variables computable through copulas, and these were listed in the \bold{Table of Probabilities} earlier in this documentation. There is a script located in the \code{inst/doc} directory of the \pkg{copBasic} sources titled \code{CopulaRelations_BaseFigure_inR.txt}. This script demonstrates, using the \code{\link{PSP}} copula, relations between the copula (\code{\link{COP}}), survival copula (\code{\link{surCOP}}), joint survival function of a copula (\code{\link{surfuncCOP}}), co-copula (\code{\link{coCOP}}), and dual of a copula function (\code{\link{duCOP}}). The script performs simulation and manual counts observations meeting various criteria in order to compute their \emph{empirical probabilities}. The script produces a base figure, which after extending in editing software, is suitable for educational description and is provided herein.
+There are a myriad of relations amongst variables computable through copulas, and these were listed in the \bold{Table of Probabilities} earlier in this documentation. There is a script located in the \code{inst/doc} directory of the \pkg{copBasic} sources titled \code{CopulaRelations_BaseFigure_inR.txt}. This script demonstrates, using the \code{\link{PSP}} copula, relations between the copula (\code{\link{COP}}), survival copula (\code{\link{surCOP}}), joint survival function of a copula (\code{\link{surfuncCOP}}), co-copula (\code{\link{coCOP}}), and dual of a copula function (\code{\link{duCOP}}). The script performs simulation and manual counts observations meeting various criteria in order to compute their \emph{empirical probabilities}. The script produces a base figure, which after extending in editing software, is suitable for educational description and is provided at the end of this documentation.
 
 \bold{A Review of \dQuote{Return Periods} using Copulas}
 
 Risk analyses of natural hazards are commonly expressed as \emph{annual return periods} \eqn{T} in years, which are defined for a nonexceedance probability \eqn{q} as \eqn{T = 1/(1-q)}. In bivariate analysis, there immediately emerge two types of return periods representing \eqn{T_{q;\,\mathrm{coop}}} and \eqn{T_{q;\,\mathrm{dual}}} conditions between nonexceedances of the two hazard sources (random variables) \eqn{U} and \eqn{V}. It is usual in many applications for \eqn{T} to be expressed equivalently as a probability \eqn{q} in common for both variables.
 
-Incidentally, the \eqn{\mathrm{Pr}[\,U > u \mid V > v\,]} and \eqn{\mathrm{Pr}[\,V > v \mid U > u\,]} probabilities also are useful for \emph{conditional return period} computations following Salvadori \emph{et al.} (2007, p. 159--160) but are not further considered here. Also the \eqn{F_K(w)} (\emph{Kendall Function} or \emph{Kendall Measure} of a copula) is the core tool for \emph{secondary return period} computations (see \code{\link{kfuncCOP}}).
+Incidentally, the \eqn{\mathrm{Pr}[\,U > u \mid V > v\,]} and \eqn{\mathrm{Pr}[\,V > v \mid U > u\,]} probabilities also are useful for \emph{conditional return period} computations following Salvadori \emph{et al.} (2007, pp. 159--160) but are not further considered here. Also the \eqn{F_K(w)} (\emph{Kendall Function} or \emph{Kendall Measure} of a copula) is the core tool for \emph{secondary return period} computations (see \code{\link{kfuncCOP}}).
 
 
-Let the copula \eqn{\mathbf{C}(u,v; \Theta)} for nonexceedances \eqn{u} and \eqn{v} be set for some copula family (formula) by a parameter vector \eqn{\Theta}. The copula family and parameters define the joint coupling (loosely meant the dependency/correlation) between hazards \eqn{U} and \eqn{V}. If \dQuote{failure} occurs if \bold{either} or \bold{both} hazards \eqn{U} and \eqn{V} are a probability \eqn{q} threshold (\eqn{u = v = 1 - 1/T = q}) for \eqn{T}-year return period, then the \bold{real return period} of failure is defined using either the copula (\eqn{\mathbf{C}(q,q; \Theta)} or the \emph{co-copula} (\eqn{\mathbf{C}^\star(q',q'; \Theta)}) for exceedance probability \eqn{q' = 1 - q} is
+Let the copula \eqn{\mathbf{C}(u,v; \Theta)} for nonexceedances \eqn{u} and \eqn{v} be set for some copula family (formula) by a parameter vector \eqn{\Theta}. The copula family and parameters define the joint coupling (loosely meant the dependency/correlation) between hazards \eqn{U} and \eqn{V}. If \dQuote{failure} occurs if \bold{either} or \bold{both} hazards \eqn{U} and \eqn{V} are at probability \eqn{q} threshold (\eqn{u = v = 1 - 1/T = q}) for \eqn{T}-year return period, then the \bold{real return period} of failure is defined using either the copula \eqn{\mathbf{C}(q,q; \Theta)} or the \emph{co-copula} \eqn{\mathbf{C}^\star(q',q'; \Theta)} for exceedance probability \eqn{q' = 1 - q} is
 
 \deqn{T_{q;\,\mathrm{coop}} = \frac{1}{1 - \mathbf{C}(q, q; \Theta)} = \frac{1}{\mathbf{C}^\star(1-q, 1-q; \Theta)}\mbox{\ and}}
 \deqn{T_{q;\,\mathrm{coop}} \equiv \frac{1}{\mathrm{cooperative\ risk}}\mbox{.}}
 
-Or in words, the hazard sources \bold{collaborate} or \bold{cooperate} to cause failure. However, if failure only occurs if and only if \bold{both} hazards \eqn{U} and \eqn{V} occur simultaneously (the hazards must \dQuote{dually work together} or be \dQuote{conjunctive}), then the \bold{real return period} is defined using either the \emph{dual of a copula (function)} (\eqn{\tilde{\mathbf{C}}(q,q; \Theta)}), the \emph{joint survival function} (\eqn{\overline{\mathbf{C}}(q,q;\Theta)}), or \emph{survival copula} (\eqn{\hat{\mathbf{C}}(q',q'; \Theta)}) as
+Or in words, the hazard sources \bold{collaborate} or \bold{cooperate} to cause failure. If failure occurs,  however, if and only if \bold{both} hazards \eqn{U} and \eqn{V} occur simultaneously (the hazards must \dQuote{dually work together} or be \dQuote{conjunctive}), then the \bold{real return period} is defined using either the \emph{dual of a copula (function)} \eqn{\tilde{\mathbf{C}}(q,q; \Theta)}, the \emph{joint survival function} \eqn{\overline{\mathbf{C}}(q,q;\Theta)}, or \emph{survival copula} \eqn{\hat{\mathbf{C}}(q',q'; \Theta)} as
 
 \deqn{T_{q;\,\mathrm{dual}} = \frac{1}{1 - \tilde{\mathbf{C}}(q,q; \Theta)} = \frac{1}{\overline{\mathbf{C}}(q,q;\Theta)} = \frac{1}{\hat{\mathbf{C}}(q',q';\Theta)} \mbox{\ and}}
 \deqn{T_{q;\,\mathrm{dual}} \equiv \frac{1}{\mathrm{complement\ of\ dual\ protection}}\mbox{.}}
 
 
-A numerical demonstration is informative. Salvadori \emph{et al.} (2007, p. 151) show for a \emph{Gumbel--Hougaard copula} (\code{\link{GHcop}}) having \eqn{\Theta =} 3.055 and \eqn{T =} 1,000 years (\eqn{q = 0.999}) that \eqn{T_{q;\,\mathrm{coop}} = 797.1} years and that \eqn{T_{q;\,\mathrm{dual}}} = 1,341.4 years, which means that average return periods between and \dQuote{failures} are
+Numerical demonstration is informative. Salvadori \emph{et al.} (2007, p. 151) show for a \emph{Gumbel--Hougaard copula} (\code{\link{GHcop}}) having \eqn{\Theta =} 3.055 and \eqn{T =} 1,000 years (\eqn{q = 0.999}) that \eqn{T_{q;\,\mathrm{coop}} = 797.1} years and that \eqn{T_{q;\,\mathrm{dual}}} = 1,341.4 years, which means that average return periods between \dQuote{failures} are
 \deqn{T_{q;\,\mathrm{coop}} \le T \le T_{q;\,\mathrm{dual}}\mbox{\ and thus}}
 \deqn{797.1 \le T \le 1314.4\mbox{\ years.}}
-With the following code, these values are readily computed and verified using the \code{prob2T()} function from the \pkg{lmomco} package along with \pkg{copBasic} functions \code{\link{COP}} (generic functional interface to a copula) and \code{\link{duCOP}} (\emph{dual of a copula}):
+
+With the following code, these bounding return-period values are readily computed and verified using the \code{prob2T()} function from the \pkg{lmomco} package along with \pkg{copBasic} functions \code{\link{COP}} (generic functional interface to a copula) and \code{\link{duCOP}} (\emph{dual of a copula}):
 \preformatted{
   q <- T2prob(1000)
   lmomco::prob2T(  COP(q,q, cop=GHcop, para=3.055)) #  797.110
   lmomco::prob2T(duCOP(q,q, cop=GHcop, para=3.055)) # 1341.438
 }
-An early source (in 2005) by some of those authors cited on p. 151 of Salvadori \emph{et al.} (2007; their citation \dQuote{[67]}) shows \eqn{T_{q;\,\mathrm{dual}} = 798} years---a rounding error seems to have been committed. Finally just for reference, a Gumbel--Hougaard copula having \eqn{\Theta = 3.055} corresponds to an analytical \emph{Kendall's Tau} (see \code{\link{GHcop}}) of \eqn{\tau \approx 0.673}, which can be verified through numerical integration available from \code{\link{tauCOP}} as:
+An early source (in 2005) by some of those authors cited on p. 151 of Salvadori \emph{et al.} (2007; their citation \dQuote{[67]}) shows \eqn{T_{q;\,\mathrm{dual}} = 798} years---a rounding error seems to have been committed. Finally just for reference, a Gumbel--Hougaard copula having \eqn{\Theta = 3.055} corresponds to an analytical \emph{Kendall Tau} (see \code{\link{GHcop}}) of \eqn{\tau \approx 0.673}, which can be verified through numerical integration available from \code{\link{tauCOP}} as:
 \preformatted{
   tauCOP(cop=GHcop, para=3.055, brute=TRUE) # 0.6726542
 }
@@ -225,7 +227,7 @@ Thus, a \dQuote{better understanding of the statistical characteristics of [mult
 
 \bold{Interaction of copBasic to Copulas in Other Packages}
 
-Originally, the \pkg{copBasic} package was not intended to be a port of the numerous bivariate copulas or over re-implementation other bivariate copulas available in \R though as the package passed its 10th year in 2018, the original intent changed. It is useful to point out a demonstration showing an implementation of the \emph{Gaussian copula} from the \pkg{copula} package, which is shown in the \bold{Note} section of \code{\link{med.regressCOP}} in a circumstance of ordinary least squares linear regression  compared to \emph{median regression} of a copula as well as prediction limits of both regressions. Another demonstration in context of \emph{maximum pseudo-log-likelihood estimation} of copula parameters is seen in the \bold{Note} section \code{\link{mleCOP}}, and also see \dQuote{\bold{API to the copula package}} or \dQuote{\bold{package copula (comparison to)}} entries in the Index.
+Originally, the \pkg{copBasic} package was not intended to be a port of the numerous bivariate copulas or over re-implementation other bivariate copulas available in \R though as the package passed its 10th year in 2018, the original intent changed. It is useful to point out a demonstration showing an implementation of the \emph{Gaussian copula} from the \pkg{copula} package, which is shown in the \bold{Note} section of \code{\link{med.regressCOP}} in a circumstance of ordinary least squares linear regression  compared to \emph{median regression} of a copula as well as prediction limits of both regressions. Another demonstration in context of \emph{maximum pseudo-log-likelihood estimation} of copula parameters is seen in the \bold{Note} section \code{\link{mleCOP}}, and also see \dQuote{\bold{API to the copula package}} or \dQuote{\bold{package copula (comparison to)}} entries in the Index of this user manual.
 
 \if{html}{\figure{CopulaRelationsFigure4pkg.jpg}}
 \if{latex}{\figure{CopulaRelationsFigure4pkg.pdf}{options: width=4in, trim=1in 2.25in 0.75in 1in, clip}}
@@ -243,7 +245,7 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 
 Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in nature---An approach using copulas: Dordrecht, Netherlands, Springer, Water Science and Technology Library 56, 292 p.
 }
-\author{William Asquith \email{william.asquith@ttu.edu} }
+\author{William Asquith \email{william.asquith@ttu.edu}}
 \examples{
 \dontrun{
 # Nelsen (2006, p. 75, exer. 3.15b) provides for a nice test of copBasic features.
@@ -263,7 +265,7 @@ Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in
 set.seed(6234) # setup covariance based on parameter "t" and the "root" parameter
 print(uniroot(afunc, c(0,0.5))) # "t" by simulation = 0.1023742
 # Nelsen reports that if theta appox. 0.103 then covariance of U and V is zero.
-# So one will have mutually completely dependent uncorrelated uniform variables!
+# So, one will have mutually completely dependent uncorrelated uniform variables!
 
 # Let us check some familiar measures of association:
 rhoCOP( cop=MCDURV, para=0.1023742) # Spearman Rho = 0.005854481 (near zero)

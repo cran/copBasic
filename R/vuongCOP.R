@@ -90,13 +90,13 @@
       txt <- "The Schwarz (BIC) method used for relative fit judgement (not fit adequacy)"
    }
    if(CKlo < 0 & CKhi > 0) { # The interval contains zero
-      message <- "Copulas 1 and 2 are not significantly different at 100(1-alpha)"
+      message <- "Copulas 1 and 2 are not significantly different at 100 x (1-alpha)"
       result  <- 0
    } else if(CKhi < 0) {
-      message <- "Copula 1 has better fit than Copula 2 at 100x(1-alpha) level"
+      message <- "Copula 1 has better fit than Copula 2 at 100 x (1-alpha) level"
       result  <- 1
    } else if(CKlo > 0) {
-      message <- "Copula 2 has better fit than Copula 1 at 100x(1-alpha) level"
+      message <- "Copula 2 has better fit than Copula 1 at 100 x (1-alpha) level"
       result  <- 2
    } else {
       message <- "Error: Evidently Copula 1 is the same as Copula 2"

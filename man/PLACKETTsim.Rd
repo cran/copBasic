@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{PLACKETTsim}
 \alias{PLACKETTsim}
-\title{ Direct Simulation of a Plackett Copula }
+\title{Direct Simulation of a Plackett Copula}
 \description{
 Simulation of the \emph{Plackett copula} (Nelsen, 2006, pp. 89--92) is made by this function using analytical formula (Durante, 2007, p. 247; see source code). Thus the \code{PLACKETTsim} function can be useful for comparison against the numerical derivative (\emph{conditional distribution method}) methods (\code{\link{simCOP}}, \code{\link{simCOPmicro}}) otherwise used in \pkg{copBasic}. The documentation for \code{\link{PLACKETTcop}} provides the mathematical formula of the Plackett copula.
 }
@@ -21,8 +21,8 @@ Durante, F., 2007, Families of copulas, Appendix C, \emph{in} Salvadori, G., De 
 
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
-\author{ W.H. Asquith}
-\seealso{\code{\link{PLACKETTcop}}, \code{\link{PLACKETTpar}} }
+\author{W.H. Asquith}
+\seealso{\code{\link{PLACKETTcop}}, \code{\link{PLACKETTpar}}}
 \examples{
 PLACKETTsim(10, para= 1  ) # simulate P (independence) copula through a Plackett
 PLACKETTsim(10, para=20.3) # simulate strong positive Plackett

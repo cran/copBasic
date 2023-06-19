@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{RFcop}
 \alias{RFcop}
-\title{ The Raftery Copula }
+\title{The Raftery Copula}
 \description{
 The \emph{Raftery copula} (Nelsen, 2006, p. 172) is
 \deqn{\mathbf{C}_{\Theta}(u,v) = \mathbf{RF}(u,v) = \mathbf{M}(u,v) + \frac{1-\Theta}{1+\Theta}(uv)^{1/(1-\Theta)}\bigl[1-(\mathrm{max}\{u,v\})^{-(1+\Theta)/(1-\Theta)}\bigr]\mbox{,}}
@@ -21,15 +21,15 @@ RFcop(u, v, para=NULL, rho=NULL, tau=NULL, fit=c("rho", "tau"), ...)
 }
 \value{
   Value(s) for the copula are returned. Otherwise if either \code{rho} or \code{tau} is given, then the \eqn{\Theta} is computed and a \code{list} having
-  \item{para}{The parameter \eqn{\Theta}, and}
-  \item{rho}{Spearman Rho if the \code{rho} is given.}
+  \item{para}{The parameter \eqn{\Theta};}
+  \item{rho}{Spearman Rho if the \code{rho} is given; and}
   \item{tau}{Kendall Tau if the \code{tau} is given but also if both \code{rho} and \code{tau} are \code{NULL} as mentioned next.}
 and if \code{para=NULL} and \code{rho} and \code{tau=NULL}, then the values within \code{u} and \code{v} are used to compute Kendall Tau and then compute the parameter, and these are returned in the aforementioned list.
 }
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{M}}, \code{\link{P}}
 }
 \examples{

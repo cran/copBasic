@@ -36,7 +36,7 @@ The following descriptions list in detail the structure and content of the \code
 Erdely, A., 2017, Copula-based piecewise regression (chap. 5) \emph{in} Copulas and dependence models with applications---Contributions in honor of Roger B. Nelsen, \emph{eds.} Flores, U.M., Amo Artero, E., Durante, F., \enc{Sánchez}{Sanchez}, J.F.: Springer, Cham, Switzerland, ISBN 978--3--319--64220--9.
 }
 \author{W.H. Asquith}
-\seealso{\code{\link{composite1COP}}, \code{\link{composite2COP}}, \code{\link{composite3COP}}, \code{\link{convexCOP}}
+\seealso{\code{\link{COP}}, \code{\link{breveCOP}}, \code{\link{composite1COP}}, \code{\link{composite2COP}}, \code{\link{composite3COP}}, \code{\link{convexCOP}}
 }
 \examples{
 \dontrun{
@@ -70,7 +70,7 @@ UV <- simCOP(cop=glueCOP,  para=para, col=2,   ploton=FALSE)
 para <- list(cop1=M, cop2=W, para1=NA, para2=NA, glue=0.5)
 rhoCOP( cop=glueCOP, para=para) # -2.181726e-17
 wolfCOP(cop=glueCOP, para=para) #  0.4999953
-# So rhoCOP() indicates independence, but wolfCOP() indicates
+# So, rhoCOP() indicates independence, but wolfCOP() indicates
 # dependence at the minimum value possible for a triangular copula. }
 }
 \keyword{copula (formulas)}

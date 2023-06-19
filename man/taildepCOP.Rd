@@ -28,7 +28,7 @@ taildepCOP(cop=NULL, para=NULL, tol=1e-6, divisor=2, plot=FALSE, ylim=NULL,
   \item{tol}{A tolerance on convergence;}
   \item{divisor}{The divisor on the incremental reductions towards \eqn{0^+} and \eqn{0^-} by the algorithm;}
   \item{plot}{A logical plotting a diagnostic plot of the diagonal derivatives and label the limits;}
-  \item{ylim}{Optional vertical limits if the plot is turned on. Although the dependence parameters are bounded as described above, numerical stability can be a problem. Stability is especially a problem if an empirical copula is being used, so the bounds of the plot are left open unless the user locks them down with this argument;}
+  \item{ylim}{Optional vertical limits if the plot is turned on. Although the dependence parameters are bounded as described above, numerical stability can be a problem. Stability is especially a problem if an empirical copula is being used; theefore, the bounds of the plot are left open unless the user locks them down with this argument;}
   \item{verbose}{Show incremental progress; and}
   \item{...}{Additional arguments to pass to the copula function.}
 }
@@ -51,7 +51,7 @@ Joe (2014, p. 63) reports that \dQuote{the empirical measure of tail dependence 
   taildepCOP(cop=EMPIRcop, para=UV, plot=TRUE, divisor=8, ylim=c(0,1))
   taildepCOP(cop=PSP) # lower=0.5, upper=0
 }
-The returned tail dependency parameters are numerically of little importance and in strict terms likely misleading. What should be of interest are the plotted trajectories of the lower and upper lines. Note how the lower tail wobbles but seems to show stability towards near \eqn{\hat\lambda_\mathbf{C}^L = 0.5} and upper-tail line wobbles downward towards \eqn{\hat\lambda_\mathbf{C}^U = 0}. These values are, respectively, the tail dependencies of the \eqn{\mathbf{PSP}} copula (\code{\link{PSP}}). A user might try increasing the sample size by an order of magnitude and rerunning the above code. Lastly, Salvadori \emph{et al.} (2006, pp. 173--175) caution on the difficulties of nonparametric tail dependency estimation. Given objectives of the \pkg{copBasic} package, estimation of \eqn{\hat\lambda_\mathbf{C}^L} and \eqn{\hat\lambda_\mathbf{C}^U}, therefore, is an open development opportunity.
+The returned tail dependency parameters are numerically of little importance and in strict terms likely misleading. What should be of interest are the plotted trajectories of the lower and upper lines. Note: the lower tail wobbles but seems to show stability towards near \eqn{\hat\lambda_\mathbf{C}^L = 0.5} and upper-tail line wobbles downward towards \eqn{\hat\lambda_\mathbf{C}^U = 0}. These values are, respectively, the tail dependencies of the \eqn{\mathbf{PSP}} copula (\code{\link{PSP}}). A user might try increasing the sample size by an order of magnitude and rerunning the above code. Lastly, Salvadori \emph{et al.} (2006, pp. 173--175) caution on the difficulties of nonparametric tail dependency estimation. Given objectives of the \pkg{copBasic} package, estimation of \eqn{\hat\lambda_\mathbf{C}^L} and \eqn{\hat\lambda_\mathbf{C}^U}, therefore, is an open development opportunity.
 
 \emph{DEMONSTRATION (Tail Dependence)}---The following example shows a comparison between early code examples by Charpentier (2012) concerning copulas and tail dependence using real-world data. Consider the \code{lossalae} data set and the following code requiring the \pkg{evd} package:
 \preformatted{
@@ -61,7 +61,7 @@ The returned tail dependency parameters are numerically of little importance and
   fakeV <- lmomco::pp(X[,2],sort=FALSE,a=0) # Weibull plotting position i/(n+1)
   uv <- data.frame(U=fakeU, V=fakeV)  # parameter "object" for Empirical copula
   plot(uv)
-  TD <- taildepCOP2(cop=EMPIRcop, para=uv, divisor=25,
+  TD <- taildepCOP(cop=EMPIRcop, para=uv, divisor=25,
                    plot=TRUE, ylim=c(0, 7/10))
   U <- rank(X[,1])/(nrow(X)+1); V <- rank(X[,2])/(nrow(X)+1)# Charpentier(2012)
   Lemp <- function(z) sum((U<=z)   & (V<=z))   / sum(U<=z  )# Charpentier(2012)
@@ -91,7 +91,7 @@ The figure that will have been generated shows considerably similarity to that f
   legend("topleft", c("Tail dependency by Blomqvist (Schmid-Schmidt) Betas",
                       "Blomqvist Beta C(1/2, 1/2)"),
                     bty="n", cex=0.9, lwd=2, lty=c(1,NA), pch=c(NA,16),
-                    pt.cex=c(NA,2), col=c("darkgreen", "magenta")
+                    pt.cex=c(NA,2), col=c("darkgreen", "magenta"))
 }
 The thick green lines show that the dependency parameters to the left and right are approached along a different trajectory using the definitions in \code{\link{blomCOPss}}. It seems at some stage in analysis that the practioner will need to decide how deep into the tail the sample will permit for a reliable estimate of the dependency parameters. \emph{Blomqvist Beta} (\eqn{\hat\beta_\mathbf{C}}) (\code{\link{blomCOP}} is shown as the magenta dot at the median and henceforth from do the trajectories of \eqn{\hat\lambda^L_{\beta^\diamond_\mathbf{C}}} and \eqn{\hat\lambda^U_{\beta^\diamond_\mathbf{C}}} extend as their \eqn{\mathrm{lim} p \rightarrow 0^+}. Ultimately, for the data shown in the figure, perhaps the \eqn{\hat\lambda_\mathbf{C}^L = 0.1} and the \eqn{\hat\lambda_\mathbf{C}^U = 0.3} and a parametric copula fitted in part to such values.
 }
@@ -109,15 +109,15 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 
 Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in Nature---An approach using copulas: Springer, 289 p.
 
-Schmidt, R., \enc{Stadtmüller}{Stadtmuller}, U., 2006, Nonparametric estimation of tail dependence: The Scandinavian Journal of Statistics, v. 33, pp. 307--335.
+Schmidt, R., and \enc{Stadtmüller}{Stadtmuller}, U., 2006, Nonparametric estimation of tail dependence: The Scandinavian Journal of Statistics, v. 33, pp. 307--335.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{COP}}, \code{\link{tailconCOP}}, \code{\link{tailordCOP}}, \code{\link{blomCOPss}}}
 \examples{
 # Plot the tail dependencies by nonexceedance probability for a
 # for a positive association Plackett copula and see that both are zero.
 taildepCOP(cop=PLACKETTcop, para=3, plot=TRUE)
-# So Plackett has no tail dependency, as Nelsen (2006, p. 215) shows.
+# So, Plackett has no tail dependency, as Nelsen (2006, p. 215) shows.
 
 \dontrun{
 "MOcop" <- function(u,v, para=NULL) { # Marshall-Olkin copula
@@ -133,14 +133,15 @@ copula::lambda(copula::gumbelCopula(3))
 # Numerical approximation (see copBasic::GHcop for analytical formula):
 as.data.frame(taildepCOP(GHcop, para=3))
 #  lambdaL lambdaU     source
-#1 0.00012 0.74008 taildepCOP }
+#1 0.00012 0.74008 taildepCOP}
 
 \dontrun{
 # Plot the tail dependencies by nonexceedance probability
 # for the PSP copula, which has lower but no upper-tail dependence.
 taildepCOP(cop=PSP, para=NULL, plot=TRUE) # LambL=0.5, LambU=0
 # which is readily confirmed by simCOP(1000, cop=PSP)
-# Nelsen (2006, p. 216) reports that this copula has LambL=1/2 and LambU=0.
+# Nelsen (2006, p. 216) reports that this copula has LambL=1/2 and LambU=0,
+# and we get the same results here.
 
 # How about some composited Plackett-Plackett copulas?
 # Each has upper- and lower-tail dependence parameters equal to zero.
@@ -166,7 +167,7 @@ lines(qnorm(lsu), sapply(lsu, function(p) {
                     col="darkgreen", lty=2, lwd=1)
 lines(qnorm(psu), sapply(psu, function(p) {
         blomCOPss(cop=composite2COP, para=para, uu=c(0,0), vv=rep(p, 2)) }),
-                    col="darkgreen", lty=2, lwd=1) # }
+                    col="darkgreen", lty=2, lwd=1) #}
 }
 \keyword{copula (characteristics)}
 \keyword{copula (properties)}
@@ -180,3 +181,4 @@ lines(qnorm(psu), sapply(psu, function(p) {
 \keyword{copula (tail characteristics)}
 \keyword{copula (tail properties)}
 \keyword{tail dependence}
+\keyword{Blomqvist (Schmid-Schmidt) Beta}

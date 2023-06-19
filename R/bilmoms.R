@@ -1,5 +1,5 @@
 "bilmoms" <- function(cop=NULL, para=NULL, only.bilmoms=FALSE,
-                      n=1E5, sobol=TRUE, ...) {
+                      n=1E5, sobol=TRUE, scrambling=0, ...) {
 
    if(is.null(cop)) {
       warning("must have copula argument specified, returning NULL")
@@ -9,12 +9,12 @@
    if(sobol) {
      if(! exists(".Random.seed")) tmp <- runif(1) # insures definition of .Random.seed
      seed <- sample(.Random.seed, 1)
-     uv   <- randtoolbox::sobol(n = n, dim = 2, seed=seed, scrambling=3)
+     uv   <- randtoolbox::sobol(n=n, dim=2, seed=seed, scrambling=scrambling)
    } else {
-     uv <- matrix(data=runif(2*n), ncol=2)
+     uv   <- matrix(data=runif(2*n), ncol=2)
    }
 
-   rho  <- copBasic::rhoCOP(cop=cop, para=para, ...) # d1 = rho/6 (theoretically)
+   rho  <- rhoCOP(cop=cop, para=para, ...) # d1 = rho/6 (theoretically)
 
    cuv  <- COP(uv[,1], uv[,2], cop=cop, para=para, ...)
 

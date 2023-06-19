@@ -1,21 +1,21 @@
 \encoding{utf8}
 \name{duCOP}
 \alias{duCOP}
-\title{ The Dual of a Copula Function }
+\title{The Dual of a Copula Function}
 \description{
 Compute the \emph{dual of a copula (function)} from a copula (Nelsen, 2006, pp. 33--34), which is defined as
 
 \deqn{\mathrm{Pr}[U \le v \mathrm{\ or\ } V \le v] = \tilde{\mathbf{C}}(u,v) = u + v - \mathbf{C}(u,v)\mbox{,}}
 
-where \eqn{\tilde{\mathbf{C}}(u,v)} is the dual of a copula and \eqn{u} and \eqn{v} are nonexceedance probabilities. The dual of a copula is the expression for the probability that either \eqn{U \le u} \bold{or} \eqn{V \le v}, which is unlike the \emph{co-copula (function)} (see \code{\link{coCOP}}) that provides \eqn{\mathrm{Pr}[U > u \mathrm{\ or\ } V > v]}. The dual of a copula is a function and not in itself a copula. The dual of the  \emph{survivial copula} (\code{\link{surCOP}}) is the \emph{co-copula (function)} (\code{\link{coCOP}}). Some rules of copulas mean that
+where \eqn{\tilde{\mathbf{C}}(u,v)} is the dual of a copula and \eqn{u} and \eqn{v} are nonexceedance probabilities. The dual of a copula is the expression for the probability that either \eqn{U \le u} \bold{or} \eqn{V \le v}, which is unlike the \emph{co-copula (function)} (see \code{\link{coCOP}}) that provides \eqn{\mathrm{Pr}[U > u \mathrm{\ or\ } V > v]}. The dual of a copula is a function and not in itself a copula. The dual of the  \emph{survival copula} (\code{\link{surCOP}}) is the \emph{co-copula (function)} (\code{\link{coCOP}}). Some rules of copulas mean that
 
-\deqn{\hat{\mathbf{C}}(u',v') + \tilde{\mathbf{C}}(u,v) \equiv 1\mbox{,}}
+\deqn{\hat{\mathbf{C}}(u',v') + \tilde{\mathbf{C}}(u,v) = 1\mbox{,}}
 
 where \eqn{\hat{\mathbf{C}}(u',v')} is the survival copula in terms of exceedance probabilities \eqn{u'} and \eqn{v'} or in \pkg{copBasic} code that the functions \code{\link{surCOP}} + \code{duCOP} equal unity.
 
-The function \code{duCOP} gives \dQuote{protection} against simultaneous (concurrent or dual) risk by failure if and only if failure is caused (defined) by both hazard sources \eqn{U} and \eqn{V} occurring at the same time. Expressing this in terms of an annual probability of occurrence (\eqn{q}), one has
+The function \code{duCOP} gives \dQuote{protection} against simultaneous (concurrent or dual) risk by failure if and only if failure is caused (defined) by both hazard sources \eqn{U} and \eqn{V} being by themselves responsible for failure. Expressing this in terms of an annual probability of occurrence (\eqn{q}), one has
 \deqn{q = 1 - \mathrm{Pr}[U \le v \mathrm{\ or\ } V \le v] = 1 - \tilde{\mathbf{C}}(u,v)\mbox{\ or}}
-in \R code \code{q <- 1 - duCOP(u,v)}. So as a mnemonic: \emph{A dual of a copula is the probabililty of nonexceedance if the hazard sources must \bold{dual} (concur, link, pair, twin, twain) to cause failure.} An informative graphic is shown within \code{\link{copBasic-package}}.
+in \R code \code{q <- 1 - duCOP(u,v)}. So, as a mnemonic: \emph{A dual of a copula is the probabililty of nonexceedance if the hazard sources must \bold{dual} (concur, link, pair, twin, twain) between each other to cause failure.} An informative graphic is shown within \code{\link{copBasic-package}}.
 }
 \usage{
 duCOP(u, v, cop=NULL, para=NULL, ...)
@@ -31,7 +31,7 @@ duCOP(u, v, cop=NULL, para=NULL, ...)
   Value(s) for the dual of a copula are returned.
 }
 \note{
-There can be confusion in the interpretation and implemenation of the \bold{or} condition of \emph{joint probability} provided by \eqn{\tilde{\mathbf{C}}(u,v)}. Two types of \bold{or}'s seemingly exist depending on one's concept of the meaning of \dQuote{or.}  To start, there is the \dQuote{either or both} conceptualization (\bold{join or}) that encompasses either \dQuote{event} (say a loss) of importance for random variables \eqn{U} and \eqn{V} \emph{as well as} the \bold{joint and} conditions where both variables simultaneously are generating an event of importance.
+There can be confusion in the interpretation and implemenation of the \bold{or} condition of \emph{joint probability} provided by \eqn{\tilde{\mathbf{C}}(u,v)}. Two types of \bold{or}'s seemingly exist depending on one's concept of the meaning of \dQuote{or.}  To start, there is the \dQuote{either or both} conceptualization (\bold{joint or}) that encompasses either \dQuote{event} (say a loss) of importance for random variables \eqn{U} and \eqn{V} \emph{as well as} the \bold{joint and} conditions where both variables simultaneously are generating an event of importance.
 
 Let us continue by performing a massive simulation for the \eqn{\mathbf{PSP}(u,v)} copula (\code{\link{PSP}}) and set an either event standard on the margins as 10 percent for an arbitrary starting point. The \eqn{\mathbf{PSP}} has positive association with lower tail dependency, and the example here considers the left tail as the risk tail.
 \preformatted{
@@ -99,8 +99,8 @@ The counts from the former listing are 7,670; 2,669; and 5,001, whereas the resp
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
-\author{ W.H. Asquith}
-\seealso{\code{\link{COP}}, \code{\link{coCOP}}, \code{\link{surCOP}}, \code{\link{jointCOP}}, \code{\link{joint.curvesCOP}} }
+\author{W.H. Asquith}
+\seealso{\code{\link{COP}}, \code{\link{coCOP}}, \code{\link{surCOP}}, \code{\link{jointCOP}}, \code{\link{joint.curvesCOP}}}
 \examples{
 u <- runif(1); t <- runif(1)
 duCOP(cop=W,u,t)    # joint or probability for perfect negative dependence

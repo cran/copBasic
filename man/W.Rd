@@ -1,9 +1,9 @@
 \encoding{utf8}
 \name{W}
 \alias{W}
-\title{ The \enc{Fréchet}{Frechet}--Hoeffding Lower Bound Copula }
+\title{The \enc{Fréchet}{Frechet}--Hoeffding Lower-Bound Copula}
 \description{
-Compute the \emph{\enc{Fréchet}{Frechet}--Hoeffding lower bound copula} (Nelsen, 2006, p. 11), which is defined as
+Compute the \emph{\enc{Fréchet}{Frechet}--Hoeffding lower-bound copula} (Nelsen, 2006, p. 11), which is defined as
 \deqn{\mathbf{W}(u,v) = \mathrm{max}(u+v-1,0)\mbox{.}}
 This is the copula of perfect anti-association (\emph{countermonotonicity}, \emph{perfectly negative dependence}) between \eqn{U} and \eqn{V} and is sometimes referred to as the \emph{countermonotonicity copula}. Its opposite is the \eqn{\mathbf{M}(u,v)} copula (\emph{comonotonicity copula}; \code{\link{M}}), and statistical \emph{independence} is the \eqn{\mathbf{\Pi}(u,v)} copula (\code{\link{P}}).
 }
@@ -21,7 +21,7 @@ W(u, v, ...)
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{M}}, \code{\link{P}}}
 \examples{
 W(0.4,0.6)
@@ -30,11 +30,11 @@ W(1,1)
 }
 \keyword{copula (formulas)}
 \keyword{copula (limits/bounds)}
-\concept{Frechet upper bound copula}
-\concept{Frechet-Hoeffding upper bound copula}
-\concept{Frechet--Hoeffding upper bound copula}
-\concept{Frechet upper bound}
-\concept{Frechet-Hoeffding upper bound}
-\concept{Frechet--Hoeffding upper bound}
+\concept{Frechet lower-bound copula}
+\concept{Frechet-Hoeffding lower-bound copula}
+\concept{Frechet--Hoeffding lower-bound copula}
+\concept{Frechet lower bound}
+\concept{Frechet-Hoeffding lower-bound}
+\concept{Frechet--Hoeffding lower-bound}
 \keyword{copula}
 

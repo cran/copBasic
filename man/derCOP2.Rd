@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{derCOP2}
 \alias{derCOP2}
-\title{ Numerical Derivative of a Copula for U with respect to V }
+\title{Numerical Derivative of a Copula for U with respect to V}
 \description{
 Compute the numerical partial derivative of a copula, which is a \emph{conditional distribution function}, according to Nelsen (2006, pp. 13, 40--41) with respect to \eqn{v}:
 
@@ -43,16 +43,16 @@ A known caveat of the current implementation of the copula derivative is that th
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{derCOPinv2}}, \code{\link{derCOP}}}
 \examples{
-derCOP2(cop=W,0.4,0.6); derCOP2(cop=P,0.4,0.6); derCOP2(cop=M,0.4,0.6)
+derCOP2(cop=W, 0.4, 0.6); derCOP2(cop=P, 0.4, 0.6); derCOP2(cop=M, 0.4, 0.6)
 
 lft <- derCOP2(cop=P,     0.4,  0.6, derdir="left"  )
 rgt <- derCOP2(cop=P,     0.4,  0.6, derdir="right" )
 cnt <- derCOP2(cop=P,     0.4,  0.6, derdir="center")
-cat(c(lft,rgt,cnt,"\n"))
-# stopifnot(all.equal(lft,rgt), all.equal(lft,cnt))
+cat(c(lft, rgt, cnt,"\n"))
+# stopifnot(all.equal(lft, rgt), all.equal(lft, cnt))
 
 # Let us contrive a singularity though this NOT A COPULA in the function "afunc".
 "afunc" <- function(u,v, ...) return(ifelse(u <= 0.5, sqrt(u^2+v^2), P(u,v,...)))
@@ -67,4 +67,3 @@ cat(c(lft,rgt,cnt,"\n")) # For this example, all are correct (see derCOP example
 \keyword{copula operator}
 \keyword{derivative}
 \keyword{copula (conditional distribution)}
-

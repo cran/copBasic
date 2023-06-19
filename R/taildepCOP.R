@@ -34,7 +34,7 @@ function(cop=NULL, para=NULL, tol=1e-6, divisor=2,
   if(plot) {
     xmin <- qnorm( min(LAMU1, LAML1) )
     xmax <- qnorm( max(LAMU1, LAML1) )
-    print(c(xmin, xmax))
+    # print(c(xmin, xmax))
     xlim <- c(-1, +1) * max( abs(c(xmin, xmax)) )
     ymin <- min(LAMU2,LAML2)
     ymax <- max(LAMU2,LAML2)

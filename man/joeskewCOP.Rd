@@ -3,7 +3,7 @@
 \alias{joeskewCOP}
 \alias{nuskewCOP}
 \alias{nustarCOP}
-\title{ Joe's Nu-Skew and the copBasic Nu-Star of a Copula }
+\title{Joe's Nu-Skew and the copBasic Nu-Star of a Copula}
 \description{
 Compute the measure of \emph{permutation asymmetry}, which can be thought of as \emph{bivariate skewness}, named for the \pkg{copBasic} package as \emph{Nu-Skew} \eqn{\nu_\mathbf{C}} of a copula according to Joe (2014, p. 66) by
 \deqn{\nu_\mathbf{C} = 3\mathrm{E}[UV^2 - U^2V] = 6\int\!\!\int_{\mathcal{I}^2} (v-u)\mathbf{C}(u,v)\, \mathrm{d}u\mathrm{d}v\mbox{.}}
@@ -138,9 +138,8 @@ The source code shows slightly different styles of division by the sample size a
 \references{
 Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 }
-\author{ W.H. Asquith}
-\seealso{
-\code{\link{uvskew}}, \code{\link{blomCOP}}, \code{\link{footCOP}}, \code{\link{giniCOP}},
+\author{W.H. Asquith}
+\seealso{\code{\link{uvskew}}, \code{\link{blomCOP}}, \code{\link{footCOP}}, \code{\link{giniCOP}},
 \code{\link{hoefCOP}}, \code{\link{rhoCOP}}, \code{\link{tauCOP}}, \code{\link{wolfCOP}}
 }
 \examples{
@@ -179,13 +178,13 @@ lmomco::lcomoms2(UV)$T3 # L-coskew of the simulated values [1,2] and [2,1]
 S <- replicate(60, nuskewCOP(para=simCOP(n=300, cop=GHcop, para=para,
                                          graphics=FALSE), as.sample=TRUE))
 t.test(S, mu=nuskew)
-#t = 0.004633, df = 59, p-value = 0.9963
-#alternative hypothesis: true mean is not equal to 0.3057744
-#95 percent confidence interval:
-# 0.2854282 0.3262150
-#sample estimates:
-#mean of x
-#0.3058216 }
+# t = 0.004633, df = 59, p-value = 0.9963
+# alternative hypothesis: true mean is not equal to 0.3057744
+# 95 percent confidence interval:
+#  0.2854282 0.3262150
+# sample estimates:
+# mean of x
+# 0.3058216 }
 
 \dontrun{
 # Let us run a large ensemble of copula properties that use the whole copula

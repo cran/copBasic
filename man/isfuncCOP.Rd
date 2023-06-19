@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{isfuncCOP}
 \alias{isfuncCOP}
-\title{ Is a General Bivariate Function a Copula by Gridded Search? }
+\title{Is a General Bivariate Function a Copula by Gridded Search?}
 \description{
 Is a general bivariate function a copula? Three properties are identified by Nelsen (2006, p. 10) for a bivariate copula \eqn{\mathbf{C}(u,v)}:
 \deqn{\mathbf{C}(u,0) = 0 = \mathbf{C}(0,v)\mbox{\quad Nelsen 2.2.2a,}}
@@ -25,8 +25,8 @@ isfuncCOP(cop=NULL, para=NULL, delta=0.002, ...)
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
-\author{ S. Kloibhofer (idea and most code) and W.H. Asquith (documentation)}
-\seealso{ \code{\link{densityCOP}}
+\author{S. Kloibhofer (idea and most code) and W.H. Asquith (documentation)}
+\seealso{\code{\link{densityCOP}}
 }
 \examples{
 \dontrun{

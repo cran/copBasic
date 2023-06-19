@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{EMPIRgridderinv}
 \alias{EMPIRgridderinv}
-\title{ Derivative Inverses of the Grid of the Bivariate Empirical Copula for V with respect to U }
+\title{Derivative Inverses of the Grid of the Bivariate Empirical Copula for V with respect to U}
 \description{
 Generate a gridded representation of the inverse of the derivatives of the \emph{bivariate empirical copula} of \eqn{V} with respect to \eqn{U}.  This function is the empirical analog to \code{\link{derCOPinv}}.
 }
@@ -17,8 +17,8 @@ EMPIRgridderinv(empgrid=NULL, kumaraswamy=FALSE, dergrid=NULL, ...)
 \value{
   The gridded values of the inverse of the derivative of \eqn{V} with respect \eqn{U}.
 }
-\author{ W.H. Asquith }
-\seealso{ \code{\link{EMPIRcop}}, \code{\link{EMPIRcopdf}}, \code{\link{EMPIRgrid}}, \code{\link{EMPIRgridder2}} }
+\author{W.H. Asquith}
+\seealso{\code{\link{EMPIRcop}}, \code{\link{EMPIRcopdf}}, \code{\link{EMPIRgrid}}, \code{\link{EMPIRgridder2}}}
 \examples{
 \dontrun{
 uv <- simCOP(n=10000, cop=PSP, ploton=FALSE, points=FALSE)

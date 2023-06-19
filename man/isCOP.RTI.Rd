@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{isCOP.RTI}
 \alias{isCOP.RTI}
-\title{ Is a Copula Right-Tail Increasing }
+\title{Is a Copula Right-Tail Increasing}
 \description{
 Numerically set a logical whether a copula is \emph{right-tail increasing} (RTI) as described by Nelsen (2006, pp. 192--193) and Salvadori \emph{et al.} (2007, p. 222). A copula \eqn{\mathbf{C}(u,v)} is right-tail decreasing for \eqn{\mathrm{RTI}(V{\mid}U)} if and only if for any \eqn{v \in [0,1]},
 \deqn{\frac{\delta \mathbf{C}(u,v)}{\delta u} \le \frac{v - \mathbf{C}(u,v)}{1 - u}}
@@ -31,7 +31,7 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 
 Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in nature---An approach using copulas: Dordrecht, Netherlands, Springer, Water Science and Technology Library 56, 292 p.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{isCOP.LTD}}, \code{\link{isCOP.PQD}}}
 \examples{
 \dontrun{

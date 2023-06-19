@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{convex2COP}
 \alias{convex2COP}
-\title{ Convex Combination of Two Copulas }
+\title{Convex Combination of Two Copulas}
 \description{
 The \emph{convex composition of two copulas} (Joe, 2014, p. 155) provides for some simple complexity extension between copula families. Let \eqn{\mathbf{A}} and \eqn{\mathbf{B}} be copulas with respective vectors of parameters \eqn{\Theta_\mathbf{A}} and \eqn{\Theta_\mathbf{B}}, then the convex combination of these copulas is
 
@@ -35,9 +35,9 @@ The following descriptions list in detail the structure and content of the \code
 Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 }
 \author{W.H. Asquith}
-\seealso{\code{\link{convexCOP}}, \code{\link{composite1COP}}, \code{\link{composite2COP}}, \code{\link{composite3COP}}, \code{\link{FRECHETcop}}, \code{\link{glueCOP}} }
+\seealso{\code{\link{COP}}, \code{\link{breveCOP}}, \code{\link{convexCOP}}, \code{\link{composite1COP}}, \code{\link{composite2COP}}, \code{\link{composite3COP}}, \code{\link{FRECHETcop}}, \code{\link{glueCOP}}}
 \examples{
-para <- list(alpha=0.24, cop1=FRECHETcop, para1=c(.4,.56),
+para <- list(alpha=0.24, cop1=FRECHETcop, para1=c(0.4, 0.56),
                          cop2=PSP,        para2=NA)
 convex2COP(0.87,0.35, para=para) # 0.3188711
 \dontrun{
@@ -68,7 +68,7 @@ mysolution <- optim(par, afunc, control=list(abstol=1E-4))
 
 para <- list(alpha=.4846902, cop1=GHcop,       para1=1.5,
                              cop2=PLACKETTcop, para2=4.711464)
-UV <- simCOP(n=2500, cop=convex2COP, para=para, snv=TRUE) # }
+UV <- simCOP(n=2500, cop=convex2COP, para=para, snv=TRUE) #}
 }
 \keyword{copula composition}
 \keyword{copula composition (convex combination)}

@@ -2,7 +2,7 @@
 \name{simcompositeCOP}
 \alias{simcompositeCOP}
 \alias{simcomposite2COP}
-\title{  Compute the L-comoments of a Two-Value Composited Copula by Simulation  }
+\title{Compute the L-comoments of a Two-Value Composited Copula by Simulation}
 \description{
 Simulate copula parameters and compute \emph{L-comoments} and provision for plotting features for a composited copula using using two compositing parameters (see \code{\link{composite1COP}} as well as \code{\link{composite2COP}}).  The compositing parameters are each independent and uniformly distributed:
 \deqn{\alpha \sim \mathrm{U}[0,1];\ \beta \sim \mathrm{U}[0,1]\mbox{.}}
@@ -41,7 +41,7 @@ The \code{para} argument of this function are passed to the function contained i
 \references{
 Asquith, W.H., 2011, Distributional analysis with L-moment statistics using the R environment for statistical computing: Createspace Independent Publishing Platform, ISBN 978--146350841--8.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{lcomCOP}}, \code{\link{simcomposite3COP}}}
 \examples{
 \dontrun{
@@ -50,7 +50,7 @@ mainpara <- list(cop1=PLACKETTcop, cop2=PLACKETTcop,
                  para1gen=function() { return(c(10^runif(1,min=-5,max=0))) },
                  para2gen=function() { return(c(10^runif(1,min= 0,max=5))) })
 v <- simcompositeCOP(nsim=1, parent=mainpara, showresults=TRUE)
-print(v) # for review }
+print(v) # for review}
 }
 \keyword{copula composition}
 \keyword{copula (simulation)}

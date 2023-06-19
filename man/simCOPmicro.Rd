@@ -2,16 +2,16 @@
 \name{simCOPmicro}
 \alias{simCOPmicro}
 \alias{simCOPv}
-\title{ Simulate V from U through a Copula by Numerical Derivative Method }
+\title{Simulate V from U through a Copula by Numerical Derivative Method}
 \description{
 Perform bivariate simulation of random but coupled variables \eqn{V} from \eqn{U} through a copula (Nelsen, 2006, p. 32) by inversion of the numerical derivatives of the copula (\code{\link{derCOPinv}}, \code{\link{derCOPinv2}}). The method is more broadly known as \emph{conditional simulation method}. An elaborate implementation is available in \code{\link{simCOP}}, which unlike \code{simCOPmicro}, has provisions (default) for graphical support. The \code{simCOPmicro} function is intended to be a minimalist version for copula simulation, and such a version is useful for pedagogic purposes including \emph{conditional distributions}, \emph{conditional quantile functions}, and \emph{copula reflection} (see \bold{Note} and \code{\link{COP}}). An extended educational discussion of simulation using the conditional method is available in the \bold{Note} section of \code{\link{derCOPinv}}.
 
 Some definitions are needed. The copula of \eqn{(1-U, 1-V)} is the \emph{survival copula} (\code{\link{surCOP}}) and is defined as
-\deqn{\hat{\mathbf{C}}(u,v) = u + v - 1 + \mathbf{C}(1-u,1-v)\mbox{,}}
+\deqn{\hat{\mathbf{C}}(u,v) = u + v - 1 + \mathbf{C}(1-u, 1-v)\mbox{,}}
 whereas, following the notation of Joe (2014, pp. 271--272), the copula of \eqn{(1-U, V)} is defined as
-\deqn{\acute{\mathbf{C}}(u,v) = v - \mathbf{C}(1-u,v)\mbox{, and}}
+\deqn{\acute{\mathbf{C}}(u,v) = v - \mathbf{C}(1-u, v)\mbox{, and}}
  the copula of \eqn{(U, 1-V)} is defined as
-\deqn{\grave{\mathbf{C}}(u,v) = u - \mathbf{C}(u,1-v)\mbox{.}}
+\deqn{\grave{\mathbf{C}}(u,v) = u - \mathbf{C}(u, 1-v)\mbox{.}}
 
 Careful consideration of the nomenclature is necessary as confusion with the occurrences of \eqn{1-u} and \eqn{1-v} easily conflate meaning. The nomenclature for the \emph{survival copula} is more elaborately shown under \code{\link{surCOP}}. The difficulty is that the bivariate arguments to the \emph{survival copula} are \emph{exceedance probabilities}.
 
@@ -54,7 +54,7 @@ simCOPv(u, cop=NULL, para=NULL,
 The advanced features of \code{simCOPmicro} permit simulation of the three permutations of \emph{variable reflection}. The first code simply produce four different \dQuote{copulas} based on the \emph{Gumbel--Hougaard} copula (\eqn{\mathbf{GH}(u,v; \Theta)}; \code{\link{GHcop}}), which has substantial upper tail dependency but no lower tail dependency for \eqn{\Theta = 2.512} as quantified by the \code{\link{taildepCOP}} function call.
 \preformatted{
   U <- runif(1500); G <- 2.512; u <- 0.1; up <- 1-u; v <- 0.2; vp <- 1-v
-  UV   <- data.frame(U, simCOPmicro(U, cop=GHcop, para=G              ))
+  UV   <- data.frame(U, simCOPmicro(U, cop=GHcop, para=G                 ))
   sUsV <- data.frame(U, simCOPmicro(U, cop=GHcop, para=G, reflect="surv" ))
   sUV  <- data.frame(U, simCOPmicro(U, cop=GHcop, para=G, reflect="acute"))
   UsV  <- data.frame(U, simCOPmicro(U, cop=GHcop, para=G, reflect="grave"))
@@ -62,10 +62,10 @@ The advanced features of \code{simCOPmicro} permit simulation of the three permu
 }
 The following code example will verify that the simulations produce values of \eqn{U} and \eqn{V} that are consistent with the \emph{empirical copula} (\code{\link{EMPIRcop}}) results as well as consistent with the variable reflections provided through the \code{\link{COP}} interface. Notice the combinations of nonexceedance and exceedance probabilities blended so that the two returned values for the four different copulas are numerically congruent.
 \preformatted{
-  c(EMPIRcop(u, v,  para=UV),   COP(u, v,  cop=GHcop, para=G, reflect="cop"  ))
+  c(EMPIRcop(u, v,  para=UV  ), COP(u, v,  cop=GHcop, para=G, reflect="cop"  ))
   c(EMPIRcop(up,vp, para=sUsV), COP(up,vp, cop=GHcop, para=G, reflect="surv" ))
-  c(EMPIRcop(up,v,  para=sUV),  COP(up,v,  cop=GHcop, para=G, reflect="acute"))
-  c(EMPIRcop(u, vp, para=UsV),  COP(u, vp, cop=GHcop, para=G, reflect="grave"))
+  c(EMPIRcop(up,v,  para=sUV ), COP(up,v,  cop=GHcop, para=G, reflect="acute"))
+  c(EMPIRcop(u, vp, para=UsV ), COP(u, vp, cop=GHcop, para=G, reflect="grave"))
 }
 The user can verify the reflections graphically using code such as this
 \preformatted{
@@ -87,12 +87,12 @@ Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{simCOP}}}
 \examples{
-simCOPmicro(runif(1), cop=W  ) # Frechet lower bound copula
+simCOPmicro(runif(1), cop=W  ) # Frechet lower-bound copula
 simCOPmicro(runif(1), cop=P  ) # Independence copula
-simCOPmicro(runif(1), cop=M  ) # Frechet upper bound copula
+simCOPmicro(runif(1), cop=M  ) # Frechet upper-bound copula
 simCOPmicro(runif(1), cop=PSP) # The PSP copula
 
 \dontrun{

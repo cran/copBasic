@@ -2,7 +2,7 @@
 \name{diagCOPatf}
 \alias{diagCOPatf}
 \alias{diagCOPinv}
-\title{ Numerical Rooting the Diagonal of a Copula }
+\title{Numerical Rooting the Diagonal of a Copula}
 \description{
 Compute a numerical root along the \emph{primary diagonal} (Nelsen, 2006, pp. 12 and 16) of copula \eqn{\mathbf{C}(u,v)} having joint probability \eqn{F}. The diagonals treat the nonexceedance probabilities \eqn{u} and \eqn{v} as equals (\eqn{u=v=t}). The primary diagonal is defined for a joint nonexceedance probability \eqn{t} as
 \deqn{F = \mathbf{C}(t,t) \rightarrow t = \delta_{\mathbf{C}}^{(-1)}(f)\mbox{,}}
@@ -29,7 +29,7 @@ diagCOPinv(f, cop=NULL, para=NULL, verbose=FALSE, interval=NULL,
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{diagCOP}}, \code{\link{jointCOP}}, \code{\link{joint.curvesCOP}}}
 \examples{
 diagCOPatf(0.67, cop=PSP) # 0.8023879
@@ -40,7 +40,7 @@ diagCOPatf(0.99, cop=M)   # 0.99 (now see the example below)
 lmrA <- lmomco::vec2lmom(c(3.97, 0.485, -0.1178, 0.06857))
 lmrB <- lmomco::vec2lmom(c(3.77, 0.475, -0.1377, 0.08280))
 # Suppose we think that the Gumbel-Hougaard copula is appropriate with a Tau=0.45
-Tau <- 0.45 #  Kendall's Tau between A and B.
+Tau <- 0.45 #  Kendall Tau between A and B.
 # Suppose that the F=0.99 for either A and B provides a common risk level when they
 # are considered in isolation. But what if A and B are rivers that join and joint
 # FF=0.99 at their union is of interest?
@@ -59,7 +59,7 @@ EventAj <- lmomco::qlmomco(Fjoint, parA)
 EventBj <- lmomco::qlmomco(Fjoint, parB)
 AcB <- 10^(EventAj) + 10^(EventBj) # Joint probability 0.99 at the union
 
-# Now consider the association if the streams are INDEPENDENT:
+# Now consider the association if the rivers are INDEPENDENT:
 Fjoint  <- diagCOPatf(FF, cop=GHcop, para=GHcop(tau=0)$para)
 EventAj <- lmomco::qlmomco(Fjoint, parA)
 EventBj <- lmomco::qlmomco(Fjoint, parB)

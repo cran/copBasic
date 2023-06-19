@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{qua.regressCOP.draw}
 \alias{qua.regressCOP.draw}
-\title{ Draw Quantile Regressions using a Copula by Numerical Derivative Method for V with respect to U or U with respect to V}
+\title{Draw Quantile Regressions using a Copula by Numerical Derivative Method for V with respect to U or U with respect to V}
 \description{
 Draw a suite of lines for specified nonexceedance probabilities representing the \emph{quantile regression} (Nelsen, 2006, pp. 217--218) of either \eqn{V} with respect to \eqn{U} or \eqn{U} with respect to \eqn{V} depending upon an argument setting.
 }
@@ -27,7 +27,7 @@ qua.regressCOP.draw(f=seq(0.1, 0.9, by=0.1), fs=0.5, cop=NULL, para=NULL,
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{qua.regressCOP}}, \code{\link{qua.regressCOP2}}}
 \examples{
 # See example in qua.regressCOP documentation

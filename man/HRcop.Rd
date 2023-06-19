@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{HRcop}
 \alias{HRcop}
-\title{ The \enc{Hüsler}{Husler}--Reiss Extreme Value Copula}
+\title{The \enc{Hüsler}{Husler}--Reiss Extreme Value Copula}
 \description{
 The \emph{\enc{Hüsler}{Husler}--Reiss copula} (Joe, 2014, p. 176) is
 \deqn{\mathbf{C}_{\Theta}(u,v) = \mathbf{HR}(u,v) = \mathrm{exp}\bigr[-x \Phi(X) - y\Phi(Y)\bigr]\mbox{,}}
@@ -24,7 +24,7 @@ HRcop(u, v, para=NULL, ...)
 \references{
 Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{P}}, \code{\link{GHcop}}, \code{\link{GLcop}}, \code{\link{tEVcop}}
 }
 \examples{

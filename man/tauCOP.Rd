@@ -2,7 +2,7 @@
 \name{tauCOP}
 \alias{tauCOP}
 \alias{concordCOP}
-\title{ The Kendall Tau and Concordance Function of a Copula }
+\title{The Kendall Tau and Concordance Function of a Copula}
 \description{
 Compute the measure of association known as the \emph{Kendall Tau} (\eqn{\tau_\mathbf{C}}) of a copula (\eqn{\tau_\mathbf{C}}) according to Nelsen (2006, sec. 5.1.1 and p. 161) by
 \deqn{\tau_\mathbf{C} = \mathcal{Q}(\mathbf{C}, \mathbf{C}) = 4\int\!\!\int_{\mathcal{I}^2}
@@ -12,7 +12,7 @@ where \eqn{\mathcal{Q}(\mathbf{C}, \mathbf{C})} is a \emph{concordance function}
                          \frac{\delta\mathbf{C}(u,v)}{\delta u}
                          \frac{\delta\mathbf{C}(u,v)}{\delta v}\,
                          \mathrm{d}u\mathrm{d}v}
-is to be preferred. Such an expression hence relies on the partial numerical derivatives of the copula provided by \code{\link{derCOP}} and \code{\link{derCOP2}}. Nelsen's preferred expression is used by the \code{tauCOP} function.  Nelsen (2006, pp. 175--176) reports that the following relation between \eqn{\tau_\mathbf{C}} and \eqn{\rho_\mathbf{C}} (\code{\link{rhoCOP}}) exists
+is to be preferred. Such an expression hence relies on the partial numerical derivatives of the copula provided by \code{\link{derCOP}} and \code{\link{derCOP2}}. The Nelsen (2006) preferred expression is used by the \code{tauCOP} function. Nelsen (2006, pp. 175--176) reports that the relation between \eqn{\tau_\mathbf{C}} and \eqn{\rho_\mathbf{C}} (\code{\link{rhoCOP}}) is
 \eqn{-1 \le 3\tau - 2\rho \le 1} (see \code{\link{rhoCOP}} for more details).
 
 Nelsen (2006, pp. 160--161) lists some special identities involving \eqn{\mathcal{Q}(\mathbf{C}_1,\mathbf{C}_2)}:
@@ -48,9 +48,9 @@ concordCOP(cop=NULL,  para=NULL, cop2=NULL, para2=NULL, ...)
   The value for \eqn{\tau_\mathbf{C}} is returned.
 }
 \note{
-Although titled for computation of the Kendall Tau, the \code{tauCOP} function is the implementation of the \emph{concordance function} \eqn{\mathcal{Q}(\mathbf{C}_1, \mathbf{C}_2)} (see Nelsen (2006, pp. 158--159) when given two different copulas and respective parameters as arguments. The function \code{concordCOP} just dispatches to \code{tauCOP}. A useful relation is
+Although titled for computation of the Kendall Tau, the \code{tauCOP} function also is the implementation of the \emph{concordance function} \eqn{\mathcal{Q}(\mathbf{C}_1, \mathbf{C}_2)} (see Nelsen (2006, pp. 158--159) when given two different copulas and respective parameters as arguments. The function \code{concordCOP} just dispatches to \code{tauCOP}. A useful relation is
 \deqn{\int\!\!\int_{\mathcal{I}^2} \mathbf{C}_1(u,v)\,\mathrm{d}\mathbf{C}_2(u,v) =
-      \frac{1}{2} - \int\!\!\int_{\mathcal{I}^2} \frac{\delta}{\delta u}\mathbf{C}_1(u,v)\,\frac{\delta}{\delta v}\mathbf{C}_2(u,v)\,\mathrm{d}u\mathrm{d}v\mbox{,} }
+      \frac{1}{2} - \int\!\!\int_{\mathcal{I}^2} \frac{\delta}{\delta u}\mathbf{C}_1(u,v)\,\frac{\delta}{\delta v}\mathbf{C}_2(u,v)\,\mathrm{d}u\mathrm{d}v\mbox{,}}
 where \eqn{\mathbf{C}_1(u,v)} is the first copula and \eqn{\mathbf{C}_2(u,v)} is the second copula.
 
 Nelsen \emph{et al.} (2001, p. 281) lists several measures of association defined by the concordance function:\cr
@@ -64,9 +64,9 @@ Durante, F., and Sempi, C., 2015, Principles of copula theory: Boca Raton, CRC P
 
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 
-Nelsen, R.B., Quesada-Molina, J.J., \enc{Rodríguez-Lallena}{Rodriguez-Lallena}, J.A., \enc{Úbeda-Flores}{Ubeda-Flores}, M., 2001, Distribution functions of copulas---A class of bivariate probability integral transforms: Statistics and Probability Letters, v. 54, no. 3, pp. 277--282.
+Nelsen, R.B., Quesada-Molina, J.J., \enc{Rodríguez-Lallena}{Rodriguez-Lallena}, J.A., and \enc{Úbeda-Flores}{Ubeda-Flores}, M., 2001, Distribution functions of copulas---A class of bivariate probability integral transforms: Statistics and Probability Letters, v. 54, no. 3, pp. 277--282.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{blomCOP}}, \code{\link{footCOP}}, \code{\link{giniCOP}},
          \code{\link{hoefCOP}}, \code{\link{rhoCOP}}, \code{\link{wolfCOP}},
          \code{\link{joeskewCOP}}, \code{\link{uvlmoms}},
@@ -80,7 +80,7 @@ tauCOP(cop=PSP) # 1/3
 \dontrun{
 tauCOP(cop=PSP, brute=TRUE) # 0.3306625
 # CPU heavy example showing that the dual-integration (fast) results in
-# a Kendall's Tau that matches a sample version
+# a Kendall Tau that matches a sample version
 dotau <- function(n) {
    uv <- simCOP(n=n, cop=PSP, ploton=FALSE, points=FALSE)
    return(cor(uv$U, uv$V, method="kendall"))

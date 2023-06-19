@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{statTn}
 \alias{statTn}
-\title{ The Tn Statistic of a Fitted Copula to an Empirical Copula }
+\title{The Tn Statistic of a Fitted Copula to an Empirical Copula}
 \description{
 Compute the \eqn{T_n(p)} statistic of Genest \emph{et al.} (2011) that is defined as
 \deqn{T_n(p) = \sum_{i=1}^n \big|\mathbf{C}_n(u_i, v_i) - \mathbf{C}_{\Theta_n}(u_i, v_i)\big|^p\mbox{,}}
@@ -83,8 +83,8 @@ The prior conclusion is supported by the p-value of the \eqn{\hat T_n} being abo
 \references{
 Genest, C., Kojadinovic, I., \enc{Nešlehová}{Neslehova}, J., and Yan, J., 2011, A goodness-of-fit test for bivariate extreme-value copulas: Bernoulli, v. 17, no. 1, pp. 253--275.
 }
-\author{ W.H. Asquith}
-\seealso{ \code{\link{aicCOP}}, \code{\link{bicCOP}}, \code{\link{rmseCOP}}, \code{\link{vuongCOP}}, \code{\link{kullCOP}}
+\author{W.H. Asquith}
+\seealso{\code{\link{aicCOP}}, \code{\link{bicCOP}}, \code{\link{rmseCOP}}, \code{\link{vuongCOP}}, \code{\link{kullCOP}}
 }
 \examples{
 \dontrun{

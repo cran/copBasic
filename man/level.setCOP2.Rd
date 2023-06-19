@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{level.setCOP2}
 \alias{level.setCOP2}
-\title{ Compute a Level Set of a Copula U with respect to V }
+\title{Compute a Level Set of a Copula U with respect to V}
 \description{
 Compute a \emph{level curve} or \emph{level set} of a copula for \eqn{U} with respect to \eqn{V} (Nelsen, 2006, pp. 12--13). The level curve at level \eqn{t} is defined for \eqn{V \mapsto [0+\Delta v, 1-\Delta v, \Delta v]} by
 \deqn{t \mapsto \mathbf{C}(u, v{=}V)\mbox{,}}

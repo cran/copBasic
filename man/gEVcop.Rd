@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{gEVcop}
 \alias{gEVcop}
-\title{ The Gaussian-based (Extreme Value) Copula}
+\title{The Gaussian-based (Extreme Value) Copula}
 \description{
 The \emph{g-EV copula} (Joe, 2014, p. 105) is a limiting form of the \emph{Gaussian copula}:
 \deqn{
@@ -37,8 +37,8 @@ gEVcop(u, v, para=NULL, ...)
 \references{
 Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 }
-\author{ W.H. Asquith}
-\seealso{ \code{\link{tEVcop}}
+\author{W.H. Asquith}
+\seealso{\code{\link{tEVcop}}
 }
 \examples{
 \dontrun{
@@ -48,18 +48,20 @@ UV <- simCOP(200, cop=gEVcop, para=0.8) #}
 # Joe (2014, p. 105) has brief detail indicating rho = [0,1] and though it seems
 # Rho would be a Pearson correlation, this does not seem to be the case. The Rho
 # seems to start with that of the Gaussian and then through the extreme-value
-# transform, it just assumes the role of a parameter called Rho?
+# transform, it just assumes the role of a parameter called Rho.
 rho <- 0.8
 UV <- simCOP(2000, cop=gEVcop, para=rho)
 P <- cor(UV[,1], UV[,2], method="pearson")
-if(abs(P-0.8) < 0.001) {
-  print("Yet same")
-} else { print("nope not") } # Should they be?}
+if(abs(P - rho) < 0.001) {
+  print("Yes same")
+} else { print("nope not") } # }
 
 \dontrun{
-gEVparameter <- seq(0.02,1, by=.02)
+gEVparameter <- seq(0.02, 1, by=0.02)
 SpearmanRho <- sapply(gEVparameter, function(k) rhoCOP(cop=gEVcop, para=k))
-plot(gEVparameter,SpearmanRho) #}
+plot(gEVparameter, SpearmanRho)
+
+for(rho in gEVparameter) UV <- simCOP(n=1000, cop=gEVcop, para=rho) #}
 }
 \keyword{g-EV copula}
 \keyword{copula (formulas)}
@@ -68,3 +70,5 @@ plot(gEVparameter,SpearmanRho) #}
 \concept{g-EV copula}
 \keyword{copula (extreme value)}
 \keyword{extreme value copula}
+\keyword{Spearman Rho}
+\keyword{Pearson correlation coefficient}

@@ -2,7 +2,7 @@
 \name{uvlmoms}
 \alias{uvlmoms}
 \alias{uvskew}
-\title{ Bivariate Skewness after Joe (2014) or the Univariate L-moments of Combined U and V }
+\title{Bivariate Skewness after Joe (2014) or the Univariate L-moments of Combined U and V}
 \description{
 Joe (2014, pp. 65--66) suggests two quantile-based measures of \emph{bivariate skewness} defined for uniform random variables \eqn{U} and \eqn{V} combined as either \eqn{\psi_{u+v-1} = u + v - 1} or \eqn{\psi_{u-v} = u - v} for which the \eqn{\mathrm{E}[u] = \mathrm{E}[v] = 0}. The bivariate skewness is the quantity \eqn{\eta}:
 
@@ -22,7 +22,7 @@ uvskew( u,v=NULL, umv=TRUE, p=0.05, type=6,     getlmoms=FALSE, ...)
   \item{v}{Nonexceedance probability \eqn{v} in the \eqn{Y} direction and if \code{NULL} then \code{u} is treated as a two column \R \code{data.frame};}
   \item{umv}{A logical controlling the computation of \eqn{\psi}: \eqn{\psi = u - v}  (\code{umv = TRUE}) or \eqn{\psi = u + v - 1} (\code{umv = FALSE}). The \code{"m"} is to read \dQuote{minus};}
   \item{p}{A suggested \eqn{p} value is \code{p = 0.05}. If \code{is.na(NA)}, then \code{getlmoms} is set to \code{TRUE} (see below);}
-  \item{type}{The \code{type} argument is mutable, and is a syntax match to the canoncial use in package \pkg{lmomco}. Variation from that package however is permitted. Either \code{type} is an integer between 1 and 9 selecting one of the nine quantile algorithms described for the \code{quantile} function in \R. The default 6 uses the \emph{Weibull plotting positions} and differs from \R's default of 7. Otherwise \code{type} must be a valid distribution abbreviation for the \pkg{lmomco} package as in the abbreviation list \code{dist.list} function of that package. The \code{gno} shown as a default for the generalized normal distribution (see distribution type \code{"gno"} in package \pkg{lmomco});}
+  \item{type}{The \code{type} argument is mutable, and is a syntax match to the canoncial use in package \pkg{lmomco}. Variation from that package however is permitted. Either \code{type} is an integer between 1 and 9 selecting one of the nine quantile algorithms described for the \code{quantile} function in \R. The default 6 uses the \emph{Weibull plotting positions} and differs from the \R default of 7. Otherwise \code{type} must be a valid distribution abbreviation for the \pkg{lmomco} package as in the abbreviation list \code{dist.list} function of that package. The \code{gno} shown as a default for the generalized normal distribution (see distribution type \code{"gno"} in package \pkg{lmomco});}
   \item{getlmoms}{A logical triggering whether the L-moments of either \eqn{\psi_{u+v-1}} or \eqn{\psi_{u - v}} are returned instead computing the above definition of \dQuote{skewness;} and}
   \item{...}{Additional arguments to pass to the \pkg{lmomco} function \code{lmoms}, such as the number of L-moments \code{nmoms}.}
 }
@@ -34,7 +34,7 @@ Asquith, W.H., 2011, Distributional analysis with L-moment statistics using the 
 
 Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{COP}}
 }
 \examples{

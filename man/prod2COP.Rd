@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{prod2COP}
 \alias{prod2COP}
-\title{ The Product of Two Copulas }
+\title{The Product of Two Copulas}
 \description{
 Perform copula multiplication (so-called \dQuote{\eqn{\ast}-product} or \emph{Markov Product}) is a continuous analog of matrix multiplication and yields another copula:
 \deqn{\bigl(\mathbf{C}_1 \ast \mathbf{C}_2 \bigr)(u,v) = \mathbf{C}_3(u,v) = \int_\mathcal{I} \frac{\delta \mathbf{C}_1(u, t)}{\delta v} \frac{\delta \mathbf{C}_2(t, v)}{\delta u}\,\mathrm{d}t\mbox{,}}
@@ -12,9 +12,9 @@ for copulas \eqn{\mathbf{C}_1(u, v)} and \eqn{\mathbf{C}_2(u, v)} are copulas wh
 \deqn{\mathbf{W} \ast \mathbf{W} = \mathbf{M}\mbox{ and } \mathbf{W} \ast \mathbf{C} \ast \mathbf{W} = \hat{\mathbf{C}}\mbox{,}}
 where \eqn{\hat{\mathbf{C}}} is the \emph{survival copula} (\code{\link{surCOP}}). The \eqn{\ast}-product is associative:
 \deqn{\mathbf{A} \ast (\mathbf{B} \ast \mathbf{C}) = (\mathbf{A} \ast \mathbf{B}) \ast \mathbf{C}\mbox{,}}
-but \eqn{\ast}-product is not commutative (order independent). Nelsen (2006, p. 245) reports that \dQuote{if we view \eqn{\ast} as a binary operation on the set of copulas, then \eqn{\mathbf{\Pi}} is the null element, and \eqn{\mathbf{M}} is the identity.} Copula mulitiplication is closely linked to Markov Processes (Nelsen, 2006, pp. 244--248).
+but \eqn{\ast}-product is not commutative (order independent). Nelsen (2006, p. 245) reports that \dQuote{if we view \eqn{\ast} as a binary operation on the set of copulas, then \eqn{\mathbf{\Pi}} is the null element, and \eqn{\mathbf{M}} is the identity.} Copula mulitiplication is closely linked to \emph{Markov Processes} (Nelsen, 2006, pp. 244--248).
 
-For other descriptions and computations of copula combination are possible using the \pkg{copBasic} package, see \code{\link{convex2COP}}, \code{\link{composite1COP}}, \code{\link{composite2COP}}, and \code{\link{composite3COP}}.
+For other descriptions and computations of copula combination are possible using the \pkg{copBasic} package, see \code{\link{convexCOP}}, \code{\link{convex2COP}}, \code{\link{composite1COP}}, \code{\link{composite2COP}}, \code{\link{composite3COP}}, \code{\link{glueCOP}}, and \code{\link{convexCOP}}.
 }
 \usage{
 prod2COP(u,v, cop1=NULL, para1=NULL, cop2=NULL, para2=NULL, para=NULL,
@@ -37,21 +37,21 @@ prod2COP(u,v, cop1=NULL, para1=NULL, cop2=NULL, para2=NULL, para=NULL,
 \note{
 The \emph{Farlie--Gumbel--Morgenstern copula} (\eqn{\mathbf{FGM}(u,v; \Theta)}; \code{\link{FGMcop}}) is
 \deqn{\mathbf{FGM}(u,v; \Theta) = uv[1+\Theta(1-u)(1-v)]\mbox{,}}
-where \eqn{-1 \le \Theta \le 1}. Nelsen (2006, exer. 6.12, p. 249) asserts that for \eqn{\mathbf{FGM}_\alpha} and \eqn{\mathbf{FGM}_\beta} with \eqn{\ast}-product as \eqn{\mathbf{FGM}_\alpha \ast \mathbf{FGM}_\beta} that a closed-form solution exists and is
-\deqn{\mathbf{FGM}_\alpha \ast \mathbf{FGM}_\beta = \mathbf{FGM}_{\alpha\beta/3}\mbox{.}}
-That the assertion is numerically true as readily verified using the \code{prod2COP} function:
+where \eqn{-1 \le \Theta \le 1}. Nelsen (2006, exer. 6.12, p. 249) asserts that for \eqn{\mathbf{FGM}_(\Theta = \alpha)} and \eqn{\mathbf{FGM}_(\Theta = \beta)} with \eqn{\ast}-product as \eqn{\mathbf{FGM}_\alpha \ast \mathbf{FGM}_\beta} that a closed-form solution exists and is
+\deqn{\mathbf{FGM}_\alpha \ast \mathbf{FGM}_\beta = \mathbf{FGM}_{(\alpha\beta) / 3}\mbox{.}}
+This assertion is numerically true as readily verified using the \code{prod2COP} function:
 \preformatted{
   u <- c(0.41, 0.87); v <- c(0.13,0.35); A <- -0.532; B <- 0.235
-  FGMcop(  u,v, para=A*B/3) # 0.05215986 and 0.30342773, matched by prod2COP()
+  FGMcop(  u,v, para= A*B / 3) # 0.0521599 and 0.3034277, matched by prod2COP()
   prod2COP(u,v, cop1=FGMcop, para1=A, cop2=FGMcop, para2=B)
 }
 }
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
-\author{ W.H. Asquith}
-\seealso{\code{\link{COP}}, \code{\link{convex2COP}}, \code{\link{composite1COP}},
-                         \code{\link{composite2COP}}, \code{\link{composite3COP}} }
+\author{W.H. Asquith}
+\seealso{\code{\link{COP}}, \code{\link{composite1COP}}, \code{\link{composite2COP}}, \code{\link{composite3COP}},
+\code{\link{convexCOP}}, \code{\link{convex2COP}}, \code{\link{glueCOP}}}
 \examples{
 \dontrun{
 # Product P * N4212 ---> P (by identity)

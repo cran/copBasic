@@ -22,8 +22,10 @@ function(n=100, cop=NULL, para=NULL, na.rm=TRUE, seed=NULL, keept=FALSE,
 
   if(! is.null(seed)) set.seed(seed)
 
+  n <- as.integer(n)
+
   u <- runif(n); t <- runif(n)
-  v <- sapply(1:n, function(i) { derCOPinv(cop=cop, u[i], t[i], para=para, ...) })
+  v <- sapply(seq_len(n), function(i) { derCOPinv(cop=cop, u[i], t[i], para=para, ...) })
   dots <- list(...)
   ditches <- c("delu", "derdir", "trace")
   for(d in ditches) {
@@ -36,7 +38,7 @@ function(n=100, cop=NULL, para=NULL, na.rm=TRUE, seed=NULL, keept=FALSE,
      z <- z[complete.cases(z), ]
      m <- length(z[,1])
      if(m != n) {
-        warning("user requested n=",n," simulations but only m=",m,
+        warning("user requested n=",n," simulations but only m=", m,
                 " could be made without NA from derCOPinv (uniroot failure therein)")
         row.names(z) <- NULL # reset the rows to "1:m"
      }
@@ -56,10 +58,12 @@ function(n=100, cop=NULL, para=NULL, na.rm=TRUE, seed=NULL, keept=FALSE,
   if(ploton) {
      if(snv) {
         plot(z$U, z$V, type="n",
-             xlab="STANDARD NORMAL SCORE FOR U", ylab="STANDARD NORMAL SCORE FOR V")
+             xlab="STANDARD NORMAL VARIATE OF U",
+             ylab="STANDARD NORMAL VARIATE OF V")
      } else {
         plot(NA, NA, type="n", xlim=c(0,1), ylim=c(0,1),
-             xlab="U, NONEXCEEDANCE PROBABILITY", ylab="V, NONEXCEEDANCE PROBABILITY")
+             xlab="U, NONEXCEEDANCE PROBABILITY",
+             ylab="V, NONEXCEEDANCE PROBABILITY")
      }
   }
   dots$x <- z$U; dots$y <- z$V

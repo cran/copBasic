@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{level.setCOP}
 \alias{level.setCOP}
-\title{ Compute a Level Set of a Copula V with respect to U }
+\title{Compute a Level Set of a Copula V with respect to U}
 \description{
 Compute a \emph{level curve} or \emph{level set} of a copula for \eqn{V} with respect to \eqn{U} (Nelsen, 2006, pp. 12--13). The level curve at level \eqn{t} is defined for \eqn{U \mapsto [0+\Delta u, 1-\Delta u, \Delta u]} by
 \deqn{t \mapsto \mathbf{C}(u{=}U, v)\mbox{,}}
@@ -34,7 +34,7 @@ level.curvesCOP(cop=PSP)
 lines(set$U, set$V, col=2, lwd=2) # manually draw the 23rd percentile
 set <- level.setCOP(cop=PSP, para=3.1, getlevel=0.67, lines=TRUE, col=4, lwd=4)
 # Notice the change in the lines argument and using levelsetCOP2 to draw.
-mtext("Level Curves and Special Level Sets for PSP copula") # }
+mtext("Level Curves and Special Level Sets for PSP copula") #}
 }
 \keyword{visualization}
 \keyword{diagnostics}

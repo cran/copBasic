@@ -1,13 +1,13 @@
 \encoding{utf8}
 \name{rhoCOP}
 \alias{rhoCOP}
-\title{ The Spearman Rho of a Copula }
+\title{The Spearman Rho of a Copula}
 \description{
 Compute the measure of association known as the \emph{Spearman Rho} \eqn{\rho_\mathbf{C}} of a copula according to Nelsen (2006, pp. 167--170, 189, 208) by
 \deqn{\rho_\mathbf{C} = 12\int\!\!\int_{\mathcal{I}^2} \mathbf{C}(u,v)\, \mathrm{d}u\mathrm{d}v - 3\mbox{,}}
 or
 \deqn{\rho_\mathbf{C} = 12\int\!\!\int_{\mathcal{I}^2} [\mathbf{C}(u,v) - uv]\, \mathrm{d}u\mathrm{d}v\mbox{,}}
-where the later equation is implemented by \code{rhoCOP} as the default method (\code{method="default"}). This equation, here having \eqn{p = 1} and \eqn{k_p(1) = 12}, is generalized under \code{\link{hoefCOP}}. The absence of the \eqn{12} in the above equation makes it equal to the covariance defined by the \emph{Hoeffding identity} (Joe, 2014, p. 54):
+where the later equation is implemented by \code{rhoCOP} as the default method (\code{method="default"}). This equation, here having \eqn{p = 1} and \eqn{k_p(1) = 12}, is generalized under \code{\link{hoefCOP}}. The absence of the \eqn{12} in the above equation makes it equal to the covariance defined by the \emph{Hoeffding Identity} (Joe, 2014, p. 54):
 \deqn{\mathrm{cov}(U, V) = \int\!\!\int_{\mathcal{I}^2} [\mathbf{C}(u,v) - uv]\, \mathrm{d}u\mathrm{d}v\mbox{ or}}
 \deqn{\mathrm{cov}(U, V) = \int\!\!\int_{\mathcal{I}^2} [\hat{\mathbf{C}}(u,v) - uv]\, \mathrm{d}u\mathrm{d}v\mbox{, which is}}
 \deqn{\mathrm{cov}(U, V) = \int\!\!\int_{\mathcal{I}^2} [u+v-1+\mathbf{C}(1-u,1-v) - uv]\, \mathrm{d}u\mathrm{d}v\mbox{.}}
@@ -38,14 +38,14 @@ rhoCOP(cop=NULL, para=NULL, method=c("default", "joe21", "joe12"),
   The value for \eqn{\rho_\mathbf{C}} is returned.
 }
 \note{
-Technically, Nelsen (2006) also shows that these definitions are a form of call to a \emph{concordance function} \eqn{\mathcal{Q}(\mathbf{C}_1,\mathbf{C}_2)} of two copulas that involve \eqn{\mathbf{C}_1{=}\mathbf{C}(u,v)} and \eqn{\mathbf{C}_2{=}\mathbf{\Pi}}. As such in order to keep \code{rhoCOP} a small function when \code{brute=TRUE}, \eqn{\rho_\mathbf{C}} is computed by a special call to \code{\link{tauCOP}}, which by itself and although titled for computation of \emph{Kendall Tau}, does support the concordance function \eqn{\mathcal{Q}(\mathbf{C}_1, \mathbf{C}_2)} [see Nelsen (2006, pp. 158--159)] when given two different copulas and respective parameters as arguments.
+Technically, Nelsen (2006) also shows that these definitions are a form of call to a \emph{concordance function} \eqn{\mathcal{Q}(\mathbf{C}_1,\mathbf{C}_2)} of two copulas that involve \eqn{\mathbf{C}_1{=}\mathbf{C}(u,v)} and \eqn{\mathbf{C}_2{=}\mathbf{\Pi}}. As such in order to keep \code{rhoCOP} a small function when \code{brute=TRUE}, \eqn{\rho_\mathbf{C}} is computed by a special call to \code{\link{tauCOP}}, which by itself and although titled for computation of \emph{Kendall Tau}, does support the concordance function \eqn{\mathcal{Q}(\mathbf{C}_1, \mathbf{C}_2)} [see Nelsen (2006, pp. 158--159)] when given two different copulas and respective parameters as arguments. The well-known \emph{Pearson correlation coefficient} equals Spearman rho value if random variables \eqn{X} and \eqn{Y} are both uniformly distributed on \eqn{[0,1]}.
 }
 \references{
 Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{blomCOP}}, \code{\link{footCOP}}, \code{\link{giniCOP}},
          \code{\link{hoefCOP}}, \code{\link{tauCOP}},  \code{\link{wolfCOP}},
          \code{\link{joeskewCOP}}, \code{\link{uvlmoms}}
@@ -55,7 +55,7 @@ rhoCOP(cop=PSP)             # 0.4784176
 \dontrun{
 rhoCOP(cop=PSP, brute=TRUE) # 0.4684063
 # CPU heavy example showing that the dual-integration (fast) results in
-# a Spearman's Rho that mimics a sample version
+# a Spearman Rho that mimics a sample version
 do_rho <- function(n) {
    uv <- simCOP(n=n, cop=PSP, ploton=FALSE, points=FALSE)
    return(cor(uv$U, uv$V, method="spearman"))
@@ -105,3 +105,4 @@ rhoCOPbyJoe12(cop=composite2COP, para=para) # 0.1031532}
 \keyword{copula (properties)}
 \keyword{Joe (2014) Examples and Exercises}
 \keyword{Spearman Rho}
+\keyword{Pearson correlation coefficient}

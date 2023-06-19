@@ -2,9 +2,9 @@
 \name{kfuncCOP}
 \alias{kfuncCOP}
 \alias{kmeasCOP}
-\title{ The Kendall (Distribution) Function of a Copula }
+\title{The Kendall (Distribution) Function of a Copula}
 \description{
-To begin, there are at least three terms in the literature for what appear as the same function supported by the \code{kfuncCOP} function.  The Kendall Function also is known as Kendall Distribution Function (Nelsen, 2006, p. 163) and Kendall Measure (Salvadori \emph{et al.}, 2007, p. 148). Each of these is dealt with in sequel to set the manner of the rather lengthy documentation for this function.
+To begin, there are at least three terms in the literature for what appear as the same function supported by the \code{kfuncCOP} function.  The \emph{Kendall Function} also is known as \emph{Kendall Distribution Function} (Nelsen, 2006, p. 163) and \emph{Kendall Measure} (Salvadori \emph{et al.}, 2007, p. 148). Each of these is dealt with in sequel to set the manner of the rather lengthy documentation for this function.
 
 \emph{KENDALL FUNCTION}---The \emph{Kendall Function} (\eqn{F_K}) (Joe, 2014, pp. 419--422) is the cumulative distribution function (CDF) of the vector \eqn{\mathbf{U} = (U_1, U_2, \ldots)} or \eqn{\mathbf{U} = (u,v)} (bivariate) where \eqn{\mathbf{U}} is distributed as the copula: \eqn{\mathbf{U} \sim \mathbf{C}(u,v)}. Letting \eqn{Z} be the random variable for \eqn{\mathbf{C}(u,v): Z = \mathbf{C}(u,v)}, the Kendall Function is defined as
 
@@ -21,7 +21,7 @@ Joe (2014) and others as cited list various special cases of \eqn{F_K(z)}, inequ
 \eqn{\mbox{}\quad\bullet\quad\mbox{}}For any \eqn{\mathbf{C}}: \eqn{\tau_\mathbf{C} = 3 - 4\int_0^1 F_K(t)\,\mathrm{d}t} (Nelsen, 2006, p. 163; see \code{\link{tauCOP}} [\bold{Examples}]).\cr
 \eqn{\mbox{}\quad\bullet\quad\mbox{}}For any \eqn{\mathbf{C}}: \eqn{F_K(t)} does not uniquely determine the copula.
 
-This last item is from Durante and Sempi (2015, p. 118), and later discussion herein will concern an example of theirs. By coincidence within a few days before receipt of the Durante and Sempi book, experiments using \code{kfuncCOP} suggested that numerically the Galambos (\code{\link{GLcop}}), Gumbel--Hougaard (\code{\link{GHcop}}), and H\enc{ü}{u}sler--Reiss (\code{\link{HRcop}}) extreme value copulas for the same \emph{Kendall Tau} (\eqn{\tau_\mathbf{C}}) all have the same \eqn{F_K(t)}. Therefore, do all \emph{EV}-copulas have the same Kendall Function? Well in fact, they do and Durante and Sempi (2015, p. 207) show that \eqn{F_K(z) = z - (1 - \tau_\mathbf{C})z \log(z)} for an \emph{EV}-copula.
+The last item is from Durante and Sempi (2015, p. 118), and later discussion herein will concern an example of theirs. By coincidence within a few days before receipt of the Durante and Sempi book, experiments using \code{kfuncCOP} suggested that numerically the Galambos (\code{\link{GLcop}}), Gumbel--Hougaard (\code{\link{GHcop}}), and H\enc{ü}{u}sler--Reiss (\code{\link{HRcop}}) extreme value copulas for the same \emph{Kendall Tau} (\eqn{\tau_\mathbf{C}}) all have the same \eqn{F_K(t)}. Therefore, do all \emph{EV}-copulas have the same Kendall Function? Well in fact, they do and Durante and Sempi (2015, p. 207) show that \eqn{F_K(z) = z - (1 - \tau_\mathbf{C})z \log(z)} for an \emph{EV}-copula.
 
 Joe (2014, p. 420) also indicates that strength of \emph{lower-tail dependence} (\code{\link{taildepCOP}}) affects \eqn{F_K(z)} as \eqn{z \rightarrow 0^{+}}, whereas strength of \emph{upper-tail dependence} affects \eqn{F_K(z)} as \eqn{z \rightarrow 1^{-}}. (A demonstration of tail dependence dependence is made in section \bold{Note}.) Also compared to \emph{comonotonicity copula} [\eqn{\mathbf{M}}] there are no \emph{countermonotonicity copula} (\eqn{\mathbf{W}_{d > 2}}) for dimensions greater the bivariate (Joe, 2014, p. 214)
 
@@ -29,7 +29,7 @@ Joe (2014) does not explicitly list an expression of \eqn{F_K(z)} that is comput
 
 \deqn{F_K(z) \equiv z + \int_z^1 \frac{\delta\mathbf{C}(u,t)}{\delta u}\,\mathrm{d}u\mbox{,}}
 
-where \eqn{t = \mathbf{C}^{(-1)}(u,z)} for \eqn{0 \le z \le 1}, \eqn{t} can be computed by the \code{\link{COPinv}} function, and the partial derivative \eqn{\delta\mathbf{C}(u,t)/\delta u} can be computed by the \code{\link{derCOP}} function. It is a curiosity that this form is not in Joe (2014), Nelsen \emph{et al.} (2001, 2003), Nelsen (2006), or actually in Salvadori \emph{et al.} (2007).\cr
+where \eqn{t = \mathbf{C}^{(-1)}(u,z)} for \eqn{0 \le z \le 1}, \eqn{t} can be computed by the \code{\link{COPinv}} function, and the partial derivative \eqn{\delta\mathbf{C}(u,t)/\delta u} can be computed by the \code{\link{derCOP}} function. It is a curiosity that this form is not in Joe (2014), Nelsen \emph{et al.} (2001, 2003), or Nelsen (2006), but actually in Salvadori \emph{et al.} (2007).\cr
 
 \emph{KENDALL MEASURE}---The actual expression for any \eqn{\mathbf{C}(u,v)} by Salvadori \emph{et al.} (2007, eq. 3.49, p. 148) is for \emph{Kendall Measure} (\eqn{K_\mathbf{C}}) of a copula:
 \deqn{K_\mathbf{C}(z) = z - \int_z^1 \frac{\delta\mathbf{C}(u,t)}{\delta u}\,\mathrm{d}u\mbox{,}}
@@ -58,7 +58,7 @@ kmeasCOP(z, cop=NULL, para=NULL, wrtV=FALSE, as.sample=FALSE,verbose=FALSE,...)
   \item{cop}{A copula function;}
   \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula;}
   \item{wrtV}{A logical to toggle between with respect to \eqn{v} or \eqn{u} (default);}
-  \item{as.sample}{A control on whether an optional \R \code{data.frame} in \code{para} is used to compute the empirical \eqn{\hat{F}_K(z)}. Let vector length of \code{para} be denoted \eqn{m} and \eqn{i = (1,\ldots,m)}, if \code{as.sample=TRUE}, then for each of the probability pairs in \code{para}, the \emph{empirical copula} (\code{\link{EMPIRcop}}) function with additional arguments \code{...} is used to generate a vector \eqn{(0, F^\sharp_{K,m}, 1)} of length \eqn{m+2}, then a vector of \eqn{(0, z^\sharp_m, 1)} again of length \eqn{m+2} where \eqn{z^\sharp = (i-0.5)/m} is created and linear interpolation by the \code{approx()} function in \R for each of the \eqn{z} values in \code{z} is used to estimate \eqn{\hat{F}_K(z)} (see source code). If \code{as.sample="genest"} then the \eqn{\hat{F}_K(z)} is estimated without interpolation using a simple empirical copula basis and \dQuote{pseudo-observations} after Genest \emph{et al.} (2006, p. 339). The default \eqn{\hat{F}_K} (\code{as.sample=TRUE}) is the linear interpolation based on the default call of Weibull form of the empirical copula, but that can be confirmed by \code{ctype="weibull"} (see \bold{Note});}
+  \item{as.sample}{A control on whether an optional \R \code{data.frame} in \code{para} is used to compute the empirical \eqn{\hat{F}_K(z)}. Let vector length of \code{para} be denoted \eqn{m} and \eqn{i = (1,\ldots,m)}, if \code{as.sample=TRUE}, then for each of the probability pairs in \code{para}, the \emph{empirical copula} (\code{\link{EMPIRcop}}) function with additional arguments \code{...} is used to generate a vector \eqn{(0, F^\sharp_{K,m}, 1)} of length \eqn{m+2}, then a vector of \eqn{(0, z^\sharp_m, 1)} again of length \eqn{m+2} where \eqn{z^\sharp = (i-0.5)/m} is created and linear interpolation by the \code{approx()} function in \R for each of the \eqn{z} values in \code{z} is used to estimate \eqn{\hat{F}_K(z)} (see source code). If \code{as.sample="genest"}, then the \eqn{\hat{F}_K(z)} is estimated without interpolation using a simple empirical copula basis and \dQuote{pseudo-observations} after Genest \emph{et al.} (2006, p. 339). The default \eqn{\hat{F}_K} (\code{as.sample=TRUE}) is the linear interpolation based on the default call of Weibull form of the empirical copula, but that can be confirmed by \code{ctype="weibull"} (see \bold{Note});}
   \item{verbose}{A logical supressing warnings from \code{integrate()} in \R that are usually related to \dQuote{integral divergence} for \eqn{z \rightarrow 0^{+}}. The constructed behavior of \code{kfuncCOP} is to return \eqn{F_K(z \rightarrow 0^{+}) = 0} if numerical integration returns \code{NULL}, and such a construction is made to avoid \dQuote{end points not of opposite sign} during \eqn{F_K(z)} inversion by \code{\link{kfuncCOPinv}}; and}
   \item{...}{Additional arguments to pass.}
 }
@@ -74,7 +74,7 @@ kmeasCOP(z, cop=NULL, para=NULL, wrtV=FALSE, as.sample=FALSE,verbose=FALSE,...)
   theo.kendF <- kfuncCOP(Z, cop=P) # theo. Kendall func, numeric integration
   plot(Z, kendF, type="l", col=3, lwd=4, lty=2, xlim=c(0,1), ylim=c(0,1),
        xlab="COPULA(u,v) VALUE [JOINT PROBABILITY]",
-       ylab="KENDALL FUNCTION, A NONEXCEEDANCE PROBABILITY") # analytical
+       ylab="KENDALL FUNCTION, AS NONEXCEEDANCE PROBABILITY") # analytical
   points(Z,     kendF, col=3, lwd=1, lty=2, pch=16) # green (theo. values)
   points(Z, emp.kendF, col=4, lwd=2, cex=1.5)       # blue (empirical values)
   lines(Z, theo.kendF, col=2) # red (theoretical line by numerical integration)
@@ -84,7 +84,7 @@ The figure so produced shows that the theoretical relation in Joe (2014) is corr
 
 Now consider a more comprehensive demonstration using the \code{\link{N4212cop}} copula with some relatively weak dependence in \eqn{\Theta = 1.17}.
 \preformatted{
-  Theta <- 1.17; print(rhoCOP(cop=N4212cop, para=Theta)) # Spearman rho = 6/10
+  Theta <- 1.17; print(rhoCOP(cop=N4212cop, para=Theta)) # Spearman Rho = 6/10
   Z <- sort(c(0.01, seq(0,1, by=0.05), 0.99))      # ** Joint probabilities **
   UV <- simCOP(n=16000,      cop=N4212cop,   para=Theta, graphics=TRUE)
   empir.kendF <- kfuncCOP(Z, as.sample=TRUE, para=UV, ctype="weibull")
@@ -92,7 +92,7 @@ Now consider a more comprehensive demonstration using the \code{\link{N4212cop}}
   kwrtV       <- kfuncCOP(Z, cop=N4212cop,   para=Theta, wrtV=TRUE )
   plot(Z, empir.kendF, type="p", col=2, lwd=7, lty=2, xlim=c(0,1),ylim=c(0,1),
        xlab="COPULA(u,v) VALUE [JOINT PROBABILITY]",
-       ylab="KENDALL FUNCTION, A NONEXCEEDANCE PROBABILITY")
+       ylab="KENDALL FUNCTION, AS NONEXCEEDANCE PROBABILITY")
   abline(0,1, lty=2, lwd=0.8); mtext("Kendall Functions: N4212(1.17) Copula")
   lines(Z, kwrtU, col=4, lwd=4, lty=2); lines(Z, kwrtV, col=3, lwd=1, lty=2)
 }
@@ -106,13 +106,13 @@ The figure so produced again shows congruence between the two theoretical comput
   kwrtV       <- kfuncCOP(Z, cop=PLACKETTcop,   para=Theta, wrtV=TRUE )
   plot(Z, empir.kendF, type="p", col=2, lwd=7, lty=2, xlim=c(0,1),ylim=c(0,1),
        xlab="COPULA(u,v) VALUE [JOINT PROBABILITY]",
-       ylab="KENDALL FUNCTION, A NONEXCEEDANCE PROBABILITY")
+       ylab="KENDALL FUNCTION, AS NONEXCEEDANCE PROBABILITY")
   abline(0,1, lty=2, lwd=0.8); mtext("Kendall Function: Plackett Copula")
   lines(Z, kwrtU, col=4, lwd=4, lty=2); lines(Z, kwrtV, col=3, lwd=1, lty=2)
 }
 The figure so produced again shows congruence between the two theoretical computations and the empirical curve.
 
-Another comparison of \eqn{F_K(z)} is useful and concerns \emph{lower-} and \emph{upper-tail dependency} parameters (\code{\link{taildepCOP}}) with a comparison of three different copulae all having the same Kendall Tau. The following code computes and draws the respective \eqn{F_K(z)}:
+Another comparison of \eqn{F_K(z)} is useful and concerns \emph{lower-} and \emph{upper-tail dependency} parameters (\code{\link{taildepCOP}}) with a comparison of three different copula all having the same Kendall Tau. The following code computes and draws the respective \eqn{F_K(z)}:
 \preformatted{
   # Given a Kendall Tau of 0.4 and the GHcop, N4212, and Plackett copulas
   # parameters respectively are:
@@ -124,8 +124,8 @@ Another comparison of \eqn{F_K(z)} is useful and concerns \emph{lower-} and \emp
   plot(qnorm(GHkenf), Z, type="l", col=1, lwd=2, xlim=c(-3,3), ylim=c(0,1),
        xlab="KENDALL FUNCTION, AS STANDARD NORMAL VARIATES",
        ylab="COPULA(u,v) VALUE, AS NONEXCEEDANCE PROBABILITY") # black curve
-  lines(qnorm(N4212kenf), Z, col=2, lwd=2)                     # red curve
-  lines(qnorm(PLkenf),    Z, col=4, lwd=2)                     # blue curve
+  lines(qnorm(N4212kenf), Z, col=2, lwd=2)                     # red   curve
+  lines(qnorm(PLkenf),    Z, col=4, lwd=2)                     # blue  curve
 }
 The red curve for the \eqn{\mathbf{N4212}(\Theta{=}1.1)} copula (\code{\link{N4212cop}}) is higher on the left, which shows the impact of its larger lower-tail dependency (\eqn{\lambda_\mathbf{GH}^L{=}0 < \lambda_\mathbf{N4212}^L{=}0.535}), whereas the black curve for the \eqn{\mathbf{GH}(\Theta{=}1.67)} copula (\code{\link{GHcop}}) is similarly (about same magnitude) higher on the right, which shows the impact of its larger upper-tail dependency (\eqn{\lambda_\mathbf{N4212}^L{=}0 < \lambda_\mathbf{GH}^U{=}0.484}). The blue curve for the \eqn{\mathbf{PL}(\Theta = 6.60)} copula (\code{\link{PLACKETTcop}}) nearly overwrites on the left the \eqn{\mathbf{GH}} curve, which is a reflection of both copulae having zero lower-tail dependencies (\eqn{\lambda_\mathbf{GH}^L = \lambda_\mathbf{PL}^L = 0}). Finally, as anticipated by \eqn{\lambda^U}, the curve on the right for the \eqn{\mathbf{N4212}} is just slightly larger for the \eqn{\mathbf{PL}} because the \eqn{\lambda_\mathrm{PL}^U{=}0 < \lambda_\mathbf{N4212}^U{=}0.134} (a small difference however), and again on the right, the \eqn{\mathbf{N4212}} curve is considerably smaller than the \eqn{\mathbf{GH}} because \eqn{\lambda_\mathbf{N4212}^U{=}0 < \lambda_\mathbf{GH}^U{=}0.484}.
 
@@ -188,7 +188,7 @@ The \eqn{K_\mathbf{C}(z)} as shown herein simply can not reproduce \eqn{F_K(z; \
 Because of the subtle differences evidently between \dQuote{Kendall functions} (lower case), an explict derivation for \eqn{F_K(z; \mathbf{\Pi})} is informative to confirm what is meant by the \emph{Kendall Function} as defined by \eqn{F_K(z)}. Starting with \eqn{z = \mathbf{\Pi}(u,v) = uv}, then \deqn{v(z) = t = \mathbf{\Pi}^{(-1)}(u, z) = z/u\mbox{,\ and}}
 \deqn{\frac{\delta}{\delta u} \mathbf{\Pi}(u,t) = \frac{\delta }{\delta u} u\,v \rightarrow v = \frac{z}{u}\mbox{,}}
 substitution can now proceed:
-\deqn{F_K(z; \mathbf{\Pi}) = z + \int_z^1 \frac{\delta}{\delta u}\mathbf{\Pi}(u,t)\,\mathrm{d}u\mbox = z + \int_z^1 \frac{z}{u}\,\mathrm{d}u{,}}
+\deqn{F_K(z; \mathbf{\Pi}) = z + \int_z^1 \frac{\delta}{\delta u}\mathbf{\Pi}(u,t)\,\mathrm{d}u\, = z + \int_z^1 \frac{z}{u}\,\mathrm{d}u{,}}
 which simplfies to
 \deqn{F_K(z; \mathbf{\Pi}) = z + [z\log(u)]\bigg|^1_z  = z + z[\log(1) - \log(z)] = z - z\log z\mbox{,}}
 which matches the special case shown by Joe (2014) for the independence copula (\eqn{\mathbf{\Pi}}; \code{\link{P}}). It is obvious thus that the \dQuote{\eqn{+}} is needed in the \eqn{F_K(z)} definition in order to stay consistent with the basic form and integration limits shown by Salvadori \emph{et al.} (2007) for \eqn{K_\mathbf{C}(z)}.
@@ -208,14 +208,14 @@ Nelsen, R.B., Quesada-Molina, J.J., \enc{Rodríguez-Lallena}{Rodriguez-Lallena},
 
 Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in nature---An approach using copulas: Dordrecht, Netherlands, Springer, Water Science and Technology Library 56, 292 p.
 }
-\author{ W.H. Asquith}
-\seealso{ \code{\link{kfuncCOPinv}}, \code{\link{tauCOP}}, \code{\link{derCOP}}, \code{\link{derCOP2}}, \code{\link{derCOPinv}}, \code{\link{derCOPinv2}} }
+\author{W.H. Asquith}
+\seealso{\code{\link{kfuncCOPinv}}, \code{\link{tauCOP}}, \code{\link{derCOP}}, \code{\link{derCOP2}}, \code{\link{derCOPinv}}, \code{\link{derCOPinv2}}}
 \examples{
 \dontrun{
 # Salvadori et al. (2007, p. 148, fig. 3.5 [right])
 zs <- seq(0,1, by=.01)
 plot(zs, kmeasCOP(zs, cop=GHcop, para=5), log="y", type="l", lwd=4,
-     xlab="Z <= z", ylab="Kendall Function", xlim=c(0,1), ylim=c(0.001,1))#}
+     xlab="Z <= z", ylab="Kendall Function", xlim=c(0,1), ylim=c(0.001,1)) #}
 }
 \keyword{copula (characteristics)}
 \keyword{copula (properties)}
@@ -228,6 +228,5 @@ plot(zs, kmeasCOP(zs, cop=GHcop, para=5), log="y", type="l", lwd=4,
 \concept{Kendall distribution function}
 \concept{Kendall function}
 \concept{Kendall measure}
-\concept{decomposition of Kendall tau}
-\concept{decomposition of Kendall's tau}
+\concept{decomposition of Kendall Tau}
 \keyword{literature errors and inconsistencies}

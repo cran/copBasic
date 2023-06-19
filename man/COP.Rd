@@ -1,13 +1,15 @@
 \encoding{utf8}
 \name{COP}
 \alias{COP}
-\title{ The Copula }
+\title{The Copula}
 \description{
 Compute the \emph{copula} or \emph{joint distribution function} through a copula as shown by Nelsen (2006, p. 18) is the joint probability
 
 \deqn{\mathrm{Pr}[U \le u, V \le v] = \mathbf{C}(u,v)\mbox{.}}
 
-The copula is an expression of the joint probability that both \eqn{U \le u} and \eqn{V \le v}. A \emph{radially symmetric} or \emph{permutation symmetric copula} is one such that \eqn{\mathbf{C}(u,v) = \mathbf{C}(v,u)} otherwise the copula is \emph{asymmetric}. A copula is a type of \emph{dependence function} that permits straightforward characterization of dependence from independence.  Joe (2014, p. 8) comments that \dQuote{copula families are usually given as cdfs [cumulative distribution functions.]}
+The copula is an expression of the joint probability that both \eqn{U \le u} and \eqn{V \le v}.
+
+A copula is a type of \emph{dependence function} that permits straightforward characterization of dependence from independence.  Joe (2014, p. 8) comments that \dQuote{copula families are usually given as cdfs [cumulative distribution functions.]} A \emph{radially symmetric} or \emph{permutation symmetric copula} is one such that \eqn{\mathbf{C}(u,v) = \mathbf{C}(v,u)} otherwise the copula is \emph{asymmetric}.
 
 The copula \emph{inversions} \eqn{t = \mathbf{C}(u{=}U, v)} or \eqn{t = \mathbf{C}(u, v{=}V)} for a given \eqn{t} and \eqn{U} or \eqn{V} are provided by \code{\link{COPinv}} and \code{\link{COPinv2}}, respectively. A copula exists in the domain of the unit square (\eqn{\mathcal{I}^2 = [0, 1]\times [0,1]}) and is a \emph{grounded} function meaning that
 \deqn{\mathbf{C}(u,0) = 0 = \mathbf{C}(0,v) \mbox{\ and\ thus\ } \mathbf{C}(0,0) = 0\mbox{, }}
@@ -15,7 +17,7 @@ and other properties of a copula are that
 \deqn{\mathbf{C}(u,1) = u \mbox{\ and\ } \mathbf{C}(1,v) = v\mbox{\ and}}
 \deqn{\mathbf{C}(1,1) = 1\mbox{.}}
 
-Copulas can be combined with each other (\code{\link{convex2COP}}, \code{\link{composite1COP}}, \code{\link{composite2COP}}, and \cr \code{\link{composite3COP}}) to form more complex and sophisticated dependence structures. Also copula multiplication---a special product of two copulas---yields another copula (see \code{\link{prod2COP}}).
+Copulas can be combined with each other (\code{\link{convexCOP}}, \code{\link{convex2COP}}, \code{\link{composite1COP}}, \cr \code{\link{composite2COP}}, \code{\link{composite3COP}}, and \code{\link{glueCOP}}) to form more complex and sophisticated dependence structures. Also copula multiplication---a special product of two copulas---yields another copula (see \code{\link{prod2COP}}).
 
 Perhaps the one of the more useful features of this function is that in practical applications it can be used to take a copula formula and reflect or rotated it in fashions to attain association structures that the native definition of the copula can not acquire. The terminal demonstration in the \bold{Examples} demonstrates this for the \emph{Raftery copula} (\code{\link{RFcop}}).
 }
@@ -50,7 +52,7 @@ To clarify the seemingly clunky nomenclature---Joe (2014) does not provide \dQuo
 \eqn{\mbox{}\quad\mbox{}}(3) \code{"grave"} or \eqn{\grave{\mathbf{C}}(u,v)} is a reflection of \eqn{V} on the verical axis.\cr
 The names \code{"acute"} and \code{"grave"} match those used in the \bold{Rd}-format math typesetting instructions. Users are directed to the documentation of \code{\link{simCOPmicro}} for further discussion because the \code{COP} function is expected to be an early entry point for new users interested in the \pkg{copBasic} API.
 
-For the \pkg{copBasic} package and in order to keep some logic brief and code accessible for teaching and applied circumstances, reflections of copulas using analogs to the \code{reflect} argument are only natively supported in the \code{COP} and the \code{\link{simCOPmicro}} functions. The interfaces of \pkg{copBasic} should already be flexible enough for users to adapt and (or) specially name reflections of copulas for deployment.
+For the \pkg{copBasic} package and in order to keep some logic brief and code accessible for teaching and applied circumstances, reflections of copulas using analogs to the \code{reflect} argument are only natively supported in the \code{COP} and \code{\link{simCOPmicro}} functions. The interfaces of \pkg{copBasic} should already be flexible enough for users to adapt and (or) specially name reflections of copulas for deployment. A caveat is that some individual copula implementations might have some self-supporting infrastructure. The reflection can also be set within the \code{para} argument when it is a list (see \bold{Examples}).
 
 An example is warranted. Although the Gumbel--Hougaard copula (\code{\link{GHcop}}) can be reflected by \code{COP} and \code{\link{simCOPmicro}} and testing is made in the \bold{Note} section of \code{\link{simCOPmicro}}, it is suggested that a user generally requiring say a horizontal reflection \code{ru} (or vertical reflection \code{rv}) of the Gumbel--Hougaard copula write a function named perhaps \code{ruGHcop} (or \code{rvGHcop}).
 
@@ -77,8 +79,8 @@ Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
-\author{ W.H. Asquith}
-\seealso{\code{\link{coCOP}}, \code{\link{duCOP}}, \code{\link{surCOP}}, \code{\link{surfuncCOP}} }
+\author{W.H. Asquith}
+\seealso{\code{\link{coCOP}}, \code{\link{duCOP}}, \code{\link{surCOP}}, \code{\link{surfuncCOP}}}
 \examples{
 u <- runif(1); v <- runif(1)
 COP(cop=W,u,v); COP(cop=P,u,v); COP(cop=M,u,v); COP(cop=PSP,u,v)
@@ -88,30 +90,30 @@ GG <- 0.20 # 25th percentile, nonexceedance
 bF <- 1 - FF; bG <- 1 - GG     # exceedance
 # What is the probability that both X and Y are less than
 # 75th and 20th percentiles, respectively?
-COP(cop=P,FF,GG)    # 0.15
+COP(cop=P, FF, GG)    # 0.15
 # What is the probability that both X and Y are greater than
 # 75th and 20th percentiles, respectively?
-surCOP(cop=P,bF,bG) # 0.20
+surCOP(cop=P, bF, bG) # 0.20
 # What is the probability that either X or Y are less than
 # the 75th and 20th percentiles, respectively?
-duCOP(cop=P,FF,GG)  # 0.8
+duCOP(cop=P, FF, GG)  # 0.8
 # What is the probability that either X or Y are greater than
 # the 75th and 20th percentiles, respectively?
-coCOP(cop=P,bF,bG)  # 0.85
+coCOP(cop=P, bF, bG)  # 0.85
 
 # Repeat for the PSP copula:
 # What is the probability that both X and Y are less than
 # 75th and 20th percentiles, respectively?
-COP(cop=PSP,FF,GG)    # 0.1875
+COP(cop=PSP, FF, GG)    # 0.1875
 # What is the probability that both X and Y are greater than
 # 75th and 20th percentiles, respectively?
-surCOP(cop=PSP,bF,bG) # 0.2375
+surCOP(cop=PSP, bF, bG) # 0.2375
 # What is the probability that either X or Y are less than
 # the 75th and 20th percentiles, respectively?
-duCOP(cop=PSP,FF,GG)  # 0.7625
+duCOP(cop=PSP, FF, GG)  # 0.7625
 # What is the probability that either X or Y are greater than
 # the 75th and 20th percentiles, respectively?
-coCOP(cop=PSP,bF,bG)  # 0.8125
+coCOP(cop=PSP, bF, bG)  # 0.8125
 # Both of these summations equal unity
    COP(cop=PSP, FF, GG) + coCOP(cop=PSP, bF, bG) # 1
 surCOP(cop=PSP, bF, bG) + duCOP(cop=PSP, FF, GG) # 1
@@ -122,20 +124,20 @@ bF <- 1 - FF # nonexceedance
 bG <- 1 - GG # nonexceedance
 # What is the probability that both X and Y are less than
 # 99th and 50th percentiles, respectively?
-COP(cop=P,FF,GG)    # 0.495
+COP(cop=P, FF, GG)    # 0.495
 # What is the probability that both X and Y are greater than
 # 99th and 50th percentiles, respectively?
-surCOP(cop=P,bF,bG) # 0.005
+surCOP(cop=P, bF, bG) # 0.005
 # What is the probability that either X or Y are less than
 # the 99th and 50th percentiles, respectively?
-duCOP(cop=P,FF,GG)  # 0.995
+duCOP(cop=P, FF, GG)  # 0.995
 # What is the probability that either X or Y are greater than
 # the 99th and 50th percentiles, respectively?
-coCOP(cop=P,bF,bG)  # 0.505
+coCOP(cop=P, bF, bG)  # 0.505
 
 \dontrun{
 # MAJOR EXAMPLE FOR QUICKLY MODIFYING INHERENT ASSOCIATION STRUCTURES
-p <- .5 # Reasonable strong positive association for the Raftery copula
+p <- 0.5 # Reasonable strong positive association for the Raftery copula
 "RFcop1" <- function(u,v, para) COP(u,v, cop=RFcop, para=para, reflect="1")
 "RFcop2" <- function(u,v, para) COP(u,v, cop=RFcop, para=para, reflect="2")
 "RFcop3" <- function(u,v, para) COP(u,v, cop=RFcop, para=para, reflect="3")
@@ -148,7 +150,28 @@ densityCOPplot(RFcop3, para=p, contour.col=1, deluv=d, ploton=FALSE)
 densityCOPplot(RFcop4, para=p, contour.col=1, deluv=d, ploton=FALSE)
 # Now some text into the converging tail to show the reflection used.
 text(-2,-2, "reflect=1", col=2); text(+2,+2, "reflect=2", col=2)
-text(+2,-2, "reflect=3", col=2); text(-2,+2, "reflect=4", col=2) #}
+text(+2,-2, "reflect=3", col=2); text(-2,+2, "reflect=4", col=2)
+
+# To show how the reflection can be alternatively specified and avoid in this case
+# making four Raferty functions, pass by a list para argument. Also, demonstrate
+# that cop1 --> cop and para1 --> para are the same in use of the function. This
+# provides some nomenclature parallel to the other compositing functions.
+densityCOPplot(COP, para=list(reflect=1, cop1=RFcop, para=p ), deluv=d,
+                          contour.col=1, drawlabels=FALSE)
+densityCOPplot(COP, para=list(reflect=2, cop= RFcop, para1=p), deluv=d,
+                          contour.col=2, drawlabels=FALSE, ploton=FALSE)
+densityCOPplot(COP, para=list(reflect=3, cop1=RFcop, para1=p), deluv=d,
+                          contour.col=3, drawlabels=FALSE, ploton=FALSE)
+densityCOPplot(COP, para=list(reflect=4, cop= RFcop, para=p ), deluv=d,
+                          contour.col=4, drawlabels=FALSE, ploton=FALSE) #}
+
+\dontrun{
+# Similar example to previous, but COP() can handle the reflection within a
+# parameter list ,and the reflect, being numeric here, is converted to
+# character internally.
+T12 <- CLcop(tau=0.67)$para # Kendall Tau of 0.67
+T12 <- list(cop=CLcop, para=T12, reflect=2) # reflected to upper tail dependency
+UV  <- simCOP(n=1000, cop=COP, para=T12) # }
 }
 \keyword{copula (formulas)}
 \keyword{copula operator}
@@ -156,4 +179,3 @@ text(+2,-2, "reflect=3", col=2); text(-2,+2, "reflect=4", col=2) #}
 \keyword{copula (conditional distribution)}
 \keyword{copula (conditional quantile function)}
 \keyword{copula (reflection)}
-

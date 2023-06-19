@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{AMHcop}
 \alias{AMHcop}
-\title{ The Ali--Mikhail--Haq Copula}
+\title{The Ali--Mikhail--Haq Copula}
 \description{
 The \emph{Ali--Mikhail--Haq copula} (Joe, 2014, p. 168) is
 \deqn{\mathbf{C}_{\Theta}(u,v) = \mathbf{AMH}(u,v) = \frac{uv}{1 - \Theta(1-u)(1-v)}\mbox{,}}
@@ -21,15 +21,15 @@ AMHcop(u, v, para=NULL, rho=NULL, tau=NULL, fit=c("rho", "tau"), ...)
   \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction;}
   \item{v}{Nonexceedance probability \eqn{v} in the \eqn{Y} direction;}
   \item{para}{A vector (single element) of parameters---the \eqn{\Theta} parameter of the copula. However, if a second parameter is present, it is treated as a logical to reverse the copula (\eqn{u + v - 1 + \mathbf{AMH}(1-u,1-v; \Theta)});}
-  \item{rho}{Optional Spearmans's Rho from which the parameter will be estimated and presence of \code{rho} trumps \code{tau};}
-  \item{tau}{Optional Kendall's Tau from which the parameter will be estimated;}
+  \item{rho}{Optional Spearman Rho from which the parameter will be estimated and presence of \code{rho} trumps \code{tau};}
+  \item{tau}{Optional Kendall Tau from which the parameter will be estimated;}
   \item{fit}{If \code{para}, \code{rho}, and \code{tau} are all \code{NULL}, the the \code{u} and \code{v} represent the sample. The measure of association by the \code{fit} declaration will be computed and the parameter estimated subsequently. The \code{fit} has not other utility than to trigger which measure of association is computed internally by the \code{cor} function in \R; and}
   \item{...}{Additional arguments to pass.}
 }
 \value{
   Value(s) for the copula are returned. Otherwise if \code{tau} is given, then the \eqn{\Theta} is computed and a \code{list} having
   \item{para}{The parameter \eqn{\Theta}, and}
-  \item{tau}{Kendall's tau.}
+  \item{tau}{Kendall Tau.}
 and if \code{para=NULL} and \code{tau=NULL}, then the values within \code{u} and \code{v} are used to compute Kendall Tau and then compute the parameter, and these are returned in the aforementioned list.
 }
 
@@ -52,11 +52,11 @@ It is seen that the numerical approaches yield quite similar results for small \
 The plot shows that the apparent differences are less than 1 part in 100 million---The \pkg{copBasic} computation is radically slower though, but \code{\link{rhoCOP}} was designed for generality of copula family.
 }
 \references{
-\enc{Mächler}{Machler}, Martin, 2014, Spearman's Rho for the AMH copula---A beautiful formula: copula package vignette, accessed on April 7, 2018 at \url{https://CRAN.R-project.org/package=copula} under the vignette \emph{rhoAMH-dilog.pdf}.
+\enc{Mächler}{Machler}, Martin, 2014, Spearman's Rho for the AMH copula---A beautiful formula: copula package vignette, accessed on April 7, 2018, at \url{https://CRAN.R-project.org/package=copula} under the vignette \emph{rhoAMH-dilog.pdf}.
 
 Pranesh, Kumar, 2010, Probability distributions and estimation of Ali--Mikhail--Haq copula: Applied Mathematical Sciences, v. 4, no. 14, p. 657--666.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{P}}
 }
 \examples{
@@ -67,10 +67,10 @@ A <- di*(1+t) - 2*log(1-t) + 2*t*log(1-t) - 3*t # Nelsen (2007, p. 172)
 rho <- 12*A/t^2 - 3    # 0.4070369
 rhoCOP(AMHcop, para=t) # 0.4070369
 sum(sapply(1:100,function(k) 3*t^k/choose(k+2,2)^2)) # Machler (2014)
-# 0.4070369 (see Note, very many tens of terms are needed) }
+# 0.4070369 (see Note section, very many tens of terms are needed) }
 
 \dontrun{
-layout(matrix(1:2,byrow=TRUE)) # Note Kendall Tau is same on reversal.
+layout(matrix(1:2, byrow=TRUE)) # Note: Kendall Tau is same on reversal.
 s <- 2; set.seed(s); nsim <- 10000
 UVn <- simCOP(nsim, cop=AMHcop, para=c(0.9, "FALSE" ), col=4)
 mtext("Normal definition [default]") # '2nd' parameter could be skipped

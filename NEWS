@@ -2,6 +2,54 @@
                 NEWS for R Package "copBasic" by W.H. Asquith
 --------------------------------------------------------------------------------------
 
+Changes in version 2.2.0 (2023-06-19)
+-  Minor grammar fixes in copBasic-package.Rd.
+-  Minor grammar fixes in taildepCOP.Rd and commenting out a print() in taildepCOP.R
+-  Cross reference to taildepCOP.Rd made within blomCOPss.Rd.
+-  Changes to COP.R with names(para) <- NULL on the returned copula value inheriting
+       the names of the parameter and added a reflect <- as.character(reflect) to
+       silently permit numerical values (as.integers) for match.arg() and expansion
+       of the Examples in COP.Rd. Some other adjustments in the handling of the para
+       when it is a list stemming from checks with composite2COP() in the bilmoms()
+       and kullCOP() functions. Added example showing the use of the reflection via
+       parameter list to the long-standing version of using specific copula
+       redefinition options.
+-  Changed bilmoms.R and kullCOP.R by adding a scrambling argument for the Sobol
+       sequences because randtoolbox::sobol() has disabled the scrambling for which
+       copBasic was using scrambling=3 (since version 2.0.2). The default for
+       copBasic is scrambling=0, which is the default for randtoolbox::sobol().
+       Testing of new operations then required some updates to the Examples in both
+       and then some iterative improvement in COP() as it handles para being a
+       parameter list.
+-  Changed doc/CITATION to use bibentry() as now required by the CRAN.
+-  For axes labels involving standard normal scores or variates, a standardization on
+       the phrase "STANDARD NORMAL VARIATE OF [U|V]" has been made in
+       densityCOPplot.R, EMPIRsim.R, joint.curvesCOP2.Rd, and simCOP.R.
+-  For densityCOPplot.R, added snv=TRUE argument with adjustment in how origins=TRUE
+       triggers only the origins iff the axes are snv.
+-  Tidy up of copBasic/srcall.R for auto directory change using
+       rstudioapi::getSourceEditorContext()$path. This function is not part of
+       "built" copBasic but only for the developer's use in testing.
+-  Extensive grammar editing of all the .Rd files from proofreading the user manual
+       and searches and replacings of various terms to build more consistency.
+-  Variable renamed from T to TT in diagCOP.R, isCOP.LTD, isCOP.RTI.R, isCOP.permsym.R,
+       isCOP.radsym.R, N4212cop.R, PLACKETTcop.R, PLACKETTsim.R, sectionCOP.R,
+       so to avoid visual conflict with how syntax markup appears. Such a situation
+       does not appear to extend to the letter F.
+-  simCOP.R received an as.integer(n) internally to ensure n is an integer to avoid
+       warning looking like "user requested n=50.5 simulations" from derCOPinv().
+-  Added breveCOP.R/Rd for adding permutation asymmetry to a coupla and this required
+       updates to copBasic-package.Rd, minor indexing changes, and cross-linking
+       with the other "compositing" coupla (glue, convex, and composite).
+-  Added s argument to mleCOP() with the overhaul too of the verbose and messaging
+       one can see by simulation the current iteration of the optimizing in U,V
+       plotting. This is mostly for teaching purposes but might be useful to many.
+-  Added an example in mleCOP.Rd concerning a test using the breveCOP() that has
+       been added for this version of the package. Demonstration then made of
+       estimation for a simple asymmetric addition to a copula (Plackett choosen).
+-  DESCRIPTION has "asymmetry extension" added to it to hint at breveCOP().
+
+
 Changes in version 2.1.9 (2022-08-30)
 -  Incorrect use of \overline in blomCOPss.Rd found during 2.1.8 CRAN submission.
 
@@ -66,11 +114,11 @@ Changes in version 2.1.6 (2021-08-30)
 
 
 Changes in version 2.1.5 (2020-03-22)
--  Extended RFcop() with a fit argument to toggle between Spearman Rho or Kendall Tau.
--  Extended COP.Rd with a example of taking a copula, such as the RFcop, that only has
-       positive association and reflecting it three different times to form alternative
-       association structures, including negative association, that its formula can not
-       natively attain.
+-  Extended RFcop() with fit argument to toggle between Spearman Rho or Kendall Tau.
+-  Extended COP.Rd with a example of taking a copula, such as the RFcop, that only
+       has positive association and reflecting it three different times to form
+       alternative association structures, including negative association, that its
+       formula can not natively attain.
 -  Audit of AMHcop.Rd found documentation problems in the formula for Spearman's Rho.
        Modified it and AMHcop() to show and respectively use the infinite series of
        Machler (2014). Added the support for rho argument along with a fit argument
@@ -80,9 +128,9 @@ Changes in version 2.1.5 (2020-03-22)
        --timings of the R CMD check were consulted. Should be a savings of less than
        one second overall, but trying to help the CRAN.
 -  gEVcop.Rd received a minor fix in the Examples.
--  Advancement: EMPIRgrid() was not passing ... to EMPIRcop(). 
+-  Advancement: EMPIRgrid() was not passing ... to EMPIRcop().
 -  Extended EMPIRgridderinv() and EMPIRgridderinv2() to accept a precomputed gridded
-       derivative in the dergrid argument. 
+       derivative in the dergrid argument.
 -  Extended EMPIRgridder() and EMPIRgridder2() to throw a warning about NaN along
        a row or column
          warning("found nonfinite values on row|column=",i," in grid derivative")
@@ -98,9 +146,9 @@ Changes in version 2.1.5 (2020-03-22)
 
 
 Changes in version 2.1.4 (2019-07-02)
--  Fixups in FGMcop.Rd (bad URL), HRcop.Rd (no encoding switch in the concept/keyword),
-       lcomCOP.Rd (bad URL), rhobevCOP.Rd (no commas in indexing or concepts) for 
-       release to CRAN.
+-  Fixups in FGMcop.Rd (bad URL), HRcop.Rd (no encoding switch in the concept and
+       keyword, lcomCOP.Rd (bad URL), rhobevCOP.Rd (no commas in indexing or
+       concepts) for release to CRAN.
 
 
 Changes in version 2.1.3 (2019-07-01)
@@ -120,11 +168,11 @@ Changes in version 2.1.3 (2019-07-01)
        Also, "F" was being used as the nonexceedance probability but R syntax
        highlighting treats as FALSE, so switch made to FF. By association, the
        EMPIRqua.regress()/EMPIRqua.regress2() also need the ties="ordered" in their
-       use of the approx() on the inversion of the gridded derivative of the empirical 
+       use of the approx() on the inversion of the gridded derivative of the empirical
        copula.
--  Added an as.list() check to the empirical grid argument in both pairs of 
+-  Added an as.list() check to the empirical grid argument in both pairs of
        EMPIRgridder()/EMPIRgridder2() and EMPIRgridderinv()/EMPIRgridderinv2().
--  BUG FIX: Through an audit of EMPIRcop.Rd examples, which then found that the 
+-  BUG FIX: Through an audit of EMPIRcop.Rd examples, which then found that the
        Bernstein argument to pass through lower-level dispatch to level.curvesCOP()
        did not work. The ability for the para argument in EMPIRcop() now properly
        supports the ability to trigger ctype and the bernstein arguments through
@@ -137,9 +185,9 @@ Changes in version 2.1.2 (2019-01-08)
 -  Added m=NA argument to aicCOP() and bicCOP() to pass the number of parameters
        of the copula. Trivial to compute the number from standard copulas,
        the problem is how to handle and count on the fly the number of parameters
-       for the various the compositing types. 
+       for the various the compositing types.
 -  Added warning of missing alpha or beta parameters in composite1COP and
-       composite2COP. Small speed it, but debugging when these are not given 
+       composite2COP. Small speed it, but debugging when these are not given
        (forgotten) becomes complicated. (See #3 and #4)
 -  Added warning of missing kappa or gamma parameters in composite3COP.
        (See #2 and #4)
@@ -149,14 +197,14 @@ Changes in version 2.1.2 (2019-01-08)
        function. Examples are provided. The tEVcop() is deemed useful because
        of interest in semi-exhaustive EV-copula study with the easy addition of
        a 2-parameter copula without triggering convex or compositing. However,
-       some literature indicates that the form itself with two parameters is 
+       some literature indicates that the form itself with two parameters is
        not really more expressive than the GHcop, GLcop, and HRcop.
 -  Feature fix: COP.R had a weakness when parameters as a list are passed in
        its handling of "cop" versus "cop1", "cop2", etc.
 -  BUG FIX: Vectorization in convexCOP.R was not fully working for some
        operations on composited copulas.
 -  BUX FIX: isCOP.permsym() and isCOP.radsym() both had dispatching problems
-       when composited copulas were involved in "cop" being "matched by 
+       when composited copulas were involved in "cop" being "matched by
        multiple arguments" error in R. Had this always been a problem or had
        R itself become more restricted? The fix was to insert a COP() call
        as opposed cop() call (the argument named cop).
@@ -171,7 +219,7 @@ Changes in version 2.1.2 (2019-01-08)
        sample nustar, which prompted the overhaul. *** No users have reported
        any problems with the older scheme, but it needs to be stated that no
        users are actually known to be using nuskew() and nustar(). ***
--  Added only.bilmoms argument to bilmoms() to skip L-comoment computation, 
+-  Added only bilmoms argument to bilmoms() to skip L-comoment computation,
        in order to speed execution.
 -  Added lcomCOP() based on integrate(integrate()) nest for computation of the
        bivariate L-moments and then conversion to the L-comoments. This is much
@@ -190,7 +238,7 @@ Changes in version 2.1.2 (2019-01-08)
        be consistent with other functions of the package.
 -  Added the Raftery copula as RFcop.
 -  GLcop() extended to a two-parameter version as a lower-extreme value
-       GL_LEV and related extension to another two-parameter version as the 
+       GL_LEV and related extension to another two-parameter version as the
        "gamma-power mixture" of the Galambos. The two-parameter version does not
        seem materially broader than the one-parameter Galambos (see Note).
        The gamma-power mixture is though a different copula.
@@ -200,7 +248,7 @@ Changes in version 2.1.1 (2018-12-01)
 -  Enhancement: Changed from sapply to u*v on return. This dates for a long
        time back when the vectorization in R was not idiomatic for the author.
 -  Added aicCOP(), bicCOP(), and rmseCOP(): a triad of similar goodness of fits.
--  Minor warning() editing in mleCOP.Rd when alerting user to use interval 
+-  Minor warning() editing in mleCOP.Rd when alerting user to use interval
        search for one-parameter copulas.
 -  Standardized all *.Rd files to utf8 encoding declaration whether needed or no.
 
@@ -229,7 +277,7 @@ Changes in version 2.1.0 (2018-05-07)
 -   Enhancement: Added some parsing of the ... to simCOP on which the delu and
        derdir arguments are identified, used as needed, and then stripped before
        the calls to plot() or points() to avoid "not a graphical parameter"
-       warnings. This has been an issue for nearly 10 years but finally WHA 
+       warnings. This has been an issue for nearly 10 years but finally WHA
        sat down and figured out how to deal with it.
 -   Enhancement: Added a sign test on the objective function in derCOPinv and
        derCOPinv2. This will cut down on repeated warnings during simulations
@@ -238,7 +286,7 @@ Changes in version 2.1.0 (2018-05-07)
 -   BUG FIX: rCOP() was not forwarding the sample size on down to simCOPmicro().
 -   Added the contour.lwd argument to densityCOPplot().
 -   BUG FIX: composite1COP() composite2COP() were not passing ... to COP().
-       This has not actually been a problem because most of the practical 
+       This has not actually been a problem because most of the practical
        applications of copula herein are not often called with other arguments.
        However, composite3COP() was passing ... down to composite2COP().
 -   Added FGMcop() for the Farlie-Gumbel-Morgenstern copula, which is actually
@@ -275,7 +323,7 @@ Changes in version 2.0.5 (2017-02-24)
 
 
 Changes in version 2.0.4 (2016-06-03)
--  Microchanges 2.0.3 to pass CRAN importation.
+-   Microchanges 2.0.3 to pass CRAN importation.
 
 
 Changes in version 2.0.3 (2016-05-31)
@@ -421,7 +469,7 @@ Changes in version 1.7.0 (2015-01-03)
 -   Fixed spelling of Roger Nelsen's last name in all Rd files (sorry Roger).
 -   Added another example to copBasic-package.Rd.
 -   Added FRECHETcop() and added utf-8 encoding to those Rd files requiring
-      the dicritic on Frechet: GHcop.Rd, M.Rd, PlackettPlackettABKGtest.Rd,
+      the diacritic on Frechet: GHcop.Rd, M.Rd, PlackettPlackettABKGtest.Rd,
       PlackettPlackettNP.Rd, and W.Rd.
 -  Enhanced warning message in tauCOP() to point out that some failure of
       numerical integration can be (often is?) attributable to singularity
@@ -518,7 +566,7 @@ Changes in version 1.5.2 (2012-07-30)
 
 Changes in version 1.5.1 (2011-11-14)
 -   Added data/PlackettPlackettABKGtest.RData and
-      man/PlackettPlackettABKGtest.Rd.
+           man/PlackettPlackettABKGtest.Rd.
 -   Removed lcomoms2.cop2parameter.R/Rd.
 -   Added lcomoms2.ABcop2parameter.R/Rd (replaces lcomoms2.cop2parameter.R/Rd).
 -   Added lcomoms2.ABKGcop2parameter.R/Rd.
@@ -552,6 +600,7 @@ Changes in version 1.5.1 (2011-11-14)
       derCOPinv2().
 -  Enhancement to derCOP() and derCOP2() by changing derivative direction
       if near the 0 or 1 boundaries.
+
 
 Changes in version 1.5.0 (2011-08-31)
 -   Enhancement on derCOPinv.R when a solution is unbounded in uniroot()
@@ -619,9 +668,9 @@ Note: Joe's 2-p GHcop does appear different from Brahimi et. al (2015) version o
 suggests that perhaps they are not, but mathematical checking has not been made
 as of January 2019]).
 
-Add the trimmed L-comoments? 
+Add the trimmed L-comoments?
 
-EMPIRcopdf() can be replaced by EMPIRcop() as the later is fully 
+EMPIRcopdf() can be replaced by EMPIRcop() as the later is fully
   vectorized itself and makes presumably a lesser impact on memory (faster)?
 
 stabtaildepf.Rd --- Need to audit stabtaildepf.Rd and complete documentation.

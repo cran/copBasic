@@ -59,7 +59,7 @@ function(n=100, empgrid=NULL, kumaraswamy=FALSE, na.rm=TRUE, keept=FALSE,
   if(ploton) {
      if(snv) {
         plot(z$U, z$V, type="n",
-             xlab="STANDARD NORMAL SCORE FOR U", ylab="STANDARD NORMAL SCORE FOR V")
+             xlab="STANDARD NORMAL VARIATE OF U", ylab="STANDARD NORMAL SCORE VARIATE OF U")
      } else {
         plot(NA, NA, type="n", xlim=c(0,1), ylim=c(0,1),
              xlab="U, NONEXCEEDANCE PROBABILITY", ylab="V, NONEXCEEDANCE PROBABILITY")

@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{lcomoms2.ABKGcop2parameter}
 \alias{lcomoms2.ABKGcop2parameter}
-\title{ Convert L-comoments to Parameters of Alpha-Beta-Kappa-Gamma Compositions of Two One-Parameter Copulas }
+\title{Convert L-comoments to Parameters of Alpha-Beta-Kappa-Gamma Compositions of Two One-Parameter Copulas}
 \description{
 \emph{EXPERIMENTAL}---This function converts the \emph{L-comoments} of a bivariate sample to the four parameters of a composition of two one-parameter copulas. Critical inputs are of course the first three dimensionless L-comoments: \emph{L-correlation}, \emph{L-coskew}, and \emph{L-cokurtosis}. The most complex input is the \code{solutionenvir}, which is an \code{environment} containing arbitrarily long, but individual tables, of L-comoment and parameter pairings. These pairings could be computed from the examples in \code{\link{simcompositeCOP}}.
 
@@ -49,7 +49,7 @@ Asquith, W.H., 2011, Distributional analysis with L-moment statistics using the 
 
 Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in Nature---An approach using copulas: Springer, 289 p.
 }
-\author{ W.H. Asquith }
+\author{W.H. Asquith}
 \seealso{\code{\link{simCOP}}, \code{\link{simcompositeCOP}}, \code{\link{composite3COP}}}
 \examples{
 \dontrun{

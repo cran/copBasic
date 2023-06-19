@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{diagCOP}
 \alias{diagCOP}
-\title{ The Diagonals of a Copula }
+\title{The Diagonals of a Copula}
 \description{
 Compute the \emph{primary diagonal} or alternatively the \emph{secondary diagonal}  (Nelsen, 2006, pp. 12 and 16) of copula \eqn{\mathbf{C}(u,v)}.
 The primary diagonal is defined as
@@ -36,7 +36,7 @@ Durante, F., and Sempi, C., 2015, Principles of copula theory: Boca Raton, CRC P
 
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{diagCOPatf}}, \code{\link{COP}}, \code{\link{sectionCOP}}}
 \examples{
 \dontrun{

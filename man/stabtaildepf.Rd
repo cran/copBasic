@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{stabtaildepf}
 \alias{stabtaildepf}
-\title{ Estimation of the Stable Tail Dependence Function }
+\title{Estimation of the Stable Tail Dependence Function}
 \description{
 Kiriliouk \emph{et al.} (2016, pp. 364--366) describe a technique for estimation of a \emph{empirical stable tail dependence function} for a random sample. The function is defined as
 \deqn{\widehat{l}(x,y) = \frac{1}{k}\sum_{i=1}^n \mathbf{1}\bigl[ R_{i,x,n} > n + 1 - kx \mbox{\ or\ } R_{i,y,n} > n + 1 - ky \bigr]\mbox{,}}
@@ -14,18 +14,18 @@ where \eqn{\widehat{p}_{3,i}} are the weights for the \emph{maximum Euclidean li
 The visualization of \eqn{l(x,y)} commences by setting a constant (\eqn{c > 0}) as \eqn{c_i \in 0.2,0.4,0.6,0.8} (say). The \eqn{y} are solved for \eqn{x \in [0,\ldots,c_i]} through the \eqn{l(x,y)} for each of the \eqn{c_i}. Each solution set constitutes a \emph{level set} for the stable tail dependence function. If the bivariate data have \emph{asymptotic independence} (to the right), then a level set or the level sets for all the \eqn{c} are equal to the lines \eqn{x + y = c}. Conversely, if the bivariate data have \emph{asymptotic dependence} (to the right), then the level sets will make 90-degree bends for \eqn{\mathrm{max}(x,y) = c}.
 }
 \usage{
-stabtaildepf(uv=NULL, xy=NULL, k=function(n) as.integer(0.5*n),
-             levelset=TRUE, ploton=TRUE, title=TRUE, delu=0.01, smooth=FALSE, ...)
+stabtaildepf(uv=NULL, xy=NULL, k=function(n) as.integer(0.5*n), levelset=TRUE,
+             ploton=TRUE, title=TRUE, delu=0.01, smooth=FALSE, ...)
 }
 \arguments{
   \item{uv}{An \R \code{data.frame} of \eqn{u} and \eqn{v} nonexceedance probabilities in the respective \eqn{X} (horizontal) and \eqn{Y} (vertical) directions. Note that \code{rank()}s are called on these so strictly speaking this need not be as nonexceedance probabilities. This is not an optional argument;}
   \item{xy}{A vector of the scalar coordinates \eqn{(x,y)}, which are \dQuote{the relative distances to the upper endpoints of [these respective] variables} (Kiriliouk \emph{et al.}, 2016, p. 356). This is a major point of nomenclature confusion. If these are in probability units, they are \emph{exceedance probabilities}. Though tested for \code{NULL} and a warning issued, these can be \code{NULL} only if \code{levelset=TRUE} but can be set to \code{xy=NA} if \code{levelset=FALSE} and \code{smooth=TRUE} (see discussion in \bold{Note});}
   \item{k}{The \eqn{k} for both the \eqn{\widehat{l}(x,y)} and \eqn{\widehat{l}_{CF}}, though the effect of \eqn{k} might not quite be the same for each. The default seems to work fairly well;}
-  \item{levelset}{A logical triggering the construction of the level sets for \eqn{c} \eqn{=} \code{seq(0.1,1,} \code{by=0.1)};}
+  \item{levelset}{A logical triggering the construction of the level sets for \eqn{c} \eqn{=} \code{seq(0.1,} \code{1,} \code{by=0.1)};}
   \item{ploton}{A logical to call the \code{plot()} function;}
   \item{title}{A logical to trigger a title for the plot if \code{ploton=TRUE};}
   \item{delu}{The \eqn{\Delta x} for a sequence of \eqn{x} \eqn{=} \code{seq(0,c,by=delu)};}
-  \item{smooth}{A logical controlling whether \eqn{\widehat{l}(x,y)} or the \enc{Capéraà}{Caperaa}--\enc{Fougères}{Fougeres} smooth function \eqn{\widehat{l}_{CF}(x,y)} is used;}
+  \item{smooth}{A logical controlling whether \eqn{\widehat{l}(x,y)} or the \enc{Capéraà}{Caperaa}--\enc{Fougères}{Fougeres} smooth function \eqn{\widehat{l}_{CF}(x,y)} is used; and}
   \item{...}{Additional arguments to pass.}
 }
 \value{
@@ -39,10 +39,10 @@ If \code{levelset=FALSE}, then \code{xy} is required to hold the \eqn{(x,y)} coo
   n <- 2000 # very CPU intensive this and the next code snippet
   UV <- simCOP(n=n, cop=N4212cop, para=pi); k <- 1:n
   lhat <- sapply(k, function(j)
-                 stabtaildepf(xy=c(.1,.1), uv=UV, levelset=FALSE, k=j))
+                 stabtaildepf(xy=c(0.1, 0.1), uv=UV, levelset=FALSE, k=j))
   plot(k, lhat, xlab="k in [1,n]", cex=0.8, lwd=0.8, type="b",
                 ylab="Empirical Stable Tail Dependence Function")
-  mtext("Empirical function in the 0.10x0.10 Pr square (upper left corner)")
+  mtext("Empirical function in the 0.10 x 0.10 Pr square (upper left corner)")
 }
 
 The \R \code{list} that can be used to compute \eqn{\widehat{l}_{CF}(x,y)} is retrievable by
@@ -53,21 +53,23 @@ The \R \code{list} that can be used to compute \eqn{\widehat{l}_{CF}(x,y)} is re
      2*sum(Hlis$p3 * sapply(1:Hlis$Nn, function(i) {
                  max(c(Hlis$Wn[i]*x, (1-Hlis$Wn[i])*y)) }))
   })
-  lines(k, lhatCF, col=2)
+  lines(k, lhatCF, col="red")
 }
-The smooth line (red) of \code{lhatCF} is somewhat close to the limiting behavior of \code{lhat}. It is problematic to determine computational consistency. Mathematical consistency with Kiriliouk \emph{et al.} (2016) appears to be achieved.  The \bold{Examples} section TODO.
+The smooth line (red) of \code{lhatCF} is somewhat closer to the limiting behavior of \code{lhat}, but it is problematic to determine computational consistency. Mathematical consistency with Kiriliouk \emph{et al.} (2016) appears to be achieved. The \bold{Examples} section TODO.
 }
 \references{
+Beirlant, J., Escobar-Bach, M., Goegebeur, Y., Guillou, A., 2016, Bias-corrected estimation of stable tail dependence function: Journal Multivariate Analysis, v. 143, pp. 453--466, \doi{10.1016/j.jmva.2015.10.006}.
+
 Kiriliouk, Anna, Segers, Johan, \enc{Warchoł}{Warchol}, \enc{Michał}{Michal}, 2016, Nonparameteric estimation of extremal dependence: \emph{in} Extreme Value Modeling and Risk Analysis, D.K. Dey and Jun Yan \emph{eds.}, Boca Raton, FL, CRC Press, ISBN 978--1--4987--0129--7.
 }
-\author{William Asquith \email{william.asquith@ttu.edu} }
-\seealso{ \code{\link{psepolar}}, \code{\link{spectralmeas}}
+\author{William Asquith \email{william.asquith@ttu.edu}}
+\seealso{\code{\link{psepolar}}, \code{\link{spectralmeas}}
 }
 \examples{
 \dontrun{
 UV <- simCOP(n=1200, cop=GLcop, para=2.1) # Galambos copula
 tmp1 <- stabtaildepf(UV) # the lines are curves (strong tail dependence)
-tmp2 <- stabtaildepf(UV, smooth=TRUE, ploton=FALSE, col=2) # }
+tmp2 <- stabtaildepf(UV, smooth=TRUE, ploton=FALSE, col="red") #}
 }
 \keyword{stable tail dependence function}
 \keyword{tail dependence}

@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{isCOP.PQD}
 \alias{isCOP.PQD}
-\title{ The Positively Quadrant Dependency State of a Copula }
+\title{The Positively Quadrant Dependency State of a Copula}
 \description{
 Numerically determine the global property of the \emph{positively quadrant dependency} (PQD) characteristic of a copula as described by Nelsen (2006, p. 188). The random variables \eqn{X} and \eqn{Y} are PQD if for all \eqn{(x,y)} in \eqn{\mathcal{R}^2} when
 \eqn{H(x,y) \ge F(x)G(x)} for all \eqn{(x,y)} in \eqn{\mathcal{R}^2}
@@ -67,7 +67,7 @@ which in the former only returns the global PQD and the later returns an \R \cod
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{blomCOP}}, \code{\link{giniCOP}}, \code{\link{rhoCOP}}, \code{\link{tauCOP}}, \code{\link{isCOP.LTD}}, \code{\link{isCOP.RTI}}}
 \examples{
 \dontrun{

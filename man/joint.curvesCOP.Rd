@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{joint.curvesCOP}
 \alias{joint.curvesCOP}
-\title{ Compute Coordinates of the Marginal Probabilities given joint AND or OR Probabilities }
+\title{Compute Coordinates of the Marginal Probabilities given joint AND or OR Probabilities}
 \description{
 Compute the coordinates of the bivariate marginal probabilities for variables \eqn{U} and \eqn{V} given selected probabilities levels \eqn{t} for a copula \eqn{\mathbf{C}(u,v)} for \eqn{v} with respect to \eqn{u}. For the case of a \bold{joint and} probability, symbolically the solution is
 \deqn{\mathrm{Pr}[U \le v,\ V \le v] = t = \mathbf{C}(u,v)\mbox{,}}
@@ -51,7 +51,7 @@ The \emph{Gumbel--Hougaard} copula (\code{\link{GHcop}}) and a reversed Gumbel--
 }
 The code also computed the \emph{Kendall Tau} (\code{\link{tauCOP}}) and \emph{Nu-Skew} (\code{\link{nuskewCOP}}) and the results shown. The code finishes with a simulation by \code{\link{simCOP}} of the copula composition just for reference.
 
-Next, we compute and plot the joint probability curves. The \code{tol}erance for the \code{uniroot} calls is reset from \R's defaults because slight wooble in the numerical solutions exists otherwise.  The \code{AND} and \code{OR} \code{lists} each provide \code{data.frame}s from which successive graphic calls plot the lines. The second \code{plot()} call is commented out so that both sets of joint probability curves are drawn on the same plot.
+Next, we compute and plot the joint probability curves. The \code{tol}erance for the \code{uniroot} calls is reset from the \R defaults because slight wooble in the numerical solutions exists otherwise.  The \code{AND} and \code{OR} \code{lists} each provide \code{data.frame}s from which successive graphic calls plot the lines. The second \code{plot()} call is commented out so that both sets of joint probability curves are drawn on the same plot.
 \preformatted{
   AND <- joint.curvesCOP(cop=composite2COP, para=para, type="and",
                          divisor=1000, tol=.Machine$double.eps)
@@ -76,7 +76,7 @@ Next, we compute and plot the joint probability curves. The \code{tol}erance for
   abline(0,1, lty=2) # dash line is simply and equal value line
 }
 
-\emph{Black Curves}---The black curves represent the nonexceedance \bold{joint and} condition. The black curves are a form of \emph{level curve} (see \code{\link{level.curvesCOP}}), but it seems appropriate to not name them as such because Nelsen's examples and others usually have the level curves on a even step interval of probability such as 10-percent level curves. The complement of nonexceedance \bold{joint and} is the probability level that either or both random variables (say \dQuote{hazards}) \eqn{U} or \eqn{V} causes \dQuote{failure} at the respective return period.
+\emph{Black Curves}---The black curves represent the nonexceedance \bold{joint and} condition. The black curves are a form of \emph{level curve} (see \code{\link{level.curvesCOP}}), but it seems appropriate to not name them as such because Nelsen's examples and others usually have the level curves on an even step interval of probability such as 10-percent level curves. The complement of nonexceedance \bold{joint and} is the probability level that either or both random variables (say \dQuote{hazards}) \eqn{U} or \eqn{V} causes \dQuote{failure} at the respective return period.
 
 \emph{Red Curves}---The red curves represent the nonexceedance \bold{joint or} (inclusive) condition. The complement of nonexceedance \bold{joint or} (inclusive) is the probability level that both random variables (say \dQuote{hazards}) \eqn{U} or \eqn{V} must simultaneously (or dually) occur for \dQuote{failure} at the respective return period. Note that there is obviously asymmetry in the \bold{joint or} curves.
 

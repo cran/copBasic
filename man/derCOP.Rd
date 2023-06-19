@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{derCOP}
 \alias{derCOP}
-\title{ Numerical Derivative of a Copula for V with respect to U }
+\title{Numerical Derivative of a Copula for V with respect to U}
 \description{
 Compute the numerical partial derivative of a copula, which is a \emph{conditional distribution function}, according to Nelsen (2006, pp. 13, 40--41) with respect to \eqn{u}:
 
@@ -43,10 +43,10 @@ A known caveat of the current implementation of the copula derivative is that th
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{derCOPinv}}, \code{\link{derCOP2}}}
 \examples{
-derCOP(cop=W,0.4,0.6); derCOP(cop=P,0.4,0.6); derCOP(cop=M,0.4,0.6)
+derCOP(cop=W, 0.4, 0.6); derCOP(cop=P, 0.4, 0.6); derCOP(cop=M, 0.4, 0.6)
 
 lft <- derCOP(cop=PSP,   0.4, 0.6, derdir="left"  )
 rgt <- derCOP(cop=PSP,   0.4, 0.6, derdir="right" )

@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{isCOP.LTD}
 \alias{isCOP.LTD}
-\title{ Is a Copula Left-Tail Decreasing }
+\title{Is a Copula Left-Tail Decreasing}
 \description{
 Numerically set a logical whether a copula is \emph{left-tail decreasing} (LTD) as described by Nelsen (2006, pp. 192--193) and Salvadori \emph{et al.} (2007, p. 222).  A copula \eqn{\mathbf{C}(u,v)} is left-tail decreasing for \eqn{\mathrm{LTD}(V{\mid}U)} if and only if for any \eqn{v \in [0,1]} that the following holds
 \deqn{\frac{\delta \mathbf{C}(u,v)}{\delta u} \le \frac{\mathbf{C}(u,v)}{u}}
@@ -31,7 +31,7 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 
 Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in nature---An approach using copulas: Dordrecht, Netherlands, Springer, Water Science and Technology Library 56, 292 p.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{isCOP.RTI}}, \code{\link{isCOP.PQD}}}
 \examples{
 \dontrun{

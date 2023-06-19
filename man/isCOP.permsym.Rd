@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{isCOP.permsym}
 \alias{isCOP.permsym}
-\title{ Is a Copula Permutation Symmetric }
+\title{Is a Copula Permutation Symmetric}
 \description{
 Numerically set a logical whether a copula is \emph{symmetric} (Nelsen, 2006, p. 38), or has \emph{exchangable} variables, or is \emph{permutation symmetric} (Joe, 2014, p. 66). A copula \eqn{\mathbf{C}(u,v)} is permutation symmetric if and only if for any \eqn{\{u,v\} \in [0,1]} the following holds
  \deqn{\mathbf{C}(u,v) = \mathbf{C}(v, u)\mbox{.}}
@@ -25,8 +25,8 @@ Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
-\author{ W.H. Asquith}
-\seealso{ \code{\link{isCOP.radsym}} }
+\author{W.H. Asquith}
+\seealso{\code{\link{isCOP.radsym}}}
 \examples{
 \dontrun{
 isCOP.permsym(cop=GHcop, para=1.3) # TRUE}

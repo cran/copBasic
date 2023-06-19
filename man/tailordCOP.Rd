@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{tailordCOP}
 \alias{tailordCOP}
-\title{ The Lower- and Upper-Tail Orders of a Copula }
+\title{The Lower- and Upper-Tail Orders of a Copula}
 \description{
 Compute the \emph{lower-} and \emph{upper-tail orders} (if they exist), respectively, of a copula \eqn{\mathbf{C}(u,v)} according to Joe (2014, pp. 67--70). The \emph{tail order} is a concept for the strength of dependence in the joint tails of a multivariate distribution. The opposing tails can be compared to assess tail order or \emph{reflection symmetry} (term by Joe (2014) for Nelsen's (2006, p. 36) term \emph{radial symmetry}). Joe (2014) provides extensively analytical details but sufficient for the \pkg{copBasic} package, the tail orders can be numerically explored.
 
@@ -21,7 +21,7 @@ Joe (2014) provides additional properties:
 \describe{
 \item{\eqn{\bullet}}{\eqn{\kappa_L = \kappa_U = d} for the \eqn{d}-dimensional \emph{independence copula} (\code{\link{P}}; \emph{e.g.} \code{tailordCOP(cop=P)});}
 \item{\eqn{\bullet}}{It is not possible for \eqn{\kappa_L < 1} or \eqn{\kappa_U < 1} but each can be \eqn{> 1} for a \eqn{\mathbf{C}(u,v)} having some negative dependence (\emph{e.g.} \code{tailordCOP(cop=PLACKETTcop, para=0.2)}; see \code{\link{PLACKETTcop}}); and}
-\item{\eqn{\bullet}}{For the bivariate \emph{\enc{Fréchet}{Frechet}--Hoeffding lower bound copula} (\code{\link{W}}; \emph{countermonotonicity copula}) the \eqn{\kappa_L = \kappa_U} and can be considered \eqn{+\infty}. (A special trap in the \code{tailordCOP} provides consistency on \code{\link{W}} but does not test that the copula is actually that function itself.)}
+\item{\eqn{\bullet}}{For the bivariate \emph{\enc{Fréchet}{Frechet}--Hoeffding lower-bound copula} (\code{\link{W}}; \emph{countermonotonicity copula}) the \eqn{\kappa_L = \kappa_U} and can be considered \eqn{+\infty}. (A special trap in the \code{tailordCOP} provides consistency on \code{\link{W}} but does not test that the copula is actually that function itself.)}
 }
 }
 \usage{
@@ -49,7 +49,7 @@ Users are encouraged to plot the results and further verify whether the converge
 \references{
 Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{COP}}, \code{\link{tailconCOP}}, \code{\link{taildepCOP}}}
 \examples{
 \dontrun{

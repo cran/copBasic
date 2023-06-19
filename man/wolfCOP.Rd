@@ -1,13 +1,13 @@
 \encoding{utf8}
 \name{wolfCOP}
 \alias{wolfCOP}
-\title{ The Schweizer and Wolff Sigma of a Copula }
+\title{The Schweizer and Wolff Sigma of a Copula}
 \description{
 Compute the measure of association known as \emph{Schweizer--Wolff Sigma} \eqn{\sigma_\mathbf{C}} of a copula according to Nelsen (2006, p. 209) by
 
 \deqn{\sigma_\mathbf{C} = 12\int\!\!\int_{\mathcal{I}^2} |\mathbf{C}(u,v) - uv|\,\mathrm{d}u\mathrm{d}v\mbox{,}}
 
-which is \eqn{0 \le \sigma_\mathbf{C} \le 1}. It is obvious that this measure of association, without the positive sign restriction, is similar to the following form of \emph{Spearman's Rho} (\code{\link{rhoCOP}}) of a copula:
+which is \eqn{0 \le \sigma_\mathbf{C} \le 1}. It is obvious that this measure of association, without the positive sign restriction, is similar to the following form of \emph{Spearman Rho} (\code{\link{rhoCOP}}) of a copula:
 
 \deqn{\rho_\mathbf{C} = 12\int\!\!\int_{\mathcal{I}^2} [\mathbf{C}(u,v) - uv]\,\mathrm{d}u\mathrm{d}v\mbox{.}}
 
@@ -38,8 +38,8 @@ where \eqn{\hat{\mathbf{C}}_n} is the simplest empirical copula of
 
 An extended example is informative. First declare a composite of two different Plackett copulas (\code{\link{PLcop}}) and simulate a few hundred values:
 \preformatted{
-   para <- list(cop1=PLcop, cop2=PLcop, para1=0.145, para2=21.9,
-                alpha=0.81,       beta=0.22)
+   para <- list(cop1 =PLcop,  cop2=PLcop,
+                para1=0.145, para2=21.9,  alpha=0.81, beta=0.22)
    D <- simCOP(n=300, cop=composite2COP, para=para,
                cex=0.5, col=rgb(0,0,0,0.2), pch=16)
 }
@@ -61,11 +61,11 @@ In fact, the output above also shows Schweizer--Wolff Sigma to be larger than Bl
 }
 }
 \references{
-\enc{Póczos}{Poczos}, \enc{Barnabás}{Barnabas}, Krishner, Sergey, \enc{Pál}{Pal}, \enc{Szepesvári}{Szepesvari}, Csaba, and Schneider, Jeff, 2015, Robust nonparametric copula based dependence estimators: Accessed on August 11, 2015 at \url{https://www.cs.cmu.edu/~bapoczos/articles/poczos11nipscopula.pdf}.
+\enc{Póczos}{Poczos}, \enc{Barnabás}{Barnabas}, Krishner, Sergey, \enc{Pál}{Pal}, \enc{Szepesvári}{Szepesvari}, Csaba, and Schneider, Jeff, 2015, Robust nonparametric copula based dependence estimators, accessed on August 11, 2015, at \url{https://www.cs.cmu.edu/~bapoczos/articles/poczos11nipscopula.pdf}.
 
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{blomCOP}}, \code{\link{footCOP}}, \code{\link{giniCOP}},
          \code{\link{hoefCOP}}, \code{\link{rhoCOP}}, \code{\link{tauCOP}},
          \code{\link{joeskewCOP}}, \code{\link{uvlmoms}}
@@ -77,21 +77,21 @@ wolfCOP(cop=PSP) # 0.4784176}
 \dontrun{
 n <- 1000; UV <- simCOP(n=n, cop=N4212cop, para=7.53, graphics=FALSE)
 wolfCOP(cop=N4212cop, para=7.53) # 0.9884666 (theoretical)
-wolfCOP(para=UV, as.sample=TRUE) # 0.9884174 (sample)}
+wolfCOP(para=UV, as.sample=TRUE) # 0.9884174 (sample) }
 
 \dontrun{
 # Redo D from Note section above
-para <- list(cop1=PLcop, cop2=PLcop, para1=0.145, para2=21.9,
-             alpha=0.81,       beta=0.22)
+para <- list(cop1 =PLcop,  cop2=PLcop,
+             para1=0.145, para2=21.9,  alpha=0.81, beta=0.22)
 D <- simCOP(n=300, cop=composite2COP, para=para,
-            cex=0.5, col=rgb(0,0,0,0.2), pch=16)
+            cex=0.5, col=rgb(0, 0, 0, 0.2), pch=16)
 
 the.grid <- EMPIRgrid(para=D)
 the.persp <- persp(the.grid$empcop, theta=-25, phi=20, shade=TRUE,
                    xlab="U VARIABLE", ylab="V VARIABLE", zlab="COPULA C(u,v)")
 empcop <- EMPIRcopdf(para=D) # data.frame of all points
 points(trans3d(empcop$u, empcop$v, empcop$empcop, the.persp),  cex=0.7,
-       col=rgb(0,1-sqrt(empcop$empcop),1,sqrt(empcop$empcop)), pch=16)
+       col=rgb(0, 1-sqrt(empcop$empcop), 1, sqrt(empcop$empcop)), pch=16)
 points(trans3d(empcop$u, empcop$v, empcop$empcop, the.persp),
        col=PQD$local.PQD+1, pch=1)
 
@@ -110,7 +110,7 @@ the.persp <- persp(RHO, theta=-25, phi=20, shade=TRUE, cex=0.5,
 mtext("Copula delta: Integrand of Spearman Rho", cex=0.5)
 the.persp <- persp(SIG, theta=-25, phi=20, shade=TRUE, cex=0.5,
                xlab="U VARIABLE", ylab="V VARIABLE", zlab="COPULA C(u,v)")
-mtext("abs(Copula delta): Integrand of Schweizer-Wolff Sigma", cex=0.5)# }
+mtext("abs(Copula delta): Integrand of Schweizer-Wolff Sigma", cex=0.5) #}
 }
 \keyword{copula (characteristics)}
 \keyword{copula (properties)}

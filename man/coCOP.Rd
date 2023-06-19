@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{coCOP}
 \alias{coCOP}
-\title{ The Co-Copula Function }
+\title{The Co-Copula Function}
 \description{
 Compute the \emph{co-copula (function)} from a copula (Nelsen, 2006, pp. 33--34), which is defined as
 
@@ -13,7 +13,7 @@ The co-copula is a function and not in itself a copula. Some rules of copulas me
 
 The function \code{coCOP} gives \dQuote{risk} against failure if failure is defined as either hazard source \eqn{U} or \eqn{V} occuring by themselves or if both occurred at the same time. Expressing this in terms of an annual probability of occurrence (\eqn{q}), one has
 \deqn{q = 1 - \mathrm{Pr}[U > u \mathrm{\ or\ } V > v] =  \mathbf{C}^{\star}(u',v') \mbox{\ or}}
-in \R code \code{q <- coCOP(u,v, exceedance=FALSE, ...)}. So in yet other words and as a mnemonic: \emph{A co-copula is the probabililty of exceedance if the hazard sources \bold{collaborate} or \bold{cooperate} to cause failure.} Also \eqn{q} can be computed by \code{q <- }\code{coCOP(1-u,1-v, exceedance=TRUE, ...)}
+in \R code \code{q <- coCOP(u,v, exceedance=FALSE, ...)}. So, in yet other words and as a mnemonic: \emph{A co-copula is the probabililty of exceedance if the hazard sources \bold{collaborate} or \bold{cooperate} to cause failure.} Also, \eqn{q} can be computed by \code{q <- }\code{coCOP(1 - u, 1 - v,} \code{exceedance=TRUE, ...)}.
 }
 \usage{
 coCOP(u, v, cop=NULL, para=NULL, exceedance=TRUE, ...)
@@ -35,8 +35,8 @@ The author (Asquith) finds the use of exceedance probabilities delicate in regar
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
-\author{ W.H. Asquith}
-\seealso{\code{\link{COP}}, \code{\link{surCOP}}, \code{\link{duCOP}} }
+\author{W.H. Asquith}
+\seealso{\code{\link{COP}}, \code{\link{surCOP}}, \code{\link{duCOP}}}
 \examples{
 u <- 1 - runif(1); v <- 1 - runif(1) # as exceedance, in order to reinforce the
 # change to exceedance instead of nonexceedance that otherwise dominates this package

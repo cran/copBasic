@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{joint.curvesCOP2}
 \alias{joint.curvesCOP2}
-\title{ Compute Coordinates of the Marginal Probabilities given joint AND or OR Probability }
+\title{Compute Coordinates of the Marginal Probabilities given joint AND or OR Probability}
 \description{
 Compute the coordinates of the bivariate marginal probabilities for variables \eqn{U} and \eqn{V} given selected probabilities levels \eqn{t} for a copula \eqn{\mathbf{C}(u,v)} for \eqn{u} with respect to \eqn{v}. For the case of a \bold{joint and} probability, symbolically the solution is
 \deqn{\mathrm{Pr}[U \le v,\ V \le v] = t = \mathbf{C}(u,v)\mbox{,}}
@@ -47,7 +47,7 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 JCvwrtu <- joint.curvesCOP( cop=PSP, prob=0.98)$"0.98"
 JCuwrtv <- joint.curvesCOP2(cop=PSP, prob=0.98)$"0.98"; lim <- c(2,5)
 plot(qnorm(JCvwrtu$U), qnorm(JCvwrtu$V), type="l", lwd=6, col=8, xlim=lim, ylim=lim,
-     xlab="STANDARD NORMAL VARIATE IN U", ylab="STANDARD NORMAL VARIATE IN V")
+     xlab="STANDARD NORMAL VARIATE OF U", ylab="STANDARD NORMAL VARIATE OF V")
 lines(qnorm(JCuwrtv$U), qnorm(JCuwrtv$V), col=2, lwd=2)
 mtext("98th Joint Percentile Level Curve for PSP Copula")#}
 }

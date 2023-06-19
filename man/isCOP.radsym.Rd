@@ -1,14 +1,14 @@
 \encoding{utf8}
 \name{isCOP.radsym}
 \alias{isCOP.radsym}
-\title{ Is a Copula Radially Symmetric }
+\title{Is a Copula Radially Symmetric}
 \description{
 Numerically set a logical whether a copula is \emph{radially symmetric} (Nelsen, 2006, p. 37) [\emph{reflection symmetric}, Joe (2014, p. 64)]. A copula \eqn{\mathbf{C}(u,v)} is radially symmetric if and only if for any \eqn{\{u,v\} \in [0,1]} either of the following hold
  \deqn{\mathbf{C}(u,v) = u + v - 1 + \mathbf{C}(1-u, 1-v)}
  or
  \deqn{u + v - 1 + \mathbf{C}(1-u, 1-v) - \mathbf{C}(u,v) \equiv 0\mbox{.}}
 
-Thus if the equality of the copula \eqn{\mathbf{C}(u,v) = \hat{\mathbf{C}}(u,v)}, then radial symmetry exists: \code{\link{COP}} \eqn{=} \code{\link{surCOP}} or \eqn{\mathbf{C}(u,v) = \hat{\mathbf{C}}(1-u,1-v)}. The computation is (can be) CPU intensive.
+Thus, if the equality of the copula \eqn{\mathbf{C}(u,v) = \hat{\mathbf{C}}(u,v)} (the \emph{survival copula}), then radial symmetry exists: \code{\link{COP}} \eqn{=} \code{\link{surCOP}} or \eqn{\mathbf{C}(u,v) = \hat{\mathbf{C}}(1-u,1-v)}. The computation is (can be) CPU intensive.
 }
 \usage{
 isCOP.radsym(cop=NULL, para=NULL, delta=0.005, tol=1e-4, ...)
@@ -39,19 +39,19 @@ Now, let us compute the L-comoments from the \pkg{lmomco} \R package for \eqn{n=
   lmomco::lcomoms2(UVa, nmom=4)$T3[2,1] # Only show L-coskew of V wrt U.
   lmomco::lcomoms2(UVb, nmom=4)$T3[2,1] # Only show L-coskew of V wrt U.
 }
-The L-coskew for the \eqn{\mathbf{PSP}} is about \eqn{-0.13} and that for the Plackett copula is about zero (\eqn{<0.003}). L-cokurtosis provides a similar result if \code{'T3'} is changed to \code{'T4'}. The \eqn{\mathbf{PSP}} L-cokurtosis is about 0.04, whereas the Plackett L-cokurtosis is about \eqn{<0.004}.
+The L-coskew for the \eqn{\mathbf{PSP}} is about \eqn{-0.13} and that for the \eqn{\mathbf{PL}} copula is about zero (\eqn{<0.003}). L-cokurtosis provides a similar result if \code{T3} is changed to \code{T4}. The \eqn{\mathbf{PSP}} L-cokurtosis is about 0.04, whereas the \eqn{\mathbf{PL}} L-cokurtosis is about \eqn{<0.004}.
 }
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 
 Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in Nature---An approach using copulas: Springer, 289 p.
 }
-\author{ W.H. Asquith}
-\seealso{ \code{\link{isCOP.permsym}} }
+\author{W.H. Asquith}
+\seealso{\code{\link{isCOP.permsym}}}
 \examples{
 # Radially symmetry is computationally intensive and relies on a gridded [0,1]x[0,1]
 # space and laborious check on equality. Thus these examples are commented out for
-# R's --timings check. Note that the proof of radial symmetry absent of algebraic
+# R --timings check. Note that the proof of radial symmetry absent of algebraic
 # manipulation or verification is difficult and subject to the fineness of the grid
 # to find a nonequality from which to immediately conclude FALSE.
 \dontrun{

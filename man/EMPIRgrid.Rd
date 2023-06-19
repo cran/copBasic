@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{EMPIRgrid}
 \alias{EMPIRgrid}
-\title{ Grid of the Bivariate Empirical Copula }
+\title{Grid of the Bivariate Empirical Copula}
 \description{
 Generate a gridded representation of the \emph{bivariate empirical copula} (see \code{\link{EMPIRcop}}, Salvadori \emph{et al.}, 2007, p. 140).  This function has the primary intention of supporting 3-D renderings or 2-D images of the \emph{copulatic surface}, but many empirical copula functions in \pkg{copBasic} rely on the grid of the empirical copula---unlike the functions that support parametric copulas.
 }
@@ -15,7 +15,7 @@ EMPIRgrid(para=NULL, deluv=0.05, verbose=FALSE, ...)
   \item{...}{Additional arguments to pass to \code{\link{EMPIRcop}}.}
 }
 \value{
-  An \R \code{list} of the gridded values of \eqn{u}, \eqn{v}, and \eqn{\mathbf{C}_{n}(u,v)} values of the bivariate empirical copula is returned. (Well only \eqn{\mathbf{C}_{n}(u,v)} is in the form of a grid as an \R \code{matrix}.) The \code{deluv} used to generated the grid is also returned.
+  An \R \code{list} of the gridded values of \eqn{u}, \eqn{v}, and \eqn{\mathbf{C}_{n}(u,v)} values of the bivariate empirical copula is returned. (Well only \eqn{\mathbf{C}_{n}(u,v)} is in the form of a grid as an \R \code{matrix}.) The \code{deluv} used to generated the grid also is returned.
 }
 \note{
 The extensive suite of examples is included here because the various ways that algorithms involving empirical copulas can be tested. The figures also provide excellent tools for education on copulas.
@@ -23,8 +23,8 @@ The extensive suite of examples is included here because the various ways that a
 \references{
 Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in Nature---An approach using copulas: Springer, 289 p.
 }
-\author{ W.H. Asquith }
-\seealso{ \code{\link{EMPIRcop}}, \code{\link{EMPIRcopdf}} }
+\author{W.H. Asquith}
+\seealso{\code{\link{EMPIRcop}}, \code{\link{EMPIRcopdf}}}
 \examples{
 \dontrun{
 # EXAMPLE 1:
@@ -40,7 +40,7 @@ uv <- data.frame(U=fakeU, V=fakeV) # our U-statistics
 # From R Graphics by Murrell (2005, p.112)
 "trans3d" <-                         # blackslashes seem needed for the package
 function(x,y,z, pmat) {              # for user manual building but bad syntax
-  tmat <- cbind(x,y,z,1) \%*\% pmat  # because remember the percent sign is a
+  tmat <- cbind(x,y,z,1) \%*\% pmat    # because remember the percent sign is a
   return(tmat[,1:2] / tmat[,4])      # a comment character in LaTeX.
 }
 
@@ -88,7 +88,7 @@ lines(thelines, lwd=4, col=6) #}
 "MOcop" <- function(u,v, para=NULL) { # Marshall-Olkin copula
    alpha <- para[1]; beta  <- para[2]; return(min(v*u^(1-alpha), u*v^(1-beta)))
 }
-# EXAMPLE 2: PLOT NUMBER 1 # Note the asymmetry!
+# EXAMPLE 2: PLOT NUMBER 1 # See the asymmetry
 uv <- simCOP(1000, cop=MOcop, para=c(0.4,0.9)) # The parameters cause asymmetry.
 mtext("Simulation from a defined Marshall-Olkin Copula")
 the.grid <- EMPIRgrid(para=uv, deluv=0.025)
@@ -164,7 +164,7 @@ pdf("conditional_distributions.pdf")
      lines(the.grid$v, empder[i,], lwd=4, col=5, lty=2) # empirical
      mtext(paste("Conditioned on U=",u," nonexceedance probability"))
   }
-dev.off()#}
+dev.off() #}
 }
 \keyword{empirical copula}
 \keyword{empirical copula (utility)}

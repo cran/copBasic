@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{GHcop}
 \alias{GHcop}
-\title{ The Gumbel--Hougaard Extreme Value Copula }
+\title{The Gumbel--Hougaard Extreme Value Copula}
 \description{
 \emph{SYMMETRIC GUMBEL-HOUGAARD}---The \emph{Gumbel--Hougaard copula} (Nelsen, 2006, pp. 118 and 164) is
 \deqn{\mathbf{C}_{\Theta}(u,v) = \mathbf{GH}(u,v) = \mathrm{exp}\{-[(-\log u)^\Theta+(-\log v)^\Theta]^{1/\Theta}\}\mbox{,}}
@@ -11,7 +11,7 @@ The copula is readily extended into \eqn{d} dimensions by
 \deqn{\mathbf{C}_{\Theta}(u,v) = \mathrm{exp}\{-[(-\log u_1)^\Theta+\cdots+(-\log u_d)^\Theta]^{1/\Theta}\}\mbox{.}}
 However, such an implementation is not available in the \pkg{copBasic} package.
 
-Every Gumbel--Hougaard copula is a \emph{multivariate extreme value} (\eqn{MEV}) copula, and hence useful in analysis of extreme value distributions. The Gumbel--Hougaard copula is the \emph{only} Archimedean \eqn{MEV} (Salvadori \emph{et al.}, 2007, p. 192). The Gumbel--Hougaard copula has respective \emph{lower-} and \emph{upper-tail dependency} parameters of \eqn{\lambda^L = 0} and \eqn{\lambda^U = 2 - 2^{1/\Theta}}, respectively. Nelsen (2006, p. 96) shows that \eqn{\mathbf{C}^r_\theta(u^{1/r}, v^{1/r}) = \mathbf{C}_\theta(u,v)} so that every Gumbel--Hougaard copula is has a property known as \emph{max-stable}.  A \emph{dependence measure} uniquely defined for \eqn{BEV} copulas is shown under \code{\link{rhobevCOP}}.
+Every Gumbel--Hougaard copula is a \emph{multivariate extreme value} (\eqn{MEV}) copula, and hence useful in analysis of extreme value distributions. The Gumbel--Hougaard copula is the \emph{only} Archimedean \eqn{MEV} (Salvadori \emph{et al.}, 2007, p. 192). The Gumbel--Hougaard copula has respective \emph{lower-} and \emph{upper-tail dependency} parameters of \eqn{\lambda^L = 0} and \eqn{\lambda^U = 2 - 2^{1/\Theta}}, respectively. Nelsen (2006, p. 96) shows that \eqn{\mathbf{C}^r_\theta(u^{1/r}, v^{1/r}) = \mathbf{C}_\theta(u,v)} so that every Gumbel--Hougaard copula has a property known as \emph{max-stable}. A \emph{dependence measure} uniquely defined for \eqn{BEV} copulas is shown under \code{\link{rhobevCOP}}.
 
 A comparison through simulation between Gumbel--Hougaard implementations by the \R packages \pkg{acopula}, \pkg{copBasic}, \pkg{copula}, and \pkg{Gumbel} is shown in the \bold{Examples} section. At least three divergent techniques for random variate generation are used amongst those packages. The simulations also use \pkg{copBasic}-style random variate generation  (conditional simulation) using an analytical-numerical hybrid solution to conditional inverse described in the \pkg{Note} section.
 
@@ -22,7 +22,7 @@ A comparison through simulation between Gumbel--Hougaard implementations by the 
        \bigl(v^{-\beta_2} -1\bigr)^{\beta_1}
 \biggr)^{1/\beta_1} + 1
 \biggr]^{-1/\beta_2}\mbox{,}}
-where \eqn{\beta_1 \ge 1} and \eqn{\beta_2 > 0}. Both parameters controls the general level of association, whereas parameter \eqn{\beta_2} can be thought of as controling left-tail dependency (\code{\link{taildepCOP}}, \eqn{\lambda^{[U\mid L]}_{(\beta_1, \beta_2)}}; \emph{e.g.}
+where \eqn{\beta_1 \ge 1} and \eqn{\beta_2 > 0}. Both parameters controls the general level of association, whereas parameter \eqn{\beta_2} can be thought of as controlling left-tail dependency (\code{\link{taildepCOP}}, \eqn{\lambda^{[U\mid L]}_{(\beta_1, \beta_2)}}; \emph{e.g.}
 \eqn{\lambda^U_{(1.5; \beta_2)} = 0.413} for all \eqn{\beta_2} but
 \eqn{\lambda^L_{(1.5; 0.2)} = 0.811} and
 \eqn{\lambda^L_{(1.5; 2.2)} = 0.099}. Brahimi \emph{et al.} (2015) report a \emph{Spearman Rho} (\code{\link{rhoCOP}}) for a \eqn{\mathbf{GH}_{(1.5, 0.2)}(u,v)} is 0.5, which is readily confirmed in \pkg{copBasic} by the function call \code{rhoCOP(cop=GHcop, para=c(1.5,0.2))}. The two-parameter \eqn{\mathbf{GH}} is triggered if the length of the \code{para} argument is exactly 2.
@@ -33,7 +33,7 @@ where \eqn{\Theta \ge 1} as before, \eqn{0 \le \pi_2,  \pi_3 \le 1}, and
 
 \deqn{\mathcal{A}(x, y; \Theta, \pi_2, \pi_3) = [(\pi_2 x)^\Theta + (\pi_3 y)^\Theta]^{1/\Theta} + (1-\pi_2)x + (1-\pi_3)y\mbox{.}}
 
-The asymmetric \eqn{\mathbf{GH}} is triggered if the length of the \code{para} argument is exactly 3. The \code{GHcop} function provides no mechanism for estimation of the parameters for the asymmetric version. Reviewing simulations, the bounds on the \eqn{\pi} parameters in Joe (2014, p. 185) \dQuote{[\eqn{0 \le \pi_2 < \pi_3 \le 1}]} might be incorrect---by Joe's own back reference to Joe (2014, eq. 4.35, p. 183) the \eqn{\pi}-limits as stated for \pkg{copBasic} are shown. An algorithm for parameter estimation for the asymmetric \eqn{\mathbf{GH}} using two different measures of \emph{bivariate skewness} as well as an arbitrary \emph{measure of association} is shown in section \bold{Details} in \code{\link{joeskewCOP}}.
+The asymmetric \eqn{\mathbf{GH}} is triggered if the length of the \code{para} argument is exactly 3. The \code{GHcop} function provides no mechanism for estimation of the parameters for the asymmetric version. Reviewing simulations, the bounds on the \eqn{\pi} parameters in Joe (2014, p. 185) \dQuote{[\eqn{0 \le \pi_2 < \pi_3 \le 1}]} might be incorrect---by Joe back referencing to Joe (2014, eq. 4.35, p. 183) the \eqn{\pi}-limits as stated for \pkg{copBasic} are shown. An algorithm for parameter estimation for the asymmetric \eqn{\mathbf{GH}} using two different measures of \emph{bivariate skewness} as well as an arbitrary \emph{measure of association} is shown in section \bold{Details} in \code{\link{joeskewCOP}}.
 }
 \usage{
 GHcop(u, v, para=NULL, tau=NULL, tau.big=0.985, cor=NULL, ...)
@@ -53,7 +53,7 @@ GHcop(u, v, para=NULL, tau=NULL, tau.big=0.985, cor=NULL, ...)
   \item{tau}{The sample estimate of \eqn{\tau}.}
 }
 \details{
-Numerical experiments seem to indicate for \eqn{\tau_\mathbf{C} > 0.985} that failures in the numerical partial derivatives in \code{\link{derCOP}} and \code{\link{derCOP2}} result---a \eqn{\tau_\mathbf{C}} this large is indeed \emph{large}. As \eqn{\Theta \rightarrow \infty} the Gumbel--Hougaard copula becomes the \emph{\enc{Fréchet}{Frechet}--Hoeffding upper bound copula} \eqn{\mathbf{M}} (see \code{\link{M}}). A \eqn{\tau_\mathbf{C} \approx 0.985} yields \eqn{\Theta \approx 66 + 2/3}, then for \eqn{\Theta > 1/(1-\tau_\mathbf{C})} flips over to the \eqn{\mathbf{M}} copula with a warning issued.
+Numerical experiments seem to indicate for \eqn{\tau_\mathbf{C} > 0.985} that failures in the numerical partial derivatives in \code{\link{derCOP}} and \code{\link{derCOP2}} result---a \eqn{\tau_\mathbf{C}} this large is indeed \emph{large}. As \eqn{\Theta \rightarrow \infty} the Gumbel--Hougaard copula becomes the \emph{\enc{Fréchet}{Frechet}--Hoeffding upper-bound copula} \eqn{\mathbf{M}} (see \code{\link{M}}). A \eqn{\tau_\mathbf{C} \approx 0.985} yields \eqn{\Theta \approx 66 + 2/3}, then for \eqn{\Theta > 1/(1-\tau_\mathbf{C})} flips over to the \eqn{\mathbf{M}} copula with a warning issued.
 }
 \note{
 \emph{SYMMETRIC GUMBEL--HOUGAARD}---A function for the derivative of the copula (Joe, 2014, p. 172) given \eqn{u} is
@@ -131,10 +131,10 @@ that can be tested by the following, which also shows how to increase the tolera
   nuskewCOP(cop=GHcop, c(2.132856, 0.6, 0.9)) #  0.008245653
   nuskewCOP(cop=GHcop, c(2.132856, 0.9, 0.6)) # -0.008245653
 }
-So we see, holding \eqn{\tau_\mathbf{C}} constant, that the \eqn{\mathbf{GH}} has a \eqn{\nu_{\mathbf{GH}(1.538)} = 0} but the asymmetric case \eqn{\nu_{\mathbf{GH}(2.133, 0.6, 0.9)} = 0.0082} and \eqn{\nu_{\mathbf{GH}(2.133, 0.9, 0.6)} = -0.0082} where the change in sign represents reflection about the 1:1 line. Finally, compute \emph{L-coskew} by large simulation and the adjective \dQuote{bow} representing the direction of bowing or curvature of the principle copula density.
+So, we see, holding \eqn{\tau_\mathbf{C}} constant, that the \eqn{\mathbf{GH}} has a \eqn{\nu_{\mathbf{GH}(1.538)} = 0} but the asymmetric case \eqn{\nu_{\mathbf{GH}(2.133, 0.6, 0.9)} = 0.0082} and \eqn{\nu_{\mathbf{GH}(2.133, 0.9, 0.6)} = -0.0082} where the change in sign represents reflection about the 1:1 line. Finally, compute \emph{L-coskew} by large simulation and the adjective \dQuote{bow} representing the direction of bowing or curvature of the principle copula density.
 \preformatted{
   # Because the Tau's are all similar, there is nothing to learn from the
-  # L-correlation, so let us inspect the L-coskew:
+  # L-correlation, let us inspect the L-coskew instead:
   coT3.1<-lmomco::lcomoms2(simCOP(n=8000, cop=GHcop, para=c(Theta1      )))$T3
   coT3.2<-lmomco::lcomoms2(simCOP(n=8000, cop=GHcop, para=c(Theta2,.6,.9)))$T3
   coT3.3<-lmomco::lcomoms2(simCOP(n=8000, cop=GHcop, para=c(Theta3,.9,.6)))$T3
@@ -171,30 +171,30 @@ Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in
 
 Zhang, L., and Singh, V.P., 2007, Gumbel--Hougaard copula for trivariate rainfall frequency analysis: Journal Hydrologic Engineering, v. 12, Special issue---Copulas in Hydrology, pp. 409--419.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{M}}, \code{\link{GLcop}}, \code{\link{HRcop}}, \code{\link{tEVcop}}, \code{\link{rhobevCOP}}
 }
 \examples{
-Theta <- 2.2 # Lets see if the numerical and analytical tail deps are the same.
-del.lamU <- abs(taildepCOP(cop=GHcop, para=Theta)$lambdaU - (2-2^(1/Theta)))
+Theta    <- 2.2 # Let us see if numerical and analytical tail deps are the same.
+del.lamU <- abs( taildepCOP(cop=GHcop, para=Theta)$lambdaU - (2-2^(1/Theta)) )
 as.logical(del.lamU < 1E-6) # TRUE
 \dontrun{
 # The simulations match Joe (2014, p. 72) for Gumbel-Hougaard
 n <- 600; nsim <- 1000; set.seed(946) # see for reproducibility
 SM <- sapply(1:nsim, function(i) { rs <- semicorCOP(cop=GHcop, para=1.35, n=n)
                                  c(rs$botleft.semicor, rs$topright.semicor) })
-RhoM     <- round(mean(SM[1,]),        digits=3)
-RhoP     <- round(mean(SM[2,]),        digits=3)
-SE.RhoM  <- round(sd(SM[1,]),          digits=3)
-SE.RhoP  <- round(sd(SM[2,]),          digits=3)
-SE.RhoMP <- round(sd(SM[2,] - SM[1,]), digits=3)
+RhoM     <- round(mean(SM[1,]),          digits=3)
+RhoP     <- round(mean(SM[2,]),          digits=3)
+SE.RhoM  <- round(  sd(SM[1,]),          digits=3)
+SE.RhoP  <- round(  sd(SM[2,]),          digits=3)
+SE.RhoMP <- round(  sd(SM[2,] - SM[1,]), digits=3)
 # Semi-correlations (sRho) and standard errors (SEs)
-message("# sRho[-]=", RhoM, " (SE[-]=", SE.RhoM, ") Joe's=0.132 (SE[-]=0.08)")
-message("# sRho[+]=", RhoP, " (SE[+]=", SE.RhoP, ") Joe's=0.415 (SE[+]=0.07)")
-message("# SE(sRho[-] - sRho[+])=", SE.RhoMP, " Joe's SE=0.10")
-# sRho[-]=0.134 (SE[-]=0.076) Joe's=0.132 (SE[-]=0.08)
-# sRho[+]=0.407 (SE[+]=0.074) Joe's=0.415 (SE[+]=0.07)
-# SE(sRho[-] - sRho[+])=0.107 Joe's SE=0.10
+message("# sRho[-]=", RhoM, " (SE[-]=", SE.RhoM, ") Joe(p.72)=0.132 (SE[-]=0.08)")
+message("# sRho[+]=", RhoP, " (SE[+]=", SE.RhoP, ") Joe(p.72)=0.415 (SE[+]=0.07)")
+message("# SE(sRho[-] - sRho[+])=", SE.RhoMP, " Joe(p.72) SE=0.10")
+# sRho[-]=0.134 (SE[-]=0.076) Joe(p.72)=0.132 (SE[-]=0.08)
+# sRho[+]=0.407 (SE[+]=0.074) Joe(p.72)=0.415 (SE[+]=0.07)
+# SE(sRho[-] - sRho[+])=0.107 Joe(p.72) SE=0.10
 # Joe (2014, p. 72) reports the values 0.132, 0.415, 0.08, 0.07, 0.10, respectively.}
 
 \dontrun{
@@ -205,12 +205,12 @@ write.table(x, file=file, row.names=FALSE, quote=FALSE)
 n <- 250 # Make a large number for very long CPU run but seems stable
 for(tau in seq(0,0.98, by=0.005)) {
    thetag <- GHcop(u=NULL, v=NULL, tau=tau)$para
-   trho <- rhoCOP(cop=GHcop, para=thetag)
-   GH <- simCOP(n=n, cop=GHcop, para=thetag, points=FALSE, ploton=FALSE)
-   srho <- cor(GH$U, GH$V, method="spearman")
+   trho   <- rhoCOP(cop=GHcop, para=thetag)
+   GH     <- simCOP(n=n, cop=GHcop, para=thetag, points=FALSE, ploton=FALSE)
+   srho   <- cor(GH$U, GH$V, method="spearman")
    thetap <- PLACKETTpar(rho=trho)
-   PL <- simCOP(n=n, cop=PLACKETTcop, para=thetap, points=FALSE, ploton=FALSE)
-   GHl <- lmomco::lcomoms2(GH, nmom=4); PLl <- lmomco::lcomoms2(PL, nmom=4)
+   PL     <- simCOP(n=n, cop=PLACKETTcop, para=thetap, points=FALSE, ploton=FALSE)
+   GHl    <- lmomco::lcomoms2(GH, nmom=4); PLl <- lmomco::lcomoms2(PL, nmom=4)
    x <- data.frame(tau=tau, trho=trho, srho=srho,
                    GHtheta=thetag, PLtheta=thetap,
                    GHT2=mean(c(GHl$T2[1,2], GHl$T2[2,1])),
@@ -257,11 +257,11 @@ E <- cor(acopula::rCopula(nsim, pars=1.5), method=kn)[1,2]
 # Simulate by an Archimedean implementation
 G <- cor(copula::rCopula(nsim, copula::gumbelCopula(1.5)), method=kn)[1,2]
 K <- round(c(A, B, C, D, E, G), digits=5); rm(A, B, C, D, E, G, kn); tx <- ", "
-message("Kendall's Tau: ", K[1], tx, K[2], tx, K[3], tx, K[4], tx, K[5], tx, K[6])
-# Kendall's Tau: 0.32909, 0.32474, 0.33060, 0.32805, 0.32874, 0.33986 -- run 1
-# Kendall's Tau: 0.33357, 0.32748, 0.33563, 0.32913, 0.32732, 0.32416 -- run 2
-# Kendall's Tau: 0.34311, 0.33415, 0.33815, 0.33224, 0.32961, 0.33008 -- run 3
-# Kendall's Tau: 0.32830, 0.33573, 0.32756, 0.33401, 0.33567, 0.33182 -- nsim=50000!
+message("Kendall Tau: ", K[1], tx, K[2], tx, K[3], tx, K[4], tx, K[5], tx, K[6])
+# Kendall Tau: 0.32909, 0.32474, 0.33060, 0.32805, 0.32874, 0.33986 -- run 1
+# Kendall Tau: 0.33357, 0.32748, 0.33563, 0.32913, 0.32732, 0.32416 -- run 2
+# Kendall Tau: 0.34311, 0.33415, 0.33815, 0.33224, 0.32961, 0.33008 -- run 3
+# Kendall Tau: 0.32830, 0.33573, 0.32756, 0.33401, 0.33567, 0.33182 -- nsim=50000!
 # All solutions are near 1/3 and it is unknown without further study which of the
 # six methods would result in the least bias and (or) sampling variability.}
 }

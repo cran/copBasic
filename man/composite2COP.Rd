@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{composite2COP}
 \alias{composite2COP}
-\title{ Composition of Two Copulas with Two Compositing Parameters }
+\title{Composition of Two Copulas with Two Compositing Parameters}
 \description{
 The \emph{composition of two copulas} (Salvadori \emph{et al.}, 2007, p. 266, prop. C.3) provides for more sophisticated structures of dependence between variables than many single parameter copula can provide. Further, \emph{asymmetrical copulas} are readily obtained from \emph{symmetrical copulas}. Let \eqn{\mathbf{A}} and \eqn{\mathbf{B}} be copulas with respective parameters \eqn{\Theta_\mathbf{A}} and \eqn{\Theta_\mathbf{B}}, then
 
@@ -19,7 +19,7 @@ It is possible to simplify the construction of an asymmetric copula from a symme
 The \code{composite2COP} function is based on the more general result given in the former rather than the later mathematical definition to provide additional flexibility. For simpler case of composition involving only one copula, \code{\link{composite1COP}} is available, and a more complex (extended) composition is available in \code{\link{composite3COP}}.
 }
 \usage{
-composite2COP(u,v, para, ...)
+composite2COP(u, v, para, ...)
 }
 \arguments{
   \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction;}
@@ -41,24 +41,24 @@ The following descriptions list in detail the structure and content of the \code
   \item{\code{para2}}{--- Vector of parameters \eqn{\Theta_\mathbf{B}} for  \eqn{\mathbf{B}}.}
 }
 
-The \code{para} argument of this function also can be passed to \code{\link{composite1COP}}. Albeit, the second copula and its parameters would not be used.  A more complex (extended) composition in \code{\link{composite3COP}} extends this basic parameter structure.
+The \code{para} argument of this function also can be passed to \code{\link{composite1COP}}; albeit, the second copula and its parameters would not be used. A more complex (extended) composition in \code{\link{composite3COP}} extends this basic parameter structure.
 }
 \references{
 Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in Nature---An approach using copulas: Springer, 289 p.
 }
-\author{ W.H. Asquith}
-\seealso{\code{\link{COP}}, \code{\link{composite1COP}}, \code{\link{composite3COP}},
+\author{W.H. Asquith}
+\seealso{\code{\link{COP}}, \code{\link{breveCOP}}, \code{\link{composite1COP}}, \code{\link{composite3COP}},
 \code{\link{convexCOP}}, \code{\link{glueCOP}}}
 \examples{
 alpha <- 0.24; beta <- 0.23; Theta1 <- NA; Theta2 <- NA
 # The W() and PSP() copulas do not take parameters, but example shows how the
 # parameters would be set should either or both of the copulas require parameters.
 para <- list(alpha=alpha, beta=beta, cop1=W, cop2=PSP, para1=Theta1, para2=Theta2)
-print(composite2COP(0.4,0.6,para)) # 0.2779868
+print(composite2COP(0.4, 0.6, para)) # 0.2779868
 
 # In this example, the N4212cop uses "3" as its parameter value.
 para <- list(alpha=alpha, beta=beta, cop1=W, cop2=N4212cop, para1=Theta1, para2=3)
-print(composite2COP(0.4,0.6,para)) # 0.3387506
+print(composite2COP(0.4, 0.6, para)) # 0.3387506
 
 \dontrun{
 # This example does a great job of showing a composited copula with a near singularity,
@@ -70,10 +70,10 @@ para <- list(alpha=0.5, beta=0.90, cop1=M, cop2=N4212cop, para1=NA, para2=1.4)
 image(gridCOP(cop=composite2COP, para=para, delta=0.01), col=terrain.colors(30),
       xlab="U, NONEXCEEDANCE PROBABILITY", ylab="V, NONEXCEEDANCE PROBABILITY")
 D <- simCOP(n=2000, cop=composite2COP, para=para, ploton=FALSE, pch=4, col=4, cex=0.75)
-level.curvesCOP(cop=composite2COP, para=para, ploton=FALSE, delt = 0.05)
+level.curvesCOP(cop=composite2COP, para=para, ploton=FALSE, delt=0.05)
 mtext("Theoretical composited copula, level curves, and simulation")
 
-emp <- EMPIRgrid(para=D, deluv = 0.05)     # CPU heavy
+emp <- EMPIRgrid(para=D, deluv=0.05)     # CPU heavy
 image(emp$empcop, col=terrain.colors(30) ) # image orientation is correct!
 # Depending on balance between sample size, deluv, delu, and delt, one or more:
 # Error in uniroot(func, interval = c(0, 1), u = u, LHS = t, cop = cop,  :
@@ -81,7 +81,7 @@ image(emp$empcop, col=terrain.colors(30) ) # image orientation is correct!
 # warnings might be triggered. This is particularly true because of the flat derivative
 # above the near singularity in this example composited copula.
 points(D$U, D$V, pch=4, col=4, cex=0.75)
-level.curvesCOP(cop=EMPIRcop, para=D, ploton=FALSE, delu=0.02, delt = 0.05)
+level.curvesCOP(cop=EMPIRcop, para=D, ploton=FALSE, delu=0.02, delt=0.05)
 mtext("Empirical copula from n=2000 simulation") #}
 }
 \keyword{copula composition}

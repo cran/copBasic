@@ -1,7 +1,8 @@
 "mleCOP" <-
 function(u, v=NULL, cop=NULL, parafn=function(k) return(k),
           interval=NULL, init.para=NULL, verbose=FALSE, control=list(),
-          the.zero=.Machine$double.eps^0.25, ...) {
+          the.zero=.Machine$double.eps^0.25, s=0, ...) {
+   verbose <- as.integer(verbose)
    if(is.null(v)) {
       if(length(names(u)) != 2) {
          warning("a data.frame having only two columns is required")
@@ -16,10 +17,27 @@ function(u, v=NULL, cop=NULL, parafn=function(k) return(k),
     }
     objfunc <- function(thetas, ...) {
        para <- parafn(thetas)
-       if(verbose) print(para)
+       if(verbose >= 2) {
+         message("mleCOP---parameters (transformed to as copulas receive):")
+         if(is.list(para)) {
+           tmpp <- para
+           tmpp[grep("cop", tmpp)] <- NULL
+           for(p in seq_len(length(tmpp))) tmpp[[p]] <- round(tmpp[[p]], digits=8)
+         } else {
+           tmpp <- para
+         }
+         paratxt <- paste(names(tmpp), tmpp, sep="=", collapse=", ")
+         message("         ", paratxt)
+         if(length(s) >= 2) {
+           t <- simCOPv(s, cop=cop, para=para)
+           plot(s,t, xlab="U, NONEXCEEDANCE PROBABILITY",
+                     ylab="V, NONEXCEEDANCE PROBABILITY", lwd=0.62)
+           mtext(paratxt, font=2, line=0.5)
+         }
+       }
        copdf <- densityCOP(u,v, cop=cop, para=para, sumlogs=TRUE,
-                           the.zero=the.zero, ...)
-       if(verbose) print(copdf)
+                                the.zero=the.zero, ...)
+       if(verbose >= 1) message("  densityCOP---sumlogs = ", round(copdf, digits=8))
        return(copdf)
     }
     SMALL <- 0.01 # a one percent closeness

@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{lcomCOP}
 \alias{lcomCOP}
-\title{ L-comoments and Bivariate L-moments of a Copula }
+\title{L-comoments and Bivariate L-moments of a Copula}
 \description{
 Compute the \emph{L-comoments} (Serfling and Xiao, 2007; Asquith, 2011) through the \emph{bivariate L-moments (ratios)} (\eqn{\delta^{[\ldots]}_{k;\mathbf{C}}}) of a copula \eqn{\mathbf{C}(u,v; \Theta)}  The L-comoments include \emph{L-correlation} (\emph{Spearman Rho}), \emph{L-coskew}, and \emph{L-cokurtosis}.  As described by Brahimi \emph{et al.} (2015), the first four bivariate L-moments \eqn{\delta^{[12]}_k} for random variable \eqn{X^{(1)}} or \eqn{U} with respect to (\emph{wrt}) random variable \eqn{X^{(2)}} or \eqn{V} are defined as
 \deqn{\delta^{[12]}_{1;\mathbf{C}} = 2\int\!\!\int_{\mathcal{I}^2}
@@ -58,7 +58,7 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 
 Serfling, R., and Xiao, P., 2007, A contribution to multivariate L-moments---L-comoment matrices: Journal of Multivariate Analysis, v. 98, pp. 1765--1781.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{bilmoms}}, \code{\link{lcomCOPpv}}, \code{\link{uvlmoms}}
 }
 \examples{
@@ -75,9 +75,9 @@ bilmoms(cop=composite2COP, n=10000, para=para, sobol=TRUE)$bilcomoms$T3
 # substantially slower and less elegant means in bilmoms().}
 
 \dontrun{
-# The following Spearman Rho and L-coskew values a predicted for a monitoring location
-# of relation between peak streamflow (V) and time into the water year (U) where
-# U and V are "U-statistics."
+# The following Spearman Rho and L-coskew values are predicted for a monitoring
+# location of the relation between peak streamflow (V) and time into the
+# water year (U) where U and V are "U-statistics."
 site_srho  <-  0.15536430
 site_T3_12 <-  0.03866056
 site_T3_21 <- -0.03090144
@@ -106,7 +106,7 @@ lcom_para <- list(alpha=pnorm(rt$par[1]), beta=pnorm(rt$par[2]),
 sUV <- simCOP(10000, cop=composite1COP, para=lcom_para, col=grey(0, 0.2), pch=16)
 # Now as an exercise, consider increasing site_srho or negating it. Consider
 # switching the signs on the L-coskews or increasing their magnitudes and study
-# the resulting simulation to develop a personal feeling for L-coskew meaning.# }
+# the resulting simulation to develop a personal feeling for L-coskew meaning. #}
 }
 \keyword{bivariate asymmetry (measures)}
 \keyword{bivariate skewness}

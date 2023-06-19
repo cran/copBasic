@@ -1,16 +1,16 @@
 citHeader("To cite package 'copBasic' in publications use:")
 
-year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date) 
-vers <- paste("R package version",           meta$Version) 
+year  <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date   ) 
+vers  <- paste("R package version",           meta$Version) 
 title <- "copBasic---General Bivariate Copula Theory and Many Utility Functions"
 
-citEntry(entry="Manual", 
-         title  = title, 
-         author = personList(as.person("W.H. Asquith")), 
-         year   = year, 
+bibentry(bibtype="Manual",
+         title  = title,
+         author = c(person(c("William", "H."), "Asquith")),
+         year   = year,
          note   = vers,
          textVersion =
-         paste("Asquith, W.H.,", year, 
+         paste("Asquith, W.H., ", year,
                ", ", title, ". ",
                vers, ", Texas Tech University, Lubbock, Texas.",
                sep=""))

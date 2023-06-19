@@ -4,7 +4,7 @@
 \alias{ReineckeWells}
 \title{Porosity and Permeability Data for the Reinecke Oil Field, Horseshoe Atoll, Texas}
 \description{
-These data represent porosity and permeability data from laboratory analysis for the Reinecke Oil Field, Horseshoe Atoll, Texas as used for the outstanding article by Saller and Dickson (2011). Dr. Art Saller shared a CSV file with the author of the \pkg{copBasic} package sometime in 2011.  These data are included in this package because of the instruction potential of the bivariate relation between permeability and porosity.
+These data represent porosity and permeability data from laboratory analysis for the Reinecke Oil Field, Horseshoe Atoll, Texas as used for the outstanding article by Saller and Dickson (2011). Dr. A.H. Art Saller shared a CSV file with the author of the \pkg{copBasic} package sometime in 2011.  These data are included in this package because of the instruction potential of the bivariate relation between the geologic properties of permeability and porosity.
 }
 \usage{
 data(ReineckeWells)

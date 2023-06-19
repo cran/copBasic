@@ -2,13 +2,13 @@
 \name{kfuncCOPlmoms}
 \alias{kfuncCOPlmoms}
 \alias{kfuncCOPlmom}
-\title{ The L-moments of the Kendall Function of a Copula }
+\title{The L-moments of the Kendall Function of a Copula}
 \description{
 Compute the L-moments of the \emph{Kendall Function} (\eqn{F_K(z; \mathbf{C})}) of a copula \eqn{\mathbf{C}(u,v)} where the \eqn{z} is the joint probability of the \eqn{\mathbf{C}(u,v)}. The Kendall Function is the cumulative distribution function (CDF) of the joint probability \eqn{Z} of the coupla. The expected value of the \eqn{z(F_K)} (mean, first L-moment \eqn{\lambda_1}), because \eqn{Z} has nonzero probability for \eqn{0 \le Z \le \infty}, is
 
 \deqn{\mathrm{E}[Z] = \lambda_1 = \int_0^\infty [1 - F_K(t)]\,\mathrm{d}t = \int_0^1 [1 - F_K(t)] \,\mathrm{d}t\mbox{,}}
 
-where for circumstances here \eqn{0 \le Z \le 1}. The \eqn{\infty} is mentioned only because expectations of such CDFs are usually shown using \eqn{(0,\infty)} limits, whereas integration of quantile functions (CDF inverses) use limits \eqn{(0,1)}. Because the support of \eqn{Z} is \eqn{(0,1)}, like the probability \eqn{F_K}, showing just it (\eqn{\infty}) as the upper limit could be confusing---statements such as ``probabilities of probabilities'' are rhetorically complex so pursuit of word precision is made herein.
+where for circumstances here \eqn{0 \le Z \le 1}. The \eqn{\infty} is mentioned only because expectations of such CDFs are usually shown using \eqn{(0,\infty)} limits, whereas integration of quantile functions (CDF inverses) use limits \eqn{(0,1)}. Because the support of \eqn{Z} is \eqn{(0,1)}, like the probability \eqn{F_K}, showing just it (\eqn{\infty}) as the upper limit could be confusing---statements such as \dQuote{probabilities of probabilities} are rhetorically complex so pursuit of word precision is made herein.
 
 An expression for \eqn{\lambda_r} for \eqn{r \ge 2} in terms of the \eqn{F_K(z)} is
 \deqn{
@@ -52,7 +52,7 @@ kfuncCOPlmoms(cop=NULL, para=NULL, nmom=5, begin.mom=1, ...)
 \note{
 The L-moments of Kendall Functions appear to be not yet fully researched. An interesting research direction would be the trajectories of the L-moments or \emph{L-moment ratio diagrams} for the Kendall Function and the degree to which distinction between copulas becomes evident---such diagrams are in wide-spread use for distinquishing between univariate distributions. It is noted, however, that \emph{Kendall Function L-moment ratio diagrams} might be of less utility that in the univariate world because different copulas can have the same \eqn{F_K(z)}, such as all bivariate extreme value copulas.
 \preformatted{
-  Rhos <- seq(0,0.9,by=0.05)
+  Rhos <- seq(0, 0.9, by=0.05)
   L1 <- T2 <- T3 <- T4 <- Thetas <- vector(mode="numeric", length(Rhos))
   for(i in 1:length(Thetas)) {
      Thetas[i] <- uniroot(function(p)
@@ -65,7 +65,7 @@ The L-moments of Kendall Functions appear to be not yet fully researched. An int
   }
   LMR <- data.frame(Rho=Rhos, Theta=Thetas, L1=L1, T2=T2, T3=T3, T4=T4)
   plot(LMR$Rho, LMR$T2, ylim=c(-0.04, 0.5), xlim=c(0,1),
-       xlab="Spearman's Rho or coefficient of L-variation",
+       xlab="Spearman Rho or coefficient of L-variation",
        ylab="L-moment ratio", type="l", col=1) # black
   lines(LMR$Rho, LMR$T3, col=2)        # red
   lines(LMR$Rho, LMR$T4, col=3)        # green
@@ -77,8 +77,8 @@ The L-moments of Kendall Functions appear to be not yet fully researched. An int
 \references{
 Asquith, W.H., 2011, Distributional analysis with L-moment statistics using the R environment for statistical computing: Createspace Independent Publishing Platform, ISBN 978--146350841--8.
 }
-\author{ W.H. Asquith}
-\seealso{ \code{\link{kfuncCOP}} }
+\author{W.H. Asquith}
+\seealso{\code{\link{kfuncCOP}}}
 \examples{
 \dontrun{
 kfuncCOPlmom(1, cop=P) # 0.5 * 0.5 = 0.25 is expected joint prob. of independence
@@ -98,7 +98,7 @@ theta <- PLpar(UV[,1], UV[,2]); zs <- seq(0.01,0.99, by=.01) # for later
 Z  <- PLcop(UV[,1], UV[,2], para=theta); KF <- kfuncCOP(Z, cop=PLcop, para=theta)
 
 # Compute L-moments of the "Kendall function" and the sample versions
-# Note again though that the L-moment are for the distribution of the Z!
+# and again see that the L-moment are for the distribution of the Z!
 KNFlmr <- kfuncCOPlmoms(cop=PLcop, para=theta); SAMlmr <- lmomco::lmoms(Z)
 knftxt <- paste0("Kendall L-moments: ",
                  paste(round(KNFlmr$lambdas, digits=4), collapse=", "))
@@ -117,7 +117,7 @@ points(knf_meanZ, knf_mean, pch=16, col=4, cex=4) # big blue dot
 points(sam_meanZ, sam_mean, pch=16, col=5, cex=2) # smaller pale blue dot
 lines(zs, zs-zs*log(zs), lty=2, lwd=0.8) # dash ref line for independence
 text(0.2, 0.30, knftxt, pos=4, cex=0.8); text(0.2, 0.25, samtxt, pos=4, cex=0.8)
-text(0.2, 0.18, paste0("Note the uniform distribution of the ",
+text(0.2, 0.18, paste0("Notice the uniform distribution of the ",
                        "vertical axis rug."), cex=0.7, pos=4) #}
 }
 \keyword{copula (characteristics)}

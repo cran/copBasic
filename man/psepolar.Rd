@@ -44,8 +44,8 @@ The default of \code{f=0.90} means that the upper 90th percentile of the compone
 \references{
 Kiriliouk, Anna, Segers, Johan, \enc{Warchoł}{Warchol}, \enc{Michał}{Michal}, 2016, Nonparameteric estimation of extremal dependence: \emph{in} Extreme Value Modeling and Risk Analysis, D.K. Dey and Jun Yan \emph{eds.}, Boca Raton, FL, CRC Press, ISBN 978--1--4987--0129--7.
 }
-\author{William Asquith \email{william.asquith@ttu.edu} }
-\seealso{ \code{\link{spectralmeas}}, \code{\link{stabtaildepf}}
+\author{William Asquith \email{william.asquith@ttu.edu}}
+\seealso{\code{\link{spectralmeas}}, \code{\link{stabtaildepf}}
 }
 \examples{
 \dontrun{
@@ -54,7 +54,7 @@ pse <- pse$table # The Pareto copula has right-tail extreme dependency
 plot(1/(1-pse$U), 1/(1-pse$V), col=pse$Shat_ge_Sf+1, lwd=0.8, cex=0.5, log="xy", pch=16)
 plot(pse$What, pse$Shat, log="y", col=pse$Shat_ge_Sf+1, lwd=0.8, cex=0.5, pch=16)
 plot(density(pse$What[pse$Shat_ge_Sf]), pch=16, xlim=c(0,1)) # then try the
-# non-right tail extremal copula PSP as cop=PSP in the above psepolar() call. }
+# non-right tail extremal copula PSP as cop=PSP in the above psepolar() call.}
 }
 \keyword{copula (goodness-of-fit)}
 \keyword{copula (inference)}

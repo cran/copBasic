@@ -1,7 +1,7 @@
 "isCOP.radsym" <-
 function(cop=NULL, para=NULL, delta=0.005, tol=1e-4, ...) {
-  T <- seq(0+delta, 1-delta, by=delta)
-  tmp <- sapply(T, function(u) { sapply(T, function(v) {
+  TT <- seq(0+delta, 1-delta, by=delta)
+  tmp <- sapply(TT, function(u) { sapply(TT, function(v) {
              return(u + v - 1 + COP(1-u,1-v, cop=cop, para=para, ...) -
                                 COP(  u,  v, cop=cop, para=para, ...))
                                } ) })

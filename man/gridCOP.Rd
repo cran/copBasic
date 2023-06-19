@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{gridCOP}
 \alias{gridCOP}
-\title{ Compute a Copula on a Grid }
+\title{Compute a Copula on a Grid}
 \description{
 Compute a grid of copula values. This function has the primary intention of supporting 3D renderings or 2D images of the \emph{copulatic surface}. Users should be aware of the convention of the placement of the plotting origin and the various plotting mechanisms available to them in \R. By convention copulatic surfaces start in lower left corner for \eqn{u = v = 0}, but matrix conventions (or at least how some functions plot matrices) start with the origin in the upper left.
 }
@@ -18,7 +18,7 @@ gridCOP(cop=NULL, para=NULL, delta=0.05, transpose=TRUE, ...)
 \value{
   The values for \eqn{\mathbf{C}(u,v)} are returned as a grid as an \R \code{matrix}.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{EMPIRcopdf}}
 }
 \examples{

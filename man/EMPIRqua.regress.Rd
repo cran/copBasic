@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{EMPIRqua.regress}
 \alias{EMPIRqua.regress}
-\title{ Quantile Regression of the Grid of the Bivariate Empirical Copula for V with respect to U }
+\title{Quantile Regression of the Grid of the Bivariate Empirical Copula for V with respect to U}
 \description{
 Perform \emph{quantile regression} from the gridded inversion of the \emph{bivariate empirical copula} of \eqn{V} with respect to \eqn{U}.
 }
@@ -20,8 +20,8 @@ EMPIRqua.regress(f=0.5, u=seq(0.01,0.99, by=0.01), empinv=NULL,
 \value{
   The gridded values of the quantile regression of \eqn{V} with respect to \eqn{U}.
 }
-\author{ W.H. Asquith }
-\seealso{ \code{\link{EMPIRgridderinv}}, \code{\link{EMPIRqua.regress2}}, \code{\link{EMPIRmed.regress}}, \code{\link{EMPIRmed.regress2}}
+\author{W.H. Asquith}
+\seealso{\code{\link{EMPIRgridderinv}}, \code{\link{EMPIRqua.regress2}}, \code{\link{EMPIRmed.regress}}, \code{\link{EMPIRmed.regress2}}
 }
 \examples{
 \dontrun{ # EXAMPLE 1

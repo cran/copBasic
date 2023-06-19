@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{EMPIRgridder}
 \alias{EMPIRgridder}
-\title{ Derivatives of the Grid of the Bivariate Empirical Copula for V with respect to U }
+\title{Derivatives of the Grid of the Bivariate Empirical Copula for V with respect to U}
 \description{
 Generate derivatives of \eqn{V} with respect to \eqn{U} of a gridded representation of the \emph{bivariate empirical copula} (see \code{\link{EMPIRcop}}). This function is the empirical analog to \code{\link{derCOP}}.
 }
@@ -15,8 +15,8 @@ EMPIRgridder(empgrid=NULL, ...)
 \value{
   The gridded values of the derivatives of the bivariate empirical copula.
 }
-\author{ W.H. Asquith }
-\seealso{ \code{\link{EMPIRcop}}, \code{\link{EMPIRcopdf}}, \code{\link{EMPIRgrid}}, \code{\link{EMPIRgridder2}} }
+\author{W.H. Asquith}
+\seealso{\code{\link{EMPIRcop}}, \code{\link{EMPIRcopdf}}, \code{\link{EMPIRgrid}}, \code{\link{EMPIRgridder2}}}
 \examples{
 \dontrun{
 para   <- list(alpha=0.15,  beta=0.65, cop1=PLACKETTcop, cop2=PLACKETTcop,
@@ -28,7 +28,7 @@ uv <- data.frame(U=fakeU, V=fakeV)
 
 "trans3d" <-                         # blackslashes seem needed for the package
 function(x,y,z, pmat) {              # for user manual building but bad syntax
-  tmat <- cbind(x,y,z,1) \%*\% pmat  # because remember the percent sign is a
+  tmat <- cbind(x,y,z,1) \%*\% pmat    # because remember the percent sign is a
   return(tmat[,1:2] / tmat[,4])      # a comment character in LaTeX.
 }
 

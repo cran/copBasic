@@ -2,11 +2,11 @@
 \name{simCOP}
 \alias{simCOP}
 \alias{rCOP}
-\title{ Simulate a Copula by Numerical Derivative Method }
+\title{Simulate a Copula by Numerical Derivative Method}
 \description{
 Perform a simulation and visualization of a copula using numerical partial derivatives of the copula (Nelsen, 2006, p. 32). The method is more broadly known as \emph{conditional simulation method}. Because a focus of \pkg{copBasic} is on copula theory for pedagogic purposes, the coupling between simulation and subsequent visualization is emphasized by this function by it providing for both simulation and plotting operations by default.
 
-The \code{simCOP} function is based on a uniformly simulating nonexceedance probability \eqn{u} and then conditioning the \eqn{v} from the inverse of the sectional derivative for \eqn{V} with respect to \eqn{U} (see \code{\link{derCOPinv}}). The function for speed will only report a warning if at least one of the requested simulations in \code{n} could not be made because of \code{uniroot}'ing problems in \code{\link{derCOPinv}}. The returned \code{data.frame} will be shortened automatically, but this can be controlled by \code{na.rm}. Failure of a simulation is purely dependent on the derivative inversion, which should be quite robust for continuous or near continuous copulas and even copulas with singularities should be more or less okay. Lastly, the logical combination \code{na.rm=FALSE} and \code{keept=TRUE} could be used to isolate those combinations giving \code{\link{derCOPinv}} problems. The implemented simulation method in the \pkg{copBasic} package is known as the \emph{conditional distribution method} (Nelsen, 2006; pp. 40--41), \emph{conditional method}, or \emph{Rosenblatt transform} (Joe, 2014, p. 270).
+The \code{simCOP} function is based on a uniformly simulating nonexceedance probability \eqn{u} and then conditioning the \eqn{v} from the inverse of the sectional derivative for \eqn{V} with respect to \eqn{U} (see \code{\link{derCOPinv}}). The function for speed will only report a warning if at least one of the requested simulations in \code{n} could not be made because of \code{uniroot}'ing problems in \code{\link{derCOPinv}}. The returned \code{data.frame} will be shortened automatically, but this can be controlled by \code{na.rm}. Failure of a simulation is purely dependent failure of the derivative inversion. In general, inversion should be quite robust for continuous or near continuous copulas and even copulas with singularities should be more or less okay. Lastly, the logical combination \code{na.rm=FALSE} and \code{keept=TRUE} could be used to isolate those combinations giving \code{\link{derCOPinv}} problems. The implemented simulation method in the \pkg{copBasic} package is known as the \emph{conditional distribution method} (Nelsen, 2006; pp. 40--41), \emph{conditional method}, or \emph{Rosenblatt transform} (Joe, 2014, p. 270).
 }
 \usage{
 simCOP(n=100, cop=NULL, para=NULL, na.rm=TRUE, seed=NULL, keept=FALSE,
@@ -25,8 +25,8 @@ rCOP(n, cop=NULL, para=NULL, na.rm=TRUE, seed=NULL, ...)
   \item{ploton}{A logical to toggle on the plot (see \bold{Examples} in \code{\link{vuongCOP}});}
   \item{points}{A logical to actually draw the simulations by the \code{points()} function in \R;}
   \item{snv}{A logical to convert the \eqn{\{u,v\}} to standard normal scores (variates) both for the optional graphics and the returned \R \code{data.frame}. Curiously, Joe (2014) advocates extensively for use of normal scores, which is in contrast to Nelsen (2006) who does not;}
-   \item{infsnv.rm}{A logical that will quietly strip out any occurrences of \eqn{u = \{0,1\}} or \eqn{v = \{0,1\}} from the simulations because these are infinity in magnitude when converted to standard normal variates is to occur. Thus, this logical only impacts logic flow when \code{snv} is \code{TRUE}. The \code{infsnv.rm} is mutually exclusive from \code{trapinfsnv}; }
-   \item{trapinfsnv}{If \code{TRUE} and presumably small, the numerical value of this argument (\eqn{\eta}) is used to replace \eqn{u = \{0,1\}} and \eqn{v = \{0,1\}} with \eqn{u(0) =  v(0) = \eta} or \eqn{u(1) = v(1) = 1 - \eta} as appropriate when conversion to standard normal variates is to occur. The setting of \code{trapinfsnv} only is used if \code{snv} is \code{TRUE} and \code{infsnv.rm} is \code{FALSE}; and}
+   \item{infsnv.rm}{A logical that will quietly strip out any occurrences of \eqn{u = \{0,1\}} or \eqn{v = \{0,1\}} from the simulations because these are infinity in magnitude when converted to standard normal variates has been selected. Thus, this logical only impacts logic flow when \code{snv} is \code{TRUE}. The \code{infsnv.rm} is mutually exclusive from \code{trapinfsnv};}
+   \item{trapinfsnv}{If \code{TRUE} and presumably small, the numerical value of this argument (\eqn{\eta}) is used to replace \eqn{u = \{0,1\}} and \eqn{v = \{0,1\}} with \eqn{u(0) =  v(0) = \eta} or \eqn{u(1) = v(1) = 1 - \eta} as appropriate when conversion to standard normal variates has been selected. The setting of \code{trapinfsnv} only is used if \code{snv} is \code{TRUE} and \code{infsnv.rm} is \code{FALSE}; and}
   \item{...}{Additional arguments to pass to the \code{points()} function in \R.}
 }
 \value{
@@ -40,16 +40,16 @@ Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{derCOPinv}}, \code{\link{simCOPmicro}}}
 \examples{
 simCOP(n=5, cop=PARETOcop, para=2.4)
 
 \dontrun{
 # The simCOP function is oft used in other Examples sections through this package.
-simCOP(n=10, cop=W)            # Frechet lower bound copula
+simCOP(n=10, cop=W)            # Frechet lower-bound copula
 simCOP(n=10, cop=P)            # Independence copula
-simCOP(n=10, cop=M, col=2)     # Frechet upper bound copula
+simCOP(n=10, cop=M, col=2)     # Frechet upper-bound copula
 simCOP(n=10, cop=PSP)          # The PSP copula}
 
 \dontrun{

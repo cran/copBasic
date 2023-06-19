@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{lcomCOPpv}
 \alias{lcomCOPpv}
-\title{ Simulating the Sample Distribution(s) of L-correlation, L-coskew, and L-cokurtosis for a Copula }
+\title{Simulating the Sample Distribution(s) of L-correlation, L-coskew, and L-cokurtosis for a Copula}
 \description{
 \emph{EXPERIMENTAL:} The function provides two themes of sampling distribution characterization by simulation of the first three L-comoment ratios (L-correlation \eqn{\tau_{2[\ldots]}}, L-coskew \eqn{\tau_{3[\ldots]}} and L-cokurtosis \eqn{\tau_{4[\ldots]}}) of a copula. Subsequently, the sampling distribution can be used for inference.
 
@@ -46,7 +46,7 @@ A significance column for the p-values is added to the right side of the returne
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
-\author{ W.H. Asquith }
+\author{W.H. Asquith}
 \seealso{\code{\link{lcomCOP}}, \code{\link{COP}}, \code{\link{kullCOP}}, \code{\link{vuongCOP}}}
 \examples{
 # See Note section of vuongCOP() for an extended discussion of copula inference

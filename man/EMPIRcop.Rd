@@ -36,7 +36,7 @@ where the individual \emph{Bernstein weights} \eqn{\eta(i,j)} for the \eqn{k}th 
 
 The Bernstein extension, albeit conceptually pure in its shuffling by binomial coefficients and left- and right-tail weightings, is quite CPU intensive as inspection of the equations above indicates a nest of four \code{for()} loops in \R. (The native \R code of \pkg{copBasic} uses the \code{sapply()} function in \R liberally for substantial but not a blazing fast speed increase.) The Bernstein extension results in a smoother surface of the empirical copula and can be triggered by \code{ctype="bernstein"}.
 
-\emph{Checkerboard Empirical Copula}---A simple smoothing to the empirical copula is the checkerboard empirical copula (Segers et al., 2017) that has been adapted from the \pkg{copula} package. It is numerically intensive like the Bernstein and possibly of limited usefulness for large sample sizes. The checkerboard extension can be triggered by \code{ctype="checkerboard"} and is formulated as
+\emph{Checkerboard Empirical Copula}---A simple smoothing to the empirical copula is the \emph{checkerboard empirical copula} (Segers et al., 2017) that has been adapted from the \pkg{copula} package. It is numerically intensive like the Bernstein and possibly of limited usefulness for large sample sizes. The checkerboard extension can be triggered by \code{ctype="checkerboard"} and is formulated as
 
 \deqn{\mathbf{C}^\sharp_{n}(U) = \frac{1}{n+o} \sum_{i=1}^n\prod_{i=1}^d \mathrm{min}[\mathrm{max}[n U_j - R^{(n)}_{i,j} + 1,0],1]\mathrm{,}}
 
@@ -58,7 +58,7 @@ EMPIRcop(u, v, para=NULL,
   \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction;}
   \item{v}{Nonexceedance probability \eqn{v} in the \eqn{Y} direction;}
   \item{para}{A vector (single element) of parameters---the U-statistics of the data (see \bold{Examples}). Alternatively, \code{para} can be a \code{list} holding a \code{para} as would be done if it were a vector, but arguments \code{bernstein} and \code{bernprogress} can be optionally included---this feature is provided so that the Bernstein refinement can be controlled within the context of other functions calling \code{EMPIRcop} such as by \code{\link{level.curvesCOP}};}
-  \item{ctype}{An alternative means for trigging the definition of \eqn{\mathbf{C}^\mathcal{H}_n} (default), \eqn{\mathbf{C}^\mathcal{W}_n}, \eqn{\mathbf{C}_n}, \eqn{\mathbf{C}^\mathcal{B}_n}, or the checkerboard empirical copula (a type of smooth). This argument of the same name is also used by \code{\link{blomCOP}};}
+  \item{ctype}{An alternative means for trigging the definition of  \eqn{\mathbf{C}_n}, \eqn{\mathbf{C}^\mathcal{H}_n} (default), \eqn{\mathbf{C}^\mathcal{W}_n}, \eqn{\mathbf{C}^\mathcal{B}_n}, or \eqn{\mathbf{C}^\sharp_n}. This argument of the same name is also used by \code{\link{blomCOP}};}
   \item{bernprogress}{The Bernstein copula extension is CPU intensive(!), so a splash counter is pushed to the console via the \code{message()} function in \R so as to not discourage the user;}
   \item{checkerboard.offset}{A scaling of the ratio \code{sum(....)/(n+offset)} for the checkerboard empirical copula; and}
   \item{...}{Additional arguments to pass.}
@@ -67,9 +67,9 @@ EMPIRcop(u, v, para=NULL,
   Value(s) for the copula are returned.
 }
 \note{
-Not all theoretical measures of copula dependence (both measures of association and measures of asymmetry), which use numerical integration by the \code{integrate()} function in \R, can be used for all empirical copulas because of \dQuote{divergent} integral errors; however, examples using \emph{Hoeffding's Phi} (\eqn{\Phi_\mathbf{C}}; \code{\link{hoefCOP}}) and shown under \bold{Examples}. Other measures of copula dependence include \code{\link{blomCOP}}, \code{\link{footCOP}}, \code{\link{giniCOP}}, \code{\link{rhoCOP}}, \code{\link{tauCOP}}, \code{\link{wolfCOP}}, \code{\link{joeskewCOP}}, and \code{\link{uvlmoms}}. Each of these measures fortunately has a built-in sample estimator.
+Not all theoretical measures of copula dependence (both measures of association and measures of asymmetry), which use numerical integration by the \code{integrate()} function in \R, can be used for all empirical copulas because of \dQuote{divergent} integral errors; however, examples using \emph{Hoeffding Phi} (\eqn{\Phi_\mathbf{C}}; \code{\link{hoefCOP}}) and shown under \bold{Examples}. Other measures of copula dependence include \code{\link{blomCOP}}, \code{\link{footCOP}}, \code{\link{giniCOP}}, \code{\link{rhoCOP}}, \code{\link{tauCOP}}, \code{\link{wolfCOP}}, \code{\link{joeskewCOP}}, and \code{\link{uvlmoms}}. Each of these measures fortunately has a built-in sample estimator.
 
-It is important to distinquish between a sample estimator and the estimation of the measure using the empirical copula itself via the \code{EMPIRcop} function. The sample estimators (triggered by the \code{as.sample} arguments for the measures) are reasonably fast and numerically preferred over using the empirical copula. Further, the generally slow numerical integrations for the theoretical definitions of these copula measures might have difficulties. Limited testing, however, suggests prevalence of numerical integration not erroring using the Bernstein extension of the empirical copula, which must be a by-product of the enhanced and sufficient smoothness for \R's default numerical integration to succeed. Many of the measures have \code{brute} option for a brute-force numerical integration on a regular grid across the empirical copula---these are slow but should not trigger errors. As a general rule, users should still use the sample estimators instead.
+It is important to distinquish between a sample estimator and the estimation of the measure using the empirical copula itself via the \code{EMPIRcop} function. The sample estimators (triggered by the \code{as.sample} arguments for the measures) are reasonably fast and numerically preferred over using the empirical copula. Further, the generally slow numerical integrations for the theoretical definitions of these copula measures might have difficulties. Limited testing, however, suggests prevalence of numerical integration not erroring using the Bernstein extension of the empirical copula, which must be a by-product of the enhanced and sufficient smoothness for the \R default numerical integration to succeed. Many of the measures have \code{brute} option for a brute-force numerical integration on a regular grid across the empirical copula---these are slow but should not trigger errors. As a general rule, users should still use the sample estimators instead.
 }
 \references{
 \enc{Hernández-Maldonado}{Hernandez-Maldonado}, V., \enc{Díaz-Viera}{Diaz-Viera}, M., and Erdely, A., 2012, A joint stochastic simulation method using the Bernstein copula as a flexible tool for modeling nonlinear dependence structures between petrophysical properties: Journal of Petroleum Science and Engineering, v. 90--91, pp. 112--123.
@@ -122,7 +122,7 @@ PSP(0.4,0.6)              # 0.3157895 (compare to listed values below)
 
 # For set.seed(62) --- not all measures of association can be used for all
 # empirical copulas because of 'divergent' integral errors, but this is an example
-# for Hoeffding's Phi. These computations are CPU intensive, esp Bernstein.
+# for Hoeffding Phi. These computations are CPU intensive, esp. Bernstein.
 hoefCOP(as.sample=TRUE, para=uv) #  (sample estimator is fast)  # 0.4987755
 hoefCOP(cop=EMPIRcop,   para=uv, ctype="hazen")                 # 0.5035348
 hoefCOP(cop=EMPIRcop,   para=uv, ctype="weibull")               # 0.4977145
@@ -157,7 +157,7 @@ level.curvesCOP(cop=EMPIRcop, para=bpara, delu=0.03, col=3, ploton=FALSE)
 # Experimental from R Graphics by Murrell (2005, p.112)
 "trans3d" <-                         # blackslashes seem needed for the package
 function(x,y,z, pmat) {              # for user manual building but bad syntax
-  tmat <- cbind(x,y,z,1) \%*\% pmat  # because remember the percent sign is a
+  tmat <- cbind(x,y,z,1) \%*\% pmat    # because remember the percent sign is a
   return(tmat[,1:2] / tmat[,4])      # a comment character in LaTeX.
 }
 

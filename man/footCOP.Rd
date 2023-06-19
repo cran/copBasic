@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{footCOP}
 \alias{footCOP}
-\title{ The Spearman Footrule of a Copula }
+\title{The Spearman Footrule of a Copula}
 \description{
 Compute the measure of association known as the \emph{Spearman Footrule} \eqn{\psi_\mathbf{C}} (Nelsen \emph{et al.}, 2001, p. 281), which is defined as
 
@@ -10,7 +10,7 @@ Compute the measure of association known as the \emph{Spearman Footrule} \eqn{\p
 where \eqn{\mathbf{C}(u,v)} is the copula, \eqn{\mathbf{M}(u,v)} is the \emph{\enc{Fréchet}{Frechet}--Hoeffding upper bound} (\code{\link{M}}), and \eqn{\mathcal{Q}(a,b)} is a \emph{concordance function} (\code{\link{concordCOP}}) (Nelsen, 2006, p. 158). The \eqn{\psi_\mathbf{C}} in terms of a single integration pass on the copula is
 \deqn{\psi_\mathbf{C} = 6 \int_0^1 \mathbf{C}(u,u)\,\mathrm{d}u - 2\mbox{.}}
 % http://www.encyclopediaofmath.org/index.php?title=Spearman_rho_metric&oldid=15466  (accessed Aug 9, 2015)
-Note that Nelsen \emph{et al.} (2001) use \eqn{\phi_\mathbf{C}} but that symbol is taken in \pkg{copBasic} for the \emph{Hoeffding Phi} (\code{\link{hoefCOP}}), and Spearman's Footrule does not seem to appear in Nelsen (2006).
+Note that Nelsen \emph{et al.} (2001) use \eqn{\phi_\mathbf{C}} but that symbol is taken in \pkg{copBasic} for the \emph{Hoeffding Phi} (\code{\link{hoefCOP}}), and Spearman Footrule does not seem to appear in Nelsen (2006).
 }
 \usage{
 footCOP(cop=NULL, para=NULL, by.concordance=FALSE, as.sample=FALSE, ...)
@@ -39,7 +39,7 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 
 Nelsen, R.B., Quesada-Molina, J.J., \enc{Rodríguez-Lallena}{Rodriguez-Lallena}, J.A., \enc{Úbeda-Flores}{Ubeda-Flores}, M., 2001, Distribution functions of copulas---A class of bivariate probability integral transforms: Statistics and Probability Letters, v. 54, no. 3, pp. 277--282.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{blomCOP}}, \code{\link{giniCOP}}, \code{\link{hoefCOP}},
          \code{\link{rhoCOP}}, \code{\link{tauCOP}},  \code{\link{wolfCOP}}
 }

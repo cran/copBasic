@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{jointCOP}
 \alias{jointCOP}
-\title{ Compute Equal Marginal Probabilities Given a Single Joint AND or OR Probability for a Copula  }
+\title{Compute Equal Marginal Probabilities Given a Single Joint AND or OR Probability for a Copula}
 \description{
 Given a single \emph{joint probability} denoted as \eqn{t} for a copula \eqn{\mathbf{C}(u,v)} numerically solve for bivariate marginal probabilities \eqn{U} and \eqn{V} such that they are also equal to each other (\eqn{u = v = w}). For the case of a \bold{joint and} probability, the primary diagonal of the copula (Nelsen, 2006, pp. 12 and 16) is solved for by a simple dispatch to the \code{\link{diagCOPatf}} function instead. Symbolically the solution is
 \deqn{\mathrm{Pr}[U \le v,\ V \le v] = t = \mathbf{C}(w,w)\mbox{.}}
@@ -37,14 +37,14 @@ jointCOP(t, cop=NULL, para=NULL, type=c("and", "or"), ...)
 }
 Letting \code{JP} equal 0.99356, which forces the required acceptance of 500 losses for the design has conditions of \code{UV$U > JP} \bold{or} \code{UV$V > JP} as well as condition of \code{UV$U > JP} \bold{and} \code{UV$V > JP}. These three conditions are captured using the structure of the \R code listed. Up until now, manual searching resulted in a value for \code{JP} equaling 0.99356, which produces the 500 count losses (acceptable losses). Thus, \code{JP} is a marginal bivariate probability (in this case equality between \eqn{U_{\mathrm{crit.}} = V_{\mathrm{crit.}}} declared) necessary to attain a 99th percentile joint protection from loss. The magnitude for either \eqn{U} or \eqn{V} thus must exceed the 99th percentile, and this is what the code shows with 799 losses.
 
-It is important to consider that unless \eqn{U} and \eqn{V} are in perfect positive correlation (\emph{e.g.} \eqn{\mathbf{M}(u,v)}, \code{\link{M}}, \emph{\enc{Fréchet}{Frechet}--Hoeffding upper bound copula}), that protection from loss needs to be higher than 0.99 if the marginal risk is set at that level. Continuing, if the 99th percentile is the 100-year event, then design criteria should be about 155 years instead [\code{lmomco::prob2T(0.99356)}]. The user can readily see this with the switch to perfect independence with the \eqn{\mathbf{GH}(u,v)} copula with \eqn{\Theta = 1} and produce quite different results or extreme correlation with say \eqn{\Theta > 20}.
+It is important to consider that unless \eqn{U} and \eqn{V} are in perfect positive correlation (\emph{e.g.} \eqn{\mathbf{M}(u,v)}, \code{\link{M}}, \emph{\enc{Fréchet}{Frechet}--Hoeffding upper-bound copula}), that protection from loss needs to be higher than 0.99 if the marginal risk is set at that level. Continuing, if the 99th percentile is the 100-year event, then design criteria should be about 155 years instead [\code{lmomco::prob2T(0.99356)}]. The user can readily see this with the switch to perfect independence with the \eqn{\mathbf{GH}(u,v)} copula with \eqn{\Theta = 1} and produce quite different results or extreme correlation with say \eqn{\Theta > 20}.
 
 To provide the protection for 500 exceedances in \eqn{n =} 50,000 trials and for purposes of demonstration, balance the protection between \eqn{U} and \eqn{V} by setting their probabilities equal, then the theoretical joint probability is
 \preformatted{
   diagCOPatf(0.99, 0.99, cop=GHcop, para=1.5)             # 0.9936887
   jointCOP(  0.99,       cop=GHcop, para=1.5, type="and") # 0.9936887
 }
-and these two probabilities, which in reality are actually based on same computation (\code{\link{diagCOPatf}}), and nearly are the same as \code{JP} \eqn{=} 0.99356 that was determined by searching on the simulated data.
+and these two probabilities, which in reality are actually based on same computation (\code{\link{diagCOPatf}}), and nearly are the same as \code{JP} \eqn{=} 0.99356 that was determined by the manual searching on the simulated data.
 
 A \bold{mutually inclusive and} condition can be arranged as follows, and it is implicit in the definition that both loss events occur at the same time:
 \preformatted{
@@ -77,7 +77,7 @@ How about inversion of \eqn{\tilde{\mathbf{C}}(u,v)} by \code{jointCOP} and chec
   jointCOP(0.99, cop=GHcop, para=1.5, type="or")[1]      # 0.9763951 ( theor. )
   length(UV$U[UV$U <= 0.9763951 | UV$V <= 0.9763951])/n  # 0.98982 ( simulated)
 }
-The second probability is a value quite near to 0.99. So if one wants mutual loss protection compute the inversion of the dual of a copula using \code{jointCOP(..., type="or")}. Let us say that 0.80 mutual loss protection is wanted
+The second probability is a value quite near to 0.99. So, if one wants mutual loss protection, compute the inversion of the dual of a copula using \code{jointCOP(..., type="or")}. Let us say that 0.80 mutual loss protection is wanted
 \preformatted{
   jointCOP(0.80, cop=GHcop, para=1.5, type="or")[1]      # 0.6561286
   n - length(UV$U[UV$U <= 0.6561286 | UV$V <= 0.6561286])# 10049 losses ( sim.)
@@ -149,7 +149,7 @@ Now the \eqn{U = V = 0.9873537} for the \dQuote{and} and \eqn{U = V = 0.9763951}
   duCOP(0.9873537, 0.9873537, cop=GHcop, para=Theta) # 0.9947075
   (1-0.9947075)*n  # which is about 1.32 events per 250 trials.
 }
-So the larger protection in terms of joint probabilities provided by \code{EitherEvent} at 0.98 instead of \code{MutualEvent} at 0.99 with respective protection at the 0.9873537 provides a \code{MutualEvent} protection of 0.9947075.
+So, the larger protection in terms of joint probabilities provided by \code{EitherEvent} at 0.98 instead of \code{MutualEvent} at 0.99 with respective protection at the 0.9873537 provides a \code{MutualEvent} protection of 0.9947075.
 \preformatted{
   set.seed(894234)
   EX3 <- sapply(1:nsim, function(i) {

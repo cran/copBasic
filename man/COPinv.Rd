@@ -1,11 +1,11 @@
 \encoding{utf8}
 \name{COPinv}
 \alias{COPinv}
-\title{ The Inverse of a Copula for V with respect to U }
+\title{The Inverse of a Copula for V with respect to U}
 \description{
 Compute the \emph{inverse of a copula} for \eqn{V} with respect to \eqn{U} given \eqn{t} or
 \deqn{t = \mathbf{C}(u{=}U,v) \rightarrow \mathbf{C}^{(-1)}(u{=}U, t) = v\mbox{,}}
-and solving for \eqn{v}.  Nelsen (2006, p. 12) does not so name this function as an \dQuote{inverse.} The \code{COPinv} function is internally used by \code{\link{level.curvesCOP}}. A common misapplication that will puzzle the user (including the author after long breaks from use) is that the following call and error message are often seen:
+and solving for \eqn{v}. Nelsen (2006, p. 12) does not so name this function as an \dQuote{inverse.} The \code{COPinv} function is internally used by \code{\link{level.curvesCOP}} and \code{\link{level.curvesCOP2}}. A common misapplication that will puzzle the user (including the developer after long breaks from package use) is that the following call and error message are often seen:
 \preformatted{
   COPinv(.2, .25, cop=PSP)
   Error in uniroot(func, interval = c(lo, 1), u = u, LHS = t, cop = cop,  :
@@ -33,7 +33,8 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 \author{W.H. Asquith}
 \seealso{\code{\link{COP}},
          \code{\link{COPinv2}},
-         \code{\link{level.curvesCOP}}
+         \code{\link{level.curvesCOP}},
+         \code{\link{level.curvesCOP2}}
 }
 \examples{
 COPinv(cop=N4212cop, para=2, u=0.5, t=0.2)

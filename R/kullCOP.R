@@ -1,6 +1,6 @@
 "kullCOP" <-
 function(cop1=NULL, cop2=NULL, para1=NULL, para2=NULL, alpha=0.05,
-         del=0, n=1E5, verbose=TRUE, sobol=FALSE, ...) {
+         del=0, n=1E5, verbose=TRUE, sobol=FALSE, scrambling=0, ...) {
 
     if(del > 0) {
       lo <- del; hi <- 1 - del # integration limits
@@ -12,18 +12,20 @@ function(cop1=NULL, cop2=NULL, para1=NULL, para2=NULL, alpha=0.05,
     if(sobol) {
        if(! exists(".Random.seed")) tmp <- runif(1) # insures definition
        seed <- sample(.Random.seed, 1)
-       UV <- randtoolbox::sobol(n = n, dim = 2, seed=seed, scrambling=3, ...)
+       UV <- randtoolbox::sobol(n=n, dim=2, seed=seed, scrambling=scrambling)
     } else {
        UV <- matrix(data=runif(2*n), ncol=2)
     }
     if(verbose) message("kullCOP: Computing 'f' density values---",
                         appendLF=FALSE)
-    f <- densityCOP(UV[,1],UV[,2], cop=cop1, para=para1)
+    f <- densityCOP(UV[,1],UV[,2], cop=cop1, para=para1, ...)
+    f[f == 0] <- .Machine$double.eps
     if(verbose) message("done")
 
     if(verbose) message("kullCOP: Computing 'g' density values---",
                         appendLF=FALSE)
-    g <- densityCOP(UV[,1],UV[,2], cop=cop2, para=para2)
+    g <- densityCOP(UV[,1],UV[,2], cop=cop2, para=para2, ...)
+    g[g == 0] <- .Machine$double.eps
     if(verbose) message("done")
 
     h <- g*(log(g/f))
@@ -39,7 +41,7 @@ function(cop1=NULL, cop2=NULL, para1=NULL, para2=NULL, alpha=0.05,
     KLdivergence.gf.sd <-   sd(h)/sqrt(n)
 
     JEFF.divergence <- KLdivergence.fg + KLdivergence.gf
-    names(JEFF.divergence) <- "Jeffrey's Divergence"
+    names(JEFF.divergence) <- "Jeffrey Divergence"
 
     h <- g*log(g/f)^2
     h <- h[is.finite(h)]
@@ -53,8 +55,24 @@ function(cop1=NULL, cop2=NULL, para1=NULL, para2=NULL, alpha=0.05,
     KLvar.gf <- mean(h)
     KLvar.gf.sd <- sd(h)/sqrt(n)
 
-    sigmaKL.fg <- sqrt(KLvar.fg - KLdivergence.fg^2)
+    #    Warning messages:
+    #1: In sqrt(KLvar.fg - KLdivergence.fg^2) : NaNs produced
+    #2: In kullCOP(cop1 = EMPIRcop, para1 = UVaem, cop2 = EMPIRcop, para2 = UVnoaem) :
+    #  NAs introduced by coercion to integer range
+
+    suppressWarnings(sigmaKL.fg <- sqrt(KLvar.fg - KLdivergence.fg^2))
+    if(is.nan(sigmaKL.fg)) {
+      sigmaKL.fg <- 0
+    }
+    # message("KLvar.fg=",        KLvar.fg)
+    # message("KLdivergence.fg=", KLdivergence.fg)
+
     sigmaKL.gf <- sqrt(KLvar.gf - KLdivergence.gf^2)
+    if(is.nan(sigmaKL.gf)) {
+      sigmaKL.gf <- 0
+    }
+    # message("KLvar.gf=",KLvar.gf)
+    # message("KLdivergence.gt=",KLdivergence.gf)
 
     tmp <- c(sigmaKL.fg/KLdivergence.fg, sigmaKL.gf/KLdivergence.gf)
     tmp <- max(tmp[! is.nan(tmp)]) # even need with other protections above?
@@ -70,7 +88,7 @@ function(cop1=NULL, cop2=NULL, para1=NULL, para2=NULL, alpha=0.05,
     names(divergesd) <- c("StdDev_KL-diverge.fg", "StdDev_KL-variance.fg",
                           "StdDev_KL-diverge.gf", "StdDev_KL-variance.gf")
     SS <- as.integer(KL.sample.size)
-    names(SS) <- "Kullback-Leibler (integer) sample size"
+    names(SS) <- "Kullback-Leibler sample size"
     zz <- list(MonteCarlo.sim.size = n,
                divergences         = diverge,
                stdev.divergences   = divergesd,
@@ -137,7 +155,7 @@ function(cop1=NULL, cop2=NULL, para1=NULL, para2=NULL, alpha=0.05,
 
     # Solve Jeffrey's Divergence Joe (2015)
     JEFF.divergence <- KLdivergence.fg + KLdivergence.gf
-    names(JEFF.divergence) <- "Jeffrey's Divergence"
+    names(JEFF.divergence) <- "Jeffrey Divergence"
     #JEFF <- NULL
     #try(JEFF <- integrate(function(u) {
     #    sapply(u, function(u) {
@@ -207,7 +225,7 @@ function(cop1=NULL, cop2=NULL, para1=NULL, para2=NULL, alpha=0.05,
     names(diverge) <- c("KL-diverge.fg", "sigmaKL-diverge.fg",
                         "KL-diverge.gf", "sigmaKL-diverge.gf")
     SS <- as.integer(KL.sample.size)
-    names(SS) <- "Kullback-Leibler (integer) sample size"
+    names(SS) <- "Kullback-Leibler sample size"
     zz <- list(divergences = diverge,
                Jeffrey.divergence=JEFF.divergence,
                KL.sample.size=SS,

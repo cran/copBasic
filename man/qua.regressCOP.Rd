@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{qua.regressCOP}
 \alias{qua.regressCOP}
-\title{ Perform Quantile Regression using a Copula by Numerical Derivative Method for V with respect to U}
+\title{Perform Quantile Regression using a Copula by Numerical Derivative Method for V with respect to U}
 \description{
 Perform \emph{quantile regression} (Nelsen, 2006, pp. 217--218) using a copula by numerical derivatives of the copula (\code{\link{derCOPinv}}). If \eqn{X} and \eqn{Y} are random variables having quantile functions \eqn{x(F)} and \eqn{y(G)} and letting \eqn{y=\tilde{y}(x)} denote a solution to \eqn{\mathrm{Pr}[Y \le y\mid X = x] = F}, where \eqn{F} is a nonexceedance probability. Then the curve \eqn{y=\tilde{y}(x)} is the quantile regression curve of \eqn{V} or \eqn{Y} with respect to \eqn{U} or \eqn{X}, respectively. If \eqn{F=1/2}, then \emph{median regression} is performed (\code{\link{med.regressCOP}}). Using copulas, the quantile regression is expressed as
 \deqn{\mathrm{Pr}[Y \le y\mid X = x] = \mathrm{Pr}[V \le G(y) \mid U = F(x)] = \mathrm{Pr}[V \le v\mid U = v] = \frac{\delta \mathbf{C}(u,v)}{\delta u}\mbox{,}}
@@ -9,7 +9,7 @@ where \eqn{v = G(y)} and \eqn{u = F(x)}. The general algorithm is
 \enumerate{
 \item Set \eqn{\delta \mathbf{C}(u,v)/\delta u = F},
 
-\item Solve the regression curve \eqn{v = \tilde{v}(u)} (accomplished by \code{\link{derCOPinv}}), and
+\item Solve the regression curve \eqn{v = \tilde{v}(u)} (provided by \code{\link{derCOPinv}}), and
 
 \item Replace \eqn{u} by \eqn{x(u)} and \eqn{v} by \eqn{y(v)}.
 }
@@ -32,7 +32,7 @@ qua.regressCOP(f=0.5, u=seq(0.01,0.99, by=0.01), cop=NULL, para=NULL, ...)
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
-\author{ W.H. Asquith}
+\author{W.H. Asquith}
 \seealso{\code{\link{med.regressCOP}}, \code{\link{derCOPinv}}, \code{\link{qua.regressCOP.draw}}}
 \examples{
 \dontrun{
