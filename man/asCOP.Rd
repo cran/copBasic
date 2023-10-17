@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{asCOP}
 \alias{asCOP}
-\title{A Wrapper on a User-Level Formula to Become a Copula Function}
+\title{Wrapper on a User-Level Formula to Become a Copula Function}
 \description{
 This function is intended to document and then to extend a simple API to end users to aid in implementation of other copulas for use within the \pkg{copBasic} package. There is no need or requirement to use \code{asCOP} for almost all users. However, for the mathematical definition of some copulas, the \code{asCOP} function might help considerably. This is because there is a need for special treatment of \eqn{u} and \eqn{v} vectors of probability as each interacts with the vectorization implicit in \R. The special treatment is needed because many copulas are based on the operators such as \code{min()} and \code{max()}. When numerical integration used by the \code{integrate()} function in \R in some copula operators, such as \code{\link{tauCOP}} for the \emph{Kendall Tau} of a copula, special accommodation is needed related to the inherent vectorization in \R and how \code{integrate()} works.
 
@@ -83,15 +83,7 @@ v <- sapply(1:n, function(i) {
       simCOPmicro(u[i], cop=UsersCop, para=para) } )
 plot(data.frame(U=u, V=v), pch=17, col=rgb(1,0,1,1),
      xlab="U, NONEXCEEDANCE PROBABILTY", ylab="V, NONEXCEEDANCE PROBABILITY")
-mtext("Plackett mixed with a Convex Copula Sum")
-
-#optimize(function(k) { nuskewCOP(cop=UsersCop,
-#         para=list(mixer=k, subcop=M)) }, interval=c(0.01,0.99))
-# Note (2018-12-28): Now 96 is the nuskewCOP multiplier, but with shuffling of M,
-# we can drive the maximum to +/-1.539598, which implies perhaps a multiplier of
-# 1/(1.539598/96) of 62.35394. But the 96 inflates the skewness scale more and
-# more inline with the scale of nustarCOP() for practical application of using them
-# for parameter estimation (see joeskewCOP Note section).
+mtext("Shuffle Copula Nelsen (2006, exam. 3.10, p. 73)")
 
 # Concerning Nelsen (2006, exam. 5.14, p. 195)
 "deltacop" <- function(u,v, ...) { min(c(u,v,(u^2+v^2)/2))     }

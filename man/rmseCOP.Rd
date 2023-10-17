@@ -1,7 +1,7 @@
 \encoding{utf8}
 \name{rmseCOP}
 \alias{rmseCOP}
-\title{The Root Mean Square Error between a Fitted Copula and an Empirical Copula}
+\title{Root Mean Square Error between a Fitted Copula and an Empirical Copula}
 \description{
 Compute the \emph{root mean square error} \eqn{\mathrm{RMSE}_\mathbf{C}} (Chen and Guo, 2019, p. 29), which is computed using \emph{mean square error} \eqn{\mathrm{MSE}} as
 
@@ -11,11 +11,11 @@ Compute the \emph{root mean square error} \eqn{\mathrm{RMSE}_\mathbf{C}} (Chen a
 where \eqn{\mathbf{C}_n(u_i,v_i)} is the \emph{empirical copula} (empirical joint probability) for the \eqn{i}th observation, \eqn{\mathbf{C}_{\Theta_m}(u_i, v_i)} is the fitted copula having \eqn{m} parameters in \eqn{\Theta}. The \eqn{\mathbf{C}_n(u_i,v_i)} comes from \code{\link{EMPIRcop}}. The \eqn{\mathrm{RMSE}_\mathbf{C}} is in effect saying that the best copula will have its joint probabilities plotting on a 1:1 line with the empirical joint probabilities, which is an \eqn{\mathrm{RMSE}_\mathbf{C}=0}. From the \eqn{\mathrm{MSE}_\mathbf{C}} shown above, the \emph{Akaike information criterion} (AIC) \code{\link{aicCOP}} and \emph{Bayesian information criterion} (BIC) \code{\link{bicCOP}} can be computed, which add a penalty for \eqn{m} parameters. These goodness-of-fits can assist in deciding one copula favorability over another, and another goodness-of-fit using the absolute differences between \eqn{\mathbf{C}_n(u,v)} and \eqn{\mathbf{C}_{\Theta_m}(u, v)} is found under \code{\link{statTn}}.
 }
 \usage{
-rmseCOP(u,v, cop=NULL, para=NULL, ...)
+rmseCOP(u, v=NULL, cop=NULL, para=NULL, ...)
 }
 \arguments{
   \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction;}
-  \item{v}{Nonexceedance probability \eqn{v} in the \eqn{Y} direction;}
+  \item{v}{Nonexceedance probability \eqn{v} in the \eqn{Y} direction; If not given, then a second column from argument \code{u} is attempted;}
   \item{cop}{A copula function;}
   \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula; and}
   \item{...}{Additional arguments to pass to either copula (likely most commonly to the empirical copula).}

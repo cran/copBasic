@@ -65,7 +65,8 @@ Gini Gamma \tab \eqn{\gamma_\mathbf{C}} \tab \code{\link{giniCOP}} \tab bivariat
 Hoeffding Phi \tab \eqn{\Phi_\mathbf{C}} \tab \code{\link{hoefCOP}} \tab bivariate association\cr
 Nu-Skew \tab \eqn{\nu_\mathbf{C}} \tab \code{\link{nuskewCOP}} \tab bivariate moments\cr
 Nu-Star (skew) \tab \eqn{\nu^\star_\mathbf{C}} \tab \code{\link{nustarCOP}} \tab bivariate moments\cr
-Lp distance \tab  \eqn{\Phi_\mathbf{C} \rightarrow L_p} \tab \code{\link{LpCOP}} \tab bivariate association\cr
+Lp distance to independence \tab  \eqn{\Phi_\mathbf{C} \rightarrow L_p} \tab \code{\link{LpCOP}} \tab bivariate association\cr
+Permutation-Mu \tab  \eqn{\mu_{\infty\mathbf{C}}^\mathrm{permsym}} \tab \code{\link{LzCOPpermsym}} \tab permutation asymmetry\cr
 Kendall Tau \tab \eqn{\tau_\mathbf{C}} \tab \code{\link{tauCOP}} \tab bivariate association\cr
 Kendall Measure \tab \eqn{K_\mathbf{C}(z)} \tab \code{\link{kmeasCOP}} \tab copula theory\cr
 Kendall Function \tab \eqn{F_K(z)} \tab \code{\link{kfuncCOP}} \tab copula theory\cr

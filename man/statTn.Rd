@@ -10,10 +10,11 @@ where \eqn{\mathbf{C}_n(u,v)} is the \emph{empirical copula}, \eqn{\mathbf{C}_{\
 The \eqn{T_n} statistic is obviously a form of deviation between the empirical (nonparametric) and parametric fitted copula. The distribution of this statistic through Monte Carlo simulation could be used for inference. The inference is based on that a chosen parametric model is suitably close to the empirical copula. The \eqn{T_n(p)} statistic has an advantage of being relatively straightforward to understand and explain to stakeholders and decision makers, is attractive for being suitable in a wide variety of circumstances, but intuitively might have limited statistical power in some situations for it looks at whole copula structure and not say at tail dependency. Finally, other goodness-of-fits using the squared differences between \eqn{\mathbf{C}_n(u,v)} and \eqn{\mathbf{C}_{\Theta_m}(u, v)} are \code{\link{aicCOP}}, \code{\link{bicCOP}}, and \code{\link{rmseCOP}}.
 }
 \usage{
-statTn(uv, cop=NULL, para=NULL, p=2, proot=FALSE, ...)
+statTn(u, v=NULL, cop=NULL, para=NULL, p=2, proot=FALSE, ...)
 }
 \arguments{
-  \item{uv}{An \R two column \code{matrix} or \code{data.frame} of a sample of nonexceedance probabilities \eqn{u} and \eqn{v};}
+  \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction;}
+  \item{v}{Nonexceedance probability \eqn{v} in the \eqn{Y} direction. If not given, then a second column from argument \code{u} is attempted;}
   \item{cop}{A copula function;}
   \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula;}
   \item{p}{The value for \eqn{p}, and the default follows that of Genest \emph{et al.} (2011);}
@@ -64,8 +65,8 @@ Next, compute the sample \eqn{\hat T_n = 0.063} from \code{sampleUV}. The distri
 \preformatted{
   sampleTn   <- statTn(sampleUV, cop=chosenCopula, para=para)
   Tns        <- distTn(n=n,      cop=chosenCopula, para=para,
-                       interval=c(.001,100), statf=blomCOP)
-  Tns_pvalue <- 1 - sum(Tns <= sampleTn)/length(Tns) # estimate p-value
+                       interval=c(0.001, 100), statf=blomCOP)
+  Tns_pvalue <- 1 - sum(Tns <= sampleTn) / length(Tns) # estimate p-value
 }
 
 The demonstration is furthered with a check on the \emph{Kullback--Leibler sample size} \eqn{n_{f\!g}} at the 5-percent significance level (alpha = 0.05) by the \code{\link{kullCOP}} function, which yields \eqn{100}. Given the parent copula as \eqn{\mathbf{GL}(\Theta{=}1.9)}, therefore, it would take approximately 100 samples to distinguish between that copula and a \eqn{\mathbf{PL}(\Theta{=}20.75)} where in this case the fit was through the \eqn{\hat\beta_\mathbf{C} = 0.64}.
@@ -91,11 +92,10 @@ Genest, C., Kojadinovic, I., \enc{Nešlehová}{Neslehova}, J., and Yan, J., 2011
 # Example here is just for Tn. For the example below, the PSP copula is quite different
 # from the Gumbel-Hougaard copula and thus, the hatTn would be expected to be different
 # from those of the Gumbel-Hougaard and certainly not too near to zero.
-sampleUV  <- simCOP(n=60, cop=PSP, graphics=FALSE)   # random sample
-hatTau <- cor(samUV$U, samUV$V, method="kendall") # Kendall Tau
-hatTn  <- statTn(sampleUV, cop=GHcop, para=GHcop(tau=hatTau)$para,
-                 ctype="bernstein", bernprogress=TRUE)
-# approximate range 0.0141 -- 0.030
+samUV  <- simCOP(n=60, cop=PSP, graphics=FALSE, seed=1)   # random sample
+hatTau <- cor(samUV$U, samUV$V, method="kendall")         # Kendall Tau
+hatTn  <- statTn(samUV, cop=GHcop, para=GHcop(tau=hatTau)$para,
+                 ctype="bernstein", bernprogress=TRUE)    # 0.03328789
 # hatTn in this case is by itself is somewhat uninformative and requires
 # Monte Carlo to put an individual value into context.}
 }

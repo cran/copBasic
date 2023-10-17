@@ -24,7 +24,7 @@ isCOP.radsym(cop=NULL, para=NULL, delta=0.005, tol=1e-4, ...)
   A logical \code{TRUE} or \code{FALSE} is returned.
 }
 \note{
-An open research question possibly exists: \emph{Is a radially symmetric copula characterized by the L-comoments for orders} \eqn{r{\ge}3} \emph{as having values of zero}? The author asks this question partly out of intuition stemming from numerical experiments (some not show here) suggesting this condition, and review of copula literature does not seem to directly address this question. Let us consider the two symmetrical copulas: the parameterless \eqn{\mathbf{PSP}(u,v)} (see \code{\link{PSP}}) and the \eqn{\mathbf{PL}(u,v)} (see \code{\link{PLACKETTcop}}) with the \eqn{\rho_\mathbf{C} = 4.709} (see \code{\link{rhoCOP}}). The two copulas have different radial symmetries as shown below.
+An open research question possibly exists: \emph{Is a radially symmetric copula characterized by the L-comoments for orders} \eqn{r{\ge}3} \emph{as having values of zero}? The author asks this question partly out of intuition stemming from numerical experiments (some not show here) suggesting this condition, and review of copula literature does not seem to directly address this question. Let us consider the two symmetrical copulas: the parameterless \eqn{\mathbf{PSP}(u,v)} (see \code{\link{PSP}}) and the single parameter \eqn{\mathbf{PL}(u,v; \Theta)} (see \code{\link{PLACKETTcop}}) with the \eqn{\Theta_\mathbf{PL} = 4.708664} (see \code{\link{rhoCOP}}). The two copulas have different radial symmetries as shown below.
 \preformatted{
   plackpar <- PLACKETTpar(rho=rhoCOP(cop=PSP)) # Spearman Rho = 0.4784176
   isCOP.radsym(cop=PSP)                        # FALSE
@@ -39,7 +39,7 @@ Now, let us compute the L-comoments from the \pkg{lmomco} \R package for \eqn{n=
   lmomco::lcomoms2(UVa, nmom=4)$T3[2,1] # Only show L-coskew of V wrt U.
   lmomco::lcomoms2(UVb, nmom=4)$T3[2,1] # Only show L-coskew of V wrt U.
 }
-The L-coskew for the \eqn{\mathbf{PSP}} is about \eqn{-0.13} and that for the \eqn{\mathbf{PL}} copula is about zero (\eqn{<0.003}). L-cokurtosis provides a similar result if \code{T3} is changed to \code{T4}. The \eqn{\mathbf{PSP}} L-cokurtosis is about 0.04, whereas the \eqn{\mathbf{PL}} L-cokurtosis is about \eqn{<0.004}.
+The L-coskew for the \eqn{\mathbf{PSP}} is about \eqn{-0.129} and that for the \eqn{\mathbf{PL}} copula is about zero (\eqn{<0.0029}). L-cokurtosis provides a similar result if \code{T3} is changed to \code{T4}. The \eqn{\mathbf{PSP}} L-cokurtosis is about \eqn{0.041}, whereas the \eqn{\mathbf{PL}} L-cokurtosis is about \eqn{<0.0037}.
 }
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
@@ -83,11 +83,19 @@ isCOP.LTD(cop=EMPIRcop,    para=uv) # TRUE
 isCOP.RTI(cop=EMPIRcop,    para=uv) # FALSE
 isCOP.PQD(cop=EMPIRcop,    para=uv,
                     empirical=TRUE) # TRUE
+  # Blomqvist's Beta = 0.2941
+  #     Gini's Gamma = 0.5606
+  #   Spearman's Rho = 0.6584
+  #    Kendall's Tau = 0.5045
 
 isCOP.radsym(cop=GHcop, para=theta) # FALSE
 isCOP.LTD(cop=GHcop,    para=theta) # TRUE
 isCOP.RTI(cop=GHcop,    para=theta) # TRUE
 isCOP.PQD(cop=GHcop,    para=theta) # TRUE
+  # Blomqvist's Beta = 0.5009
+  #     Gini's Gamma = 0.5591
+  #   Spearman's Rho = 0.6822
+  #    Kendall's Tau = 0.5000
 
 # Notice that isCOP.RTI is not the same for empirical and theoretical.
 # This shows the difficulty in tail dependence parameter estimation for

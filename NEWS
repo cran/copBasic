@@ -2,6 +2,30 @@
                 NEWS for R Package "copBasic" by W.H. Asquith
 --------------------------------------------------------------------------------------
 
+Changes in version 2.2.2 (2023-10-17)
+-  Added LzCOPpermsym() as "by far the most interesing" measure of permutation
+       asymmetry or exchangability of u,v versus v,u. Features are implemented to
+       assist in using LzCOPpermsym() for parameter optimization. This measure is
+       named "Permutation-Mu" within the package.
+-  Fixed mathematical notation for L_infty^permsym in hoefCOP() as LzCOPpermsym()
+       became better understood from one of its references relative to others.
+-  Added to aicCOP(), bicCOP, and rmseCOP() ability for first argument to be a matrix
+       of the U and V. This is similar to handling in many other copBasic functions.
+-  Revised statTn() to have same u,v argument handling as aicCOP(), bicCOP, and
+       rmseCOP(). Variable naming fix in one of the Examples in statTn.Rd.
+-  Documentation adjustments in asCOP.Rd.
+-  Documentation adjustments in breveCOP.Rd.
+-  Documentation adjustments in hoefCOP.Rd.
+-  Documentation adjustments in isCOP.radsym.
+-  Documentation adjustments in copBasic-package.Rd.
+
+
+Changes in version 2.2.1 (2023-06-21)
+-  Extension of breveCOP() to have a breve argument that trumps any inside a para list
+       with subordinate extension that a breve inside para trumps beta. This has an
+       effect of working more flexibility with composite2COP() and composite3COP().
+
+
 Changes in version 2.2.0 (2023-06-19)
 -  Minor grammar fixes in copBasic-package.Rd.
 -  Minor grammar fixes in taildepCOP.Rd and commenting out a print() in taildepCOP.R
@@ -646,7 +670,8 @@ POTENTIAL TODOs:
 
 Continued inspection of the approx() use and whether ties="ordered" can be used
 (see 2.1.3#6), it appears in all other cases that yes, we can move
-to the ties="ordered" because the inversion of the gridded derivative of the empirical  copula is being used and structurally the "x" part of the approx will be ordered.
+to the ties="ordered" because the inversion of the gridded derivative of the empirical
+copula is being used and structurally the "x" part of the approx will be ordered.
 R/EMPIRsim.R:      v <- approx(cols, y=v.available, xout=t, rule=2)$y
 R/EMPIRsim.R:      v1 <- approx(cols, y=v.available1, xout=t, rule=2)$y
 R/EMPIRsim.R:      v2 <- approx(cols, y=v.available2, xout=t, rule=2)$y

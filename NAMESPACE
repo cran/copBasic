@@ -4,7 +4,8 @@
             "integrate", "median", "qnorm", "quantile", "runif", "var",
             "uniroot", "optimise", "optim", "pnorm", "pt", "qt", "sd",
             "dbeta", "pbeta")
- importFrom("randtoolbox", "sobol")
+ importFrom("randtoolbox", "halton", "sobol", "torus")
+ importFrom("utils", "installed.packages")
 export(copBasic.fitpara.beta)
 export(AMHcop)
 export(CLcop)
@@ -35,6 +36,7 @@ export(HRcop)
 export(LpCOP)
 export(LpCOPradsym)
 export(LpCOPpermsym)
+export(LzCOPpermsym)
 export(M)
 export(N4212cop)
 export(P)
