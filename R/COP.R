@@ -17,7 +17,7 @@ function(u, v, cop=NULL, para=NULL,
    reflect <-    match.arg(reflect) #           silently be accepted
 
    if(! is.list(para)) names(para) <- NULL # removes unsightly named labels often on the para in this package
-   return(switch(reflect,
+   zz <- switch(reflect,
                  cop   =             cop(u,     v, para=para, ...),
                  surv  = u + v - 1 + cop(1-u, 1-v, para=para, ...),
                  acute =     v     - cop(1-u,   v, para=para, ...),
@@ -26,5 +26,8 @@ function(u, v, cop=NULL, para=NULL,
                  "2"   = u + v - 1 + cop(1-u, 1-v, para=para, ...),
                  "3"   =     v     - cop(1-u,   v, para=para, ...),
                  "4"   = u         - cop(  u, 1-v, para=para, ...)
-         ))
+         )
+  zz[zz > 1] <- 1 # assurance in case any numerical issues have caused a nudge outside the
+  zz[zz < 0] <- 0 # applicable range of probability on the closed interval [0,1]
+  return(zz)
 }

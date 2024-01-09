@@ -24,9 +24,9 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 \author{W.H. Asquith}
 \seealso{\code{\link{M}}, \code{\link{P}}}
 \examples{
-W(0.4,0.6)
-W(0,0)
-W(1,1)
+W(0.41, 0.60) # just barely touching the support, so small, 0.01
+W(0.25, 0.45) # no contact with the support, so 0
+W(1,    1   ) # total consumption of the support, so 1
 }
 \keyword{copula (formulas)}
 \keyword{copula (limits/bounds)}

@@ -13,7 +13,7 @@ function(u,v, para, breve=NULL, ...) {
     the.breve <- para$beta
   } else {
     if(is.null(the.breve)) {
-      warning("no beta parameter given")
+      warning("no beta or breve (each means the same) parameter given")
       return(NULL)
     }
   }

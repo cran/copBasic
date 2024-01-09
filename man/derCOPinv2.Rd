@@ -4,7 +4,7 @@
 \title{Numerical Derivative Inverse of a Copula for U with respect to V}
 \description{
 Compute the inverse of a numerical partial derivative for \eqn{U} with respect to \eqn{V} of a copula, which is a \emph{conditional quantile function} for nonexceedance probability \eqn{t}, or
-\deqn{t = c_v(u) = \mathbf{C}^{(-1)}_{1|2}(u|v) =  \frac{\delta \mathbf{C}(u,v)}{\delta v}\mbox{,}}
+\deqn{t = c_v(u) = \mathbf{C}^{(-1)}_{1 \mid 2}(u \mid v) =  \frac{\delta \mathbf{C}(u,v)}{\delta v}\mbox{,}}
 and solving for \eqn{u}. Nelsen (2006, pp. 13, 40--41) shows that this inverse is quite important for random variable generation using the \emph{conditional distribution method}. This function is not vectorized and will not be so.
 }
 \usage{

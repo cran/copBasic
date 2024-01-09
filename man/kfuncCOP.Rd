@@ -10,7 +10,7 @@ To begin, there are at least three terms in the literature for what appear as th
 
 \deqn{F_K(z; \mathbf{C}) = \mathrm{Pr}[Z \le z; \mathbf{U} \sim \mathbf{C}(u,v)]\mbox{,}}
 
-where \eqn{F_K} is the nonexceedance probability of the joint probability \eqn{z} stemming from the \eqn{\mathbf{C}}. Note that unlike its univariate counterpart, \eqn{F_K(z)} is rarely uniformly distributed (Nelsen \emph{et al.}, 2001, p. 278). The inverse \eqn{F_K^{(-1)}(z)} is implemented by the \code{\link{kfuncCOPinv}} function, which could be used for simulation of the correct joint probability using a single unformly distributed \eqn{\sim} U(0,1) random variable. A reminder is needed that \eqn{Z} is the \bold{joint probability} and \eqn{F_K(z)} is the Kendall Function.
+where \eqn{F_K} is the nonexceedance probability of the joint probability \eqn{z} stemming from the \eqn{\mathbf{C}}. Note, unlike its univariate counterpart, \eqn{F_K(z)} is rarely uniformly distributed (Nelsen \emph{et al.}, 2001, p. 278). The inverse \eqn{F_K^{(-1)}(z)} is implemented by the \code{\link{kfuncCOPinv}} function, which could be used for simulation of the correct joint probability using a single unformly distributed \eqn{\sim} U(0,1) random variable. A reminder is needed that \eqn{Z} is the \bold{joint probability} and \eqn{F_K(z)} is the Kendall Function.
 
 Joe (2014) and others as cited list various special cases of \eqn{F_K(z)}, inequalities, and some useful identities suitable for validation study:\cr
 \eqn{\mbox{}\quad\bullet\quad\mbox{}}For \eqn{\mathbf{M}(u,v)} (see \code{\link{M}}): \eqn{F_K(z) = z} for all \eqn{0 < z < 1} for all \eqn{d \ge 2} dimensions;\cr
@@ -50,8 +50,12 @@ Nelsen (2006) does not seem to list a more general definition for any \eqn{\math
 The similarity of \eqn{F_K(z)}, \eqn{K_\mathbf{C}(z)}, and \eqn{K^\star_\mathbf{C}(t)}, however, is obvious---research shows that there are no syntatic differences between \eqn{F_K(z)} and \eqn{K_\mathbf{C}(t)} and \eqn{K^\star_\mathbf{C}(z)}---they all are the CDF of the joint probability \eqn{Z} of the copula. Consider now that Salvadori \emph{et al.} show \eqn{K_\mathbf{C}} having the form \eqn{a - b} and not a form \eqn{a + b} as previously shown for \eqn{F_K(z)}. Which form is thus correct? The greater bulk of this documentation seeks to answer that question, and it must be concluded that Salvadori \emph{et al.} (2007, eq. 3.49) definition for \eqn{K_\mathbf{C}(z)} has a typesetting error.
 }
 \usage{
-kfuncCOP(z, cop=NULL, para=NULL, wrtV=FALSE, as.sample=FALSE,verbose=FALSE,...)
-kmeasCOP(z, cop=NULL, para=NULL, wrtV=FALSE, as.sample=FALSE,verbose=FALSE,...)
+kfuncCOP(z, cop=NULL, para=NULL, wrtV=FALSE, as.sample=FALSE,
+            verbose=FALSE, subdivisions=100L,
+            rel.tol=.Machine$double.eps^0.25, abs.tol=rel.tol, ...)
+kmeasCOP(z, cop=NULL, para=NULL, wrtV=FALSE, as.sample=FALSE,
+            verbose=FALSE, subdivisions=100L,
+            rel.tol=.Machine$double.eps^0.25, abs.tol=rel.tol, ...)
 }
 \arguments{
   \item{z}{The values for \eqn{z};}
@@ -59,7 +63,10 @@ kmeasCOP(z, cop=NULL, para=NULL, wrtV=FALSE, as.sample=FALSE,verbose=FALSE,...)
   \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula;}
   \item{wrtV}{A logical to toggle between with respect to \eqn{v} or \eqn{u} (default);}
   \item{as.sample}{A control on whether an optional \R \code{data.frame} in \code{para} is used to compute the empirical \eqn{\hat{F}_K(z)}. Let vector length of \code{para} be denoted \eqn{m} and \eqn{i = (1,\ldots,m)}, if \code{as.sample=TRUE}, then for each of the probability pairs in \code{para}, the \emph{empirical copula} (\code{\link{EMPIRcop}}) function with additional arguments \code{...} is used to generate a vector \eqn{(0, F^\sharp_{K,m}, 1)} of length \eqn{m+2}, then a vector of \eqn{(0, z^\sharp_m, 1)} again of length \eqn{m+2} where \eqn{z^\sharp = (i-0.5)/m} is created and linear interpolation by the \code{approx()} function in \R for each of the \eqn{z} values in \code{z} is used to estimate \eqn{\hat{F}_K(z)} (see source code). If \code{as.sample="genest"}, then the \eqn{\hat{F}_K(z)} is estimated without interpolation using a simple empirical copula basis and \dQuote{pseudo-observations} after Genest \emph{et al.} (2006, p. 339). The default \eqn{\hat{F}_K} (\code{as.sample=TRUE}) is the linear interpolation based on the default call of Weibull form of the empirical copula, but that can be confirmed by \code{ctype="weibull"} (see \bold{Note});}
-  \item{verbose}{A logical supressing warnings from \code{integrate()} in \R that are usually related to \dQuote{integral divergence} for \eqn{z \rightarrow 0^{+}}. The constructed behavior of \code{kfuncCOP} is to return \eqn{F_K(z \rightarrow 0^{+}) = 0} if numerical integration returns \code{NULL}, and such a construction is made to avoid \dQuote{end points not of opposite sign} during \eqn{F_K(z)} inversion by \code{\link{kfuncCOPinv}}; and}
+  \item{verbose}{A logical supressing warnings from \code{integrate()} in \R that are usually related to \dQuote{integral divergence} for \eqn{z \rightarrow 0^{+}}. The constructed behavior of \code{kfuncCOP} is to return \eqn{F_K(z \rightarrow 0^{+}) = 0} if numerical integration returns \code{NULL}, and such a construction is made to avoid \dQuote{end points not of opposite sign} during \eqn{F_K(z)} inversion by \code{\link{kfuncCOPinv}};}
+  \item{subdivisions}{Argument of same name passed to \code{integrate()},}
+  \item{rel.tol}{Argument of same name passed to \code{integrate()},}
+  \item{abs.tol}{Argument of same name passed to \code{integrate()}, and}
   \item{...}{Additional arguments to pass.}
 }
 \value{
@@ -213,7 +220,7 @@ Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in
 \examples{
 \dontrun{
 # Salvadori et al. (2007, p. 148, fig. 3.5 [right])
-zs <- seq(0,1, by=.01)
+zs <- c(0.0001, seq(0.01, 1, by=0.01), 0.9999)
 plot(zs, kmeasCOP(zs, cop=GHcop, para=5), log="y", type="l", lwd=4,
      xlab="Z <= z", ylab="Kendall Function", xlim=c(0,1), ylim=c(0.001,1)) #}
 }

@@ -9,7 +9,7 @@ Compute the numerical partial derivative of a copula, which is a \emph{condition
 
 or
 
-\deqn{\mathrm{Pr}[U \le u\mid V=v] = \mathbf{C}_{1|2}(u|v) =  \lim_{\Delta v \rightarrow 0}\frac{\mathbf{C}(u, v+\Delta v) - \mathbf{C}(u,v)}{\Delta v}\mbox{,}}
+\deqn{\mathrm{Pr}[U \le u\mid V=v] = \mathbf{C}_{1 \mid 2}(u \mid v) =  \lim_{\Delta v \rightarrow 0}\frac{\mathbf{C}(u, v+\Delta v) - \mathbf{C}(u,v)}{\Delta v}\mbox{,}}
 
 which is to read as the probability that \eqn{U \le u} given that \eqn{V = v} and corresponds to the \cr \code{derdir="left"} mode of the function. For \code{derdir="right"}, the following results
 \deqn{\mathrm{Pr}[U \le u\mid V=v] = \lim_{\Delta v \rightarrow 0}\frac{\mathbf{C}(u,v) - \mathbf{C}(u, v-\Delta v)}{\Delta v}\mbox{,}}

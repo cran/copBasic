@@ -1,5 +1,5 @@
 "COPinv2" <-
-function(cop=NULL, v, t, para=NULL, ...) {
+function(cop=NULL, v, t, para=NULL, silent=TRUE, ...) {
     if(t == 0) return(0)
     if(t == 1) return(v)
     if(v == t) return(1)
@@ -10,15 +10,15 @@ function(cop=NULL, v, t, para=NULL, ...) {
     lo <- COP(0,0, cop=cop, para=para, ...)
     if(is.na(lo) | ! is.finite(lo)) lo <- .Machine$double.eps
     my.rt <- NULL
-    try(my.rt <- uniroot(func,interval=c(lo,1),
-                          v=v, LHS=t, cop=cop, para=para, ...))
+    try(my.rt <- uniroot(func, interval=c(lo,1),
+                         v=v, LHS=t, cop=cop, para=para, ...), silent=silent)
 
     if(is.null(my.rt)) return(NA)
     if(length(my.rt$root) != 0) {
       u <- my.rt$root
       return(u)
     } else {
-      message(c("COPinv2: ",v,t,"\n"))
+      message(c("COPinv2: v=", v, ", t=", t, "\n"))
       return(NA)
     }
 }

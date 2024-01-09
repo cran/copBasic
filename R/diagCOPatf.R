@@ -1,11 +1,13 @@
-"diagCOPinv" <- function(f, cop=NULL, para=NULL, verbose=FALSE, interval=NULL,
-                                  tol=.Machine$double.eps/10, ...) {
-   diagCOPatf(f,cop=cop,para=para,verbose=verbose,interval=interval,tol=tol,...)
+"diagCOPinv" <-
+function(f, cop=NULL, para=NULL, interval=NULL,
+                      silent=TRUE, verbose=FALSE, tol=.Machine$double.eps/10, ...) {
+   diagCOPatf(f, cop=cop, para=para, silent=silent, verbose=verbose,
+                 interval=interval, tol=tol, ...)
 }
 
 "diagCOPatf" <-
- function(f, cop=NULL, para=NULL, verbose=FALSE, interval=NULL,
-                                  tol=.Machine$double.eps/10, ...) {
+ function(f, cop=NULL, para=NULL, interval=NULL,
+                       silent=TRUE, verbose=FALSE, tol=.Machine$double.eps/10, ...) {
     if(verbose & length(f) > 1) {
        warning("f argument is not a single value, only first value will be used, ",
                "because verbose return needed")
@@ -27,13 +29,13 @@
        return(NULL)
     }
 
-    "afunc" <- function(uv, aF=NA) (aF - cop(uv, uv, para=para, ...))
+    "afunc" <- function(uv, aF=NA, ...) (aF - cop(uv, uv, para=para, ...))
 
     DatF <- sapply(f, function(af) {
                    if(af == 0) return(0)
                    if(af == 1) return(1)
                    rt <- NULL
-                   try(rt <- uniroot(afunc, interval=intv, tol=tol, aF=af, ...))
+                   try(rt <- uniroot(afunc, interval=intv, tol=tol, aF=af, ...), silent=silent)
                    if(is.null(rt)) {
                       warning("could not root for the diagonal inverse")
                       return(NA)

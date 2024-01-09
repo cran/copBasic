@@ -18,7 +18,7 @@ For other descriptions and computations of copula combination are possible using
 }
 \usage{
 prod2COP(u,v, cop1=NULL, para1=NULL, cop2=NULL, para2=NULL, para=NULL,
-              interval=NULL, ...)
+              pinterval=NULL, ...)
 }
 \arguments{
   \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction;}
@@ -28,7 +28,7 @@ prod2COP(u,v, cop1=NULL, para1=NULL, cop2=NULL, para2=NULL, para=NULL,
   \item{cop2}{The \eqn{\mathbf{C}_2(u,v; \Theta_2)} copula function with vectorization as in \code{asCOP};}
   \item{para2}{Vector of parameters or other data structures for \eqn{\Theta_2}, if needed, to pass to copula \eqn{\mathbf{C}_2(u,v; \Theta_2)};}
   \item{para}{An \R \code{list} that can take the place of the \code{cop1}, \code{para1}, \code{cop2}, and \code{para2} arguments. These four will be populated from same named elements of the \code{list}, and if the other four arguments were specified through the function interface, these are silently ignored;}
-  \item{interval}{An optional interval for the above integral. The default is \eqn{\mathcal{I} = [0,1]} but the option of the user to replace exact end points with \dQuote{small} numbers is possible (\emph{e.g.} \code{interval=}\code{c(lo, 1-lo)} for say \code{lo=.Machine$double.eps}); and}
+  \item{pinterval}{An optional interval for the above integral. The default is \eqn{\mathcal{I} = [0,1]} but the option of the user to replace exact end points with \dQuote{small} numbers is possible (\emph{e.g.} \code{interval=}\code{c(lo, 1-lo)} for say \code{lo=.Machine$double.eps}). This interval is uniquely picked up for the interval in the above definition of \code{prod2COP}. The \code{pinterval} can also be set within the \code{para} and the function will pick it up from there; and}
   \item{...}{Additional arguments to pass to the copulas.}
 }
 \value{
@@ -37,13 +37,15 @@ prod2COP(u,v, cop1=NULL, para1=NULL, cop2=NULL, para2=NULL, para=NULL,
 \note{
 The \emph{Farlie--Gumbel--Morgenstern copula} (\eqn{\mathbf{FGM}(u,v; \Theta)}; \code{\link{FGMcop}}) is
 \deqn{\mathbf{FGM}(u,v; \Theta) = uv[1+\Theta(1-u)(1-v)]\mbox{,}}
-where \eqn{-1 \le \Theta \le 1}. Nelsen (2006, exer. 6.12, p. 249) asserts that for \eqn{\mathbf{FGM}_(\Theta = \alpha)} and \eqn{\mathbf{FGM}_(\Theta = \beta)} with \eqn{\ast}-product as \eqn{\mathbf{FGM}_\alpha \ast \mathbf{FGM}_\beta} that a closed-form solution exists and is
+where \eqn{-1 \le \Theta \le 1}. Nelsen (2006, exer. 6.12, p. 249) asserts that for \eqn{\mathbf{FGM}_{(\Theta = \alpha)}} and \eqn{\mathbf{FGM}_{(\Theta = \beta)}} with \eqn{\ast}-product as \eqn{\mathbf{FGM}_\alpha \ast \mathbf{FGM}_\beta} that a closed-form solution exists and is
 \deqn{\mathbf{FGM}_\alpha \ast \mathbf{FGM}_\beta = \mathbf{FGM}_{(\alpha\beta) / 3}\mbox{.}}
 This assertion is numerically true as readily verified using the \code{prod2COP} function:
 \preformatted{
   u <- c(0.41, 0.87); v <- c(0.13,0.35); A <- -0.532; B <- 0.235
-  FGMcop(  u,v, para= A*B / 3) # 0.0521599 and 0.3034277, matched by prod2COP()
+  FGMcop(  u,v, para= A*B / 3)
+  # 0.0521598638574___   0.3034277347150___
   prod2COP(u,v, cop1=FGMcop, para1=A, cop2=FGMcop, para2=B)
+  # 0.0521598638312605   0.3034277344807909
 }
 }
 \references{
@@ -55,21 +57,35 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 \examples{
 \dontrun{
 # Product P * N4212 ---> P (by identity)
-u <- c(0.41, 0.87); v <- c(0.13,0.35)
+u <- c(0.41, 0.87); v <- c(0.13, 0.35)
 prod2COP(u,v, cop1=P, cop2=N4212cop, para1=NA, para2=2.12) # 0.0533 and 0.3045
 COP(u,v, cop=P)                                            # 0.0533 and 0.3045}
 
 \dontrun{
 para <- list(cop1=PLcop, para1=0.19, cop2=PLcop, para2=34.5)
-UV <- simCOP(n=1000, cop=prod2COP, para=para)
+UV <- simCOP(n=1000, cop=prod2COP, para=para, resamv01=FALSE, showresamv01=FALSE)
 # This is large simulation run (with a lot of numerical operations) is expected
 # at least for the Placketts and chosen parameters to trigger one or more NAs
-# from derCOPinv().  The simCOP() function simply continues on with ignoring the
+# from derCOPinv(). The simCOP() function simply continues on with ignoring the
 # solution or lack thereof for certain combinations, and simCOP() will report how
 # many of the simulated values for sample of size n were computed. For example,
-# for one n=1000, some 965 simulated values were returned. The Spearman Rho is
+# for one n=1000, some 965 simulated values were returned. The defaults require
+# that NAs, empty simulations, remain intact. We can try resampling:
+UV <- simCOP(n=1000, cop=prod2COP, para=para, resamv01=TRUE, showresamv01=TRUE)
 rhoCOP(cop=prod2COP, para=para) # -0.4271195 (theoretical)
-rhoCOP(para=UV, as.sample=TRUE) # -0.4284223 (the test n=1000 --> n=965 sample)}
+rhoCOP(para=UV, as.sample=TRUE) # -0.4274703 #}
+
+\dontrun{
+para <- list(cop1=PLcop, para1=0.19, cop2=PLcop, para2=34.5)
+# The prod2COP() might be one of the more sensitive to NAs in simulation because
+# of the two partial numerical derivatives involved.
+para$pinterval <- c(0.4, 0.6) # totally inappropriate interval for the integral
+# for the prod2COP() definition. Because the ... are used so extensively, we have
+# the "pinterval" for this function so that interval itself can be passed also.
+UV <- simCOP(n=1000, cop=prod2COP, para=para, resamv01=TRUE, showresamv01=TRUE,
+                     pinterval=c(0,   1  ))
+UV <- simCOP(n=1000, cop=prod2COP, para=para, resamv01=TRUE, showresamv01=TRUE,
+                     pinterval=c(0.4, 0.6)) #}
 }
 \keyword{copula operator}
 \concept{copula multiplication}

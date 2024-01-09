@@ -26,15 +26,16 @@ Similarly, the \eqn{\delta^{[21]}_k} are computed by switching \eqn{u \rightarro
 The integral for \eqn{\delta^{[12]}_{4;\mathbf{C}}} does not appear in Brahimi \emph{et al.} (2015) but this and the other forms are verified in the \bold{Examples} and discussion in \bold{Note}. The four \eqn{k \in [1,2,3,4]} for \eqn{U} \emph{wrt} \eqn{V} and \eqn{V} \emph{wrt} \eqn{U} comprise a full spectrum of system of seven (not eight) equations. One equation is lost because \eqn{\delta^{[12]}_1 = \delta^{[21]}_1}.
 }
 \usage{
-bilmoms(cop=NULL, para=NULL, only.bilmoms=FALSE, n=1E5, sobol=TRUE, scrambling=0, ...)
+bilmoms(cop=NULL, para=NULL, only.bilmoms=FALSE, n=1E5,
+                  sobol=TRUE, scrambling=0, ...)
 }
 \arguments{
   \item{cop}{A copula function;}
   \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula;}
   \item{only.bilmoms}{A logical to trigger return of the \eqn{\delta_k} and skip L-comoment computation;}
   \item{n}{The Monte Carlo integration size. The default seems to be at least an order of magnitude greater than needed for many applied problems;}
-  \item{sobol}{A logical trigging \emph{Sobol sequences} for the Monte Carlo integration instead of the bivariate uniform distribution (independence). The Sobol sequences are dependent on the \code{sobol()} function of the \pkg{randtoolbox} package, and the Sobol sequences canvas the \eqn{\mathcal{I}^2} domain for smaller \eqn{n} values than required if statistical independence is used for the Monte Carlo integration. Note that \pkg{randtoolbox} at least at version 2.0.+ has \dQuote{scrambling} of Sobol sequences temporarily disabled, and hence \code{scrambling=0} as default for \code{bilmoms};}
-  \item{scrambling}{The argument of the same name for \code{randtoolbox::sobol}; and}
+  \item{sobol}{A logical trigging \emph{Sobol sequences} for the Monte Carlo integration instead of the bivariate uniform distribution (independence). The Sobol sequences are dependent on the \code{sobol()} function of the \pkg{randtoolbox} package, and the Sobol sequences canvas the \eqn{\mathcal{I}^2} domain for smaller \eqn{n} values than required if statistical independence is used for the Monte Carlo integration. Note, \pkg{randtoolbox} at least at version 2.0.+ has \dQuote{scrambling} of Sobol sequences temporarily disabled, and hence \code{scrambling=0} as default for \code{bilmoms};}
+  \item{scrambling}{The argument of the same name for \code{randtoolbox::sobol()}; and}
   \item{...}{Additional arguments to pass to the \code{\link{densityCOP}} function.}
 }
 \value{

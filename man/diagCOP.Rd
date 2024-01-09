@@ -58,3 +58,4 @@ mtext("SECONDARY DIAGONAL OF SIMPLE COPULAS") # four secondary diagonals }
 \keyword{visualization}
 \keyword{diagnostics}
 \keyword{copula (characteristics)}
+\keyword{copula (diagonal)}

@@ -26,7 +26,7 @@ Nelsen (2006, pp. 160--161) lists some special identities involving \eqn{\mathca
 
 Kendall Tau also can be expressed in terms of the \emph{Kendall Function} (\eqn{F_K(z)}; \code{\link{kfuncCOP}}):
 \deqn{\tau_\mathbf{C} = 3 - 4\int_0^1 F_K(t)\,\mathrm{d}t\mbox{,}}
-which is readily verified by code shown in \bold{Examples}. This definition might be useful if integration errors are encountered for some arbitrary copula and arbitrary parameter set. In fact, should two attempts (see source code) at dual integration of the partial derivatives occur, the implementation switches over to integration of the Kendall Function (\emph{e.g.} \code{tauCOP(cop=N4212cop, para=2)}). Note that Durante and Sempi have erroneously dropped the multiplication by \dQuote{\eqn{4}} as shown above in their definition of \eqn{\tau_\mathbf{C}} as a function of \eqn{F_K(t)} (Durante and Sempi, 2015, eq. 3.9.4, p. 121).
+which is readily verified by code shown in \bold{Examples}. This definition might be useful if integration errors are encountered for some arbitrary copula and arbitrary parameter set. In fact, should two attempts (see source code) at dual integration of the partial derivatives occur, the implementation switches over to integration of the Kendall Function (\emph{e.g.} \code{tauCOP(cop=N4212cop, para=2)}). Note, Durante and Sempi have erroneously dropped the multiplication by \dQuote{\eqn{4}} as shown above in their definition of \eqn{\tau_\mathbf{C}} as a function of \eqn{F_K(t)} (Durante and Sempi, 2015, eq. 3.9.4, p. 121).
 }
 \usage{
 tauCOP( cop=NULL,  para=NULL,

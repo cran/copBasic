@@ -11,15 +11,17 @@
       }
       rt <- NULL
       if(is.null(rho)) {
-        if(tau < (5 - 8*log(2))/3 | tau > 1/3) {
-          warning("Kendall tau=",tau," is outside limits attainable")
+        # Nelsen (2006,p.172)
+        if(tau < (5 - 8*log(2))/3 | tau > 1/3) { # [-0.1817, 0.3333]
+          warning("Kendall tau=", tau, " is outside limits attainable [-0.1817, 0.3333]")
           return(NULL)
         }
         "ktau" <- function(t) {
-          stau <- (3*t-2)/(3*t) - (2*(1-t)^2*log(1-t))/(3*t^2)
+          stau <- (3*t-2)/(3*t) - (2*(1-t)^2*log(1-t))/(3*t^2) # Nelsen(2006,p172)
+          # stau <- 1 - (2*(t+(1-t)^2 * log(1-t)))/(3*t^2) # Salvadorietal(2007p240)
           tau - stau
         }
-        try(rt <- uniroot(ktau, interval=c(-1,1-.Machine$double.eps)))
+        try(rt <- uniroot(ktau, interval=c(-1, 1-.Machine$double.eps)))
         if(! is.null(rt)) {
           para <- rt$root
           names(para) <- "theta"
@@ -30,14 +32,25 @@
           return(NULL)
         }
       } else {
-        if(rho < 33 - 48*log(2) | rho > 4*pi^2 - 39) {
-          warning("Spearman rho=",rho," is outside limits attainable")
+        #dilog <- function(x) { # Nelsen(2006,p172)
+        #  z <- NULL
+        #  try( z <- integrate(function(k) log(k)/(1-k), lower=1, upper=x)$value,
+        #                      silent=TRUE)
+        #  ifelse(is.null(z), return(NaN), return(z))
+        #}
+        # Nelsen(2006,p172)
+        if(rho < 33 - 48*log(2) | rho > 4*pi^2 - 39) { # [-0.2711, +0.4784]
+          warning("Spearman rho=", rho, " is outside limits attainable [-0.2711, +0.4784]")
           return(NULL)
         }
         "srho" <- function(t) {
-          rho - sum(sapply(1:100, function(k) 3*t^k/choose(k+2, 2)^2))
+          # source for the infinite sum is Machler(2014)
+          srho <- sum(sapply(1:100, function(k) 3*t^k/choose(k+2, 2)^2))
+          # Nelsen(2006,p172)
+          #srho <- 12*(1+t)/t^2 * dilog(1-t) - 24*(1-t)/t^2*log(1-t)-3*(t+12)/t
+          rho - srho
         }
-        try(rt <- uniroot(srho, interval=c(-1,1-.Machine$double.eps)))
+        try(rt <- uniroot(srho, interval=c(-1, 1-.Machine$double.eps)))
         if(! is.null(rt)) {
           para <- rt$root
           names(para) <- "theta"

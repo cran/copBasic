@@ -78,7 +78,7 @@ The \emph{Plackett copula} (\eqn{\mathbf{PL}(u,v; \Theta_{\mathbf{PL}})}; \code{
                 Wolf - wolfCOP(cop=rGHcop,      para=p), c(1,30))$root
 }
 
-\emph{STEP 1---Compute Kullback--Leibler sample size:} The Kullback--Leibler Divergences (\eqn{\mathrm{KL}(f|g)} and \eqn{\mathrm{KL}(g|f)}) are computed (\code{\link{kullCOP}}) for the evaluation of the sample size as appropriate for distinguishing between the two candidate copulas 95 percent of the time. The Kullback--Leibler sample size (\eqn{n_{f\!g}}) also is computed as the following code illustrates and provides additional commentary.
+\emph{STEP 1---Compute Kullback--Leibler sample size:} The Kullback--Leibler Divergences (\eqn{\mathrm{KL}(f {\mid} g)} and \eqn{\mathrm{KL}(g {\mid} f)}) are computed (\code{\link{kullCOP}}) for the evaluation of the sample size as appropriate for distinguishing between the two candidate copulas 95 percent of the time. The Kullback--Leibler sample size (\eqn{n_{f\!g}}) also is computed as the following code illustrates and provides additional commentary.
 \preformatted{
   KL <- replicate(20, kullCOP(cop1=PLcop,  para1=paraPL,       # CPU intensive
                               cop2=rGHcop, para2=paraGH, n=1E5)$KL.sample.size)
@@ -101,7 +101,7 @@ Depending on the sample \eqn{\hat\sigma_\mathbf{C}} coming from the simulation o
 
 Further discussion of the Vuong Procedure is informative. Simply speaking, the result is that \bold{the \eqn{\mathbf{rGH}} (copula 2) has better fit than \eqn{\mathbf{PL}} (copula 1).} The 95-percent confident limits from the procedure for \eqn{\hat{D}_{12} = 0.049} with p-value \eqn{0.0012}, \eqn{\hat\sigma_{12} = 0.297}, and \eqn{n=390} are \eqn{0.0194 < \hat{D}_{12} < 0.0786}. This interval does not contain zero and is greater than zero and therefore a conclusion may be drawn that copula 2 has the better fit.
 
-\emph{STEP 3---Comparison of lower-tail dependency parameters:} What does the tail dependency do for inference? This can be checked by computing the lower-tail dependency parameters (\eqn{\lambda^L_\mathbf{C}}; \code{\link{taildepCOP}}) in the code that follows for each of the three copulas and the empirical copula, but note that true sample estimators do not quite exist. Numeric focus need only be on the lower tail, but the four graphics are informative.
+\emph{STEP 3---Comparison of lower-tail dependency parameters:} What does the tail dependency do for inference? This can be checked by computing the lower-tail dependency parameters (\eqn{\lambda^L_\mathbf{C}}; \code{\link{taildepCOP}}) in the code that follows for each of the three copulas and the empirical copula with acknowledgment that true sample estimators do not quite exist. Numeric focus need only be on the lower tail, but the four graphics are informative.
 \preformatted{
   taildepCOP(cop=PSP,                   plot=TRUE)$lambdaL # = 1/2
   taildepCOP(cop=PLcop,    para=paraPL, plot=TRUE)$lambdaL # = ZERO

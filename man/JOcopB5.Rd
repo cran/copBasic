@@ -4,7 +4,7 @@
 \title{The Joe/B5 Copula (B5)}
 \description{
 The \emph{Joe/B5 copula} (Joe, 2014, p. 170) is
-\deqn{\mathbf{C}_{\Theta}(u,v) = \mathbf{B5}(u,v) = 1 - \bigl[(1-u)^\Theta + (1-v)^\Theta - (1-u)^\Theta (1-v)^\Theta\bigr)\mbox{,}}
+\deqn{\mathbf{C}_{\Theta}(u,v) = \mathbf{B5}(u,v) = 1 - \bigl((1-u)^\Theta + (1-v)^\Theta - (1-u)^\Theta (1-v)^\Theta\bigr)\mbox{,}}
 where \eqn{\Theta \in [1,\infty)}.
 The copula as \eqn{\Theta \rightarrow \infty} limits to the \emph{comonotonicity coupla} (\eqn{\mathbf{M}(u,v)} and \code{\link{M}}), as \eqn{\Theta \rightarrow 1^{+}} limits to \emph{independence copula} (\eqn{\mathbf{\Pi}(u,v)}; \code{\link{P}}). Finally, the parameter \eqn{\Theta} is readily computed from a \emph{Kendall Tau} (\code{\link{tauCOP}}) by
 \deqn{\tau_\mathbf{C} = 1 + \frac{2}{2-\Theta}\bigl(\psi(2) - \psi(1 + 2/\Theta)\bigr)\mbox{,}}

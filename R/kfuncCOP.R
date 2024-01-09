@@ -1,10 +1,12 @@
 "kmeasCOP" <-
-function(z, cop=NULL, para=NULL, wrtV=FALSE, as.sample=FALSE, verbose=FALSE, ...) {
+function(z, cop=NULL, para=NULL, wrtV=FALSE, as.sample=FALSE, verbose=FALSE,
+            subdivisions=100L, rel.tol=.Machine$double.eps^0.25, abs.tol=rel.tol, ...) {
    kfuncCOP(z, cop=cop, para=para, wrtV=wrtV, as.sample=as.sample, verbose=verbose, ...)
 }
 
 "kfuncCOP" <-
-function(z, cop=NULL, para=NULL, wrtV=FALSE, as.sample=FALSE, verbose=FALSE, ...) {
+function(z, cop=NULL, para=NULL, wrtV=FALSE, as.sample=FALSE, verbose=FALSE,
+            subdivisions=100L, rel.tol=.Machine$double.eps^0.25, abs.tol=rel.tol, ...) {
    as.sample <- as.character(as.sample)
    if(as.sample != "FALSE") {
       if(length(para[1,]) != 2) {
@@ -48,7 +50,8 @@ function(z, cop=NULL, para=NULL, wrtV=FALSE, as.sample=FALSE, verbose=FALSE, ...
        try( myint <- integrate(function(u) {
                      cvt <- sapply(1:length(u), function(i) {
                              COPinv(u=u[i], t=the.z, cop=cop, para=para, ...)})
-                     derCOP(u, cvt, cop=cop, para=para, ...)  }, the.z, 1),
+                     derCOP(u, cvt, cop=cop, para=para, ...)  }, the.z, 1,
+                     subdivisions=subdivisions, rel.tol=rel.tol, abs.tol=abs.tol),
             silent=! verbose)
        if(is.null(myint)) {
           if(verbose) warning("error on integration encountered ",
@@ -66,7 +69,8 @@ function(z, cop=NULL, para=NULL, wrtV=FALSE, as.sample=FALSE, verbose=FALSE, ...
        try( myint <- integrate(function(v) {
                      cut <- sapply(1:length(v), function(i) {
                              COPinv2(v=v[i],t=the.z, cop=cop, para=para, ...)})
-                     derCOP2(u=cut, v=v, cop=cop, para=para, ...)  }, the.z, 1),
+                     derCOP2(u=cut, v=v, cop=cop, para=para, ...)  }, the.z, 1,
+                     subdivisions=subdivisions, rel.tol=rel.tol, abs.tol=abs.tol),
             silent=! verbose)
        if(is.null(myint)) {
           if(verbose) warning("error on integration encountered ",

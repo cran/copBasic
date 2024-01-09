@@ -41,9 +41,7 @@ U <- lmomco::pp(S$U, sort=FALSE); V <- lmomco::pp(S$V, sort=FALSE)
 # likelihood is used on that copula to fit the single parameter.
 pGL <- mleCOP(U,V, cop=GLcop, interval=c(0,20))$par
 
-bics <- c(bicCOP(U,V, cop=GLcop, para=pGL),
-          bicCOP(U,V, cop=P),
-          bicCOP(U,V, cop=PSP))
+bics <- c(bicCOP(U,V, cop=GLcop, para=pGL), bicCOP(U,V, cop=P), bicCOP(U,V, cop=PSP))
 names(bics) <- c("GLcop", "P", "PSP")
 print(bics) # We will see that the first BIC is the smallest as the
 # Galambos has the nearest overall behavior than the P and PSP copulas.}

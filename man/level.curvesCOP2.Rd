@@ -10,7 +10,7 @@ and solving for \eqn{u}. Plotting is provided by this function because level cur
 \usage{
 level.curvesCOP2(cop=NULL, para=NULL, ploton=TRUE, lines=TRUE,
                  plotMW=FALSE, ramp=TRUE, delv=0.001, delt=0.10,
-                 getlevel=NULL, ...)
+                 getlevel=NULL, silent=TRUE, ...)
 }
 \arguments{
   \item{cop}{A copula function;}
@@ -21,7 +21,8 @@ level.curvesCOP2(cop=NULL, para=NULL, ploton=TRUE, lines=TRUE,
   \item{ramp}{A logical to toggle whether the level curves are ramped in thickness according to the probability of the line;}
   \item{delv}{The increment of \eqn{\Delta v}. The default is 1 part in 1,000, which should often provide enough smoothness for many copulas in practice;}
   \item{delt}{The increment of \eqn{\Delta t} for the level curves to plot, defaults to 10-percent intervals;}
-  \item{getlevel}{If defined and level exists upon stepping through using \code{delt}, then the level curve at the \code{getlevel} is returned in an \R \code{list} data structure; and}
+  \item{getlevel}{If defined and level exists upon stepping through using \code{delt}, then the level curve at the \code{getlevel} is returned in an \R \code{list} data structure;}
+  \item{silent}{The argument of the same name given over to \code{try()} wrapping the \code{try()} operation on forming sequences of \eqn{t} for the curves (see sources); and}
   \item{...}{Additional arguments to pass to the \code{lines()} function in \R.}
 }
 \value{
@@ -35,7 +36,7 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \examples{
 \dontrun{
-level.curvesCOP2(cop=M, para=NULL, delt=.02) # Upper bounds copula}
+level.curvesCOP2(cop=M, para=NULL, delt=0.02) # Upper bounds copula}
 }
 \keyword{visualization}
 \keyword{diagnostics}

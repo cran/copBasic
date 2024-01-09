@@ -97,3 +97,4 @@ isCOP.RTI(cop=UsersCop, wrtV=TRUE) # FALSE as Nelsen says }
 \keyword{Nelsen (2006) Examples and Exercises}
 \keyword{shuffle (in Examples)}
 \keyword{triangle (in Examples)}
+\keyword{shuffle}

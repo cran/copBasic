@@ -1,6 +1,63 @@
 --------------------------------------------------------------------------------------
                 NEWS for R Package "copBasic" by W.H. Asquith
 --------------------------------------------------------------------------------------
+Changes in version 2.2.3 (2024-01-08)
+-  Added additional comments to AMHcop.R, math extensions in AMHcop.Rd, and
+     adjustments to Examples therein.
+-  Added ordinal sums of W as W_N5p12a() following reproduction of
+      Nelsen (2006, exer. 5.12a, p. 172, fig. 5.3a).
+-  Added shuffles of M as M_N5p12b() following reproduction of
+      Nelsen (2006, exer. 5.12b, p. 173, fig. 5.3b).
+-  Added general M-ordinal sums as ORDSUMcop() (Nelsen, 2006, pp. 63-64).
+-  Added general W-ordinal sums as ORDSUWcop() (Klement and others, 2017, p. 138).
+-  Updated copBasic-package.Rd with ORDSUMcop() entry into a table.
+-  Formatting edits in composite1COP.Rd and isCOP.permsym.Rd.
+-  Added silent=TRUE default to diagCOPatf(), COPinv(), and COPinv2(). The cascade of
+      NAs had become too much of a burden in an otherwise generally working
+      algorithm. So, original design ideals from 2008 where changed to silence
+      inversion failures.
+-  Added the copula of a circular uniform distribution copula as CIRCcop().
+-  Added silent=TRUE argument to level.curvesCOP() and level.curvesCOP2() as part of
+      silencing try() operations. Also, found nonparallelism between level.curvesCOP()
+      and level.curvesCOP2() with the later not having the try() operations. It is
+      left in the comments that it is unknown that the try() operation is still
+      needed or some deep legacy issue was involved when the EMPIRcop()-operations
+      interacted with the level.curvesCOP2().
+-  Added bicoploc() as an experimental line-of-organic correlation using inversion
+      of a copula. This function is subject to overhaul or even removal but is
+      tendered to help a research question by a user.
+-  Updates to NAMESPACE to include graphic operations needed within bicoploc()
+      diagnostic plots and those functions needed from the lmomco R package.
+-  Added a trap in COP() for coupla returned values being > 1 or < 0 to set to the
+      closed interval because in unrelated testing a greater than 1 at the
+      12th decimal was encountered. Instead of trapping in an application felt best
+      to trap in COP(). ** Perhaps other traps might be useful in other functions? **
+-  Added argument resamv01 to rCOP() and simCOP() to resample for simulated v == 0 or
+      v == 1. The default is false; this new feature maintains the long standing
+      behavior of these simulators. An example demonstrating such is added. Added
+      argument showresamv01 to display a message of how many of the resampling are
+      being done. There is structural protection from infinite looping as well added.
+-  Added EvuCOP() and EuvCOP() solving for the expectation of V (U) given U (V),
+      respectively with extensive examples and comparison to median regression.
+      In general practice, EvuCOP(), which solves E[V | U=u], is expected the more
+      common needed.
+-  Added EvuCOP() and EuvCOP() to the copBasic-package.Rd.
+-  Trapped NaN in a square root of a negative number by truncation errors at the
+      end of the PLACKETTcop().
+-  Added another simulation example for RFcop.Rd with reflection; revised example
+      in W.Rd.
+-  Edits to sectionCOP() to prepend the U or V as appropriate to the xlab.
+-  Edits in Rds to systematically use latex character "\mid" for "given" made.
+-  Edits to convert "Note that" to "Note," for tightness and consistency.
+-  Added reporting of attainable Kendall Tau or Spearman Rho values in parameter
+      exceedance warnings within AMHcop().
+-  Added integrate() control arguments subdivisions, rel.tol, and abs.tol to
+      kfuncCOP(), kmeasCOP(), and kfuncCOPinv(). Experiments with secondary return
+      period by Kendall Distribution function suggest for some deep-tail estimation
+      that additional control of integrate() calls is needed. The defaults are set
+      to match those of integrate().
+-  Expanded examples and some documentation in kfuncCOPlmoms().
+
 
 Changes in version 2.2.2 (2023-10-17)
 -  Added LzCOPpermsym() as "by far the most interesing" measure of permutation

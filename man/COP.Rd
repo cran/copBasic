@@ -153,7 +153,7 @@ text(-2,-2, "reflect=1", col=2); text(+2,+2, "reflect=2", col=2)
 text(+2,-2, "reflect=3", col=2); text(-2,+2, "reflect=4", col=2)
 
 # To show how the reflection can be alternatively specified and avoid in this case
-# making four Raferty functions, pass by a list para argument. Also, demonstrate
+# making four Raftery functions, pass by a list para argument. Also, demonstrate
 # that cop1 --> cop and para1 --> para are the same in use of the function. This
 # provides some nomenclature parallel to the other compositing functions.
 densityCOPplot(COP, para=list(reflect=1, cop1=RFcop, para=p ), deluv=d,

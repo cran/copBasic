@@ -4,17 +4,17 @@
 \alias{kfuncCOPlmom}
 \title{The L-moments of the Kendall Function of a Copula}
 \description{
-Compute the L-moments of the \emph{Kendall Function} (\eqn{F_K(z; \mathbf{C})}) of a copula \eqn{\mathbf{C}(u,v)} where the \eqn{z} is the joint probability of the \eqn{\mathbf{C}(u,v)}. The Kendall Function is the cumulative distribution function (CDF) of the joint probability \eqn{Z} of the coupla. The expected value of the \eqn{z(F_K)} (mean, first L-moment \eqn{\lambda_1}), because \eqn{Z} has nonzero probability for \eqn{0 \le Z \le \infty}, is
+Compute the L-moments of the \emph{Kendall Function} (\eqn{F_K(z; \mathbf{C})}) of a copula \eqn{\mathbf{C}(u,v)} where the \eqn{z} is the joint probability of the \eqn{\mathbf{C}(u,v)}. The Kendall Function (or \emph{Kendall Distribution Function}) is the cumulative distribution function (CDF) of the joint probability \eqn{Z} of the coupla. The expected value of the \eqn{z(F_K)} (mean, first L-moment \eqn{\lambda_1}), because \eqn{Z} has nonzero probability for \eqn{0 \le Z \le \infty}, is
 
-\deqn{\mathrm{E}[Z] = \lambda_1 = \int_0^\infty [1 - F_K(t)]\,\mathrm{d}t = \int_0^1 [1 - F_K(t)] \,\mathrm{d}t\mbox{,}}
+\deqn{\mathrm{E}[Z] = \lambda_1 = \int_0^\infty \bigl[1 - F_K(t)\bigr]\,\mathrm{d}t = \int_0^1 \bigl[1 - F_K(t)\bigr] \,\mathrm{d}t\mbox{,}}
 
-where for circumstances here \eqn{0 \le Z \le 1}. The \eqn{\infty} is mentioned only because expectations of such CDFs are usually shown using \eqn{(0,\infty)} limits, whereas integration of quantile functions (CDF inverses) use limits \eqn{(0,1)}. Because the support of \eqn{Z} is \eqn{(0,1)}, like the probability \eqn{F_K}, showing just it (\eqn{\infty}) as the upper limit could be confusing---statements such as \dQuote{probabilities of probabilities} are rhetorically complex so pursuit of word precision is made herein.
+where for circumstances here \eqn{0 \le Z \le 1}. The \eqn{\infty} is mentioned only because expectations of such CDFs are usually shown using \eqn{(0,\infty)} limits, whereas integration of quantile functions (CDF inverses) use limits \eqn{(0, 1)}. Because the support of \eqn{Z} is \eqn{(0, 1)}, like the probability \eqn{F_K}, showing just it (\eqn{\infty}) as the upper limit could be confusing---statements such as \dQuote{probabilities of probabilities} are rhetorically complex. So, pursuit of word precision is made herein.
 
 An expression for \eqn{\lambda_r} for \eqn{r \ge 2} in terms of the \eqn{F_K(z)} is
 \deqn{
-\lambda_r = \frac{1}{r}\sum_{j=0}^{r-2} (-1)^j {r-2 \choose j}{r \choose j+1} \int_{0}^{1} \! [F_K(t)]^{r-j-1}\times [1 - F_K(t)]^{j+1}\, \mathrm{d}t\mbox{,}
+\lambda_r = \frac{1}{r}\sum_{j=0}^{r-2} (-1)^j {r-2 \choose j}{r \choose j+1} \int_{0}^{1} \! \bigl[F_K(t)\bigr]^{r-j-1}\times \bigl[1 - F_K(t)\bigr]^{j+1}\, \mathrm{d}t\mbox{,}
 }
-where because of these circumstances the limits of integration are \eqn{(0,1)} and not \eqn{(-\infty, \infty)} as in the usual definition of L-moments in terms of a distribution's CDF.
+where because of these circumstances the limits of integration are \eqn{(0, 1)} and not \eqn{(-\infty, \infty)} as in the usual definition of L-moments in terms of a distribution's CDF. (Note, such expressions did not make it into Asquith (2011), which needs rectification if that monograph ever makes it to a 2nd edition.)
 
 The mean, L-scale, coefficient of L-variation (\eqn{\tau_2}, LCV, L-scale/mean), L-skew (\eqn{\tau_3}, TAU3), L-kurtosis (\eqn{\tau_4}, TAU4), and \eqn{\tau_5} (TAU5) are computed. In usual nomenclature, the L-moments are
 \eqn{ \lambda_1 = \mbox{mean,}}
@@ -27,7 +27,7 @@ whereas the L-moment ratios are
 \eqn{ \tau_3 = \lambda_3/\lambda_2 = \mbox{L-skew, }}
 \eqn{ \tau_4 = \lambda_4/\lambda_2 = \mbox{L-kurtosis, and}}
 \eqn{ \tau_5 = \lambda_5/\lambda_2 = \mbox{not named.}}
-It is common amongst practitioners to lump the L-moment ratios into the general term \dQuote{L-moments} and remain inclusive of the L-moment ratios. For example, L-skew then is referred to as the 3rd L-moment when it technically is the 3rd L-moment ratio.  There is no first L-moment ratio (meaningless) so results from this function will canoncially show a \code{NA} in that slot. The coefficient of L-variation is \eqn{\tau_2} (subscript 2) and not \emph{Kendall Tau} (\eqn{\tau}). Sample L-moments are readily computed by several packages in \R (\emph{e.g.} \pkg{lmomco}, \pkg{lmom}, \pkg{Lmoments}, \pkg{POT}).
+It is common amongst practitioners to lump the L-moment ratios into the general term \dQuote{L-moments} and remain inclusive of the L-moment ratios. For example, L-skew then is referred to as the 3rd L-moment when it technically is the 3rd L-moment ratio. There is no first L-moment ratio (meaningless); so, results from \code{kfuncCOPlmoms} function will canoncially show a \code{NA} in that slot. The coefficient of L-variation is \eqn{\tau_2} (subscript 2) and not \emph{Kendall Tau} (\eqn{\tau}). Sample L-moments are readily computed by several packages in \R (\emph{e.g.} \pkg{lmomco}, \pkg{lmom}, \pkg{Lmoments}, \pkg{POT}).
 }
 \usage{
 kfuncCOPlmom(r, cop=NULL, para=NULL, ...)
@@ -50,13 +50,13 @@ kfuncCOPlmoms(cop=NULL, para=NULL, nmom=5, begin.mom=1, ...)
   \item{source}{An attribute identifying the computational source of the L-moments: \dQuote{kfuncCOPlmoms}.}
 }
 \note{
-The L-moments of Kendall Functions appear to be not yet fully researched. An interesting research direction would be the trajectories of the L-moments or \emph{L-moment ratio diagrams} for the Kendall Function and the degree to which distinction between copulas becomes evident---such diagrams are in wide-spread use for distinquishing between univariate distributions. It is noted, however, that \emph{Kendall Function L-moment ratio diagrams} might be of less utility that in the univariate world because different copulas can have the same \eqn{F_K(z)}, such as all bivariate extreme value copulas.
+The L-moments of Kendall Functions appear to be not yet fully researched. An interesting research direction would be the trajectories of the L-moments or \emph{L-moment ratio diagrams} for the Kendall Function and the degree to which distinction between copulas becomes evident---such diagrams are in wide-spread use for distinquishing between univariate distributions. It is noted, however, that \emph{Kendall Function L-moment ratio diagrams} might be of less utility that in the univariate world---recalling that a univariate distribution is unique characteristized by its L-moments---because different copulas can have the same \eqn{F_K(z)}, such as all bivariate extreme value copulas (see also \bold{Examples}).
 \preformatted{
-  Rhos <- seq(0, 0.9, by=0.05)
+  Rhos <- c(0.001, 0.01, seq(0.05, 0.95, by=0.05), 0.99, 0.999)
   L1 <- T2 <- T3 <- T4 <- Thetas <- vector(mode="numeric", length(Rhos))
   for(i in 1:length(Thetas)) {
      Thetas[i] <- uniroot(function(p)
-                 Rhos[i] - rhoCOP(cop=PARETOcop, para=p), c(0,100))$root
+                 Rhos[i] - rhoCOP(cop=PARETOcop, para=p), c(0,200))$root
      message("Rho = ", Rhos[i], " and Pareto theta = ",
                                              round(Thetas[i], digits=4))
      lmr <- kfuncCOPlmoms(cop=PARETOcop, para=Thetas[i], nmom=4)
@@ -64,14 +64,14 @@ The L-moments of Kendall Functions appear to be not yet fully researched. An int
      T3[i] <- lmr$ratios[3];  T4[i] <- lmr$ratios[4]
   }
   LMR <- data.frame(Rho=Rhos, Theta=Thetas, L1=L1, T2=T2, T3=T3, T4=T4)
-  plot(LMR$Rho, LMR$T2, ylim=c(-0.04, 0.5), xlim=c(0,1),
+  plot(LMR$Rho, LMR$T2, ylim=c(-0.04, 0.5), xlim=c(0, 1),
        xlab="Spearman Rho or coefficient of L-variation",
-       ylab="L-moment ratio", type="l", col=1) # black
-  lines(LMR$Rho, LMR$T3, col=2)        # red
-  lines(LMR$Rho, LMR$T4, col=3)        # green
-  lines(LMR$T2,  LMR$T3, lty=2, col=4) # dashed blue
-  lines(LMR$T2,  LMR$T4, lty=2, col=5) # dashed cyan
-  lines(LMR$T3,  LMR$T4, lty=2, col=6) # dashed purple
+       ylab="L-moment ratio", type="l", col="black")
+  lines(LMR$Rho, LMR$T3, lty=1, col="red"         )
+  lines(LMR$Rho, LMR$T4, lty=1, col="green"       )
+  lines(LMR$T2,  LMR$T3, lty=2, col="blue"        )
+  lines(LMR$T2,  LMR$T4, lty=2, col="deepskyblue2")
+  lines(LMR$T3,  LMR$T4, lty=2, col="purple"      )
 }
 }
 \references{
@@ -84,14 +84,30 @@ Asquith, W.H., 2011, Distributional analysis with L-moment statistics using the 
 kfuncCOPlmom(1, cop=P) # 0.5 * 0.5 = 0.25 is expected joint prob. of independence
 #[1] 0.2499999  (in agreement with theory)
 
-ls.str(kfuncCOPlmoms(cop=GHcop, para=4.21)) # Gumbel-Hougaard copula
+ThetaGH <- 4.21
+Rho <- rhoCOP(cop=GHcop, para=ThetaGH)
+ThetaHR <- uniroot(function(p) Rho - rhoCOP(cop=HRcop, para=p), c(0, 100))$root
+ThetaHR <- uniroot(function(p) Rho - rhoCOP(cop=HRcop, para=p), c(0, 100))$root
+ThetaGL <- uniroot(function(p) Rho - rhoCOP(cop=GLcop, para=p), c(0, 100))$root
+ls.str(kfuncCOPlmoms(cop=GHcop, para=ThetaGH)) # Gumbel-Hougaard copula
 # lambdas :  num [1:5] 0.440617 0.169085 0.011228 -0.000797 0.000249
-# ratios  :  num [1:5]       NA 0.38375  0.0664   -0.00472  0.00147
-# source  :  chr "kfuncCOPlmoms"  # e.g. L-skew = 0.0664}
+# ratios  :  num [1:5]       NA 0.383750 0.066400 -0.004720 0.001470
+#                               L-skew = 0.066400
+ls.str(kfuncCOPlmoms(cop=HRcop, para=ThetaHR)) # Husler-Reiss copula
+# lambdas :  num [1:5] 0.439627 0.169052 0.011427 -0.000785 0.000249
+# ratios  :  num [1:5]       NA 0.384540 0.067590 -0.004640 0.001470
+#                               L-skew = 0.067590
+ls.str(kfuncCOPlmoms(cop=GLcop, para=ThetaGL)) # Galambos copula
+# lambdas :  num [1:5] 0.440415 0.169079 0.011268 -0.000795 0.000248
+# ratios  :  num [1:5]       NA 0.383910 0.066650 -0.004700 0.001470
+#                               L-skew = 0.066650
+# These L-moments are extremely similar and within the numerics used.
+# Extreme value copula all have the same Kendall Distribution function.}
 
 \dontrun{
 UV <- simCOP(200, cop=PLcop, para=1/pi, graphics=FALSE)
-theta <- PLpar(UV[,1], UV[,2]); zs <- seq(0.01,0.99, by=.01) # for later
+theta <- PLpar(UV[,1], UV[,2])
+zs <- c(0.001, seq(0.01, 0.99, by=0.01), 0.999) # for later
 
 # Take the sample estimated parameter and convert to joint probabilities Z
 # Convert the Z to the Kendall Function estimates again with the sample parameter
@@ -105,20 +121,24 @@ knftxt <- paste0("Kendall L-moments: ",
 samtxt <- paste0("Sample L-moments: " ,
                  paste(round(SAMlmr$lambdas, digits=4), collapse=", "))
 
-plot(Z, KF, xlim=c(0,1), ylim=c(0,1), lwd=0.8, col=1,
+plot(Z, KF, xlim=c(0,1), ylim=c(0,1), col="black",
      xlab="COPULA(u,v) VALUE [JOINT PROBABILITY]",
-     ylab="KENDALL FUNCTION, AS NONEXCEEDANCE PROBABILITY")
-rug(Z,  side=1, col=2, lwd=0.2); rug(KF, side=2, col=2, lwd=0.2) # rug plots
-lines(zs, kfuncCOP(zs, cop=PLcop, para=1/pi), col=3)
+     ylab="KENDALL DISTRIBUTION FUNCTION (KDF), AS NONEXCEEDANCE PROBABILITY")
+rug(Z, side=1, col="red", lwd=0.5); rug(KF, side=2, col="red", lwd=0.5) # rug plots
+lines(zs, kfuncCOP(zs, cop=PLcop, para=1/pi), col="darkgreen")
 knf_meanZ <- KNFlmr$lambdas[1]; sam_meanZ <- SAMlmr$lambdas[1]
 knf_mean  <- kfuncCOP(knf_meanZ, cop=PLcop, para=theta) # theo. Kendall function
 sam_mean  <- kfuncCOP(sam_meanZ, cop=PLcop, para=theta) # sam. est. of Kendall func
-points(knf_meanZ, knf_mean, pch=16, col=4, cex=4) # big blue dot
-points(sam_meanZ, sam_mean, pch=16, col=5, cex=2) # smaller pale blue dot
+points(knf_meanZ, knf_mean, pch=16, col="blue", cex=3)
+points(sam_meanZ, sam_mean, pch=16, col="cyan", cex=2)
 lines(zs, zs-zs*log(zs), lty=2, lwd=0.8) # dash ref line for independence
-text(0.2, 0.30, knftxt, pos=4, cex=0.8); text(0.2, 0.25, samtxt, pos=4, cex=0.8)
-text(0.2, 0.18, paste0("Notice the uniform distribution of the ",
-                       "vertical axis rug."), cex=0.7, pos=4) #}
+text(0.2, 0.30, knftxt, pos=4, cex=1); text(0.2, 0.25, samtxt, pos=4, cex=1)
+text(0.2, 0.18, paste0("Notice uniform distribution of vertical axis rug.\n",
+                       "A Critical remark with respect to to KDFs."), cex=1, pos=4)
+legend("bottomright", c("Independence copula", "KDF of Plackett copula",
+                        "Theoretical mean", "Sample mean"), bty="n", y.intersp=1.5,
+       lwd=c(1, 1, NA, NA), lty=c(2, 1, NA, NA), pch=c(NA, NA, 16, 16),
+       col=c("black", "darkgreen", "blue", "cyan"), pt.cex=c(NA, NA, 3, 2)) #}
 }
 \keyword{copula (characteristics)}
 \keyword{Kendall Function (L-moments)}
@@ -130,3 +150,5 @@ text(0.2, 0.18, paste0("Notice the uniform distribution of the ",
 \concept{Kendall Function L-moment diagram}
 \concept{Kendall Function Lmoment ratio diagram}
 \concept{Kendall Function Lmoment diagram}
+\keyword{L-moments by CDF}
+\concept{cumulative distribution}

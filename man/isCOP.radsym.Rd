@@ -51,7 +51,7 @@ Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in
 \examples{
 # Radially symmetry is computationally intensive and relies on a gridded [0,1]x[0,1]
 # space and laborious check on equality. Thus these examples are commented out for
-# R --timings check. Note that the proof of radial symmetry absent of algebraic
+# R --timings check. Note, the proof of radial symmetry absent of algebraic
 # manipulation or verification is difficult and subject to the fineness of the grid
 # to find a nonequality from which to immediately conclude FALSE.
 \dontrun{

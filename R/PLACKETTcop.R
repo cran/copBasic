@@ -13,8 +13,13 @@ function(u, v, para=NULL, ...) {
     if(TT == 0)         return(W(u,v)) # lower copula bounds
     if(! is.finite(TT)) return(M(u,v)) # upper copula bounds
     cop <- 1 + (TT-1)*(u+v)
-    cop <- cop - sqrt(cop^2 - 4*u*v*TT*(TT-1))
+    suppressWarnings( tmp <- sqrt(cop^2 - 4*u*v*TT*(TT-1)) ) # December 2023
+    # In sqrt(cop^2 - 4 * u * v * TT * (TT - 1)) : NaNs produced
+    tmp[is.nan(tmp)] <- 0   # December 2023
+    cop <- cop - tmp        # December 2023
     cop <- cop / (2*(TT-1))
+    cop[cop < 0] <- 0       # December 2023
+    cop[cop > 1] <- 1       # December 2023
     return(cop)
 }
 

@@ -5,7 +5,7 @@
 \description{
 The \emph{convex composition of two copulas} (Joe, 2014, p. 155) provides for some simple complexity extension between copula families. Let \eqn{\mathbf{A}} and \eqn{\mathbf{B}} be copulas with respective vectors of parameters \eqn{\Theta_\mathbf{A}} and \eqn{\Theta_\mathbf{B}}, then the convex combination of these copulas is
 
-\deqn{\mathbf{C}^{\times}_{\alpha}(u,v) = \alpha \mathbf{A}(u, v; \Theta_\mathbf{A}) - (1-\alpha)\mathbf{B}(u,v; \Theta_\mathbf{B})\mbox{,}}
+\deqn{\mathbf{C}^{\times}_{\alpha}(u,v) = \alpha\cdot\mathbf{A}(u, v; \Theta_\mathbf{A}) - (1-\alpha)\cdot\mathbf{B}(u,v; \Theta_\mathbf{B})\mbox{,}}
 
 where \eqn{0 \le \alpha \le 1}. The generalization of this function for \eqn{N} number of copulas is provided by \code{\link{convexCOP}}.
 }

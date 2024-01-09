@@ -38,7 +38,7 @@ giniCOP(cop=NULL, para=NULL, by.concordance=FALSE, as.sample=FALSE, ...)
 }
 \note{
 Conceptually, the sample Gini Gamma (\eqn{\hat\gamma}; Genest \emph{et al.}, 2010) is
-\deqn{\hat\gamma = \frac{2}{n^2}\frac{\sum_{i=1}^n |(n+1-R_i) - S_i|- |R_i - S_i|}{n^2 - 1}\mbox{,}}
+\deqn{\hat\gamma = \frac{2}{n^2}\frac{ \sum_{i=1}^n \mid (n+1-R_i) - S_i \mid- \mid R_i - S_i\mid }{n^2 - 1}\mbox{,}}
 where \eqn{R_i} and \eqn{S_i} are the respective ranks of \eqn{X} and \eqn{Y} and \eqn{n} is sample size. The sampling variance of \eqn{\hat\gamma} under assumption of independence between \eqn{X} and \eqn{Y} is
 \deqn{\mathrm{var}(\hat\gamma)_{n\ \mathrm{even}} = \frac{2}{3}\frac{(n^2 + 2)}{(n-1)n^2}\mbox{\ and}}
 \deqn{\mathrm{var}(\hat\gamma)_{n\ \mathrm{odd}} = \frac{2}{3}\frac{(n^2 + 3)}{(n-1)(n^2-1)}\mbox{.}}

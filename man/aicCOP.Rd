@@ -41,9 +41,7 @@ U <- lmomco::pp(S$U, sort=FALSE); V <- lmomco::pp(S$V, sort=FALSE)
 # likelihood is used to fit the single parameter.
 pGL <- mleCOP(U,V, cop=GLcop, interval=c(0,20))$par
 
-aics <- c(aicCOP(U,V, cop=GLcop, para=pGL),
-          aicCOP(U,V, cop=P),
-          aicCOP(U,V, cop=PSP))
+aics <- c(aicCOP(U,V, cop=GLcop, para=pGL), aicCOP(U,V, cop=P), aicCOP(U,V, cop=PSP))
 names(aics) <- c("GLcop", "P", "PSP")
 print(aics) # We will see that the first AIC is the smallest as the
 # Galambos has the nearest overall behavior than the P and PSP copulas.}

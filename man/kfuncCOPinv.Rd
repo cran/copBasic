@@ -3,15 +3,19 @@
 \alias{kfuncCOPinv}
 \title{The Inverse Kendall Function of a Copula}
 \description{
-Compute the (numerical) inverse \eqn{F^{(-1)}_K(z) \equiv z(F_K)} of the \emph{Kendall Function} \eqn{F_K(z; \mathbf{C})} (\code{\link{kfuncCOP}}) of a copula \eqn{\mathbf{C}(u,v)} given nonexceedance probability \eqn{F_K}. The \eqn{z} is the joint probability of the random variables \eqn{U} and \eqn{V} coupled to each other through the copula \eqn{\mathbf{C}(u,v)} and the nonexceedance probability of the probability \eqn{z} is \eqn{F_K}---statements such as ``probabilities of probabilities'' are rhetorically complex so pursuit of word precision is made herein.
+Compute the (numerical) inverse \eqn{F^{(-1)}_K(z) \equiv z(F_K)} of the \emph{Kendall Function} \eqn{F_K(z; \mathbf{C})} (\code{\link{kfuncCOP}}) of a copula \eqn{\mathbf{C}(u,v)} given nonexceedance probability \eqn{F_K}. The \eqn{z} is the joint probability of the random variables \eqn{U} and \eqn{V} coupled to each other through the copula \eqn{\mathbf{C}(u,v)} and the nonexceedance probability of the probability \eqn{z} is \eqn{F_K}---statements such as \dQuote{probabilities of probabilities} are rhetorically complex so pursuit of word precision is made herein.
 }
 \usage{
-kfuncCOPinv(f, cop=NULL, para=NULL, ...)
+kfuncCOPinv(f, cop=NULL, para=NULL, subdivisions=100L,
+               rel.tol=.Machine$double.eps^0.25, abs.tol=rel.tol, ...)
 }
 \arguments{
   \item{f}{Nonexceedance probability \eqn{(0 \le F_K \le 1)};}
   \item{cop}{A copula function;}
-  \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula; and}
+  \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula;}
+  \item{subdivisions}{Argument of same name passed to \code{integrate()} through \code{\link{kfuncCOP}},}
+  \item{rel.tol}{Argument of same name passed to \code{integrate()} through \code{\link{kfuncCOP}},}
+  \item{abs.tol}{Argument of same name passed to \code{integrate()} through \code{\link{kfuncCOP}}, and}
   \item{...}{Additional arguments to pass.}
 }
 \value{
@@ -37,7 +41,7 @@ Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 \seealso{\code{\link{kfuncCOP}}}
 \examples{
 \dontrun{
-Z <- c(0,0.25,0.50,0.75,1) # Joint probabilities of a N412cop
+Z <- c(0,0.25,0.50,0.75,1) # Joint probabilities of a N4212cop
 kfuncCOPinv(kfuncCOP(Z, cop=N4212cop, para=4.3), cop=N4212cop, para=4.3)
 # [1] 0.0000000 0.2499984 0.5000224 0.7500112 1.0000000}
 }

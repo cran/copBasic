@@ -8,14 +8,14 @@ Compute the \emph{lower semi-correlations} (bottom-left)
 compute the \emph{upper semi-correlations} (top-right)
 \deqn{\rho^{N{+}{+}}_\mathbf{C}(u,v; a) = \rho_N^{{+}{+}}(a)}
 of a copula \eqn{\mathbf{C}(u,v)} (Joe, 2014, p. 73) using numerical simulation. The semi-correlations are defined as
-\deqn{\rho_N^{{-}{-}}(a) = \mathrm{cor}[Z_1, Z_2|Z_1 < -a, Z_2 < -a]\mbox{,}}
-\deqn{\rho_N^{{+}{+}}(a) = \mathrm{cor}[Z_1, Z_2|Z_1 > +a, Z_2 > +a]\mbox{,\ and}}
+\deqn{\rho_N^{{-}{-}}(a) = \mathrm{cor}[Z_1, Z_2 \mid Z_1 < -a, Z_2 < -a]\mbox{,}}
+\deqn{\rho_N^{{+}{+}}(a) = \mathrm{cor}[Z_1, Z_2 \mid Z_1 > +a, Z_2 > +a]\mbox{,\ and}}
 \deqn{\rho_N(a > -\infty) = \mathrm{cor}[Z_1, Z_2]\mbox{,}}
 where \eqn{\mathrm{cor[z_1, z_2]}} is the familiar \emph{Pearson correlation function}, which is in \R the syntax \code{cor(...,} \code{method="pearson")}, parameter \eqn{a \ge 0} is a truncation point that identifies \emph{truncated tail regions} (Joe, 2014, p. 73), and lastly \eqn{(Z_1, Z_2) \sim \mathbf{C}(\Phi, \Phi)} and thus from the standard normal distribution \eqn{(Z_1, Z_2) = (\Phi^{-1}(u), \Phi^{-1}(v))} where the random variables \eqn{(U,V) \sim \mathbf{C}}.
 
 The semi-correlations are extended for the \pkg{copBasic} package into bottom right and top left versions as well by
-\deqn{\rho_N^{{+}{-}}(a) = \mathrm{cor}[Z_1, Z_2|Z_1 > +a, Z_2 < -a]\mbox{,\ and}}
-\deqn{\rho_N^{{-}{+}}(a) = \mathrm{cor}[Z_1, Z_2|Z_1 < -a, Z_2 > +a]\mbox{.}}
+\deqn{\rho_N^{{+}{-}}(a) = \mathrm{cor}[Z_1, Z_2 \mid Z_1 > +a, Z_2 < -a]\mbox{,\ and}}
+\deqn{\rho_N^{{-}{+}}(a) = \mathrm{cor}[Z_1, Z_2 \mid Z_1 < -a, Z_2 > +a]\mbox{.}}
 As a result, the notations \eqn{{-}{-}}, \eqn{{+}{+}}, \eqn{{+}{-}}, and \eqn{{-}{+}} can be used to represent each of the respective corners bottom-left, top-right, bottom-right, and top-left of the \eqn{(u,v)} domain with the respective truncation. These words are used in the variable names of the returned list from the function.
 }
 \usage{

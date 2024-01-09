@@ -88,7 +88,7 @@ where
 \deqn{B = \biggl(\frac{1}{3}\biggr)^d - \biggl(\frac{2}{n}\biggr)\biggl(\frac{1}{2}\biggr)^d
                \sum_{j=1}^n\prod_{i=1}^d  [1 - \hat{U}_{ij}^2]\mbox{.}}
 The normalization constant is a function of dimension and is
-\deqn{h(d)^{-1} = \frac{2}{(d+1)(d+2)} - \biggl(\frac{1}{2}\biggr)^d\frac{d!}{\prod_{i=0}^d\bigl(i+(1/2)\bigr)}+\biggl(\frac{1}{3}\biggr)^d\mbox{.}}
+\deqn{h(d)^{-1} = \frac{2}{(d+1)(d+2)} - \biggl(\frac{1}{2}\biggr)^d\frac{d\,!}{\prod_{i=0}^d\bigl(i+(1/2)\bigr)}+\biggl(\frac{1}{3}\biggr)^d\mbox{.}}
 \preformatted{
   set.seed(1); UV <- simCOP(n=1000, cop=PSP)
   hoefCOP(cop=PSP)                                       # 0.4547656 (theo.)

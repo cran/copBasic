@@ -26,7 +26,7 @@ Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{W.H. Asquith}
-\seealso{\code{\link{isCOP.radsym}}}
+\seealso{\code{\link{LzCOPpermsym}}, \code{\link{isCOP.radsym}}}
 \examples{
 \dontrun{
 isCOP.permsym(cop=GHcop, para=1.3) # TRUE}

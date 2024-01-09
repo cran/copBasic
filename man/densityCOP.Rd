@@ -4,9 +4,11 @@
 \title{Density of a Copula}
 \description{
 Numerically estimate the \emph{copula density} for a sequence of \eqn{u} and \eqn{v} probabilities for which each sequence has equal steps that are equal to \eqn{\Delta(uv)}. The density \eqn{c(u,v)} of a copula \eqn{\mathbf{C}(u,v)} is numerically estimated by
-\deqn{c(u,v) = [\mathbf{C}(u_2,v_2) - \mathbf{C}(u_2,v_1) - \mathbf{C}(u_1,v_2) + \mathbf{C}(u_1,v_1)]\, /\, [\Delta(uv)\times\Delta(uv)]\mbox{,}}
+\deqn{c(u,v) = \bigl[\mathbf{C}(u_2,v_2) - \mathbf{C}(u_2,v_1) - \mathbf{C}(u_1,v_2) + \mathbf{C}(u_1,v_1)\bigr]\, /\, \bigl[\Delta(uv)\times\Delta(uv)\bigr]\mbox{,}}
 where \eqn{c(u,v) \ge 0} (see Nelsen, 2006, p. 10; \code{\link{densityCOPplot}}). The \emph{joint density} can be defined by the coupla density for continuous variables and is the ratio of the joint density funcion \eqn{f(x,y)} for random variables \eqn{X} and \eqn{Y} to the product of the marginal densities (\eqn{f_x(x)} and \eqn{f_y(y)}):
+
 \deqn{c\bigl(F_x(x), F_y(y)\bigr) = \frac{f(x,y)}{f_x(x)f_y(y)}\mbox{,}}
+
 where \eqn{F_x(x)} and  \eqn{F_y(y)} are the respective cumulative distribution functions of \eqn{X} and \eqn{Y}, and lastly \eqn{u = F_x(x)} and \eqn{v = F_y(y)}.
 }
 \usage{

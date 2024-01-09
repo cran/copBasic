@@ -3,7 +3,7 @@
 \alias{EMPIRsim}
 \title{Simulate a Bivariate Empirical Copula}
 \description{
-\emph{EXPERIMENTAL}---Perform a simulation on a \emph{bivariate empirical copula} to produce the random variates \eqn{U} and \eqn{V} and return an \R \code{data.frame} of them.  The method is more broadly known as \emph{conditional simulation method}. This function is an empirical parallel to \code{\link{simCOP}} that is used for parametric copulas. If circumstances require conditional simulation of \eqn{V|U}, then function \code{\link{EMPIRsimv}}, which produces a vector of \eqn{V} from a fixed \eqn{u}, should be used.
+\emph{EXPERIMENTAL}---Perform a simulation on a \emph{bivariate empirical copula} to produce the random variates \eqn{U} and \eqn{V} and return an \R \code{data.frame} of them.  The method is more broadly known as \emph{conditional simulation method}. This function is an empirical parallel to \code{\link{simCOP}} that is used for parametric copulas. If circumstances require conditional simulation of \eqn{V{\mid}U}, then function \code{\link{EMPIRsimv}}, which produces a vector of \eqn{V} from a fixed \eqn{u}, should be used.
 
 For the usual situation in which an individual \eqn{u} during the simulation loops is not a value aligned on the grid, then the bounding conditional quantile functions are solved for each of the \eqn{n} simulations and the following interpolation is made by
 \deqn{v = \frac{v_1/w_1 + v_2/w_2}{1/w_1 + 1/w_2}\mbox{,}}

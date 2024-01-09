@@ -59,7 +59,7 @@ What are the expected number of exceedances if designs for \eqn{U} and \eqn{V} a
   # by the co-copula which from the copula as nonexceedances is
   (1-COP(  0.99,   0.99, cop=GHcop, para=1.5)) * n  # 791 losses (theoretical)
 }
-Note that the 791 losses is nearly equal to 799, but obviously not 500 as one might incorrectly have imagined strictly in a univariate world.
+Note, the 791 losses is nearly equal to 799, but obviously not 500 as one might incorrectly have imagined strictly in a univariate world.
 
 Now a couple of questions can be asked about the \bold{joint and} and \bold{joint or} probabilities using the definition of a copula \code{\link{COP}} and then the \emph{dual of a copula (function)} (\eqn{\tilde{\mathbf{C}}(u,v)}, \code{\link{duCOP}}), respectively:
 \preformatted{

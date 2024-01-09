@@ -4,14 +4,14 @@
 \title{A Dependence Measure for a Bivariate Extreme Value Copula based on the Expectation of the Product of Negated Log-Transformed Random Variables U and V}
 \description{
 Compute a dependence measure based on the expectation of the product of transformed random variables \eqn{U} and \eqn{V}, which unnamed by Joe (2014, pp. 383--384) but symbolically is \eqn{\rho_E}, having a \emph{bivariate extreme value copula} \eqn{\mathbf{C}_{BEV}(u,v)} by
-\deqn{\rho_E = \mathrm{E}[(-\log U) \times (-\log V)] - 1 = \int_0^1 [B(w)]^{-2}\,\mathrm{d}w - 1\mbox{,}}
+\deqn{\rho_E = \mathrm{E}\bigl[(-\log U) \times (-\log V)\bigr] - 1 = \int_0^1 \bigl[B(w)\bigr]^{-2}\,\mathrm{d}w - 1\mbox{,}}
 where \eqn{B(w) = A(w, 1-w)}, \eqn{B(0) = B(1) = 1}, \eqn{B(w) \ge 1/2}, and \eqn{0 \le w \le 1}, and where only bivariate extreme value copulas can be written as
 \deqn{\mathbf{C}_{BEV}(u,v) = \mathrm{exp}[-A(-\log u, -\log v)]\mbox{,}}
 and thus in terms of the coupla
-\deqn{B(w) = -\log[\mathbf{C}_{BEV}(\mathrm{exp}[-w], \mathrm{exp}[w-1])]\mbox{.}}
+\deqn{B(w) = -\log\bigl[\mathbf{C}_{BEV}(\mathrm{exp}[-w], \mathrm{exp}[w-1])\bigr]\mbox{.}}
 
 Joe (2014, p. 383) states that \eqn{\rho_E} is the correlation of the \dQuote{survival function of a bivariate min-stable exponential distribution,} which can be assembled as a function of \eqn{B(w)}. Joe (2014, p. 383) also shows the following expression for \emph{Spearman Rho}
-\deqn{\rho_S = 12 \int_0^1 [1 + B(w)]^{-2}\,\mathrm{d}w - 3\mbox{,}}
+\deqn{\rho_S = 12 \int_0^1 \bigl[1 + B(w)\bigr]^{-2}\,\mathrm{d}w - 3\mbox{,}}
 in terms of \eqn{B(w)}. This expression, in conjunction with \code{\link{rhoCOP}}, was used to confirm the prior expression shown here for \eqn{B(w)} in terms of \eqn{\mathbf{C}_{BEV}(u,v)}. Lastly, for \emph{independence} (\eqn{uv = \mathbf{\Pi}}; \code{\link{P}}), \eqn{\rho_E = 0} and for the \emph{\enc{Fréchet}{Frechet}--Hoeffding upper-bound copula} (perfect positive association), \eqn{\rho_E = 1}.
 }
 \usage{

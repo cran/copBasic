@@ -5,9 +5,11 @@ function(f, cop=NULL,  para=NULL, wrtV=FALSE, dercop=FALSE, delt=0.005,
   if(wrtV) {
      #message("Triggering Horizontal Section logic: v = constant")
      txt <- "horizontal section"
+     xlab <- paste0("U ", xlab) # note this must be U and not V because f is a V
   } else {
      #message("Triggering Vertical Section logic: u = constant")
      txt <- "vertical section"
+     xlab <- paste0("V ", xlab) # note this must be V and not U because f is a U
   }
 
   if(ploton) plot(c(0,1), c(0,1), type="n", xlab=xlab, ...)

@@ -4,7 +4,7 @@
 \title{Numerical Derivative Inverse  of a Copula for V with respect to U}
 \description{
 Compute the inverse of a numerical partial derivative for \eqn{V} with respect to \eqn{U} of a copula, which is a \emph{conditional quantile function} for nonexceedance probability \eqn{t}, or
-\deqn{t = c_u(v) = \mathbf{C}^{(-1)}_{2|1}(v|u) = \frac{\delta \mathbf{C}(u,v)}{\delta u}\mbox{,}}
+\deqn{t = c_u(v) = \mathbf{C}^{(-1)}_{2 \mid 1}(v \mid u) = \frac{\delta \mathbf{C}(u,v)}{\delta u}\mbox{,}}
 and solving for \eqn{v}. Nelsen (2006, pp. 13, 40--41) shows that this inverse is quite important for random variable generation using the \emph{conditional distribution method}. This function is not vectorized and will not be so.
 }
 \usage{
@@ -26,10 +26,10 @@ derCOPinv(cop=NULL, u, t, trace=FALSE,
 \note{
 \emph{AN EDUCATIONAL OPPORTUNITY}---The Farlie-Gumbel-Morgenstern copula \eqn{\mathbf{FGM}(u,v)} \cr (\code{\link{FGMcop}}) (Joe, 2014, p. 213) is
 \deqn{\mathbf{FGM}(u,v; \Theta) = uv[1+\Theta(1-u)(1-v)]\mbox{,}}
-where \eqn{-1 \le \Theta \le 1} has analytical solutions to the conditional cumulative distribution function (CDF) \eqn{\mathbf{C}_{2|1}(v|u)} as
-\deqn{\mathbf{C}_{2|1}(v|u) = v[1 + \Theta(1-v)(1-2u)]\mbox{,}}
+where \eqn{-1 \le \Theta \le 1} has analytical solutions to the conditional cumulative distribution function (CDF) \eqn{\mathbf{C}_{2 \mid 1}(v \mid u)} as
+\deqn{\mathbf{C}_{2 \mid 1}(v \mid u) = v[1 + \Theta(1-v)(1-2u)]\mbox{,}}
 and the inverse of the conditional CDF as
-\deqn{\mathbf{C}_{2|1}(v|u) = \frac{[1 + \Theta(1-2u)] - \sqrt{[1+\Theta(1-2u)]^2 - 4t(1-2u)}}{2\Theta(1-2u)}\mbox{.}}
+\deqn{\mathbf{C}_{2 \mid 1}(v \mid u) = \frac{[1 + \Theta(1-2u)] - \sqrt{[1+\Theta(1-2u)]^2 - 4t(1-2u)}}{2\Theta(1-2u)}\mbox{.}}
 These three functions for the copula can be defined in \R by
 \preformatted{
   "FGMcop"       <- function(u,v, para=NULL, ...) u*v*(1 + para*(1-u)*(1-v)  )
@@ -39,7 +39,7 @@ These three functions for the copula can be defined in \R by
       ((1 + para*K) - sqrt((1 + para*K)^2 - 4*t*K))/(2*para*K)
   }
 }
-The \eqn{\mathbf{C}^{(-1)}_{2|1}(v|u)} is critical for simulation by the conditional simulation method. Although exclusively for simulation, \pkg{copBasic} uses inversion of the numerical derivative, the \eqn{\mathbf{FGM}} copula has three representations of supposedly the same analytical algorithm for simulation in the literature (Durante, 2007; Johnson, 1987; Nelsen, 2006). An opportunity for comparison is thus available.
+The \eqn{\mathbf{C}^{(-1)}_{2 \mid 1}(v \mid u)} is critical for simulation by the conditional simulation method. Although exclusively for simulation, \pkg{copBasic} uses inversion of the numerical derivative, the \eqn{\mathbf{FGM}} copula has three representations of supposedly the same analytical algorithm for simulation in the literature (Durante, 2007; Johnson, 1987; Nelsen, 2006). An opportunity for comparison is thus available.
 
 The three analytical algorithms for nonexceedance probability \eqn{t} given \eqn{u} by mathematics and code, following Durante (2007, p. 245), are
 \deqn{A = \Theta(1-2u) - 1\mbox{,}}

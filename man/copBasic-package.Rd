@@ -10,6 +10,7 @@ The \pkg{copBasic} package is oriented around \emph{bivariate copula theory} and
 
 
 \bold{Helpful Navigation of Copulas Implemented in the copBasic Package}
+
 Some entry points to the copulas implemented are listed in the \bold{Table of Copulas}:
 \tabular{lclr}{
 \bold{Name} \tab \bold{Symbol} \tab \bold{Function} \tab \bold{Concept} \cr
@@ -19,12 +20,14 @@ Upper-bounds copula \tab \eqn{\mathbf{M}(u,v)} \tab \code{\link{M}} \tab copula\
 \enc{Fréchet}{Frechet} Family copula \tab \eqn{\mathbf{FF}(u,v)} \tab \code{\link{FRECHETcop}} \tab copula\cr
 Ali--Mikhail--Haq copula \tab \eqn{\mathbf{AMH}(u,v)} \tab \code{\link{AMHcop}} \tab copula\cr
 Clayton copula \tab \eqn{\mathbf{CL}(u,v)} \tab \code{\link{CLcop}} \tab copula\cr
+Copula of uniform circle \tab \eqn{\mathbf{CIRC}(u,v)} \tab \code{\link{CIRCcop}} \tab copula\cr
 Farlie--Gumbel--Morgenstern (generalized) \tab \eqn{\mathbf{FGM}(u,v)} \tab \code{\link{FGMcop}} \tab copula\cr
 Galambos copula \tab \eqn{\mathbf{GL}(u,v)} \tab \code{\link{GLcop}} \tab copula\cr
 Gumbel--Hougaard copula \tab \eqn{\mathbf{GH}(u,v)} \tab \code{\link{GHcop}} \tab copula\cr
 \enc{Hüsler}{Husler}--Reiss copula \tab \eqn{\mathbf{HR}(u,v)} \tab \code{\link{HRcop}} \tab copula\cr
 Joe B5 copula \tab \eqn{\mathbf{B5}(u,v)} \tab \code{\link{JOcopB5}} \tab copula\cr
 Nelsen eq.4-2-12 copula \tab \eqn{\mathbf{N4212cop}(u,v)} \tab \code{\link{N4212cop}} \tab copula\cr
+Ordinal Sums by Copula \tab \eqn{\mathbf{C}_\mathcal{J}(u,v)} \tab \code{\link{ORDSUMcop}} \tab copula\cr
 Pareto copula \tab \eqn{\mathbf{PA}(u,v)} \tab \code{\link{PLcop}} \tab copula\cr
 Plackett copula \tab \eqn{\mathbf{PL}(u,v)} \tab \code{\link{PLcop}} \tab copula\cr
 PSP copula \tab \eqn{\mathbf{PSP}(u,v)} \tab \code{\link{PSP}} \tab copula\cr
@@ -100,7 +103,7 @@ Concerning \emph{goodness-of-fit} and although not quite the same as copula prop
 
 \emph{Bivariate skewness} measures are supported in the functions \code{\link{joeskewCOP}} (\code{\link{nuskewCOP}} and \code{\link{nustarCOP}}) and \code{\link{uvlmoms}} (\code{\link{uvskew}}). Extensive discussion and example computations of bivariate skewness are provided in the \code{\link{joeskewCOP}} documentation.  Lastly, so-called \emph{bivariate L-moments} and \emph{bivariate L-comoments} of a copula are directly computable in \code{\link{bilmoms}} (though that function using Monte Carlo integration is deprecated) and \code{\link{lcomCOP}} (direct numerical integration). The \code{\link{lcomCOP}} function is the theoretical counterpart to the \emph{sample L-comoments} provided in the \pkg{lmomco} package.
 
-Bivariate random simulation by several functions is identified in the previous table. The \pkg{copBasic} package explicitly uses only \emph{conditional simulation} also known as the \emph{conditional distribution method} for \emph{random variate} generation following Nelsen (2006, pp. 40--41) (see also \code{\link{simCOPmicro}}, \code{\link{simCOP}}). The \emph{numerical derivatives} (\code{\link{derCOP}} and \code{\link{derCOP2}}) and their \emph{inversions} (\code{\link{derCOPinv}} and \code{\link{derCOPinv2}}) represent the foundation of the conditional simulation. There are other methods in the literature and available in other \R packages, and a comparison of some methods is made in the \bold{Examples} section of the Gumbel--Hougaard copula (\code{\link{GHcop}}).
+Bivariate random simulation methods by several functions are identified in the previous table. The \pkg{copBasic} package explicitly uses only \emph{conditional simulation} also known as the \emph{conditional distribution method} for \emph{random variate} generation following Nelsen (2006, pp. 40--41) (see also \code{\link{simCOPmicro}}, \code{\link{simCOP}}). The \emph{numerical derivatives} (\code{\link{derCOP}} and \code{\link{derCOP2}}) and their \emph{inversions} (\code{\link{derCOPinv}} and \code{\link{derCOPinv2}}) represent the foundation of the conditional simulation. There are other methods in the literature and available in other \R packages, and a comparison of some methods is made in the \bold{Examples} section of the Gumbel--Hougaard copula (\code{\link{GHcop}}).
 
 Several functions in \pkg{copBasic} make the distinction between \eqn{V} with respect to (\emph{wrt}) \eqn{U} and \eqn{U} \emph{wrt} \eqn{V}, and a guide for the nomenclature involving \emph{wrt} distinctions is listed in the following table:
 \tabular{lclr}{
@@ -145,7 +148,7 @@ Pos'ly quadrant dependency \tab PQD \tab \code{\link{isCOP.PQD}} \tab bivariate 
 Permutation symmetry \tab \eqn{\mathrm{permsym}} \tab \code{\link{isCOP.permsym}} \tab copula symmetry\cr
 Radial symmetry \tab \eqn{\mathrm{radsym}} \tab \code{\link{isCOP.radsym}} \tab copula symmetry\cr
 Skewness (Joe, 2014) \tab \eqn{\eta(p; \psi)} \tab \code{\link{uvskew}} \tab bivariate skewness\cr
-Kullback--Leibler Divergence \tab \eqn{\mathrm{KL}(f|g)} \tab \code{\link{kullCOP}} \tab bivariate inference\cr
+Kullback--Leibler Divergence \tab \eqn{\mathrm{KL}(f \mid g)} \tab \code{\link{kullCOP}} \tab bivariate inference\cr
 KL sample size \tab \eqn{n_{f\!g}} \tab \code{\link{kullCOP}} \tab bivariate inference\cr
 The Vuong Procedure \tab \eqn{{-}{-}} \tab \code{\link{vuongCOP}} \tab bivariate inference\cr
 Spectral measure \tab \eqn{H(w)} \tab \code{\link{spectralmeas}} \tab extremal dependency inference\cr
@@ -153,7 +156,7 @@ Stable tail dependence \tab \eqn{\widehat{l}(x,y)} \tab \code{\link{stabtaildepf
 L-comoments (samp. distr.) \tab \eqn{{-}{-}} \tab \code{\link{lcomCOPpv}} \tab experimental bivariate inference\cr
 }
 
-The \bold{Table of Probabilities} that follows lists important relations between various joint probability concepts, the copula, nonexceedance probabilities \eqn{u} and \eqn{v}, and exceedance probabilities \eqn{u'} and \eqn{v'}. A compact summary of these probability relations has obvious usefulness. The notation \eqn{[\ldots, \ldots]} is to read as \eqn{[\ldots \mathrm{\ and\ } \ldots]}, and the \eqn{[\ldots | \ldots]} is to be read as \eqn{[\ldots \mathrm{\ given\ } \ldots]}.
+The \bold{Table of Probabilities} that follows lists important relations between various joint probability concepts, the copula, nonexceedance probabilities \eqn{u} and \eqn{v}, and exceedance probabilities \eqn{u'} and \eqn{v'}. A compact summary of these probability relations has obvious usefulness. The notation \eqn{[\ldots, \ldots]} is to read as \eqn{[\ldots \mathrm{\ and\ } \ldots]}, and the \eqn{[\ldots \mid  \ldots]} is to be read as \eqn{[\ldots \mathrm{\ given\ } \ldots]}.
 \tabular{rcl}{
 \bold{Probability} \tab \bold{and} \tab \bold{Symbol Convention}\cr
 \eqn{\mathrm{Pr}[\,U \le u, V \le v\,]}     \tab \eqn{=} \tab \eqn{\mathbf{C}(u,v)} --- The copula, \code{\link{COP}}\cr
@@ -170,10 +173,14 @@ The \bold{Table of Probabilities} that follows lists important relations between
 \eqn{\mathrm{Pr}[\,U \le u \mid V = v\,]}   \tab \eqn{=} \tab \eqn{\delta \mathbf{C}(u,v)/\delta v} --- Partial derivative, \code{\link{derCOP2}}\cr
 \eqn{\mathrm{Pr}[\,U > u \mathrm{\ or\ } V > v\,]}     \tab \eqn{=} \tab \eqn{\mathbf{C}^\star(u',v') = 1 - \mathbf{C}(u',v')} --- The co-copula, \code{\link{coCOP}}\cr
 \eqn{\mathrm{Pr}[\,U \le u \mathrm{\ or\ } V \le v\,]} \tab \eqn{=} \tab \eqn{\tilde{\mathbf{C}}(u,v) = u + v - \mathbf{C}(u,v)} --- The dual of a copula, \code{\link{duCOP}}\cr
+\eqn{E[\,U \mid V = v\,]} \tab \eqn{=} \tab \eqn{\int_0^1 (1 - \delta \mathbf{C}(u,v)/\delta v)\mathrm{d}u} --- Expectation of U given V, \code{\link{EuvCOP}}\cr
+\eqn{E[\,V \mid U = u\,]} \tab \eqn{=} \tab \eqn{\int_0^1 (1 - \delta \mathbf{C}(u,v)/\delta u)\mathrm{d}v} --- Expectation of V given U, \code{\link{EvuCOP}}\cr
 }
 The function \code{\link{jointCOP}} has considerable demonstration in its \bold{Note} section of the \bold{joint and} and \bold{joint or} relations shown through simulation and counting scenarios. Also there is a demonstration in the \bold{Note} section of function \code{\link{duCOP}} on application of the concepts of \bold{joint and} conditions, \bold{joint or} conditions, and importantly joint \bold{mutually exclusive or} conditions.
 
-Permutation asymmetry can be added to a copula by \code{\link{breveCOP}}. One, two, or more copulas can be \dQuote{composited,} \dQuote{combined,} or \dQuote{multiplied} in interesting ways to create highly unique bivariate relations and as a result, complex dependence structures can be formed. The package provides three main functions for copula composition: \code{\link{composite1COP}} composites a single copula with two compositing parameters, \code{\link{composite2COP}} composites two copulas with two compositing parameters, and \code{\link{composite3COP}} composites two copulas with four compositing parameters. Also two copulas can be combined through a weighted convex combination using \code{\link{convex2COP}} with a single weighting parameter, and even \eqn{N} number of copulas can be combined by weights using \code{\link{convexCOP}}. So-called \dQuote{gluing} two copula by a parameter is provided by \code{\link{glueCOP}}. Finally, multiplication of two copulas to form a third is supported by \code{\link{prod2COP}}. All seven functions for compositing, combining, or multipling copulas are compatible with joint probability simulation (\code{\link{simCOP}}), measures of association (\emph{e.g.} \eqn{\rho_\mathbf{C}}), and presumably all other copula operations using \pkg{copBasic} features.
+\bold{Copula Construction Methods}
+
+Permutation asymmetry can be added to a copula by \code{\link{breveCOP}}. One, two, or more copulas can be \dQuote{composited,} \dQuote{combined,} or \dQuote{multiplied} in interesting ways to create highly unique bivariate relations and as a result, complex dependence structures can be formed. The package provides three main functions for copula composition: \code{\link{composite1COP}} composites a single copula with two compositing parameters, \code{\link{composite2COP}} composites two copulas with two compositing parameters, and \code{\link{composite3COP}} composites two copulas with four compositing parameters. Also two copulas can be combined through a weighted convex combination using \code{\link{convex2COP}} with a single weighting parameter, and even \eqn{N} number of copulas can be combined by weights using \code{\link{convexCOP}}. So-called \dQuote{gluing} two copula by a parameter is provided by \code{\link{glueCOP}}. Multiplication of two copulas to form a third is supported by \code{\link{prod2COP}}. All eight functions for compositing, combining, or multipling copulas are compatible with joint probability simulation (\code{\link{simCOP}}), measures of association (\emph{e.g.} \eqn{\rho_\mathbf{C}}), and presumably all other copula operations using \pkg{copBasic} features. Finally, \emph{ordinal sums} of copula are provided by \code{\link{ORDSUMcop}} and \code{\link{ORDSUWcop}} as particularly interesting methods of combining copulas.
 
 \tabular{cclr}{
 \bold{No. of copulas} \tab \bold{Combining Parameters} \tab \bold{Function} \tab \bold{Concept}\cr
@@ -185,6 +192,8 @@ Permutation asymmetry can be added to a copula by \code{\link{breveCOP}}. One, t
 \eqn{N} \tab \eqn{\omega_{i \in N}} \tab \code{\link{convexCOP}} \tab weighted copula combination\cr
 2 \tab \eqn{\gamma} \tab \code{\link{glueCOP}} \tab gluing of coupla\cr
 2 \tab \eqn{\bigl(\mathbf{C}_1 \ast \mathbf{C}_2 \bigr)} \tab \code{\link{prod2COP}} \tab copula multiplication\cr
+\eqn{N} \tab \eqn{\mathbf{C}_{\mathcal{J}i}} for \eqn{\mathcal{J}_{i \in N}} partitions \tab \code{\link{ORDSUMcop}} \tab \code{\link{M}}-ordinal sums of copulas\cr
+\eqn{N} \tab \eqn{\mathbf{C}_{\mathcal{J}i}} for \eqn{\mathcal{J}_{i \in N}} partitions \tab \code{\link{ORDSUWcop}} \tab \code{\link{W}}-ordinal sums of copulas\cr
 }
 
 \bold{Useful Copula Relations by Visualization}
@@ -228,7 +237,7 @@ Thus, a \dQuote{better understanding of the statistical characteristics of [mult
 
 \bold{Interaction of copBasic to Copulas in Other Packages}
 
-Originally, the \pkg{copBasic} package was not intended to be a port of the numerous bivariate copulas or over re-implementation other bivariate copulas available in \R though as the package passed its 10th year in 2018, the original intent changed. It is useful to point out a demonstration showing an implementation of the \emph{Gaussian copula} from the \pkg{copula} package, which is shown in the \bold{Note} section of \code{\link{med.regressCOP}} in a circumstance of ordinary least squares linear regression  compared to \emph{median regression} of a copula as well as prediction limits of both regressions. Another demonstration in context of \emph{maximum pseudo-log-likelihood estimation} of copula parameters is seen in the \bold{Note} section \code{\link{mleCOP}}, and also see \dQuote{\bold{API to the copula package}} or \dQuote{\bold{package copula (comparison to)}} entries in the Index of this user manual.
+Originally, the \pkg{copBasic} package was not intended to be a port of the numerous bivariate copulas or over re-implementation other bivariate copulas available in \R though as the package passed its 10th year in 2018, the original intent changed. It is useful to point out a demonstration showing an implementation of the \emph{Gaussian copula} from the \pkg{copula} package, which is shown in the \bold{Note} section of \code{\link{med.regressCOP}} in a circumstance of ordinary least squares linear regression compared to \emph{median regression} of a copula as well as prediction limits of both regressions. Another demonstration in context of \emph{maximum pseudo-log-likelihood estimation} of copula parameters is seen in the \bold{Note} section \code{\link{mleCOP}}, and also see \dQuote{\bold{API to the copula package}} or \dQuote{\bold{package copula (comparison to)}} entries in the Index of this user manual.
 
 \if{html}{\figure{CopulaRelationsFigure4pkg.jpg}}
 \if{latex}{\figure{CopulaRelationsFigure4pkg.pdf}{options: width=4in, trim=1in 2.25in 0.75in 1in, clip}}
@@ -257,14 +266,14 @@ Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in
 }
 "MCDURV" <- function(u,v, para=NULL) {
    if(is.null(para))         stop("need theta")
-   if(para < 0 | para > 0.5) stop("theta ! in [0,1/2]")
+   if(para < 0 | para > 0.5) stop("theta ! in [0, 1/2]")
    return(asCOP(u, v, f=mcdurv, para))
 }
 "afunc" <- function(t) { # a sample size = 1,000 hard wired
    return(cov(simCOP(n=1000, cop=MCDURV, para=t, ploton=FALSE, points=FALSE))[1,2])
 }
 set.seed(6234) # setup covariance based on parameter "t" and the "root" parameter
-print(uniroot(afunc, c(0,0.5))) # "t" by simulation = 0.1023742
+print(uniroot(afunc, c(0, 0.5))) # "t" by simulation = 0.1023742
 # Nelsen reports that if theta appox. 0.103 then covariance of U and V is zero.
 # So, one will have mutually completely dependent uncorrelated uniform variables!
 
@@ -289,7 +298,11 @@ lmomco::lcomoms2(simCOP(n=1000, cop=MCDURV, para=0.5), nmom=5) # Perfect pos. co
 \concept{copula theory}
 \keyword{L-comoments}
 \keyword{Nelsen (2006) Examples and Exercises}
+\keyword{Salvadori et al. (2007) Examples and Exercises}
 \keyword{return period (conditional)}
 \keyword{return period (secondary)}
 \keyword{Table of Copulas}
 \keyword{Table of Probabilities}
+\keyword{Table of Expectations}
+\keyword{Table of Probabilities and Expectations}
+

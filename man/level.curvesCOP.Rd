@@ -10,7 +10,7 @@ and solving for \eqn{v}. Plotting is provided by this function because level cur
 \usage{
 level.curvesCOP(cop=NULL, para=NULL, ploton=TRUE, lines=TRUE,
                 plotMW=FALSE, ramp=TRUE, delu=0.001, delt=0.10,
-                getlevel=NULL, ...)
+                getlevel=NULL, silent=TRUE, ...)
 }
 \arguments{
   \item{cop}{A copula function;}
@@ -21,7 +21,8 @@ level.curvesCOP(cop=NULL, para=NULL, ploton=TRUE, lines=TRUE,
   \item{ramp}{A logical to toggle whether the level curves are ramped in thickness according to the probability of the line;}
   \item{delu}{The increment for \eqn{\Delta u}. The default is 1 part in 1,000, which should often provide enough smoothness for many copulas in practice;}
   \item{delt}{The increment \eqn{\Delta t} for the level curves to plot, defaults to 10-percent intervals. If \code{delt=0.5}, then only the median plus the consequences of a defined \code{getlevel} is used. If \code{NULL}, then a sequence of \eqn{t} values is not made and only \code{getlevel} is used (if available);}
-  \item{getlevel}{If defined, then it is inserted into the sequence of levels \eqn{t} and that level \eqn{t} \eqn{=} \code{getlevel} is returned in an \R \code{list} data structure. If more than one level is desired, then instead of repeated calls to this function, the \code{\link{joint.curvesCOP}} function could be considered; and}
+  \item{getlevel}{If defined, then it is inserted into the sequence of levels \eqn{t} and that level \eqn{t} \eqn{=} \code{getlevel} is returned in an \R \code{list} data structure. If more than one level is desired, then instead of repeated calls to this function, the \code{\link{joint.curvesCOP}} function could be considered;}
+  \item{silent}{The argument of the same name given over to \code{try()} wrapping the \code{try()} operation on forming sequences of \eqn{t} for the curves (see sources); and}
   \item{...}{Additional arguments to pass to the \code{lines()} function in \R.}
 }
 \value{
@@ -35,7 +36,7 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \examples{
 \dontrun{
-level.curvesCOP(cop=M, para=NULL, delt=.02) # Upper bounds copula}
+level.curvesCOP(cop=M, para=NULL, delt=0.02) # Upper bounds copula}
 \dontrun{
 D <- level.curvesCOP(cop=P,   getlevel=0.56)
 str(D) # empty
