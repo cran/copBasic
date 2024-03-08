@@ -36,10 +36,12 @@ The following descriptions list in detail the structure and content of the \code
   \item{\code{para1}}{--- Alternative naming of the vector of parameters \eqn{\Theta_\mathbf{C}} for  \eqn{\mathbf{C}}.}
 }
 
-The function silently restricts the \eqn{\beta} to its interval as defined, but parameter transform might be useful in some numerical optimization schemes. The following recipe is useful for transform from a parameter in numerical optimization to the asymmetry parameter:
+The function silently restricts the \eqn{\beta} to its interval as defined, but parameter transform might be useful in some numerical optimization schemes. The following recipes are useful for transform from a parameter in numerical optimization to the asymmetry parameter:
 \preformatted{
-   BREVEpfunc <- function(p) { return(2 * pnorm(p[1]) - 1)       } # [-1  , +1  ]
-   BREVEifunc <- function(p) { return(   (qnorm(p[1]) + 1) / 2 ) } # [-Inf, +Inf]
+   #    transform into space for optimization
+   BREVEtfunc <- function(p) { return(   qnorm((p[1] + 1) / 2) ) } # [-Inf, +Inf]
+   # re-transform back into space for the copula
+   BREVErfunc <- function(p) { return(2 * pnorm(p[1]) - 1)       } # [-1  , +1  ]
 }
 }
 \references{
@@ -67,7 +69,7 @@ plot(betas, bloms, type="l", main="GLPMcop(u,v; 2,2) by breveCOP(beta)")
   UV   <- simCOP(1000, cop=breveCOP, para=para) # }
 
 \dontrun{
-  # Testing on a comprehensive copula like the Plackett
+  # Testing on a comprehensive copula (Plackett)
   betas <- rhos <- thetas <- brhos <- NULL
   for(beta  in seq(-1, 1, by=0.1 )) {
     for(rho in seq(-1, 1, by=0.01))   {

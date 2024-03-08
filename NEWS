@@ -1,6 +1,15 @@
 --------------------------------------------------------------------------------------
                 NEWS for R Package "copBasic" by W.H. Asquith
 --------------------------------------------------------------------------------------
+Changes in version 2.2.4 (2024-03-06)
+-  Added Rayleigh copula as RAYcop().
+-  Minor mathematical edits in numerous Rd files; left and right () and [] enlargement
+-  Minor grammar edits in numerous Rd files.
+-  Error in breveCOP.Rd related to recipes for transforms of breve for optimizations.
+-  Added in simCOP.R additional "ditches" to the "dots" to avoid plot() complaining on
+     breve argument used by breveCOP().
+
+
 Changes in version 2.2.3 (2024-01-08)
 -  Added additional comments to AMHcop.R, math extensions in AMHcop.Rd, and
      adjustments to Examples therein.

@@ -1,6 +1,6 @@
-20f9ef263d6be47a22cc46f0859ec951 *DESCRIPTION
-c50e4be85046a668a3e67b9b31a80396 *NAMESPACE
-85c3ea3557bbe3112b4591f5ed0f27ce *NEWS
+ae02cf641c5fda7f6d5aef1ec644c9d2 *DESCRIPTION
+d60c4d891332ab1a5ef39f86bf47ea90 *NAMESPACE
+a1600c8ed7f9222155e7bd7c7844a65e *NEWS
 17b5290f2fdb2695dbe1791d78c7857c *R/AMHcop.R
 7d5903f2343c7c7e611e52d6fb2f3c51 *R/CIRCcop.R
 d2b8ae2af2504fd085ec3ee7e3b7aa33 *R/CLcop.R
@@ -40,6 +40,7 @@ e76994682c38c3b1c18e715b823ba0f1 *R/PLACKETTcop.R
 f20e11f7688982a99dd58591f320ef05 *R/PLACKETTpar.R
 e6370ff560977afa0598d97eb76a4aae *R/PLACKETTsim.R
 5fdc7a0c6beebe62c59b7f59adafdec1 *R/PSP.R
+3068204e1ed7334fb09d602ae2c9ad0c *R/RAYcop.R
 cd35b096299ab5a566135e426932bb88 *R/RFcop.R
 efb635c089cd25d1ae6b3671403f8ce5 *R/W.R
 9d48ef84698cce1767e48a27a7c31fd9 *R/W_N5p12a.R
@@ -109,7 +110,7 @@ c5875942241e963135597b5d1e24c32b *R/qua.regressCOP2.R
 c448c92341a90f8017c86f30f8abe8df *R/rmseCOP.R
 59d0108f77d236934a3d675f6b1f8ad9 *R/sectionCOP.R
 b8f90319be80612baffec4bf8148df2b *R/semicorCOP.R
-c44c98f744dc5cbbe4e7fa84727d1d5a *R/simCOP.R
+676b9f4d3ee6927485978131d0b6445e *R/simCOP.R
 a17e872a221cbda70387ac67bb6df817 *R/simCOPmicro.R
 ac03a6687048df363baaad81147ab26d *R/simcomposite3COP.R
 6d98f30fc1e9c8b0de2ef253087cf277 *R/simcompositeCOP.R
@@ -152,10 +153,9 @@ b6f2efe4ee3f02a7626b38078a91356f *inst/3dcopula/3dcopula.pdf
 2039e8769c20c2d307a87ab5781cc946 *inst/3dcopula/README.txt
 93450755c6ddd53451628bb60a35bcf7 *inst/3dcopula/velocity.txt
 2771e9d815ee21aa4df05098663f254a *inst/CITATION
-709abfd9b9fe538b39090bdfe449acd0 *inst/OtherTest.R
+1a80a316e43bf52ad7bf3a370a40222d *inst/OtherTest.R
 8a7a16d915fcb23c07973462aeafda01 *inst/doc/CopulaRelations_BaseFigure_inR.txt
 12e5c86083f70f8610b59518c876d8dc *inst/doc/Extended_DESCRIPTION.txt
-83288d0c28540a6dfc604d1da263772f *inst/empcop_Evu.R
 2cc5948f2140aee98b73926df7b2220d *man/AMHcop.Rd
 c8c12a0dc1bf6fe365652e9c26fc3827 *man/CIRCcop.Rd
 57e753948faca4f81b906a007518ec07 *man/CLcop.Rd
@@ -195,6 +195,7 @@ b165f2a0f56bdc0f6e831f51b63e6296 *man/JOcopB5.Rd
 ec40850d1a5499598448a1b20810df03 *man/PLACKETTpar.Rd
 6fa276b8bf36a964250e7d2f76e7343c *man/PLACKETTsim.Rd
 fb2e20a332fc8df0f899eaea5628a972 *man/PSP.Rd
+c4e00e8148e4d27e57ea0a75201ab10f *man/RAYcop.Rd
 c5a83b805821f87d4ba8bc73a749057d *man/RFcop.Rd
 17ebb366bce8eb6982442427711bf4ff *man/ReineckeWell266.Rd
 21c9573bfe8d9eb446d290f3fef55b27 *man/ReineckeWells.Rd
@@ -208,14 +209,14 @@ de6842dca773279ee6cd67e46fe2a3de *man/bilmoms.Rd
 2df0a001d5a77b730a16bed882f9060d *man/blomCOP.Rd
 8aee01f408ad5bcfca268c9bb2f8d8a1 *man/blomCOPss.Rd
 915f44f5d502cd5f38be6619886c80bc *man/blomatrixCOP.Rd
-38aa542387d2b359bdfaea58de5b213a *man/breveCOP.Rd
+3daef7120574d4f3e3cd714529f600b8 *man/breveCOP.Rd
 dbd4b9458ceb31d0a25a2b6d950f7ccf *man/coCOP.Rd
 c05ee2f79973482592d633f15cf4eeeb *man/composite1COP.Rd
-d687b0f0737b5e7bca6da33fcec01365 *man/composite2COP.Rd
+83588e6281de4bea25db69466658e643 *man/composite2COP.Rd
 b836f8235e155d51cccfa449020402fe *man/composite3COP.Rd
 7943db8d3abb3255d59e2f601b19f242 *man/convex2COP.Rd
 c64198c9e4cc2cdaeee4ab66c5e14bda *man/convexCOP.Rd
-4f8dfdc595aab0f418be0d3d586361b8 *man/copBasic-package.Rd
+bd0e0b7202d7ab6e93546b084093b432 *man/copBasic-package.Rd
 80ec3ea9666d1886575307f4dbfe83f9 *man/copBasic.fitpara.Rd
 10ffd5badb7d45b90e7fc0003a0fac13 *man/densityCOP.Rd
 050e413adbb87ccb962193873e3226f7 *man/densityCOPplot.Rd
@@ -259,7 +260,7 @@ d8f33f91b8fb70c231394279f8dda2ea *man/level.curvesCOP2.Rd
 92213fea203b2eb8ba202696ea727285 *man/med.regressCOP.Rd
 c8b391cb26339754c3977c22dd86c561 *man/med.regressCOP2.Rd
 16e4eeca48e90181459625a4ac4c390b *man/mleCOP.Rd
-1cf42ffca85bc75be251e593b0f2b4a7 *man/prod2COP.Rd
+7a1445d2025eb6dcf9ac4ef82461514f *man/prod2COP.Rd
 03a6ce5233db83a52c2076cc4ea253b1 *man/psepolar.Rd
 064ce31aa681c5f51926a415a20f51c9 *man/qua.regressCOP.Rd
 6b0bef3f8a9a4f78d52f3573941b8ba1 *man/qua.regressCOP.draw.Rd

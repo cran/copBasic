@@ -32,6 +32,7 @@ Pareto copula \tab \eqn{\mathbf{PA}(u,v)} \tab \code{\link{PLcop}} \tab copula\c
 Plackett copula \tab \eqn{\mathbf{PL}(u,v)} \tab \code{\link{PLcop}} \tab copula\cr
 PSP copula \tab \eqn{\mathbf{PSP}(u,v)} \tab \code{\link{PSP}} \tab copula\cr
 Raftery copula \tab \eqn{\mathbf{RF}(u,v)} \tab \code{\link{RFcop}} \tab copula\cr
+Rayleigh copula \tab \eqn{\mathbf{RAY}(u,v)} \tab \code{\link{RAYcop}} \tab copula\cr
 g-EV copula (Gaussian extreme value) \tab \eqn{\mathbf{gEV}(u,v)} \tab \code{\link{gEVcop}} \tab copula\cr
 t-EV copula (t-distribution extreme value) \tab \eqn{\mathbf{tEV}(u,v)} \tab \code{\link{tEVcop}} \tab copula\cr
 }

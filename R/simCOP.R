@@ -139,6 +139,7 @@ function(n=100, cop=NULL, para=NULL, na.rm=TRUE, seed=NULL, keept=FALSE,
   dots <- list(...)
   ditches <- c("delu", "derdir", "trace")
   ditches <- c("pinterval") # for the prod2COP() function
+  ditches <- c("breve")     # breveCOP()
   for(d in ditches) {
     if(d %in% names(dots)) dots <- dots[ - which(names(dots) == d)]
   }

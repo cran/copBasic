@@ -3,7 +3,7 @@
 \alias{prod2COP}
 \title{The Product of Two Copulas}
 \description{
-Perform copula multiplication (so-called \dQuote{\eqn{\ast}-product} or \emph{Markov Product}) is a continuous analog of matrix multiplication and yields another copula:
+Perform copula multiplication (so-called \dQuote{\eqn{\ast}-product} or \emph{Markov Product}) (Darsow and others, 1992) is a continuous analog of matrix multiplication and yields another copula:
 \deqn{\bigl(\mathbf{C}_1 \ast \mathbf{C}_2 \bigr)(u,v) = \mathbf{C}_3(u,v) = \int_\mathcal{I} \frac{\delta \mathbf{C}_1(u, t)}{\delta v} \frac{\delta \mathbf{C}_2(t, v)}{\delta u}\,\mathrm{d}t\mbox{,}}
 for copulas \eqn{\mathbf{C}_1(u, v)} and \eqn{\mathbf{C}_2(u, v)} are copulas whose \eqn{\ast}-product yields copula \eqn{\mathbf{C}_3(u, v)} in terms of partial derivatives (\code{\link{derCOP}} and \code{\link{derCOP2}}) of the other two. Nelsen (2006, p. 245) lists several identities of the \eqn{\ast}-product involving the product (\eqn{\mathbf{\Pi}}; \code{\link{P}}), lower bound (\eqn{\mathbf{W}}; \code{\link{W}}), and upper bound (\eqn{\mathbf{M}}; \code{\link{M}}) copulas:
 \deqn{\mathbf{\Pi} \ast \mathbf{C} = \mathbf{C} \ast \mathbf{\Pi} = \mathbf{\Pi}\mbox{,}}
@@ -49,6 +49,8 @@ This assertion is numerically true as readily verified using the \code{prod2COP}
 }
 }
 \references{
+Darsow, W.F., Nguyen, B., and Olsen, E.T., 1992, Copulas and Markov processes: Illinois Journal of Mathematics, v. 26, pp. 600--624, \doi{10.1215/IJM/1255987328}.
+
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \author{W.H. Asquith}
@@ -91,4 +93,7 @@ UV <- simCOP(n=1000, cop=prod2COP, para=para, resamv01=TRUE, showresamv01=TRUE,
 \concept{copula multiplication}
 \concept{copula product}
 \concept{Markov Product}
+\concept{Markov product}
+\concept{Markov Process}
+\concept{Markov process}
 \keyword{Nelsen (2006) Examples and Exercises}

@@ -77,3 +77,4 @@ zz <- bicoploc(x,y, xout=xout, xpara=xpara, ypara=ypara, plotuv=FALSE, plotxy=FA
  lines(zz$organic$xout, zz$organic$bicoploc_emp, col="red", lwd=2)
  lines(zz$organic$xout, zz$organic$bicoploc, col="red", lwd=2, lty=2)
  lines(zz$organic$xout, zz$organic$locpair, col="lightblue", lwd=2, lty=2)
+

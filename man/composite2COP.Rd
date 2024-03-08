@@ -8,7 +8,7 @@ The \emph{composition of two copulas} (Salvadori \emph{et al.}, 2007, p. 266, pr
 \deqn{\mathbf{C}_{\alpha,\beta}(u,v) = \mathbf{A}(u^\alpha,    v^\beta) \cdot
                               \mathbf{B}(u^{1-\alpha},v^{1-\beta})\mbox{,}}
 
-defines a family of copulas \eqn{\mathbf{C}_{\alpha,\beta; \Theta_\mathbf{A}, \Theta_\mathbf{B}}} with \bold{two} \emph{compositing parameters} \eqn{\alpha,\beta \in \mathcal{I}:[0,1]}. In particular if \eqn{\alpha = \beta = 1}, then \eqn{\mathbf{C}_{1,1} = \mathbf{A}}, and if \eqn{\alpha = \beta = 0}, then \eqn{\mathbf{C}_{0,0} = \mathbf{B}}. For \eqn{\alpha \ne \beta}, the \eqn{\mathbf{C}_{\alpha,\beta}} is in general asymmetric that is \eqn{\mathbf{C}(u,v) \ne \mathbf{C}(v,u)} for some \eqn{(u,v) \in \mathcal{I}^2}.
+defines a family of copulas \eqn{\mathbf{C}_{\alpha,\beta; \Theta_\mathbf{A}, \Theta_\mathbf{B}}} with \bold{two} \emph{compositing parameters} \eqn{\alpha,\beta \in \mathcal{I}:[0,1]}. In particular if \eqn{\alpha = \beta = 1}, then \eqn{\mathbf{C}_{1,1} = \mathbf{A}}, and if \eqn{\alpha = \beta = 0}, then \eqn{\mathbf{C}_{0,0} = \mathbf{B}}. For \eqn{\alpha \ne \beta}, the \eqn{\mathbf{C}_{\alpha,\beta}} is in general asymmetric that is \eqn{\mathbf{C}(u,v) \ne \mathbf{C}(v,u)} for some \eqn{(u,v) \in \mathcal{I}^2}. This construction technique is named \emph{Khoudraji device} within the \pkg{copula} package (see \code{khoudrajiCopula} therein).
 
 It is important to stress that copulas \eqn{\mathbf{A}_{\Theta_A}} and \eqn{\mathbf{B}_{\Theta_B}} can be of different families and each copula parameterized accordingly by the vector of parameters \eqn{\Theta_A} and \eqn{\Theta_B}. This is an interesting feature in the context of building complex structures when pursuing asymmetric measures of dependency such as the \emph{L-comoments}.  Do the copulas \eqn{\mathbf{A}} and \eqn{\mathbf{B}} need be symmetric? The Salvadori reference makes no stated restriction to that effect. Symmetry of the copula \eqn{\mathbf{C}} is required for the situation that follows, however.
 
@@ -86,4 +86,5 @@ mtext("Empirical copula from n=2000 simulation") #}
 }
 \keyword{copula composition}
 \keyword{copula composition (two compositing parameters)}
+\keyword{Khoudraji device}
 
