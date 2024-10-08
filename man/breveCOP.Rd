@@ -3,7 +3,7 @@
 \alias{breveCOP}
 \title{Add Asymmetry to a Copula}
 \description{
-Adding \emph{permutation asymmetry} (Chang and Joe, 2020, p. 1596) (\code{\link{isCOP.permsym}}) is simple for a bivariate copula family. Let \eqn{\mathbf{C}} be a copula with respective vectors of parameters \eqn{\Theta_\mathbf{C}}, then the permutation asymmetry is added through an asymmetry parameter \eqn{\beta \in (-1, +1)} for \eqn{-1 \le \beta < 0} by
+Adding \emph{permutation asymmetry} (Chang and Joe, 2020, p. 1596) (\code{\link{isCOP.permsym}}) is simple for a bivariate copula family. Let \eqn{\mathbf{C}} be a copula with respective vectors of parameters \eqn{\Theta_\mathbf{C}}, then the permutation asymmetry is added through an asymmetry parameter \eqn{\beta \in (-1, +1)} by
 
 \deqn{\breve{\mathbf{C}}_{\beta;\Theta}(u,v) = v^{-\beta}\cdot\mathbf{C}(u, v^{(1+\beta)};\Theta)\mbox{, and}}
 
@@ -36,7 +36,7 @@ The following descriptions list in detail the structure and content of the \code
   \item{\code{para1}}{--- Alternative naming of the vector of parameters \eqn{\Theta_\mathbf{C}} for  \eqn{\mathbf{C}}.}
 }
 
-The function silently restricts the \eqn{\beta} to its interval as defined, but parameter transform might be useful in some numerical optimization schemes. The following recipes are useful for transform from a parameter in numerical optimization to the asymmetry parameter:
+The function silently restricts the \eqn{\beta} to its interval as defined, but parameter transform might be useful in some numerical optimization schemes. The following recipes might be useful for transform from a parameter in numerical optimization to the asymmetry parameter:
 \preformatted{
    #    transform into space for optimization
    BREVEtfunc <- function(p) { return(   qnorm((p[1] + 1) / 2) ) } # [-Inf, +Inf]
@@ -45,8 +45,7 @@ The function silently restricts the \eqn{\beta} to its interval as defined, but 
 }
 }
 \references{
-Chang, B., and Joe, H., 2020, Copula diagnostics for asymmetries and conditional
-dependence: Journal of Applied Statistics, v. 47, no. 9, pp. 1587--1615, \doi{10.1080/02664763.2019.1685080}.
+Chang, B., and Joe, H., 2020, Copula diagnostics for asymmetries and conditional dependence: Journal of Applied Statistics, v. 47, no. 9, pp. 1587--1615, \doi{10.1080/02664763.2019.1685080}.
 }
 \author{W.H. Asquith}
 \seealso{\code{\link{COP}}, \code{\link{convex2COP}}, \code{\link{convexCOP}}, \code{\link{composite1COP}}, \code{\link{composite2COP}}, \code{\link{composite3COP}}, \code{\link{FRECHETcop}}, \code{\link{glueCOP}}}

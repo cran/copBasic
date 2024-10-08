@@ -11,7 +11,7 @@ function(cop=NULL, para=NULL, by.concordance=FALSE, as.sample=FALSE, ...) {
       }
       R <- rank(para[,1]); S <- rank(para[,2]); n <- length(para[,1])
       samGAM <- sum(abs((n + 1 - R) - S) - abs(R - S))
-      return( (2 / n^2) * samGAM)
+      return( ( 1/floor(n^2/2) ) * samGAM)
    }
 
    if(is.null(cop)) {

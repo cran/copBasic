@@ -12,7 +12,7 @@ A simpler method of computation and the default for \code{giniCOP} is to compute
 \deqn{\gamma_\mathbf{C}  = 4\biggl[\int_\mathcal{I} \mathbf{C}(u,u)\,\mathrm{d}u +
                              \int_\mathcal{I} \mathbf{C}(u,1-u)\,\mathrm{d}u\biggr] -
                            2\mbox{,}}
-or in terms of the \emph{primary diagonal} \eqn{\delta(t)} and \emph{secondary diagonal} \eqn{\delta^\star(t)} (see \code{\link{diagCOP}}) by
+or in terms of the \emph{primary diagonal} (alt. \emph{main diagonal}, Genest \emph{et al.}, 2010) \eqn{\delta(t)} and \emph{secondary diagonal} \eqn{\delta^\star(t)} (see \code{\link{diagCOP}}) by
 \deqn{\gamma_\mathbf{C}  = 4\biggl[\int_\mathcal{I} \mathbf{\delta}(t)\,\mathrm{d}t +
                              \int_\mathcal{I} \mathbf{\delta^\star
                              }(t)\,\mathrm{d}t\biggr] -
@@ -38,18 +38,23 @@ giniCOP(cop=NULL, para=NULL, by.concordance=FALSE, as.sample=FALSE, ...)
 }
 \note{
 Conceptually, the sample Gini Gamma (\eqn{\hat\gamma}; Genest \emph{et al.}, 2010) is
-\deqn{\hat\gamma = \frac{2}{n^2}\frac{ \sum_{i=1}^n \mid (n+1-R_i) - S_i \mid- \mid R_i - S_i\mid }{n^2 - 1}\mbox{,}}
-where \eqn{R_i} and \eqn{S_i} are the respective ranks of \eqn{X} and \eqn{Y} and \eqn{n} is sample size. The sampling variance of \eqn{\hat\gamma} under assumption of independence between \eqn{X} and \eqn{Y} is
+
+\deqn{\hat\gamma = \frac{1}{\lfloor n^2/2 \rfloor}\sum_{i=1}^n \mid (n+1-R_i) - S_i \mid- \mid R_i - S_i\mid\mbox{,}}
+
+where \eqn{{\lfloor m \rfloor}} denotes the integer part of arbitrary \eqn{m > 0}, \eqn{R_i} and \eqn{S_i} are the respective ranks of \eqn{X} and \eqn{Y} and \eqn{n} is sample size. The sampling variance of \eqn{\hat\gamma} under \emph{assumption of independence} between \eqn{X} and \eqn{Y} is
+
 \deqn{\mathrm{var}(\hat\gamma)_{n\ \mathrm{even}} = \frac{2}{3}\frac{(n^2 + 2)}{(n-1)n^2}\mbox{\ and}}
+
 \deqn{\mathrm{var}(\hat\gamma)_{n\ \mathrm{odd}} = \frac{2}{3}\frac{(n^2 + 3)}{(n-1)(n^2-1)}\mbox{.}}
-Genest \emph{et al.} (2010) present additional equations for estimation of the distribution \eqn{\hat\gamma} variance for conditions of dependence based on copulas.
+
+Genest \emph{et al.} (2010) present additional equations for estimation of the distribution \eqn{\hat\gamma} variance for conditions of dependence based on copulas. For a copula having continuous partial derivatives, then as \eqn{n \rightarrow \infty}, the quantity \eqn{(\hat\gamma - \gamma_\mathbf{C})\sqrt{n} \sim \mathrm{Normal}(0, \mathrm{var}(\gamma_\mathbf{C}))}. Genest \emph{et al.} (2010) show variance of \eqn{\hat\gamma} for the \emph{independence copula} (\eqn{\mathbf{C}(u,v) = \mathbf{\Pi}(u,v)}) (\code{\link{P}}) as \eqn{\mathrm{var}(\gamma_\mathbf{C}) = 2/3}. For comparison, the \emph{Spearman Footrule} for independence is smaller at \eqn{\mathrm{var}(\psi_\mathbf{C}) = 2/5} (see \code{\link{footCOP}} \bold{Note}). In Genest \emph{et al.} independence and two examples of dependence (p. 941), \eqn{\mathrm{var}(\hat\gamma) > \mathrm{var}(\hat\psi)}, but those authors do not appear to remark on whether this inequality holds for all copula.
 }
 \references{
-Genest, C., \enc{Nešlehová}{Neslehova}, J., and Ghorbal, N.B., 2010, Spearman's footrule and Gini's gamma---A review with complements: Journal of Nonparametric Statistics, v. 22, no. 8, pp. 937--954.
+Genest, C., \enc{Nešlehová}{Neslehova}, J., and Ghorbal, N.B., 2010, Spearman's footrule and Gini's gamma---A review with complements: Journal of Nonparametric Statistics, v. 22, no. 8, pp. 937--954, \doi{10.1080/10485250903499667}.
 
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 
-Nelsen, R.B., Quesada-Molina, J.J., \enc{Rodríguez-Lallena}{Rodriguez-Lallena}, J.A., \enc{Úbeda-Flores}{Ubeda-Flores}, M., 2001, Distribution functions of copulas---A class of bivariate probability integral transforms: Statistics and Probability Letters, v. 54, no. 3, pp. 277--282.
+Nelsen, R.B., Quesada-Molina, J.J., \enc{Rodríguez-Lallena}{Rodriguez-Lallena}, J.A., \enc{Úbeda-Flores}{Ubeda-Flores}, M., 2001, Distribution functions of copulas---A class of bivariate probability integral transforms: Statistics and Probability Letters, v. 54, no. 3, pp. 277--282, \doi{10.1016/S0167-7152(01)00060-8}.
 }
 \author{W.H. Asquith}
 \seealso{\code{\link{blomCOP}}, \code{\link{footCOP}}, \code{\link{hoefCOP}},
@@ -101,6 +106,33 @@ hoefCOP(para=subsample, as.sample=TRUE)       # 0.5033842 (re-sample)
 wolfCOP(cop=composite2COP, para=para)         # 0.5257662 (theoretical)
 #wolfCOP(para=D, as.sample=TRUE) # major CPU hog, n too big
 wolfCOP(para=subsample, as.sample=TRUE)       # 0.5338009 (re-sample)}
+
+
+\dontrun{
+set.seed(1); nsim <- 1000
+varGIunderIndpendence <- function(n) {
+  if(3 \%/\% 2 == 3 / 2) { # even
+    (2/3)*( (n^2 + 2) ) / ( (n-1)* n^2    ) # Genest et al. (2010)
+  } else {
+    (2/3)*( (n^2 + 3) ) / ( (n-1)*(n^2-1) ) # Genest et al. (2010)
+  }
+}
+ns <- c(10, 15, 20, 25, 50, 75, 100)
+plot(min(ns):max(ns), varGIunderIndpendence(10:max(ns)), type="l",
+     xlab="Sample size", ylab="Variance of Sample Estimator", col="darkgreen")
+mtext("Sample Gini Gamma Under Independence", col="darkgreen")
+for(n in ns) {
+  sGI <- vector(length=nsim)
+  for(i in seq_len(nsim)) {
+    uv <- simCOP(n=n, cop=P, para=2, graphics=FALSE)
+    sGI[i] <- giniCOP(para=uv, as.sample=TRUE)
+  }
+  varGI <- varGIunderIndpendence(n)
+  zz <- round(c(n, mean(sGI), var(sGI), varGI), digits=6)
+  names(zz) <- c("n", "mean_sim", "var_sim", "var_Genest")
+  print(zz)
+  points(n, zz[3], cex=2, pch=21, col="darkgreen", bg="lightgreen")
+} # results show proper implementation and Genest et al. (2010, sec. 3) }
 }
 \keyword{copula (characteristics)}
 \keyword{copula (properties)}

@@ -1,6 +1,19 @@
 --------------------------------------------------------------------------------------
                 NEWS for R Package "copBasic" by W.H. Asquith
 --------------------------------------------------------------------------------------
+Changes in version 2.2.6 (2024-10-08)
+-  Added Authors@R field to DESCRIPTION as per CRAN requirements.
+
+
+Changes in version 2.2.5 (2024-10-06)
+-  Fixed an error in discussion of the beta range in breveCOP.Rd and minor grammar.
+-  Fixed error in math notation for sample Spearman Footrule in footCOP.Rd.
+-  Expanded the Note sections in footCOP and giniCOP with more sampling theory on the
+     two statistics along with adding DOI numbers to two of the references in each.
+-  Minor bug fix in giniCOP(as.sample=TRUE) for division by an integer and not real
+     part of the divisor for the sample estimator as per Genest et al. (2010).
+
+
 Changes in version 2.2.4 (2024-03-06)
 -  Added Rayleigh copula as RAYcop().
 -  Minor mathematical edits in numerous Rd files; left and right () and [] enlargement

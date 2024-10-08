@@ -1,6 +1,6 @@
-ae02cf641c5fda7f6d5aef1ec644c9d2 *DESCRIPTION
+0d2e2dbc85347ac626f6f8be67e9da71 *DESCRIPTION
 d60c4d891332ab1a5ef39f86bf47ea90 *NAMESPACE
-a1600c8ed7f9222155e7bd7c7844a65e *NEWS
+81983d7dca4b311a34e2aeacb700fb96 *NEWS
 17b5290f2fdb2695dbe1791d78c7857c *R/AMHcop.R
 7d5903f2343c7c7e611e52d6fb2f3c51 *R/CIRCcop.R
 d2b8ae2af2504fd085ec3ee7e3b7aa33 *R/CLcop.R
@@ -71,7 +71,7 @@ f383273b20c409528f15625b46ed6abe *R/diagCOPatf.R
 6baf9d6e63b0e2ed0f002444c9e61cc0 *R/duCOP.R
 c6556de0136633b4425656fe10713147 *R/footCOP.R
 fd97ab262083d5375f27ff6fa5a22d99 *R/gEVcop.R
-c5878b97d2fc7d20382274df21605914 *R/giniCOP.R
+9d178fa65ece35ebcbd747dedbc12027 *R/giniCOP.R
 8d7ff5afebe6c778607e6a9d432fb895 *R/glueCOP.R
 1eaa88349ebb2841865b05f07d15ce37 *R/gridCOP.R
 444b24ea33cd042d97bcc3ef45230877 *R/hoefCOP.R
@@ -127,7 +127,7 @@ abbe2b4906e1e94dc4db19e74c3734d3 *R/tauCOP.R
 9aa550c8d375d11146e94e7f7fd1871d *R/uvlmoms.R
 d67db7936ca3ab427d4f4ba8ee4e9130 *R/vuongCOP.R
 06782af0abbb8267316b2836b64a7363 *R/wolfCOP.R
-8faf250d78a120ba4c7ea2186efddd24 *build/partial.rdb
+aa5e5a2cbfaea3d9b6cdbe378ac48cee *build/partial.rdb
 2d9f44f6a7722b44d9ff70c8273c320a *data/ReineckeWell266.RData
 d45f4e44cec05d81fbb9db2aba3d3d6c *data/ReineckeWells.RData
 60627f1f27f4e76a19bae79559e31135 *inst/3dcopula/3dconfig_examples/Comal.txt
@@ -209,7 +209,7 @@ de6842dca773279ee6cd67e46fe2a3de *man/bilmoms.Rd
 2df0a001d5a77b730a16bed882f9060d *man/blomCOP.Rd
 8aee01f408ad5bcfca268c9bb2f8d8a1 *man/blomCOPss.Rd
 915f44f5d502cd5f38be6619886c80bc *man/blomatrixCOP.Rd
-3daef7120574d4f3e3cd714529f600b8 *man/breveCOP.Rd
+acc6428ab7e9c15e679a2152983efc28 *man/breveCOP.Rd
 dbd4b9458ceb31d0a25a2b6d950f7ccf *man/coCOP.Rd
 c05ee2f79973482592d633f15cf4eeeb *man/composite1COP.Rd
 83588e6281de4bea25db69466658e643 *man/composite2COP.Rd
@@ -229,9 +229,9 @@ b03876d545c4db4c8fb66029b465e324 *man/derCOPinv2.Rd
 84047cc81200ba5984181d56b702419f *man/duCOP.Rd
 afc992cd3992954ca993f4b061593b8d *man/figures/CopulaRelationsFigure4pkg.jpg
 b9f4b11f8052b4b8e509a129b9a1af93 *man/figures/CopulaRelationsFigure4pkg.pdf
-0244aa451cb5b9620790ed633e3cf04a *man/footCOP.Rd
+e85834bb5c9d80add908df6365985bbf *man/footCOP.Rd
 7032a74a9f6a15de25f72c6c75bdd530 *man/gEVcop.Rd
-18a993f6cb4d15e9efb7089c57d99402 *man/giniCOP.Rd
+15d8002c0b53649ce5e33629ba4b4513 *man/giniCOP.Rd
 ed9e935e59416415bd7ef39747668c8e *man/glueCOP.Rd
 467d81b3cc48572b813397860fdbd912 *man/gridCOP.Rd
 3f74c1f039185d7f783e4395b758a723 *man/hoefCOP.Rd
