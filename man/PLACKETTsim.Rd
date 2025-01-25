@@ -3,7 +3,7 @@
 \alias{PLACKETTsim}
 \title{Direct Simulation of a Plackett Copula}
 \description{
-Simulation of the \emph{Plackett copula} (Nelsen, 2006, pp. 89--92) is made by this function using analytical formula (Durante, 2007, p. 247; see source code). Thus the \code{PLACKETTsim} function can be useful for comparison against the numerical derivative (\emph{conditional distribution method}) methods (\code{\link{simCOP}}, \code{\link{simCOPmicro}}) otherwise used in \pkg{copBasic}. The documentation for \code{\link{PLACKETTcop}} provides the mathematical formula of the Plackett copula.
+\emph{Plackett copula} simulation (Nelsen, 2006, pp. 89--92) (\code{\link{PLACKETTcop}}) is made by this function using analytical formula (Durante, 2007, p. 247; see source code). The \code{PLACKETTsim} function exists for comparison against the numerical derivative (\emph{conditional distribution method}) methods (\code{\link{simCOP}}, \code{\link{simCOPmicro}}) otherwise used in \pkg{copBasic}.
 }
 \usage{
 PLACKETTsim(n, para=NULL, ...)

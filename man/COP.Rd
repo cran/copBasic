@@ -46,10 +46,10 @@ whereas, following the notation of Joe (2014, p. 271), the copula of \eqn{(1-U, 
 \deqn{\mathrm{Pr}[\,U \le u, V > v\,] = \grave{\mathbf{C}}(u,v) = u - \mathbf{C}(u,1-v)\:\rightarrow\mbox{\ \code{"grave"}.}}
 Here it is useful to stress the probability aspects that change with the reflections, but this section ends with the reflections themselves being graphically highlighted. The \bold{Examples} stress simple variations on the probability aspects.
 
-To clarify the seemingly clunky nomenclature---Joe (2014) does not provide \dQuote{names} for \eqn{\acute{\mathbf{C}}(u,v)} or \eqn{\grave{\mathbf{C}}(u,v)}---the following guidance is informative:\cr
-\eqn{\mbox{}\quad\mbox{}}(1) \code{"surv"} or \eqn{\hat{\mathbf{C}}(u,v)} is a reflection of \eqn{U} and \eqn{V} on the horizontal \emph{and} vertical axes, respectively,\cr
-\eqn{\mbox{}\quad\mbox{}}(2) \code{"acute"} or \eqn{\acute{\mathbf{C}}(u,v)} is a reflection of \eqn{U} on the horizontal axis, and\cr
-\eqn{\mbox{}\quad\mbox{}}(3) \code{"grave"} or \eqn{\grave{\mathbf{C}}(u,v)} is a reflection of \eqn{V} on the verical axis.\cr
+To clarify the seemingly clunky nomenclature---Joe (2014) does not provide \dQuote{names} for \eqn{\acute{\mathbf{C}}(u,v)} or \eqn{\grave{\mathbf{C}}(u,v)}---the following guidance is informative where the numbers in the list align to those for the \code{reflect} argument:\cr
+\eqn{\mbox{}\quad\mbox{}}(2) \code{"surv"} or \eqn{\hat{\mathbf{C}}(u,v)} is a reflection of \eqn{U} and \eqn{V} on the horizontal \emph{and} vertical axes, respectively,\cr
+\eqn{\mbox{}\quad\mbox{}}(3) \code{"acute"} or \eqn{\acute{\mathbf{C}}(u,v)} is a reflection of \eqn{U} on the horizontal axis, and\cr
+\eqn{\mbox{}\quad\mbox{}}(4) \code{"grave"} or \eqn{\grave{\mathbf{C}}(u,v)} is a reflection of \eqn{V} on the verical axis.\cr
 The names \code{"acute"} and \code{"grave"} match those used in the \bold{Rd}-format math typesetting instructions. Users are directed to the documentation of \code{\link{simCOPmicro}} for further discussion because the \code{COP} function is expected to be an early entry point for new users interested in the \pkg{copBasic} API.
 
 For the \pkg{copBasic} package and in order to keep some logic brief and code accessible for teaching and applied circumstances, reflections of copulas using analogs to the \code{reflect} argument are only natively supported in the \code{COP} and \code{\link{simCOPmicro}} functions. The interfaces of \pkg{copBasic} should already be flexible enough for users to adapt and (or) specially name reflections of copulas for deployment. A caveat is that some individual copula implementations might have some self-supporting infrastructure. The reflection can also be set within the \code{para} argument when it is a list (see \bold{Examples}).
@@ -136,42 +136,47 @@ duCOP(cop=P, FF, GG)  # 0.995
 coCOP(cop=P, bF, bG)  # 0.505
 
 \dontrun{
-# MAJOR EXAMPLE FOR QUICKLY MODIFYING INHERENT ASSOCIATION STRUCTURES
-p <- 0.5 # Reasonable strong positive association for the Raftery copula
-"RFcop1" <- function(u,v, para) COP(u,v, cop=RFcop, para=para, reflect="1")
-"RFcop2" <- function(u,v, para) COP(u,v, cop=RFcop, para=para, reflect="2")
-"RFcop3" <- function(u,v, para) COP(u,v, cop=RFcop, para=para, reflect="3")
-"RFcop4" <- function(u,v, para) COP(u,v, cop=RFcop, para=para, reflect="4")
+  # MAJOR EXAMPLE FOR QUICKLY MODIFYING INHERENT ASSOCIATION STRUCTURES
+  p <- 0.5 # Reasonable strong positive association for the Raftery copula
+  "RFcop1" <- function(u,v, para) COP(u,v, cop=RFcop, para=para, reflect="1")
+  "RFcop2" <- function(u,v, para) COP(u,v, cop=RFcop, para=para, reflect="2")
+  "RFcop3" <- function(u,v, para) COP(u,v, cop=RFcop, para=para, reflect="3")
+  "RFcop4" <- function(u,v, para) COP(u,v, cop=RFcop, para=para, reflect="4")
 
-d <- 0.01 # Just to speed up the density plots a bit
-densityCOPplot(RFcop1, para=p, contour.col=1, deluv=d) # the Raftery in the literature
-densityCOPplot(RFcop2, para=p, contour.col=1, deluv=d, ploton=FALSE)
-densityCOPplot(RFcop3, para=p, contour.col=1, deluv=d, ploton=FALSE)
-densityCOPplot(RFcop4, para=p, contour.col=1, deluv=d, ploton=FALSE)
-# Now some text into the converging tail to show the reflection used.
-text(-2,-2, "reflect=1", col=2); text(+2,+2, "reflect=2", col=2)
-text(+2,-2, "reflect=3", col=2); text(-2,+2, "reflect=4", col=2)
-
-# To show how the reflection can be alternatively specified and avoid in this case
-# making four Raftery functions, pass by a list para argument. Also, demonstrate
-# that cop1 --> cop and para1 --> para are the same in use of the function. This
-# provides some nomenclature parallel to the other compositing functions.
-densityCOPplot(COP, para=list(reflect=1, cop1=RFcop, para=p ), deluv=d,
-                          contour.col=1, drawlabels=FALSE)
-densityCOPplot(COP, para=list(reflect=2, cop= RFcop, para1=p), deluv=d,
-                          contour.col=2, drawlabels=FALSE, ploton=FALSE)
-densityCOPplot(COP, para=list(reflect=3, cop1=RFcop, para1=p), deluv=d,
-                          contour.col=3, drawlabels=FALSE, ploton=FALSE)
-densityCOPplot(COP, para=list(reflect=4, cop= RFcop, para=p ), deluv=d,
-                          contour.col=4, drawlabels=FALSE, ploton=FALSE) #}
+  d <- 0.01 # Just to speed up the density plots a bit
+  densityCOPplot(RFcop1, para=p, contour.col=1, deluv=d) # Raftery in the literature
+  densityCOPplot(RFcop2, para=p, contour.col=1, deluv=d, ploton=FALSE)
+  densityCOPplot(RFcop3, para=p, contour.col=1, deluv=d, ploton=FALSE)
+  densityCOPplot(RFcop4, para=p, contour.col=1, deluv=d, ploton=FALSE)
+  # Now some text into the converging tail to show the reflection used.
+  text(-2,-2, "reflect=1", col=2); text(+2,+2, "reflect=2", col=2)
+  text(+2,-2, "reflect=3", col=2); text(-2,+2, "reflect=4", col=2) #}
 
 \dontrun{
-# Similar example to previous, but COP() can handle the reflection within a
-# parameter list ,and the reflect, being numeric here, is converted to
-# character internally.
-T12 <- CLcop(tau=0.67)$para # Kendall Tau of 0.67
-T12 <- list(cop=CLcop, para=T12, reflect=2) # reflected to upper tail dependency
-UV  <- simCOP(n=1000, cop=COP, para=T12) # }
+  # ALTERNATIVE EXAMPLE FOR QUICKLY MODIFYING INHERENT ASSOCIATION STRUCTURES
+  # To show how the reflection can be alternatively specified and avoid in this case
+  # making four Raftery functions, pass by a list para argument. Also, demonstrate
+  # that cop1 --> cop and para1 --> para are the same in use of the function. This
+  # provides some nomenclature parallel to the other compositing functions.
+  densityCOPplot(COP, para=list(reflect=1, cop1=RFcop, para=p ), deluv=d,
+                            contour.col=1, drawlabels=FALSE)
+  densityCOPplot(COP, para=list(reflect=2, cop= RFcop, para1=p), deluv=d,
+                            contour.col=2, drawlabels=FALSE, ploton=FALSE)
+  densityCOPplot(COP, para=list(reflect=3, cop1=RFcop, para1=p), deluv=d,
+                            contour.col=3, drawlabels=FALSE, ploton=FALSE)
+  densityCOPplot(COP, para=list(reflect=4, cop= RFcop, para=p ), deluv=d,
+                            contour.col=4, drawlabels=FALSE, ploton=FALSE)
+  # Now some text into the converging tail to show the reflection used.
+  text(-2,-2, "reflect=1", col=2); text(+2,+2, "reflect=2", col=2)
+  text(+2,-2, "reflect=3", col=2); text(-2,+2, "reflect=4", col=2) #}
+
+\dontrun{
+  # Similar example to previous, but COP() can handle the reflection within a
+  # parameter list ,and the reflect, being numeric here, is converted to
+  # character internally.
+  T12 <- CLcop(tau=0.67)$para # Kendall Tau of 0.67
+  T12 <- list(cop=CLcop, para=T12, reflect=2) # reflected to upper tail dependency
+  UV  <- simCOP(n=1000, cop=COP, para=T12) # }
 }
 \keyword{copula (formulas)}
 \keyword{copula operator}
@@ -179,3 +184,5 @@ UV  <- simCOP(n=1000, cop=COP, para=T12) # }
 \keyword{copula (conditional distribution)}
 \keyword{copula (conditional quantile function)}
 \keyword{copula (reflection)}
+\keyword{copula (rotation)}
+\keyword{Theory Examples (reflection/rotation)}

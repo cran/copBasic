@@ -4,7 +4,9 @@
 \title{The Raftery Copula}
 \description{
 The \emph{Raftery copula} (Nelsen, 2006, p. 172) is
-\deqn{\mathbf{C}_{\Theta}(u,v) = \mathbf{RF}(u,v) = \mathbf{M}(u,v) + \frac{1-\Theta}{1+\Theta}\bigl(uv\bigr)^{1/(1-\Theta)}\bigl[1-(\mathrm{max}\{u,v\})^{-(1+\Theta)/(1-\Theta)}\bigr]\mbox{,}}
+
+\deqn{\mathbf{C}_{\Theta}(u,v) = \mathbf{RF}(u,v) = \mathbf{M}(u,v) + \frac{1-\Theta}{1+\Theta}\biggl(uv\biggr)^{1/(1-\Theta)}\biggl[1-\bigl(\mathrm{max}\{u,v\}\bigr)^{-(1+\Theta)/(1-\Theta)}\biggr]\mbox{,}}
+
 where \eqn{\Theta \in (0,1)}. The copula, as \eqn{\Theta \rightarrow 0^{+}} limits, to the \emph{independence coupla} (\eqn{\mathbf{P}(u,v)}; \code{\link{P}}), and as \eqn{\Theta \rightarrow 1^{-}}, limits to the \emph{comonotonicity copula} (\eqn{\mathbf{M}(u,v)};  \code{\link{M}}). The parameter \eqn{\Theta} is readily computed from \emph{Spearman Rho} (\code{\link{rhoCOP}}) by \eqn{\rho_\mathbf{C} = \Theta(4-3\Theta)/(2-\Theta)^2} or from \emph{Kendall Tau} (\code{\link{tauCOP}}) by \eqn{\tau_\mathbf{C} = 2\Theta/(3-\Theta)}. However, this copula like others within the \pkg{copBasic} package can be reflected (rotated) at will with the \code{\link{COP}} abstraction layer to acquire negative or inverse dependency (\emph{countermonotonicity}) (see the \bold{Examples}).
 }
 \usage{
@@ -37,20 +39,21 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 taildepCOP(cop=RFcop, para=0.5)$lambdaL # 0.66667
 
 \dontrun{
-# Simulate for a Spearman Rho of 0.7, then extract estimated Theta that internally
-# is based on Kendall Tau of U and V, then convert estimate to equivalent Rho.
-set.seed(1)
-UV <- simCOP(1000, cop=RFcop, RFcop(rho=0.7)$para)
-Theta <- RFcop(UV$U, UV$V, fit="tau")$para # 0.607544
-Rho   <- Theta*(4-3*Theta)/(2-Theta)^2     # 0.682255 (nearly 0.7) #}
+  # Simulate for a Spearman Rho of 0.7, then extract estimated Theta that internally
+  # is based on Kendall Tau of U and V, then convert estimate to equivalent Rho.
+  set.seed(1)
+  UV <- simCOP(1000, cop=RFcop, RFcop(rho=0.7)$para)
+  Theta <- RFcop(UV$U, UV$V, fit="tau")$para # 0.607544
+  Rho   <- Theta*(4-3*Theta)/(2-Theta)^2     # 0.682255 (nearly 0.7) #}
 
 \dontrun{
-set.seed(1)
-UV <- simCOP(1000, cop=COP, para=list(cop=RFcop, para=RFcop(rho=0.5)$para, reflect=3))
-cor(UV$U, UV$V, method="spearman") # -0.492677 as expected with reversal of V #}
+  set.seed(1)
+  UV <- simCOP(1000, cop=COP, para=list(cop=RFcop, para=RFcop(rho=0.5)$para, reflect=3))
+  cor(UV$U, UV$V, method="spearman") # -0.492677 as expected with reversal of V #}
 }
 \keyword{Raftery copula}
 \keyword{copula (formulas)}
 \keyword{copula}
 \concept{Raftery copula}
 \keyword{Nelsen (2006) Examples and Exercises}
+\keyword{Theory Examples (reflection/rotation)}

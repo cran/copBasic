@@ -4,7 +4,7 @@
 \title{The Joe/B5 Copula (B5)}
 \description{
 The \emph{Joe/B5 copula} (Joe, 2014, p. 170) is
-\deqn{\mathbf{C}_{\Theta}(u,v) = \mathbf{B5}(u,v) = 1 - \bigl((1-u)^\Theta + (1-v)^\Theta - (1-u)^\Theta (1-v)^\Theta\bigr)\mbox{,}}
+\deqn{\mathbf{C}_{\Theta}(u,v) = \mathbf{B5}(u,v) = 1 - \bigl((1-u)^\Theta + (1-v)^\Theta - (1-u)^\Theta (1-v)^\Theta\bigr)^{1/\Theta}\mbox{,}}
 where \eqn{\Theta \in [1,\infty)}.
 The copula as \eqn{\Theta \rightarrow \infty} limits to the \emph{comonotonicity coupla} (\eqn{\mathbf{M}(u,v)} and \code{\link{M}}), as \eqn{\Theta \rightarrow 1^{+}} limits to \emph{independence copula} (\eqn{\mathbf{\Pi}(u,v)}; \code{\link{P}}). Finally, the parameter \eqn{\Theta} is readily computed from a \emph{Kendall Tau} (\code{\link{tauCOP}}) by
 \deqn{\tau_\mathbf{C} = 1 + \frac{2}{2-\Theta}\bigl(\psi(2) - \psi(1 + 2/\Theta)\bigr)\mbox{,}}
@@ -41,13 +41,19 @@ blomCOP(cop=JOcopB5, para=pi)        # 0.5521328
 3 - 4*(2*(1/2)^pi - (1/4)^pi)^(1/pi) # 0.5521328
 
 \dontrun{
-# A test near the limiting Theta for trigamma()
-UV <- simCOP(cop=JOcopB5, para=2, n=10000)
-para <- JOcopB5(UV[,1], UV[,2])$para
-message("Tau difference ", round(2-para, digits=2), " is small.") #}
+  # A test near the limiting Theta for trigamma()
+  UV   <- simCOP(cop=JOcopB5, para=2, n=10000)
+  para <- JOcopB5(UV[,1], UV[,2])$para
+  message("Tau difference ", round(2-para, digits=2), " is small.") #}
+
+\dontrun{
+   # embeddment of parameters for permutation asymmetry and rotation
+   para <- list(cop=JOcopB5, para=30, reflect=3, breve=0.5)
+   UV <- simCOP(cop=COP, para=list(cop=breveCOP, para=para), n=1000) #}
 }
 \keyword{Joe/B5 copula}
 \keyword{copula (formulas)}
 \keyword{copula}
 \concept{Joe/B5 copula}
 \keyword{Joe (2014) Examples and Exercises}
+\keyword{Theory Examples (reflection/rotation)}

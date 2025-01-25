@@ -1,6 +1,29 @@
 --------------------------------------------------------------------------------------
                 NEWS for R Package "copBasic" by W.H. Asquith
 --------------------------------------------------------------------------------------
+Changes in version 2.2.7 (2025-01-25)
+-  Added Frank copula after a few years of trying off and on to determine numerical
+     end points determining apparent parameter range suitable for copBasic structure
+     and support for Spearman Rho and Kendall Tau. Added example from Joe (2014) using
+     the Frank in the context of a C-vine 3-dimensional copula using also the Gumbel. 
+     Results show Frank is implemented properly as well as the example of a C-vine.
+-  Added additional remarks on the Khoudarji's Devices, which is just the compositing
+     of two copula by composite2COP() or with independence in composite1COP().
+-  Minor edits to copBasic-package.Rd.
+-  Fixed math notation in JOcopB5.Rd.
+-  Added keywords "copula (rotation)" and "Theory Examples (reflection/rotation)" to
+     applicable *.Rd files.
+-  Minor edits in aicCOP.Rd, AMHcop.Rd, asCOP.Rd, copBasic-package.Rd, COP.Rd,
+     densityCOP.Rd, densityCOPplot.Rd, jointCOP.Rd, rhoCOP.Rd, tEVcop.Rd, and
+     wolfCOP.Rd (confusion fix in one of the Examples).
+-  Minor bug fix to kfuncCOP.R where as.sample="Charpentier" was using an undefined
+     variable and minor edits to kfuncCOP.Rd.
+-  Modified a warning message in each of ORDSUMcop.R and ORDSUWcop.R.
+-  Bug fix in Examples for ORDSUWcop.Rd.
+-  Grammatical change in PLACKETTsim.Rd.
+-  Added switch to M() for large theta in RAYcop().
+
+
 Changes in version 2.2.6 (2024-10-08)
 -  Added Authors@R field to DESCRIPTION as per CRAN requirements.
 
@@ -8,8 +31,8 @@ Changes in version 2.2.6 (2024-10-08)
 Changes in version 2.2.5 (2024-10-06)
 -  Fixed an error in discussion of the beta range in breveCOP.Rd and minor grammar.
 -  Fixed error in math notation for sample Spearman Footrule in footCOP.Rd.
--  Expanded the Note sections in footCOP and giniCOP with more sampling theory on the
-     two statistics along with adding DOI numbers to two of the references in each.
+-  Expanded the Note sections in footCOP() and giniCOP() with more sampling theory on
+     the two statistics along with adding DOI numbers to two references in each.
 -  Minor bug fix in giniCOP(as.sample=TRUE) for division by an integer and not real
      part of the divisor for the sample estimator as per Genest et al. (2010).
 
@@ -36,7 +59,7 @@ Changes in version 2.2.3 (2024-01-08)
 -  Formatting edits in composite1COP.Rd and isCOP.permsym.Rd.
 -  Added silent=TRUE default to diagCOPatf(), COPinv(), and COPinv2(). The cascade of
       NAs had become too much of a burden in an otherwise generally working
-      algorithm. So, original design ideals from 2008 where changed to silence
+      algorithm. So, original design ideas from 2008 were changed to silence
       inversion failures.
 -  Added the copula of a circular uniform distribution copula as CIRCcop().
 -  Added silent=TRUE argument to level.curvesCOP() and level.curvesCOP2() as part of

@@ -112,4 +112,5 @@ plot(UV, xlab="PROBABILITY IN U", ylab="PROBABILITY IN V", pch=3, col=2) #}
 \keyword{copula (simulation)}
 \keyword{copula (conditional distribution)}
 \keyword{copula (conditional quantile function)}
-\keyword{copula (reflection)}
+\keyword{Theory Examples (reflection/rotation)}
+

@@ -72,8 +72,8 @@ function(u,v, para=list(cop=M, para=NA, part=c(0,1)), ...) {
   }
 
   if(length(J) != length(Q) | length(J) != length(C)) {
-    warning("malformed para argument")
-    print(c(length(J), length(Q), length(C)))
+    warning("malformed para argument (ORDSUWcop): ",
+            paste(c("J", "Q", "C"), c(length(J), length(Q), length(C)), collapse=",", sep="="))
     return(NULL)
   }
 

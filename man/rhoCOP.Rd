@@ -6,11 +6,11 @@
 Compute the measure of association known as the \emph{Spearman Rho} \eqn{\rho_\mathbf{C}} of a copula according to Nelsen (2006, pp. 167--170, 189, 208) by
 \deqn{\rho_\mathbf{C} = 12\int\!\!\int_{\mathcal{I}^2} \mathbf{C}(u,v)\, \mathrm{d}u\mathrm{d}v - 3\mbox{,}}
 or
-\deqn{\rho_\mathbf{C} = 12\int\!\!\int_{\mathcal{I}^2} [\mathbf{C}(u,v) - uv]\, \mathrm{d}u\mathrm{d}v\mbox{,}}
-where the later equation is implemented by \code{rhoCOP} as the default method (\code{method="default"}). This equation, here having \eqn{p = 1} and \eqn{k_p(1) = 12}, is generalized under \code{\link{hoefCOP}}. The absence of the \eqn{12} in the above equation makes it equal to the covariance defined by the \emph{Hoeffding Identity} (Joe, 2014, p. 54):
-\deqn{\mathrm{cov}(U, V) = \int\!\!\int_{\mathcal{I}^2} [\mathbf{C}(u,v) - uv]\, \mathrm{d}u\mathrm{d}v\mbox{ or}}
-\deqn{\mathrm{cov}(U, V) = \int\!\!\int_{\mathcal{I}^2} [\hat{\mathbf{C}}(u,v) - uv]\, \mathrm{d}u\mathrm{d}v\mbox{, which is}}
-\deqn{\mathrm{cov}(U, V) = \int\!\!\int_{\mathcal{I}^2} [u+v-1+\mathbf{C}(1-u,1-v) - uv]\, \mathrm{d}u\mathrm{d}v\mbox{.}}
+\deqn{\rho_\mathbf{C} = 12\int\!\!\int_{\mathcal{I}^2} \bigl[\mathbf{C}(u,v) - uv\bigr]\, \mathrm{d}u\mathrm{d}v\mbox{,}}
+where the later equation is implemented by \code{rhoCOP} as the default method (\code{method="default"}). This equation, here having \eqn{p = 1} and \eqn{k_p(1) = 12}, is generalized under \code{\link{hoefCOP}}. The absence of the \eqn{12} in the above equation makes it equal to the \emph{covariance of a copula} defined by the \emph{Hoeffding Identity} (Joe, 2014, p. 54):
+\deqn{\mathrm{cov}(U, V) = \int\!\!\int_{\mathcal{I}^2} \bigl[\mathbf{C}(u,v) - uv\bigr]\, \mathrm{d}u\mathrm{d}v\mbox{ or}}
+\deqn{\mathrm{cov}(U, V) = \int\!\!\int_{\mathcal{I}^2} \bigl[\hat{\mathbf{C}}(u,v) - uv\bigr]\, \mathrm{d}u\mathrm{d}v\mbox{, which\ is}}
+\deqn{\mathrm{cov}(U, V) = \int\!\!\int_{\mathcal{I}^2} \bigl[u+v-1+\mathbf{C}(1-u,1-v) - uv\bigr]\, \mathrm{d}u\mathrm{d}v\mbox{.}}
 
 Depending on copula family (Joe, 2014, pp. 56 and 267), the alternative formulation for \eqn{\rho_\mathbf{C}} could be used
 \deqn{\rho_\mathbf{C} = 3 - 12\int\!\!\int_{\mathcal{I}^2} u \frac{\delta\mathbf{C}(u,v)}{\delta u} \, \mathrm{d}u\mathrm{d}v = 3 - 12\int\!\!\int_{\mathcal{I}^2} v\frac{\delta\mathbf{C}(u,v)}{\delta v} \, \mathrm{d}u\mathrm{d}v\mbox{,}}
@@ -52,57 +52,60 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 }
 \examples{
 rhoCOP(cop=PSP)             # 0.4784176
-\dontrun{
-rhoCOP(cop=PSP, brute=TRUE) # 0.4684063
-# CPU heavy example showing that the dual-integration (fast) results in
-# a Spearman Rho that mimics a sample version
-do_rho <- function(n) {
-   uv <- simCOP(n=n, cop=PSP, ploton=FALSE, points=FALSE)
-   return(cor(uv$U, uv$V, method="spearman"))
-}
-rhos <- replicate(100, do_rho(1000))
-rho_sample <- mean(rhos); print(rho_sample) # 0.472661}
 
 \dontrun{
-para <- list(cop1=PLACKETTcop,  cop2=PLACKETTcop,
-             para1=0.00395,    para2=4.67,     alpha=0.9392, beta=0.5699)
-rhoCOP(cop=composite2COP, para=para) # -0.5924796
-
-para <- list(cop1=PLACKETTcop,  cop2=PLACKETTcop,
-             para1=0.14147,    para2=20.96,    alpha=0.0411, beta=0.6873)
-rhoCOP(cop=composite2COP, para=para) # 0.2818874
-
-para <- list(cop1=PLACKETTcop,  cop2=PLACKETTcop,
-             para1=0.10137,     para2=4492.87, alpha=0.0063, beta=0.0167)
-rhoCOP(cop=composite2COP, para=para)             # 0.9812919
-rhoCOP(cop=composite2COP, para=para, brute=TRUE) # 0.9752155}
+  rhoCOP(cop=PSP, brute=TRUE) # 0.4684063
+  # CPU heavy example showing that the dual-integration (fast) results in
+  # a Spearman Rho that mimics a sample version
+  do_rho <- function(n) {
+    uv <- simCOP(n=n, cop=PSP, ploton=FALSE, points=FALSE)
+    return(cor(uv$U, uv$V, method="spearman"))
+  }
+  set.seed(1)
+  rhos <- replicate(200, do_rho(1000))
+  rho_sample <- mean(rhos); print(rho_sample) # 0.4764914}
 
 \dontrun{
-# This is the same composited copula used in a highly asymmetric multi-modal
-# plotting example under densityCOPplot(). Let us use that copula as a means to
-# check on the Spearman Rho from the alternative formulations from Joe (2014).
-para <- list(alpha=0.15, beta=0.90, kappa=0.06, gamma=0.96,
-             cop1=GHcop, cop2=PLACKETTcop, para1=5.5, para2=0.07)
-"rhoCOPbyJoe21" <- function(cop=NULL, para=NULL, ...) { # Joe (2014, eq. 2.48)
-   myint <- NULL
-   try(myint <- integrate(function(u) {
-       sapply(u,function(u) { integrate(function(v) {
-       u * derCOP( u, v, cop=cop, para=para, ...)},  0, 1)$value })}, 0, 1))
-   ifelse(is.null(myint), return(NA), return(3 - 12*myint$value))
-}
-"rhoCOPbyJoe12" <- function(cop=NULL, para=NULL, ...) { # Not in Joe (2014)
-   myint <- NULL
-   try(myint <- integrate(function(u) {
-       sapply(u,function(u) { integrate(function(v) {
-       v * derCOP2( u, v, cop=cop, para=para, ...)}, 0, 1)$value })}, 0, 1))
-   ifelse(is.null(myint), return(NA), return(3 - 12*myint$value))
-}
-rhoCOP(       cop=composite2COP, para=para) # 0.1031758
-rhoCOPbyJoe21(cop=composite2COP, para=para) # 0.1031803
-rhoCOPbyJoe12(cop=composite2COP, para=para) # 0.1031532}
+  para <- list(cop1=PLACKETTcop,  cop2=PLACKETTcop,
+               para1=0.00395,    para2=4.67,     alpha=0.9392, beta=0.5699)
+  rhoCOP(cop=composite2COP, para=para) # -0.5924796
+
+  para <- list(cop1=PLACKETTcop,  cop2=PLACKETTcop,
+               para1=0.14147,    para2=20.96,    alpha=0.0411, beta=0.6873)
+  rhoCOP(cop=composite2COP, para=para) # 0.2818874
+
+  para <- list(cop1=PLACKETTcop,  cop2=PLACKETTcop,
+               para1=0.10137,     para2=4492.87, alpha=0.0063, beta=0.0167)
+  rhoCOP(cop=composite2COP, para=para)             # 0.9812919
+  rhoCOP(cop=composite2COP, para=para, brute=TRUE) # 0.9752155}
+
+\dontrun{
+  # This is the same composited copula used in a highly asymmetric multi-modal
+  # plotting example under densityCOPplot(). Let us use that copula as a means to
+  # check on the Spearman Rho from alternative formulations by Joe (2014).
+  para <- list(alpha=0.15, beta=0.90, kappa=0.06, gamma=0.96,
+               cop1=GHcop, cop2=PLACKETTcop, para1=5.5, para2=0.07)
+  "rhoCOPbyJoe21" <- function(cop=NULL, para=NULL, ...) { # Joe (2014, eq. 2.48)
+     myint <- NULL
+     try(myint <- integrate(function(u) {
+         sapply(u,function(u) { integrate(function(v) {
+         u * derCOP( u, v, cop=cop, para=para, ...)},  0, 1)$value })}, 0, 1))
+     ifelse(is.null(myint), return(NA), return(3 - 12*myint$value))
+  }
+  "rhoCOPbyJoe12" <- function(cop=NULL, para=NULL, ...) { # Not in Joe (2014)
+     myint <- NULL
+     try(myint <- integrate(function(u) {
+         sapply(u,function(u) { integrate(function(v) {
+         v * derCOP2( u, v, cop=cop, para=para, ...)}, 0, 1)$value })}, 0, 1))
+     ifelse(is.null(myint), return(NA), return(3 - 12*myint$value))
+  }
+  rhoCOP(       cop=composite2COP, para=para) # 0.1031758
+  rhoCOPbyJoe21(cop=composite2COP, para=para) # 0.1031803
+  rhoCOPbyJoe12(cop=composite2COP, para=para) # 0.1031532}
 }
 \keyword{copula (characteristics)}
 \keyword{copula (properties)}
+\keyword{copula covariance}
 \keyword{Joe (2014) Examples and Exercises}
 \keyword{Spearman Rho}
 \keyword{Pearson correlation coefficient}

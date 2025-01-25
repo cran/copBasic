@@ -1,3 +1,4 @@
+library(copBasic)
 library(lmomco)
 library(quantreg)
 

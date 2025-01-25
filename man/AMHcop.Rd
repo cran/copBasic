@@ -3,7 +3,7 @@
 \alias{AMHcop}
 \title{The Ali--Mikhail--Haq Copula}
 \description{
-The \emph{Ali--Mikhail--Haq copula} (Nelsen, 2006, p. 92--93, 172) is
+The \emph{Ali--Mikhail--Haq copula} (Nelsen, 2006, pp. 92--93, 172) is
 \deqn{\mathbf{C}_{\Theta}(u,v) = \mathbf{AMH}(u,v) = \frac{uv}{1 - \Theta(1-u)(1-v)}\mbox{,}}
 where \eqn{\Theta \in [-1,+1)}, where the right boundary,
 \eqn{\Theta = 1}, can sometimes be considered valid according to \enc{Mächler}{Machler} (2014). The copula \eqn{\Theta \rightarrow 0} becomes the \emph{independence copula} (\eqn{\mathbf{\Pi}(u,v)}; \code{\link{P}}), and the parameter \eqn{\Theta} is readily computed from a \emph{Kendall Tau} (\code{\link{tauCOP}}) by
@@ -72,13 +72,13 @@ Pranesh, Kumar, 2010, Probability distributions and estimation of Ali--Mikhail--
 }
 \examples{
 \dontrun{
-t <- 0.9 # The Theta of the copula and we will compute Spearman Rho.
-di <- integrate(function(t) log(t)/(1-t), lower=1, upper=(1-t))$value
-A <- di*(1+t) - 2*log(1-t) + 2*t*log(1-t) - 3*t # Nelsen (2007, p. 172)
-rho <- 12*A/t^2 - 3    # 0.4070369
-rhoCOP(AMHcop, para=t) # 0.4070369
-sum(sapply(1:100, function(k) 3*t^k/choose(k+2, 2)^2)) # Machler (2014)
-# 0.4070369 (see Note section, very many tens of terms are needed) }
+  t <- 0.9 # The Theta of the copula and we will compute Spearman Rho.
+  di <- integrate(function(t) log(t)/(1-t), lower=1, upper=(1-t))$value
+  A <- di*(1+t) - 2*log(1-t) + 2*t*log(1-t) - 3*t # Nelsen (2007, p. 172)
+  rho <- 12*A/t^2 - 3    # 0.4070369
+  rhoCOP(AMHcop, para=t) # 0.4070369
+  sum(sapply(1:100, function(k) 3*t^k/choose(k+2, 2)^2)) # Machler (2014)
+  # 0.4070369 (see Note section, very many tens of terms are needed) }
 
 \dontrun{
   layout(matrix(1:2, byrow=TRUE)) # Note: Kendall Tau is same on reversal.

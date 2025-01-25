@@ -109,3 +109,4 @@ sapply(v, function(vv) mean( UV$U[UV$V > vv - 50/n & UV$V < vv + 50/n] ) )
 \keyword{conditional expectation}
 \keyword{mean U given V}
 \concept{expectation}
+\keyword{Theory Examples (reflection/rotation)}

@@ -93,3 +93,5 @@ print(RF[,2:5]) # now look at all four corners
 \keyword{semi-correlation coefficient}
 \concept{semi-correlation}
 \keyword{Joe (2014) Examples and Exercises}
+\keyword{Theory Examples (reflection/rotation)}
+

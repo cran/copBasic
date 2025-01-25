@@ -5,8 +5,8 @@
 \description{
 Compute a measure of maximum exchangable asymmetry of a copula \eqn{\mathbf{C}_\Theta} using \emph{exchangability} (\emph{permutation symmetry}) according to De Baets and De Meyer (2017) by
 \deqn{\mu_{\infty\mathbf{C}}^{\mathrm{permsym}} = \mu_\infty^{\mathrm{permsym}} = 3 \times \mathrm{max}\bigl(\,|\,\mathbf{C}_\Theta(u,v) -
-                                                    \mathbf{C}_\Theta(v,u)\,|\,\bigr)}
-for \eqn{(u,v) \in \mathcal{I}^2}. De Baets and De Meyer comment that among many asymmetric metrics with copulas that \eqn{\mu_\infty^{\mathrm{permsym}}} is \dQuote{by far the most interesting} (De Baets and De Meyer, 2017, p. 36). The 3 multiplier in the definition ensures that \eqn{\mu_\infty^{\mathrm{permsym}} \in [0, 1]}. Those authors also conclude that exchangability of random variables, in general, is not a desired property in statistical models, and they use the \eqn{\mu_\infty} notation in lieu of \eqn{L_\infty^{\mathrm{permsym}}} (see documentation related to \code{\link{LpCOPpermsym}}). The term \dQuote{Permutation-Mu} is used for this measure in \code{\link{copBasic-package}} and in similar contexts.
+                       \mathbf{C}_\Theta(v,u)\,|\,\bigr)}
+for \eqn{(u,v) \in \mathcal{I}^2}. De Baets and De Meyer comment that among many asymmetric metrics with copulas that \eqn{\mu_\infty^{\mathrm{permsym}}} is \dQuote{by far the most interesting} (De Baets and De Meyer, 2017, p. 36). The \eqn{3} multiplier in the definition ensures that \eqn{\mu_\infty^{\mathrm{permsym}} \in [0, 1]}. Those authors also conclude that exchangability of random variables, in general, is not a desired property in statistical models, and they use the \eqn{\mu_\infty} notation in lieu of \eqn{L_\infty^{\mathrm{permsym}}} (see documentation related to \code{\link{LpCOPpermsym}}). The term \dQuote{Permutation-Mu} is used for this measure in \code{\link{copBasic-package}} and in similar contexts.
 }
 \usage{
 LzCOPpermsym(cop=NULL, para=NULL, n=5E4,
@@ -129,3 +129,4 @@ LzCOPpermsym(cop=GHcop, para=c(10, 0.9, 0.3))    # 0.17722861
 \keyword{copula (properties)}
 \keyword{copula (symmetry)}
 \keyword{copula (fitting)}
+\keyword{Theory Examples (reflection/rotation)}

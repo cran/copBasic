@@ -47,57 +47,57 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 \seealso{\code{\link{simCOP}}, \code{\link{densityCOP}}}
 \examples{
 \dontrun{
-# Joe (2014, p. 5) names rMTCJ = reflected Mardia-Takahasi-Cook-Johnson copula
-"rMTCJ" <- function(u, v, para, ...) {
-   u + v - 1 + ((1-u)^(-para) + (1-v)^(-para) - 1)^(-1/para)
-} # Survival Copula ("reflected" in Joe's terms)
-densityCOPplot(cop=rMTCJ, para=1.0760, n=9000, snv=TRUE)
-# The density plot matches that shown by Joe (2014, p. 11, fig. 1.2, lower left plot)
-# for a Spearman Rho equaling 0.5. Let us compute then Rho:
-rhoCOP(cop=rMTCJ, para=1.076075) # 0.4999958
+  # Joe (2014, p. 5) names rMTCJ = reflected Mardia-Takahasi-Cook-Johnson copula
+  "rMTCJ" <- function(u, v, para, ...) {
+     u + v - 1 + ((1-u)^(-para) + (1-v)^(-para) - 1)^(-1/para)
+  } # Survival Copula ("reflected" in Joe's terms)
+  densityCOPplot(cop=rMTCJ, para=1.0760, n=9000, snv=TRUE)
+  # Density plot matches that shown by Joe (2014, p. 11, fig. 1.2, lower left plot)
+  # for a Spearman Rho equaling 0.5. Let us compute then Rho:
+  rhoCOP(cop=rMTCJ, para=1.076075) # 0.4999958
 
-# Now let us get really wild with a composition with TWO modes!
-# This example also proves that the grid orientation is consistent with respect
-# to the orientation of the simulations.
-para <- list(alpha=0.15, beta=0.90, kappa=0.06, gamma=0.96,
-             cop1=GHcop, cop2=PLACKETTcop, para1=5.5, para2=0.07)
-densityCOPplot(cop=composite2COP, para=para, n=9000)
+  # Now, let us get really wild with a composition with TWO modes!
+  # This example also proves that the grid orientation is consistent with respect
+  # to the orientation of the simulations.
+  para <- list(alpha=0.15, beta=0.90, kappa=0.06, gamma=0.96,
+               cop1=GHcop, cop2=PLACKETTcop, para1=5.5, para2=0.07)
+  densityCOPplot(cop=composite2COP, para=para, n=9000)
 
-# Now, let us hack back to a contour density plot with U(0,1) and not N(0,1) margins
-# just so show that capability exists, but emphasis of densityCOPplot is clearly
-# on Joe's advocation, because it does not have a default trigger to use U(0,1) margins.
-set.seed(12)
-H <- densityCOPplot(cop=PLACKETTcop, para=41.25, getmatrix="cdenzz", n=1000, snv=FALSE)
-set.seed(12)
-UV <- simCOP(cop=PLACKETTcop, para=41.25, n=1000, col=8, snv=FALSE)
-U  <- as.numeric(colnames(H)); V <- as.numeric(rownames(H))
-contour(x=U, y=V, z=t(H), lwd=1.5, cex=2, add=TRUE, col=2) #}
+  # Now, let us hack back to a contour density plot with U(0,1) and not N(0,1) margins
+  # just so show that capability exists, but emphasis of densityCOPplot is clearly
+  # on Joe's advocation, because it does not have a default trigger to use U(0,1) margins.
+  set.seed(12)
+  H <- densityCOPplot(cop=PLACKETTcop, para=41.25, getmatrix="cdenzz", n=1000, snv=FALSE)
+  set.seed(12)
+  UV <- simCOP(cop=PLACKETTcop, para=41.25, n=1000, col=8, snv=FALSE)
+  U  <- as.numeric(colnames(H)); V <- as.numeric(rownames(H))
+  contour(x=U, y=V, z=t(H), lwd=1.5, cex=2, add=TRUE, col=2) #}
 
 \dontrun{
-set.seed(12)
-UV <- rCOP(400,  cop=PSP, pch=16, col=8, n=400)
-CL <- mleCOP(UV, cop=CLcop,   interval=c(1  , 20))
-JO <- mleCOP(UV, cop=JOcopB5, interval=c(0.1, 20))
-PL <- mleCOP(UV, cop=PLcop,   interval=c(0.1, 20))
+  set.seed(12)
+  UV <- rCOP(400,  cop=PSP, pch=16, col=8, n=400)
+  CL <- mleCOP(UV, cop=CLcop,   interval=c(1  , 20))
+  JO <- mleCOP(UV, cop=JOcopB5, interval=c(0.1, 20))
+  PL <- mleCOP(UV, cop=PLcop,   interval=c(0.1, 20))
 
-AICs <- c(CL$AIC, JO$AIC, PL$AIC)
-names(AICs) <- c("Clayton", "Joe(B5)", "Plackett")
-print(round(AICs, digits=2))
-#  Clayton    Joe(B5)   Plackett
-#  -156.77     -36.91    -118.38
-# So, we conclude Clayton must be the best fit of the three.
+  AICs <- c(CL$AIC, JO$AIC, PL$AIC)
+  names(AICs) <- c("Clayton", "Joe(B5)", "Plackett")
+  print(round(AICs, digits=2))
+  #  Clayton    Joe(B5)   Plackett
+  #  -156.77     -36.91    -118.38
+  # So, we conclude Clayton is the best fit of the three.
 
-plot(qnorm(UV[,1]), qnorm(UV[,2]), pch=16, col=8, cex=0.5,
-        xlab="Standard normal variate of U", xlim=c(-3,3),
-        ylab="Standard normal variate of V", ylim=c(-3,3))
-densityCOPplot(cop=PSP, contour.col=grey(0.5), lty=2,
-               contour.lwd=3.5, ploton=FALSE, snv=TRUE)
-densityCOPplot(cop=CLcop,     para=CL$para,
-               contour.col=2,   ploton=FALSE, snv=TRUE)
-densityCOPplot(cop=JOcopB5,   para=JO$para,
-               contour.col=3,   ploton=FALSE, snv=TRUE)
-densityCOPplot(cop=PLcop,     para=PL$para,
-               contour.col=4,   ploton=FALSE, snv=TRUE) #}
+  plot(qnorm(UV[,1]), qnorm(UV[,2]), pch=16, col=8, cex=0.5,
+       xlab="Standard normal variate of U", xlim=c(-3, 3),
+       ylab="Standard normal variate of V", ylim=c(-3, 3))
+  densityCOPplot(cop=PSP, contour.col=grey(0.5), lty=2,
+                 contour.lwd=3.5, ploton=FALSE, snv=TRUE)
+  densityCOPplot(cop=CLcop,       para=CL$para,
+                 contour.col=2,   ploton=FALSE, snv=TRUE)
+  densityCOPplot(cop=JOcopB5,     para=JO$para,
+                 contour.col=3,   ploton=FALSE, snv=TRUE)
+  densityCOPplot(cop=PLcop,       para=PL$para,
+                 contour.col=4,   ploton=FALSE, snv=TRUE) #}
 }
 \keyword{visualization}
 \keyword{copula (density)}

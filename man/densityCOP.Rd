@@ -41,37 +41,37 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 \seealso{\code{\link{simCOP}}, \code{\link{densityCOPplot}}, \code{\link{kullCOP}}, \code{\link{mleCOP}}}
 \examples{
 \dontrun{
-# Joe (2014, p. 164) shows the closed form copula density for the Plackett.
-"dPLACKETTcop" <- function(u,v,para) {
-   uv <- u*v; upv <- u + v; eta <- para - 1
-   A <- para*(1+eta*(upv - 2*uv)); B <- ((1+eta*upv)^2 - 4*para*eta*uv)^(3/2)
-   return(A/B)
-}
-dPLACKETTcop(0.32, 0.74,            para=1.3) # 0.9557124
-densityCOP(  0.32, 0.74, cop=PLcop, para=1.3) # 0.9557153}
+  # Joe (2014, p. 164) shows the closed form copula density for the Plackett.
+  "dPLACKETTcop" <- function(u,v,para) {
+     uv <- u*v; upv <- u + v; eta <- para - 1
+     A <- para*(1+eta*(upv - 2*uv)); B <- ((1+eta*upv)^2 - 4*para*eta*uv)^(3/2)
+     return(A/B)
+  }
+  dPLACKETTcop(0.32, 0.74,            para=1.3) # 0.9557124
+  densityCOP(  0.32, 0.74, cop=PLcop, para=1.3) # 0.9557153 }
 
 \dontrun{
-# Joe (2014, p. 165) shows the corner densities of the Plackett as Theta.
-# copBasic uses numerical density estimation and not analytical formula.
-eps <- .Machine$double.eps
-densityCOP(0,0, cop=PLcop, para=4) # 3.997073  (default eps^0.25)
-densityCOP(1,1, cop=PLcop, para=4) # 3.997073  (default eps^0.25)
-densityCOP(1,1, cop=PLcop, para=4, deluv=eps)     # 0 (silent failure)
-densityCOP(1,1, cop=PLcop, para=4, deluv=eps^0.5) # 4.5
-densityCOP(1,1, cop=PLcop, para=4, deluv=eps^0.4) # 4.002069
-densityCOP(1,1, cop=PLcop, para=4, deluv=eps^0.3) # 3.999513
-# So, we see that the small slicing does have an effect, the default of 0.25 is
-# intented for general application by being away enough from machine limits.}
+  # Joe (2014, p. 165) shows the corner densities of the Plackett as Theta.
+  # copBasic uses numerical density estimation and not analytical formula.
+  eps <- .Machine$double.eps
+  densityCOP(0,0, cop=PLcop, para=4) # 3.997073  (default eps^0.25)
+  densityCOP(1,1, cop=PLcop, para=4) # 3.997073  (default eps^0.25)
+  densityCOP(1,1, cop=PLcop, para=4, deluv=eps)     # 0 (silent failure)
+  densityCOP(1,1, cop=PLcop, para=4, deluv=eps^0.5) # 4.5
+  densityCOP(1,1, cop=PLcop, para=4, deluv=eps^0.4) # 4.002069
+  densityCOP(1,1, cop=PLcop, para=4, deluv=eps^0.3) # 3.999513
+  # So, we see that the small slicing does have an effect, the default of 0.25 is
+  # intented for general application by being away enough from machine limits.}
 
 \dontrun{
-# Joe (2014, p. 170) shows the closed form copula density for "Bivariate Joe/B5" copula
-"dJOEB5cop" <- function(u, v, para) {
-   up <- (1-u)^para; vp <- (1-v)^para; eta <- para - 1
-   A <- (up + vp - up*vp); B <- (1-u)^eta * (1-v)^eta; C <- (eta + A)
-   return(A^(-2 + 1/para) * B * C)
-}
-densityCOP(0.32, 0.74, cop=JOcopB5, para=1.3)  # 0.9410653
-dJOEB5cop( 0.32, 0.74, para=1.3)               # 0.9410973 }
+  # Joe (2014, p. 170) shows a closed form copula density for "Bivariate Joe/B5" copula
+  "dJOEB5cop" <- function(u, v, para) {
+     up <- (1-u)^para; vp <- (1-v)^para; eta <- para - 1
+     A <- (up + vp - up*vp); B <- (1-u)^eta * (1-v)^eta; C <- (eta + A)
+     return(A^(-2 + 1/para) * B * C)
+  }
+  densityCOP(0.32, 0.74, cop=JOcopB5, para=1.3)  # 0.9410653
+  dJOEB5cop( 0.32, 0.74, para=1.3)               # 0.9410973 }
 }
 \keyword{visualization}
 \keyword{copula (density)}

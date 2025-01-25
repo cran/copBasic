@@ -4,7 +4,7 @@
 \alias{kmeasCOP}
 \title{The Kendall (Distribution) Function of a Copula}
 \description{
-To begin, there are at least three terms in the literature for what appear as the same function supported by the \code{kfuncCOP} function.  The \emph{Kendall Function} also is known as \emph{Kendall Distribution Function} (Nelsen, 2006, p. 163) and \emph{Kendall Measure} (Salvadori \emph{et al.}, 2007, p. 148). Each of these is dealt with in sequel to set the manner of the rather lengthy documentation for this function.
+To begin, there are at least three terms in the literature for what appear as the same function supported by the \code{kfuncCOP} function. The \emph{Kendall Function} also is known as \emph{Kendall Distribution Function} (Nelsen, 2006, p. 163) and \emph{Kendall Measure} (Salvadori \emph{et al.}, 2007, p. 148). Each of these is dealt with in sequel to set the manner of the rather lengthy documentation for this function.
 
 \emph{KENDALL FUNCTION}---The \emph{Kendall Function} (\eqn{F_K}) (Joe, 2014, pp. 419--422) is the cumulative distribution function (CDF) of the vector \eqn{\mathbf{U} = (U_1, U_2, \ldots)} or \eqn{\mathbf{U} = (u,v)} (bivariate) where \eqn{\mathbf{U}} is distributed as the copula: \eqn{\mathbf{U} \sim \mathbf{C}(u,v)}. Letting \eqn{Z} be the random variable for \eqn{\mathbf{C}(u,v): Z = \mathbf{C}(u,v)}, the Kendall Function is defined as
 
@@ -82,14 +82,14 @@ kmeasCOP(z, cop=NULL, para=NULL, wrtV=FALSE, as.sample=FALSE,
   plot(Z, kendF, type="l", col=3, lwd=4, lty=2, xlim=c(0,1), ylim=c(0,1),
        xlab="COPULA(u,v) VALUE [JOINT PROBABILITY]",
        ylab="KENDALL FUNCTION, AS NONEXCEEDANCE PROBABILITY") # analytical
-  points(Z,     kendF, col=3, lwd=1, lty=2, pch=16) # green (theo. values)
-  points(Z, emp.kendF, col=4, lwd=2, cex=1.5)       # blue (empirical values)
-  lines(Z, theo.kendF, col=2) # red (theoretical line by numerical integration)
+  points(Z,     kendF, col="green", lwd=1, lty=2, pch=16) # theoretical values
+  points(Z, emp.kendF, col="blue" , lwd=2, cex=1.5)       #  empirical  values
+  lines(Z, theo.kendF, col="red")  # theoretical line by numerical integration
   mtext("Kendall Functions: Independence Copula")
 }
-The figure so produced shows that the theoretical relation in Joe (2014) is correct because the empirical values from the simulated sample (\emph{Empirical Kendall Function}; Nelsen \emph{et al.}, 2003) match other curves quite well. Rerunning the above code with either \eqn{\mathbf{M}} (\code{\link{M}}) or \eqn{\mathbf{W}} (\code{\link{W}}) copulas will show that the special cases listed above are consistent with the empirical estimates. The case of \eqn{\mathbf{W}(u,v)} is degenerate at \eqn{z=0} so the empirical computation is in error for the smallest \eqn{z} given because of interpolation. The \eqn{\mathbf{M}} copula has \eqn{F_K} along the equal value line (1:1) line.
+The figure produced shows that the theoretical relation in Joe (2014) is correct because the empirical values from the simulated sample (\emph{Empirical Kendall Function}; Nelsen \emph{et al.}, 2003) match other curves quite well. Rerunning the above code with either \eqn{\mathbf{M}} (\code{\link{M}}) or \eqn{\mathbf{W}} (\code{\link{W}}) copulas will show that the special cases listed above are consistent with the empirical estimates. The case of \eqn{\mathbf{W}(u,v)} is degenerate at \eqn{z=0}; so, the empirical computation is in error for the smallest \eqn{z} given because of interpolation. The \eqn{\mathbf{M}} copula has \eqn{F_K} along the equal value line (1:1) line.
 
-Now consider a more comprehensive demonstration using the \code{\link{N4212cop}} copula with some relatively weak dependence in \eqn{\Theta = 1.17}.
+Now, consider a more comprehensive demonstration using the \code{\link{N4212cop}} copula with some relatively weak dependence in \eqn{\Theta = 1.17}.
 \preformatted{
   Theta <- 1.17; print(rhoCOP(cop=N4212cop, para=Theta)) # Spearman Rho = 6/10
   Z <- sort(c(0.01, seq(0,1, by=0.05), 0.99))      # ** Joint probabilities **
@@ -101,9 +101,10 @@ Now consider a more comprehensive demonstration using the \code{\link{N4212cop}}
        xlab="COPULA(u,v) VALUE [JOINT PROBABILITY]",
        ylab="KENDALL FUNCTION, AS NONEXCEEDANCE PROBABILITY")
   abline(0,1, lty=2, lwd=0.8); mtext("Kendall Functions: N4212(1.17) Copula")
-  lines(Z, kwrtU, col=4, lwd=4, lty=2); lines(Z, kwrtV, col=3, lwd=1, lty=2)
+  lines(Z, kwrtU, col="blue" , lwd=4, lty=2)
+  lines(Z, kwrtV, col="green", lwd=1, lty=2)
 }
-The figure so produced again shows congruence between the two theoretical computations and the empirical curve. Now consider another comprehensive demonstration using the \code{\link{PLACKETTcop}} copula with some strong negative dependence in \eqn{\Theta = 0.04}.
+The figure produced again shows congruence between the two theoretical computations and the empirical curve. Now, consider another comprehensive demonstration using the \code{\link{PLACKETTcop}} copula with some strong negative dependence in \eqn{\Theta = 0.04}.
 \preformatted{
   Theta <- 0.04
   Z <- sort(c(0.01, seq(0,1, by=0.05), 0.99))      # ** Joint probabilities **
@@ -157,9 +158,9 @@ Durante and Sempi (2015, p. 118) provide an example of two copula (\eqn{\mathbf{
 }
 The plot so produced shows indeed that the numerical operations by \code{kfuncCOP} solidly work on these two strictly singular copulas \eqn{\mathbf{C}_1} and \eqn{\mathbf{C}_2} that are different from the two singular \eqn{\mathbf{M}} and \eqn{\mathbf{W}} copulas. The \eqn{F_K(z)} curves exactly matching the theoretical curve provided by Durante and Sempi are produced.
 
-\emph{CONVERSATIONAL ASIDE}---Interestingly, Durante and Sempi (2015, pp. 115--121), like other authors of major works cited herein, do not list a general expression for the \eqn{F_K(z)} as a function of any \eqn{\mathbf{C}(u,v)}. Those authors develop the idea of Kendall Function well and show results but for the author (Asquith) the jump based of Theorem 3.9.2 to an expression, such as shown above for \eqn{F_K(z)} based on \eqn{\mathbf{C}(u,t)/\delta u}, to an usable form for any \eqn{\mathbf{C}(u,v)} is difficult.
+\emph{CONVERSATIONAL ASIDE}---Interestingly, Durante and Sempi (2015, pp. 115--121), like other authors of major works cited herein, do not list a general expression for the \eqn{F_K(z)} as a function of any \eqn{\mathbf{C}(u,v)}. Those authors well develop the idea of Kendall Function and show results, but for the author (Asquith), the jump based of Theorem 3.9.2 to an expression, such as shown above for \eqn{F_K(z)} based on \eqn{\mathbf{C}(u,t)/\delta u}, as an usable form for any \eqn{\mathbf{C}(u,v)} is difficult.
 
-This is a fascinating topic because if the Kendall Function is a reasonably important component of copula theory, then why so much difficulty in finding a canonical reference? For this one piece, whereas so much of \pkg{copBasic} features are quite nomenclaturely clear in say Nelsen (2006) or Joe (2014) but somehow not for the Kendall Function.
+This is a fascinating topic because, if the Kendall Function is a reasonably important component of copula theory, then why so much difficulty in finding a canonical reference? For this one piece, whereas so much of \pkg{copBasic} features are quite nomenclaturely clear in say Nelsen (2006) or Joe (2014) but somehow not for the Kendall Function.
 
 Perhaps to the professional mathematicians, the descriptions (nomenclature) used in all but Salvadori \emph{et al.} (2007) are clear to intended readers. But even Salvadori \emph{et al.} seemingly show theirs in error---perhaps the author (Asquith) has missed something fundamental, but the validations shown in this documentation prove at least that \code{kfuncCOP} does what it is supposed to be doing but perhaps for the wrong reasoning. Lastly, Durante and Sempi have an error in their expression for Kendall Tau as a function of \eqn{F_K(z)} (see \code{\link{tauCOP}}).
 
@@ -176,7 +177,7 @@ Perhaps to the professional mathematicians, the descriptions (nomenclature) used
           " years and StdDev(BarT)=", round(  sd(BarT), digits=2)," years")
   # BarBarT=149.61 years and StdDev(BarT)=11.12 years
 }
-The mean of 20 repeats of a large sample simulation run for \eqn{F^\mathbf{GH}(\Theta{=}3.055)_K{(z{=}0.99)}} demonstrates empirical results that closely approximate theory \eqn{149.61 \approx 148.28}, and thus congruence is shown that the definition for \eqn{F_K(z)} must be correct and that for \eqn{K_\mathbf{C}(z)} is incorrect. The table 3.3 in Salvadori \emph{et al.} (2007) lists the secondary return period as 148.3 years, which obviously matches the output of \code{kfuncCOP} and empirical results shown.
+The mean of some 20 repeats of a large sample simulation run for \eqn{F^\mathbf{GH}(\Theta{=}3.055)_K{(z{=}0.99)}} demonstrates empirical results that closely approximate theory \eqn{149.61 \approx 148.28}, and thus congruence is shown that the definition for \eqn{F_K(z)} must be correct and that for \eqn{K_\mathbf{C}(z)} is incorrect. The table 3.3 in Salvadori \emph{et al.} (2007, table 3.3) lists the secondary return period as 148.3 years, which matches the output of \code{kfuncCOP} and empirical results shown.
 
 Some additional details on secondary return period from Salvadori \emph{et al.} (2007). Letting \eqn{t_\star} be some critical joint exceedance probability level, \eqn{\overline{F}_K(z)} be the complement of \eqn{F_K(z)}, those authors (p. 166) name \emph{super-critical events} having \eqn{\overline{F}_K(t_\star) < 1 - t_\star}. Thus, the secondary return period  (\eqn{\overline{F}_K(t_\star)^{-1} = T_K}) must be greater than the primary return period (\eqn{t_\star^{-1}}), which is the case here (\eqn{T_K{=}148.3 > T{=}100}) (Salvadori \emph{et al.}, 2007, p. 166).
 
@@ -197,7 +198,7 @@ Because of the subtle differences evidently between \dQuote{Kendall functions} (
 substitution can now proceed:
 \deqn{F_K(z; \mathbf{\Pi}) = z + \int_z^1 \frac{\delta}{\delta u}\mathbf{\Pi}(u,t)\,\mathrm{d}u\, = z + \int_z^1 \frac{z}{u}\,\mathrm{d}u{,}}
 which simplfies to
-\deqn{F_K(z; \mathbf{\Pi}) = z + [z\log(u)]\bigg|^1_z  = z + z[\log(1) - \log(z)] = z - z\log z\mbox{,}}
+\deqn{F_K(z; \mathbf{\Pi}) = z + \bigl[z\log(u)\bigr]\bigg|^1_z  = z + z[\log(1) - \log(z)] = z - z\log z\mbox{,}}
 which matches the special case shown by Joe (2014) for the independence copula (\eqn{\mathbf{\Pi}}; \code{\link{P}}). It is obvious thus that the \dQuote{\eqn{+}} is needed in the \eqn{F_K(z)} definition in order to stay consistent with the basic form and integration limits shown by Salvadori \emph{et al.} (2007) for \eqn{K_\mathbf{C}(z)}.
 }
 \references{

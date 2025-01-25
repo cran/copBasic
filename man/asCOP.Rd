@@ -28,69 +28,69 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 \seealso{\code{\link{COP}}}
 \examples{
 \dontrun{
-# Concerning Nelsen (2006, exer. 3.7, pp. 64--65)
-"trianglecop" <- function(u,v, para=NULL, ...) {
-   # If para is set, then the triangle is rotated 90d clockwise.
-   if(! is.null(para) && para == 1) { t <- u; u <- v; v <- t }
-   if(length(u) > 1 | length(v) > 1) stop("only scalars for this function")
-   v2<-v/2; if(0   <= u    &  u   <= v2 & v2 <= 1/2) { return(u    )
-   } else   if(0   <= v2   & v2   <  u  &  u < 1-v2) { return(v2   )
-   } else   if(1/2 <= 1-v2 & 1-v2 <= u  &  u <= 1  ) { return(u+v-1)
-   } else { stop("should not be here in logic") }
-}
-"UsersCop" <- function(u,v, ...) { asCOP(u,v, f=trianglecop, ...) }
-n=20000; UV <- simCOP(n=n, cop=UsersCop)
-# The a-d elements of the problem now follow:
-# (a) Pr[V = 1 - |2*U -1|] = 1 and Cov(U,V) = 0; so that two random variables
-# can be uncorrelated but each is perfectly predictable from the other
-mean(UV$V - (1 - abs(2*UV$U -1))) # near zero; Nelsen says == 0
-cov(UV$U, UV$V)                   # near zero; Nelsen says == 0
+  # Concerning Nelsen (2006, exer. 3.7, pp. 64--65)
+  "trianglecop" <- function(u,v, para=NULL, ...) {
+     # If para is set, then the triangle is rotated 90d clockwise.
+     if(! is.null(para) && para == 1) { t <- u; u <- v; v <- t }
+     if(length(u) > 1 | length(v) > 1) stop("only scalars for this function")
+     v2<-v/2; if(0   <= u    &  u   <= v2 & v2 <= 1/2) { return(u    )
+     } else   if(0   <= v2   & v2   <  u  &  u < 1-v2) { return(v2   )
+     } else   if(1/2 <= 1-v2 & 1-v2 <= u  &  u <= 1  ) { return(u+v-1)
+     } else { stop("should not be here in logic") }
+  }
+  "UsersCop" <- function(u,v, ...) { asCOP(u,v, f=trianglecop, ...) }
+  n=20000; UV <- simCOP(n=n, cop=UsersCop)
+  # The a-d elements of the problem now follow:
+  # (a) Pr[V = 1 - |2*U -1|] = 1 and Cov(U,V) = 0; so that two random variables
+  # can be uncorrelated but each is perfectly predictable from the other
+  mean(UV$V - (1 - abs(2*UV$U -1))) # near zero; Nelsen says == 0
+  cov(UV$U, UV$V)                   # near zero; Nelsen says == 0
 
-# (b) Cop(m,n) = Cop(n,m); so that two random variables can be identically
-# distributed, uncorrelated, and not exchangeable
-EMPIRcop(0.95,0.17, para=UV) # = A
-EMPIRcop(0.17,0.95, para=UV) # = B; then A != B
+  # (b) Cop(m,n) = Cop(n,m); so that two random variables can be identically
+  # distributed, uncorrelated, and not exchangeable
+  EMPIRcop(0.95,0.17, para=UV) # = A
+  EMPIRcop(0.17,0.95, para=UV) # = B; then A != B
 
-# (c) Pr[V - U > 0] = 2/3; so that two random variables can be identically
-# distributed, but their difference need not be symmetric about zero
-tmp <- (UV$V - UV$U) > 0
-length(tmp[tmp == TRUE])/n # about 2/3; Nelsen says == 2/3
-# the prior two lines yield about 1/2 for independence copula P()
+  # (c) Pr[V - U > 0] = 2/3; so that two random variables can be identically
+  # distributed, but their difference need not be symmetric about zero
+  tmp <- (UV$V - UV$U) > 0
+  length(tmp[tmp == TRUE])/n # about 2/3; Nelsen says == 2/3
+  # the prior two lines yield about 1/2 for independence copula P()
 
-# (d) Pr[X + Y > 0] = 2/3; so that uniform random variables on (-1,1) can each
-# be symmetric about zero, but their sum need not be.
-tmp <- ((2*UV$V - 1) + (2*UV$U - 1)) > 0
-length(tmp[tmp == TRUE])/n # about 2/3; Nelsen says == 2/3 }
+  # (d) Pr[X + Y > 0] = 2/3; so that uniform random variables on (-1,1) can each
+  # be symmetric about zero, but their sum need not be.
+  tmp <- ((2*UV$V - 1) + (2*UV$U - 1)) > 0
+  length(tmp[tmp == TRUE])/n # about 2/3; Nelsen says == 2/3 }
 
 \dontrun{
-# Concerning Nelsen (2006, exam. 3.10, p. 73)
-"shufflecop" <- # assume scalar arguments for u and v
-function(u,v, para, ...) {
-   m <- para$mixer; subcop <- para$subcop
-   if(is.na(m) | m <= 0 | m >= 1) stop("m ! in [0,1]")
-   if(u <= m) { return(    subcop(1-m+u, v, para=para$para) -
-                           subcop(1-m,   v, para=para$para))
-   } else {     return(v - subcop(1-m,   v, para=para$para) +
-                           subcop(u-m,   v, para=para$para))
-}
-}
-"UsersCop" <- function(u,v, para=NULL) {
-   asCOP(u,v, f=shufflecop, para=para)
-}
-n <- 1000; u <- runif(n)
-para <- list(mixer=runif(1), subcop=W, para=20)
-v <- sapply(1:n, function(i) {
+  # Concerning Nelsen (2006, exam. 3.10, p. 73)
+  "shufflecop" <- # assume scalar arguments for u and v
+  function(u,v, para, ...) {
+     m <- para$mixer; subcop <- para$subcop
+     if(is.na(m) | m <= 0 | m >= 1) stop("m ! in [0,1]")
+     if(u <= m) { return(    subcop(1-m+u, v, para=para$para) -
+                             subcop(1-m,   v, para=para$para))
+     } else {     return(v - subcop(1-m,   v, para=para$para) +
+                             subcop(u-m,   v, para=para$para))
+     }
+  }
+  "UsersCop" <- function(u,v, para=NULL) {
+     asCOP(u,v, f=shufflecop, para=para)
+  }
+  n <- 1000; u <- runif(n)
+  para <- list(mixer=runif(1), subcop=W, para=20)
+  v <- sapply(1:n, function(i) {
       simCOPmicro(u[i], cop=UsersCop, para=para) } )
-plot(data.frame(U=u, V=v), pch=17, col=rgb(1,0,1,1),
+  plot(data.frame(U=u, V=v), pch=17, col=rgb(1,0,1,1),
      xlab="U, NONEXCEEDANCE PROBABILTY", ylab="V, NONEXCEEDANCE PROBABILITY")
-mtext("Shuffle Copula Nelsen (2006, exam. 3.10, p. 73)")
+  mtext("Shuffle Copula Nelsen (2006, exam. 3.10, p. 73)")
 
-# Concerning Nelsen (2006, exam. 5.14, p. 195)
-"deltacop" <- function(u,v, ...) { min(c(u,v,(u^2+v^2)/2))     }
-"UsersCop" <- function(u,v, ...) { asCOP(u,v, f=deltacop, ...) }
-isCOP.PQD(cop=UsersCop) # TRUE + Rho=0.288 and Tau=0.333 as Nelsen says
-isCOP.LTD(cop=UsersCop, wrtV=TRUE) # FALSE as Nelsen says
-isCOP.RTI(cop=UsersCop, wrtV=TRUE) # FALSE as Nelsen says }
+  # Concerning Nelsen (2006, exam. 5.14, p. 195)
+  "deltacop" <- function(u,v, ...) { min(c(u,v,(u^2+v^2)/2))     }
+  "UsersCop" <- function(u,v, ...) { asCOP(u,v, f=deltacop, ...) }
+  isCOP.PQD(cop=UsersCop) # TRUE + Rho=0.288 and Tau=0.333 as Nelsen says
+  isCOP.LTD(cop=UsersCop, wrtV=TRUE) # FALSE as Nelsen says
+  isCOP.RTI(cop=UsersCop, wrtV=TRUE) # FALSE as Nelsen says }
 }
 \keyword{copula (utilities)}
 \keyword{copula (formulas)}

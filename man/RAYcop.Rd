@@ -26,7 +26,7 @@ RAYcop(u, v, para=NULL, rho=NULL, method=c("default"),
   Value(s) for the copula are returned.
 }
 \note{
-The documentation in Zeng and other [Part II] appear to have corrected the Marcum-Q function solution to the copula. The essence of that solution is with a Chi-distribution computation the Marcum-Q. Testing indictates that this is a correct solution, but the derivative for the conditional simulation as built into the design of \pkg{copBasic} has difficulties. Perhaps this is related to numerical precision of the Marcum-Q?
+Documentation in Zeng and others [Part II] appear to have corrected the Marcum-Q function solution to the copula. The essence of that solution is with a Chi-distribution computation the Marcum-Q. Testing indictates that they have the correct solution, but the derivative for the conditional simulation as built into the design of \pkg{copBasic} has difficulties. Perhaps this is related to numerical precision of the Marcum-Q?
 \preformatted{
   sapply(seq_len(length((u))), function(i) {
     a1 <- -log(1-u[i])
@@ -61,17 +61,17 @@ RAYcop(0.8, 0.2, para=RAYcop(rho=rhoCOP(cop=RAYcop, para=0.8)))
 # [1] 0.1994651 from polynomial conversion of Rho to Theta
 
 \dontrun{
-# Recipe for assembling the Spearman Rho to Theta polynomial in sources.
-Thetas <- seq(0, 0.999, by=0.001); RHOs <- NULL
-for(p in Thetas) RHOs <- c(RHOs, rhoCOP(cop=RAYcop, para=p))
-LM <- lm(Thetas ~ RHOs + I(RHOs^2) + I(RHOs^4) + I(RHOs^6) - 1 )
-Rho2Theta <- function(rho) {
-  coes <- c(1.32682824, -0.38876290, 0.09072305, -0.02921836)
-  sapply(rho, function(r) coes[1]*r^1 + coes[2]*r^2 + coes[3]*r^4 + coes[4]*r^6 )
-}
-plot(RHOs, Thetas, type="l", col=grey(0.8), lwd=12, lend=1,
-      xlab="Spearman Rho", ylab="Rayleigh Copula Parameter Theta")
-lines(RHOs, Rho2Theta(RHOs), col="red", lwd=2) # }
+  # Recipe for assembling the Spearman Rho to Theta polynomial in sources.
+  Thetas <- seq(0, 0.999, by=0.001); RHOs <- NULL
+  for(p in Thetas)  RHOs <- c(RHOs, rhoCOP(cop=RAYcop, para=p))
+  LM <- lm(Thetas ~ RHOs  + I(RHOs^2) + I(RHOs^4) + I(RHOs^6) - 1 )
+  Rho2Theta <- function(rho) {
+    coes <- c(1.32682824, -0.38876290, 0.09072305, -0.02921836)
+    sapply(rho, function(r) coes[1]*r^1 + coes[2]*r^2 + coes[3]*r^4 + coes[4]*r^6)
+  }
+  plot(RHOs, Thetas, type="l", col=grey(0.8), lwd=12, lend=1,
+       xlab="Spearman Rho", ylab="Rayleigh Copula Parameter Theta")
+  lines(RHOs, Rho2Theta(RHOs), col="red", lwd=2) # }
 }
 \keyword{Rayleigh copula}
 \keyword{copula (formulas)}

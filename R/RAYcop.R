@@ -37,6 +37,11 @@ function(u, v, para=NULL, rho=NULL, method=c("default"),
     return(NULL)
   }
 
+  LARGE <- 0.9999
+  if(para > LARGE) { # by empirical study of the "default" method
+    return( M(u,v) )
+  }
+
   method <- match.arg(method)
 
   # NEED TO STUDY MORE marcumq.chi <- function(a, b, nu=1) pchisq(b^2, df=2 * nu, ncp=a^2, lower.tail=FALSE)

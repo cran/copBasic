@@ -115,3 +115,4 @@ EvuCOP(0.25, cop=breveCOP, para=para)  # 0.5982261
 \keyword{conditional expectation}
 \keyword{mean V given U}
 \concept{expectation}
+\keyword{Theory Examples (reflection/rotation)}

@@ -32,19 +32,17 @@ Chen, Lu, and Guo, Shenglian, 2019, Copulas and its application in hydrology and
 }
 \examples{
 \dontrun{
-S <- simCOP(80, cop=GHcop, para=5) # Simulate some probabilities, but we
-# must then treat these as data and recompute empirical probabilities.
-U <- lmomco::pp(S$U, sort=FALSE); V <- lmomco::pp(S$V, sort=FALSE)
-# The parent distribution is Gumbel-Hougaard extreme value copula.
-# But in practical application we do not know that, but say we speculate
-# that perhaps the Galambos extreme value might be the parent. Then maximum
-# likelihood is used to fit the single parameter.
-pGL <- mleCOP(U,V, cop=GLcop, interval=c(0,20))$par
-
-aics <- c(aicCOP(U,V, cop=GLcop, para=pGL), aicCOP(U,V, cop=P), aicCOP(U,V, cop=PSP))
-names(aics) <- c("GLcop", "P", "PSP")
-print(aics) # We will see that the first AIC is the smallest as the
-# Galambos has the nearest overall behavior than the P and PSP copulas.}
+  S <- simCOP(80, cop=GHcop, para=5) # Simulate some probabilities, but we
+  # must then treat these as data and recompute empirical probabilities.
+  U <- lmomco::pp(S$U, sort=FALSE); V <- lmomco::pp(S$V, sort=FALSE)
+  # The parent distribution is Gumbel-Hougaard extreme value copula, but in practical
+  # applications, we do not know that. Say we speculate that perhaps the Galambos extreme
+  # value might be the parent; maximum likelihood is used to fit the single parameter.
+  pGL  <- mleCOP(  U,V, cop=GLcop, interval=c(0, 20))$par
+  aics <- c(aicCOP(U,V, cop=GLcop, para=pGL), aicCOP(U,V, cop=P), aicCOP(U,V, cop=PSP))
+  names(aics) <- c("GLcop", "P", "PSP")
+  print(aics) # We will see that the first AIC is the smallest because the
+  # Galambos has the nearest overall behavior than the P and PSP copulas.}
 }
 \keyword{copula (goodness-of-fit)}
 \keyword{copula (inference)}
