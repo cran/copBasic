@@ -8,14 +8,14 @@
 \description{
 The \emph{Galambos copula} (Joe, 2014, p. 174) is
 \deqn{\mathbf{C}_{\Theta}(u,v) = \mathbf{GL}(u,v) = uv\,\mathrm{exp}\bigl[\bigl(x^{-\Theta} + y^{-\Theta}\bigr)^{-1/\Theta}\bigr]\mbox{,}}
-where \eqn{\Theta \in [0, \infty)}, \eqn{x = -\log u}, and \eqn{y = -\log v}. As \eqn{\Theta \rightarrow 0^{+}}, the copula limits to \emph{independence} (\eqn{\mathbf{\Pi}}; \code{\link{P}}) and as  \eqn{\Theta \rightarrow \infty}, the copula limits to perfect association (\eqn{\mathbf{M}}; \code{\link{M}}). The copula here is a \emph{bivariate extreme value copula} (\eqn{BEV}), and parameter estimation for \eqn{\Theta} requires numerical methods.
+where \eqn{\Theta \in [0, \infty)}, \eqn{x = -\log u}, and \eqn{y = -\log v}. As \eqn{\Theta \rightarrow 0^{+}}, the copula limits to \emph{independence} (\eqn{\mathbf{\Pi}}; \code{\link{P}}) and as  \eqn{\Theta \rightarrow \infty}, the copula limits to perfect association (\eqn{\mathbf{M}}; \code{\link{M}}). The Galambos is a \emph{bivariate extreme value copula} (\eqn{BEV}), and parameter estimation for \eqn{\Theta} requires numerical methods.
 
 There are two other genetically related forms. Joe (2014, p. 197) describes an extension of the Galambos copula as a \emph{Galambos gamma power mixture} (GLPM), which is Joe's \emph{BB4 copula}, with the following form
 \deqn{\mathbf{C}_{\Theta,\delta}(u,v) = \mathbf{GLPM}(u,v) =
 \biggl(x + y - 1 - \bigl[(x - 1)^{-\delta} + (y - 1)^{-\delta} \bigr]^{-1/\delta} \biggr)^{-1/\Theta}\mbox{,}}
-where \eqn{x = u^{-\Theta}}, \eqn{y = v^{-\Theta}}, and \eqn{\Theta \ge 0, \delta \ge 0}. (Joe shows \eqn{\delta > 0}, but zero itself seems to work without numerical problems in practical application.) As \eqn{\delta \rightarrow 0^{+}}, the \dQuote{MTCJ family} (Mardia--Takahasi--Cook--Johnson) results (implemented internally with \eqn{\Theta} as the incoming parameter). As \eqn{\Theta \rightarrow 0^{+}} the Galambos above results with \eqn{\delta} as the incoming parameter.
+where \eqn{x = u^{-\Theta}}, \eqn{y = v^{-\Theta}}, and \eqn{\Theta \ge 0, \delta \ge 0}. (Joe shows \eqn{\delta > 0}, but zero itself seems to work without numerical problems in practical application.) As \eqn{\delta \rightarrow 0^{+}}, the \dQuote{MTCJ family} (Mardia--Takahasi--Cook--Johnson) results (implemented internally with \eqn{\Theta} as the incoming parameter). As \eqn{\Theta \rightarrow 0^{+}}, the Galambos above results with \eqn{\delta} as the incoming parameter.
 
-This second copula in turn has a \emph{lower extreme value limit form} that leads to a \emph{min-stable bivariate exponential} having \emph{Pickand dependence function} of
+This Galambos extension in turn has a \emph{lower extreme value limit form} that leads to a \emph{min-stable bivariate exponential} having \emph{Pickand dependence function} of
 \deqn{A(x,y; \Theta, \delta) = x + y - \bigl[x^{-\Theta} + y^{-\Theta} - (x^{\Theta\delta} + y^{\Theta\delta})^{-1/\delta} \bigr]^{-1/\Theta}\mbox{,}}
 where this third copula is
 \deqn{\mathbf{C}^{LEV}_{\Theta,\delta}(u,v) = \mathbf{GLEV}(u,v) =

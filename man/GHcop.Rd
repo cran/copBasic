@@ -284,3 +284,5 @@ message("Kendall Tau: ", K[1], tx, K[2], tx, K[3], tx, K[4], tx, K[5], tx, K[6])
 \keyword{package copula (comparison to)}
 \keyword{copula (extreme value)}
 \keyword{extreme value copula}
+\keyword{package acopula (application of)}
+\keyword{package gumbel (application of)}

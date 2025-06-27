@@ -1,9 +1,20 @@
 --------------------------------------------------------------------------------------
                 NEWS for R Package "copBasic" by W.H. Asquith
 --------------------------------------------------------------------------------------
+Changes in version 2.2.8 (2025-06-27)
+-  Added list(...) work in level.curvesCOP[2].R, handling lwd from ... if ramp=TRUE
+     and ability to override the built-in ramp by the lwd being passed as a function.
+-  Minor grammar/spacing/math markup changes in FRcop.Rd, GLcop.Rd, and HRcop.Rd.
+-  Corrections to a dontrun example in FGMcop.Rd.
+-  Expansion of details sections in LzCOPpermsym.Rd.
+-  Added package ____ (application of) indexing for FGMcop.Rd, GHcop.Rd, kullCOP.Rd,
+      and LzCOPpermsym.Rd for other packages but not dependencies are demonstrated.
+-  Edits to hoefCOP.Rd.
+
+
 Changes in version 2.2.7 (2025-01-25)
 -  Added Frank copula after a few years of trying off and on to determine numerical
-     end points determining apparent parameter range suitable for copBasic structure
+     end points establishing apparent parameter range suitable for copBasic structure
      and support for Spearman Rho and Kendall Tau. Added example from Joe (2014) using
      the Frank in the context of a C-vine 3-dimensional copula using also the Gumbel. 
      Results show Frank is implemented properly as well as the example of a C-vine.

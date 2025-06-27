@@ -57,7 +57,14 @@ function(cop=NULL, para=NULL, ploton=TRUE, lines=TRUE,
     u <- sapply(1:length(v), function(i) { COPinv2(cop=cop, v[i], t, para=para) } )
     if(lines) {
       if(ramp) {
-        lines(u,v, lwd=(0.5+2*t), ...)
+        dots <- list(...)
+        if(! "lwd" %in% names(dots)) {
+          dots$lwd <- (0.5+2*t)
+        } else if(is.function(dots$lwd)) {
+          dots$lwd <- dots$lwd(t)
+        }
+        dots$x <- u; dots$y <- v
+        do.call("lines", dots)
       } else {
         lines(u,v, ...)
       }

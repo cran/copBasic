@@ -7,44 +7,36 @@
 \title{The Hoeffding Phi of a Copula or Lp Distances (Independence, Radial Asymmetry, or Reflection Symmetry Forms)}
 \description{
 Compute the measure of association known as the \emph{Hoeffding Phi} \eqn{\Phi_\mathbf{C}} of a copula from \emph{independence} (\eqn{uv = \mathbf{\Pi}}; \code{\link{P}}) according to Cherunbini \emph{et al.} (2004, p. 164) by
-
 \deqn{\Phi_\mathbf{C} = 3 \sqrt{10\int\!\!\int_{\mathcal{I}^2} \bigl(\mathbf{C}(u,v) - uv\bigr)^2\,\mathrm{d}u\mathrm{d}v}\mbox{,}}
 
 and Nelsen (2006, p. 210) shows this as (and absolute value notation by Nelsen helps in generalization)
-
 \deqn{\Phi_\mathbf{C} = \biggl(90\int\!\!\int_{\mathcal{I}^2} |\mathbf{C}(u,v) - uv|^2\,\mathrm{d}u\mathrm{d}v\biggr)^{1/2}\mbox{,}}
 
 for which \eqn{\Phi^2_\mathbf{C}} (the square of the quantity) is known as the \emph{dependence index}. \enc{Gaißer}{Gaisser} \emph{et al.} (2010, eq. 1) have \eqn{\Phi^2_\mathbf{C}} as the \emph{Hoeffding Phi-Square}, and their definition, when square-rooted, matches Nelsen's listing.
 
 A generalization (Nelsen, 2006) to \eqn{L_p} distances from independence (\eqn{uv = \mathbf{\Pi}}; \code{\link{P}}) through the \code{LpCOP} function is
-
 \deqn{L_p \equiv \Phi_\mathbf{C}(p) = \biggl(k(p)\int\!\!\int_{\mathcal{I}^2} |\mathbf{C}(u,v) - uv|^p\,\mathrm{d}u\mathrm{d}v\biggr)^{1/p}\mbox{,}}
 
 for a \eqn{p: 1 \le p \le \infty} and where \eqn{k(p)} is a normalization constant such that \eqn{\Phi_\mathbf{C}(p) = 1} when the copula \eqn{\mathbf{C}} is \eqn{\mathbf{M}} (see \code{\link{M}}) or \eqn{\mathbf{W}} (see \code{\link{W}}). The \eqn{k(p)} (bivariate definition only) for other powers is given (Nelsen, 2006, exer. 5.44, p. 213) in terms of the \emph{complete gamma function} \eqn{\Gamma(t)} by
-
 \deqn{k(p) = \frac{\Gamma(2p+3)}{2[\Gamma(p + 1)]^2}\mbox{,}}
 
 which is implemented by the \code{hoefCOP} function. It is important to realize that the \eqn{L_p} distances are all \emph{symmetric nonparametric measures of dependence} (Nelsen, 2006, p. 210). These are symmetric because distance from independence is used as evident by \dQuote{\eqn{uv}} in the above definitions.
 
 \emph{Reflection/Radial and Permutation Asymmetry}---Asymmetric forms similar to the above distances exist. Joe (2014, p. 65) shows two measures of bivariate \emph{reflection asymmetry} or \emph{radial asymmetry} (term favored in \pkg{copBasic}) as the distance between \eqn{\mathbf{C}(u,v)} and the survival copula \eqn{\hat{\mathbf{C}}(u,v)} (\code{\link{surCOP}}) measured by
-
 \deqn{L_\infty^{\mathrm{radsym}} = \mathrm{sup}_{0\le u,v\le1}|\mathbf{C}(u,v) - \hat{\mathbf{C}}(u,v)|\mbox{,}}
 
 or its \eqn{L_p^{\mathrm{radsym}}} counterpart
-
 \deqn{L_p^{\mathrm{radsym}} = \biggl[\int\!\!\int_{\mathcal{I}^2} |\mathbf{C}(u,v) - \hat{\mathbf{C}}(u,v)|^p\,\mathrm{d}u\mathrm{d}v\biggr]^{1/p}\,\mathrm{with}\, p \ge 1\mbox{,}}
 
-where \eqn{\hat{\mathbf{C}}(u,v) = u + v - 1 + \mathbf{C}(1-u, 1-v)} and again \eqn{p: 1 \le p \le \infty}. Joe (2014) does not seem to discuss and normalization constants for these two radial asymmetry distances.
+where \eqn{\hat{\mathbf{C}}(u,v) = u + v - 1 + \mathbf{C}(1-u, 1-v)} and again \eqn{p: 1 \le p \le \infty}. Joe (2014) does not appear to discuss and normalization constants for these two radial asymmetry distances.
 
 Joe (2014, p. 66) offers analogous measures of bivariate \emph{permutation asymmetry} (\code{\link{isCOP.permsym}}) (\eqn{\mathbf{C}(u,v) \not= \mathbf{C}(v,u)}) defined as
-
 \deqn{L_\infty^{\mathrm{permsym}} = \mathrm{sup}_{0\le u,v\le1}|\mathbf{C}(u,v) - \hat{\mathbf{C}}(v,u)|\mbox{,}}
 
 or its \eqn{L_p^{\mathrm{permsym}}} counterpart
-
 \deqn{L_p^{\mathrm{permsym}} = \biggl[\int\!\!\int_{\mathcal{I}^2} |\mathbf{C}(u,v) - \hat{\mathbf{C}}(v,u)|^p\,\mathrm{d}u\mathrm{d}v\biggr]^{1/p}\,\mathrm{with}\, p \ge 1\mbox{,}}
 
-where \eqn{p: 1 \le p \le \infty}. Again, Joe (2014) does not seem to discuss and normalization constants for these two permutation symmetry distances. Joe (2014, p. 65) states that the \dQuote{simplest one-parameter bivariate copula families [and] most of the commonly used two-parameter bivariate copula families are permutation symmetric.} The \eqn{L_\infty^{\mathrm{permsym}}} (or rather a similar form) is implemented by \code{\link{LzCOPpermsym}} and demonstration made in that documentation.
+where \eqn{p: 1 \le p \le \infty}. Again, Joe (2014) does not appear to discuss and normalization constants for these two permutation symmetry distances. Joe (2014, p. 65) states that the \dQuote{simplest one-parameter bivariate copula families [and] most of the commonly used two-parameter bivariate copula families are permutation symmetric.} The \eqn{L_\infty^{\mathrm{permsym}}} (or rather a similar form) is implemented by \code{\link{LzCOPpermsym}} and demonstration made in that documentation.
 
 The asymmetrical \eqn{L_\infty} and \eqn{L_p} measures identified by Joe (2014, p. 66) are nonnegative with an upper bounds that depends on \eqn{p}. The bound dependence on \eqn{p} is caused by the lack of normalization constant \eqn{k(p)}. In an earlier paragraph, Joe (2014) indicates an upper bounds of 1/3 for both (likely?) concerning \eqn{L_\infty^{\mathrm{radsym}}} and \eqn{L_\infty^{\mathrm{permsym}}}. Discussion of this 1/3 or rather the integer 3 is made within \code{\link{LzCOPpermsym}}.
 
@@ -86,7 +78,7 @@ where
 \deqn{A = \biggl(\frac{1}{n}\biggr)^2\sum_{j=1}^n\sum_{k=1}^n\prod_{i=1}^d
                     \bigl[1 - \mathrm{max}\bigl(\hat{U}_{ij}, \hat{U}_{ik}\bigr)\bigr]\mbox{,}}
 \deqn{B = \biggl(\frac{1}{3}\biggr)^d - \biggl(\frac{2}{n}\biggr)\biggl(\frac{1}{2}\biggr)^d
-               \sum_{j=1}^n\prod_{i=1}^d  [1 - \hat{U}_{ij}^2]\mbox{.}}
+               \sum_{j=1}^n\prod_{i=1}^d  \bigl[1 - \hat{U}_{ij}^2\bigr]\mbox{.}}
 The normalization constant is a function of dimension and is
 \deqn{h(d)^{-1} = \frac{2}{(d+1)(d+2)} - \biggl(\frac{1}{2}\biggr)^d\frac{d\,!}{\prod_{i=0}^d\bigl(i+(1/2)\bigr)}+\biggl(\frac{1}{3}\biggr)^d\mbox{.}}
 \preformatted{

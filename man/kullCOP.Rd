@@ -191,3 +191,4 @@ points(UVpa, col="darkgreen",  pch= 1, lwd=0.8) # circles
 \concept{copula divergence}
 \concept{relative entropy}
 \concept{I-divergence}
+\keyword{package randtoolbox (application of)}

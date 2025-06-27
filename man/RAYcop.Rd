@@ -47,9 +47,9 @@ Documentation in Zeng and others [Part II] appear to have corrected the Marcum-Q
 \references{
 Bo\enc{š}{s}koskia, P., Debenjaka, A., Boshkoskab, B.M., 2018, Rayleigh copula for describing impedance data with application to condition monitoring of proton exchange membrane fuel cells: European Journal of Operational Research, v. 266, pp. 269--277, \doi{10.1016/j.ejor.2017.08.058}.
 
-Zeng, X., Ren, J., Wang, Z., Marshall, S., and Durrani, T., [undated], Copulas for statistical signal processing (Part I)---Extensions and generalization, accessed January 14, 2024, at \url{https://pure.strath.ac.uk/ws/portalfiles/portal/34078849/Copulas_Part1_v2_6.pdf}.
+Zeng, X., Ren, J., Wang, Z., Marshall, S., and Durrani, T., 2014, Copulas for statistical signal processing (Part I)---Extensions and generalization: Signal Processing v. 14, pp. 691--702, \doi{10.1016/j.sigpro.2013.07.009}.
 
-Zeng, X., Ren, J., Sun, M., Marshall, S., and Durrani, T., [undated], Copulas for statistical signal processing (Part II)---Simulation, optimal selection and practical applications, accessed January 14, 2024, at \url{https://strathprints.strath.ac.uk/48371/1/Copulas_Part2s_v2_5_2.pdf}
+Zeng, X., Ren, J., Sun, M., Marshall, S., and Durrani, T., 2014, Copulas for statistical signal processing (Part II)---Simulation, optimal selection and practical applications: Signal Processing, v. 94, pp. 681--690, \doi{10.1016/j.sigpro.2013.07.006}.
 }
 \author{W.H. Asquith}
 \seealso{\code{\link{M}}, \code{\link{P}}

@@ -18,7 +18,7 @@ level.curvesCOP2(cop=NULL, para=NULL, ploton=TRUE, lines=TRUE,
   \item{ploton}{A logical to toggle on the plot;}
   \item{lines}{A logical to toggle calls to the \code{lines()} function in \R to draw the lines;}
   \item{plotMW}{A logical to toggle to use \code{abline()} function in \R to plot cross lines for the \eqn{\mathbf{M}} (\code{\link{M}}) and  \eqn{\mathbf{W}} (\code{\link{W}}) copulas;}
-  \item{ramp}{A logical to toggle whether the level curves are ramped in thickness according to the probability of the line;}
+   \item{ramp}{A logical to toggle whether the level curves are ramped in thickness according to the probability of the line. The argument can be used with a \code{lwd} setting through the \code{...} and can either be a constant, which will override the built-in ramp, or \code{lwd} can be defined as a function to replace the built-in ramp in terms of the probability;}
   \item{delv}{The increment of \eqn{\Delta v}. The default is 1 part in 1,000, which should often provide enough smoothness for many copulas in practice;}
   \item{delt}{The increment of \eqn{\Delta t} for the level curves to plot, defaults to 10-percent intervals;}
   \item{getlevel}{If defined and level exists upon stepping through using \code{delt}, then the level curve at the \code{getlevel} is returned in an \R \code{list} data structure;}
