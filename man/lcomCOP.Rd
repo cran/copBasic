@@ -3,7 +3,7 @@
 \alias{lcomCOP}
 \title{L-comoments and Bivariate L-moments of a Copula}
 \description{
-Compute the \emph{L-comoments} (Serfling and Xiao, 2007; Asquith, 2011) through the \emph{bivariate L-moments (ratios)} (\eqn{\delta^{[\ldots]}_{k;\mathbf{C}}}) of a copula \eqn{\mathbf{C}(u,v; \Theta)}  The L-comoments include \emph{L-correlation} (\emph{Spearman Rho}), \emph{L-coskew}, and \emph{L-cokurtosis}.  As described by Brahimi \emph{et al.} (2015), the first four bivariate L-moments \eqn{\delta^{[12]}_k} for random variable \eqn{X^{(1)}} or \eqn{U} with respect to (\emph{wrt}) random variable \eqn{X^{(2)}} or \eqn{V} are defined as
+Compute the \emph{L-comoments} (Serfling and Xiao, 2007; Asquith, 2011) through the \emph{bivariate L-moments (ratios)} (\eqn{\delta^{[\ldots]}_{k;\mathbf{C}}}) of a copula \eqn{\mathbf{C}(u,v; \Theta)}.  The L-comoments include \emph{L-correlation} (\emph{Spearman Rho}), \emph{L-coskew}, and \emph{L-cokurtosis}.  As described by Brahimi \emph{et al.} (2015), the first four bivariate L-moments \eqn{\delta^{[12]}_k} for random variable \eqn{X^{(1)}} or \eqn{U} with respect to (\emph{wrt}) random variable \eqn{X^{(2)}} or \eqn{V} are defined as
 \deqn{\delta^{[12]}_{1;\mathbf{C}} = 2\int\!\!\int_{\mathcal{I}^2}
 \mathbf{C}(u,v)\,\mathrm{d}u\mathrm{d}v - \frac{1}{2}\mbox{,}}
 \deqn{\delta^{[12]}_{2;\mathbf{C}} = \int\!\!\int_{\mathcal{I}^2}
@@ -26,14 +26,22 @@ The integral for \eqn{\delta^{[12]}_{4;\mathbf{C}}} does not appear in Brahimi \
 Chine and Benatia (2017) describe \emph{trimmed L-comoments} as the multivariate extensions of the univariate \emph{trimmed L-moments} (Elamir and Seheult, 2003) that are implemented in \pkg{lmomco}. These are not yet implemented in \pkg{copBasic}.
 }
 \usage{
-lcomCOP(cop=NULL, para=NULL, as.bilmoms=FALSE, orders=2:5, ...)
+lcomCOP(cop=NULL, para=NULL, as.bilmoms=FALSE, orders=2:5, lo=0, hi=1,
+        subdivisions=100L, rel.tol=.Machine$double.eps^0.25, abs.tol=rel.tol,
+        stop.on.error=TRUE, ...)
 }
 \arguments{
   \item{cop}{A copula function;}
   \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula;}
   \item{as.bilmoms}{A logical to trigger return of the \eqn{\delta_k} and the return vectors will be named differently;}
-  \item{orders}{The orders of the L-comoments to return, which is internally adjusted if the argument \code{as.bilmoms} is set. There is no first order L-comoment and the first index on returned values is set to \code{NA} to remain index consistent with the \pkg{lmomco} package. An order greater than 5 is not supported; and}
-  \item{...}{Additional arguments to pass to the \code{\link{densityCOP}} function.}
+  \item{orders}{The orders of the L-comoments to return, which is internally adjusted if the argument \code{as.bilmoms} is set. There is no first order L-comoment and the first index on returned values is set to \code{NA} to remain index consistent with the \pkg{lmomco} package. An order greater than 5 is not supported;}
+  \item{lo}{Lower limit of integration (must assurdly leave as zero);}
+  \item{hi}{Upper integrand (must assurdly leave as unity);}
+  \item{subdivisions}{Maximum number of subintervals for \code{integrate()};}
+  \item{rel.tol}{Relative accuracy requested for \code{integrate()};}
+  \item{abs.tol}{Absolute accuracy requested for \code{integrate()};}
+  \item{stop.on.error}{Logical of same name for \code{integrate()} to silence for some cases of singularity or other more obscure problems the error \dQuote{Error in integrate(function(v) : the integral is probably divergent;} and}
+  \item{...}{Additional arguments to pass to the \code{\link{densityCOP}} function and to \code{integrate()}.}
 }
 \value{
   An \R \code{list} of the L-comoments or bivariate L-moments is returned depending on \code{as.bilmoms} setting.
@@ -43,7 +51,7 @@ lcomCOP(cop=NULL, para=NULL, as.bilmoms=FALSE, orders=2:5, ...)
   \item{lcomVU}{The L-comoments \eqn{\tau^{[21]}_k} of \eqn{V} with respect to \eqn{U} for \eqn{k \in [2,3,4,5]} if \code{orders} is \code{2:5} and index 1 is \code{NA}.}
 }
 \note{
-The documention here is highly parallel to \code{\link{bilmoms}} for which that function was developed some years before \code{lmomCOP} was developed in January 2019. Also, \code{\link{bilmoms}} is based on gridded or Monte Carlo integration, and \code{\link{bilmoms}} is to be considered \bold{deprecated}. However, it is deliberate that related background and various algorithm testing are still documented in \code{\link{bilmoms}}.
+The documention here is highly parallel to \code{\link{bilmoms}} for which that function was developed some years before \code{lmomCOP} was developed in January 2019. Also, \code{\link{bilmoms}} is based on gridded or Monte Carlo integration, and \code{\link{bilmoms}} is to be considered \bold{deprecated}. However, it is deliberate that related background and various algorithm testing are still made available in \code{\link{bilmoms}}. \emph{L-comoment ratio diagrams} are demonstrated by extensive example for many copula in \code{\link{LCOMDIA_ManyCops}}, \code{\link{LCOMDIA_GHcop}}, and \code{\link{ORDSUMcop}}.
 }
 \references{
 Asquith, W.H., 2011, Distributional analysis with L-moment statistics using the R environment for statistical computing: Createspace Independent Publishing Platform, ISBN 978--146350841--8.
@@ -63,50 +71,50 @@ Serfling, R., and Xiao, P., 2007, A contribution to multivariate L-moments---L-c
 }
 \examples{
 \dontrun{
-para <- list(alpha=0.5, beta=0.93, para1=4.5, cop1=GLcop, cop2=PSP)
-copBasic:::lcomCOP(cop=composite2COP, para=para)$lcomUV[3]
-# Lcomom:T3[12]=  +0.156
-copBasic:::lcomCOP(cop=composite2COP, para=para)$lcomVU[3]
-# Lcomom:T3[21]=  -0.0668
-bilmoms(cop=composite2COP, n=10000, para=para, sobol=TRUE)$bilcomoms$T3
-# Tau3[12]=+0.1566, Tau3[21]=-0.0655
-# The numerical default Monte Carlo integration of bilmoms()
-# matches the numerical integration of lcomCOP albeit with a
-# substantially slower and less elegant means in bilmoms().}
+  para <- list(alpha=0.5, beta=0.93, para1=4.5, cop1=GLcop, cop2=PSP)
+  lcomCOP(cop=composite2COP, para=para)$lcomUV[3]
+  # Lcomom:T3[12]=  +0.156
+  lcomCOP(cop=composite2COP, para=para)$lcomVU[3]
+  # Lcomom:T3[21]=  -0.0668
+  bilmoms(cop=composite2COP, n=10000, para=para, sobol=TRUE)$bilcomoms$T3
+  # Tau3[12]=+0.1566, Tau3[21]=-0.0655
+  # The numerical default Monte Carlo integration of bilmoms()
+  # matches the numerical integration of lcomCOP albeit with a
+  # substantially slower and less elegant means in bilmoms().}
 
 \dontrun{
-# The following Spearman Rho and L-coskew values are predicted for a monitoring
-# location of the relation between peak streamflow (V) and time into the
-# water year (U) where U and V are "U-statistics."
-site_srho  <-  0.15536430
-site_T3_12 <-  0.03866056
-site_T3_21 <- -0.03090144
+  # The following Spearman Rho and L-coskew values are predicted for a monitoring
+  # location of the relation between peak streamflow (V) and time into the
+  # water year (U) where U and V are "U-statistics."
+  site_srho  <-  0.15536430
+  site_T3_12 <-  0.03866056
+  site_T3_21 <- -0.03090144
 
-# Create an objective function for 3D optimization with some explicit intention that
-# transforms are used to keep the parameters in acceptable parameter space for the
-# alpha [0,1] and beta [0,1] and theta for the Plackett copula and the composite1COP
-# used to add two more parameters to the Plackett.
-ofunc <- function(par, srho=NA, T3_12=NA, T3_21=NA) {
-  alpha <- pnorm(par[1]) # takes -Inf to +Inf ---> 0 to 1 # compositing domain
-  beta  <- pnorm(par[2]) # takes -Inf to +Inf ---> 0 to 1 # compositing domain
-  theta <-   exp(par[3]) # takes -Inf to +Inf ---> 0 to +Inf # Plackett domain
-  lmr <- lcomCOP(cop=composite1COP,
-                 para=list(alpha=alpha, beta=beta, para1=theta, cop1=PLcop))
-  return((lmr$lcomUV[2] - srho )^2 + # look carefully, the 2, 3, 3 index
-         (lmr$lcomUV[3] - T3_12)^2 + # use on the lmr list are correct, so do not
-         (lmr$lcomVU[3] - T3_21)^2)  # expect to see 1, 2, 3 or 2, 3, 4.
-}
-# initial parameter guess ('middle' [0.5] compositing and independence [1]) and
-# showing the transformations involved.
-para_init <- c(qnorm(0.5), qnorm(0.5), log(1))
-rt <- optim(par=para_init, ofunc,
-            srho=site_srho, T3_12=site_T3_12, T3_21=site_T3_21)
-lcom_para <- list(alpha=pnorm(rt$par[1]), beta=pnorm(rt$par[2]),
-                  para1=exp(rt$par[3]), cop1=PLcop)
-sUV <- simCOP(10000, cop=composite1COP, para=lcom_para, col=grey(0, 0.2), pch=16)
-# Now as an exercise, consider increasing site_srho or negating it. Consider
-# switching the signs on the L-coskews or increasing their magnitudes and study
-# the resulting simulation to develop a personal feeling for L-coskew meaning. #}
+  # Create an objective function for 3D optimization with some explicit intention that
+  # transforms are used to keep the parameters in acceptable parameter space for the
+  # alpha [0,1] and beta [0,1] and theta for the Plackett copula and the composite1COP
+  # used to add two more parameters to the Plackett.
+  ofunc <- function(par, srho=NA, T3_12=NA, T3_21=NA) {
+    alpha <- pnorm(par[1]) # takes -Inf to +Inf ---> 0 to 1 # compositing domain
+    beta  <- pnorm(par[2]) # takes -Inf to +Inf ---> 0 to 1 # compositing domain
+    theta <-   exp(par[3]) # takes -Inf to +Inf ---> 0 to +Inf # Plackett domain
+    lmr <- lcomCOP(cop=composite1COP,
+                   para=list(alpha=alpha, beta=beta, para1=theta, cop1=PLcop))
+    return((lmr$lcomUV[2] - srho )^2 + # look carefully, the 2, 3, 3 index
+           (lmr$lcomUV[3] - T3_12)^2 + # use on the lmr list are correct, so do not
+           (lmr$lcomVU[3] - T3_21)^2)  # expect to see 1, 2, 3 or 2, 3, 4.
+  }
+  # initial parameter guess ('middle' [0.5] compositing and independence [1]) and
+  # showing the transformations involved.
+  para_init <- c(qnorm(0.5), qnorm(0.5), log(1))
+  rt <- optim(par=para_init, ofunc,
+              srho=site_srho, T3_12=site_T3_12, T3_21=site_T3_21)
+  lcom_para <- list(alpha=pnorm(rt$par[1]), beta=pnorm(rt$par[2]),
+                    para1=exp(rt$par[3]), cop1=PLcop)
+  sUV <- simCOP(10000, cop=composite1COP, para=lcom_para, col=grey(0, 0.2), pch=16)
+  # Now as an exercise, consider increasing site_srho or negating it. Consider
+  # switching the signs on the L-coskews or increasing their magnitudes and study
+  # the resulting simulation to develop a personal feeling for L-coskew meaning. #}
 }
 \keyword{bivariate asymmetry (measures)}
 \keyword{bivariate skewness}
@@ -121,3 +129,5 @@ sUV <- simCOP(10000, cop=composite1COP, para=lcom_para, col=grey(0, 0.2), pch=16
 \keyword{L-comoments}
 \concept{Lcomoments}
 \keyword{Spearman Rho}
+\keyword{L-comoments (ratio diagram)}
+\keyword{L-comoment ratio diagram}

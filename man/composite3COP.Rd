@@ -6,8 +6,8 @@
 The \emph{(extended) composition of two copulas}  (Salvadori \emph{et al.}, 2006, p. 266, prop. C.4) provides for even more sophisticated structures of dependence between variables than two-copula composition in \code{\link{composite2COP}}. Let \eqn{\mathbf{A}} and \eqn{\mathbf{B}} be copulas with respective parameters \eqn{\Theta_\mathbf{A}} and \eqn{\Theta_\mathbf{B}}, then
 
 \deqn{\mathbf{C}_{\alpha,\beta,\kappa,\gamma}(u,v) = u^\kappa v^\gamma \cdot
-                              \mathbf{A}([u^{1-\kappa}]^\alpha,    [v^{1-\gamma}]^\beta) \cdot
-                              \mathbf{B}([u^{1-\kappa}]^{1-\alpha},[v^{1-\gamma}]^{1-\beta})\mbox{,}}
+                              \mathbf{A}\bigl([u^{1-\kappa}]^\alpha,    [v^{1-\gamma}]^\beta\bigr) \cdot
+                              \mathbf{B}\bigl([u^{1-\kappa}]^{1-\alpha},[v^{1-\gamma}]^{1-\beta}\bigr)\mbox{,}}
 
 defines a family of copulas \eqn{\mathbf{C}_{\alpha,\beta,\kappa,\gamma}} with \bold{four} \emph{compositing parameters} \eqn{\alpha,\beta,\kappa,\gamma \in (0,1)}.
 

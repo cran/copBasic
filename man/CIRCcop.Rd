@@ -3,13 +3,13 @@
 \alias{CIRCcop}
 \title{Copula of Circular Uniform Distribution}
 \description{
-The \emph{Circular copula} of the coordinates \eqn{(x, y)} of a point chosen at random on the unit circle (Nelsen, 2006, p. 56) is given by
+The \emph{Circular copula} of the coordinates \eqn{(x, y)} of a point chosen at random on the \emph{unit circle} (Nelsen, 2006, p. 56) is given by
 \deqn{\mathbf{C}_{\mathrm{CIRC}}(u,v) = \mathbf{M}(u,v) \mathrm{\ for\ }|u-v| > 1/2\mathrm{,}}
 \deqn{\mathbf{C}_{\mathrm{CIRC}}(u,v) = \mathbf{W}(u,v) \mathrm{\ for\ }|u+v-1| > 1/2\mathrm{,\ and}}
 \deqn{\mathbf{C}_{\mathrm{CIRC}}(u,v) = \frac{u+v}{2} - \frac{1}{4} \mathrm{\ otherwise\ }\mathrm{.}}
 
 The coordinates of the unit circle are given by
-\deqn{\mathrm{CIRC}(x,y) = \biggl(\frac{\mathrm{cos}\bigl(\pi(u-1)\bigr)+1}{2}, \frac{\mathrm{cos}\bigl(\pi(v-1)\bigr)+1}{2}\biggr)\mathrm{.}}
+\deqn{\mathbf{CIRC}(x,y) = \biggl(\frac{\mathrm{cos}\bigl(\pi(u-1)\bigr)+1}{2}, \frac{\mathrm{cos}\bigl(\pi(v-1)\bigr)+1}{2}\biggr)\mathrm{.}}
 }
 \usage{
 CIRCcop(u, v, para=NULL, as.circ=FALSE, ...)
@@ -35,9 +35,10 @@ CIRCcop(1  , 0.5) # 0.50 halfway across in  vertical  direction
 
 \dontrun{
   nsim <- 2000
+  opts <- par(xpd=NA, las=1, lend=2, no.readonly=TRUE)
   rtheta <- runif(nsim, min=0, max=2*pi) # polar coordinate simulation
   XY <- data.frame(X=cos(rtheta)/2 + 1/2, Y=sin(rtheta)/2 + 1/2)
-  plot(XY, lwd=0.8, col="lightgreen", xaxs="i", yaxs="i", las=1,
+  plot(XY, lwd=0.8, col="lightgreen", xaxs="i", yaxs="i",
            xlab="X OF UNIT CIRCLE OR NONEXCEEDANCE PROBABILITY U",
            ylab="Y OF UNIT CIRCLE OR NONEXCEEDANCE PROBABILITY V")
   UV <- simCOP(nsim, cop=CIRCcop, lwd=0.8, col="salmon3", ploton=FALSE)
@@ -66,7 +67,7 @@ CIRCcop(1  , 0.5) # 0.50 halfway across in  vertical  direction
   txt <- paste0("level curves for Pr[X <= x & Y <= y] and\n",
                 "level curves for Pr[U <= u & V <= v],\n",
                 "which equal each other as nsim gets large")
-  text(0.52, 0.52, txt, srt=-46, col="blue") # }
+  text(0.52, 0.52, txt, srt=-46, col="blue"); par(opts) # }
 
 \dontrun{
   # Nelsen (2007, ex. 3.2, p. 57) # Singular bivariate distribution with
@@ -74,38 +75,43 @@ CIRCcop(1  , 0.5) # 0.50 halfway across in  vertical  direction
   U <- runif(500); V <- simCOPmicro(U, cop=CIRCcop)
   X  <- qnorm(U, mean=0, sd=1);    Y <- qnorm(V, mean=0, sd=1)
   plot(X,Y, main="Nelsen (2007, ex. 3.2, p. 57)", xlim=c(-4,4), ylim=c(-4,4),
-            lwd=0.8, col="turquoise")
-  rug(X, side=1, col=grey(0,0.5), tcl=0.5)
-  rug(Y, side=2, col=grey(0,0.5), tcl=0.5) #}
+            lwd=0.8, col="turquoise3")
+  rug(X, side=1, col="salmon3", tcl=0.5)
+  rug(Y, side=2, col="salmon3", tcl=0.5) #}
 
 \dontrun{
   DX <- c(5, 5, -5, -5); DY <- c(5, 5, -5, -5); D <- 6; R <- D/2
-  plot(DX, DY, type="n", xlim=c(-10, 10), ylim=c(-10,10), xlab="X", ylab="Y")
-  abline(h=DX, lwd=2, col="seagreen"); abline(v=DY, lwd=2, col="seagreen")
+  xylim <- c(-10, 10)
+  plot(DX, DY, type="n", xlim=xylim, ylim=xylim, xlab="X", ylab="Y", las=1,
+       xaxs="i", yaxs="i")
+  for(i in seq_len(length(DX))) lines(rep(DX[i], 2), xylim, lwd=2, col="seagreen")
+  for(i in seq_len(length(DY))) lines(xylim, rep(DY[i], 2), lwd=2, col="seagreen")
   for(i in seq_len(length(DX))) {
     for(j in seq_len(length(DY))) {
       UV <- simCOP(n=30, cop=CIRCcop, pch=16, col="darkgreen", cex=0.5, graphics=FALSE)
-      points(UV[,1]-0.5, UV[,2]-0.5, pch=16, col="darkgreen", cex=0.5)
+      points(UV[,1]-0.5, UV[,2]-0.5,  pch=16, col="darkgreen", cex=0.5)
       XY <- data.frame(X=DX[i]+sign(DX[i])*D*(cos(pi*(UV$U-1))+1)/2-sign(DX[i])*R,
                        Y=DY[j]+sign(DY[j])*D*(cos(pi*(UV$V-1))+1)/2-sign(DY[j])*R)
       points(XY, lwd=0.8, col="darkgreen")
     }
-    abline(h=DX[i]+R, lty=2, col="seagreen"); abline(h=DX[i]-R, lty=2, col="seagreen")
-    abline(v=DY[i]+R, lty=2, col="seagreen"); abline(v=DY[i]-R, lty=2, col="seagreen")
+    lines(rep(DX[i]+R, 2), xylim, lty=2, col="seagreen")
+    lines(rep(DX[i]-R, 2), xylim, lty=2, col="seagreen")
+    lines(xylim, rep(DY[i]+R, 2), lty=2, col="seagreen")
+    lines(xylim, rep(DY[i]-R, 2), lty=2, col="seagreen")
   } #}
 
 \dontrun{
   para <- list(cop1=CIRCcop, para1=NULL, cop2=W, para2=NULL, alpha=0.8, beta=0.8)
-  UV <- simCOP(n=2000, col="darkgreen", cop=composite2COP, para=para)
+  UV <- simCOP(n=2000, col="salmon3", cop=composite2COP, para=para)
   XY <- data.frame(X=(cos(pi*(UV$U-1))+1)/2, Y=(cos(pi*(UV$V-1))+1)/2)
   plot(XY, type="n", xlab=paste0("X OF CIRCULAR UNIFORM DISTRIBUTION OR\n",
-                                 "NONEXCEEDANCD PROBABILITY OF U"),
+                                 "NONEXCEEDANCE PROBABILITY OF U"),
                      ylab=paste0("Y OF CIRCULAR UNIFORM DISTRIBUTION OR\n",
-                                 "NONEXCEEDANCD PROBABILITY OF V"))
+                                 "NONEXCEEDANCE PROBABILITY OF V"))
   JK <- data.frame(U=1 - acos(2*XY$X - 1)/pi, V=1 - acos(2*XY$Y - 1)/pi)
   segments(x0=UV$U, y0=UV$V, x1=XY$X, y1=XY$Y, col="lightgreen", lwd=0.8)
   points(XY, lwd=0.8, col="darkgreen")
-  points(JK, pch=16,  col="darkgreen", cex=0.5)
+  points(JK, pch=16,  col="salmon3", cex=0.5)
 
   t <- seq(0.001, 0.999, by=0.001)
   t <- diagCOPatf(t, cop=composite2COP, para=para)

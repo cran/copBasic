@@ -50,7 +50,7 @@ print(FRcop(UV[,1], UV[,2], cortype="kendall" )$tau) # 0.8072993
 print(FRcop(UV[,1], UV[,2], cortype="spearman")$rho) # 0.9536648
 
 \dontrun{
-  # Joe (2014) example follows by extendinh the functionality of copBasic
+  # Joe (2014) example follows by extending the functionality of copBasic
   # into a 3-dimensional C-vine copula using Frank and Gumbel copulas and
   # Kendall Taus and Kendall Partial Taus. The example is expanded to show
   # how advanced features of copBasic can be incorporated for asymmetry

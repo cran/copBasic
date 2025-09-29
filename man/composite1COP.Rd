@@ -7,9 +7,9 @@
 \description{
 The \emph{composition of a single copula} (Salvadori \emph{et al.}, 2006, p. 266, prop. C.3) is created by the following result related to \dQuote{composition of copulas} in that reference.  This construction technique is named the \emph{Khoudraji device} within the \pkg{copula} package (see \code{khoudrajiCopula} therein) (Hofert \emph{et al.}, 2018, pp. 120--121). Suppose \eqn{\mathbf{C}(u,v)} is a \emph{symmetric copula} (see \code{\link{COP}}) with parameters \eqn{\Theta} and \eqn{\mathbf{C} \ne \mathbf{\Pi}} (for \eqn{\mathbf{\Pi}} see \code{\link{P}}), then a family of generally \emph{asymmetric copulas} \eqn{\mathbf{C}_{\alpha,\beta; \Theta}} with \bold{two} \emph{compositing parameters} \eqn{0 < \alpha,\beta < 1}, and \eqn{\alpha \ne \beta}, which also includes just the copula \eqn{\mathbf{C}(u,v)} as a limiting case for \eqn{\alpha = \beta = 0} and is given by
 
-\deqn{\mathbf{C}_{\alpha,\beta}(u,v) = u^\alpha v^\beta \cdot \mathbf{C}(u^{1-\alpha},v^{1-\beta})\mbox{.}}
+\deqn{\mathbf{C}_{\alpha,\beta}(u,v) = u^\alpha v^\beta \cdot \mathbf{C}\bigl(u^{1-\alpha},v^{1-\beta}\bigr)\mbox{.}}
 
-The \code{composite1COP} function provides the means for inserting \emph{permutation asymmetry} from a \emph{permutation symmetric} copula as described by Joe (2017, p. 124), but do so in a more general way through the provision of two and not just one parameter. Joe's description is supported herein if one of the \eqn{\alpha} or \eqn{\beta} is held at zero. Very loosely, the \eqn{\alpha > 0} kicks probability density down towards the lower right corner, whereas \eqn{\beta > 0} kicks density up towards the upper left corner. Finally, the \code{\link{composite2COP}} function is based on a slighty more general result (see \code{\link{composite2COP}} for further details of copula composition and more contextualization of Hofert \emph{et al.} (2018) remarks on the \emph{Khoudraji device}).
+The \code{composite1COP} function provides the means for inserting \emph{permutation asymmetry} from a \emph{permutation symmetric} copula as described by Joe (2017, p. 124), but do so in a more general way through the provision of two and not just one parameter. Joe's description is supported herein if one of the \eqn{\alpha} or \eqn{\beta} is held at zero. Very loosely, the \eqn{\alpha > 0} kicks probability density down towards the lower right corner, whereas \eqn{\beta > 0} kicks density up towards the upper left corner. Finally, the \code{\link{composite2COP}} function is based on a slighty more general result that is shown with \code{\link{composite2COP}}, which provides further details of copula composition and more contextualization of Hofert \emph{et al.} (2018) remarks on the \emph{Khoudraji device}.
 }
 \usage{
 composite1COP(u, v, para, ...)
@@ -47,23 +47,23 @@ Salvadori, G., De Michele, C., Kottegoda, N.T., and Rosso, R., 2007, Extremes in
 \code{\link{convexCOP}}, \code{\link{glueCOP}}}
 \examples{
 \dontrun{
-alpha <- 0.24; beta <- 0.23; Theta1 <- NA;
-# W() does not use a parameter, but show how a parameter would be set if needed.
-para  <- list(alpha=alpha, beta=beta, cop1=W, para1=Theta1)
-t <- composite1COP(0.4, 0.6, para)
-if( t != W(0.4, 0.6)) message("Not equal as expected") #}
+  alpha <- 0.24; beta <- 0.23; Theta1 <- NA;
+  # W() does not use parameters, but show how parameters would be set if needed.
+  para  <- list(alpha=alpha, beta=beta, cop1=W, para1=Theta1)
+  t <- composite1COP(0.4, 0.6, para)
+  if( t != W(0.4, 0.6)) message("Not equal as expected") #}
 
 \dontrun{
   # Hofert et al. (2018, p. 124, eq. 3.15)
   #   No matter what copula is chosen, Kendall tau must be
-  #     Tau <= (alpha*beta)/(alpha + beta - alpha*beta)
+  #     Tau <= (alpha * beta) / (alpha + beta - alpha * beta)
   #   and those authors report Tau <= 0.5816. We can test this computation by
   para <- list(cop=M, para=NULL, alpha=1-0.6, beta=1-0.95)
   tauCOP(khoudrajiPCOP, para=para) # 0.5816283 }
 
 \dontrun{
   # Next use this as a chance to check logic flow through the various
-  # "compositing" operators and their as needed dispatch to COP().
+  # "compositing" operators and their use as needed dispatch to COP().
   my.para <- list(cop1=GHcop, para1=exp(+1.098612) + 1,
                   cop2=PLcop, para2=exp(-1.203973),
                   alpha=0.5,  beta=0.25, kappa=0.1, gamma=0.1,
@@ -90,8 +90,9 @@ if( t != W(0.4, 0.6)) message("Not equal as expected") #}
   #   "kho(0.6, 0.95)(CLcop(6), P)" notation for the their left panel, in copBasic
   #   we can reproduce their simulation by the following. So, swapping notation
   #   between the copula package (khoudarjiCopula) and copBasic would be required.
-  para <- list(cop=CLcop, para=6, alpha=1-0.95, beta=1-0.6)
-  UV <- simCOP(n=5000, cop=khoudrajiPCOP, para=para) # }
+  para <- list(cop=CLcop, para=6, alpha=1-0.95, beta=1-0.6, reflect=1)
+  UV <- simCOP(n=5000, cop=khoudrajiPCOP, para=para) # then do it again with
+  # reflect = 2, then 3, then 4 to show reflection/rotation dispatch to COP().}
 
 }
 \keyword{copula composition}

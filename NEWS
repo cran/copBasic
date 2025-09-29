@@ -1,6 +1,56 @@
 --------------------------------------------------------------------------------------
                 NEWS for R Package "copBasic" by W.H. Asquith
 --------------------------------------------------------------------------------------
+Changes in version 2.2.9 (2025-09-28)
+-  Added example of Kendall function span by permutation asymmetry inserted to M and W
+     copulas through sweep of breves for breveCOP to be a demonstration of the Kendall
+     function is a distribution unto itself with its own nonexceedance probabilities.
+     Minor insertions to breveCOP.Rd and kfuncCOP.Rd made to announce this example.
+-  Correction to a doi{} macro in a citation and two missing subscripts in RAYcop.Rd.
+-  Grammar correction to FRcop.Rd, kfuncCOP.Rd, and LzCOPpermsym.Rd (unrelated edits).
+-  Modest extensions to footCOP.Rd.
+-  Added Marshall-Olkin copula (MOcop.[R|Rd]) because of user discussion about what
+     the Footrule might measure in a nonfunctional way compared to Spearman Rho.
+-  Minor extensions to spectralmeas.Rd, the documentation read as somewhat incomplete.
+-  Minor edits and en-dash encoding changes in copBasic-package.Rd to have proper
+     typography for the "tables" therein.
+-  Minor edits to taildepCOP.Rd and P.Rd (with tidy-up of a L-comoment demo therein).
+-  Added argument stop.on.error to throw to integrate().
+-  Reworking of some extended Examples in GHcop.Rd.
+-  Minor edits to isCOP.permsym.Rd following some extensions to isCOP.radsym.Rd
+-  Minor mathematical delimited size adjustment in composite[1-3]COP.Rd, glueCOP.Rd,
+     and breveCOP.Rd and some minor edits.
+-  Math notation fix, italics added for unit circle, color changes, and spelling
+     correction in CIRCcop.Rd.
+-  Added N4220cop.[R|Rd] (containing rN4220cop) and rN4220cop.Rd copula + NAMESPACE
+-  Added [r]N4220cop and ORDSUWcop to copBasic-package.Rd as well as a mention
+     L-comoment ratio diagrams.
+-  Vectorization improvement in M.R, PSP.R, and W.R.
+-  Added argument support in lcomCOP.R for all of those for integrate().
+-  Example extensions in ORDSUMcop.Rd and minor tidy up to examples in ORSUWcop.Rd.
+-  EMPIRcop.Rd phrasing extension to a fast Bernstein copula and citation added
+     therein. Expect to upgrade support for this in some future release.
+-  L-comoment diagram expansion in Examples of glueCOP.Rd.
+-  Clean up of some of the outdated examples in favor of alternatives for GHcop.Rd.
+-  Added L-comoment ratio diagram for several families including gEVcop(), GHcop(),
+     GLcop(), and HRcop() and a simulation comparison in the Examples of gEVcop.Rd.
+-  Added NORMcop() and Tcop() for the Gaussian and t-Student copulas, which then
+     caused the Imports of the mvtnorm package and changes to DESCRIPTION.
+-  Tune up of large parameter behavior in simulation for JOcopB5.R and .Rd edits.
+-  Created LCOMDIA_ManyCops.Rd and LCOMDIA_GH[23]cop.Rd as holding grounds for many
+     large L-comoment ratio diagram construction examples.
+-  Enhanced GHcop() for 2-parameter with Infinity checks to locally snap it M().
+     Added derivative end point checks to the 3-parameter version to assess whether
+     snapping to MOcop() itself is required. Extensive study of L-comoments of both
+     the 2- and 3-parameter versions.
+-  Added kfuncCOP_Pd() for the Kendall function for d-Dimensional independence.
+-  Added an L-comoment ratio diagram example within FGMcop.Rd for the FGM copula.
+-  Added a sentence and citation within HRcop.Rd, that it and GHcop and GLcop are
+     very similar and extremely large sample sizes are needed to distinguish between
+     them as a class of extreme-value copula.
+ - Added HAIRPINcop because it can make pretty graphics (refer to Examples).
+
+
 Changes in version 2.2.8 (2025-06-27)
 -  Added list(...) work in level.curvesCOP[2].R, handling lwd from ... if ramp=TRUE
      and ability to override the built-in ramp by the lwd being passed as a function.
@@ -16,7 +66,7 @@ Changes in version 2.2.7 (2025-01-25)
 -  Added Frank copula after a few years of trying off and on to determine numerical
      end points establishing apparent parameter range suitable for copBasic structure
      and support for Spearman Rho and Kendall Tau. Added example from Joe (2014) using
-     the Frank in the context of a C-vine 3-dimensional copula using also the Gumbel. 
+     the Frank in the context of a C-vine 3-dimensional copula using also the Gumbel.
      Results show Frank is implemented properly as well as the example of a C-vine.
 -  Added additional remarks on the Khoudarji's Devices, which is just the compositing
      of two copula by composite2COP() or with independence in composite1COP().

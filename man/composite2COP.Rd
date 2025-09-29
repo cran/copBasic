@@ -6,8 +6,8 @@
 \description{
 The \emph{composition of two copulas} (Salvadori \emph{et al.}, 2007, p. 266, prop. C.3) provides for more sophisticated structures of dependence between variables than many single parameter copula can provide. Further, \emph{asymmetrical copulas} are readily obtained from \emph{symmetrical copulas}. Let \eqn{\mathbf{A}} and \eqn{\mathbf{B}} be copulas with respective parameters \eqn{\Theta_\mathbf{A}} and \eqn{\Theta_\mathbf{B}}, then
 
-\deqn{\mathbf{C}_{\alpha,\beta}(u,v) = \mathbf{A}(u^\alpha,    v^\beta) \cdot
-                              \mathbf{B}(u^{1-\alpha},v^{1-\beta})\mbox{,}}
+\deqn{\mathbf{C}_{\alpha,\beta}(u,v) = \mathbf{A}\bigl(u^\alpha,    v^\beta\bigr) \cdot
+                              \mathbf{B}\bigl(u^{1-\alpha},v^{1-\beta}\bigr)\mbox{,}}
 
 defines a family of copulas \eqn{\mathbf{C}_{\alpha,\beta; \Theta_\mathbf{A}, \Theta_\mathbf{B}}} with \bold{two} \emph{compositing parameters} \eqn{\alpha,\beta \in \mathcal{I}:[0,1]}. In particular if \eqn{\alpha = \beta = 1}, then \eqn{\mathbf{C}_{1,1} = \mathbf{A}}, and if \eqn{\alpha = \beta = 0}, then \eqn{\mathbf{C}_{0,0} = \mathbf{B}}. For \eqn{\alpha \ne \beta}, the \eqn{\mathbf{C}_{\alpha,\beta}} is in general asymmetric that is \eqn{\mathbf{C}(u,v) \ne \mathbf{C}(v,u)} for some \eqn{(u,v) \in \mathcal{I}^2}. This construction technique is named the \emph{Khoudraji device} within the \pkg{copula} package (see \code{khoudrajiCopula} therein) (Hofert \emph{et al.}, 2018, p. 120).
 
@@ -15,7 +15,7 @@ It is important to stress that copulas \eqn{\mathbf{A}_{\Theta_A}} and \eqn{\mat
 
 It is possible to simplify the construction of an asymmetric copula from a symmetric copula by the following. Let \eqn{\mathbf{C}(u,v)} be a symmetric copula, \eqn{\mathbf{C} \ne \mathbf{\Pi}} (for \eqn{\mathbf{\Pi}} see \code{\link{P}}). A family of asymmetric copulas \eqn{\mathbf{C}_{\alpha,\beta}} with \bold{two} \emph{composition parameters} \eqn{0 < \alpha,\beta < 1, \mbox{and\ } \alpha \ne \beta} that also includes \eqn{\mathbf{C}(u,v)} as a limiting case and is given by
 
-\deqn{\mathbf{C}_{\alpha,\beta}(u,v) = u^\alpha v^\beta \cdot \mathbf{C}(u^{1-\alpha},v^{1-\beta})\mbox{.}}
+\deqn{\mathbf{C}_{\alpha,\beta}(u,v) = u^\alpha v^\beta \cdot \mathbf{C}\bigl(u^{1-\alpha},v^{1-\beta}\bigr)\mbox{.}}
 
 Hofert \emph{et al.} (2018, p. 121) comment that \dQuote{from a practical perspective, a useful subset of families constructed from [the] Khoudraji device is obtained} by choosing \emph{independence copula} (\eqn{\mathbf{\Pi}}, \code{\link{P}}) for one of the copula and that choosing [\eqn{\alpha} or \eqn{\beta}] relative close to \eqn{1} produces nonexchangable [see \code{\link{isCOP.permsym}}] versions of \eqn{\mathbf{C}(u,v)} (meaning \eqn{\mathbf{C}(u,v) \ne \mathbf{C}(v,u)}). For the \pkg{copBasic} package, the \code{khoudraji1COP()} and \code{khoudrajiPCOP()} (the \code{P} meaning \code{\link{P}}) aliases are added for programming clarity for developers desiring to have contrasting copula calls to the three \emph{compositing} copula: \code{\link{composite1COP}}, \code{composite2COP()}, and \code{\link{composite3COP}}.
 }
@@ -84,9 +84,17 @@ print(composite2COP(0.4, 0.6, para)) # 0.3387506
   #   f() values at end points not of opposite sign
   # warnings might be triggered. This is particularly true because of the flat derivative
   # above the near singularity in this example composited copula.
-  points(D$U, D$V, pch=4, col=4, cex=0.75)
+  points(D$U, D$V, pch=4, col="blue", cex=0.75)
   level.curvesCOP(cop=EMPIRcop, para=D, ploton=FALSE, delu=0.02, delt=0.05)
   mtext("Empirical copula from n=2000 simulation") #}
+
+\dontrun{
+  # Demonstration in how to add reflection (rotation by 180) degrees of the GHcop
+  # and use the two-parameter version of that coupla to accent upper tail coupling
+  # with a much weaker lower tail, but we want open up or spread the middle part of
+  # the distribution. Lastly, because alpha != beta, permutation asymmetry is added.
+  para <- list(cop1=W, para1=NA, cop2=GHcop, para2=c(1,10), alpha=0.01, beta=0.06)
+  UV <- simCOP(1000, cop=COP, para=list(cop=composite2COP, reflect=2, para=para)) #}
 }
 \keyword{copula composition}
 \keyword{copula composition (two compositing parameters)}

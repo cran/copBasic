@@ -1,4 +1,5 @@
 "JOcopB5" <- function(u, v, para=NULL, tau=NULL, ...) {
+    parameter_large <- 1000
     if(is.null(para)) {
       if(is.null(tau)) tau <- cor(u,v, method="kendall")
       "ktau" <- function(d) { a <- 2/(2-d)
@@ -6,7 +7,7 @@
          tau - (1 + 2/(2-d)*(digamma(2)-digamma(1 + 2/d)))
       }
       rt <- NULL
-      try(rt <- uniroot(ktau, interval=c(1,500)))
+      try(rt <- uniroot(ktau, interval=c(1, parameter_large)))
       if(! is.null(rt)) {
          para <- rt$root
          names(para) <- "theta"
@@ -39,27 +40,54 @@
     }
 
     d <- para[1]
-    if(d >= 500) return(M(u,v))
+    if(d >= parameter_large) return(pmin(u,v)) # M(u,v)
     cop <- 1 - ( (1-u)^d + (1-v)^d -
                 ((1-u)^d)*((1-v)^d) )^(1/d)
-    if(d >= 400) {
-       cop[u > 0.75     | v > 0.75]    <- M(u,v)
+    if(d >= 1000) {
+       wnt <- u > 0.45     | v > 0.45
+       cop[wnt] <- pmin(u[wnt], v[wnt]) # M(u,v)
+    } else if(d >= 900) {
+       wnt <- u > 0.50     | v > 0.50
+       cop[wnt] <- pmin(u[wnt], v[wnt]) # M(u,v)
+    } else if(d >= 800) {
+       wnt <- u > 0.55     | v > 0.55
+       cop[wnt] <- pmin(u[wnt], v[wnt]) # M(u,v)
+    } else if(d >= 700) {
+       wnt <- u > 0.60     | v > 0.60
+       cop[wnt] <- pmin(u[wnt], v[wnt]) # M(u,v)
+    } else if(d >= 600) {
+       wnt <- u > 0.65     | v > 0.65
+       cop[wnt] <- pmin(u[wnt], v[wnt]) # M(u,v)
+    } else if(d >= 500) {
+       wnt <- u > 0.70     | v > 0.70
+       cop[wnt] <- pmin(u[wnt], v[wnt]) # M(u,v)
+    } else if(d >= 400) {
+       wnt <- u > 0.75     | v > 0.75
+       cop[wnt] <- pmin(u[wnt], v[wnt]) # M(u,v)
     } else if(d >= 300) {
-       cop[u > 0.94     | v > 0.94]    <- M(u,v)
+       wnt <- u > 0.90     | v > 0.90
+       cop[wnt] <- pmin(u[wnt], v[wnt]) # M(u,v)
     } else if(d >= 200) {
-       cop[u > 0.95     | v > 0.95]    <- M(u,v)
+       wnt <- u > 0.92     | v > 0.92
+       cop[wnt] <- pmin(u[wnt], v[wnt]) # M(u,v)
     } else if(d >= 100) {
-       cop[u > 0.97     | v > 0.97]    <- M(u,v)
+       wnt <- u > 0.97     | v > 0.97
+       cop[wnt] <- pmin(u[wnt], v[wnt]) # M(u,v)
     } else if(d >= 90)  {
-       cop[u > 0.998    | v > 0.998]   <- M(u,v)
+       wnt <- u > 0.998    | v > 0.998
+       cop[wnt] <- pmin(u[wnt], v[wnt]) # M(u,v)
     } else if(d >= 85)  {
-       cop[u > 0.999    | v > 0.999]   <- M(u,v)
+       wnt <- u > 0.999    | v > 0.999
+       cop[wnt] <- pmin(u[wnt], v[wnt]) # M(u,v)
     } else if(d >= 80)  {
-       cop[u > 0.9995   | v > 0.9995]  <- M(u,v)
+       wnt <- u > 0.9995   | v > 0.9995
+       cop[wnt] <- pmin(u[wnt], v[wnt]) # M(u,v)
     } else if(d >= 70)  {
-       cop[u > 0.9999   | v > 0.9999]  <- M(u,v)
+       wnt <- u > 0.9999   | v > 0.9999
+       cop[wnt] <- pmin(u[wnt], v[wnt]) # M(u,v)
     } else if(d >= 60)  {
-       cop[u > 0.99999  | v > 0.99999] <- M(u,v)
+       wnt <- u > 0.99999  | v > 0.99999
+       cop[wnt] <- pmin(u[wnt], v[wnt]) # M(u,v)
     }
     return(cop)
 }

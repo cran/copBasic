@@ -3,9 +3,9 @@
 \alias{isCOP.permsym}
 \title{Is a Copula Permutation Symmetric}
 \description{
-Numerically set a logical whether a copula is \emph{symmetric} (Nelsen, 2006, p. 38), or has \emph{exchangable} variables, or is \emph{permutation symmetric} (Joe, 2014, p. 66). A copula \eqn{\mathbf{C}(u,v)} is permutation symmetric if and only if for any \eqn{\{u,v\} \in [0,1]} the following holds
+Numerically set a logical whether a copula is \emph{symmetric} (Nelsen, 2006, p. 38), or has \emph{exchangable} variables, or is \emph{permutation symmetric} (Joe, 2014, p. 66) (refer also to \emph{radial symmetric}, \code{\link{isCOP.radsym}}). A copula \eqn{\mathbf{C}(u,v)} is permutation symmetric if and only if for any \eqn{\{u,v\} \in [0,1]} the following holds
  \deqn{\mathbf{C}(u,v) = \mathbf{C}(v, u)\mbox{.}}
-The computation is (can be) CPU intensive.
+The computation is (can be) CPU intensive and refer also to the extensive documentation and computational examples within \code{\link{isCOP.radsym}} (secs. \bold{Note} and \bold{Examples}) and the conceptual contributions of the \emph{L-comoments} (\code{\link{lcomCOP}}) to symmetry.
 }
 \usage{
 isCOP.permsym(cop=NULL, para=NULL, delta=0.005, tol=1e-4, ...)
@@ -34,3 +34,5 @@ isCOP.permsym(cop=GHcop, para=1.3) # TRUE}
 \keyword{copula (characteristics)}
 \keyword{copula (properties)}
 \keyword{copula (symmetry)}
+\keyword{L-comoments}
+\keyword{Lcomoments}

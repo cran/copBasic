@@ -26,7 +26,7 @@ RFcop(u, v, para=NULL, rho=NULL, tau=NULL, fit=c("rho", "tau"), ...)
   \item{para}{The parameter \eqn{\Theta};}
   \item{rho}{Spearman Rho if the \code{rho} is given; and}
   \item{tau}{Kendall Tau if the \code{tau} is given but also if both \code{rho} and \code{tau} are \code{NULL} as mentioned next.}
-and if \code{para=NULL} and \code{rho} and \code{tau=NULL}, then the values within \code{u} and \code{v} are used to compute Kendall Tau and then compute the parameter, and these are returned in the aforementioned list.
+and if \code{para=NULL} and \code{rho} and \code{tau=NULL}, then the values within \code{u} and \code{v} are used to compute Spearman Rho (\code{fit="rho"}) or Kendall Tau (\code{fit="tau"}) and then compute the parameter, and this is returned in the aforementioned list.
 }
 \references{
 Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.

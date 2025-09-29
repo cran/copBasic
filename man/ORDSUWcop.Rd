@@ -36,28 +36,28 @@ UV <- simCOP(n=100, cop=ORDSUMcop, seed=1, para=para, ploton=TRUE, pch=16)
 UV <- simCOP(n=100, cop=ORDSUWcop, seed=1, para=para, ploton=FALSE)
 
 \dontrun{
-  para <- list(cop=c(CLcop, M, PLcop, GHcop), para=list(4, NA, 0.1, c(3,4)),
-              part=list(c(0,0.25), c(0.25,0.35), c(0.35,0.85), c(0.85,1)))
+  para <- list(cop=c(CLcop, M, PLcop, GHcop), para=list(4, NA, 0.1, c(3, 4)),
+               part=list(c(0, 0.25), c(0.25, 0.35), c(0.35, 0.85), c(0.85, 1)))
   UV <- simCOP(n=100, cop=ORDSUWcop, para=para, ploton=FALSE)
-  plot(c(0,1), c(0,1), xlab="U, NONEXCEEDANCE PROBABILITY", type="n",
+  plot(c(0,1), c(0,1), xlab="U, NONEXCEEDANCE PROBABILITY", type="n", las=1,
                        ylab="V, NONEXCEEDANCE PROBABILITY")
   for(k in seq_len(length(para$part))) {         #  to draw the partitions
     a <- para$part[[k]][1]; b <- para$part[[k]][2]
     polygon(c(a, b, b, a, a), c(1-a,1-a,1-b,1-b,1-a), lty=2, lwd=0.8, col="lightgreen")
-    text((a+b)/2, (1-a+1-b)/2, k, cex=3, col="blue") # numbered by partition
+    text( (a+b) / 2,  (1-a+1-b) / 2, k, cex=3, col="blue") # numbered by partition
   }
   points(UV, pch=21, cex=0.8, col=grey(0.1), bg="white") #}
 
 \dontrun{
-  para = list(cop=c(GHcop), para=list(c(2,3)), # internally replicated
-              part=list(c(0,0.2), c(0.2,0.3), c(0.3,0.5), c(0.5,0.7), c(0.7,1)))
+  para = list(cop=c(GHcop), para=list(c(2, 3)),  # internally replicated
+              part=list(c(0, 0.2), c(0.2, 0.3), c(0.3, 0.5), c(0.5, 0.7), c(0.7, 1)))
   UV <- simCOP(n=100, cop=ORDSUWcop, para=para, ploton=FALSE)
-  plot(c(0,1), c(0,1), xlab="U, NONEXCEEDANCE PROBABILITY", type="n",
+  plot(c(0,1), c(0,1), xlab="U, NONEXCEEDANCE PROBABILITY", type="n", las=1,
                        ylab="V, NONEXCEEDANCE PROBABILITY")
   for(k in seq_len(length(para$part))) {         #  to draw the partitions
     a <- para$part[[k]][1]; b <- para$part[[k]][2]
     polygon(c(a, b, b, a, a), c(1-a,1-a,1-b,1-b,1-a), lty=2, lwd=0.8, col="lightgreen")
-    text((a+b)/2, (1-a+1-b)/2, k, cex=3, col="blue") # numbered by partition
+    text( (a+b) / 2, (1-a+1-b) / 2, k, cex=3, col="blue") # numbered by partition
   }
   points(UV, pch=21, cex=0.8, col=grey(0.1), bg="white") #}
 }

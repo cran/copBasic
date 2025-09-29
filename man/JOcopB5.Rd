@@ -47,9 +47,24 @@ blomCOP(cop=JOcopB5, para=pi)        # 0.5521328
   message("Tau difference ", round(2-para, digits=2), " is small.") #}
 
 \dontrun{
-   # embeddment of parameters for permutation asymmetry and rotation
-   para <- list(cop=JOcopB5, para=30, reflect=3, breve=0.5)
-   UV <- simCOP(cop=COP, para=list(cop=breveCOP, para=para), n=1000) #}
+  # embeddment of parameters for permutation asymmetry and rotation
+  para <- list(cop=JOcopB5, para=30, reflect=3, breve=0.5)
+  UV <- simCOP(cop=COP, para=list(cop=breveCOP, para=para), n=1000) #}
+
+\dontrun{
+  # Performance of the parameter as function of Kendall tau to the sample
+  # Kendall tau. There will be some failures in the root solving as Tau
+  # goes towards 1.
+  ts <- seq(0,1, by=0.001); us <- runif(400)    # Taus and a set pf random Us
+  ps <- sapply(ts, function(t) JOcopB5(tau=t)$para)    # parameters from Taus
+  ps <- unlist(ps);    names(ps) <- NULL     # handling for solution failures
+  ps <- c(ps, rep(NA, length(ts)-length(ps))) # padding the solution failures
+  sts <- sapply(ps, function(p) { if(is.na(p)) return(NA) # sample Taus
+            t <- cor(us, simCOPv(us, cop=JOcopB5, para=p), method="kendall")
+            ifelse(is.null(t), return(NA), return(t)) })
+  plot(ts, sts, lwd=0.8, col=grey(0.6), las=1,
+       xlab="Kendall tau", ylab="Sample Kendall tau")
+  abline(0,1, col="black", lwd=2) # }
 }
 \keyword{Joe/B5 copula}
 \keyword{copula (formulas)}

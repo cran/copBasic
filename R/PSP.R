@@ -15,6 +15,7 @@ function(u,v,...) {
   } else if(length(v) == 1) {
      v <- rep(v, length(u))
   }
-  return(sapply(1:length(u), function(i) {
-                    exp(log(u[i]) + log(v[i]) - log(u[i] + v[i] - (u[i]*v[i]))) }))
+  return( exp(log(u) + log(v) - log(u + v - (u*v))) )
+  #return(sapply(1:length(u), function(i) {
+  #                  exp(log(u[i]) + log(v[i]) - log(u[i] + v[i] - (u[i]*v[i]))) }))
 }

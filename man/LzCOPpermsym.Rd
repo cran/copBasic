@@ -63,8 +63,9 @@ The critical note is that \code{\link{LpCOPpermsym}} is the integral of the abso
 \emph{COPULA PARAMETER ESTIMATION}---Parameter estimation using \emph{signed permutation asymmetry vector} can readily be accomplished, which means that we are interested in near-preservation of what permutation asymmetry might be present within the sample. In the self-contained example below, we will assume a parent of \emph{Gumbel--Hougaard} (\eqn{\mathbf{GH}(u,v; \Theta)}, \code{\link{GHcop}}) extended to asymmetry by using three parameters (\eqn{\Theta = (10, 0.8, 0.6)}. Imagine that we unfortunately have a very small sample size (\eqn{n = 100}) as \dQuote{hundred years of data.} The small sample size facilitates the use of the \emph{checkboard empirical copula} (\code{\link{EMPIRcop}}); the sample size is small enough that the checkerboard helps smooth through ties. The simulation size for \code{LzCOPpermsym} is set \dQuote{large} as presumed by the existing default. The premise here is that we desire to have near-precise matching to the sample Spearman Rho in conjunction with the permutation asymmetry.
 
 \preformatted{
+  # will need packages ** ABCoptim **, ** metaheuristicOpt **, ** pso **
   para <- c(10, 0.8, 0.6) # parameters of the parent
-  nsam <- 100; seed <- 2  # sample size to fit and seed for RNG
+  nsam <- 100; seed <- 2  # sample size to fit and seed for the RNG
   nsim <- 2E4 # note a change from default n argument in LzCOPpermsym()
   as.vec <- TRUE          # set to FALSE to use just Permutation-Mu
   rhoP <- rhoCOP(cop=GHcop, para=para)          # parent Spearman Rho
@@ -181,6 +182,26 @@ LzCOPpermsym(cop=GHcop, para=c(10, 0.9, 0.3))    # 0.17722861
     UV <- simCOP(1000, cop=COP, para=list(cop=GLcop, para=2, reflect=r))
     mtext(paste0("Reflection ", r, " : Permutation-Mu =", Lz)); Lz })
   # [1] 0.00000000 0.00000000 0.07430326 0.07430326 }
+
+\dontrun{
+  # Example purpose = exploring sample sizes permutation symmetry metrics to
+  # stablize by some examples of difference metrics for empirical copula that
+  # are computed in about the simplist and most efficient manner at the expense
+  # of the copying of UV inside the two EMPIRcop() calls, which could become
+  # substantial if n ---> large, but we do not require additional book keeping
+  # for u <- c(UV[,1], UV[,2]); v <- c(UV[,2], UV[,1]);
+  # h <- EMPIRcop(u,v, para=UV) and then h[first half] - h[second half].
+  DF <- NULL; para <- list(breve=0.2, para=10, cop=GHcop)
+  for(n in as.integer(10^seq(log10(100), log10(50000), by=0.04))) {
+    UV  <- simCOP(n, cop=breveCOP, para=para, graphics=FALSE)
+    hh  <- EMPIRcop(UV[,1], UV[,2], para=UV) - EMPIRcop(UV[,2], UV[,1], para=UV)
+    mad <- mean(abs(hh)); rmse <- sqrt(mean(hh^2)); max <- 3*max(hh)
+    DF  <- rbind(DF, data.frame(n, mad, rmse, max))
+  }
+  ylim <- c(0, max(sapply(2:ncol(DF), function(i) max(DF[,i]))))
+  plot( DF$n, DF$mad,  col="red", type="l", log="x", ylim=ylim)
+  lines(DF$n, DF$rmse, col="seagreen")
+  lines(DF$n, DF$max,  col="blue") # }
 }
 \keyword{copula (characteristics)}
 \keyword{copula (properties)}

@@ -5,12 +5,12 @@
 \description{
 Adding \emph{permutation asymmetry} (Chang and Joe, 2020, p. 1596) (\code{\link{isCOP.permsym}}) is simple for a bivariate copula family. Let \eqn{\mathbf{C}} be a copula with respective vectors of parameters \eqn{\Theta_\mathbf{C}}, then the permutation asymmetry is added through an asymmetry parameter \eqn{\beta \in (-1, +1)} by
 
-\deqn{\breve{\mathbf{C}}_{\beta;\Theta}(u,v) = v^{-\beta}\cdot\mathbf{C}(u, v^{(1+\beta)};\Theta)\mbox{, and}}
+\deqn{\breve{\mathbf{C}}_{\beta;\Theta}(u,v) = v^{-\beta}\cdot\mathbf{C}\bigl(u, v^{(1+\beta)};\Theta\bigr)\mbox{, and}}
 
 for \eqn{0 \le \beta \le +1} by
 
-\deqn{\breve{\mathbf{C}}_{\beta;\Theta}(u,v) = u^{+\beta}\cdot\mathbf{C}(u^{(1-\beta)}, v;\Theta)\mbox{.}}
-The parameter \eqn{\beta} clashes in name and symbology with a parameter used by functions \code{\link{composite1COP}}, \code{\link{composite2COP}}, and \code{\link{composite3COP}}. As a result, support for alternative naming is provided for compatibility.
+\deqn{\breve{\mathbf{C}}_{\beta;\Theta}(u,v) = u^{+\beta}\cdot\mathbf{C}\bigl(u^{(1-\beta)}, v;\Theta\bigr)\mbox{.}}
+The parameter \eqn{\beta} clashes in name and symbology with a parameter used by functions \code{\link{composite1COP}}, \code{\link{composite2COP}}, and \code{\link{composite3COP}}. As a result, support for alternative naming is provided for compatibility. Lastly, an example under \code{\link{W}} demonstrates the span of the \emph{Kendall function} (\code{\link{kfuncCOP}}) based on \code{\link{M}} and \code{\link{W}} having permutation asymmetry inserted by \code{breveCOP()}. The demonstration shows that the Kendall function is a distribution unto itself with its own nonexceedance probabilities.
 }
 \usage{
 breveCOP(u,v, para, breve=NULL, ...)
@@ -39,9 +39,9 @@ The following descriptions list in detail the structure and content of the \code
 The function silently restricts the \eqn{\beta} to its interval as defined, but parameter transform might be useful in some numerical optimization schemes. The following recipes might be useful for transform from a parameter in numerical optimization to the asymmetry parameter:
 \preformatted{
    #    transform into space for optimization
-   BREVEtfunc <- function(p) { return(   qnorm((p[1] + 1) / 2) ) } # [-Inf, +Inf]
+   BREVEtfunc <- function(p) { return(  qnorm((p[1] + 1) / 2) ) } # [-Inf,+Inf]
    # re-transform back into space for the copula
-   BREVErfunc <- function(p) { return(2 * pnorm(p[1]) - 1)       } # [-1  , +1  ]
+   BREVErfunc <- function(p) { return(2*pnorm(p[1]) - 1)        } # [-1  ,+1  ]
 }
 }
 \references{

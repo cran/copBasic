@@ -73,6 +73,33 @@ Chine, Amel, and Benatia, Fatah, 2017, Bivariate copulas parameters estimation u
   # given through MLE estimation.
   densityCOPplot(cop=FGMcop, para=   para, contour.col="red")
   densityCOPplot(cop=FGMcop, para=ML$para, ploton=FALSE) #}
+
+\dontrun{
+  # L-comoment ratio diagram space of Generalized Farlie-Gumbel-Morgenstern Copula
+  FGM <- NULL
+  for(n in seq(1, 100, by=1)) {    Fgm <- NULL # to support intermediate plotting
+    for(a in 10^seq(-5, 5, by=0.02)) { if(a == 0) next # in case log10 not involved
+      rng <- c(-pmin(1, 1/(n*a^2)), 1/(n*a))
+      ts  <- runif(10, min=rng[1], max=rng[2])
+      for(t in ts) {
+        fgm <- lcomCOP(cop=FGMcop, para=c(t, a, n))
+        fgm <- data.frame(t, a, n, T2.12=fgm$lcomUV[2], T2.21=fgm$lcomVU[2],
+                                   T3.12=fgm$lcomUV[3], T3.21=fgm$lcomVU[3],
+                                   T4.12=fgm$lcomUV[4], T4.21=fgm$lcomVU[4])
+        row.names(fgm) <- NULL; Fgm <- rbind(Fgm, fgm)
+      }
+    }
+    plot(c(-0.5, +0.5), c(-0.1, 0.20), type="n", las=1, main=n,
+         xlab="Spearman Rho", ylab="L-coskew and L-cokurtosis")
+    points(Fgm$T2.12, Fgm$T3.12, col="seagreen3")
+    points(Fgm$T2.12, Fgm$T4.12, col="orchid3"  )
+    FGM <- rbind(FGM, Fgm)
+  }
+  plot(c(-0.5, +0.5), c(-0.1,0.20), type="n", las=1,
+       xlab="Spearman Rho", ylab="L-coskew and L-cokurtosis")
+  points(FGM$T2.12, FGM$T3.12, col="seagreen3")
+  points(FGM$T2.12, FGM$T4.12, col="orchid3"  )
+  save(FGM, file="LCM_FGM.RData") # }
 }
 \keyword{Farlie--Gumbel--Morgenstern copula}
 \keyword{copula (formulas)}
@@ -81,3 +108,5 @@ Chine, Amel, and Benatia, Fatah, 2017, Bivariate copulas parameters estimation u
 \concept{Farlie-Gumbel-Morgenstern copula}
 \concept{generalized Farlie-Gumbel-Morgenstern copula}
 \concept{iterated Farlie-Gumbel-Morgenstern copula}
+\keyword{L-comoments (ratio diagram)}
+\keyword{L-comoment ratio diagram}

@@ -14,6 +14,6 @@ function(u,v,...) {
   } else if(length(v) == 1) {
      v <- rep(v, length(u))
   }
-  return(sapply(1:length(u), function(i) { max(u[i]+v[i]-1, 0) }))
+  return(pmax(u+v-1,0))
 }
 

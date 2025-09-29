@@ -12,6 +12,6 @@ function(u,v,...) {
   } else if(length(v) == 1) {
      v <- rep(v, length(u))
   }
-  return(sapply(1:length(u), function(i) { min(u[i], v[i]) }))
+  return(pmin(u,v))
 }
 

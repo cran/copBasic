@@ -99,7 +99,7 @@ The thick green lines show that the dependency parameters to the left and right 
 Charpentier, A., 2012, Copulas and tail dependence, part 1: R-bloggers, dated Sept. 17, 2012, accessed on February 2, 2019 at \cr
 \url{https://www.r-bloggers.com/2012/09/copulas-and-tail-dependence-part-1/}
 
-\enc{Dobrić}{Dobric}, J. and Schmid, F., 2005, Nonparametric estimation of the lower tail dependence \eqn{\lambda^L} in bivariate copulas: Journal of Applied Statistics, v. 32, no. 4, pp. 387--407.
+\enc{Dobrić}{Dobric}, J. and Schmid, F., 2005, Nonparametric estimation of the lower tail dependence \eqn{\lambda^L} in bivariate copulas: Journal of Applied Statistics, v. 32, no. 4, pp. 387--407,\cr \doi{10.1080/02664760500079217}.
 
 Frahm, G., Junker, M., and Schmidt, R., 2005, Estimating the tail-dependence coefficient---\cr Properties and pitfalls: Insurance---Mathematics and Economics, v. 37, no. 1, pp. 80--100.
 
@@ -114,60 +114,58 @@ Schmidt, R., and \enc{Stadtmüller}{Stadtmuller}, U., 2006, Nonparametric estima
 \author{W.H. Asquith}
 \seealso{\code{\link{COP}}, \code{\link{tailconCOP}}, \code{\link{tailordCOP}}, \code{\link{blomCOPss}}}
 \examples{
-# Plot the tail dependencies by nonexceedance probability for a
-# for a positive association Plackett copula and see that both are zero.
-taildepCOP(cop=PLACKETTcop, para=3, plot=TRUE)
-# So, Plackett has no tail dependency, as Nelsen (2006, p. 215) shows.
+  # Plot the tail dependencies by nonexceedance probability for a
+  # for a positive association Plackett copula and see that both are zero.
+  taildepCOP(cop=PLACKETTcop, para=3, plot=TRUE)
+  # So, Plackett has no tail dependency, as Nelsen (2006, p. 215) shows.
 
 \dontrun{
-"MOcop" <- function(u,v, para=NULL) { # Marshall-Olkin copula
-   alpha <- para[1]; beta <- para[2]; return(min(v*u^(1-alpha), u*v^(1-beta)))
-} # The results that follow match those reported by Nelsen (2006, p. 215).
-taildepCOP(cop=MOcop, para=c(0.4, 0.9)) # LambL = 0, LambU = 0.4 [min(alpha,beta)]}
+  # The results that follow match those reported by Nelsen (2006, p. 215).
+  taildepCOP(cop=MOcop, para=c(0.4, 0.9)) # LambL = 0, LambU = 0.4 [min(alpha,beta)]}
 
 \dontrun{
-# Analytical solution to Gumbel-Hougaard copula from the copula package:
-copula::lambda(copula::gumbelCopula(3))
-#   lower    upper
-# 0.000000 0.740079
-# Numerical approximation (see copBasic::GHcop for analytical formula):
-as.data.frame(taildepCOP(GHcop, para=3))
-#  lambdaL lambdaU     source
-#1 0.00012 0.74008 taildepCOP}
+  # Analytical solution to Gumbel-Hougaard copula from the copula package:
+  copula::lambda(copula::gumbelCopula(3))
+  #   lower    upper
+  # 0.000000 0.740079
+  # Numerical approximation (see copBasic::GHcop for analytical formula):
+  as.data.frame(taildepCOP(GHcop, para=3))
+  #  lambdaL lambdaU     source
+  #1 0.00012 0.74008 taildepCOP}
 
 \dontrun{
-# Plot the tail dependencies by nonexceedance probability
-# for the PSP copula, which has lower but no upper-tail dependence.
-taildepCOP(cop=PSP, para=NULL, plot=TRUE) # LambL=0.5, LambU=0
-# which is readily confirmed by simCOP(1000, cop=PSP)
-# Nelsen (2006, p. 216) reports that this copula has LambL=1/2 and LambU=0,
-# and we get the same results here.
+  # Plot the tail dependencies by nonexceedance probability
+  # for the PSP copula, which has lower but no upper-tail dependence.
+  taildepCOP(cop=PSP, para=NULL, plot=TRUE) # LambL=0.5, LambU=0
+  # which is readily confirmed by simCOP(1000, cop=PSP)
+  # Nelsen (2006, p. 216) reports that this copula has LambL=1/2 and LambU=0,
+  # and we get the same results here.
 
-# How about some composited Plackett-Plackett copulas?
-# Each has upper- and lower-tail dependence parameters equal to zero.
-para <- list( cop1=PLACKETTcop,  cop2=PLACKETTcop, alpha=0.9392,
+  # How about some composited Plackett-Plackett copulas?
+  # Each has upper- and lower-tail dependence parameters equal to zero.
+  para <- list( cop1=PLACKETTcop,  cop2=PLACKETTcop, alpha=0.9392,
              para1=0.00395,     para2=4.67,         beta=0.5699)
-taildepCOP(cop=composite2COP, para=para, plot=TRUE, verbose=TRUE) #}
+  taildepCOP(cop=composite2COP, para=para, plot=TRUE, verbose=TRUE) #}
 
 \dontrun{
-# This next Plackett-Plackett is interesting because at its core it looks
-# like it should be both tail dependent like M() but the shapes of the curves
-# are quite different from those of M(). This example shows numerical
-# instability for the upper tail but not the lower tail. So, we extend the
-# example to shown the tail dependency trajectories by blomCOPss(). And again
-# it is seen that the lower tail as a stable solution but the upper tail
-# has instability at 6 standard deviations into the upper tail.
-para <- list(  cop1=PLACKETTcop,  cop2=PLACKETTcop, alpha=0.0063,
-             para1=0.101,        para2=4493,         beta=0.0167)
-taildepCOP(cop=composite2COP, para=para, plot=TRUE)
-lsu <- pnorm(seq(-7, 0, by=.01))
-psu <- pnorm(seq( 0, 7, by=.01))
-lines(qnorm(lsu), sapply(lsu, function(p) {
-        blomCOPss(cop=composite2COP, para=para, vv=c(1,1), uu=rep(p, 2)) }),
-                    col="darkgreen", lty=2, lwd=1)
-lines(qnorm(psu), sapply(psu, function(p) {
-        blomCOPss(cop=composite2COP, para=para, uu=c(0,0), vv=rep(p, 2)) }),
-                    col="darkgreen", lty=2, lwd=1) #}
+  # This next Plackett-Plackett is interesting because at its core it looks
+  # like it should be both tail dependent like M() but the shapes of the curves
+  # are quite different from those of M(). This example shows numerical
+  # instability for the upper tail but not the lower tail. So, we extend the
+  # example to shown the tail dependency trajectories by blomCOPss(). And again
+  # it is seen that the lower tail as a stable solution but the upper tail
+  # has instability at 6 standard deviations into the upper tail.
+  para <- list(  cop1=PLACKETTcop,  cop2=PLACKETTcop, alpha=0.0063,
+               para1=0.101,        para2=4493,         beta=0.0167)
+  taildepCOP(cop=composite2COP, para=para, plot=TRUE)
+  lsu <- pnorm(seq(-7, 0, by=.01))
+  psu <- pnorm(seq( 0, 7, by=.01))
+  lines(qnorm(lsu), sapply(lsu, function(p) {
+          blomCOPss(cop=composite2COP, para=para, vv=c(1,1), uu=rep(p, 2)) }),
+                      col="darkgreen", lty=2, lwd=1)
+  lines(qnorm(psu), sapply(psu, function(p) {
+          blomCOPss(cop=composite2COP, para=para, uu=c(0,0), vv=rep(p, 2)) }),
+                      col="darkgreen", lty=2, lwd=1) #}
 }
 \keyword{copula (characteristics)}
 \keyword{copula (properties)}

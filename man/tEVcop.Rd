@@ -3,18 +3,18 @@
 \alias{tEVcop}
 \title{The t-EV (Extreme Value) Copula}
 \description{
-The \emph{t-EV copula} (Joe, 2014, p. 189) is a limiting form of the \emph{t-copula} (multivariate t-distribution):
+The \emph{t-EV copula} (Joe, 2014, p. 189) is a limiting form of the \emph{t-Student copula} (multivariate t-distribution) (\code{\link{Tcop}}):
 \deqn{
 \mathbf{C}_{\rho,\nu}(u,v) = \mathbf{tEV}(u,v; \rho, \nu) =
 \mathrm{exp}\bigl(-(x+y) \times B(x/(x+y); \rho, \nu)\bigr)\mbox{,}
 }
 where \eqn{x = -\log(u)}, \eqn{y = -\log(v)}, and letting \eqn{\eta = \sqrt{(\nu+1)/(1-\rho^2)}} define
 \deqn{
-B(w; \rho, \nu) = w \times T_{\nu+1}\bigl(\eta[(w/[1-w])^{1/\nu}-\rho]\bigr) + (1-w) \times T_{\nu+1}\bigl(\eta[([1-w]/w)^{1/\nu}-\rho]\bigr)\mbox{,}
+B(w; \rho, \nu) = w \times t_{\nu+1}\bigl(\eta[(w/[1-w])^{1/\nu}-\rho]\bigr) + (1-w) \times t_{\nu+1}\bigl(\eta[([1-w]/w)^{1/\nu}-\rho]\bigr)\mbox{,}
 }
-where \eqn{T_{\nu+1}} is the cumulative distribution function of the \emph{univariate t-distribution} with \eqn{\nu-1} degrees of freedom. As \eqn{\nu \rightarrow \infty}, the copula weakly converges to the \emph{\enc{Hüsler}{Husler}--Reiss copula} (\code{\link{HRcop}}) because the t-distribution converges to the normal (see \bold{Examples} for a study of this copula).
+where \eqn{t_{\nu+1}} is the cumulative distribution function of the \emph{univariate t-distribution} with \eqn{\nu+1} degrees of freedom. As \eqn{\nu \rightarrow \infty}, the copula weakly converges to the \emph{\enc{Hüsler}{Husler}--Reiss copula} (\code{\link{HRcop}}) because the t-distribution converges to the normal (refer to \bold{Examples} for a study of this copula).
 
-The \eqn{\mathbf{tEV}(u,v; \rho, \nu)} copula is a two-parameter option when working with extreme-value copula. There is a caveat though. Demarta and McNeil (2004) conclude that \dQuote{the parameter of the Gumbel [\code{\link{GHcop}}] or Galambos [\code{\link{GLcop}}] A-functions [the \emph{Pickend dependence function} and B-function by association] can always be chosen so that the curve is extremely close to that of the t-EV A-function for any values of \eqn{\nu} and \eqn{\rho}. The implication is that in all situations where the t-EV copula might be deemed an appropriate model then the practitioner can work instead with the simpler Gumbel or Galambos copulas.}
+The \eqn{\mathbf{tEV}(u,v; \rho, \nu)} copula is a two-parameter option when working with extreme-value copula. There is a caveat though. Demarta and McNeil (2004) conclude that \dQuote{the parameter of the \emph{Gumbel--Hougaard} (\code{\link{GHcop}}) or \emph{Galambos} (\code{\link{GLcop}}) A-functions [the \emph{Pickend dependence function} and B-function by association] can always be chosen so that the curve is extremely close to that of the t-EV A-function for any values of \eqn{\nu} and \eqn{\rho}. The implication is that in all situations where the t-EV copula might be deemed an appropriate model then the practitioner can work instead with the simpler Gumbel or Galambos copulas.}
 }
 \usage{
 tEVcop(u, v, para=NULL, ...)
@@ -37,14 +37,14 @@ Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 Demarta, S., and McNeil, A.J., 2004, The t copula and related copulas: International Statistical Review, v. 33, no. 1, pp. 111--129, \doi{10.1111/j.1751-5823.2005.tb00254.x}
 }
 \author{W.H. Asquith}
-\seealso{\code{\link{GHcop}}, \code{\link{GLcop}}, \code{\link{HRcop}}
+\seealso{\code{\link{GHcop}}, \code{\link{GLcop}}, \code{\link{HRcop}}, \code{\link{Tcop}}
 }
 \examples{
 \dontrun{
   tau <- 1/3 # Example from copula::evCopula.Rd
   tev.cop <- copula::tevCopula(copula::iTau(copula::tevCopula(), tau))
   copula::pCopula(c(0.1,.5), copula=tev.cop)         # 0.07811367
-  tEVcop(0.1, 0.5, para=slot(tev.cop, "parameters")) # 0.07811367}
+  tEVcop(0.1, 0.5, para=slot(tev.cop, "parameters")) # 0.07811367 }
 
 \dontrun{
   nsim <- 2000; pargh <- c(5, 0.5, 0.5)
@@ -108,3 +108,4 @@ Demarta, S., and McNeil, A.J., 2004, The t copula and related copulas: Internati
 \keyword{copula (extreme value)}
 \keyword{extreme value copula}
 \keyword{Joe (2014) Examples and Exercises}
+\keyword{Student t}
