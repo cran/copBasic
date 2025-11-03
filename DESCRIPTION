@@ -1,7 +1,7 @@
 Package: copBasic
 Title: General Bivariate Copula Theory and Many Utility Functions
-Version: 2.2.9
-Date: 2025-09-28
+Version: 2.2.11
+Date: 2025-11-02
 Authors@R: person(given = "William",
                   family = "Asquith",
                   role = c("aut", "cre"),
@@ -27,7 +27,7 @@ Imports: lmomco, mvtnorm, randtoolbox
 Suggests: copula
 License: GPL-2
 NeedsCompilation: no
-Packaged: 2025-09-28 22:31:17 UTC; wasquith
+Packaged: 2025-11-02 21:30:13 UTC; wasquith
 Author: William Asquith [aut, cre] (ORCID:
     <https://orcid.org/0000-0002-7400-1861>)
-Date/Publication: 2025-09-29 08:50:02 UTC
+Date/Publication: 2025-11-03 06:10:15 UTC

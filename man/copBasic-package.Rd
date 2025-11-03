@@ -31,6 +31,7 @@ Gumbel\enc{–}{-}Hougaard copula \tab \eqn{\mathbf{GH}(u,v)} \tab \code{\link{G
 Hairpin copula \tab \eqn{\mathbf{HAIRPIN(u,v)}} \tab \code{\link{HAIRPINcop}} \tab copula\cr
 \enc{Hüsler}{Husler}\enc{–}{-}Reiss copula \tab \eqn{\mathbf{HR}(u,v)} \tab \code{\link{HRcop}} \tab copula\cr
 Joe B5 (the \dQuote{Joe}) copula \tab \eqn{\mathbf{B5}(u,v)} \tab \code{\link{JOcopB5}} \tab copula\cr
+Joe\enc{–}{-}Ma copula \tab \eqn{\mathbf{JOMA}(u,v)} \tab \code{\link{JOMAcop}} \tab copula\cr
 Marshall\enc{–}{-}Olkin copula \tab \eqn{\mathbf{MO}(u,v)} \tab \code{\link{MOcop}} \tab copula\cr
 Nelsen eq.4-2-12 copula \tab \eqn{\mathbf{N4212cop}(u,v)} \tab \code{\link{N4212cop}} \tab copula\cr
 Nelsen eq.4-2-20 copula \tab \eqn{\mathbf{N4220cop}(u,v)} \tab \code{\link{N4220cop}} \tab copula\cr
@@ -106,7 +107,7 @@ Maximum likelihood \tab \eqn{\mathcal{L}(\Theta_d)} \tab \code{\link{mleCOP}} \t
 Akaike information criterion \tab \eqn{\mathrm{AIC}_\mathbf{C}} \tab \code{\link{aicCOP}} \tab goodness-of-fit\cr
 Bayesian information crit. \tab \eqn{\mathrm{BIC}_\mathbf{C}} \tab \code{\link{bicCOP}} \tab goodness-of-fit\cr
 Root mean square error \tab \eqn{\mathrm{RMSE}_\mathbf{C}} \tab \code{\link{rmseCOP}} \tab goodness-of-fit\cr
-Another goodness-of-fit \tab \eqn{T_n} \tab \code{\link{statTn}} \tab goodness-of-fit\cr\cr
+Another goodness-of-fit \tab \eqn{T_n} \tab \code{\link{statTn}} \tab goodness-of-fit\cr
 }
 
 

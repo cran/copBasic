@@ -37,4 +37,19 @@ function(cop=NULL, u, v,
     }
 }
 
+#gradCOP <- function(cop=NULL, u, v, para=NULL) {
+#  func <- function(u, v=NA, para=NULL) cop(u, v, para=para)
+#  if(length(u) == 1) {
+#    return(sapply(v, function(v) numDeriv::grad(func, u, v=v, para=para)))
+#  }
+#  if(length(u) != length(v)) {
+#    #warning("length of u and v are not equal, so using only first element of v")
+#    v <- rep(v[1], length(u))
+#  }
+#  der <- vector(mode="numeric", length(u))
+#  for(i in 1:length(u)) {
+#    der[i] <- numDeriv::grad(func, u[i], method="complex", v=v[i], para=para)
+#  }
+#  return(der)
+#}
 

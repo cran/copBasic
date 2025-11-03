@@ -1,6 +1,6 @@
-6d6af97070c24de83ac125d51dd63809 *DESCRIPTION
-17d664725e0448a96e7a703cbeab494c *NAMESPACE
-d6c72e7f137b6739fd11aa5637ee8f71 *NEWS
+d9d5ac11a85bb46c4c96bc49c43d59ba *DESCRIPTION
+023439f915d12fce441785e6a3ce5fe3 *NAMESPACE
+4e95256420524b48a6e0fcc91ab742e5 *NEWS
 17b5290f2fdb2695dbe1791d78c7857c *R/AMHcop.R
 7d5903f2343c7c7e611e52d6fb2f3c51 *R/CIRCcop.R
 d2b8ae2af2504fd085ec3ee7e3b7aa33 *R/CLcop.R
@@ -29,6 +29,7 @@ fdde88dc297b01b2550f78803bf7bc24 *R/FRECHETcop.R
 7ecfef4c28de7dbc0945122621df80f7 *R/GLcop.R
 486854959a1fc2dfb4511812b0ac5d02 *R/HAIRPINcop.R
 955a5c342b026895a97b26b3c8bd9872 *R/HRcop.R
+ac66384754a5f59ae258ae87b52f5a37 *R/JOMAcop.R
 1ee2fdb40c432d61b243d38a9758818c *R/JOcop.R
 d798ffc741d49285cf4ebda2ac3a686d *R/LzCOPpermsym.R
 9e3baa945a26638ee969b26d4f67cdf6 *R/M.R
@@ -68,7 +69,7 @@ f453536d5eb7d6c0e0813b50b851ca24 *R/convex2COP.R
 07ba7c768e9bda88fd60b0840a8f2842 *R/copBasic.fitpara.R
 d4b178c507f26a93c39f20be85dcccde *R/densityCOP.R
 2bcc1595c0bea0ae62cf461deaf41099 *R/densityCOPplot.R
-0a5875d06c07aa466067dd5a3cf3cf47 *R/derCOP.R
+f3665bfb73967a7773e68d43e70433ca *R/derCOP.R
 4e021dbd3cd3e1a81584dd99dbc31e99 *R/derCOP2.R
 86fd388476d325d2e4d59ed09aade146 *R/derCOPinv.R
 b69b64c43b15388e6626cfa5052a3f18 *R/derCOPinv2.R
@@ -134,7 +135,7 @@ abbe2b4906e1e94dc4db19e74c3734d3 *R/tauCOP.R
 9aa550c8d375d11146e94e7f7fd1871d *R/uvlmoms.R
 d67db7936ca3ab427d4f4ba8ee4e9130 *R/vuongCOP.R
 06782af0abbb8267316b2836b64a7363 *R/wolfCOP.R
-1bf18d9c216b8d95033f0bd2fe2906b2 *build/partial.rdb
+76e123f5dcc8dee07678412adc0a2a84 *build/partial.rdb
 2d9f44f6a7722b44d9ff70c8273c320a *data/ReineckeWell266.RData
 d45f4e44cec05d81fbb9db2aba3d3d6c *data/ReineckeWells.RData
 60627f1f27f4e76a19bae79559e31135 *inst/3dcopula/3dconfig_examples/Comal.txt
@@ -191,10 +192,10 @@ afa8882452877ff15a0f78cbac6cf049 *man/FRECHETcop.Rd
 5b955406d5986328aded7d28a66536f3 *man/GLcop.Rd
 e4f9e7b5a3239f2d4d03c43d94439390 *man/HAIRPINcop.Rd
 541f8129d011b559ebee6ca35675e385 *man/HRcop.Rd
+8107c30198aaf057ecd1db4a44e4938d *man/JOMAcop.Rd
 53fe1346a08b535ac91def2ba16c742a *man/JOcopB5.Rd
 4fd14a7e3503d9caa2abe9fcfd18bfb1 *man/LCOMDIA_GH2cop.Rd
 23e86859ac07b14944a935d8efa5958e *man/LCOMDIA_GH3cop.Rd
-12d9dbef1e69fcd30da6948716a2b28b *man/LCOMDIA_GHcop.Rd
 6ad52915cf52e93ede04661c829f2cdd *man/LCOMDIA_ManyCops.Rd
 a9e65f4b58c34614e2a6a8b878081b31 *man/LzCOPpermsym.Rd
 7466b6e92fe9050f161b302956504592 *man/M.Rd
@@ -233,7 +234,7 @@ dbd4b9458ceb31d0a25a2b6d950f7ccf *man/coCOP.Rd
 1faf16f7a6be4351db0d6f4569f6644f *man/composite3COP.Rd
 7943db8d3abb3255d59e2f601b19f242 *man/convex2COP.Rd
 c64198c9e4cc2cdaeee4ab66c5e14bda *man/convexCOP.Rd
-9d7c86c50573cfa681fd13233c4a67c9 *man/copBasic-package.Rd
+529d2b8e94f70259cd70bf22207c8c06 *man/copBasic-package.Rd
 80ec3ea9666d1886575307f4dbfe83f9 *man/copBasic.fitpara.Rd
 60ae42b2851c5332107ed779e2c8664c *man/densityCOP.Rd
 32df7f119c2bcc4caac1a3446d47f612 *man/densityCOPplot.Rd
@@ -267,7 +268,7 @@ c4fb8a0e76fa11fd4c3da22951980220 *man/kfuncCOP_Pd.Rd
 34b502b33d15f1e579217ca6ce8215d4 *man/kfuncCOPinv.Rd
 55b26caf4c4461521313b1fee7ca3103 *man/kfuncCOPlmoms.Rd
 79a9861dd3648b0d5886e4de9e5b8228 *man/kullCOP.Rd
-95a6d185f2162f64aab2fdd0a115159c *man/lcomCOP.Rd
+02555ceef14f6b91bebd4804a3048f2f *man/lcomCOP.Rd
 d4d60dcf4d1bb45c555a21b48e2ccbda *man/lcomCOPpv.Rd
 6427ec775e7b36dc5f2f668b88bfd1aa *man/lcomoms2.ABKGcop2parameter.Rd
 24ae03093cc466477180bc2485d1f9cf *man/lcomoms2.ABcop2parameter.Rd
