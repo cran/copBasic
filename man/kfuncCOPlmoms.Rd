@@ -50,7 +50,7 @@ kfuncCOPlmoms(cop=NULL, para=NULL, nmom=5, begin.mom=1, ...)
   \item{source}{An attribute identifying the computational source of the L-moments: \dQuote{kfuncCOPlmoms}.}
 }
 \note{
-The L-moments of Kendall Functions appear to be not yet fully researched. An interesting research direction would be the trajectories of the L-moments or \emph{L-moment ratio diagrams} for the Kendall Function and the degree to which distinction between copulas becomes evident---such diagrams are in wide-spread use for distinquishing between univariate distributions. It is noted, however, that \emph{Kendall Function L-moment ratio diagrams} might be of less utility that in the univariate world---recalling that a univariate distribution is unique characteristized by its L-moments---because different copulas can have the same \eqn{F_K(z)}, such as all bivariate extreme value copulas (see also \bold{Examples}).
+The L-moments of Kendall Functions appear to be not yet fully researched. An interesting research direction would be the trajectories of the L-moments or \emph{L-moment ratio diagrams} for the Kendall Function and the degree to which distinction between copulas becomes evident---such diagrams are in wide-spread use for distinguishing between univariate distributions. It is noted, however, that \emph{Kendall Function L-moment ratio diagrams} might be of less utility that in the univariate world---recalling that a univariate distribution is uniquely characterized by its L-moments---because different copulas can have the same \eqn{F_K(z)}, such as all bivariate extreme value copulas (see also \bold{Examples}).
 \preformatted{
   Rhos <- c(0.001, 0.01, seq(0.05, 0.95, by=0.05), 0.99, 0.999)
   L1 <- T2 <- T3 <- T4 <- Thetas <- vector(mode="numeric", length(Rhos))

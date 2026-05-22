@@ -25,3 +25,5 @@ EMPIRgridderinv2(empgrid=NULL, kumaraswamy=FALSE, dergrid=NULL, ...)
 \keyword{empirical copula}
 \keyword{empirical copula (derivative inverses)}
 \keyword{derivative}
+\keyword{copulatic surface}
+\keyword{gridded empirical copula}

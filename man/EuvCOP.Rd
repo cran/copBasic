@@ -62,7 +62,7 @@ sapply(v, function(vv) mean( UV$U[UV$V > vv - 50/n & UV$V < vv + 50/n] ) )
 # to the right of the "singularity" for v=0.2 than v=0.80. For v=0.80, the
 # "singularity" appears tighter given the upper tail dependency contrast of the
 # coupla in the symmetrical case (alpha=0, beta=0) and changing the parameter to
-# a Spearman Rho (say) similar to the para settting in this example. So, 0.70 for
+# a Spearman Rho (say) similar to the para setting in this example. So, 0.70 for
 # the mean given v=0.80 makes sense. Further notice that the two estimates of the
 # mean are further apparent for v=0.2 relative to v=0.80. Again, this makes sense
 # when the copula is visualized even at small n let alone large n.

@@ -57,7 +57,7 @@ LpCOPpermsym(cop=NULL, para=NULL, p=2, brute=FALSE, delta=0.002, ...)
   \item{cop}{A copula function;}
   \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula;}
   \item{p}{The value for \eqn{p} as described above with a default to 2 to match the discussion of Nelsen (2006) and the \emph{Hoeffding Phi} of Cherubini \emph{et al.} (2004). Do not confuse \eqn{p} with \eqn{d} described in \bold{Note};}
-  \item{as.sample}{A logical controlling whether an optional \R \code{data.frame} in \code{para} is used to compute the \eqn{\hat{\Phi}_\mathbf{C}} (see \bold{Note}). If set to \code{-1}, then the message concerning CPU effort will be surpressed;}
+  \item{as.sample}{A logical controlling whether an optional \R \code{data.frame} in \code{para} is used to compute the \eqn{\hat{\Phi}_\mathbf{C}} (see \bold{Note}). If set to \code{-1}, then the message concerning CPU effort will be suppressed;}
   \item{sample.as.prob}{When \code{as.sample} triggered, what are the units incoming in \code{para}? If they are probabilities, the default is applicable. If they are not, then the columns are re-ranked and divided simply by \eqn{1/n}---more sophisticated \emph{empirical copula} probabilities are not used (\code{\link{EMPIRcop}});}
   \item{brute}{Should brute force be used instead of two nested \code{integrate()} functions in \R to perform the double integration;}
   \item{delta}{The \eqn{\mathrm{d}u} and \eqn{\mathrm{d}v} for the brute force (\code{brute=TRUE}) integration; and}

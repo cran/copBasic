@@ -35,7 +35,7 @@ where \eqn{\phi} is the \code{repcoe} replication factor or coefficient. If \cod
   An \R \code{list} is returned.
   \item{text}{A string functioning as a label for the remaining tables;}
   \item{Ntable}{Another \R \code{list} holding tables of the L-moments of the L-comoments derived from Monte Carlo integration for samples of size \eqn{N =} \code{mcn}. The simulations are replicated \code{mcrep} times; and}
-  \item{ntable}{Another \R \code{list} holding tables of the L-moments of the L-comoments derived from the small sample simulations for samples of size \eqn{n =} \code{n} as well as the p-values estimated by a generalized normal distribution (see \pkg{lmomco} package documentation) of the L-moments using either the small sample means or the mean of the replicated Monte Carlo integrations as dictated by \code{usemcmu}. In all circumstances, however, the results for the small sample simluations are tabulated in \code{ntable} only the p-value will be reflective the setting of \code{usemcmu}.}
+  \item{ntable}{Another \R \code{list} holding tables of the L-moments of the L-comoments derived from the small sample simulations for samples of size \eqn{n =} \code{n} as well as the p-values estimated by a generalized normal distribution (see \pkg{lmomco} package documentation) of the L-moments using either the small sample means or the mean of the replicated Monte Carlo integrations as dictated by \code{usemcmu}. In all circumstances, however, the results for the small sample simulations are tabulated in \code{ntable} only the p-value will be reflective the setting of \code{usemcmu}.}
 }
 \note{
 A significance column for the p-values is added to the right side of the returned \code{ntable} and is used to guide the eye in interpretation of results. The significant codes having the following definitions for a two-tailed form:
@@ -51,20 +51,20 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 \examples{
 # See Note section of vuongCOP() for an extended discussion of copula inference
 \dontrun{
-Tau <- 0.6410811; para <- GHcop(tau=Tau)$para # This Tau is from a situation of
-# two river tributaries. These three L-comoments with univariate L-moments on the
-T2 <- c(1,  0.79908960, 0.79908960, 1) # diagonals are derived from those river
-# tributaries and downstream of the junction data.
-T3 <- c(0, -0.04999318, 0.07689082, 0)
-T4 <- c(0,  0.01773833, 0.04756257, 0) # Is the Ho:GHcop rejectable?
-LCOM <- list(T2=matrix(T2, nrow=2), T3=matrix(T3, nrow=2), T4=matrix(T4, nrow=2))
-set.seed(30312)
-ZZ1 <- lcomCOPpv(75, LCOM, cop=GHcop, para=para, repcoe=2000, usemcmu=FALSE)
-print(ZZ1)
-set.seed(30312)
-ZZ2 <- lcomCOPpv(75, LCOM, cop=GHcop, para=para, repcoe=2000, usemcmu=TRUE)
-print(ZZ2)
-# The results here suggest that the GHcop is not rejectable.}
+  Tau <- 0.6410811; para <- GHcop(tau=Tau)$para # This Tau is from a situation of
+  # two river tributaries. These three L-comoments with univariate L-moments on the
+  T2 <- c(1,  0.79908960, 0.79908960, 1) # diagonals are derived from those river
+  # tributaries and downstream of the junction data.
+  T3 <- c(0, -0.04999318, 0.07689082, 0)
+  T4 <- c(0,  0.01773833, 0.04756257, 0) # Is the Ho:GHcop rejectable?
+  LCOM <- list(T2=matrix(T2, nrow=2), T3=matrix(T3, nrow=2), T4=matrix(T4, nrow=2))
+  set.seed(30312)
+  ZZ1 <- lcomCOPpv(75, LCOM, cop=GHcop, para=para, repcoe=2000, usemcmu=FALSE)
+  print(ZZ1)
+  set.seed(30312)
+  ZZ2 <- lcomCOPpv(75, LCOM, cop=GHcop, para=para, repcoe=2000, usemcmu=TRUE)
+  print(ZZ2)
+  # The results here suggest that the GHcop is not rejectable.}
 }
 \keyword{inference}
 \keyword{hypothesis testing}

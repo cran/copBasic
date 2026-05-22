@@ -6,7 +6,7 @@
 Compute the \emph{survival copula} from a copula (Nelsen, 2006, pp. 32--34), which is defined as
 
 \deqn{\hat{\mathbf{C}}(1-u,1-v) = \hat{\mathbf{C}}(u',v') = \mathrm{Pr}[U > u, V > v] = u' + v' - 1 + \mathbf{C}(1-u', 1-v')\mbox{,}}
-where \eqn{u'} and \eqn{v'} are exceedance probabilities and \eqn{\mathbf{C}(u,v)} is the copula (\code{\link{COP}}). The \emph{survivial copula} is a reflection of both \eqn{U} and \eqn{V}.
+where \eqn{u'} and \eqn{v'} are exceedance probabilities and \eqn{\mathbf{C}(u,v)} is the copula (\code{\link{COP}}). The \emph{survival copula} is a reflection of both \eqn{U} and \eqn{V}.
 
 The \emph{survival copula} is an expression of the joint probability that both \eqn{U > v} and \eqn{U > v} when the arguments \eqn{a} and \eqn{b} to \eqn{\hat{\mathbf{C}}(a,b)} are exceedance probabilities as shown. This is unlike a copula that has \eqn{U \le u} and \eqn{V \le v} for nonexceedance probabilities \eqn{u} and \eqn{v}. Alternatively, the joint probability that both \eqn{U > u} and \eqn{V > v} can be solved using just the copula \eqn{1 - u - v + \mathbf{C}(u,v)}, as shown below where the arguments to \eqn{\mathbf{C}(u,v)} are nonexceedance probabilities. The later formula is the \emph{joint survival function} \eqn{\overline{\mathbf{C}}(u,v)} (\code{\link{surfuncCOP}}) defined for a copula (Nelsen, 2006, p. 33) as
 \deqn{\overline{\mathbf{C}}(u,v) = \mathrm{Pr}[U > u, V > v] = 1 - u - v + \mathbf{C}(u,v)\mbox{.}}

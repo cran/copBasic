@@ -41,15 +41,15 @@ function(n, lcom, cop=NULL, para=NULL, repcoe=5E3, type="gno",
       }
       message("done")
       message("         Computing univariate L-moments-", appendLF=FALSE)
-      lmrT2b12 <- lmomco::lmoms(T2COPb12, nmom=4)
-      lmrT2b21 <- lmomco::lmoms(T2COPb21, nmom=4)
-      lmrT3b12 <- lmomco::lmoms(T3COPb12, nmom=4)
-      lmrT3b21 <- lmomco::lmoms(T3COPb21, nmom=4)
-      lmrT4b12 <- lmomco::lmoms(T4COPb12, nmom=4)
-      lmrT4b21 <- lmomco::lmoms(T4COPb21, nmom=4)
-      lmrT2b   <- lmomco::lmoms(T2COPb,   nmom=4)
-      lmrT3b   <- lmomco::lmoms(T3COPb,   nmom=4)
-      lmrT4b   <- lmomco::lmoms(T3COPb,   nmom=4)
+      lmrT2b12 <- lmomco::lmoms(T2COPb12, nmom=4, no.stop=TRUE)
+      lmrT2b21 <- lmomco::lmoms(T2COPb21, nmom=4, no.stop=TRUE)
+      lmrT3b12 <- lmomco::lmoms(T3COPb12, nmom=4, no.stop=TRUE)
+      lmrT3b21 <- lmomco::lmoms(T3COPb21, nmom=4, no.stop=TRUE)
+      lmrT4b12 <- lmomco::lmoms(T4COPb12, nmom=4, no.stop=TRUE)
+      lmrT4b21 <- lmomco::lmoms(T4COPb21, nmom=4, no.stop=TRUE)
+      lmrT2b   <- lmomco::lmoms(T2COPb,   nmom=4, no.stop=TRUE)
+      lmrT3b   <- lmomco::lmoms(T3COPb,   nmom=4, no.stop=TRUE)
+      lmrT4b   <- lmomco::lmoms(T3COPb,   nmom=4, no.stop=TRUE)
       T2b <- data.frame(LcomType=c("Tau2[12]", "Tau2[21]", "Tau2[12:21]"),
           N=rep(mcn, 3), Nrep=rep(mcrep, 3),
           Mean=  c(lmrT2b12$lambdas[1], lmrT2b21$lambdas[1], lmrT2b$lambdas[1]),
@@ -101,9 +101,9 @@ function(n, lcom, cop=NULL, para=NULL, repcoe=5E3, type="gno",
 
       message("         Computing univariate L-moments for L-comoments 'r[12]'")
       # Work on [12]
-      lmrT2 <- lmomco::lmoms(T2COP12); lmrT2t <- lmrT2
-      lmrT3 <- lmomco::lmoms(T3COP12); lmrT3t <- lmrT3
-      lmrT4 <- lmomco::lmoms(T4COP12); lmrT4t <- lmrT4
+      lmrT2 <- lmomco::lmoms(T2COP12, no.stop=TRUE); lmrT2t <- lmrT2
+      lmrT3 <- lmomco::lmoms(T3COP12, no.stop=TRUE); lmrT3t <- lmrT3
+      lmrT4 <- lmomco::lmoms(T4COP12, no.stop=TRUE); lmrT4t <- lmrT4
       if(usemcmu) {
          message("         Using mean of Monte Carlo integrations and rescaling ",
                  "L-scale by small simulation LCV")
@@ -135,9 +135,9 @@ function(n, lcom, cop=NULL, para=NULL, repcoe=5E3, type="gno",
 
       message("         Computing univariate L-moments for L-comoments 'r[21]'")
       # Work on [21]
-      lmrT2 <- lmomco::lmoms(T2COP21); lmrT2t <- lmrT2
-      lmrT3 <- lmomco::lmoms(T3COP21); lmrT3t <- lmrT3
-      lmrT4 <- lmomco::lmoms(T4COP21); lmrT4t <- lmrT4
+      lmrT2 <- lmomco::lmoms(T2COP21, no.stop=TRUE); lmrT2t <- lmrT2
+      lmrT3 <- lmomco::lmoms(T3COP21, no.stop=TRUE); lmrT3t <- lmrT3
+      lmrT4 <- lmomco::lmoms(T4COP21, no.stop=TRUE); lmrT4t <- lmrT4
       if(usemcmu) {
          message("         Using mean of Monte Carlo integrations and rescaling ",
                  "L-scale by small simulation LCV")
@@ -172,9 +172,9 @@ function(n, lcom, cop=NULL, para=NULL, repcoe=5E3, type="gno",
       T2 <- (lcom$T2[1,2] + lcom$T2[2,1]) / 2
       T3 <- (lcom$T3[1,2] + lcom$T3[2,1]) / 2
       T4 <- (lcom$T4[1,2] + lcom$T4[2,1]) / 2
-      lmrT2 <- lmomco::lmoms(T2COP); lmrT2t <- lmrT2 # Create temporary copies that we can do
-      lmrT3 <- lmomco::lmoms(T3COP); lmrT3t <- lmrT3 # substitution on the mean and L-scale dependng
-      lmrT4 <- lmomco::lmoms(T4COP); lmrT4t <- lmrT4 # on setting of 'usemcmu' for the p-value computation.
+      lmrT2 <- lmomco::lmoms(T2COP, no.stop=TRUE); lmrT2t <- lmrT2 # Create temporary copies that we can do
+      lmrT3 <- lmomco::lmoms(T3COP, no.stop=TRUE); lmrT3t <- lmrT3 # substitution on the mean and L-scale dependng
+      lmrT4 <- lmomco::lmoms(T4COP, no.stop=TRUE); lmrT4t <- lmrT4 # on setting of 'usemcmu' for the p-value computation.
       if(usemcmu) {
          message("         Using mean of Monte Carlo integrations and rescaling ",
                  "L-scale by small simulation LCV")

@@ -1,5 +1,6 @@
 "wolfCOP" <-
-function(cop=NULL, para=NULL, as.sample=FALSE, brute=FALSE, delta=0.002, ...) {
+function(cop=NULL, para=NULL, as.sample=FALSE, brute=FALSE, delta=0.002,
+         nlarge=500, usefastgrid=TRUE, ...) {
 
     if(as.sample) {
       if(is.null(para)) {
@@ -12,19 +13,31 @@ function(cop=NULL, para=NULL, as.sample=FALSE, brute=FALSE, delta=0.002, ...) {
                 "returning NULL")
         return(NULL)
       }
-      if(as.sample == -1) message("Sample Schweizer-Wolff Sigma",
-                                  "---CPU intensive!")
-      # http://www.cs.cmu.edu/~bapoczos/articles/poczos11nipscopula.pdf
-      #                                               (August 11, 2015)
-      n <- length(para[,1]); nn <- n^2; ns <- 1:n
-      R <- rank(para[,1]); S <- rank(para[,2])
-      samSIG <- sum(sapply(ns, function(i) {
-             sum(sapply(ns, function(j) {
+      n <- nrow(para)
+      if(usefastgrid & n > nlarge) {
+        ef <- EMPIRgrid_fast(para=para, gridonly=FALSE, ...)
+        pf <- ef$empcop
+        # gu <- gv <- as.numeric( rownames(ef$empcop) ) # a bit more speed
+        gu <- as.numeric( rownames(ef$empcop) ) # to use only a single vector of u = v
+        for(i in seq_len(nrow(pf))) pf[i,] <- gu * gu[i] # in lieu of gv * gu[i] for instance
+               samSIG <- 12 * sum(abs(ef$empcop - pf)) / (n^2 - 1)
+        names(samSIG) <- "Sigma:EMPIRgrid_fast"
+        return(samSIG)
+      } else {
+         if(as.sample == -1) message("Sample Schweizer-Wolff Sigma",
+                                     "---CPU intensive!")
+         # https://www.cs.cmu.edu/~bapoczos/articles/poczos11nipscopula.pdf
+         #                                                (August 11, 2015)
+         nn <- n^2; ns <- seq_len(n)
+         R <- rank(para[,1]); S <- rank(para[,2])
+         samSIG <- sum(sapply(ns, function(i) {
+                   sum(sapply(ns, function(j) {
                    abs((sum(as.numeric(R <= i & S <= j))/n) - (i*j/nn))
-             } ))
-           } ))
-      samSIG <- (12/(nn - 1)) * samSIG
-      return(samSIG)
+             } )) } ))
+               samSIG <- (12/(nn - 1)) * samSIG
+        names(samSIG) <- "Sigma:Poczos et al."
+        return(samSIG)
+      }
    }
 
    if(is.null(cop)) {
@@ -37,7 +50,9 @@ function(cop=NULL, para=NULL, as.sample=FALSE, brute=FALSE, delta=0.002, ...) {
       wolf <- sum(sapply(us, function(u) {
                  sum(sapply(vs, function(v) {
                     abs(cop(u,v, para=para, ...) - u*v) })) }))
-      return(12*wolf*delta^2)
+      wolf <- 12*wolf*delta^2
+      #names(wolf) <- "Sigma:brute"
+      return(wolf)
    }
 
    myint <- NULL
@@ -48,6 +63,6 @@ function(cop=NULL, para=NULL, as.sample=FALSE, brute=FALSE, delta=0.002, ...) {
                       0, 1)$value
             })}, 0, 1) )
    wolf <- ifelse(is.null(myint), NA, 12*myint$value)
+   #names(wolf) <- "Sigma:integrate()"
    return(wolf)
 }
-

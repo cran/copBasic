@@ -35,8 +35,8 @@ lcomCOP(cop=NULL, para=NULL, as.bilmoms=FALSE, orders=2:5, lo=0, hi=1,
   \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula;}
   \item{as.bilmoms}{A logical to trigger return of the \eqn{\delta_k} and the return vectors will be named differently;}
   \item{orders}{The orders of the L-comoments to return, which is internally adjusted if the argument \code{as.bilmoms} is set. There is no first order L-comoment and the first index on returned values is set to \code{NA} to remain index consistent with the \pkg{lmomco} package. An order greater than 5 is not supported;}
-  \item{lo}{Lower limit of integration (must assurdly leave as zero);}
-  \item{hi}{Upper integrand (must assurdly leave as unity);}
+  \item{lo}{Lower limit of integration (must absurdly leave as zero);}
+  \item{hi}{Upper integrand (must assuredly leave as unity);}
   \item{subdivisions}{Maximum number of subintervals for \code{integrate()};}
   \item{rel.tol}{Relative accuracy requested for \code{integrate()};}
   \item{abs.tol}{Absolute accuracy requested for \code{integrate()};}
@@ -51,7 +51,7 @@ lcomCOP(cop=NULL, para=NULL, as.bilmoms=FALSE, orders=2:5, lo=0, hi=1,
   \item{lcomVU}{The L-comoments \eqn{\tau^{[21]}_k} of \eqn{V} with respect to \eqn{U} for \eqn{k \in [2,3,4,5]} if \code{orders} is \code{2:5} and index 1 is \code{NA}.}
 }
 \note{
-The documention here is highly parallel to \code{\link{bilmoms}} for which that function was developed some years before \code{lmomCOP} was developed in January 2019. Also, \code{\link{bilmoms}} is based on gridded or Monte Carlo integration, and \code{\link{bilmoms}} is to be considered \bold{deprecated}. However, it is deliberate that related background and various algorithm testing are still made available in \code{\link{bilmoms}}. \emph{L-comoment ratio diagrams} are demonstrated by extensive example for many copula in \code{\link{LCOMDIA_ManyCops}}, \code{\link{LCOMDIA_GH2cop}}, \code{\link{LCOMDIA_GH3cop}}, and \code{\link{ORDSUMcop}}.
+The documentation here is highly parallel to \code{\link{bilmoms}} for which that function was developed some years before \code{lmomCOP} was developed in January 2019. Also, \code{\link{bilmoms}} is based on gridded or Monte Carlo integration, and \code{\link{bilmoms}} is to be considered \bold{deprecated}. However, it is deliberate that related background and various algorithm testing are still made available in \code{\link{bilmoms}}. \emph{L-comoment ratio diagrams} are demonstrated by extensive example for many copula in \code{\link{LCOMDIA_ManyCops}}, \code{\link{LCOMDIA_GH2cop}}, \code{\link{LCOMDIA_GH3cop}}, and \code{\link{ORDSUMcop}}.
 }
 \references{
 Asquith, W.H., 2011, Distributional analysis with L-moment statistics using the R environment for statistical computing: Createspace Independent Publishing Platform, ISBN 978--146350841--8.

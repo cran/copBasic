@@ -1,15 +1,16 @@
-"bilmoms" <- function(cop=NULL, para=NULL, only.bilmoms=FALSE,
-                      n=1E5, sobol=TRUE, scrambling=0, ...) {
+"bilmoms" <-
+function(cop=NULL, para=NULL, only.bilmoms=FALSE,
+                   n=1E5, halton=TRUE, usetime=TRUE, ...) {
 
    if(is.null(cop)) {
       warning("must have copula argument specified, returning NULL")
       return(NULL)
    }
 
-   if(sobol) {
-     if(! exists(".Random.seed")) tmp <- runif(1) # insures definition of .Random.seed
-     seed <- sample(.Random.seed, 1)
-     uv   <- randtoolbox::sobol(n=n, dim=2, seed=seed, scrambling=scrambling)
+   if(halton) {
+     #if(! exists(".Random.seed")) tmp <- runif(1) # insures definition of .Random.seed
+     #seed <- sample(.Random.seed, 1)
+     uv   <- randtoolbox::halton(n=n, dim=2, usetime=usetime)
    } else {
      uv   <- matrix(data=runif(2*n), ncol=2)
    }

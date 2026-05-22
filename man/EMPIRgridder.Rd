@@ -26,7 +26,7 @@ fakeU <- lmomco::pp(uv[,1], sort=FALSE)
 fakeV <- lmomco::pp(uv[,2], sort=FALSE)
 uv <- data.frame(U=fakeU, V=fakeV)
 
-"trans3d" <-                         # blackslashes seem needed for the package
+"trans3d" <-                         # back slashes seem needed for the package
 function(x,y,z, pmat) {              # for user manual building but bad syntax
   tmat <- cbind(x,y,z,1) \%*\% pmat    # because remember the percent sign is a
   return(tmat[,1:2] / tmat[,4])      # a comment character in LaTeX.
@@ -77,3 +77,5 @@ lines(some.lines, lwd=4, col=5, lty=2)#}
 \keyword{empirical copula}
 \keyword{empirical copula (derivatives)}
 \keyword{derivative}
+\keyword{copulatic surface}
+\keyword{gridded empirical copula}

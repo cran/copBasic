@@ -16,7 +16,7 @@ med.regressCOP(u=seq(0.01,0.99, by=0.01), cop=NULL, para=NULL, level=NA, ...)
   \item{...}{Additional arguments to pass such \code{\link{qua.regressCOP}} and \code{\link{derCOPinv}} that are called in succession.}
 }
 \value{
-  An \R \code{data.frame} of the median regressed probabilities of \eqn{V} and provided \eqn{U} values is returned. Note: if \code{level} is used, then the column ordering of the returned \code{data.frame} changes---please access the columns by the named idiom. The lower- and upper-prediction interval is contained in the columns repectively titled \code{Vlwr} and \code{Vupr} to mimic nomenclature somewhat of function \code{predict.lm()} in \R.
+  An \R \code{data.frame} of the median regressed probabilities of \eqn{V} and provided \eqn{U} values is returned. Note: if \code{level} is used, then the column ordering of the returned \code{data.frame} changes---please access the columns by the named idiom. The lower- and upper-prediction interval is contained in the columns respectively titled \code{Vlwr} and \code{Vupr} to mimic nomenclature somewhat of function \code{predict.lm()} in \R.
 }
 \note{
 An extended demonstration is needed concerning prediction intervals by median regression and a comparison to well-known linear regression. This also affords and opportunity to have \pkg{copBasic} interact with the \pkg{copula} package to gain access to the \emph{Gaussian copula} and a \emph{maximum pseudo-likelihood} estimation of the parameter.
@@ -42,7 +42,7 @@ Second, a bivariate \emph{Gaussian copula} is defined with a parameter \eqn{\The
   UVs      <- as.data.frame(UVs); X <- qnorm(UVs[,1]); Y <- qnorm(UVs[,2])
 }
 
-Third, the \emph{Weibull plotting positions} from the \code{pp()} function of package \pkg{lmomco} are used to estimate the empirical probababilities of the data in \code{UV} that are casted into an \R \code{matrix} because the \pkg{copula} package expects the data as a \code{matrix} for the default parameter estimation. The code is completed by the specification of the fitted \emph{Gaussian copula} in \code{fnorm.cop}.
+Third, the \emph{Weibull plotting positions} from the \code{pp()} function of package \pkg{lmomco} are used to estimate the empirical probabilities of the data in \code{UV} that are casted into an \R \code{matrix} because the \pkg{copula} package expects the data as a \code{matrix} for the default parameter estimation. The code is completed by the specification of the fitted \emph{Gaussian copula} in \code{fnorm.cop}.
 \preformatted{
   UV <- as.matrix(data.frame(U=lmomco::pp(X, sort=FALSE),
                              V=lmomco::pp(Y, sort=FALSE)))

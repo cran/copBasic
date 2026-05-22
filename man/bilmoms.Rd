@@ -19,24 +19,24 @@ Compute the \emph{bivariate L-moments (ratios)} (\eqn{\delta^{[\ldots]}_{k;\math
 \mathbf{C}(u,v)\,\mathrm{d}u\mathrm{d}v - \frac{1}{2}\mbox{,}}
 where the bivariate L-moments are related to the L-comoment ratios by
 \deqn{6\delta^{[12]}_k = \tau^{[12]}_{k+1}\mbox{\quad and \quad}6\delta^{[21]}_k = \tau^{[21]}_{k+1}\mbox{,}}
-where in otherwords, \dQuote{the third bivariate L-moment \eqn{\delta^{[12]}_3} is one sixth the L-cokurtosis \eqn{\tau^{[12]}_4}.} The first four bivariate L-moments yield the first five L-comoments (there is no first order L-comoment ratio). The terms and nomenclature are not easy and also the English grammar adjective \dQuote{ratios} is not always consistent in the literature. The \eqn{\delta^{[\ldots]}_{k;\mathbf{C}}} are \bold{ratios}, and the returned \code{bilcomoms} element by this function holds matrices for the marginal means, marginal L-scales and L-coscales, and then the \bold{ratio} L-comoments.
+where in other words, \dQuote{the third bivariate L-moment \eqn{\delta^{[12]}_3} is one sixth the L-cokurtosis \eqn{\tau^{[12]}_4}.} The first four bivariate L-moments yield the first five L-comoments (there is no first order L-comoment ratio). The terms and nomenclature are not easy and also the English grammar adjective \dQuote{ratios} is not always consistent in the literature. The \eqn{\delta^{[\ldots]}_{k;\mathbf{C}}} are \bold{ratios}, and the returned \code{bilcomoms} element by this function holds matrices for the marginal means, marginal L-scales and L-coscales, and then the \bold{ratio} L-comoments.
 
 Similarly, the \eqn{\delta^{[21]}_k} are computed by switching \eqn{u \rightarrow v} in the polynomials within the above integrals multiplied to the copula in the system of equations with \eqn{u}. In general, \eqn{\delta^{[12]}_k \not= \delta^{[21]}_k} for \eqn{k > 1} unless in the case of \emph{permutation symmetric} (\code{\link{isCOP.permsym}}) copulas. By theory, \eqn{\delta^{[12]}_1 = \delta^{[21]}_1 = \rho_\mathbf{C}/6} where \eqn{\rho_\mathbf{C}} is a \emph{Spearman Rho} \code{\link{rhoCOP}}.
 
 The integral for \eqn{\delta^{[12]}_{4;\mathbf{C}}} does not appear in Brahimi \emph{et al.} (2015) but this and the other forms are verified in the \bold{Examples} and discussion in \bold{Note}. The four \eqn{k \in [1,2,3,4]} for \eqn{U} \emph{wrt} \eqn{V} and \eqn{V} \emph{wrt} \eqn{U} comprise a full spectrum of system of seven (not eight) equations. One equation is lost because \eqn{\delta^{[12]}_1 = \delta^{[21]}_1}.
 }
 \usage{
-bilmoms(cop=NULL, para=NULL, only.bilmoms=FALSE, n=1E5,
-                  sobol=TRUE, scrambling=0, ...)
+bilmoms(cop=NULL, para=NULL, only.bilmoms=FALSE,
+                  n=1E5, halton=TRUE, usetime=TRUE, ...)
 }
 \arguments{
   \item{cop}{A copula function;}
   \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula;}
   \item{only.bilmoms}{A logical to trigger return of the \eqn{\delta_k} and skip L-comoment computation;}
   \item{n}{The Monte Carlo integration size. The default seems to be at least an order of magnitude greater than needed for many applied problems;}
-  \item{sobol}{A logical trigging \emph{Sobol sequences} for the Monte Carlo integration instead of the bivariate uniform distribution (independence). The Sobol sequences are dependent on the \code{sobol()} function of the \pkg{randtoolbox} package, and the Sobol sequences canvas the \eqn{\mathcal{I}^2} domain for smaller \eqn{n} values than required if statistical independence is used for the Monte Carlo integration. Note, \pkg{randtoolbox} at least at version 2.0.+ has \dQuote{scrambling} of Sobol sequences temporarily disabled, and hence \code{scrambling=0} as default for \code{bilmoms};}
-  \item{scrambling}{The argument of the same name for \code{randtoolbox::sobol()}; and}
-  \item{...}{Additional arguments to pass to the \code{\link{densityCOP}} function.}
+  \item{halton}{A logical trigging \emph{Halton sequences} for the Monte Carlo integration instead of the bivariate uniform distribution (independence). The Sobol sequences are dependent on the \code{halton()} function of the \pkg{randtoolbox} package, and the Halton sequences canvas the \eqn{\mathcal{I}^2} domain for smaller \eqn{n} values than required if statistical independence is used for the Monte Carlo integration. Note, \pkg{randtoolbox} at least at version 2.0.+ has \dQuote{scrambling} of Sobol sequences temporarily disabled; therefore, Halton sequences with \code{usetime} set true is used herein (Spring 2026);}
+  \item{usetime}{The argument of the same name for \code{randtoolbox::halton()}; and}
+  \item{...}{Additional arguments to pass to the \code{\link{COP}} and \code{\link{rhoCOP}} functions.}
 }
 \value{
   An \R \code{list} of the bivariate L-moments is returned.
@@ -62,7 +62,7 @@ Concerning the triangular or tent-shaped copula of Nelsen (2006, exer. 3.7, pp. 
   }
   "TriCop" <- function(u,v, ...) { asCOP(u,v, f=trianglecop, ...) }
   m=20000; SampleUV <- simCOP(n=m, cop=TriCop, graphics=FALSE)
-  samLC  <- lcomoms2(SampleUV, nmom=5)
+  samLC  <- lmomco::lcomoms2(SampleUV, nmom=5) # sample L-comoments
   theoLC <- bilmoms(cop=TriCop)
 }
 
@@ -153,29 +153,29 @@ Serfling, R., and Xiao, P., 2007, A contribution to multivariate L-moments---L-c
 }
 \examples{
 \dontrun{
-bilmoms(cop=PSP, n=10000, para=NULL, sobol=TRUE)$bilcomoms$T3
-# results: Tau3[12]=-0.132, Tau3[21]=-0.132 (Monte Carlo)
-lcomCOP(cop=PSP, para=NULL, orders=3)
-# results: Tau3[12]=-0.129, Tau3[21]=-0.129 (direct integration)}
+  bilmoms(cop=PSP, n=10000, para=NULL, halton=TRUE)$bilcomoms$T3
+  # results: Tau3[12]=-0.132, Tau3[21]=-0.132 (Monte Carlo integration)
+  lcomCOP(cop=PSP, para=NULL, orders=3)
+  # results: Tau3[12]=-0.129, Tau3[21]=-0.129 (direct numerical integration) }
 
 \dontrun{
-# This stopped running sometime before June 2023. IS THIS IN COP()?
-para <- list(alpha=0.5, beta=0.93, para1=4.5, cop1=GLcop, cop2=PSP)
-bilmoms(cop=composite2COP, n=10000, para=para, sobol=TRUE)$bilcomoms$T3
-# results: Tau3[12]=0.154, Tau3[21]=-0.0691 (Monte Carlo)
-lcomCOP(cop=composite2COP, para=para, orders=3)
-# results: Tau3[12]=0.156, Tau3[21]=-0.0668 (direct integration)}
+  para <- list(alpha=0.5, beta=0.93, para1=4.5, cop1=GLcop, cop2=PSP)
+  bilmoms(cop=composite2COP, n=10000, para=para, halton=TRUE)$bilcomoms$T3
+  # results: Tau3[12]=0.154, Tau3[21]=-0.0691 (Monte Carlo integration)
+  lcomCOP(cop=composite2COP, para=para, orders=3)
+  # results: Tau3[12]=0.156, Tau3[21]=-0.0668 (direct numerical integration) }
 
 \dontrun{
-UVsim <- simCOP(n=20000, cop=composite2COP, para=para, graphics=FALSE)
-samLcom <- lmomco::lcomoms2(UVsim, nmom=5) # sample algorithm
-# results: Tau3[12]=0.1489, Tau3[21]=-0.0679 (simulation)}
+  para <- list(alpha=0.5, beta=0.93, para1=4.5, cop1=GLcop, cop2=PSP)
+  UVsim <- simCOP(n=20000, cop=composite2COP, para=para, graphics=FALSE)
+  samLcom <- lmomco::lcomoms2(UVsim, nmom=5) # sample algorithm
+  # results: Tau3[12]=0.1489, Tau3[21]=-0.0679 (simulation) }
 }
 \keyword{bivariate asymmetry (measures)}
 \keyword{bivariate skewness}
 \keyword{bivariate L-moments}
 \keyword{Nelsen (2006) Examples and Exercises}
-\keyword{Sobol sequence (Monte Carlo integration)}
+\keyword{Halton sequence (Monte Carlo integration)}
 \keyword{L-comoments}
 \keyword{Spearman Rho}
 \keyword{Package randtoolbox}

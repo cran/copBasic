@@ -143,7 +143,7 @@ Next, let us demonstrate the dual of a copula for mutually occurring events.
 The expected count \eqn{E[}\code{EX2}\eqn{] =} 2.5 and the simulation run yielded 2.49. The \code{t.test()} again results in a statistically insignificant difference.
 
 
-The \eqn{U = V = 0.9873537} for the \dQuote{and} and \eqn{U = V = 0.9763951} for the \dQuote{or} are not equal marginal probabilities. Taking the larger of the two marginal probabilities, the actual joint protection from mutual event occurrance can be computed:
+The \eqn{U = V = 0.9873537} for the \dQuote{and} and \eqn{U = V = 0.9763951} for the \dQuote{or} are not equal marginal probabilities. Taking the larger of the two marginal probabilities, the actual joint protection from mutual event occurrence can be computed:
 \preformatted{
   duCOP(0.9873537, 0.9873537, cop=GHcop, para=Theta) # 0.9947075
   (1-0.9947075)*n  # which is about 1.32 events per 250 trials.

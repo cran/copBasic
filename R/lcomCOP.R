@@ -128,6 +128,3 @@ function(cop=NULL, para=NULL, as.bilmoms=FALSE, orders=2:5, lo=0, hi=1,
    }
    return(zz)
 }
-
-# para <- list(cop=c(M, M, M, M), para=NULL, part=c(0,0.25,0.50,0.75,1))
-# lcomCOP(cop=ORDSUMcop,para=c(0,0.25,0.50,0.75,1) )

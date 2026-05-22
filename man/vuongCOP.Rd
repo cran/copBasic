@@ -67,7 +67,7 @@ Second, the \eqn{\mathbf{PSP}(u,v)} copula (\code{\link{PSP}}) is chosen as the 
   n <- 390
   UV <- simCOP(cop=PSP, n=n, col=8, pch=16) # simulate and form the base image
 }
-By inspection of the so-produced graphic, it is obvious that there is contraction in the lower-left corner of the plot, which is a geometric representation of tail dependency. The lower-tail dependency thus phenomenalogically says that there is joint interconnect during low springflow conditions---both springs are likely to be at low flow simultaneously. The variable \code{UV} contains the bivariate data as uniform variables (nonexceedance probabilities \eqn{u} and \eqn{v}).
+By inspection of the so-produced graphic, it is obvious that there is contraction in the lower-left corner of the plot, which is a geometric representation of tail dependency. The lower-tail dependency thus phenomenologically says that there is joint interconnect during low springflow conditions---both springs are likely to be at low flow simultaneously. The variable \code{UV} contains the bivariate data as uniform variables (nonexceedance probabilities \eqn{u} and \eqn{v}).
 
 The \emph{Plackett copula} (\eqn{\mathbf{PL}(u,v; \Theta_{\mathbf{PL}})}; \code{\link{PLACKETTcop}}) and the \eqn{\mathbf{rGH}(u,v; \Theta_{\mathbf{rGH}})} copula are chosen as candidate models of the \dQuote{unknown} parent. Both \eqn{\mathbf{PL}} and \eqn{\mathbf{rGH}} copulas use different \dQuote{measures of association} for their parameter estimation. Next, sample estimates of the copula parameters using \emph{Schweizer and Wolff Sigma} \eqn{\hat\sigma_\mathbf{C}}. The sample value computations and parameter estimates also are set as shown in the following code:
 \preformatted{

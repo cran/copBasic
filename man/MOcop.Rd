@@ -39,7 +39,7 @@ MOcop(u, v, para=NULL, lcomCOP=NULL, ...)
 Value(s) for the copula are returned. Otherwise if either \code{lcomCOP} is given, then the \eqn{\alpha, \beta} are computed by numerical optimization the the Spearman Rho and the two L-coskews (refer to package \pkg{lmomco} and function \code{lmomco::lcomoms2} for more details) (refer the demonstration of L-comoment parameter estimation in the \bold{Examples} below).
 }
 \references{
-Dobrowolski, E., and Kumar, P., 2014, Some properties of the Marshall--Olkin and generalized Cuadras--\enc{Augé}{Auge} familes of copula: Australian Journal of Mathematical Analysis and Applications: v. 11, no. 1, art. 2, pp. 1--13, accessed on August 10, 2025, at \url{https://ajmaa.org/searchroot/files/pdf/v11n1/v11i1p2.pdf}.
+Dobrowolski, E., and Kumar, P., 2014, Some properties of the Marshall--Olkin and generalized Cuadras--\enc{Augé}{Auge} families of copula: Australian Journal of Mathematical Analysis and Applications: v. 11, no. 1, art. 2, pp. 1--13, accessed on August 10, 2025, at \url{https://ajmaa.org/searchroot/files/pdf/v11n1/v11i1p2.pdf}.
 
 Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 }
@@ -63,7 +63,7 @@ Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
   message("MOcop : alpha=", mara$para[1], ", beta=", mara$para[2]) #}
 
 \dontrun{
-  # This example developed as a demonstrator of the dissarray that the
+  # This example developed as a demonstrator of the disarray that the
   # Spearman Footrule measures as a nonunique relation to Spearman Rho.
   # The permutation asymmetry causes the relation between the two to
   # "paint" for positive association as shown in the graphic produced.

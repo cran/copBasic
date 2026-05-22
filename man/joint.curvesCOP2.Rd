@@ -7,7 +7,7 @@ Compute the coordinates of the bivariate marginal probabilities for variables \e
 \deqn{\mathrm{Pr}[U \le v,\ V \le v] = t = \mathbf{C}(u,v)\mbox{,}}
 where \eqn{V \mapsto [t_i, t_{j}, t_{j+1}, \cdots, 1; \Delta]} (an irregular sequence of \eqn{v} values from the \eqn{i}th value of \eqn{t_i} provided through to unity) and thus
 \deqn{t_i \mapsto \mathbf{C}(u, v=V)\mbox{,}}
-and solving for the sequence of \eqn{u}. The index \eqn{j} is to indicate that a separate loop is involved and is distinct from \eqn{i}. The pairings \eqn{\{u(t_i), v(t_i)\}} for each \eqn{t} are packaged as an \R \code{data.frame}. This operation is very similiar to the plotting capabilities in \code{\link{level.curvesCOP2}} for \emph{level curves} (Nelsen, 2006, pp. 12--13) but implemented in the function \code{joint.curvesCOP2} for alternative utility.
+and solving for the sequence of \eqn{u}. The index \eqn{j} is to indicate that a separate loop is involved and is distinct from \eqn{i}. The pairings \eqn{\{u(t_i), v(t_i)\}} for each \eqn{t} are packaged as an \R \code{data.frame}. This operation is very similar to the plotting capabilities in \code{\link{level.curvesCOP2}} for \emph{level curves} (Nelsen, 2006, pp. 12--13) but implemented in the function \code{joint.curvesCOP2} for alternative utility.
 
 For the case of a \bold{joint or} probability, the \emph{dual of a copula (function)} or \eqn{\tilde{\mathbf{C}}(u,v)} from a copula (Nelsen, 2006, pp. 33--34) is used and symbolically the solution is:
 \deqn{\mathrm{Pr}[U \le v \mathrm{\ or\ } V \le v] = t = \tilde{\mathbf{C}}(u,v) = u + v - \mathbf{C}(u,v)\mbox{,}}

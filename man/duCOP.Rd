@@ -15,7 +15,7 @@ where \eqn{\hat{\mathbf{C}}(u',v')} is the survival copula in terms of exceedanc
 
 The function \code{duCOP} gives \dQuote{protection} against simultaneous (concurrent or dual) risk by failure if and only if failure is caused (defined) by both hazard sources \eqn{U} and \eqn{V} being by themselves responsible for failure. Expressing this in terms of an annual probability of occurrence (\eqn{q}), one has
 \deqn{q = 1 - \mathrm{Pr}[U \le v \mathrm{\ or\ } V \le v] = 1 - \tilde{\mathbf{C}}(u,v)\mbox{\ or}}
-in \R code \code{q <- 1 - duCOP(u,v)}. So, as a mnemonic: \emph{A dual of a copula is the probabililty of nonexceedance if the hazard sources must \bold{dual} (concur, link, pair, twin, twain) between each other to cause failure.} An informative graphic is shown within \code{\link{copBasic-package}}.
+in \R code \code{q <- 1 - duCOP(u,v)}. So, as a mnemonic: \emph{A dual of a copula is the probability of nonexceedance if the hazard sources must \bold{dual} (concur, link, pair, twin, twain) between each other to cause failure.} An informative graphic is shown within \code{\link{copBasic-package}}.
 }
 \usage{
 duCOP(u, v, cop=NULL, para=NULL, ...)
@@ -66,7 +66,7 @@ where it is obvious that the simulations and theory estimate about the same \bol
 where it is obvious that the simulations and theory estimate about the same joint \bold{mutually exclusive or} condition, and where it is shown that the prior two theoretical joint probabilities can be subtracted from each to yield the \bold{mutually exclusive or} condition.
 
 
-Let us then play out a scenario in which it is judged that of the events causing damage that the simultaneous occurrance is worse but that engineering against about 5 percent of events not occurring at the same time represents the most funding available. Using numerical methods, it is possible to combine \eqn{\tilde{\mathbf{C}}} and \eqn{\mathbf{C}} and assume equal marginal risk in \eqn{U} and \eqn{V} as the following list shows:
+Let us then play out a scenario in which it is judged that of the events causing damage that the simultaneous occurrence is worse but that engineering against about 5 percent of events not occurring at the same time represents the most funding available. Using numerical methods, it is possible to combine \eqn{\tilde{\mathbf{C}}} and \eqn{\mathbf{C}} and assume equal marginal risk in \eqn{U} and \eqn{V} as the following list shows:
 \preformatted{
   "designf" <- function(t) { # a one-off function just for this example
      duCOP(t, t, cop=PSP) - COP(t, t, cop=PSP) - 5/100 # 5 percent

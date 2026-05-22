@@ -92,11 +92,11 @@ Klement, E.P., \enc{Kolesárová}{Kolesarova}, A., Mesiar, R., Saminger-Platz, S
   UVw  <- simCOP(1E3, cop=myCop, para=wara, seed=1, col="blue", ploton=FALSE)
   cor(UVm[,1], UVm[,2], method="spearman"); cor(UVw[,1], UVw[,2], method="spearman")
   # -----------------------------------------------------------
-  opts <- par(las=1, lend=1, ljoin=1) # all lab horz, butted, mitred
+  opts <- par(las=1, lend=1, ljoin=1) # all lab horizontal, butted, mitered
   del  <- 0.005
   nsim <- 300; ps <- c(0.001, seq(del, 1-del, by=del), 0.999)
   # The ylim might need extension, it seems cases of L-comoments exceeding unity
-  # can be found dependening on the settings of the myM and myW.
+  # can be found depending on the settings of the myM and myW.
   plot(c(0, 1), c(-1, 1), type="n", ylab="Spearman Rho, L-coskew, and L-cokurtosis",
        xlab="Ordinal sum partioning parameter")
   # -- Stuff below can be run again with changing the three logical
@@ -180,7 +180,7 @@ Klement, E.P., \enc{Kolesárová}{Kolesarova}, A., Mesiar, R., Saminger-Platz, S
 
 \dontrun{
   # Now, look at the coupling between the Spearman Rho and the L-comoments through
-  # formation of L-comoment ratio diagrams of the ordindal sums.
+  # formation of L-comoment ratio diagrams of the ordinal sums.
   # Here, we just draw lines from whatever the vectors stemming from the previous
   # example produced by dolcomCOP being set TRUE (theoretical) or FALSE (sample)
   # L-comoments. For the simple, ordinal sum of M,W or W,M, then L-cokurtosis
@@ -201,7 +201,7 @@ Klement, E.P., \enc{Kolesárová}{Kolesarova}, A., Mesiar, R., Saminger-Platz, S
   # If the user is working with sufficiently complex copulas, then differing
   # trajectories through the domain occur.
   plot(c(-1, 1), c(-1, 1), type="n", las=1, ylab="L-coskew or L-cokurtosis",
-       xlab="Spearman Rho (driven by ordinal sum parition)")
+       xlab="Spearman Rho (driven by ordinal sum partition)")
   lines(par()$usr[1:2], rep(0, 2))
   lines(T2m21, T3m21, lty=1, col="seagreen4", lwd=3)
   lines(T2m21, T4m21, lty=2, col="seagreen4", lwd=3)

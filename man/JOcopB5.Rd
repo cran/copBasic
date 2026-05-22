@@ -47,7 +47,7 @@ blomCOP(cop=JOcopB5, para=pi)        # 0.5521328
   message("Tau difference ", round(2-para, digits=2), " is small.") #}
 
 \dontrun{
-  # embeddment of parameters for permutation asymmetry and rotation
+  # embedment of parameters for permutation asymmetry and rotation
   para <- list(cop=JOcopB5, para=30, reflect=3, breve=0.5)
   UV <- simCOP(cop=COP, para=list(cop=breveCOP, para=para), n=1000) #}
 

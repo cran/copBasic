@@ -7,7 +7,7 @@
             "dbeta", "pbeta", "pgamma", "qgamma")
  importFrom("mvtnorm", "GenzBretz", "Miwa", "TVPACK", "pmvnorm", "pmvt")
  importFrom("randtoolbox", "halton", "sobol", "torus")
- importFrom("utils", "installed.packages")
+ importFrom("utils", "installed.packages", "str")
  importFrom("lmomco", "disfitqua", "lmr2par", "lmrloc", "lmoms", "lmom2par", "par2qua", "pp",
                       "rlmomco", "qlmomco", "vec2par")
 # --------------------------------------------------------------------------------------------------
@@ -21,6 +21,8 @@ export(COPinv2)
 export(EMPIRcop)
 export(EMPIRcopdf)
 export(EMPIRgrid)
+export(EMPIRgrid_fast)
+export(EMPIRgrid_lkup)
 export(EMPIRgridder)
 export(EMPIRgridder2)
 export(EMPIRgridderinv)
@@ -170,4 +172,7 @@ export(uvskew)
 export(uvlmoms)
 export(vuongCOP)
 export(wolfCOP)
+export(wolfCOPsamc)
+export(wolfCOPtest)
+
 

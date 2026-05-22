@@ -12,7 +12,7 @@ for copulas \eqn{\mathbf{C}_1(u, v)} and \eqn{\mathbf{C}_2(u, v)} are copulas wh
 \deqn{\mathbf{W} \ast \mathbf{W} = \mathbf{M}\mbox{ and } \mathbf{W} \ast \mathbf{C} \ast \mathbf{W} = \hat{\mathbf{C}}\mbox{,}}
 where \eqn{\hat{\mathbf{C}}} is the \emph{survival copula} (\code{\link{surCOP}}). The \eqn{\ast}-product is associative:
 \deqn{\mathbf{A} \ast (\mathbf{B} \ast \mathbf{C}) = (\mathbf{A} \ast \mathbf{B}) \ast \mathbf{C}\mbox{,}}
-but \eqn{\ast}-product is not commutative (order independent). Nelsen (2006, p. 245) reports that \dQuote{if we view \eqn{\ast} as a binary operation on the set of copulas, then \eqn{\mathbf{\Pi}} is the null element, and \eqn{\mathbf{M}} is the identity.} Copula mulitiplication is closely linked to \emph{Markov Processes} (Nelsen, 2006, pp. 244--248).
+but \eqn{\ast}-product is not commutative (order independent). Nelsen (2006, p. 245) reports that \dQuote{if we view \eqn{\ast} as a binary operation on the set of copulas, then \eqn{\mathbf{\Pi}} is the null element, and \eqn{\mathbf{M}} is the identity.} Copula multiplication is closely linked to \emph{Markov Processes} (Nelsen, 2006, pp. 244--248).
 
 For other descriptions and computations of copula combination are possible using the \pkg{copBasic} package, see \code{\link{convexCOP}}, \code{\link{convex2COP}}, \code{\link{composite1COP}}, \code{\link{composite2COP}}, \code{\link{composite3COP}}, \code{\link{glueCOP}}, and \code{\link{convexCOP}}.
 }

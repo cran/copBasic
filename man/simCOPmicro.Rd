@@ -43,7 +43,7 @@ simCOPv(u, cop=NULL, para=NULL,
   \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction. The \code{runif()} function in \R can be used to drive conditional simulation using the \code{simCOPmicro} function (see \bold{Examples});}
   \item{cop}{A copula function;}
   \item{para}{Vector of parameters, if needed, to pass to the copula;}
-  \item{seed}{The integer seed to pass immediately to \code{set.seed()} and setting it for the \code{simCOPv} version will dispatch through the triple dots down to \code{simCOPmicro};}
+  \item{seed}{The integer seed to pass immediately to \code{set.seed()} and setting it for the function \code{simCOPv} version will dispatch through the triple dots down to \code{simCOPmicro};}
   \item{reflect}{The reflection of the copula (see above) and the default \code{"cop"} or \code{"1"} is the usual copula definition.  The numbered values correspond, respectively, to the named values; and}
   \item{...}{Additional arguments to pass should they be needed.}
 }

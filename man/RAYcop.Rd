@@ -26,7 +26,7 @@ RAYcop(u, v, para=NULL, rho=NULL, method=c("default"),
   Value(s) for the copula are returned.
 }
 \note{
-Documentation in Zeng and others [Part II] appear to have corrected the Marcum-Q function solution to the copula. The essence of that solution is with a Chi-distribution computation the Marcum-Q. Testing indictates that they have the correct solution, but the derivative for the conditional simulation as built into the design of \pkg{copBasic} has difficulties. Perhaps this is related to numerical precision of the Marcum-Q?
+Documentation in Zeng and others [Part II] appear to have corrected the Marcum-Q function solution to the copula. The essence of that solution is with a Chi-distribution computation the Marcum-Q. Testing indicates that they have the correct solution, but the derivative for the conditional simulation as built into the design of \pkg{copBasic} has difficulties. Perhaps this is related to numerical precision of the Marcum-Q?
 \preformatted{
   sapply(seq_len(length((u))), function(i) {
     a1 <- -log(1-u[i])
@@ -49,7 +49,7 @@ Bo\enc{š}{s}koskia, P., Debenjaka, A., Boshkoskab, B.M., 2018, Rayleigh copula 
 
 Zeng, X., Ren, J., Wang, Z., Marshall, S., and Durrani, T., 2014, Copulas for statistical signal processing (Part I)---Extensions and generalization: Signal Processing v. 14, pp. 691--702, \doi{10.1016/j.sigpro.2013.07.009}.
 
-Zeng, X., Ren, J., Sun, M., Marshall, S., and Durrani, T., 2014, Copulas for statistical signal processing (Part II)---Simulation, optimal selection and practical applications: Signal Processing, v. 94, pp. 681--690, \doi{10.1016/j.sigpro.2013.07.006}.
+Zeng, X., Ren, J., Sun, M., Marshall, S., and Durrani, T., 2014, Copulas for statistical signal processing (Part II)---Simulation, optimal selection and practical applications: Signal Processing,\cr v. 94, pp. 681--690, \doi{10.1016/j.sigpro.2013.07.006}.
 }
 \author{W.H. Asquith}
 \seealso{\code{\link{M}}, \code{\link{P}}

@@ -27,16 +27,17 @@ which can be triggered by \code{ctype="hazen"}. This form is named for this pack
      \frac{1}{n}\sum_{i=1}^n \mathbf{1}\biggl(\frac{R_i}{n+1} \le u_i, \frac{S_i}{n+1} \le v_i \biggr)\mbox{,}}
 which can be triggered by \code{ctype="weibull"}. This form is named for this package because of direct similarity of the \emph{Weibull plotting position} to the definition, and this form is the default (see argument description).
 
-\emph{Bernstein Empirical Copula}---The empirical copula can be extended nonparametrically as the \emph{Bernstein empirical copula} (\enc{Hernández-Maldonado}{Hernandez-Maldonado}, \enc{Díaz-Viera}{Diaz-Viera}, and Erdely, 2012) and is formulated as
+\emph{Bernstein Empirical Copula}---The empirical copula can be extended nonparametrically as the \emph{Bernstein empirical copula} (\enc{Hernández-Maldonado}{Hernandez-Maldonado} \emph{et al.}, 2012) and is formulated as
 
 \deqn{\mathbf{C}^\mathcal{B}_n(u,v; \eta) = \sum_{i=1}^n\sum_{j=1}^n \mathbf{C}_{n}\biggl(\frac{i}{n},\frac{j}{n}\biggr) \times \eta(i,j; u,v)\mbox{,}}
+
 where the individual \emph{Bernstein weights} \eqn{\eta(i,j)} for the \eqn{k}th paired value of the \eqn{u} and \eqn{v} vectors are
 
 \deqn{\eta(i,j; u,v) = {n \choose i} u^i (1-u)^{n-i} \times {n \choose j} u^j (1-u)^{n-j}\mbox{.}}
 
-The Bernstein extension, albeit conceptually pure in its shuffling by binomial coefficients and left- and right-tail weightings, is quite CPU intensive as inspection of the equations above indicates a nest of four \code{for()} loops in \R. (The native \R code of \pkg{copBasic} uses the \code{sapply()} function in \R liberally for substantial but not a blazing fast speed increase.) The Bernstein extension results in a smoother surface of the empirical copula and can be triggered by \code{ctype="bernstein"}. Remark, \enc{Hernández-Maldonado}{Hernandez-Maldonado} and others (2024) provide a fast algorithm for the Bernstein smoothing---this is not yet implemented in \pkg{copBasic}.
+The Bernstein extension, albeit conceptually pure in its shuffling by binomial coefficients and left- and right-tail weightings, is quite CPU intensive as inspection of the equations above indicates a nest of four \code{for()} loops in \R. (The native \R code of \pkg{copBasic} uses the \code{sapply()} function in \R liberally for substantial but not a blazing fast speed increase.) The Bernstein extension results in a smoother surface of the empirical copula and can be triggered by \code{ctype="bernstein"}. Remark, \enc{Hernández-Maldonado}{Hernandez-Maldonado} \emph{et al.} (2024) provide a fast algorithm for the Bernstein smoothing---this implemented in \code{\link{EMPIRgrid_fast}}.
 
-\emph{Checkerboard Empirical Copula}---A simple smoothing to the empirical copula is the \emph{checkerboard empirical copula} (Segers et al., 2017) that has been adapted from the \pkg{copula} package. It is numerically intensive like the Bernstein and possibly of limited usefulness for large sample sizes. The checkerboard extension can be triggered by \code{ctype="checkerboard"} and is formulated as
+\emph{Checkerboard Empirical Copula}---A simple smoothing to the empirical copula is the \emph{checkerboard empirical copula} (Segers \emph{et al.}, 2017) that has been adapted from the \pkg{copula} package. It is numerically intensive like the Bernstein and possibly of limited usefulness for large sample sizes. The checkerboard extension can be triggered by \code{ctype="checkerboard"} and is formulated as
 
 \deqn{\mathbf{C}^\sharp_{n}(U) = \frac{1}{n+o} \sum_{i=1}^n\prod_{i=1}^d \mathrm{min}[\mathrm{max}[n U_j - R^{(n)}_{i,j} + 1,0],1]\mathrm{,}}
 
@@ -48,6 +49,16 @@ The \emph{empirical copula frequency} can be defined (Nelson, 2006, p. 219) as
                            \mathbf{C}_n\biggl(\frac{i-1}{n}, \frac{j}{n}\biggr) -
                            \mathbf{C}_n\biggl(\frac{i}{n}, \frac{j-1}{n}\biggr) +
                            \mathbf{C}_n\biggl(\frac{i-i}{n}, \frac{j-1}{n}\biggr)\mbox{.}}
+
+Remembering that the several asymptotically equivalent definitions of the empirical copula do converge as \eqn{n} becomes large, we can show small-sample congruence between the empirical copula from the \pkg{copula} package and \pkg{copBasic} to the Weibull version of \code{EMPIRcop} because of \pkg{copula::pobs()} is itself Weibull:
+\preformatted{
+  uv <- as.matrix( simCOP(50, cop=P) )
+  ctype <- "weibull"; # Try the other ctypes supported by EMPIRcop
+  a <- EMPIRcop(uv[,1], uv[,2], para=as.data.frame(uv), ctype=ctype)
+  b <- copula::C.n(uv, uv, offset=0) # if ctype="weibull" equal values
+  plot(a, b, xlab=paste0('copBasic EMPIRcop(ctype="', ctype, '")'),
+             ylab="copula::C.n"); abline(0,1, col="red")
+}
 }
 \usage{
 EMPIRcop(u, v, para=NULL,
@@ -58,7 +69,7 @@ EMPIRcop(u, v, para=NULL,
   \item{u}{Nonexceedance probability \eqn{u} in the \eqn{X} direction;}
   \item{v}{Nonexceedance probability \eqn{v} in the \eqn{Y} direction;}
   \item{para}{A vector (single element) of parameters---the U-statistics of the data (see \bold{Examples}). Alternatively, \code{para} can be a \code{list} holding a \code{para} as would be done if it were a vector, but arguments \code{bernstein} and \code{bernprogress} can be optionally included---this feature is provided so that the Bernstein refinement can be controlled within the context of other functions calling \code{EMPIRcop} such as by \code{\link{level.curvesCOP}};}
-  \item{ctype}{An alternative means for trigging the definition of  \eqn{\mathbf{C}_n}, \eqn{\mathbf{C}^\mathcal{H}_n} (default), \eqn{\mathbf{C}^\mathcal{W}_n}, \eqn{\mathbf{C}^\mathcal{B}_n}, or \eqn{\mathbf{C}^\sharp_n}. This argument of the same name is also used by \code{\link{blomCOP}};}
+  \item{ctype}{An alternative means for trigging the definition of  \eqn{\mathbf{C}_n}, \eqn{\mathbf{C}^\mathcal{W}_n} (default), \eqn{\mathbf{C}^\mathcal{H}_n}, \eqn{\mathbf{C}^\mathcal{B}_n}, or \eqn{\mathbf{C}^\sharp_n}. This argument of the same name is also used by \code{\link{blomCOP}};}
   \item{bernprogress}{The Bernstein copula extension is CPU intensive(!), so a splash counter is pushed to the console via the \code{message()} function in \R so as to not discourage the user;}
   \item{checkerboard.offset}{A scaling of the ratio \code{sum(....)/(n+offset)} for the checkerboard empirical copula; and}
   \item{...}{Additional arguments to pass.}
@@ -69,7 +80,7 @@ EMPIRcop(u, v, para=NULL,
 \note{
 Not all theoretical measures of copula dependence (both measures of association and measures of asymmetry), which use numerical integration by the \code{integrate()} function in \R, can be used for all empirical copulas because of \dQuote{divergent} integral errors; however, examples using \emph{Hoeffding Phi} (\eqn{\Phi_\mathbf{C}}; \code{\link{hoefCOP}}) and shown under \bold{Examples}. Other measures of copula dependence include \code{\link{blomCOP}}, \code{\link{footCOP}}, \code{\link{giniCOP}}, \code{\link{rhoCOP}}, \code{\link{tauCOP}}, \code{\link{wolfCOP}}, \code{\link{joeskewCOP}}, and \code{\link{uvlmoms}}. Each of these measures fortunately has a built-in sample estimator.
 
-It is important to distinquish between a sample estimator and the estimation of the measure using the empirical copula itself via the \code{EMPIRcop} function. The sample estimators (triggered by the \code{as.sample} arguments for the measures) are reasonably fast and numerically preferred over using the empirical copula. Further, the generally slow numerical integrations for the theoretical definitions of these copula measures might have difficulties. Limited testing, however, suggests prevalence of numerical integration not erroring using the Bernstein extension of the empirical copula, which must be a by-product of the enhanced and sufficient smoothness for the \R default numerical integration to succeed. Many of the measures have \code{brute} option for a brute-force numerical integration on a regular grid across the empirical copula---these are slow but should not trigger errors. As a general rule, users should still use the sample estimators instead.
+It is important to distinguish between a sample estimator and the estimation of the measure using the empirical copula itself via the \code{EMPIRcop} function. The sample estimators (triggered by the \code{as.sample} arguments for the measures) are reasonably fast and numerically preferred over using the empirical copula. Further, the generally slow numerical integrations for the theoretical definitions of these copula measures might have difficulties. Limited testing, however, suggests prevalence of numerical integration not erroring using the Bernstein extension of the empirical copula, which must be a by-product of the enhanced and sufficient smoothness for the \R default numerical integration to succeed. Many of the measures have \code{brute} option for a brute-force numerical integration on a regular grid across the empirical copula---these are slow but should not trigger errors. As a general rule, users should still use the sample estimators instead.
 }
 \references{
 \enc{Hernández-Maldonado}{Hernandez-Maldonado}, V.M., \enc{Díaz-Viera}{Diaz-Viera}, M., and Erdely, A., 2012, A joint stochastic simulation method using the Bernstein copula as a flexible tool for modeling nonlinear dependence structures between petrophysical properties: Journal of Petroleum Science and Engineering, v. 90--91, pp. 112--123, \doi{10.1016/j.petrol.2012.04.018}.
@@ -136,10 +147,10 @@ hoefCOP(cop=EMPIRcop,   para=uv, ctype="checkerboard")          # 0.4952427}
 # variable uv. It is suggested to not run with a sample size much larger than the
 # above n=34 if the Bernstein comparison is intended (wanted) simply because of
 # lengthy(!) run times, but the n=34 does provide a solid demonstration how the
-# level curves for berstein weights are quite smooth.
+# level curves for Bernstein weights are quite smooth.
 
 \dontrun{
-# Now let us construct as many as three sets of level curves to the sample
+# Now, let us construct as many as three sets of level curves to the sample
 # resided in the uv sample from above using the PSP copula.
 level.curvesCOP(cop=PSP); # TRUE, parametric, fast, BLACK CURVES
 
@@ -185,4 +196,6 @@ lines(the.trace, lwd=2, col=2) # The diagonal of the copula #}
 \concept{Hazen empirical copula}
 \concept{Weibull copula}
 \concept{Weibull empirical copula}
+\keyword{package copula (comparison to)}
+\keyword{Bernstein polynomial}
 

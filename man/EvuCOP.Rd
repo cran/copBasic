@@ -96,10 +96,10 @@ EvuCOP(0.25, cop=breveCOP, para=para)  # 0.5982261
   # permutation symmetry about the equal value line. Recalling that this symmetry is
   # orthogonal to the equal value line, it remains open whether there could be
   # asymmetry in the vertical (or horizontal). Let us draw some median regression lines
-  # and see that the do not plot perfectly on the equal value line, but coudl this be
+  # and see that the do not plot perfectly on the equal value line, but could this be
   # down to numerical issues and by association the simulation of the copula itself
   # that is also using derCOPinv() (conditional simulation method). Then, we can plot
-  # the expections and we see that these are not equal to the medians, but again are
+  # the expectations and we see that these are not equal to the medians, but again are
   # close. *** Do results here indicate edges of numerical performance? ***
   t <- seq(0.01, 0.99, by=0.01)
   UV <- simCOP(10000,   cop=N4212cop, para=4, pch=21, lwd=0.8, col=8, bg="white")
