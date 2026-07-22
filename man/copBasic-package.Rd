@@ -47,6 +47,7 @@ Rayleigh copula \tab \eqn{\mathbf{RAY}(u,v)} \tab \code{\link{RAYcop}} \tab copu
 g-EV copula (Gaussian extreme value) \tab \eqn{\mathbf{gEV}(u,v)} \tab \code{\link{gEVcop}} \tab copula\cr
 t-EV copula (t-distribution extreme value) \tab \eqn{\mathbf{tEV}(u,v)} \tab \code{\link{tEVcop}} \tab copula\cr
 t-Student copula (refer also to \code{\link{NORMcop}}) \tab \eqn{\mathbf{T}(u,v)} \tab \code{\link{Tcop}} \tab copula\cr
+Triangular copula \tab \eqn{\mathbf{TRI}(u,v)} \tab \code{\link{TRIcop}} \tab copula\cr
 }
 
 
@@ -94,8 +95,8 @@ Semi-correlations (positives) \tab \eqn{\rho_N^{+}(a)} \tab \code{\link{semicorC
 Spearman Footrule \tab \eqn{\psi_\mathbf{C}} \tab \code{\link{footCOP}} \tab bivariate association\cr
 Spearman Rho \tab \eqn{\rho_\mathbf{C}} \tab \code{\link{rhoCOP}} \tab bivariate association\cr
 Schweizer\enc{–}{-}Wolff Sigma \tab \eqn{\sigma_\mathbf{C}} \tab \code{\link{wolfCOP}} \tab bivariate association\cr
-Schweizer\enc{–}{-}Wolff Sigma \tab \eqn{\hat\sigma_\mathbf{C}} \tab \code{\link{wolfCOPsamc}} \tab bivariate association\cr
-Schweizer\enc{–}{-}Wolff Sigma \tab \eqn{\sigma_\mathbf{C}{=}\mathbf{\Pi}} \tab \code{\link{wolfCOPtest}} \tab bivariate association\cr
+\eqn{\cdots} \tab \eqn{\hat\sigma_\mathbf{C}} \tab \code{\link{wolfCOPsamc}} \tab bivariate association\cr
+\eqn{\cdots} \tab \eqn{\sigma_\mathbf{C}{=}\mathbf{\Pi}} \tab \code{\link{wolfCOPtest}} \tab bivariate association\cr
 Density of a copula\tab \eqn{c(u,v)} \tab \code{\link{densityCOP}} \tab copula density\cr
 Density visualization \tab \eqn{{-}{-}} \tab \code{\link{densityCOPplot}} \tab copula density\cr
 Parametric copulatic surface \tab \eqn{{-}{-}} \tab \code{\link{gridCOP}} \tab copulatic surface\cr
@@ -195,9 +196,18 @@ The \bold{Table of Probabilities} that follows lists important relations between
 \eqn{\mathrm{Pr}[\,U \le u \mid V = v\,]}   \tab \eqn{=} \tab \eqn{\delta \mathbf{C}(u,v)/\delta v} \enc{—}{-} Partial derivative, \code{\link{derCOP2}}\cr
 \eqn{\mathrm{Pr}[\,U > u \mathrm{\ or\ } V > v\,]}     \tab \eqn{=} \tab \eqn{\mathbf{C}^\star(u',v') = 1 - \mathbf{C}(u',v')} \enc{—}{-} The co-copula, \code{\link{coCOP}}\cr
 \eqn{\mathrm{Pr}[\,U \le u \mathrm{\ or\ } V \le v\,]} \tab \eqn{=} \tab \eqn{\tilde{\mathbf{C}}(u,v) = u + v - \mathbf{C}(u,v)} \enc{—}{-} The dual of a copula, \code{\link{duCOP}}\cr
-\eqn{E[\,U \mid V = v\,]} \tab \eqn{=} \tab \eqn{\int_0^1 (1 - \delta \mathbf{C}(u,v)/\delta v)\,\mathrm{d}u} \enc{—}{-} Expectation of U given V, \code{\link{EuvCOP}}\cr
-\eqn{E[\,V \mid U = u\,]} \tab \eqn{=} \tab \eqn{\int_0^1 (1 - \delta \mathbf{C}(u,v)/\delta u)\,\mathrm{d}v} \enc{—}{-} Expectation of V given U, \code{\link{EvuCOP}}\cr
 }
+
+\bold{Table of Conditional Expectations} that follows includes \emph{conditional expectation} (\emph{conditional mean}) (\code{\link{EuvCOP}}, \code{\link{EvuCOP}}) and \emph{conditional L-moments}:
+
+\tabular{rcl}{
+\bold{Probability} \tab \bold{and} \tab \bold{Symbol Convention}\cr
+\eqn{E[\,V \mid U = u\,]} \tab \eqn{=} \tab \eqn{\int_0^1 (1 - \delta \mathbf{C}(u,v)/\delta u)\,\mathrm{d}v} \enc{—}{-} Expectation of V given U, \code{\link{EvuCOP}}\cr
+\eqn{E[\,U \mid V = v\,]} \tab \eqn{=} \tab \eqn{\int_0^1 (1 - \delta \mathbf{C}(u,v)/\delta v)\,\mathrm{d}u} \enc{—}{-} Expectation of U given V, \code{\link{EuvCOP}}\cr
+\eqn{(\lambda_r, \tau_r)[\,V \mid U = u\,]} \tab \eqn{\mapsto} \tab uses \code{\link{derCOP}}   \enc{—}{-} conditional L-moments of V given U, \code{\link{LMRvuCOP}}\cr
+\eqn{(\lambda_r, \tau_r)[\,U \mid V = v\,]} \tab \eqn{\mapsto} \tab uses \code{\link{derCOP2}} \enc{—}{-} conditional L-moments of U given V, \code{\link{LMRuvCOP}}\cr
+}
+
 The function \code{\link{jointCOP}} has considerable demonstration in its \bold{Note} section of the \bold{joint and} and \bold{joint or} relations shown through simulation and counting scenarios. Also there is a demonstration in the \bold{Note} section of function \code{\link{duCOP}} on application of the concepts of \bold{joint and} conditions, \bold{joint or} conditions, and importantly joint \bold{mutually exclusive or} conditions.
 
 \bold{Copula Construction Methods}

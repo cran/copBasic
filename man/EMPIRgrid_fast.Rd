@@ -18,7 +18,7 @@ EMPIRgrid_fast(uv=NULL, ctype=c("1/n", "bernstein"), para=NULL,
   \item{...}{Additional arguments to pass to \code{\link{EMPIRcop}}.}
 }
 \value{
-A \code{matrix} is returned (\eqn{\ddot{\mathbf{C}}_{n}(u,v)} or \eqn{\ddot{\mathbf{C}}^\mathcal{B}_n(u,v)}), if \code{gridonly} is true. Otherwise a \code{list} of the \eqn{u}, \eqn{v}, and \eqn{\ddot{\mathbf{C}}_{n}(u,v)} or \eqn{\ddot{\mathbf{C}}^\mathcal{B}_n(u,v)} is returned. The \code{list} will also contain the \code{deluv} (simply \eqn{1/n} for sample size \eqn{n}) used and the \code{ctype}. The \code{list} is returned as \code{classes} of \code{"empirical.copula.grid"} and \code{"list"}. This is classification might be used in \pkg{copBasic} to check for a grid in other functions. Note, there is no \code{deluv} argument to this function as there is for the historical \code{\link{EMPIRgrid}} of the package.
+A \code{matrix} is returned (\eqn{\ddot{\mathbf{C}}_{n}(u,v)} or \eqn{\ddot{\mathbf{C}}^\mathcal{B}_n(u,v)}), if \code{gridonly} is true. Otherwise a \code{list} of the \eqn{u}, \eqn{v}, and \eqn{\ddot{\mathbf{C}}_{n}(u,v)} or \eqn{\ddot{\mathbf{C}}^\mathcal{B}_n(u,v)} is returned. The \code{list} will also contain the \code{deluv} (simply \eqn{1/n} for sample size \eqn{n}) used and the \code{ctype}. The \code{list} is returned as \code{classes} of \code{"empirical.copula.grid"} and \code{"list"}. This is classification might be used in \pkg{copBasic} to check for a grid in other functions. Note, there is no \code{deluv} argument to this function like there is for the historical function \code{\link{EMPIRgrid}}.
 }
 \references{
 \enc{Hernández-Maldonado}{Hernandez-Maldonado}, V.M., Erdely, A., \enc{Díaz-Viera}{Diaz-Viera}, M., and Rios, L., 2024, Fast procedure to compute empirical and Bernstein copulas: Applied Mathematics and Computation, v. 477, article 128827, 14 p., \doi{10.1016/j.amc.2024.128827}.
@@ -26,7 +26,7 @@ A \code{matrix} is returned (\eqn{\ddot{\mathbf{C}}_{n}(u,v)} or \eqn{\ddot{\mat
 \author{W.H. Asquith}
 \seealso{\code{\link{EMPIRgrid}}, \code{\link{EMPIRgrid_lkup}}}
 \examples{
-  para <- list(cop=GHcop, para=3, breve=.1)
+  para <- list(cop=GHcop, para=3, breve=0.1)
   uv <- simCOP(10, cop=breveCOP, para=para)
   gf <- EMPIRgrid_fast(para=uv, gridonly=TRUE)
   gg <- EMPIRgrid(para=uv, gridonly=TRUE, deluv=0.1, ctype="1/n")
@@ -34,7 +34,7 @@ A \code{matrix} is returned (\eqn{\ddot{\mathbf{C}}_{n}(u,v)} or \eqn{\ddot{\mat
 
   n <- 5; uv <- matrix(runif(n *2), ncol=2)
   empCOP <- EMPIRgrid_fast(uv, ctype="1/n",       gridonly=TRUE)
-            image(empCOP, main="1/n")
+            image(empCOP, main="1/n"      )
   empCOP <- EMPIRgrid_fast(uv, ctype="bernstein", gridonly=TRUE)
             image(empCOP, main="Bernstein")
 

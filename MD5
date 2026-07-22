@@ -1,6 +1,6 @@
-d7f1d36f394044c14d16568e400e7e17 *DESCRIPTION
-b5e4db62ccdc01bdfdfb838016e49b05 *NAMESPACE
-a781a4172c06bae6a8cac6209cb01e76 *NEWS
+f5e0f7a5ec6e5ca0240a10305dbd93fb *DESCRIPTION
+8cf30f3aef22de68ce70b2798f70fb38 *NAMESPACE
+f4a8c637ad211d5c072b8f8760dbd73c *NEWS
 17b5290f2fdb2695dbe1791d78c7857c *R/AMHcop.R
 7d5903f2343c7c7e611e52d6fb2f3c51 *R/CIRCcop.R
 d2b8ae2af2504fd085ec3ee7e3b7aa33 *R/CLcop.R
@@ -22,8 +22,8 @@ ec9d8da40d87362af37b71beb4831a32 *R/EMPIRmed.regress.R
 203a50693127e7ed950c50e07b9b92d3 *R/EMPIRqua.regress2.R
 3b53aab1d272014b7fb6cfc37c0d30ac *R/EMPIRsim.R
 96d4373851dc5819ead7f95de857b2bc *R/EMPIRsimv.R
-594c59043fedb481c0005d568f5dbc85 *R/EuvCOP.R
-d73de03de99dd439278d1a8bfbc12497 *R/EvuCOP.R
+71858c61f39f5951c7200d251229a65a *R/EuvCOP.R
+e90c1109d74005990dd78897c732b95c *R/EvuCOP.R
 29f7ea04f3c1a423c15ebcea62c1d7bb *R/FGMcop.R
 fdde88dc297b01b2550f78803bf7bc24 *R/FRECHETcop.R
 74c4938d741d2094943139d63657215b *R/FRcop.R
@@ -33,6 +33,8 @@ fdde88dc297b01b2550f78803bf7bc24 *R/FRECHETcop.R
 955a5c342b026895a97b26b3c8bd9872 *R/HRcop.R
 ac66384754a5f59ae258ae87b52f5a37 *R/JOMAcop.R
 1ee2fdb40c432d61b243d38a9758818c *R/JOcop.R
+e43e825e2ec10c120bef2b0d1cf533b8 *R/LMRuvCOP.R
+61bd729071efcaf87770300f9a15b05f *R/LMRvuCOP.R
 d798ffc741d49285cf4ebda2ac3a686d *R/LzCOPpermsym.R
 9e3baa945a26638ee969b26d4f67cdf6 *R/M.R
 52babc233a247829ee0b8775fa9b282d *R/MOcop.R
@@ -50,6 +52,7 @@ e6370ff560977afa0598d97eb76a4aae *R/PLACKETTsim.R
 67760aafd9107cbc6d09c6929fe1c28f *R/PSP.R
 65cf2ae22299decdf2e279ba545fb778 *R/RAYcop.R
 cd35b096299ab5a566135e426932bb88 *R/RFcop.R
+8939e1b06f081beb96f785a3400ff637 *R/TRIcop.R
 4ffa26b590eb86762c666ed8a3b19dc0 *R/Tcop.R
 feab6d2977a7127cb600726fbb25f37a *R/W.R
 9d48ef84698cce1767e48a27a7c31fd9 *R/W_N5p12a.R
@@ -138,7 +141,7 @@ abbe2b4906e1e94dc4db19e74c3734d3 *R/tauCOP.R
 d67db7936ca3ab427d4f4ba8ee4e9130 *R/vuongCOP.R
 694a2174a76c7ac7f13894973ae8ad10 *R/wolfCOP.R
 624bddf044d069faf8e106a39ffa8c87 *R/wolfCOPsamc.R
-ca7cb31cc146c0fc1062cdfac3c18312 *R/wolfCOPtest.R
+ae415629dc2d7df00d52ca9d8739d62a *R/wolfCOPtest.R
 f51ba7c8bc94d8cf1fd072b85c6e53ab *build/partial.rdb
 2d9f44f6a7722b44d9ff70c8273c320a *data/ReineckeWell266.RData
 d45f4e44cec05d81fbb9db2aba3d3d6c *data/ReineckeWells.RData
@@ -166,6 +169,7 @@ b6f2efe4ee3f02a7626b38078a91356f *inst/3dcopula/3dcopula.pdf
 2039e8769c20c2d307a87ab5781cc946 *inst/3dcopula/README.txt
 93450755c6ddd53451628bb60a35bcf7 *inst/3dcopula/velocity.txt
 2771e9d815ee21aa4df05098663f254a *inst/CITATION
+4ee3911042f41048dfbf3c0417d3a0b6 *inst/LMRvuDEMO.R
 8a7a16d915fcb23c07973462aeafda01 *inst/doc/CopulaRelations_BaseFigure_inR.txt
 12e5c86083f70f8610b59518c876d8dc *inst/doc/Extended_DESCRIPTION.txt
 374aeaa3a2d0595b349ba709ffc0201f *man/AMHcop.Rd
@@ -177,7 +181,7 @@ d23619c478ec4c24c9d179812a99ff11 *man/CIRCcop.Rd
 913a5974942585b675a8b3541ffa24a0 *man/EMPIRcop.Rd
 7e21b6061cef96e0d6145a9b2704dc35 *man/EMPIRcopdf.Rd
 86fca01d5a5c119c8f8e99625b0fb6c3 *man/EMPIRgrid.Rd
-cc69036709b03166a4aa0b20d2d023b0 *man/EMPIRgrid_fast.Rd
+51d5134cbb8ac4b57ad4dc837d8e4790 *man/EMPIRgrid_fast.Rd
 e558ad75c7d89197d8997ee0e2069615 *man/EMPIRgrid_lkup.Rd
 34ead6e652ed0bc7f80ef12f894413ba *man/EMPIRgridder.Rd
 386288acf7dc63b21c716085c35f2792 *man/EMPIRgridder2.Rd
@@ -189,8 +193,8 @@ f94e8ca88e1e9f8be1fb68daea2ce521 *man/EMPIRgridderinv2.Rd
 18c5f317b5fd4c03a090a871d32b4d07 *man/EMPIRqua.regress2.Rd
 97a52644aa3345795f1402c7cfe77930 *man/EMPIRsim.Rd
 240df2f782b86126012ee0dd059e06bf *man/EMPIRsimv.Rd
-14df9cc7c4c1b12ffb1902f17775aeb6 *man/EuvCOP.Rd
-80a59a628c05d230e81e537e1573ad99 *man/EvuCOP.Rd
+75a14b9f772e75b384e2d0aaeac5fc17 *man/EuvCOP.Rd
+ca8270bfc7ad868248b25f92b6c30820 *man/EvuCOP.Rd
 5e199ebfe70c1725146f1fc1d9cde31c *man/FGMcop.Rd
 afa8882452877ff15a0f78cbac6cf049 *man/FRECHETcop.Rd
 4edb819272cfee4b19cef4335e464ee6 *man/FRcop.Rd
@@ -203,6 +207,8 @@ cd08de254ffa8c8943d33a00043f22b3 *man/HRcop.Rd
 4fd14a7e3503d9caa2abe9fcfd18bfb1 *man/LCOMDIA_GH2cop.Rd
 23e86859ac07b14944a935d8efa5958e *man/LCOMDIA_GH3cop.Rd
 6ad52915cf52e93ede04661c829f2cdd *man/LCOMDIA_ManyCops.Rd
+93a1d535cd34077330791810200e752b *man/LMRuvCOP.Rd
+43ac07afe20e777450d6f23136a75751 *man/LMRvuCOP.Rd
 a9e65f4b58c34614e2a6a8b878081b31 *man/LzCOPpermsym.Rd
 7466b6e92fe9050f161b302956504592 *man/M.Rd
 f37786318b200794f213e5360cb197f2 *man/MOcop.Rd
@@ -222,6 +228,7 @@ ec40850d1a5499598448a1b20810df03 *man/PLACKETTpar.Rd
 d078e21789ebe21245c48f76267b5d05 *man/RFcop.Rd
 17ebb366bce8eb6982442427711bf4ff *man/ReineckeWell266.Rd
 21c9573bfe8d9eb446d290f3fef55b27 *man/ReineckeWells.Rd
+4f895859e974abdb34f3aa5e2a484b2c *man/TRIcop.Rd
 35cc452fe52a59142225f6a07bcc1195 *man/Tcop.Rd
 011bd246404941d741c8a3431517e3db *man/W.Rd
 48344545f5f48c9e9d3b2b64a442e02e *man/W_N5p12a.Rd
@@ -240,7 +247,7 @@ dbd4b9458ceb31d0a25a2b6d950f7ccf *man/coCOP.Rd
 1faf16f7a6be4351db0d6f4569f6644f *man/composite3COP.Rd
 7943db8d3abb3255d59e2f601b19f242 *man/convex2COP.Rd
 c64198c9e4cc2cdaeee4ab66c5e14bda *man/convexCOP.Rd
-a3736cadbc30ff9b9b34a39a7e221c99 *man/copBasic-package.Rd
+071ce6d21e678ec518e2153c6a466479 *man/copBasic-package.Rd
 53ff421b2f4f81256e1e3b6e0b3f8e73 *man/copBasic.fitpara.Rd
 547fac354c0b45e70a2c4d7177248307 *man/densityCOP.Rd
 32df7f119c2bcc4caac1a3446d47f612 *man/densityCOPplot.Rd
@@ -287,7 +294,7 @@ dfa25e245871fd16a10029d7d45d56f2 *man/lcomCOPpv.Rd
 782defd24ea243df79a3bb3568d1ba68 *man/med.regressCOP.Rd
 e2ce2f66f20aee821fe9c431dc65f2ab *man/med.regressCOP2.Rd
 16e4eeca48e90181459625a4ac4c390b *man/mleCOP.Rd
-01251ecca8f662f8c88c663cc4a1716b *man/prod2COP.Rd
+5d77dbc2edcf4f537e422b473523cf41 *man/prod2COP.Rd
 03a6ce5233db83a52c2076cc4ea253b1 *man/psepolar.Rd
 064ce31aa681c5f51926a415a20f51c9 *man/qua.regressCOP.Rd
 6b0bef3f8a9a4f78d52f3573941b8ba1 *man/qua.regressCOP.draw.Rd
@@ -314,7 +321,7 @@ fd7bddc121cc6d184a2e20267db663ab *man/tailconCOP.Rd
 00eaaaddc7f593084e7d3db38107739f *man/tauCOP.Rd
 cf128ce6bc1f06581146928b8e766832 *man/uvlmoms.Rd
 e1f3614a686e4a25c51298083007d0ed *man/vuongCOP.Rd
-a25644342d2d8887aa3a3f2877633412 *man/wolfCOP.Rd
+97ebfbe09cd160c5547bdd6fd1b12bc2 *man/wolfCOP.Rd
 12344905a5a5045741e822cd2d6b9caf *man/wolfCOPsamc.Rd
-578dd460efd9c83f070ae58e657d69f2 *man/wolfCOPtest.Rd
-4a6c76cc85ff7a238f3a6477205e8381 *man/wolfCOPtest_data_smlsam.Rd
+0b9afa906075cd462a74467d11fff245 *man/wolfCOPtest.Rd
+9448b894d9869fb4f2d2446539e83904 *man/wolfCOPtest_data_smlsam.Rd

@@ -66,7 +66,7 @@ Consideration of speed performance between the \code{as.sample=TRUE} for the sam
     return(12 * sum(abs(ef$empcop - pf)) / (n^2 - 1))
   }
 
-  ns <- as.integer( 10^seq(1, 3.3, by=0.1) ) # some sampel sizes
+  ns <- as.integer( 10^seq(1, 3.3, by=0.1) ) # some sample sizes
   WG <- WS <- vector(mode="numeric", length(ns))
   for(i in seq_len(length(ns))) {
     uv    <- simCOP(n=ns[i], cop=P, graphics=FALSE)
@@ -157,10 +157,13 @@ wolfCOP(cop=PSP) # 0.4784176
 
 \dontrun{
   n <- 1000; UV <- simCOP(n=n, cop=N4212cop, para=7.53, graphics=FALSE, seed=1)
-  wolfCOP(cop=N4212cop, para=7.53)  # 0.9884666 (theoretical)
-  wolfCOP(para=UV, as.sample=TRUE)  # 0.9873274 (  sample   )
-  wolfCOPsamc(para=UV)$estimates[2] # 0.9861096 (Monte Carlo integration)
-  # Much faster as the sample size gets large to use the Monte Carlo. }
+  wolfCOP(cop=N4212cop, para=7.53)                    # 0.9884666 (theoretical)
+  wolfCOP(para=UV, as.sample=TRUE, usefastgrid=TRUE ) # 0.9873274 (  sample   )
+  wolfCOP(para=UV, as.sample=TRUE, usefastgrid=FALSE) # 0.9873274 (  sample   )
+  wolfCOPsamc(para=UV)$estimates[2]       # 0.9861096 (Monte Carlo integration)
+  # Much faster as the sample size gets large to use the usefastgrid as shown
+  # in lieu of using the Monte Carlo. The wolfCOPsamc() was developed before
+  # the algorithm used for EMPIRgrid_fast and used by wolfCOP() was found. }
 
 \dontrun{
   # Redo D from Note section above

@@ -1,8 +1,22 @@
 --------------------------------------------------------------------------------------
                 NEWS for R Package "copBasic" by W.H. Asquith
 --------------------------------------------------------------------------------------
+Changes in version 2.2.15 (2026-07-22)
+-  Added LMR[uv|vu]COP() as conditional L-moment computation engines as an analog to
+     E[uv|vu]COP that is strictly for the simple conditional mean.
+-  Increased subdivisions to 200 in E[uv|vu]COP as these will be the defaults in
+     LMR[uv|vu]COP().
+-  Added LMR[uv|vu]COP() to copBasic-package.Rd.
+-  Edits to wolfCOPtest_data_smlsam.Rd.
+-  Added TRIcop() and table extension copBasic-package.Rd and NAMESPACE.
+-  Edits to wolfCOPtest.Rd and Examples extension to copula::indepTest() comparison.
+-  Extension of wolfCOPtest() for a censored data matrix, which brings this function
+     to a more general operational state for some unusual byt practical circumstances.
+
+
 Changes in version 2.2.14 (2026-05-21)
--  Changed html figure options to ununited pixels as per CRAN submit 2.2.13.
+-  Changed html figure options to nonunited pixels as per CRAN submit 2.2.13.
+
 
 Changes in version 2.2.13 (2026-05-21)
 -  Changed html figure options to pixels as per attempt to CRAN submit 2.2.12.

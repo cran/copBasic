@@ -14,7 +14,7 @@ where \eqn{\hat{\mathbf{C}}} is the \emph{survival copula} (\code{\link{surCOP}}
 \deqn{\mathbf{A} \ast (\mathbf{B} \ast \mathbf{C}) = (\mathbf{A} \ast \mathbf{B}) \ast \mathbf{C}\mbox{,}}
 but \eqn{\ast}-product is not commutative (order independent). Nelsen (2006, p. 245) reports that \dQuote{if we view \eqn{\ast} as a binary operation on the set of copulas, then \eqn{\mathbf{\Pi}} is the null element, and \eqn{\mathbf{M}} is the identity.} Copula multiplication is closely linked to \emph{Markov Processes} (Nelsen, 2006, pp. 244--248).
 
-For other descriptions and computations of copula combination are possible using the \pkg{copBasic} package, see \code{\link{convexCOP}}, \code{\link{convex2COP}}, \code{\link{composite1COP}}, \code{\link{composite2COP}}, \code{\link{composite3COP}}, \code{\link{glueCOP}}, and \code{\link{convexCOP}}.
+For other descriptions and computations of copula combination are possible using the \pkg{copBasic} package, see \code{\link{convexCOP}}, \code{\link{convex2COP}}, \code{\link{composite1COP}}, \code{\link{composite2COP}}, \code{\link{composite3COP}},\cr \code{\link{glueCOP}}, and \code{\link{convexCOP}}.
 }
 \usage{
 prod2COP(u,v, cop1=NULL, para1=NULL, cop2=NULL, para2=NULL, para=NULL,
