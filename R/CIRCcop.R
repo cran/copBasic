@@ -12,8 +12,15 @@ function(u, v, para=NULL, as.circ=FALSE, ...) {
      v <- rep(v, length(u))
   }
   if(! is.null(para)) {
-    if(exists("as.circ", para)) as.circ <- para$as.circ
+    if(is.list(para)) {
+      if(exists("as.circ", para)) {
+        as.circ <- para$as.circ
+      } else {
+        as.circ <- NA
+      }
+    }
   }
+
   if(is.na(as.circ)) as.circ <- FALSE # revert to default
   if(as.circ) {
     u <- 1 - acos(2*u - 1) / pi

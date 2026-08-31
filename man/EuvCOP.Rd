@@ -5,11 +5,11 @@
 \description{
 Compute the \emph{expected value} of \eqn{U} given a \eqn{V} (the \eqn{Y} direction) through the \emph{conditional distribution function} \eqn{G(Y)} using the appropriate \emph{partial derivative} of a copula (\eqn{\mathbf{C}(u,v)}) with respect to \eqn{V}. The inversion of the partial derivative is the \emph{conditional quantile function}. Basic principles provide the expectation for a \eqn{y \ge 0} is
 
-\deqn{E[Y] = \int_0^\infty yf(y)\mathrm{d}y = \int_0^\infty \bigl(1-G_y(Y)\bigr)\mathrm{d}y\mbox{,}}
+\deqn{E[Y] = \int_0^\infty yf(y)\,\mathrm{d}y = \int_0^\infty \bigl(1-G_y(Y)\bigr)\,\mathrm{d}y\mbox{,}}
 
 which for the setting here becomes
 
-\deqn{E[U \mid V = v] = \int_0^1 \bigl(1 - \frac{\delta}{\delta v} \mathbf{C}(u,v)\bigr)\mathrm{d}u\mbox{.}}
+\deqn{E[U \mid V = v] = \int_0^1 \bigl(1 - \frac{\delta}{\delta v} \mathbf{C}(u,v)\bigr)\,\mathrm{d}u\mbox{.}}
 
 This function solves the integral using the \code{\link{derCOP2}} function. This avoids a call of the \code{\link{derCOPinv2}} through its \code{uniroot()} inversion of the derivative. The example shown for \code{EuvCOP()} below does a validation check using conditional simulation, which is dependence (of course) of the design of the \pkg{copBasic} package, as part of simple isolation of a horizontal slice of the simulation and computing the mean of the \eqn{V} within the slice.
 }

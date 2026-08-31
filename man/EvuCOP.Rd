@@ -4,9 +4,9 @@
 \title{Expected value of V given U}
 \description{
 Compute the \emph{expected value} of \eqn{V} given a \eqn{U} (the \eqn{X} direction) through the \emph{conditional distribution function} \eqn{F(X)} using the appropriate \emph{partial derivative} of a copula (\eqn{\mathbf{C}(u,v)}) with respect to \eqn{U}. The inversion of the partial derivative is the \emph{conditional quantile function}. Basic principles provide the expectation for a \eqn{x \ge 0} is
-\deqn{E[X] = \int_0^\infty xf(x)\mathrm{d}x = \int_0^\infty \bigl(1-F_x(X)\bigr)\mathrm{d}x\mbox{,}}
+\deqn{E[X] = \int_0^\infty xf(x)\,\mathrm{d}x = \int_0^\infty \bigl(1-F_x(X)\bigr)\,\mathrm{d}x\mbox{,}}
 which for the setting here becomes
-\deqn{E[V \mid U = u] = \int_0^1 \bigl(1 - \frac{\delta}{\delta u} \mathbf{C}(u,v)\bigr)\mathrm{d}v\mbox{.}}
+\deqn{E[V \mid U = u] = \int_0^1 \bigl(1 - \frac{\delta}{\delta u} \mathbf{C}(u,v)\bigr)\,\mathrm{d}v\mbox{.}}
 This function solves the integral using the \code{\link{derCOP}} function. Verification study is provided in the \bold{Note} section.
 }
 \usage{

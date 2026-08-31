@@ -10,31 +10,34 @@ Compute the measure of association known as the \emph{Hoeffding Phi} \eqn{\Phi_\
 \deqn{\Phi_\mathbf{C} = 3 \sqrt{10\int\!\!\int_{\mathcal{I}^2} \bigl(\mathbf{C}(u,v) - uv\bigr)^2\,\mathrm{d}u\mathrm{d}v}\mbox{,}}
 
 and Nelsen (2006, p. 210) shows this as (and absolute value notation by Nelsen helps in generalization)
-\deqn{\Phi_\mathbf{C} = \biggl(90\int\!\!\int_{\mathcal{I}^2} |\mathbf{C}(u,v) - uv|^2\,\mathrm{d}u\mathrm{d}v\biggr)^{1/2}\mbox{,}}
+\deqn{\Phi_\mathbf{C} = \biggl(90\int\!\!\int_{\mathcal{I}^2} \bigl|\mathbf{C}(u,v) - uv\bigr|^2\,\mathrm{d}u\mathrm{d}v\biggr)^{1/2}\mbox{,}}
 
 for which \eqn{\Phi^2_\mathbf{C}} (the square of the quantity) is known as the \emph{dependence index}. \enc{Gaißer}{Gaisser} \emph{et al.} (2010, eq. 1) have \eqn{\Phi^2_\mathbf{C}} as the \emph{Hoeffding Phi-Square}, and their definition, when square-rooted, matches Nelsen's listing.
 
 A generalization (Nelsen, 2006) to \eqn{L_p} distances from independence (\eqn{uv = \mathbf{\Pi}}; \code{\link{P}}) through the \code{LpCOP} function is
-\deqn{L_p \equiv \Phi_\mathbf{C}(p) = \biggl(k(p)\int\!\!\int_{\mathcal{I}^2} |\mathbf{C}(u,v) - uv|^p\,\mathrm{d}u\mathrm{d}v\biggr)^{1/p}\mbox{,}}
+\deqn{L_p \equiv \Phi_\mathbf{C}(p) = \biggl(k(p)\int\!\!\int_{\mathcal{I}^2} \bigl|\mathbf{C}(u,v) - uv\bigr|^p\,\mathrm{d}u\mathrm{d}v\biggr)^{1/p}\mbox{,}}
 
 for a \eqn{p: 1 \le p \le \infty} and where \eqn{k(p)} is a normalization constant such that \eqn{\Phi_\mathbf{C}(p) = 1} when the copula \eqn{\mathbf{C}} is \eqn{\mathbf{M}} (see \code{\link{M}}) or \eqn{\mathbf{W}} (see \code{\link{W}}). The \eqn{k(p)} (bivariate definition only) for other powers is given (Nelsen, 2006, exer. 5.44, p. 213) in terms of the \emph{complete gamma function} \eqn{\Gamma(t)} by
-\deqn{k(p) = \frac{\Gamma(2p+3)}{2[\Gamma(p + 1)]^2}\mbox{,}}
+\deqn{k(p) = \frac{\Gamma(2p+3)}{2\bigl[\Gamma(p + 1)\bigr]^2}\mbox{,}}
 
 which is implemented by the \code{hoefCOP} function. It is important to realize that the \eqn{L_p} distances are all \emph{symmetric nonparametric measures of dependence} (Nelsen, 2006, p. 210). These are symmetric because distance from independence is used as evident by \dQuote{\eqn{uv}} in the above definitions.
 
 \emph{Reflection/Radial and Permutation Asymmetry}---Asymmetric forms similar to the above distances exist. Joe (2014, p. 65) shows two measures of bivariate \emph{reflection asymmetry} or \emph{radial asymmetry} (term favored in \pkg{copBasic}) as the distance between \eqn{\mathbf{C}(u,v)} and the survival copula \eqn{\hat{\mathbf{C}}(u,v)} (\code{\link{surCOP}}) measured by
-\deqn{L_\infty^{\mathrm{radsym}} = \mathrm{sup}_{0\le u,v\le1}|\mathbf{C}(u,v) - \hat{\mathbf{C}}(u,v)|\mbox{,}}
+
+\deqn{L_\infty^{\mathrm{radsym}} = \mathrm{sup}_{0\le u,v\le1}\bigl|\mathbf{C}(u,v) - \hat{\mathbf{C}}(u,v)\bigr|\mbox{,}}
 
 or its \eqn{L_p^{\mathrm{radsym}}} counterpart
-\deqn{L_p^{\mathrm{radsym}} = \biggl[\int\!\!\int_{\mathcal{I}^2} |\mathbf{C}(u,v) - \hat{\mathbf{C}}(u,v)|^p\,\mathrm{d}u\mathrm{d}v\biggr]^{1/p}\,\mathrm{with}\, p \ge 1\mbox{,}}
+
+\deqn{L_p^{\mathrm{radsym}} = \biggl[\int\!\!\int_{\mathcal{I}^2} \bigl|\mathbf{C}(u,v) - \hat{\mathbf{C}}(u,v)\bigr|^p\,\mathrm{d}u\mathrm{d}v\biggr]^{1/p}\,\mathrm{with}\, p \ge 1\mbox{,}}
 
 where \eqn{\hat{\mathbf{C}}(u,v) = u + v - 1 + \mathbf{C}(1-u, 1-v)} and again \eqn{p: 1 \le p \le \infty}. Joe (2014) does not appear to discuss and normalization constants for these two radial asymmetry distances.
 
 Joe (2014, p. 66) offers analogous measures of bivariate \emph{permutation asymmetry} (\code{\link{isCOP.permsym}}) (\eqn{\mathbf{C}(u,v) \not= \mathbf{C}(v,u)}) defined as
-\deqn{L_\infty^{\mathrm{permsym}} = \mathrm{sup}_{0\le u,v\le1}|\mathbf{C}(u,v) - \hat{\mathbf{C}}(v,u)|\mbox{,}}
+
+\deqn{L_\infty^{\mathrm{permsym}} = \mathrm{sup}_{0\le u,v\le1}\bigl|\mathbf{C}(u,v) - \hat{\mathbf{C}}(v,u)\bigr|\mbox{,}}
 
 or its \eqn{L_p^{\mathrm{permsym}}} counterpart
-\deqn{L_p^{\mathrm{permsym}} = \biggl[\int\!\!\int_{\mathcal{I}^2} |\mathbf{C}(u,v) - \hat{\mathbf{C}}(v,u)|^p\,\mathrm{d}u\mathrm{d}v\biggr]^{1/p}\,\mathrm{with}\, p \ge 1\mbox{,}}
+\deqn{L_p^{\mathrm{permsym}} = \biggl[\int\!\!\int_{\mathcal{I}^2} \bigl|\mathbf{C}(u,v) - \hat{\mathbf{C}}(v,u)\bigr|^p\,\mathrm{d}u\mathrm{d}v\biggr]^{1/p}\,\mathrm{with}\, p \ge 1\mbox{,}}
 
 where \eqn{p: 1 \le p \le \infty}. Again, Joe (2014) does not appear to discuss and normalization constants for these two permutation symmetry distances. Joe (2014, p. 65) states that the \dQuote{simplest one-parameter bivariate copula families [and] most of the commonly used two-parameter bivariate copula families are permutation symmetric.} The \eqn{L_\infty^{\mathrm{permsym}}} (or rather a similar form) is implemented by \code{\link{LzCOPpermsym}} and demonstration made in that documentation.
 
@@ -70,15 +73,18 @@ LpCOPpermsym(cop=NULL, para=NULL, p=2, brute=FALSE, delta=0.002, ...)
 Concerning the distance from independence, when \eqn{p = 1}, then the \emph{Spearman Rho} (\code{\link{rhoCOP}}) of a copula is computed where is it seen in that documentation that the \eqn{k_p(1) = 12}. The respective values of \eqn{k(p)} for select integers \eqn{p} are
 \deqn{p \mapsto [1, 2, 3, 4, 5] \equiv k(p) \mapsto \{12, 90, 560, 3150, 16600\}\mbox{,}}
 and these values are hardwired into \code{hoefCOP} and \code{LpCOP}. The integers for \eqn{k_p} ensures that the equality in the second line of the examples is \code{TRUE}, but the \eqn{p} can be a noninteger as well. Nelsen (2006, p. 211) reports that when \eqn{p = \infty} that \eqn{L_\infty} is
-\deqn{L_\infty \equiv \Phi_\mathbf{C}(\infty) = \Lambda_\mathbf{C} = 4\;\mathrm{sup}_{u,v \in \mathcal{I}}|\mathbf{C}(u,v) - uv|\mbox{.}}
+
+\deqn{L_\infty \equiv \Phi_\mathbf{C}(\infty) = \Lambda_\mathbf{C} = 4\;\mathrm{sup}_{u,v \in \mathcal{I}}\bigl|\mathbf{C}(u,v) - uv\bigr|\mbox{.}}
 
 A sample \eqn{\hat{\Phi}_\mathbf{C}} (square root of the \emph{Hoeffding Phi-Square}) based on nonparametric estimation generalized for \eqn{d} dimensions (\eqn{d = 2} for bivariate) is presented by \enc{Gaißer}{Gaisser} \emph{et al.} (2010, eq. 10) for estimated probabilities \eqn{\hat{U}_{ij}} for the \eqn{i}th dimension and \eqn{j}th row (observation) for sample of size \eqn{n}. Those authors suggest that the \eqn{\hat{U}_{ij}} be estimated from the empirical copula:
 \deqn{\hat\Phi_\mathbf{C} = \sqrt{h(d)[A + B]}\mbox{,}}
 where
+
 \deqn{A = \biggl(\frac{1}{n}\biggr)^2\sum_{j=1}^n\sum_{k=1}^n\prod_{i=1}^d
                     \bigl[1 - \mathrm{max}\bigl(\hat{U}_{ij}, \hat{U}_{ik}\bigr)\bigr]\mbox{,}}
 \deqn{B = \biggl(\frac{1}{3}\biggr)^d - \biggl(\frac{2}{n}\biggr)\biggl(\frac{1}{2}\biggr)^d
                \sum_{j=1}^n\prod_{i=1}^d  \bigl[1 - \hat{U}_{ij}^2\bigr]\mbox{.}}
+
 The normalization constant is a function of dimension and is
 \deqn{h(d)^{-1} = \frac{2}{(d+1)(d+2)} - \biggl(\frac{1}{2}\biggr)^d\frac{d\,!}{\prod_{i=0}^d\bigl(i+(1/2)\bigr)}+\biggl(\frac{1}{3}\biggr)^d\mbox{.}}
 \preformatted{
@@ -92,7 +98,7 @@ The normalization constant is a function of dimension and is
 \references{
 Cherubini, U., Luciano, E., and Vecchiato, W., 2004, Copula methods in finance: Hoboken, NJ, Wiley, 293 p.
 
-\enc{Gaißer}{Gaisser}, S., Ruppert, M., and Schmid, F., 2010, A multivariate version of Hoeffding's Phi-Square: Journal of Multivariate Analysis, v. 101, no. 10, pp. 2571--2586.
+\enc{Gaißer}{Gaisser}, S., Ruppert, M., and Schmid, F., 2010, A multivariate version of Hoeffding's Phi-Square: Journal of Multivariate Analysis, v. 101, no. 10, pp. 2571--2586, \doi{10.1016/j.jmva.2010.07.006}.
 
 Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.
 

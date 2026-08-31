@@ -5,14 +5,14 @@
 \title{The Generalized Farlie--Gumbel--Morgenstern Copula}
 \description{
 The \emph{generalized Farlie--Gumbel--Morgenstern copula} (Bekrizade \emph{et al.}, 2012) is
-\deqn{\mathbf{C}_{\Theta, \alpha, n}(u,v) = \mathbf{FGM}(u,v) = uv[1 + \Theta(1-u^\alpha)(1-v^\alpha)]^n\mbox{,}}
+\deqn{\mathbf{C}_{\Theta, \alpha, n}(u,v) = \mathbf{FGM}(u,v) = uv\bigl[1 + \Theta(1-u^\alpha)(1-v^\alpha)\bigr]^n\mbox{,}}
 where \eqn{\Theta \in [-\mathrm{min}\{1, 1/(n\alpha^2)\}, +1/(n\alpha)]}, \eqn{\alpha > 0}, and \eqn{n \in 0,1,2,\cdots}. The copula \eqn{\Theta = 0} or \eqn{\alpha = 0} or \eqn{n = 0} becomes the \emph{independence copula} (\eqn{\mathbf{\Pi}(u,v)}; \code{\link{P}}). When \eqn{\alpha = n = 1}, then the well-known, single-parameter Farlie--Gumbel--Morgenstern copula results, and \emph{Spearman Rho} (\code{\link{rhoCOP}}) is \eqn{\rho_\mathbf{C} = \Theta/3} but in general
 \deqn{\rho_\mathbf{C} = 12\sum_{r=1}^n {n \choose r} \Theta^r \biggl[\frac{\phantom{\alpha}\Gamma(r+1)\Gamma(2/\alpha)}{\alpha\Gamma(r+1+2/\alpha)} \biggr]^2
 \mbox{.}}
 The support of \eqn{\rho_\mathbf{C}(\cdots;\Theta, 1, 1)} is \eqn{[-1/3, +1/3]} but extends via \eqn{\alpha} and \eqn{n} to \eqn{\approx [-0.50, +0.43]}, which shows that the generalization of the copula increases the range of dependency. The generalized version is implemented by \code{FGMcop}.
 
 The \emph{iterated Farlie--Gumbel--Morgenstern copula} (Chine and Benatia, 2017) for the \eqn{r}th iteration is
-\deqn{\mathbf{C}_{\beta}(u,v) = \mathbf{FGMi}(u,v) = uv + \sum_{j=1}^{r} \beta_j\cdot(uv)^{[j/2]}\cdot(u'v')^{[(j+1)/2]}\mbox{,}}
+\deqn{\mathbf{C}_{\beta}(u,v) = \mathbf{FGMi}(u,v) = uv + \sum_{j=1}^{r} \beta_j\cdot\bigl(uv\bigr)^{[j/2]}\cdot\bigl(u'v'\bigr)^{[(j+1)/2]}\mbox{,}}
 where \eqn{u' = 1-u} and \eqn{v' = 1-v} for \eqn{|\beta_j| \le 1} that has \eqn{r} dimensions \eqn{\beta = (\beta_1, \cdots, \beta_j, \cdots, \beta_r)} and \eqn{[t]} is the integer part of \eqn{t}. The copula \eqn{\beta = 0} becomes the \emph{independence copula} (\eqn{\mathbf{\Pi}(u,v)}; \code{\link{P}}). The support of \eqn{\rho_\mathbf{C}(\cdots;\beta)} is approximately \eqn{[-0.43, +0.43]}. The iterated version is implemented by \code{FGMicop}. Internally, the \eqn{r} is determined from the length of the \eqn{\beta} in the \code{para} argument.
 }
 \usage{
@@ -31,7 +31,7 @@ FGMicop(u, v, para=NULL,       ...)
 \references{
 Bekrizade, Hakim, Parham, G.A., Zadkarmi, M.R., 2012, The new generalization of Farlie--Gumbel--Morgenstern copulas: Applied Mathematical Sciences, v. 6, no. 71, pp. 3527--3533.
 
-Chine, Amel, and Benatia, Fatah, 2017, Bivariate copulas parameters estimation using the trimmed L-moments methods: Afrika Statistika, v. 12, no. 1, pp. 1185--1197.
+Chine, Amel, and Benatia, Fatah, 2017, Bivariate copulas parameters estimation using the trimmed L-moments methods: Afrika Statistika, v. 12, no. 1, pp. 1185--1197, \doi{10.16929/as/2017.1185.99}.
 }
 \author{W.H. Asquith}
 \seealso{\code{\link{P}}, \code{\link{mleCOP}}

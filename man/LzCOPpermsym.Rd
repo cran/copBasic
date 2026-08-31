@@ -4,8 +4,8 @@
 \title{Maximum Asymmetry Measure (or Vector) of a Copula by Exchangeability (Permutation Symmetry)}
 \description{
 Compute a measure of maximum exchangable asymmetry of a copula \eqn{\mathbf{C}_\Theta} using \emph{Exchangeability} (\emph{permutation symmetry}) according to De Baets and De Meyer (2017) by
-\deqn{\mu_{\infty\mathbf{C}}^{\mathrm{permsym}} = \mu_\infty^{\mathrm{permsym}} = 3 \times \mathrm{max}\bigl(\,|\,\mathbf{C}_\Theta(u,v) -
-                       \mathbf{C}_\Theta(v,u)\,|\,\bigr)}
+\deqn{\mu_{\infty\mathbf{C}}^{\mathrm{permsym}} = \mu_\infty^{\mathrm{permsym}} = 3 \times \mathrm{max}\bigl(\,\bigl|\,\mathbf{C}_\Theta(u,v) -
+                       \mathbf{C}_\Theta(v,u)\,\bigr|\,\bigr)}
 
 for \eqn{(u,v) \in \mathcal{I}^2}. De Baets and De Meyer (2017) comment that among many asymmetric metrics with copulas that \eqn{\mu_\infty^{\mathrm{permsym}}} is \dQuote{by far the most interesting} (De Baets and De Meyer, 2017, p. 36). The \eqn{3} multiplier in the definition ensures that \eqn{\mu_\infty^{\mathrm{permsym}} \in [0, 1]}. De Baets and De Meyer also conclude that permutation symmetry of random variables, in general, is not a desired property in statistical models, and those authors use the \eqn{\mu_\infty} notation in lieu of \eqn{L_\infty^{\mathrm{permsym}}} (see documentation related to \code{\link{LpCOPpermsym}} within \code{\link{hoefCOP}} of \emph{Hoeffding Phi}). The term \dQuote{Permutation-Mu} is used for this measure in \code{\link{copBasic-package}} and in similar contexts.
 }

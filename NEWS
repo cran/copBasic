@@ -1,6 +1,24 @@
 --------------------------------------------------------------------------------------
                 NEWS for R Package "copBasic" by W.H. Asquith
 --------------------------------------------------------------------------------------
+Changes in version 2.2.16 (2026-08-30)
+-  Absolute value symbol scale up in hoefCOP.Rd and LzCOPpermsym.Rd and added doi
+     number to an article in hoefCOP.Rd.
+-  Tinkering with math notation improvements in derCOPinv.Rd, EuvCOP.Rd, EvuCOP.Rd,
+     FGMcop.Rd (and a doi number added), footCOP.Rd, GLcop.Rd, hoefCOP.Rd (and a doi
+     number added), and LzCOPpermsym.Rd.
+-  giniCOP.Rd tinkering with math notation improvements, minor edits, and added a
+     comparison of Gini gamma sampling variation to that of Schweizer-Wolff Sigma.
+-  Minor edits to joint.curvesCOP[2].Rd.
+-  Minor edits to wolfCOPtest.Rd.
+-  Math edits in wolfCOP.Rd.
+-  Added wolfCOPtest_check.Rd as additional documentation of veracity of wolfCOPtest
+     and this meant some additional scripting in inst/make_wolfCOPtest/ and some
+     .gitignore changes to the repository.
+-  Argument para variations passing to CIRCcop.R needed special trapping for para=NA.
+-  MOcop.Rd references edit of a url to code declaration because URL appears dead.
+
+
 Changes in version 2.2.15 (2026-07-22)
 -  Added LMR[uv|vu]COP() as conditional L-moment computation engines as an analog to
      E[uv|vu]COP that is strictly for the simple conditional mean.

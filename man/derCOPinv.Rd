@@ -24,18 +24,17 @@ derCOPinv(cop=NULL, u, t, trace=FALSE,
   Value(s) for the derivative inverse are returned.
 }
 \note{
-\emph{AN EDUCATIONAL OPPORTUNITY}---The Farlie-Gumbel-Morgenstern copula \eqn{\mathbf{FGM}(u,v)} \cr (\code{\link{FGMcop}}) (Joe, 2014, p. 213) is
-\deqn{\mathbf{FGM}(u,v; \Theta) = uv[1+\Theta(1-u)(1-v)]\mbox{,}}
-where \eqn{-1 \le \Theta \le 1} has analytical solutions to the conditional cumulative distribution function (CDF) \eqn{\mathbf{C}_{2 \mid 1}(v \mid u)} as
-\deqn{\mathbf{C}_{2 \mid 1}(v \mid u) = v[1 + \Theta(1-v)(1-2u)]\mbox{,}}
-and the inverse of the conditional CDF as
-\deqn{\mathbf{C}_{2 \mid 1}(v \mid u) = \frac{[1 + \Theta(1-2u)] - \sqrt{[1+\Theta(1-2u)]^2 - 4t(1-2u)}}{2\Theta(1-2u)}\mbox{.}}
+\bold{An Educational Opportunity}---The \emph{Farlie--Gumbel--Morgenstern} copula \eqn{\mathbf{FGM}(u,v)} \cr (\code{\link{FGMcop}}) (Joe, 2014, p. 213) is
+\deqn{\mathbf{FGM}(u,v; \Theta) = uv\bigl[1+\Theta(1-u)(1-v)\bigr]\mbox{,}}
+where \eqn{-1 \le \Theta \le 1} has analytical solutions to the \emph{conditional cumulative distribution} function (CCDF) \eqn{\mathbf{C}_{2 \mid 1}(v \mid u)} as
+\deqn{\mathbf{C}_{2 \mid 1}(v \mid u) = v\bigl[1 + \Theta(1-v)(1-2u)\bigr]\mbox{,}}
+and the inverse of the CCDF as
+\deqn{\mathbf{C}_{2 \mid 1}(v \mid u) = \frac{\bigl[1 + \Theta(1-2u)\bigr] - \sqrt{\bigl[1+\Theta(1-2u)\bigr]^2 - 4t(1-2u)}}{2\Theta(1-2u)}\mbox{.}}
 These three functions for the copula can be defined in \R by
 \preformatted{
   "FGMcop"       <- function(u,v, para=NULL, ...) u*v*(1 + para*(1-u)*(1-v)  )
   "joeFGMder"    <- function(u,v, para=NULL, ...)   v*(1 + para*(1-v)*(1-2*u))
-  "joeFGMderinv" <- function(u,t, para=NULL, ...) {
-      K <- (1-2*u)
+  "joeFGMderinv" <- function(u,t, para=NULL, ...) { K <- (1-2*u)
       ((1 + para*K) - sqrt((1 + para*K)^2 - 4*t*K))/(2*para*K)
   }
 }
@@ -73,10 +72,10 @@ and in \R, this \dQuote{Nelsen algorithm} is
       A <- 1 + para*(1-2*u); B <- sqrt(A^2 - 4*t*(A-1)); return(2*t/(B + A))
   }
 }
-With appropriate code now available, two comparisons can be made in the following sections.
+With appropriate code now available, two comparisons can be made in the following section.
 
 
-\emph{CONDITIONAL DISTRIBUTION FUNCTION}---A comparison of the analytical \eqn{\mathbf{FGM}(u,v)} derivative shows that Joe's equation is congruent with the numerical derivative of \pkg{copBasic}:
+\bold{Conditional Cumulative Distribution Function}---A comparison of the analytical \eqn{\mathbf{FGM}(u,v)} derivative shows that Joe's equation is congruent with the numerical derivative of \pkg{copBasic}:
 \preformatted{
   joeFGMder(0.8, 0.44, para=0.78)             # 0.3246848      (Joe, 2014)
   derCOP(   0.8, 0.44, para=0.78, cop=FGMcop) # 0.3246848      (copBasic )
@@ -111,31 +110,30 @@ Zhang, L., and Singh, V.P., 2019, Copulas and their applications in water resour
 \seealso{\code{\link{derCOP}}}
 \examples{
 u <- runif(1); t <- runif(1)
-derCOPinv(u,t, cop=W)   # perfect negative dependence
-derCOPinv(u,t, cop=P)   # independence
-derCOPinv(u,t, cop=M)   # perfect positive dependence
+derCOPinv(u,t, cop=W  ) # perfect negative dependence
+derCOPinv(u,t, cop=P  ) # independence
+derCOPinv(u,t, cop=M  ) # perfect positive dependence
 derCOPinv(u,t, cop=PSP) # a parameterless copula example
 \dontrun{
-# Simulate 500 values from product (independent) copula
-plot(NA,NA, type="n", xlim=c(0,1), ylim=c(0,1), xlab="U", ylab="V")
-for(i in 1:500) {
-   u <- runif(1); t <- runif(1)
-   points(u, derCOPinv(cop=P, u, t), cex=0.5, pch=16) # black dots
-}
-# Now simulate 500 from the Nelsen 4.2.12 copula.
-for(i in 1:500) {
-   u <- runif(1); t <- runif(1)
-   points(u,derCOPinv(cop=N4212cop,para=9.3,u,t), cex=2, pch=16, col=2) # red dots
-} #}
+  # Simulate 500 values from product (independent) copula
+  plot(NA,NA, type="n", xlim=c(0,1), ylim=c(0,1), xlab="U", ylab="V")
+  for(i in 1:500) {
+    u <- runif(1); t <- runif(1)
+    points(u, derCOPinv(cop=P, u, t), cex=0.5, pch=16) # black dots
+  }
+  # Now simulate 500 from the Nelsen 4.2.12 copula.
+  for(i in 1:500) {
+    u <- runif(1); t <- runif(1)
+    points(u,derCOPinv(cop=N4212cop,para=9.3,u,t), cex=2, pch=16, col=2) # red dots
+  } #}
 
 \dontrun{
-# Zhang and Singh (2019) exam. 3.23, p. 105
-# show the application of the derivative inversion C2|1
-# for u=0.6036 and t=0.6036 ---> v = 0.4719
-derCOPinv( cop=CLcop, 0.6036, 0.4028, para=0.5) # 0.4719 for C2|1
-derCOPinv2(cop=CLcop, 0.6036, 0.4028, para=0.5) # 0.4719 for C1|2
-# and C2|1 and C1|2 are equal because the copula has permutation symmetry
-isCOP.permsym(cop=CLcop, para=0.5) # TRUE}
+  # Zhang and Singh (2019) exam. 3.23, p. 105 show the application of the
+  # derivative inversion C2|1 for u=0.6036 and t=0.6036 ---> v = 0.4719
+  derCOPinv( cop=CLcop, 0.6036, 0.4028, para=0.5) # 0.4719 for C2|1
+  derCOPinv2(cop=CLcop, 0.6036, 0.4028, para=0.5) # 0.4719 for C1|2
+  # and C2|1 and C1|2 are equal because the copula has permutation symmetry
+  isCOP.permsym(cop=CLcop, para=0.5) # TRUE}
 }
 \keyword{copula (utility)}
 \keyword{copula (derivative inverse)}

@@ -52,7 +52,7 @@ A natural estimator for \eqn{\sigma_\mathbf{C}} is through the \emph{empirical c
                  \frac{i}{n}\times\frac{j}{n}\bigg|\mbox{,}}
 where \eqn{\hat{\mathbf{C}}_n} is the simplest empirical copula of
 \deqn{\hat{\mathbf{C}}_n\biggl(\frac{i}{n}, \frac{j}{n}\biggr) =
-	\frac{1}{n}\{\# \mathrm{\ of\ } (U_k \le U_i, V_k \le V_j)\}}
+	\frac{1}{n}\bigl[\# \mathrm{\ of\ } (U_k \le U_i, V_k \le V_j)\bigr]}
 
 The sample version of \eqn{\hat\sigma_\mathbf{C}} is triggered by \code{wolfCOP(para=D, as.sample=TRUE)} for the double summation if \code{usefastgrid} is false and or \code{usefastgrid} is true and the same size is smaller than \code{nlarge}. A Monte Carlo integration version potentially suitable to very large sample sizes or difficult to integrate copula families is located at \code{\link{wolfCOPsamc}}, but the function itself is likely of limited general use because of the implementation of \code{\link{EMPIRgrid_fast}} inside \code{wolfCOP}. It is upon the fast estimator listed above that the extensive simulations leading to \code{\link{wolfCOPtest}} are based. In general, there are several asymptotically equivalent definitions of the empirical copula and some of which are implemented in \code{\link{EMPIRcop}}.
 

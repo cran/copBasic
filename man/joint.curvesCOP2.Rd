@@ -25,10 +25,10 @@ joint.curvesCOP2(cop=NULL, para=NULL, type=c("and", "or"),
   \item{para}{Vector of parameters or other data structure, if needed, to pass to the copula;}
   \item{type}{What type of joint probability is to be computed;}
   \item{probs}{The joint probabilities for which to compute the coordinates. The default values represent especially useful annual return period equivalents that are useful in hydrologic risk analyses;}
-  \item{zero2small}{A logical controlling whether precise zero value for probability are converted to a \code{small} value and precise unity values for probability are converted to the value \code{1 - small}; this logical is useful if transformation from probability space into standard normal variates or \emph{Gumbel reduced variates} (GRV; see function \code{prob2grv()} in package \pkg{lmomco}) is later desired by the user for attendant graphics (see \bold{Examples} section);}
+  \item{zero2small}{A logical controlling whether precise zero value for probability are converted to a \code{small} value and precise unity values for probability are converted to the value \code{1 - small}; this logical is useful if transformation from probability space into standard normal variates or \emph{Gumbel reduced variates} (GRV; refer to function \code{prob2grv()} in package \pkg{lmomco}) is later desired by the user for attendant graphics (refer to \bold{Examples} section);}
   \item{small}{The value for \emph{small} described for \code{zero2small};}
-  \item{divisor}{A divisor on a computation of a \eqn{\Delta} for incrementing through the \eqn{v} domain as part of the coordinate computation (see source code);}
-  \item{delv}{A \eqn{\Delta v} for setup of the incrementing through the \eqn{v} domain as part of the coordinate computation (see source code); and}
+  \item{divisor}{A divisor on a computation of a \eqn{\Delta} for incrementing through the \eqn{v} domain as part of the coordinate computation (refer to source code);}
+  \item{delv}{A \eqn{\Delta v} for setup of the incrementing through the \eqn{v} domain as part of the coordinate computation (refer to source code); and}
   \item{...}{Additional arguments to pass to the \code{\link{duCOP}} function of \pkg{copBasic} or \code{uniroot()} function.}
 }
 \value{
@@ -41,14 +41,15 @@ Nelsen, R.B., 2006, An introduction to copulas: New York, Springer, 269 p.
 \seealso{\code{\link{diagCOPatf}}, \code{\link{duCOP}}, \code{\link{jointCOP}}, \code{\link{joint.curvesCOP}}, \code{\link{level.curvesCOP2}}
 }
 \examples{
-# See Note for joint.curvesCOP()
+# See also Note for joint.curvesCOP()
 \dontrun{
-# Approach the joint curves from both "with respect two" perspectives---results same.
-JCvwrtu <- joint.curvesCOP( cop=PSP, prob=0.98)$"0.98"
-JCuwrtv <- joint.curvesCOP2(cop=PSP, prob=0.98)$"0.98"; lim <- c(2,5)
-plot(qnorm(JCvwrtu$U), qnorm(JCvwrtu$V), type="l", lwd=6, col=8, xlim=lim, ylim=lim,
-     xlab="STANDARD NORMAL VARIATE OF U", ylab="STANDARD NORMAL VARIATE OF V")
-lines(qnorm(JCuwrtv$U), qnorm(JCuwrtv$V), col=2, lwd=2)
-mtext("98th Joint Percentile Level Curve for PSP Copula")#}
+  # Approach the joint curves from both "with respect two" perspectives---results same.
+  JCvwrtu <- joint.curvesCOP( cop=PSP, prob=0.98)$"0.98"
+  JCuwrtv <- joint.curvesCOP2(cop=PSP, prob=0.98)$"0.98"; lim <- c(2,5)
+  plot(qnorm(JCvwrtu$U),
+       qnorm(JCvwrtu$V), type="l", lwd=6, col="grey50", xlim=lim, ylim=lim,
+       xlab="STANDARD NORMAL VARIATE OF U", ylab="STANDARD NORMAL VARIATE OF V")
+  lines(qnorm(JCuwrtv$U), qnorm(JCuwrtv$V), col="red", lwd=2)
+  mtext("98th Joint Percentile Level Curve for PSP Copula") #}
 }
 \keyword{joint probability}
