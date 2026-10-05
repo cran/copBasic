@@ -1,7 +1,8 @@
 "kmeasCOP" <-
 function(z, cop=NULL, para=NULL, wrtV=FALSE, as.sample=FALSE, verbose=FALSE,
             subdivisions=100L, rel.tol=.Machine$double.eps^0.25, abs.tol=rel.tol, ...) {
-   kfuncCOP(z, cop=cop, para=para, wrtV=wrtV, as.sample=as.sample, verbose=verbose, ...)
+   kfuncCOP(z, cop=cop, para=para, wrtV=wrtV, as.sample=as.sample, verbose=verbose,
+               subdivisions=100L, rel.tol=.Machine$double.eps^0.25, abs.tol=rel.tol, ...)
 }
 
 "kfuncCOP" <-
@@ -40,8 +41,13 @@ function(z, cop=NULL, para=NULL, wrtV=FALSE, as.sample=FALSE, verbose=FALSE,
 
    }
 
-    if(is.null(cop)) {
+   if(is.null(cop)) {
       warning("must have copula argument specified, returning NULL")
+      return(NULL)
+   }
+   if(! is.function(cop)) {
+      warning("argument cop is not a function,\n",
+              "perhaps rm(cop=what_was_passed) and try again")
       return(NULL)
    }
 

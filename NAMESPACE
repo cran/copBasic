@@ -1,6 +1,6 @@
- importFrom("grDevices", "dev.list", "rgb", "grey")
+ importFrom("grDevices", "dev.list", "dev.off", "pdf", "rgb", "grey")
  importFrom("graphics", "abline", "axTicks", "axis", "contour", "legend", "lines",
-                       "mtext", "par", "plot", "points", "rug")
+                       "mtext", "par", "plot", "points", "polygon", "rug")
  importFrom("stats", "approx", "complete.cases", "cor", "dnorm",
             "integrate", "median", "qnorm", "quantile", "runif", "var",
             "uniroot", "optimise", "optim", "pnorm", "pt", "qt", "sd",
@@ -8,8 +8,8 @@
  importFrom("mvtnorm", "GenzBretz", "Miwa", "TVPACK", "pmvnorm", "pmvt")
  importFrom("randtoolbox", "halton", "sobol", "torus")
  importFrom("utils", "installed.packages", "str")
- importFrom("lmomco", "disfitqua", "lmr2par", "lmrloc", "lmoms", "lmom2par", "par2qua", "pp",
-                      "rlmomco", "qlmomco", "vec2par")
+ importFrom("lmomco", "disfitqua", "lmr2par", "lmrloc", "lmoms", "lmom2par",
+                      "par2qua", "pp", "rlmomco", "qlmomco", "vec2par")
 # --------------------------------------------------------------------------------------------------
 export(copBasic.fitpara.beta)
 export(AMHcop)
@@ -177,5 +177,6 @@ export(vuongCOP)
 export(wolfCOP)
 export(wolfCOPsamc)
 export(wolfCOPtest)
+export(wolfCOPtest_drawsim)
 
 

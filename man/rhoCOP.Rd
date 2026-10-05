@@ -3,7 +3,7 @@
 \alias{rhoCOP}
 \title{The Spearman Rho of a Copula}
 \description{
-Compute the measure of association known as the \emph{Spearman Rho} \eqn{\rho_\mathbf{C}} of a copula according to Nelsen (2006, pp. 167--170, 189, 208) by
+Compute the measure of association known as the \emph{Spearman Rho} \eqn{\rho_\mathbf{C}} of a copula according to Nelsen (2006, pp. 167--170, 189, and 208) by
 \deqn{\rho_\mathbf{C} = 12\int\!\!\int_{\mathcal{I}^2} \mathbf{C}(u,v)\, \mathrm{d}u\mathrm{d}v - 3\mbox{,}}
 or
 \deqn{\rho_\mathbf{C} = 12\int\!\!\int_{\mathcal{I}^2} \bigl[\mathbf{C}(u,v) - uv\bigr]\, \mathrm{d}u\mathrm{d}v\mbox{,}}
@@ -38,7 +38,7 @@ rhoCOP(cop=NULL, para=NULL, method=c("default", "joe21", "joe12"),
   The value for \eqn{\rho_\mathbf{C}} is returned.
 }
 \note{
-Technically, Nelsen (2006) also shows that these definitions are a form of call to a \emph{concordance function} \eqn{\mathcal{Q}(\mathbf{C}_1,\mathbf{C}_2)} of two copulas that involve \eqn{\mathbf{C}_1{=}\mathbf{C}(u,v)} and \eqn{\mathbf{C}_2{=}\mathbf{\Pi}}. As such in order to keep \code{rhoCOP} a small function when \code{brute=TRUE}, \eqn{\rho_\mathbf{C}} is computed by a special call to \code{\link{tauCOP}}, which by itself and although titled for computation of \emph{Kendall Tau}, does support the concordance function \eqn{\mathcal{Q}(\mathbf{C}_1, \mathbf{C}_2)} [see Nelsen (2006, pp. 158--159)] when given two different copulas and respective parameters as arguments. The well-known \emph{Pearson correlation coefficient} equals Spearman rho value if random variables \eqn{X} and \eqn{Y} are both uniformly distributed on \eqn{[0,1]}.
+Technically, Nelsen (2006) also shows that these definitions are a form of call to a \emph{concordance function} \eqn{\mathcal{Q}(\mathbf{C}_1,\mathbf{C}_2)} of two copulas that involve \eqn{\mathbf{C}_1{=}\mathbf{C}(u,v)} and \eqn{\mathbf{C}_2{=}\mathbf{\Pi}}. As such in order to keep \code{rhoCOP} a small function when \code{brute=TRUE}, \eqn{\rho_\mathbf{C}} is computed by a special call to \code{\link{tauCOP}}, which by itself and although titled for computation of \emph{Kendall Tau}, does support the concordance function \eqn{\mathcal{Q}(\mathbf{C}_1, \mathbf{C}_2)} [see Nelsen (2006, pp. 158--159)] when given two different copulas and respective parameters as arguments. The well-known \emph{Pearson correlation coefficient} equals Spearman Rho if random variables \eqn{X} and \eqn{Y} are both uniformly distributed on \eqn{[0,1]}.
 }
 \references{
 Joe, H., 2014, Dependence modeling with copulas: Boca Raton, CRC Press, 462 p.

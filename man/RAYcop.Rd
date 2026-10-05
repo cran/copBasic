@@ -5,9 +5,11 @@
 \description{
 The \emph{Rayleigh copula} (Bo\enc{š}{s}koskia and others, 2018) is
 \deqn{\mathbf{C}_{\Theta}(u,v) = \mathbf{RAY}(u,v; \Theta) = 1 + A - B\mbox{,}}
-\deqn{A = e^{\Theta a_2 - a_2}\biggl(e^{-a_1}\int_0^{\Theta a_2} e^{-s}I_0\bigl(2\sqrt{a_1 s}\bigr)\,\mathrm{d}s - 1\biggr)\,\mathrm{d}s\mbox{,}}
+where
+\deqn{A = e^{\Theta a_2 - a_2}\cdot e^{-a_1}\int_0^{\Theta a_2} \biggl(e^{-s}I_0\bigl(2\sqrt{a_1 s}\bigr)\,\mathrm{d}s - 1\biggr)\,\mathrm{d}s\mbox{,}}
+and
 \deqn{B = e^{-a_1}\int_0^{a_2}e^{-s}I_0\bigl(2\sqrt{\Theta a_1 s}\bigr)\,\mathrm{d}s\mbox{,}}
-where \eqn{a_1 = -\log(1-u)/(1-\Theta)}, \eqn{a_2 = -\log(1-v)/(1-\Theta)}, \eqn{I_\nu(x)} is the modified Bessel function of the first kind of order \eqn{\nu} (see \code{base::besselI()}), and \eqn{\Theta \in (0,1]}. The copula, as \eqn{\Theta \rightarrow 0^{+}}, limits to the \emph{independence coupla} (\eqn{\mathbf{\Pi}(u,v)}; \code{\link{P}}) and as \eqn{\Theta \rightarrow 1^{-}} limits to the \emph{comonotonicity copula} (\eqn{\mathbf{M}(u,v)}; \code{\link{M}}). Finally, there are formulations of the Rayleigh copula using the \emph{Marcum-Q function}, but the \pkg{copBasic} developer has not been able to make such work. If the Marcum-Q function could be used, then only one integration and not the two involving the modified Bessel function are possible. Infinite integrations begin occurring in the upper right corner for about \eqn{\Theta > 0.995} at which point the \eqn{\mathbf{M}(u,v)} copula is called in the source code.
+where \eqn{a_1 = -\log(1-u)/(1-\Theta)}, \eqn{a_2 = -\log(1-v)/(1-\Theta)}, \eqn{I_\nu(x)} is the modified Bessel function of the first kind of order \eqn{\nu} (see \code{base::besselI()}), and \eqn{\Theta \in (0,1]}. The copula, as \eqn{\Theta \rightarrow 0^{+}}, limits to the \emph{independence coupla} (\eqn{\mathbf{\Pi}(u,v)}; \code{\link{P}}) and as \eqn{\Theta \rightarrow 1^{-}} limits to the \emph{comonotonicity copula} (\eqn{\mathbf{M}(u,v)}; \code{\link{M}}). Finally, there are formulations of the Rayleigh copula using the \emph{Marcum-Q function}, but the \pkg{copBasic} developer has not been able to make such work. If the Marcum-Q function could be used, then only one integration and not the two involving the modified Bessel function are possible. Infinite integrations begin occurring in the upper right corner for about \eqn{\Theta > 0.9999} at which point the \eqn{\mathbf{M}(u,v)} copula is called in the source code.
 }
 \usage{
 RAYcop(u, v, para=NULL, rho=NULL, method=c("default"),
@@ -26,7 +28,7 @@ RAYcop(u, v, para=NULL, rho=NULL, method=c("default"),
   Value(s) for the copula are returned.
 }
 \note{
-Documentation in Zeng and others [Part II] appear to have corrected the Marcum-Q function solution to the copula. The essence of that solution is with a Chi-distribution computation the Marcum-Q. Testing indicates that they have the correct solution, but the derivative for the conditional simulation as built into the design of \pkg{copBasic} has difficulties. Perhaps this is related to numerical precision of the Marcum-Q?
+Documentation in Zeng and others (2014, Part II) appear to have corrected the Marcum-Q function solution to the copula. The essence of that solution is with a Chi-distribution computation the Marcum-Q. Testing indicates that they have the correct solution, but the derivative for the conditional simulation as built into the design of \pkg{copBasic} has difficulties. Perhaps this is related to numerical precision of the Marcum-Q?
 \preformatted{
   sapply(seq_len(length((u))), function(i) {
     a1 <- -log(1-u[i])
@@ -46,6 +48,8 @@ Documentation in Zeng and others [Part II] appear to have corrected the Marcum-Q
 }
 \references{
 Bo\enc{š}{s}koskia, P., Debenjaka, A., Boshkoskab, B.M., 2018, Rayleigh copula for describing impedance data with application to condition monitoring of proton exchange membrane fuel cells: European Journal of Operational Research, v. 266, pp. 269--277, \doi{10.1016/j.ejor.2017.08.058}.
+
+Yousof, H.M., Ali, M.M., Goual, H., and Ibrahim, M., 2021, A new reciprocal Rayleigh extension---Properties, copulas, different methods of estimation and a modified right-censored test for validation: Statistics in Transition New Series, v. 22, no. 3, pp. 99--121, \doi{10.21307/stattrans-2021-029}.
 
 Zeng, X., Ren, J., Wang, Z., Marshall, S., and Durrani, T., 2014, Copulas for statistical signal processing (Part I)---Extensions and generalization: Signal Processing v. 14, pp. 691--702, \doi{10.1016/j.sigpro.2013.07.009}.
 

@@ -5,7 +5,7 @@
 \title{The Plackett Copula}
 \description{
 The \emph{Plackett copula} (Nelsen, 2006, pp. 89--92) is
-\deqn{\mathbf{C}_\Theta(u,v) = \mathbf{PL}(u,v) = \frac{[1+(\Theta-1)(u+v)]-\sqrt{[1+(\Theta-1)(u+v)]^2 - 4uv\Theta(\Theta-1)}}{2(\Theta - 1)}\mbox{.}}
+\deqn{\mathbf{C}_\Theta(u,v) = \mathbf{PL}(u,v) = \frac{\bigl[1+(\Theta-1)(u+v)\bigr]-\sqrt{[1+(\Theta-1)(u+v)]^2 - 4uv\Theta(\Theta-1)}}{2(\Theta - 1)}\mbox{.}}
 
 The Plackett copula (\eqn{\mathbf{PL}(u,v)}) is \emph{comprehensive} because as \eqn{\Theta \rightarrow 0} the copula becomes \eqn{\mathbf{W}(u,v)} (see \code{\link{W}}, \emph{countermonotonicity}), as \eqn{\Theta \rightarrow \infty} the copula becomes \eqn{\mathbf{M}(u,v)} (see \code{\link{M}},  \emph{comonotonicity}) and for \eqn{\Theta = 1} the copula is \eqn{\mathbf{\Pi}(u,v)} (see \code{\link{P}},  \emph{independence}).
 

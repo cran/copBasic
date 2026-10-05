@@ -1,6 +1,23 @@
 --------------------------------------------------------------------------------------
                 NEWS for R Package "copBasic" by W.H. Asquith
 --------------------------------------------------------------------------------------
+Changes in version 2.2.17 (2026-10-04)
+- Fixed legend plotting error in inst/make_wolfCOPtest/chck_wolfCOPtestCIRC.R and
+    changed some line thicknesses and one line color in the plotting by that script
+    after seeing the wolfCOPtest_check.Rd figure 3 after CRAN rendering in 2.2.16.
+- Editorial adjustment wolfCOPtest_check.Rd then followed by inflation of the study
+    therein and addition of a fourth figure via .../chck_wolfCOPtestCIRC.R
+- Math delimiter adjustment in PLACKETTcop.Rd for better appearance.
+- Edits to RAYcop.Rd and changing a stated limiting parameter to M() to source code.
+    Study of 10.21307/stattrans-2021-029 with bibliographic entry in RAYcop.Rd
+    could use some consideration.
+- Minor edits to rhoCOP.Rd.
+- Addition to copBasic-package.Rd describing case of "could not find function 'cop'".
+- Minor argument extension to wolfCOPtest.[R|Rd] for add.cor.tests, maxrnd, statnm.
+- Added wolfCOPtest_drawsim.[R|Rd].
+- Added grDevices imports for dev.off, pdf; graphics imports for polygon.
+
+
 Changes in version 2.2.16 (2026-08-30)
 -  Absolute value symbol scale up in hoefCOP.Rd and LzCOPpermsym.Rd and added doi
      number to an article in hoefCOP.Rd.
